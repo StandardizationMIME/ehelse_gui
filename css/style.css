@@ -3,7 +3,7 @@
     overflow-y: auto;
     height: 800px;
 }
-.toolbar {
+.navigation-bar {
     min-height: 40px;
     max-width: 1800px;
     margin: auto;

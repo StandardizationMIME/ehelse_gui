@@ -20,6 +20,7 @@
             for (i = 0; i < theme.standards.length; ++i) {
                 standardDisplay.append('<p><a><span class="standard-icon glyphicon glyphicon-file"></span> ' + theme.standards[i].standardName + '</a></p>');
             }
+            $("#folder" + theme.themeId).toggleClass("glyphicon-folder-close glyphicon-folder-open");
         };
     });
 
@@ -75,7 +76,7 @@
             ],
             subThemes: [
                 {
-                    themeId: 1,
+                    themeId: 2,
                     themeName: 'Andre standarder',
                     standards: [
                         {
@@ -91,7 +92,7 @@
             ]
         },
         {
-            themeId: 2,
+            themeId: 3,
             themeName: 'Del 2 - Kodeverk, terminologier mv.',
             themeDescription: "Denne delen av Referansekatalogen for e-helse omfatter standarder og andre kravdokumenter som skal bidra til en ensartet bruk av termer og koder " +
                          "innen helse- og omsorgstjenesten.",
@@ -104,7 +105,7 @@
             ],
             subThemes: [
                 {
-                    themeId: 2,
+                    themeId: 4,
                     themeName: 'Andre standarder',
                     standards: [
                         {
@@ -174,7 +175,7 @@
             ]
         },
         {
-            themeId: 3,
+            themeId: 5,
             themeName: 'Del 3: Informasjonsinnhold og strukturert føring av journal',
             themeDescription: 'Omfatter standarder og andre kravdokumenter som skal bidra til at elektroniske pasientjournaler føres på en ensartet måte i alle' +
                          ' virksomheter. ​​​​​​​​​​​​​​​​​​​​​​​​I tillegg skal det sørges for at innholdet blir strukturert på en slik måte at opplysningene blir egnet for gjenbruk til ' +
@@ -194,7 +195,7 @@
             ],
             subThemes: [
                 {
-                    themeId: 3,
+                    themeId: 6,
                     themeName: 'Grunnleggende krav til EPJ-systemer',
                     standards: [
                         {
@@ -215,7 +216,7 @@
                     ]
                 },
                 {
-                    themeId: 4,
+                    themeId: 7,
                     themeName: 'Innhold og funksjonalitet i EPJ-systemer',
                     standards: [
                         {
@@ -258,7 +259,7 @@
             ]
         },
         {
-            themeId: 4,
+            themeId: 8,
             themeName: 'Del 4 - Elektronisk samhandling',
             themeDescription: 'Omfatter standarder og andre kravdokumenter som skal bidra til sikker elektronisk utveksling av helseopplysninger mellom ulike virksomheter i helse- og omsorgstjenesten.',
             extraInfo: [
@@ -270,7 +271,7 @@
             ],
             subThemes: [
                 {
-                    themeId: 5,
+                    themeId: 9,
                     themeName: 'Grunnleggende krav til elektronisk samhandling',
                     standards: [
                         {
@@ -297,7 +298,7 @@
                     ]
                 },
                 {
-                    themeId: 6,
+                    themeId: 10,
                     themeName: 'Henvisning og epikrise',
                     standards: [
                         {
@@ -315,7 +316,7 @@
                     ]
                 },
                 {
-                    themeId: 7,
+                    themeId: 11,
                     themeName: 'Samhandling – laboratoriemedisin og radiologi​​',
                     standards: [
                         {
@@ -345,7 +346,7 @@
                     ]
                 },
                 {
-                    themeId: 8,
+                    themeId: 12,
                     themeName: 'Pleie- og omsorgsmeldinger',
                     standards: [
                         {
@@ -384,7 +385,7 @@
                     ]
                 },
                 {
-                    themeId: 9,
+                    themeId: 13,
                     themeName: 'E-resept',
                     standards: [
                         {
@@ -504,7 +505,7 @@
                     ]
                 },
                 {
-                    themeId: 10,
+                    themeId: 14,
                     themeName: 'Samhandling med NAV',
                     standards: [
                         {
@@ -537,7 +538,7 @@
                     ]
                 },
                 {
-                    themeId: 11,
+                    themeId: 15,
                     themeName: 'Samhandling med HELFO',
                     standards: [
                         {
@@ -558,7 +559,7 @@
                     ]
                 },
                 {
-                    themeId: 12,
+                    themeId: 16,
                     themeName: 'Melding til Norsk pasientregister',
                     standards: [
                         {
@@ -624,7 +625,7 @@
                     ]
                 },
                 {
-                    themeId: 13,
+                    themeId: 17,
                     themeName: 'Melding til øvrige sentrale helseregistre ',
                     standards: [
                         {
@@ -657,7 +658,7 @@
                     ]
                 },
                 {
-                    themeId: 14,
+                    themeId: 18,
                     themeName: 'Melding til IPLOS',
                     standards: [
                         {
