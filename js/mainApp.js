@@ -87,7 +87,45 @@
             ],
             standards: [
                 {
-                    standardName: 'Sikkerhetskrav for systemer - Selvdeklarering​'
+                    standardName: 'Sikkerhetskrav for systemer - Selvdeklarering​',
+                    fields: [
+                        {
+                            fieldID: '1',
+                            fieldType: 'text',
+                            fieldTitle: 'Titel',
+                            fieldContent: 'Sikkerhetskrav for systemer - Selvdeklarering'
+                        },
+                        {
+                            fieldID: '2',
+                            fieldType: 'text',
+                            fieldTitle: 'Referansekatalog ID',
+                            fieldContent: '1.1'
+                        },
+                        {
+                            fieldID: '3',
+                            fieldType: 'text',
+                            fieldTitle: 'Utgiver',
+                            fieldContent: 'Styringsgruppen for Norm for informasjonssikkerhet'
+                        },
+                        {
+                            fieldID: '4',
+                            fieldType: 'text',
+                            fieldTitle: 'Status',
+                            fieldContent: 'Aktiv'
+                        },
+                        {
+                            fieldID: '5',
+                            fieldType: 'text',
+                            fieldTitle: 'Versjon',
+                            fieldContent: '4.1'
+                        },
+                        {
+                            fieldID: '6',
+                            fieldType: 'text',
+                            fieldTitle: 'Publisert',
+                            fieldContent: '17.8.2015'
+                        }
+                    ]
                 }
             ]
         },
@@ -109,41 +147,460 @@
                     themeName: 'Andre standarder',
                     standards: [
                         {
-                            standardName: '​ICD-10: Den internasjonale statistiske klassifikasjonen av sykdommer og beslektede helseproblemer'
+                            standardName: '​ICD-10: Den internasjonale statistiske klassifikasjonen av sykdommer og beslektede helseproblemer',
+                            fields: [
+                                {
+                                    fieldID: '1',
+                                    fieldType: 'text',
+                                    fieldTitle: 'Titel',
+                                    fieldContent: 'ICD-10: Den internasjonale statistiske klassifikasjonen av sykdommer og beslektede helseproblemer'
+                                },
+                                {
+                                    fieldID: '2',
+                                    fieldType: 'text',
+                                    fieldTitle: 'Referansekatalog ID',
+                                    fieldContent: '2.1'
+                                },
+                                {
+                                    fieldID: '3',
+                                    fieldType: 'text',
+                                    fieldTitle: 'Utgiver',
+                                    fieldContent: 'Helsedirektoratet / Verdens helseorganisasjon'
+                                },
+                                {
+                                    fieldID: '4',
+                                    fieldType: 'text',
+                                    fieldTitle: 'Status',
+                                    fieldContent: 'Aktiv'
+                                },
+                                {
+                                    fieldID: '5',
+                                    fieldType: 'text',
+                                    fieldTitle: 'Versjon',
+                                    fieldContent: ''
+                                },
+                                {
+                                    fieldID: '6',
+                                    fieldType: 'text',
+                                    fieldTitle: 'Publisert',
+                                    fieldContent: ''
+                                }
+                            ]
                         },
                         {
-                            standardName: 'ICPC-2: Den internasjonale klassifikasjonen for primærhelsetjenesten'
+                            standardName: 'ICPC-2: Den internasjonale klassifikasjonen for primærhelsetjenesten',
+                            fields: [
+                                {
+                                    fieldID: '1',
+                                    fieldType: 'text',
+                                    fieldTitle: 'Titel',
+                                    fieldContent: 'ICPC-2: Den internasjonale klassifikasjonen for primærhelsetjenesten'
+                                },
+                                {
+                                    fieldID: '2',
+                                    fieldType: 'text',
+                                    fieldTitle: 'Referansekatalog ID',
+                                    fieldContent: '3.1'
+                                },
+                                {
+                                    fieldID: '3',
+                                    fieldType: 'text',
+                                    fieldTitle: 'Utgiver',
+                                    fieldContent: 'Helsedirektoratet, NSAM og Wonca'
+                                },
+                                {
+                                    fieldID: '4',
+                                    fieldType: 'text',
+                                    fieldTitle: 'Status',
+                                    fieldContent: 'Aktiv'
+                                },
+                                {
+                                    fieldID: '5',
+                                    fieldType: 'text',
+                                    fieldTitle: 'Versjon',
+                                    fieldContent: ''
+                                },
+                                {
+                                    fieldID: '6',
+                                    fieldType: 'text',
+                                    fieldTitle: 'Publisert',
+                                    fieldContent: ''
+                                }
+                            ]
+
                         },
                         {
-                            standardName: '​NCMP: Kodeverk for medisinske prosedyrer'
+                            standardName: '​NCMP: Kodeverk for medisinske prosedyrer',
+                            fields: [
+                                {
+                                    fieldID: '1',
+                                    fieldType: 'text',
+                                    fieldTitle: 'Titel',
+                                    fieldContent: 'NCMP: Kodeverk for medisinske prosedyrer'
+                                },
+                                {
+                                    fieldID: '2',
+                                    fieldType: 'text',
+                                    fieldTitle: 'Referansekatalog ID',
+                                    fieldContent: '4.1'
+                                },
+                                {
+                                    fieldID: '3',
+                                    fieldType: 'text',
+                                    fieldTitle: 'Utgiver',
+                                    fieldContent: 'Helsedirektoratet'
+                                },
+                                {
+                                    fieldID: '4',
+                                    fieldType: 'text',
+                                    fieldTitle: 'Status',
+                                    fieldContent: 'Aktiv'
+                                },
+                                {
+                                    fieldID: '5',
+                                    fieldType: 'text',
+                                    fieldTitle: 'Versjon',
+                                    fieldContent: ''
+                                },
+                                {
+                                    fieldID: '6',
+                                    fieldType: 'text',
+                                    fieldTitle: 'Publisert',
+                                    fieldContent: ''
+                                }
+                            ]
                         },
                         {
-                            standardName: '​NCSP: Kodeverk for kirurgiske prosedyrer'
+                            standardName: '​NCSP: Kodeverk for kirurgiske prosedyrer',
+                            fields: [
+                                {
+                                    fieldID: '1',
+                                    fieldType: 'text',
+                                    fieldTitle: 'Titel',
+                                    fieldContent: 'NCMP: Kodeverk for medisinske prosedyrer'
+                                },
+                                {
+                                    fieldID: '2',
+                                    fieldType: 'text',
+                                    fieldTitle: 'Referansekatalog ID',
+                                    fieldContent: '5.1'
+                                },
+                                {
+                                    fieldID: '3',
+                                    fieldType: 'text',
+                                    fieldTitle: 'Utgiver',
+                                    fieldContent: 'Helsedirektoratet'
+                                },
+                                {
+                                    fieldID: '4',
+                                    fieldType: 'text',
+                                    fieldTitle: 'Status',
+                                    fieldContent: 'Aktiv'
+                                },
+                                {
+                                    fieldID: '5',
+                                    fieldType: 'text',
+                                    fieldTitle: 'Versjon',
+                                    fieldContent: ''
+                                },
+                                {
+                                    fieldID: '6',
+                                    fieldType: 'text',
+                                    fieldTitle: 'Publisert',
+                                    fieldContent: ''
+                                }
+                            ]
                         },
                         {
-                            standardName: 'NCRP: Norsk klassifikasjon av radiologiske prosedyrer'
+                            standardName: 'NCRP: Norsk klassifikasjon av radiologiske prosedyrer',
+                            fields: [
+                                {
+                                    fieldID: '1',
+                                    fieldType: 'text',
+                                    fieldTitle: 'Titel',
+                                    fieldContent: 'NCRP: Norsk klassifikasjon av radiologiske prosedyrer'
+                                },
+                                {
+                                    fieldID: '2',
+                                    fieldType: 'text',
+                                    fieldTitle: 'Referansekatalog ID',
+                                    fieldContent: '6.1'
+                                },
+                                {
+                                    fieldID: '3',
+                                    fieldType: 'text',
+                                    fieldTitle: 'Utgiver',
+                                    fieldContent: 'Helsedirektoratet'
+                                },
+                                {
+                                    fieldID: '4',
+                                    fieldType: 'text',
+                                    fieldTitle: 'Status',
+                                    fieldContent: 'Aktiv'
+                                },
+                                {
+                                    fieldID: '5',
+                                    fieldType: 'text',
+                                    fieldTitle: 'Versjon',
+                                    fieldContent: ''
+                                },
+                                {
+                                    fieldID: '6',
+                                    fieldType: 'text',
+                                    fieldTitle: 'Publisert',
+                                    fieldContent: ''
+                                }
+                            ]
                         },
                         {
-                            standardName: '​ICD-10: Psykiske lidelser og atferdsforstyrrelse: kliniske beskrivelser og diagnostiske retningslinjer (Blåboka)'
+                            standardName: '​ICD-10: Psykiske lidelser og atferdsforstyrrelse: kliniske beskrivelser og diagnostiske retningslinjer (Blåboka)',
+                            fields: [
+                                {
+                                    fieldID: '1',
+                                    fieldType: 'text',
+                                    fieldTitle: 'Titel',
+                                    fieldContent: '​ICD-10: Psykiske lidelser og atferdsforstyrrelse: kliniske beskrivelser og diagnostiske retningslinjer (Blåboka)'
+                                },
+                                {
+                                    fieldID: '2',
+                                    fieldType: 'text',
+                                    fieldTitle: 'Referansekatalog ID',
+                                    fieldContent: '7.1'
+                                },
+                                {
+                                    fieldID: '3',
+                                    fieldType: 'text',
+                                    fieldTitle: 'Utgiver',
+                                    fieldContent: 'Helsedirektoratet / Verdens helseorganisasjon'
+                                },
+                                {
+                                    fieldID: '4',
+                                    fieldType: 'text',
+                                    fieldTitle: 'Status',
+                                    fieldContent: 'Aktiv'
+                                },
+                                {
+                                    fieldID: '5',
+                                    fieldType: 'text',
+                                    fieldTitle: 'Versjon',
+                                    fieldContent: ''
+                                },
+                                {
+                                    fieldID: '6',
+                                    fieldType: 'text',
+                                    fieldTitle: 'Publisert',
+                                    fieldContent: ''
+                                }
+                            ]
                         },
                         {
-                            standardName: 'Den norske SNOMED​'
+                            standardName: 'Den norske SNOMED​',
+                            fields: [
+                                {
+                                    fieldID: '1',
+                                    fieldType: 'text',
+                                    fieldTitle: 'Titel',
+                                    fieldContent: 'Den norske SNOMED​'
+                                },
+                                {
+                                    fieldID: '2',
+                                    fieldType: 'text',
+                                    fieldTitle: 'Referansekatalog ID',
+                                    fieldContent: '8.1'
+                                },
+                                {
+                                    fieldID: '3',
+                                    fieldType: 'text',
+                                    fieldTitle: 'Utgiver',
+                                    fieldContent: 'Den norske patologforening'
+                                },
+                                {
+                                    fieldID: '4',
+                                    fieldType: 'text',
+                                    fieldTitle: 'Status',
+                                    fieldContent: 'Aktiv'
+                                },
+                                {
+                                    fieldID: '5',
+                                    fieldType: 'text',
+                                    fieldTitle: 'Versjon',
+                                    fieldContent: ''
+                                },
+                                {
+                                    fieldID: '6',
+                                    fieldType: 'text',
+                                    fieldTitle: 'Publisert',
+                                    fieldContent: ''
+                                }
+                            ]
                         },
                         {
-                            standardName: '​ATC: Anatomisk Terapeutisk Kjemisk legemiddelregister'
+                            standardName: '​ATC: Anatomisk Terapeutisk Kjemisk legemiddelregister',
+                            fields: [
+                                {
+                                    fieldID: '1',
+                                    fieldType: 'text',
+                                    fieldTitle: 'Titel',
+                                    fieldContent: '​ATC: Anatomisk Terapeutisk Kjemisk legemiddelregister​'
+                                },
+                                {
+                                    fieldID: '2',
+                                    fieldType: 'text',
+                                    fieldTitle: 'Referansekatalog ID',
+                                    fieldContent: '9.1'
+                                },
+                                {
+                                    fieldID: '3',
+                                    fieldType: 'text',
+                                    fieldTitle: 'Utgiver',
+                                    fieldContent: 'WHO Collaborating Centre for Drug Statistics Methodology (under Folkehelseinstituttet)'
+                                },
+                                {
+                                    fieldID: '4',
+                                    fieldType: 'text',
+                                    fieldTitle: 'Status',
+                                    fieldContent: 'Aktiv'
+                                },
+                                {
+                                    fieldID: '5',
+                                    fieldType: 'text',
+                                    fieldTitle: 'Versjon',
+                                    fieldContent: ''
+                                },
+                                {
+                                    fieldID: '6',
+                                    fieldType: 'text',
+                                    fieldTitle: 'Publisert',
+                                    fieldContent: ''
+                                }
+                            ]
                         },
                         {
-                            standardName: 'Multiaksial klassifikasjon i psykisk helsevern for barn og unge (BUP)'
+                            standardName: 'Multiaksial klassifikasjon i psykisk helsevern for barn og unge (BUP)',
+                            fields: [
+                                {
+                                    fieldID: '1',
+                                    fieldType: 'text',
+                                    fieldTitle: 'Titel',
+                                    fieldContent: 'Multiaksial klassifikasjon i psykisk helsevern for barn og unge (BUP)​'
+                                },
+                                {
+                                    fieldID: '2',
+                                    fieldType: 'text',
+                                    fieldTitle: 'Referansekatalog ID',
+                                    fieldContent: '10.1'
+                                },
+                                {
+                                    fieldID: '3',
+                                    fieldType: 'text',
+                                    fieldTitle: 'Utgiver',
+                                    fieldContent: 'Helsedirektoratet'
+                                },
+                                {
+                                    fieldID: '4',
+                                    fieldType: 'text',
+                                    fieldTitle: 'Status',
+                                    fieldContent: 'Aktiv'
+                                },
+                                {
+                                    fieldID: '5',
+                                    fieldType: 'text',
+                                    fieldTitle: 'Versjon',
+                                    fieldContent: ''
+                                },
+                                {
+                                    fieldID: '6',
+                                    fieldType: 'text',
+                                    fieldTitle: 'Publisert',
+                                    fieldContent: ''
+                                }
+                            ]
                         },
                         {
-                            standardName: '​Norsk laboratoriekodeverk (NLK)'
+                            standardName: '​Norsk laboratoriekodeverk (NLK)',
+                            fields: [
+                                {
+                                    fieldID: '1',
+                                    fieldType: 'text',
+                                    fieldTitle: 'Titel',
+                                    fieldContent: 'Norsk laboratoriekodeverk (NLK)'
+                                },
+                                {
+                                    fieldID: '2',
+                                    fieldType: 'text',
+                                    fieldTitle: 'Referansekatalog ID',
+                                    fieldContent: '11.1'
+                                },
+                                {
+                                    fieldID: '3',
+                                    fieldType: 'text',
+                                    fieldTitle: 'Utgiver',
+                                    fieldContent: 'Helsedirektoratet'
+                                },
+                                {
+                                    fieldID: '4',
+                                    fieldType: 'text',
+                                    fieldTitle: 'Status',
+                                    fieldContent: 'Aktiv'
+                                },
+                                {
+                                    fieldID: '5',
+                                    fieldType: 'text',
+                                    fieldTitle: 'Versjon',
+                                    fieldContent: ''
+                                },
+                                {
+                                    fieldID: '6',
+                                    fieldType: 'text',
+                                    fieldTitle: 'Publisert',
+                                    fieldContent: ''
+                                }
+                            ]
                         }
                     ]
                 }
             ],
             standards: [
                 {
-                    standardName: '​ICD-10: Den internasjonale statistiske klassifikasjonen av sykdommer og beslektede helseproblemer'
+                    standardName: '​ICD-10: Den internasjonale statistiske klassifikasjonen av sykdommer og beslektede helseproblemer',
+                    fields: [
+                        {
+                            fieldID: '1',
+                            fieldType: 'text',
+                            fieldTitle: 'Titel',
+                            fieldContent: '​ICD-10: Den internasjonale statistiske klassifikasjonen av sykdommer og beslektede helseproblemer'
+                        },
+                        {
+                            fieldID: '2',
+                            fieldType: 'text',
+                            fieldTitle: 'Referansekatalog ID',
+                            fieldContent: '12.2'
+                        },
+                        {
+                            fieldID: '3',
+                            fieldType: 'text',
+                            fieldTitle: 'Utgiver',
+                            fieldContent: 'Helsedirektoratet / Verdens helseorganisasjon'
+                        },
+                        {
+                            fieldID: '4',
+                            fieldType: 'text',
+                            fieldTitle: 'Status',
+                            fieldContent: 'Aktiv'
+                        },
+                        {
+                            fieldID: '5',
+                            fieldType: 'text',
+                            fieldTitle: 'Versjon',
+                            fieldContent: ''
+                        },
+                        {
+                            fieldID: '6',
+                            fieldType: 'text',
+                            fieldTitle: 'Publisert',
+                            fieldContent: ''
+                        }
+                    ]
                 },
                 {
                     standardName: 'ICPC-2: Den internasjonale klassifikasjonen for primærhelsetjenesten'
