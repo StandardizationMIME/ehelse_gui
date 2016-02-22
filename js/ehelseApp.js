@@ -15,6 +15,7 @@
             $("#" + theme.themeId).css("font-weight", "bolder");
             var standardDisplay = $(".standard-display");
             standardDisplay.empty();
+            standardDisplay.append('<h4>' + theme.themeName + '</h4>');
             var i;
             for (i = 0; i < theme.standards.length; ++i) {
                 standardDisplay.append('<p><a><span class="standard-icon glyphicon glyphicon-file"></span> ' + theme.standards[i].standardName + '</a></p>');
@@ -74,8 +75,8 @@
             ],
             subThemes: [
                 {
-                    subthemeId: 1,
-                    subThemeName: 'Andre standarder',
+                    themeId: 1,
+                    themeName: 'Andre standarder',
                     standards: [
                         {
                             standardName: 'Sikkerhetskrav for systemer - Selvdeklarering​'
@@ -103,8 +104,8 @@
             ],
             subThemes: [
                 {
-                    subthemeId: 2,
-                    subThemeName: 'Andre standarder',
+                    themeId: 2,
+                    themeName: 'Andre standarder',
                     standards: [
                         {
                             standardName: '​ICD-10: Den internasjonale statistiske klassifikasjonen av sykdommer og beslektede helseproblemer'
@@ -193,8 +194,8 @@
             ],
             subThemes: [
                 {
-                    subthemeId: 3,
-                    subThemeName: 'Grunnleggende krav til EPJ-systemer',
+                    themeId: 3,
+                    themeName: 'Grunnleggende krav til EPJ-systemer',
                     standards: [
                         {
                             standardName: 'EPJ Standard del 2 - Tilgangsstyring, redigering, retting og sletting (HIS 80506)​​'
@@ -214,8 +215,8 @@
                     ]
                 },
                 {
-                    subthemeId: 4,
-                    subThemeName: 'Innhold og funksjonalitet i EPJ-systemer',
+                    themeId: 4,
+                    themeName: 'Innhold og funksjonalitet i EPJ-systemer',
                     standards: [
                         {
                             standardName: 'Kravspesifikasjon elektronisk dokumentasjonssystem for pleie- og omsorgstjenesten (HIS 80315)​​​'
@@ -269,8 +270,8 @@
             ],
             subThemes: [
                 {
-                    subthemeId: 5,
-                    subThemeName: 'Grunnleggende krav til elektronisk samhandling',
+                    themeId: 5,
+                    themeName: 'Grunnleggende krav til elektronisk samhandling',
                     standards: [
                         {
                             standardName: 'ebXML Messages Service specification​​​'
@@ -296,8 +297,8 @@
                     ]
                 },
                 {
-                    subthemeId: 6,
-                    subThemeName: 'Henvisning og epikrise',
+                    themeId: 6,
+                    themeName: 'Henvisning og epikrise',
                     standards: [
                         {
                             standardName: 'Henvisningsmelding (HIS 80517)​​'
@@ -314,8 +315,8 @@
                     ]
                 },
                 {
-                    subthemeId: 7,
-                    subThemeName: 'Samhandling – laboratoriemedisin og radiologi​​',
+                    themeId: 7,
+                    themeName: 'Samhandling – laboratoriemedisin og radiologi​​',
                     standards: [
                         {
                             standardName: '​Rekvisisjon - laboratoriemedisin (HIS 1160)'
@@ -344,8 +345,8 @@
                     ]
                 },
                 {
-                    subthemeId: 8,
-                    subThemeName: 'Pleie- og omsorgsmeldinger',
+                    themeId: 8,
+                    themeName: 'Pleie- og omsorgsmeldinger',
                     standards: [
                         {
                             standardName: 'Standard for elektronisk kommunikasjon med pleie- og omsorgstjenesten​ (HIS 80704)​​'
@@ -383,8 +384,8 @@
                     ]
                 },
                 {
-                    subthemeId: 9,
-                    subThemeName: 'E-resept',
+                    themeId: 9,
+                    themeName: 'E-resept',
                     standards: [
                         {
                             standardName: 'M1 Resept (HIS 80809)​​'
@@ -503,8 +504,8 @@
                     ]
                 },
                 {
-                    subthemeId: 10,
-                    subThemeName: 'Samhandling med NAV',
+                    themeId: 10,
+                    themeName: 'Samhandling med NAV',
                     standards: [
                         {
                             standardName: 'Legeerklæring ved arbeidsuførhet (HIS 80805:2008)'
@@ -536,8 +537,8 @@
                     ]
                 },
                 {
-                    subthemeId: 11,
-                    subThemeName: 'Samhandling med HELFO',
+                    themeId: 11,
+                    themeName: 'Samhandling med HELFO',
                     standards: [
                         {
                             standardName: 'Behandlerkravmelding (BKM)'
@@ -557,8 +558,8 @@
                     ]
                 },
                 {
-                    subthemeId: 12,
-                    subThemeName: 'Melding til Norsk pasientregister',
+                    themeId: 12,
+                    themeName: 'Melding til Norsk pasientregister',
                     standards: [
                         {
                             standardName: 'Ordinær NPR-melding v52.0.2​'
@@ -623,8 +624,8 @@
                     ]
                 },
                 {
-                    subthemeId: 13,
-                    subThemeName: 'Melding til øvrige sentrale helseregistre ',
+                    themeId: 13,
+                    themeName: 'Melding til øvrige sentrale helseregistre ',
                     standards: [
                         {
                             standardName: 'Melding til SYSVAK: HendelseRequest​​'
@@ -656,8 +657,8 @@
                     ]
                 },
                 {
-                    subthemeId: 14,
-                    subThemeName: 'Melding til IPLOS',
+                    themeId: 14,
+                    themeName: 'Melding til IPLOS',
                     standards: [
                         {
                             standardName: 'IPLOS Teknisk kravspesifikasjon​'
