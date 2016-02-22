@@ -3,6 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="172bf1e1-791f-44cf-963e-f83fe244219e" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ehelseIndex.html" afterPath="$PROJECT_DIR$/ehelseIndex.html" />
     </list>
     <ignored path="untitled1.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -28,8 +29,8 @@
           <file leaf-file-name="ehelseIndex.html" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/ehelseIndex.html">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.35560346">
-                  <caret line="22" column="33" selection-start-line="22" selection-start-column="33" selection-end-line="22" selection-end-column="33" />
+                <state vertical-scroll-proportion="0.6039604">
+                  <caret line="27" column="10" selection-start-line="27" selection-start-column="10" selection-end-line="27" selection-end-column="10" />
                   <folding />
                 </state>
               </provider>
@@ -59,9 +60,11 @@
             <entry file="file://$PROJECT_DIR$/js/ehelseApp.js">
               <provider selected="true" editor-type-id="text-editor">
                 <state vertical-scroll-proportion="0.0">
-                  <caret line="48" column="33" selection-start-line="48" selection-start-column="33" selection-end-line="48" selection-end-column="33" />
+                  <caret line="49" column="33" selection-start-line="49" selection-start-column="33" selection-end-line="49" selection-end-column="33" />
                   <folding>
                     <element signature="e#0#42#0" expanded="false" />
+                    <marker date="1456135676000" expanded="true" signature="245:525" placeholder="{...}" />
+                    <marker date="1456135676000" expanded="true" signature="292:525" placeholder="{...}" />
                   </folding>
                 </state>
               </provider>
@@ -91,7 +94,7 @@
           <file leaf-file-name="app.js" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/js/app.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.44117647">
+                <state vertical-scroll-proportion="0.6666667">
                   <caret line="37" column="0" selection-start-line="37" selection-start-column="0" selection-end-line="37" selection-end-column="0" />
                   <folding>
                     <element signature="e#0#42#0" expanded="false" />
@@ -137,12 +140,12 @@
         <option value="$PROJECT_DIR$/asd.html" />
         <option value="$PROJECT_DIR$/css/ehelseStyle.css" />
         <option value="$PROJECT_DIR$/toolbar.html" />
-        <option value="$PROJECT_DIR$/ehelseIndex.html" />
         <option value="$PROJECT_DIR$/file-browser.html" />
         <option value="$PROJECT_DIR$/js/ehelseApp.js" />
         <option value="$PROJECT_DIR$/file-list.html" />
         <option value="$PROJECT_DIR$/content-display.html" />
         <option value="$PROJECT_DIR$/editor-display.html" />
+        <option value="$PROJECT_DIR$/ehelseIndex.html" />
       </list>
     </option>
   </component>
@@ -258,7 +261,6 @@
           <option name="mySupportsDeletion" value="false" />
           <option name="myCanBeAbsent" value="false" />
           <option name="myId" value="UPDATED" />
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/.idea/jsLibraryMappings.xml</PATH>
           <PATH vcs="Git" revision="">$PROJECT_DIR$/ehelseIndex.html</PATH>
           <PATH vcs="Git" revision="">$PROJECT_DIR$/js/ehelseApp.js</PATH>
         </FILE-GROUP>
@@ -456,7 +458,13 @@
       <option name="project" value="LOCAL" />
       <updated>1456135377788</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Added directives for editor display -&gt; browser,list,content">
+      <created>1456135427269</created>
+      <option name="number" value="00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1456135427269</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -467,7 +475,7 @@
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32857144" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32857144" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
@@ -496,7 +504,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Added toolbar directive" />
     <MESSAGE value="Magic with tollbar" />
-    <option name="LAST_COMMIT_MESSAGE" value="Magic with tollbar" />
+    <MESSAGE value="Added directives for editor display -&gt; browser,list,content" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added directives for editor display -&gt; browser,list,content" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -549,6 +558,8 @@
           <caret line="3" column="0" selection-start-line="3" selection-start-column="0" selection-end-line="4" selection-end-column="41" />
           <folding>
             <element signature="e#0#42#0" expanded="false" />
+            <marker date="1456135676000" expanded="true" signature="245:525" placeholder="{...}" />
+            <marker date="1456135676000" expanded="true" signature="292:525" placeholder="{...}" />
           </folding>
         </state>
       </provider>
@@ -597,6 +608,8 @@
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="e#0#42#0" expanded="false" />
+            <marker date="1456135676000" expanded="true" signature="245:525" placeholder="{...}" />
+            <marker date="1456135676000" expanded="true" signature="292:525" placeholder="{...}" />
           </folding>
         </state>
       </provider>
@@ -645,6 +658,8 @@
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="e#0#42#0" expanded="false" />
+            <marker date="1456135676000" expanded="true" signature="245:525" placeholder="{...}" />
+            <marker date="1456135676000" expanded="true" signature="292:525" placeholder="{...}" />
           </folding>
         </state>
       </provider>
@@ -693,6 +708,8 @@
           <caret line="12" column="0" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
           <folding>
             <element signature="e#0#42#0" expanded="false" />
+            <marker date="1456135676000" expanded="true" signature="245:525" placeholder="{...}" />
+            <marker date="1456135676000" expanded="true" signature="292:525" placeholder="{...}" />
           </folding>
         </state>
       </provider>
@@ -741,6 +758,8 @@
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="e#0#42#0" expanded="false" />
+            <marker date="1456135676000" expanded="true" signature="245:525" placeholder="{...}" />
+            <marker date="1456135676000" expanded="true" signature="292:525" placeholder="{...}" />
           </folding>
         </state>
       </provider>
@@ -929,18 +948,12 @@
     <entry file="file://$PROJECT_DIR$/js/ehelseApp.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="48" column="33" selection-start-line="48" selection-start-column="33" selection-end-line="48" selection-end-column="33" />
+          <caret line="49" column="33" selection-start-line="49" selection-start-column="33" selection-end-line="49" selection-end-column="33" />
           <folding>
             <element signature="e#0#42#0" expanded="false" />
+            <marker date="1456135676000" expanded="true" signature="245:525" placeholder="{...}" />
+            <marker date="1456135676000" expanded="true" signature="292:525" placeholder="{...}" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/file-list.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-1.875">
-          <caret line="3" column="6" selection-start-line="3" selection-start-column="6" selection-end-line="3" selection-end-column="6" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -952,10 +965,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/editor-display.html">
+    <entry file="file://$PROJECT_DIR$/file-list.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-5.625">
-          <caret line="9" column="37" selection-start-line="9" selection-start-column="37" selection-end-line="9" selection-end-column="37" />
+        <state vertical-scroll-proportion="0.074257426">
+          <caret line="3" column="6" selection-start-line="3" selection-start-column="6" selection-end-line="3" selection-end-column="6" />
           <folding />
         </state>
       </provider>
@@ -968,10 +981,18 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/editor-display.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-5.625">
+          <caret line="9" column="37" selection-start-line="9" selection-start-column="37" selection-end-line="9" selection-end-column="37" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/ehelseIndex.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.35560346">
-          <caret line="22" column="33" selection-start-line="22" selection-start-column="33" selection-end-line="22" selection-end-column="33" />
+        <state vertical-scroll-proportion="0.6039604">
+          <caret line="27" column="10" selection-start-line="27" selection-start-column="10" selection-end-line="27" selection-end-column="10" />
           <folding />
         </state>
       </provider>
