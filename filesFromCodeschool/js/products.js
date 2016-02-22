@@ -7,31 +7,31 @@
     app.directive('productTitle', function(){
         return{
             restrict: 'E',
-            templateUrl: '../product-title.html'
+            templateUrl: '../html/product-title.html'
         };
     });
     app.directive('productSpecs', function(){
         return {
             restrict: 'E',
-            templateUrl: '../product-specs.html'
+            templateUrl: '../html/product-specs.html'
         };
     });
     app.directive('productDescription', function(){
         return {
             restrict: 'E',
-            templateUrl: '../product-description.html'
+            templateUrl: '../html/product-description.html'
         };
     });
     app.directive('productReviews', function(){
         return {
             restrict: 'E',
-            templateUrl: '../product-reviews.html'
+            templateUrl: '../html/product-reviews.html'
         };
     });
     app.directive('productPanels', function(){
         return {
             restrict: 'E',
-            templateUrl: '../product-panels.html',
+            templateUrl: '../html/product-panels.html',
             controller: function(){
                 this.tab = 1;
 
