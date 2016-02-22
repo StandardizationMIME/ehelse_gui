@@ -2,15 +2,7 @@
 <div class="col-lg-8 col-mg-8 col-sm-8 col-xs-8">
     <!-- Content of standard or profile -->
 
-    <div ng-repeat="theme in themeCtrl.themes">
-        <div ng-repeat="subTheme in theme.subThemes">
-            <div ng-repeat="standard in subTheme.standards">
-                <div ng-repeat="field in standard.fields">
-                    {{field.fieldTitle}} : {{field.fieldContent}}
-                </div>
-            </div>
-        </div>
-    </div>
+    <div class="content-display"></div>
 
     <!-- Bottom container -->
     <div>
