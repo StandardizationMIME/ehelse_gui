@@ -11,15 +11,15 @@
     app.controller('DisplayController', function($scope) {
 
         $scope.getContent = function(theme) {
-            $(".theme-text").css("font-weight", "normal");
-            $("#" + theme.themeId).css("font-weight", "bolder");
+            $(".theme-text").css("font-weight", "normal").css("background-color", "transparent");
+            $("#" + theme.themeId).css("font-weight", "bolder").css("background-color", "#e7e7e7");
             var standardDisplay = $(".standard-display");
             standardDisplay.empty();
             standardDisplay.html('<p><h4>' + theme.themeName + '</h4></p><p><span class="glyphicon glyphicon-plus plus-icon"></span> Ny standard</p>');
             var i;
             for (i = 0; i < theme.standards.length; ++i) {
-                standardDisplay.append('<p><a><span class="standard-icon glyphicon glyphicon-file"></span> ' + theme.standards[i].standardName + '</a></p>');
-                standardDisplay.append('<p><a ng-controller="DisplayContentController as displayContCtrl" ng-click=getStdContent(theme.standards[i])><span class="standard-icon glyphicon glyphicon-file"></span> ' + theme.standards[i].standardName + '</a></p>');
+                var standards = theme.standards;
+                standardDisplay.append('<p><a ng-controller="DisplayContentController as displaContCtrl" ng-click="getStdContent(standards[i])"><span class="standard-icon glyphicon glyphicon-file"></span> ' + standards[i].standardName + '</a></p>');
             }
             $("#folder" + theme.themeId).toggleClass("glyphicon-folder-close glyphicon-folder-open");
         };
@@ -32,7 +32,7 @@
 
             for (var i = 0; i < standard.fields.length; ++i){
                 stdContentDisplay.append('<li>'+ standard.fields[i].fieldTitle +'</li>');
-            };
+            }
         };
     });
 

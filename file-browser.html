@@ -9,7 +9,7 @@
         </a>
         <div id=theme{{theme.themeId}} class="collapse">
             <div class="sub-theme" ng-repeat="subTheme in theme.subThemes">
-                <a href=#subtheme{{subTheme.themeId}} data-toggle="collapse" class="theme-text" ng-click="getContent(subTheme)" ng-controller="DisplayController as displayCtrl">
+                <a href=#subtheme{{subTheme.themeId}} id={{subTheme.themeId}}  data-toggle="collapse" class="theme-text" ng-click="getContent(subTheme)" ng-controller="DisplayController as displayCtrl">
                     <span id=folder{{subTheme.themeId}} class="glyphicon glyphicon-folder-close"> </span>
                     {{subTheme.themeName}}
                 </a>
