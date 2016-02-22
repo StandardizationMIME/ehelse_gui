@@ -3,16 +3,22 @@
     <!-- Theme folder browser -->
     <!-- Iterates through the list of themes and display them as folders -->
     <div ng-repeat="theme in themeCtrl.themes" class="theme">
-        <a href=#theme{{theme.themeId}} id={{theme.themeId}} data-toggle="collapse" class="theme-text" ng-controller="DisplayController as displayCtrl" ng-click="getContent(theme)">
+        <a href=#theme{{theme.themeId}} id={{theme.themeId}} data-toggle="collapse" class="theme-text" ng-click="getContent(theme)" ng-controller="DisplayController as displayCtrl">
             <span id=folder{{theme.themeId}} class="folder glyphicon glyphicon-folder-close"> </span>
             {{theme.themeName}}
         </a>
         <div id=theme{{theme.themeId}} class="collapse">
-            <div class="sub-theme" ng-repeat="subTheme in theme.subThemes" ng-controller="DisplayController as displayCtrl">
-                <a href="" class="theme-text" ng-click="getContent(subTheme)">
+            <div class="sub-theme" ng-repeat="subTheme in theme.subThemes">
+                <a href=#subtheme{{subTheme.themeId}} data-toggle="collapse" class="theme-text" ng-click="getContent(subTheme)" ng-controller="DisplayController as displayCtrl">
                     <span id=folder{{subTheme.themeId}} class="glyphicon glyphicon-folder-close"> </span>
                     {{subTheme.themeName}}
                 </a>
+                <div id=subtheme{{subTheme.themeId}} class="collapse">
+                    <div class="sub-theme">
+                        <span class="glyphicon glyphicon-folder-close"> </span>
+                        Next layer of folders
+                    </div>
+                </div>
             </div>
         </div>
     </div>
