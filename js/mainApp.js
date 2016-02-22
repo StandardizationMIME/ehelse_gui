@@ -13,18 +13,16 @@
         $scope.getContent = function(theme) {
             $(".theme-text").css("font-weight", "normal");
             $("#" + theme.themeId).css("font-weight", "bolder");
-
             var standardDisplay = $(".standard-display");
             standardDisplay.empty();
             standardDisplay.html('<p><h4>' + theme.themeName + '</h4></p><p><span class="glyphicon glyphicon-plus plus-icon"></span> Ny standard</p>');
             var i;
             for (i = 0; i < theme.standards.length; ++i) {
+                standardDisplay.append('<p><a><span class="standard-icon glyphicon glyphicon-file"></span> ' + theme.standards[i].standardName + '</a></p>');
                 standardDisplay.append('<p><a ng-controller="DisplayContentController as displayContCtrl" ng-click=getStdContent(theme.standards[i])><span class="standard-icon glyphicon glyphicon-file"></span> ' + theme.standards[i].standardName + '</a></p>');
             }
             $("#folder" + theme.themeId).toggleClass("glyphicon-folder-close glyphicon-folder-open");
         };
-
-
     });
 
     app.controller('DisplayContentController', function($scope){
