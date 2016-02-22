@@ -29,6 +29,35 @@
         };
     });
 
+    app.directive('editordisplay',function(){
+        return{
+            restrict: 'E',
+            templateUrl: 'editor-display.html'
+        };
+    });
+
+    app.directive('filelist', function(){
+        return{
+            restrict: 'E',
+            templateUrl: 'file-list.html'
+        };
+    });
+
+    app.directive('contentdisplay', function(){
+        return{
+            restrict: 'E',
+            templateUrl: 'content-display.html'
+        };
+    });
+
+
+    app.directive('filebrowser', function(){
+        return{
+            restrict: 'E',
+            templateUrl: 'file-browser.html'
+        };
+    });
+
 
     var themes = [
         {
