@@ -2,7 +2,7 @@
  * Created by Stian on 12.02.2016.
  */
 (function(){
-    var app = angular.module('main', []);
+    var app = angular.module('mainApp', []);
 
     app.controller('ThemeController', function(){
         this.themes = themes;
