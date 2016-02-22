@@ -22,6 +22,13 @@
         };
     });
 
+    app.directive('toolbar',function(){
+        return{
+            restrict: 'E',
+            templateUrl: 'toolbar.html'
+        };
+    });
+
 
     var themes = [
         {
