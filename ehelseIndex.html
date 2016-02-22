@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html ng-app="main">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width = device-width, initial-scale = 1">
+    <title>ehelse editor</title>
+    <link rel="stylesheet" type="text/css" href="css/ehelseStyle.css"/>
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://gitcdn.xyz/repo/angular/bower-material/master/angular-material.css"/>
+
+
+</head>
+<body ng-controller="ThemeController as themeCtrl">
+
+
+    <div class="container-fluid">
+
+        <!-- Header -->
+        <h1 class="text-center">Ehelse-editor</h1>
+
+        <!-- Toolbar -->
+        <div class="row toolbar">
+
+            <!-- Search bar -->
+            <div class="col-lg-2 col-mg-2 col-sm-2 col-xs-2">
+                <div class="input-group input-group-sm">
+                    <input type="text" class="form-control" placeholder="Søk...">
+                    <span class="input-group-btn"><button class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button></span>
+                </div>
+            </div>
+
+            <!-- Various buttons -->
+            <div class="col-lg-2 col-mg-2 col-sm-2 col-xs-2">
+                <div class="horizontal-align-div">
+                    <button type="submit" class="btn btn-primary">Administrer felter</button>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-mg-4 col-sm-4 col-xs-4">
+            </div>
+
+            <div class="col-lg-2 col-mg-2 col-sm-2 col-xs-2">
+                <div class="horizontal-align-div">
+                    <button type="submit" class="btn btn-primary btn-block">Rediger</button>
+                </div>
+            </div>
+
+            <div class="col-lg-2 col-mg-2 col-sm-2 col-xs-2">
+                <div class="horizontal-align-div">
+                    <button type="submit" class="btn btn-primary btn-block">Slett</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Editor display -->
+        <div class="row editor-display">
+            <div class="col-lg-2 col-mg-2 col-sm-2 col-xs-s2 theme-folder-browser"">
+
+                <!-- Theme folder browser -->
+                <!-- Iterates through the list of themes and display them as folders -->
+                <div ng-repeat="theme in themeCtrl.themes" class="theme">
+                    <a href=#theme{{theme.themeId}} id={{theme.themeId}} data-toggle="collapse" class="theme-text" ng-controller="DisplayController as displayCtrl" ng-click="getContent(theme)"><span class="folder glyphicon glyphicon-folder-close"></span> {{theme.themeName}}</a>
+                    <div id=theme{{theme.themeId}} class="collapse">
+                        <div class="sub-theme" ng-repeat="subTheme in theme.subThemes">
+                            <span class="glyphicon glyphicon-folder-close"> </span> {{subTheme.subThemeName}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Panel for displaying list of standards and profiles -->
+            <div class="col-lg-2 col-mg-2 col-sm-2 col-xs-2 standard-display">
+
+            </div>
+
+            <!-- Panel for displaying the content of standards and profiles -->
+            <div class="col-lg-8 col-mg-8 col-sm-8 col-xs-8">
+
+            </div>
+        </div>
+    </div>
+
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <script src="https://code.angularjs.org/1.5.0-rc.2/angular.min.js"></script>
+    <script type="text/javascript" src="js/ehelseApp.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+</body>
+</html>
