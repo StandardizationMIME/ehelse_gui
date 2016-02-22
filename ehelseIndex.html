@@ -60,8 +60,10 @@
                 <div ng-repeat="theme in themeCtrl.themes" class="theme">
                     <a href=#theme{{theme.themeId}} id={{theme.themeId}} data-toggle="collapse" class="theme-text" ng-controller="DisplayController as displayCtrl" ng-click="getContent(theme)"><span class="folder glyphicon glyphicon-folder-close"></span> {{theme.themeName}}</a>
                     <div id=theme{{theme.themeId}} class="collapse">
-                        <div class="sub-theme" ng-repeat="subTheme in theme.subThemes">
-                            <span class="glyphicon glyphicon-folder-close"> </span> {{subTheme.subThemeName}}
+                        <div class="sub-theme" ng-repeat="subTheme in theme.subThemes" ng-controller="DisplayController as displayCtrl">
+                            <a href="" class="theme-text" ng-click="getContent(subTheme)">
+                                <span class="glyphicon glyphicon-folder-close"> </span> {{subTheme.subThemeName}}
+                            </a>
                         </div>
                     </div>
                 </div>
