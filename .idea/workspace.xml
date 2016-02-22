@@ -2,13 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="172bf1e1-791f-44cf-963e-f83fe244219e" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/content-display.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/editor-display.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/file-browser.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/file-list.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ehelseIndex.html" afterPath="$PROJECT_DIR$/ehelseIndex.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/ehelseApp.js" afterPath="$PROJECT_DIR$/js/ehelseApp.js" />
     </list>
     <ignored path="untitled1.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -456,7 +450,13 @@
       <option name="project" value="LOCAL" />
       <updated>1456134150350</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Magic with tollbar">
+      <created>1456135377788</created>
+      <option name="number" value="00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1456135377788</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="ToolWindowManager">
