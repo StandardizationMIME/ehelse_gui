@@ -15,7 +15,7 @@
             $("#" + theme.themeId).css("font-weight", "bolder");
             var standardDisplay = $(".standard-display");
             standardDisplay.empty();
-            standardDisplay.append('<h4>' + theme.themeName + '</h4>');
+            standardDisplay.html('<p><h4>' + theme.themeName + '</h4></p><p><span class="glyphicon glyphicon-plus plus-icon"></span> Ny standard</p>');
             var i;
             for (i = 0; i < theme.standards.length; ++i) {
                 standardDisplay.append('<p><a><span class="standard-icon glyphicon glyphicon-file"></span> ' + theme.standards[i].standardName + '</a></p>');
