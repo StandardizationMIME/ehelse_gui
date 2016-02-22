@@ -17,7 +17,7 @@
             standardDisplay.empty();
             var i;
             for (i = 0; i < theme.standards.length; ++i) {
-                standardDisplay.append('<p><span class="standard-icon glyphicon glyphicon-file"></span> ' + theme.standards[i].standardName + '</p>');
+                standardDisplay.append('<p><a><span class="standard-icon glyphicon glyphicon-file"></span> ' + theme.standards[i].standardName + '</a></p>');
             }
         };
     });
