@@ -12,6 +12,15 @@ function StandardList(){
     return _this;
 }
 
+// Placeholder for function called when clicking "Logg inn"
+function onSubmit() {
+    var username = document.getElementById('username').value;
+    var password = document.getElementById('password').value;
+    if((username == 'admin') && (password == 'admin')){
+        window.location.href = '../untitled1/mainApp.html';
+    }
+}
+
 (function(){
     var app = angular.module('mainApp', []);
 
@@ -63,7 +72,7 @@ function StandardList(){
         };
     });
 
-    app.directive('login', function(){
+    app.directive('loginpage', function(){
         return{
             restrict: 'E',
             templateUrl: 'login/login.html'
