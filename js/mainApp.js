@@ -63,6 +63,13 @@ function StandardList(){
         };
     });
 
+    app.directive('login', function(){
+        return{
+            restrict: 'E',
+            templateUrl: 'login/login.html'
+        };
+    });
+
     app.directive('toolbar',function(){
         return{
             restrict: 'E',
