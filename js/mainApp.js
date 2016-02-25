@@ -1,13 +1,14 @@
 /**
  * Created by Stian on 12.02.2016.
  */
+
 function StandardList(){
     var _this = this;
-    _this.standards = [];
+    _this.standards = [1,2,3,4];
 
-    _this.setStandards = function(standards){
-        _this.standards = standards;
-        console.log(standards);
+    _this.setStandards = function(stnds){
+        _this.standards = stnds;
+        console.log(stnds);
     };
     return _this;
 }
