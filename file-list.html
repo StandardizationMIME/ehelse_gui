@@ -1,4 +1,10 @@
 <!-- Panel for displaying list of standards and profiles -->
-<div class="col-lg-2 col-mg-2 col-sm-2 col-xs-2 standard-display">
+<div class="col-lg-2 col-mg-2 col-sm-2 col-xs-2 standard-display" ng-controller="DisplayController as dispCtrl">
+    <div ng-repeat="standard in dispCtrl.standards">
+        <a>
+            <span  class="folder glyphicon glyphicon-file"> </span>
+            {{standard.standardName}}
+        </a>
+    </div>
 
 </div>

@@ -1,6 +1,17 @@
 /**
  * Created by Stian on 12.02.2016.
  */
+function StandardList(){
+    var _this = this;
+    _this.standards = [];
+
+    _this.setStandards = function(standards){
+        _this.standards = standards;
+        console.log(standards);
+    };
+    return _this;
+}
+
 (function(){
     var app = angular.module('mainApp', []);
 
@@ -11,7 +22,11 @@
 
     // Controller for displaying standards/profiles
     app.controller('DisplayController', function($scope) {
-        $scope.getContent = function(theme) {
+
+        $scope.standards = new StandardList();
+
+
+        /*$scope.getContent = function(theme) {
             // Makes the text of a folder bold and changes it's background color when it's the selected one.
             $(".theme-text").css("font-weight", "normal").css("background-color", "transparent");
             $("#" + theme.themeId).css("font-weight", "bolder").css("background-color", "#e7e7e7");
@@ -27,17 +42,18 @@
             var i;
             for (i = 0; i < theme.standards.length; ++i) {
                 var standard = theme.standards[i];
-                standardDisplay.append('<p><a id=' + standard.standardId + ' ng-click="getStdContent('+ standard +')"><span class="standard-icon glyphicon glyphicon-file"></span> ' + standard.standardName + '</a></p>');
+                standardDisplay.append('<p><a id=' + standard.standardId + ' ng-click="alert()"><span class="standard-icon glyphicon glyphicon-file"></span> ' + standard.standardName + '</a></p>');
             }
 
             // Makes the folders toggle between an open and closed folder when clicked.
             $("#folder" + theme.themeId).toggleClass("glyphicon-folder-close glyphicon-folder-open");
-        };
+        };*/
     });
 
     // Controller for displaying the content of a standard.
     app.controller('DisplayContentController', function($scope){
         $scope.getStdContent = function(standard){
+            console.log(standard);
             var stdContentDisplay = $(".content-display");
             stdContentDisplay.empty();
 
