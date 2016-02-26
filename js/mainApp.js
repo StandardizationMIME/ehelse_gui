@@ -26,9 +26,15 @@ function onSubmit() {
     var app = angular.module('mainApp', []);
 
     // Controller for selecting a theme.
-    app.controller('ThemeController', function(){
-        this.themes = themes;
-    });
+    app.controller('ThemeController', [ '$http', function($http){
+        var editor = this;
+
+        editor.themes = [];
+
+        $http.get('http://37.139.13.117/v1/topics/').success(function(data){
+            editor.themes = data;
+        });
+    }]);
 
     // Controller for displaying standards/profiles
     app.controller('DisplayController', function($scope) {
