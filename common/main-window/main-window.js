@@ -13,15 +13,6 @@ function StandardList(){
     return _this;
 }
 
-// Placeholder for function called when clicking "Logg inn"
-function onSubmit() {
-    var username = document.getElementById('username').value;
-    var password = document.getElementById('password').value;
-    if((username == 'admin') && (password == 'admin')){
-        window.location.href = '../untitled1/mainApp.html';
-    }
-}
-
 (function(){
     var app = angular.module('mainApp', []);
 
@@ -89,7 +80,7 @@ function onSubmit() {
     app.directive('toolbar',function(){
         return{
             restrict: 'E',
-            templateUrl: 'toolbar.html'
+            templateUrl: 'toolbar/toolbar-view.html'
         };
     });
 
@@ -97,15 +88,15 @@ function onSubmit() {
     app.directive('editordisplay',function(){
         return{
             restrict: 'E',
-            templateUrl: 'editor-display.html'
+            templateUrl: 'editor-display/editor-display-view.html'
         };
     });
 
     // Directive for html used to display the list of standards.
-    app.directive('filelist', function(){
+    app.directive('standarddisplay', function(){
         return{
             restrict: 'E',
-            templateUrl: 'file-list.html'
+            templateUrl: 'editor-display/standard-display/standard-display-view.html'
         };
     });
 
@@ -113,7 +104,7 @@ function onSubmit() {
     app.directive('contentdisplay', function(){
         return{
             restrict: 'E',
-            templateUrl: 'content-display.html'
+            templateUrl: 'editor-display/standard-content-display/standard-content-display-view.html'
         };
     });
 
@@ -121,7 +112,7 @@ function onSubmit() {
     app.directive('filebrowser', function(){
         return{
             restrict: 'E',
-            templateUrl: 'file-browser.html'
+            templateUrl: 'editor-display/file-browser/file-browser-view.html'
         };
     });
 
