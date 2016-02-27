@@ -73,7 +73,7 @@ function StandardList(){
     app.directive('loginpage', function(){
         return{
             restrict: 'E',
-            templateUrl: 'login/login.html'
+            templateUrl: 'common/login/login.html'
         };
     });
 
