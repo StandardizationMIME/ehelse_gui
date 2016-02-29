@@ -6,9 +6,9 @@ function StandardList(){
     var _this = this;
     _this.standards = [1,2,3,4];
 
-    _this.setStandards = function(stnds){
-        _this.standards = stnds;
-        console.log(stnds);
+    _this.setStandards = function(standards){
+        console.log(standards);
+        _this.standards = [4,3,2,1];
     };
     return _this;
 }
@@ -17,44 +17,27 @@ function StandardList(){
     var app = angular.module('mainApp', []);
 
     // Controller for selecting a theme.
-    app.controller('ThemeController', [ '$http', function($http){
+    app.controller('TopicController', function($scope, $http){
         var editor = this;
 
-        editor.themes = [];
+        editor.topics = [];
 
         $http.get('http://37.139.13.117/v1/topics/').success(function(data){
-            editor.themes = data;
+            editor.topics = data;
         });
-    }]);
+
+        $scope.getStandards = function(id) {
+            $http.get('http://37.139.13.117/v1/topics/' + id).success(function(data){
+                $scope.standards = data.documents;
+            });
+        }
+    });
+
 
     // Controller for displaying standards/profiles
-    app.controller('DisplayController', function($scope) {
-
-        $scope.standards = new StandardList();
+    app.controller('DisplayController', function($scope, $http) {
 
 
-        /*$scope.getContent = function(theme) {
-            // Makes the text of a folder bold and changes it's background color when it's the selected one.
-            $(".theme-text").css("font-weight", "normal").css("background-color", "transparent");
-            $("#" + theme.themeId).css("font-weight", "bolder").css("background-color", "#e7e7e7");
-
-            // Empties the window displaying standards before adding new ones.
-            var standardDisplay = $(".standard-display");
-            standardDisplay.empty();
-
-            // Adds the "Ny standard" field with symbol.
-            standardDisplay.html('<p><h4>' + theme.themeName + '</h4></p><p><span class="glyphicon glyphicon-plus plus-icon"></span> Ny standard</p>');
-
-            // A for loop iterating through the list of standards and displays their name in the list.
-            var i;
-            for (i = 0; i < theme.standards.length; ++i) {
-                var standard = theme.standards[i];
-                standardDisplay.append('<p><a id=' + standard.standardId + ' ng-click="alert()"><span class="standard-icon glyphicon glyphicon-file"></span> ' + standard.standardName + '</a></p>');
-            }
-
-            // Makes the folders toggle between an open and closed folder when clicked.
-            $("#folder" + theme.themeId).toggleClass("glyphicon-folder-close glyphicon-folder-open");
-        };*/
     });
 
     // Controller for displaying the content of a standard.
