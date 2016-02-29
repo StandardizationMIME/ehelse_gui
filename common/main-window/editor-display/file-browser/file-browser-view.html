@@ -1,0 +1,25 @@
+<div class="col-lg-2 col-mg-2 col-sm-2 col-xs-s2 theme-folder-browser">
+
+    <!-- Theme folder browser -->
+    <!-- Iterates through the list of themes and display them as folders -->
+    <div ng-repeat="theme in themeCtrl.themes" class="theme">
+        <a href=#theme{{theme.id}} id={{theme.themeId}} data-toggle="collapse" class="theme-text" ng-click="standards.setStandards(theme.standards)" ng-controller="DisplayController as displayCtrl">
+            <span id=folder{{theme.id}} class="folder glyphicon glyphicon-folder-close"> </span>
+            {{theme.title}}
+        </a>
+        <div id=theme{{theme.id}} class="collapse">
+            <div class="sub-theme" ng-repeat="subTheme in theme.children">
+                <a href=#subtheme{{subTheme.id}} id={{subTheme.themeId}}  data-toggle="collapse" class="theme-text" ng-click="standards.setStandards(subTheme.standards)" ng-controller="DisplayController as displayCtrl">
+                    <span id=folder{{subTheme.id}} class="glyphicon glyphicon-folder-close"> </span>
+                    {{subTheme.title}}
+                </a>
+                <div id=subtheme{{subTheme.id}} class="collapse">
+                    <div class="sub-theme">
+                        <span class="glyphicon glyphicon-folder-close"> </span>
+                        Next layer of folders
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
