@@ -14,7 +14,54 @@ function StandardList(){
 }
 
 (function(){
-    var app = angular.module('mainApp', []);
+    angular.module('Authentication',[]);
+    angular.module('Home',[]);
+
+    var app = angular.module('mainApp', [
+        'Authentication',
+        'Home',
+        'ngRoute',
+        'ngCookies'
+    ]);
+
+    //app.config(function ($httpProvider) {
+    //    $httpProvider.defaults.headers.common = {};
+    //    $httpProvider.defaults.headers.post = {};
+    //    $httpProvider.defaults.headers.put = {};
+    //    $httpProvider.defaults.headers.patch = {};
+    //});
+
+    app.config(['$routeProvider', function($routeProvider){
+        $routeProvider
+        .when('/login', {
+            controller: 'LoginController',
+            templateUrl: 'common/login/login.html'
+        })
+
+        .when('/', {
+            controller:'HomeController',
+            templateUrl: 'common/main-window/main-view.html'
+        })
+
+        .otherwise({redirectTo: '/login'});
+    }]);
+
+    app.run(['$rootScope', '$location', '$cookieStore', '$http',
+        function ($rootScope, $location, $cookieStore, $http){
+            console.log('run is runnig');
+            //beholder brukeren innlogget etter oppdateringer av sider
+            $rootScope.globals = $cookieStore.get('globals') || {};
+            if ($rootScope.globals.currentUser){
+                //$http.defaults.headers.common['Authorization'] = 'Basic ' + $rootScope.globals.currentUser.authdata;
+                //console.log($http.defaults.headers.common['Authorization']);
+            }
+
+            $rootScope.$on('$locationChangeStart', function (event, next,current) {
+                if($location.path() != '/login' && !$rootScope.globals.currentUser){
+                    $location.path('/login');
+                }
+            });
+        }]);
 
     // Controller for selecting a theme.
     app.controller('ThemeController', [ '$http', function($http){
@@ -80,7 +127,7 @@ function StandardList(){
     app.directive('toolbar',function(){
         return{
             restrict: 'E',
-            templateUrl: 'toolbar/toolbar-view.html'
+            templateUrl: 'common/main-window/toolbar/toolbar-view.html'
         };
     });
 
@@ -88,7 +135,7 @@ function StandardList(){
     app.directive('editordisplay',function(){
         return{
             restrict: 'E',
-            templateUrl: 'editor-display/editor-display-view.html'
+            templateUrl: 'common/main-window/editor-display/editor-display-view.html'
         };
     });
 
@@ -96,7 +143,7 @@ function StandardList(){
     app.directive('standarddisplay', function(){
         return{
             restrict: 'E',
-            templateUrl: 'editor-display/standard-display/standard-display-view.html'
+            templateUrl: 'common/main-window/editor-display/standard-display/standard-display-view.html'
         };
     });
 
@@ -104,7 +151,7 @@ function StandardList(){
     app.directive('contentdisplay', function(){
         return{
             restrict: 'E',
-            templateUrl: 'editor-display/standard-content-display/standard-content-display-view.html'
+            templateUrl: 'common/main-window/editor-display/standard-content-display/standard-content-display-view.html'
         };
     });
 
@@ -112,7 +159,7 @@ function StandardList(){
     app.directive('filebrowser', function(){
         return{
             restrict: 'E',
-            templateUrl: 'editor-display/file-browser/file-browser-view.html'
+            templateUrl: 'common/main-window/editor-display/file-browser/file-browser-view.html'
         };
     });
 
