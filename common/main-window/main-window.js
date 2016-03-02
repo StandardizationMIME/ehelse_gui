@@ -30,7 +30,44 @@ function StandardList(){
             $http.get('http://37.139.13.117/v1/topics/' + id).success(function(data){
                 $scope.standards = data.documents;
             });
-        }
+        };
+
+    });
+
+    app.controller('NewTopicController', function($scope){
+
+        $scope.createNewTopic = function(){
+            var html2 = '<newtopic></newtopic>';
+            var html =  '<form name="newTopic" role="form" ng-submit="" class="new-topic">' +
+                '<div class="form-group">' +
+                '<label for="topicId">Id: </label>' +
+                '<input type="number" name="topicId" id="topicId" class="form-control" ng-model="topicId" required />' +
+                '</div>' +
+                '<div class="form-group">' +
+                '<label for="topicTitle">Title: </label>' +
+                '<input type="text" name="topicTitle" id="topicTitle" class="form-control" ng-model="topicTitle" required />' +
+                '</div>' +
+                '<div class="form-group">' +
+                '<label for="topicDescription">Description: </label>' +
+                '<textarea name="topicDescription" id="topicDescription" class="form-control" ng-model="topicDescription" rows="6" cols="50" required></textarea>' +
+                '</div>' +
+                '<div class="form-group">' +
+                '<label for="topicIsInCatalogue">Finnes i referansekatalog: </label>' +
+                '<select name="topicIsInCatalogue" id="topicIsInCatalogue" ng-model="topicIsInCatalogue" class="form-control">' +
+                '<option selected="selected" value="yes">Ja</option>' +
+                '<option value="no">Nei</option>' +
+                '</select>' +
+                '</div>' +
+                '<div class="form-group">' +
+                '<label for="topicParent">Foreldermappe: </label>' +
+                '<input type="number" name="topicParent" id="topicParent" class="form-control" ng-model="topicParent" required />' +
+                '</div>' +
+                '<div class="form-actions">' +
+                '<button type="submit" ng-disabled="form.$invalid" class="btn btn-success">Opprett nytt tema</button>' +
+                '</div>' +
+                '</form>';
+            $("#content-browser").html(html);
+        };
     });
 
 
