@@ -18,56 +18,26 @@ function StandardList(){
 
     // Controller for selecting a theme.
     app.controller('TopicController', function($scope, $http){
-        var editor = this;
-
-        editor.topics = [];
 
         $http.get('http://37.139.13.117/v1/topics/').success(function(data){
-            editor.topics = data;
+            $scope.topics = data;
         });
 
         $scope.getStandards = function(id) {
             $http.get('http://37.139.13.117/v1/topics/' + id).success(function(data){
                 $scope.standards = data.documents;
+                $scope.topic = data;
             });
         };
 
     });
 
-    app.controller('NewTopicController', function($scope){
+    app.controller('ContentBrowserController', function($scope){
 
         $scope.createNewTopic = function(){
-            var html2 = '<newtopic></newtopic>';
-            var html =  '<form name="newTopic" role="form" ng-submit="" class="new-topic">' +
-                '<div class="form-group">' +
-                '<label for="topicId">Id: </label>' +
-                '<input type="number" name="topicId" id="topicId" class="form-control" ng-model="topicId" required />' +
-                '</div>' +
-                '<div class="form-group">' +
-                '<label for="topicTitle">Title: </label>' +
-                '<input type="text" name="topicTitle" id="topicTitle" class="form-control" ng-model="topicTitle" required />' +
-                '</div>' +
-                '<div class="form-group">' +
-                '<label for="topicDescription">Description: </label>' +
-                '<textarea name="topicDescription" id="topicDescription" class="form-control" ng-model="topicDescription" rows="6" cols="50" required></textarea>' +
-                '</div>' +
-                '<div class="form-group">' +
-                '<label for="topicIsInCatalogue">Finnes i referansekatalog: </label>' +
-                '<select name="topicIsInCatalogue" id="topicIsInCatalogue" ng-model="topicIsInCatalogue" class="form-control">' +
-                '<option selected="selected" value="yes">Ja</option>' +
-                '<option value="no">Nei</option>' +
-                '</select>' +
-                '</div>' +
-                '<div class="form-group">' +
-                '<label for="topicParent">Foreldermappe: </label>' +
-                '<input type="number" name="topicParent" id="topicParent" class="form-control" ng-model="topicParent" required />' +
-                '</div>' +
-                '<div class="form-actions">' +
-                '<button type="submit" ng-disabled="form.$invalid" class="btn btn-success">Opprett nytt tema</button>' +
-                '</div>' +
-                '</form>';
-            $("#content-browser").html(html);
+            $("#content-browser").load('editor-display/content-browser/new-topic-view.html');
         };
+
     });
 
 
@@ -113,7 +83,7 @@ function StandardList(){
     });
 
     // Directive for html used to display the list of standards.
-    app.directive('standarddisplay', function(){
+    app.directive('filebrowser', function(){
         return{
             restrict: 'E',
             templateUrl: 'editor-display/file-browser/file-browser-view.html'
@@ -121,15 +91,15 @@ function StandardList(){
     });
 
     // Directive for html used to display the content of standards/profiles.
-    app.directive('contentdisplay', function(){
+    app.directive('contentbrowser', function(){
         return{
             restrict: 'E',
             templateUrl: 'editor-display/content-browser/content-browser-view.html'
         };
     });
 
-    // Directive for html used to display the filebrowser.
-    app.directive('filebrowser', function(){
+    // Directive for html used to display the topicbrowser.
+    app.directive('topicbrowser', function(){
         return{
             restrict: 'E',
             templateUrl: 'editor-display/topic-browser/topic-browser-view.html'

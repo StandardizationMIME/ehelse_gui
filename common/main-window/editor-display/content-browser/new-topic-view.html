@@ -18,9 +18,11 @@
             <option value="no">Nei</option>
         </select>
     </div>
-    <div class="form-group">
+    <div class="form-group" >
         <label for="topicParent">Foreldermappe: </label>
-        <input type="number" name="topicParent" id="topicParent" class="form-control" ng-model="topicParent" required />
+        <select name="topicParent" id="topicParent" class="form-control" ng-model="topicParent">
+
+        </select>
     </div>
     <div class="form-actions">
         <button type="submit" ng-disabled="form.$invalid" class="btn btn-success">Opprett nytt tema</button>
