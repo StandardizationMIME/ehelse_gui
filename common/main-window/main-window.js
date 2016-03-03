@@ -4,16 +4,13 @@
 
 function generateTopicList(parent, topics){
     var paths = [];
-    for (i = 0; i < topics.length; i++) {
+    for (var i = 0; i < topics.length; i++) {
         paths.push({
             id: topics[i].id,
             path: parent + "/" + topics[i].title
         });
-        if(topics[i].children != 'undefined'){
-
-            paths.push(generateTopicList(parent + "/" + topics[i].title, topics[i].children));
+        Array.prototype.push.apply(paths,generateTopicList(parent + "/" + topics[i].title, topics[i].children))
         }
-    }
     return paths;
 }
 
@@ -103,6 +100,7 @@ function generateTopicList(parent, topics){
 
         $http.get('http://37.139.13.117/v1/topics/').success(function(data){
             $scope.topics = data.topics;
+            console.log("TopicList: " , generateTopicList("", data.topics));
             $scope.topicList = generateTopicList("", data.topics);
         });
         console.log($scope.topicList);
