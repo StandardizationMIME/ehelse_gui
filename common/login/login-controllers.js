@@ -12,7 +12,7 @@ angular.module('Authentication')
             // reset login status
             AuthenticationService.ClearCredentials();
 
-            $scope.Login = function () {
+            $scope.login = function () {
                 console.log('login');
                 $scope.dataLoading = true;
                 $http.defaults.headers.common['Authorization'] = 'Basic ' +  $scope.username + ':' + $scope.password;

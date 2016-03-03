@@ -12,14 +12,14 @@ angular.module('Authentication')
 
     service.login = function (username, password, callback){
 
-         //Dummy auth for test, $timeout used to simulate api call
-        $timeout(function(){
-            var response = {success: username === 'admin' && password === 'admin'};
-            if(!response.success) {
-                response.message = 'Brukernavn eller passord er feil';
-            }
-            callback(response);
-        });
+        //Dummy auth for test, $timeout used to simulate api call
+        //$timeout(function(){
+        //    var response = {success: username === 'admin' && password === 'admin'};
+        //    if(!response.success) {
+        //        response.message = 'Brukernavn eller passord er feil';
+        //    }
+        //    callback(response);
+        //});
 
 
         //$http.post('http://refkat.eu/v1/topics/', {'username': username, 'password': password},

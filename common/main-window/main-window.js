@@ -32,30 +32,19 @@ function generateTopicList(parent, topics){
             controller: 'LoginController',
             templateUrl: 'common/login/login.html'
         })
-        .when('/main-view', {
+        .when('/main-view/:topicID?', {
             controller: 'HomeController',
             templateUrl: 'common/main-window/main-view.html'
         })
         .otherwise({redirectTo: '/'})
     }]);
 
-    app.run([ '$http', '$rootScope',function($http, $rootScope, MyResourceProvider) {
-        $rootScope.login = function (username, authtoken) {
+    app.run([ '$http', '$rootScope', '$location', '$cookies',function($http, $rootScope, $cookies,  $location, MyResourceProvider) {
 
-            $rootScope.post(
-                'http://refkat.eu/v1/topics/',
-                {},
-                function(data){
-                    console.log(data);
-                },
-                function(){}
-            );
-
-
-        };
 
         $rootScope.userName = "";
         $rootScope.password = "";
+        $rootScope.apiUrl = 'http://37.139.13.117/v1/';
 
         $rootScope.setUserName = function(userName){
             $rootScope.userName = userName;
@@ -69,11 +58,24 @@ function generateTopicList(parent, topics){
             $rootScope.http("post", url, data, success, error);
         };
 
+        $rootScope.put = function(url, data, success, error){
+            $rootScope.http("put", url, data, success, error);
+        };
+
+        $rootScope.get = function(url, success, error){
+            $rootScope.http("get", url, {} , success, error);
+        };
+
+        $rootScope.delete = function(url, data, success, error){
+            $rootScope.http("delete", url, data, success, error);
+        };
+
+
         $rootScope.http = function(method, url, data, success, error){
             var credentials = btoa($rootScope.userName + ':' + $rootScope.password);
             var authorization = {'Authorization': 'Basic ' + credentials};
             $http({
-                url: url,
+                url: $rootScope.apiUrl + url,
                 data: data,
                 method: method,
                 headers: authorization
@@ -99,28 +101,44 @@ function generateTopicList(parent, topics){
         };
     });
 
-    app.controller('LoginController', [ '$scope', '$rootScope',  function( $scope, $rootScope) {
+    app.controller('LoginController', [ '$scope', '$rootScope', '$location',  function( $scope, $rootScope, $location) {
         $scope.submit = function(){
             $rootScope.setUserName($scope.username);
             $rootScope.setPassword($scope.password);
-            $rootScope.login();
+            $scope.logIn();
+        };
+
+        $scope.logIn = function (username, authtoken) {
+
+            $rootScope.post(
+                'topics/',
+                {},
+                function(data){
+                    console.log(data);
+                    if (data.create === 'created'){
+                        $location.path('/main-view').replace();
+                    }
+                },
+                function(){}
+            );
+
         };
     }]);
 
     // Controller for selecting a theme.
     app.controller('TopicController', function($scope, $http){
 
-        $http.get('http://37.139.13.117/v1/topics/').success(function(data){
+
+
+        $scope.get('topics/' , function(data){
             $scope.topics = data.topics;
-            console.log("TopicList: " , generateTopicList("", data.topics));
-            $scope.topicList = generateTopicList("", data.topics);
-        });
+        }, function(){});
 
         $scope.getStandards = function(id) {
-            $http.get('http://37.139.13.117/v1/topics/' + id).success(function(data){
+            $scope.get('topics/' + id , function(data){
                 $scope.standards = data.documents;
                 $scope.topic = data;
-            });
+            }, function(){});
         };
 
         $scope.changeView = function(view) {
@@ -159,7 +177,7 @@ function generateTopicList(parent, topics){
     app.directive('toolbar',function(){
         return{
             restrict: 'E',
-            templateUrl: 'toolbar/toolbar-view.html'
+            templateUrl: 'common/main-window/toolbar/toolbar-view.html'
         };
     });
 
@@ -167,7 +185,7 @@ function generateTopicList(parent, topics){
     app.directive('editordisplay',function(){
         return{
             restrict: 'E',
-            templateUrl: 'editor-display/editor-display-view.html'
+            templateUrl: 'common/main-window/editor-display/editor-display-view.html'
         };
     });
 
@@ -175,7 +193,7 @@ function generateTopicList(parent, topics){
     app.directive('filebrowser', function(){
         return{
             restrict: 'E',
-            templateUrl: 'editor-display/file-browser/file-browser-view.html'
+            templateUrl: 'common/main-window/editor-display/file-browser/file-browser-view.html'
         };
     });
 
@@ -183,7 +201,7 @@ function generateTopicList(parent, topics){
     app.directive('contentbrowser', function(){
         return{
             restrict: 'E',
-            templateUrl: 'editor-display/content-browser/content-browser-view.html'
+            templateUrl: 'common/main-window/editor-display/content-browser/content-browser-view.html'
         };
     });
 
@@ -191,14 +209,14 @@ function generateTopicList(parent, topics){
     app.directive('topicbrowser', function(){
         return{
             restrict: 'E',
-            templateUrl: 'editor-display/topic-browser/topic-browser-view.html'
+            templateUrl: 'common/main-window/editor-display/topic-browser/topic-browser-view.html'
         };
     });
 
     app.directive('newtopic', function(){
         return{
             restrict: 'E',
-            templateUrl: 'editor-display/content-browser/new-topic-view.html'
+            templateUrl: 'common/main-window/editor-display/content-browser/new-topic-view.html'
         };
     });
 
