@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="172bf1e1-791f-44cf-963e-f83fe244219e" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/common/main-window/main-window-view.html" afterPath="$PROJECT_DIR$/common/main-window/main-window-view.html" />
-    </list>
+    <list default="true" id="172bf1e1-791f-44cf-963e-f83fe244219e" name="Default" comment="" />
     <ignored path="untitled1.iws" />
     <ignored path=".idea/workspace.xml" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -26,8 +24,8 @@
       <file leaf-file-name="main-window-view.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/common/main-window/main-window-view.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.77453274">
-              <caret line="39" column="47" selection-start-line="39" selection-start-column="47" selection-end-line="39" selection-end-column="47" />
+            <state vertical-scroll-proportion="0.61565423">
+              <caret line="31" column="4" selection-start-line="31" selection-start-column="4" selection-end-line="39" selection-end-column="47" />
               <folding />
             </state>
           </provider>
@@ -1763,8 +1761,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/common/main-window/main-window-view.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.77453274">
-          <caret line="39" column="47" selection-start-line="39" selection-start-column="47" selection-end-line="39" selection-end-column="47" />
+        <state vertical-scroll-proportion="0.61565423">
+          <caret line="31" column="4" selection-start-line="31" selection-start-column="4" selection-end-line="39" selection-end-column="47" />
           <folding />
         </state>
       </provider>
