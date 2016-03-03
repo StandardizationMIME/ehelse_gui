@@ -2,16 +2,21 @@
  * Created by Stian on 12.02.2016.
  */
 
-function StandardList(){
-    var _this = this;
-    _this.standards = [1,2,3,4];
+function generateTopicList(parent, topics){
+    var paths = [];
+    for (i = 0; i < topics.length; i++) {
+        paths.push({
+            id: topics[i].id,
+            path: parent + "/" + topics[i].title
+        });
+        if(topics[i].children != 'undefined'){
 
-    _this.setStandards = function(standards){
-        console.log(standards);
-        _this.standards = [4,3,2,1];
-    };
-    return _this;
+            paths.push(generateTopicList(parent + "/" + topics[i].title, topics[i].children));
+        }
+    }
+    return paths;
 }
+
 
 (function(){
 
@@ -24,9 +29,6 @@ function StandardList(){
         'ngRoute',
         'ngCookies']);
 
-    app.config(
-
-    );
 
     app.run([ '$http', '$rootScope',function($http, $rootScope, MyResourceProvider) {
         $rootScope.login = function (username, authtoken) {
@@ -100,8 +102,10 @@ function StandardList(){
     app.controller('TopicController', function($scope, $http){
 
         $http.get('http://37.139.13.117/v1/topics/').success(function(data){
-            $scope.topics = data;
+            $scope.topics = data.topics;
+            $scope.topicList = generateTopicList("", data.topics);
         });
+        console.log($scope.topicList);
 
         $scope.getStandards = function(id) {
             $http.get('http://37.139.13.117/v1/topics/' + id).success(function(data){
@@ -110,12 +114,8 @@ function StandardList(){
             });
         };
 
-    });
-
-    app.controller('ContentBrowserController', function($scope){
-
-        $scope.createNewTopic = function(){
-            $("#content-browser").load('editor-display/content-browser/new-topic-view.html');
+        $scope.changeView = function(view) {
+            $scope.view = view;
         };
 
     });

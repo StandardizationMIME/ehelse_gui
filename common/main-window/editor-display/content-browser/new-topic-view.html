@@ -14,13 +14,16 @@
     <div class="form-group">
         <label for="topicIsInCatalogue">Finnes i referansekatalog: </label>
         <select name="topicIsInCatalogue" id="topicIsInCatalogue" ng-model="topicIsInCatalogue" class="form-control">
-            <option selected="selected" value="yes">Ja</option>
+            <option ng-selected="true" value="yes">Ja</option>
             <option value="no">Nei</option>
         </select>
     </div>
     <div class="form-group" >
         <label for="topicParent">Foreldermappe: </label>
         <select name="topicParent" id="topicParent" class="form-control" ng-model="topicParent">
+            <option ng-selected="true" value="none">Ingen</option>
+            <option value={{topic.id}} ng-repeat="topic in topics">{{topic.title}}</option>
+            <option ng-repeat="subtopic in subtopics">{{subtopic.title}}</option>
 
         </select>
     </div>
