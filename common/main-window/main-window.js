@@ -26,6 +26,18 @@ function generateTopicList(parent, topics){
         'ngRoute',
         'ngCookies']);
 
+    app.config(['$routeProvider', function($routeProvider){
+        $routeProvider
+        .when('/', {
+            controller: 'LoginController',
+            templateUrl: 'common/login/login.html'
+        })
+        .when('/main-view', {
+            controller: 'HomeController',
+            templateUrl: 'common/main-window/main-view.html'
+        })
+        .otherwise({redirectTo: '/'})
+    }]);
 
     app.run([ '$http', '$rootScope',function($http, $rootScope, MyResourceProvider) {
         $rootScope.login = function (username, authtoken) {
