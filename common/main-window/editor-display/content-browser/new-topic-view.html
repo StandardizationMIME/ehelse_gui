@@ -22,8 +22,7 @@
         <label for="topicParent">Foreldermappe: </label>
         <select name="topicParent" id="topicParent" class="form-control" ng-model="topicParent">
             <option ng-selected="true" value="none">Ingen</option>
-            <option value={{topic.id}} ng-repeat="topic in topics">{{topic.title}}</option>
-            <option ng-repeat="subtopic in subtopics">{{subtopic.title}}</option>
+            <option value={{topic.id}} ng-repeat="topic in topicList">{{topic.path}}</option>
 
         </select>
     </div>

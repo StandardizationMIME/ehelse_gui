@@ -103,7 +103,6 @@ function generateTopicList(parent, topics){
             console.log("TopicList: " , generateTopicList("", data.topics));
             $scope.topicList = generateTopicList("", data.topics);
         });
-        console.log($scope.topicList);
 
         $scope.getStandards = function(id) {
             $http.get('http://37.139.13.117/v1/topics/' + id).success(function(data){
