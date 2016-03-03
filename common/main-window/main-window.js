@@ -16,6 +16,74 @@ function StandardList(){
 (function(){
     var app = angular.module('mainApp', []);
 
+    app.run([ '$http', '$rootScope',function($http, $rootScope, MyResourceProvider) {
+        $rootScope.login = function (username, authtoken) {
+
+            $rootScope.post(
+                'http://refkat.eu/v1/topics/',
+                {},
+                function(data){
+                    console.log(data);
+                },
+                function(){}
+            );
+
+
+        };
+
+        $rootScope.userName = "";
+        $rootScope.password = "";
+
+        $rootScope.setUserName = function(userName){
+            $rootScope.userName = userName;
+        };
+
+        $rootScope.setPassword = function(password){
+            $rootScope.password = password;
+        };
+
+        $rootScope.post = function(url, data, success, error){
+            $rootScope.http("post", url, data, success, error);
+        };
+
+        $rootScope.http = function(method, url, data, success, error){
+            var credentials = btoa($rootScope.userName + ':' + $rootScope.password);
+            var authorization = {'Authorization': 'Basic ' + credentials};
+            $http({
+                url: url,
+                data: data,
+                method: method,
+                headers: authorization
+            }).success(function(data, status, headers, config){
+
+                    success (data, status, headers, config);
+                }
+            ).error(
+                function(data, status, headers, config){
+                    error(data, status, headers, config);
+                });
+        };
+
+    }]);
+
+
+
+
+    app.directive('loginpage', function(){
+        return{
+            restrict: 'E',
+            templateUrl: 'common/login/login.html'
+        };
+    });
+
+    app.controller('LoginController', [ '$scope', '$rootScope',  function( $scope, $rootScope) {
+        $scope.submit = function(){
+            $rootScope.setUserName($scope.username);
+            $rootScope.setPassword($scope.password);
+            $rootScope.login();
+        };
+    }]);
+
     // Controller for selecting a theme.
     app.controller('TopicController', function($scope, $http){
         var editor = this;
