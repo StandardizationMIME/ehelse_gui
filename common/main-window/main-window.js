@@ -24,8 +24,7 @@ function StandardList(){
         'ngRoute',
         'ngCookies']);
 
-<<<<<<< HEAD
-=======
+
     app.config(['$routeProvider', function($routeProvider){
         $routeProvider
         .when('/', {
@@ -38,7 +37,6 @@ function StandardList(){
         })
         .otherwise({redirectTo: '/'})
     }]);
->>>>>>> origin/master
 
     app.run([ '$http', '$rootScope',function($http, $rootScope, MyResourceProvider) {
         $rootScope.login = function (username, authtoken) {
