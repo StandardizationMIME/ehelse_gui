@@ -14,7 +14,19 @@ function StandardList(){
 }
 
 (function(){
-    var app = angular.module('mainApp', []);
+
+    angular.module('Authentication', []);
+    angular.module('Home', []);
+
+    var app = angular.module('mainApp', [
+        'Authentication',
+        'Home',
+        'ngRoute',
+        'ngCookies']);
+
+    app.config(
+
+    );
 
     app.run([ '$http', '$rootScope',function($http, $rootScope, MyResourceProvider) {
         $rootScope.login = function (username, authtoken) {
