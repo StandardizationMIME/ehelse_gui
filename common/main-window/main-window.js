@@ -98,19 +98,26 @@ function StandardList(){
 
     // Controller for selecting a theme.
     app.controller('TopicController', function($scope, $http){
-        var editor = this;
-
-        editor.topics = [];
 
         $http.get('http://37.139.13.117/v1/topics/').success(function(data){
-            editor.topics = data;
+            $scope.topics = data;
         });
 
         $scope.getStandards = function(id) {
             $http.get('http://37.139.13.117/v1/topics/' + id).success(function(data){
                 $scope.standards = data.documents;
+                $scope.topic = data;
             });
-        }
+        };
+
+    });
+
+    app.controller('ContentBrowserController', function($scope){
+
+        $scope.createNewTopic = function(){
+            $("#content-browser").load('editor-display/content-browser/new-topic-view.html');
+        };
+
     });
 
 
@@ -156,7 +163,7 @@ function StandardList(){
     });
 
     // Directive for html used to display the list of standards.
-    app.directive('standarddisplay', function(){
+    app.directive('filebrowser', function(){
         return{
             restrict: 'E',
             templateUrl: 'editor-display/file-browser/file-browser-view.html'
@@ -164,15 +171,15 @@ function StandardList(){
     });
 
     // Directive for html used to display the content of standards/profiles.
-    app.directive('contentdisplay', function(){
+    app.directive('contentbrowser', function(){
         return{
             restrict: 'E',
             templateUrl: 'editor-display/content-browser/content-browser-view.html'
         };
     });
 
-    // Directive for html used to display the filebrowser.
-    app.directive('filebrowser', function(){
+    // Directive for html used to display the topicbrowser.
+    app.directive('topicbrowser', function(){
         return{
             restrict: 'E',
             templateUrl: 'editor-display/topic-browser/topic-browser-view.html'

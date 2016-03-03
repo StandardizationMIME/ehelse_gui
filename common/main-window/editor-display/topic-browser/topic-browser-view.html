@@ -2,21 +2,39 @@
 
     <!-- Topic folder browser -->
     <!-- Iterates through the list of topics and display them as folders -->
-    <div ng-repeat="topic in topicCtrl.topics" class="topic">
+    <div class="topic" ng-controller="ContentBrowserController">
+        <a href="" ng-click="createNewTopic('editor-display/content-browser/new-topic-view.html')">
+            <span class="glyphicon glyphicon-plus-sign plus-icon"></span>
+            Nytt tema
+        </a>
+    </div>
+    <div ng-repeat="topic in topics" class="topic">
         <a href=#topic{{topic.id}} id={{topic.id}} data-toggle="collapse" class="topic-text" ng-click="getStandards(topic.id)">
             <span id=folder{{topic.id}} class="folder glyphicon glyphicon-folder-close"> </span>
             {{topic.title}}
         </a>
         <div id=topic{{topic.id}} class="collapse">
+            <div class="sub-topic" ng-controller="ContentBrowserController">
+                <a href="" ng-click="createNewTopic('editor-display/content-browser/new-topic-view.html')">
+                    <span class="glyphicon glyphicon-plus-sign plus-icon"></span>
+                    Nytt undertema
+                </a>
+            </div>
             <div class="sub-topic" ng-repeat="subTopic in topic.children">
                 <a href=#subtopic{{subTopic.id}} id={{subTopic.id}} data-toggle="collapse" class="topic-text" ng-click="getStandards(subTopic.id)">
-                    <span id=folder{{subTopic.id}} class="glyphicon glyphicon-folder-close"> </span>
+                    <span id=folder{{subTopic.id}} class="folder glyphicon glyphicon-folder-close"> </span>
                     {{subTopic.title}}
                 </a>
                 <div id=subtopic{{subTopic.id}} class="collapse">
-                    <div class="sub-topic" ng-repeat="subsubTopic in subTopic.children">
-                        <a id={{subsubTopic.id}} class="topic-text" ng-click="getStandards(subsubTopic.id)">
-                            <span id=#subtopic{{subsubTopic.title}} class="glyphicon glyphicon-folder-close"> </span>
+                    <div class="sub-topic" ng-controller="ContentBrowserController">
+                        <a href="" ng-click="createNewTopic('editor-display/content-browser/new-topic-view.html')">
+                            <span class="glyphicon glyphicon-plus-sign plus-icon"></span>
+                            Nytt undertema
+                        </a>
+                    </div>
+                    <div ng-repeat="subsubTopic in subTopic.children" class="sub-topic">
+                        <a href="" id={{subsubTopic.id}} class="topic-text" ng-click="getStandards(subsubTopic.id)">
+                            <span id=#subtopic{{subsubTopic.title}} class="folder glyphicon glyphicon-folder-close"> </span>
                             {{subsubTopic.title}}
                         </a>
                     </div>

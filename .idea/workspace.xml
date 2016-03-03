@@ -50,11 +50,11 @@
             <entry file="file://$PROJECT_DIR$/common/main-window/main-window.js">
               <provider selected="true" editor-type-id="text-editor">
                 <state vertical-scroll-proportion="0.0">
-                  <caret line="34" column="0" selection-start-line="34" selection-start-column="0" selection-end-line="34" selection-end-column="0" />
+                  <caret line="41" column="0" selection-start-line="41" selection-start-column="0" selection-end-line="41" selection-end-column="0" />
                   <folding>
                     <element signature="n#!!doc;n#StandardList#0" expanded="false" />
-                    <marker date="1456993942000" expanded="true" signature="67:161" placeholder="{...}" />
-                    <marker date="1456993942000" expanded="true" signature="5103:5105" placeholder="{...}" />
+                    <marker date="1456994089000" expanded="true" signature="67:161" placeholder="{...}" />
+                    <marker date="1456994089000" expanded="true" signature="5309:5311" placeholder="{...}" />
                   </folding>
                 </state>
               </provider>
@@ -100,7 +100,7 @@
             <entry file="file://$PROJECT_DIR$/common/main-window/main-window.js">
               <provider selected="true" editor-type-id="text-editor">
                 <state vertical-scroll-proportion="0.43017456">
-                  <caret line="27" column="0" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
+                  <caret line="34" column="0" selection-start-line="34" selection-start-column="0" selection-end-line="34" selection-end-column="0" />
                   <folding>
                     <element signature="n#!!doc;n#StandardList#0" expanded="false" />
                   </folding>
@@ -609,7 +609,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2184637" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -1065,7 +1065,7 @@
     <entry file="file://$PROJECT_DIR$/common/main-window/main-window.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.43017456">
-          <caret line="27" column="0" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
+          <caret line="34" column="0" selection-start-line="34" selection-start-column="0" selection-end-line="34" selection-end-column="0" />
           <folding>
             <element signature="n#!!doc;n#StandardList#0" expanded="false" />
           </folding>
