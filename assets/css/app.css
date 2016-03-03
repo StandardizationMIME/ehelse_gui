@@ -55,10 +55,7 @@
 }
 .plus-icon {
     font-size: medium;
-    color: green;
-}
-.content-display {
-
+    color: darkgrey;
 }
 .body_background {
     background-color: #f3f3f3;
@@ -77,13 +74,22 @@
 
 .new-topic {
     width: 400px;
-    height: 400px;
     margin-left: auto;
     margin-right: auto;
     margin-top: 100px;
+    background-color: #e3e3e3;
 
 }
 
 textarea {
     resize: none;
+}
+
+.tenPixHorizontalPadding {
+    padding-right: 10px;
+    padding-left: 10px;
+}
+
+.center-align-text {
+    text-align: center;
 }

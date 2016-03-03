@@ -125,13 +125,15 @@ function generateTopicList(parent, topics){
         };
     }]);
 
-    // Controller for selecting a theme.
+    // Controller for selecting a topic.
     app.controller('TopicController', function($scope, $http){
 
 
 
         $scope.get('topics/' , function(data){
             $scope.topics = data.topics;
+            $scope.topicList = generateTopicList("", data.topics);
+
         }, function(){});
 
         $scope.getStandards = function(id) {
@@ -145,26 +147,31 @@ function generateTopicList(parent, topics){
             $scope.view = view;
         };
 
-    });
-
-
-    // Controller for displaying standards/profiles
-    app.controller('DisplayController', function($scope, $http) {
-
-
-    });
-
-    // Controller for displaying the content of a standard.
-    app.controller('DisplayContentController', function($scope){
-        $scope.getStdContent = function(standard){
-            console.log(standard);
-            var stdContentDisplay = $(".content-display");
-            stdContentDisplay.empty();
-
-            for (var i = 0; i < standard.fields.length; ++i){
-                stdContentDisplay.append('<li>'+ standard.fields[i].fieldTitle +'</li>');
-            }
+        $scope.cancelContentBrowser = function(){
+            $scope.changeView("");
         };
+
+        $scope.postNewTopic = function(){
+
+            console.log($scope.topicIsInCatalog);
+            //var data = $.param({
+            //    json: JSON.stringify({
+            //        id: $scope.topicId,
+            //        timestamp: "",
+            //        title: $scope.topicTitle,
+            //        description: $scope.topicDescription,
+            //        number: "",
+            //        isInCatalog: $scope.topicIsInCatalog,
+            //        sequence: "",
+            //        parent: $scope.topicParent,
+            //        documents: []
+            //    })
+            //});
+            //$http.post("/echo/json/", data).success(function(data, status) {
+            //    $scope.hello = data;
+            //});
+        }
+
     });
 
     app.directive('loginpage', function(){

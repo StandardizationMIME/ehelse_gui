@@ -1,4 +1,5 @@
-<form name="newTopic" role="form" ng-submit="" class="new-topic">
+<form name="newTopicForm" role="form" ng-submit="postNewTopic()" class="new-topic well">
+    <h3 class="center-align-text">Nytt tema</h3>
     <div class="form-group">
         <label for="topicId">Id: </label>
         <input type="number" name="topicId" id="topicId" class="form-control" ng-model="topicId" required />
@@ -12,21 +13,22 @@
         <textarea name="topicDescription" id="topicDescription" class="form-control" ng-model="topicDescription" rows="6" cols="50" required></textarea>
     </div>
     <div class="form-group">
-        <label for="topicIsInCatalogue">Finnes i referansekatalog: </label>
-        <select name="topicIsInCatalogue" id="topicIsInCatalogue" ng-model="topicIsInCatalogue" class="form-control">
-            <option ng-selected="true" value="yes">Ja</option>
-            <option value="no">Nei</option>
-        </select>
+        <label>Finnes i referansekatalog: </label>
+        <div class="radio">
+            <label class="tenPixHorizontalPadding"><input type="radio" name="topicIsInCatalog" ng-value="true" ng-model="topicIsInCatalog" ng-checked="true">Ja</label>
+            <label class="tenPixHorizontalPadding"><input type="radio" name="topicIsInCatalog" ng-value="false" ng-model="topicIsInCatalog">Nei</label>
+        </div>
     </div>
     <div class="form-group" >
         <label for="topicParent">Foreldermappe: </label>
         <select name="topicParent" id="topicParent" class="form-control" ng-model="topicParent">
-            <option ng-selected="true" value="none">Ingen</option>
-            <option value={{topic.id}} ng-repeat="topic in topicList">{{topic.path}}</option>
-
+            <option value="none" ng-selected="true">Ingen</option>
+            <option ng-repeat="topic in topicList" value={{topic.id}}>{{topic.path}}</option>
         </select>
+        {{topicParent}}
     </div>
     <div class="form-actions">
         <button type="submit" ng-disabled="form.$invalid" class="btn btn-success">Opprett nytt tema</button>
+        <button type="button" ng-click="cancelContentBrowser()" ng-disabled="form.$invalid" class="btn btn-danger pull-right">Avbryt</button>
     </div>
 </form>
