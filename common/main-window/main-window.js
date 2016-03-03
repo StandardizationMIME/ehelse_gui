@@ -24,9 +24,6 @@ function StandardList(){
         'ngRoute',
         'ngCookies']);
 
-    app.config(
-
-    );
 
     app.run([ '$http', '$rootScope',function($http, $rootScope, MyResourceProvider) {
         $rootScope.login = function (username, authtoken) {
@@ -100,7 +97,7 @@ function StandardList(){
     app.controller('TopicController', function($scope, $http){
 
         $http.get('http://37.139.13.117/v1/topics/').success(function(data){
-            $scope.topics = data;
+            $scope.topics = data.topics;
         });
 
         $scope.getStandards = function(id) {
