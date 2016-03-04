@@ -128,8 +128,6 @@ function generateTopicList(parent, topics){
     // Controller for selecting a topic.
     app.controller('TopicController', function($scope, $http){
 
-
-
         $scope.get('topics/' , function(data){
             $scope.topics = data.topics;
             $scope.topicList = generateTopicList("", data.topics);
@@ -154,22 +152,19 @@ function generateTopicList(parent, topics){
         $scope.postNewTopic = function(){
 
             console.log($scope.topicIsInCatalog);
-            //var data = $.param({
-            //    json: JSON.stringify({
-            //        id: $scope.topicId,
-            //        timestamp: "",
-            //        title: $scope.topicTitle,
-            //        description: $scope.topicDescription,
-            //        number: "",
-            //        isInCatalog: $scope.topicIsInCatalog,
-            //        sequence: "",
-            //        parent: $scope.topicParent,
-            //        documents: []
-            //    })
-            //});
-            //$http.post("/echo/json/", data).success(function(data, status) {
-            //    $scope.hello = data;
-            //});
+            var data = $.param({
+                json: JSON.stringify({
+                    title: $scope.topicTitle,
+                    description: $scope.topicDescription,
+                    number: "",
+                    isInCatalog: $scope.topicIsInCatalog,
+                    sequence: "",
+                    parent: $scope.topicParent
+                })
+            });
+            $scope.post("", data).success(function(data, status) {
+                $scope.hello = data;
+            });
         }
 
     });
