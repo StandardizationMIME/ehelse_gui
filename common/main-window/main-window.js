@@ -239,11 +239,5 @@ function generateTopicList(parent, topics){
         };
     });
 
-    app.directive('newtopic', function(){
-        return{
-            restrict: 'E',
-            templateUrl: 'common/main-window/editor-display/content-browser/new-topic-view.html'
-        };
-    });
 
 })();
