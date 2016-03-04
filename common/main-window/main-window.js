@@ -46,17 +46,19 @@ function generateTopicList(parent, topics){
             $rootScope.post(
                 'https://refkat.eu/v1/topics/',
                 {},
-                function(data){
+                function (data) {
                     console.log(data);
                 },
-                function(){}
+                function () {
+                }
             );
+        };
 
 
 
         $rootScope.userName = "";
         $rootScope.password = "";
-        $rootScope.apiUrl = 'http://37.139.13.117/v1/';
+        $rootScope.apiUrl = 'https://refkat.eu/v1/';
 
         $rootScope.setUserName = function(userName){
             $rootScope.userName = userName;
@@ -103,15 +105,6 @@ function generateTopicList(parent, topics){
 
     }]);
 
-
-
-
-    app.directive('loginpage', function(){
-        return{
-            restrict: 'E',
-            templateUrl: 'common/login/login.html'
-        };
-    });
 
     app.controller('LoginController', [ '$scope', '$rootScope', '$location',  function( $scope, $rootScope, $location) {
         $scope.submit = function(){
@@ -164,19 +157,19 @@ function generateTopicList(parent, topics){
         $scope.postNewTopic = function(){
 
             console.log($scope.topicIsInCatalog);
-            var data = $.param({
-                json: JSON.stringify({
-                    title: $scope.topicTitle,
-                    description: $scope.topicDescription,
-                    number: "",
-                    isInCatalog: $scope.topicIsInCatalog,
-                    sequence: "",
-                    parent: $scope.topicParent
-                })
-            });
-            $scope.post("", data).success(function(data, status) {
-                $scope.hello = data;
-            });
+            //var data = $.param({
+            //    json: JSON.stringify({
+            //        title: $scope.topicTitle,
+            //        description: $scope.topicDescription,
+            //        number: "",
+            //        isInCatalog: $scope.topicIsInCatalog,
+            //        sequence: "",
+            //        parent: $scope.topicParent
+            //    })
+            //});
+            //$scope.post("", data).success(function(data, status) {
+            //    $scope.hello = data;
+            //});
         }
 
     });
