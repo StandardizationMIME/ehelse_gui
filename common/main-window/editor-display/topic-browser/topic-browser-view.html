@@ -2,13 +2,13 @@
 
     <!-- Topic folder browser -->
     <!-- Iterates through the list of topics and display them as folders -->
-    <div>
-        <h4>Temaer:</h4>
-    </div>
-    <div>
-        <p ng-click="changeView('newtopic')" class="clickable">
-            <span class="glyphicon glyphicon-plus-sign plus-icon"></span>
-            Nytt tema
+    <div class="shadow-below">
+        <h4 class="selected">Temaer:</h4>
+        <p class="tenPixVerticalPadding">
+            <a ng-click="changeView('newtopic')" class="clickable tenpixverticalpadding">
+                <span class="glyphicon glyphicon-plus-sign plus-icon"></span>
+                Nytt tema
+            </a>
         </p>
     </div>
     <div ng-repeat="topic in topics">
