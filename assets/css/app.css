@@ -1,4 +1,4 @@
-.topic-folder-browser {
+.topic-browser {
     padding: 20px;
     overflow-y: auto;
     height: 800px;
@@ -25,12 +25,11 @@
     width: 50%;
     margin: 0 auto;
 }
-.standard-display {
+.file-browser {
     padding: 20px;
     height: 800px;
     background-color: #f3f3f3;
     box-shadow: 1px 1px 2px 1px #b8b8b8;
-    overflow-y: auto;
 }
 
 .btn-primary {
@@ -43,9 +42,6 @@
 .standard-icon {
     color: #0068e7;
 }
-.folder {
-    color: #0068e7;
-}
 .topic-text {
     color: #0f0f0f;
 }
@@ -53,6 +49,7 @@
     font-size: medium;
     color: darkgrey;
 }
+
 .body_background {
     background-color: #f3f3f3;
 }
@@ -90,6 +87,23 @@ textarea {
     text-align: center;
 }
 
-.clickable {
+.clickable:hover {
     cursor: pointer;
+    color: blue;
+}
+
+.standard-list {
+    height: 375px;
+    box-shadow: 0 1px #b8b8b8;
+    overflow-y: auto;
+}
+
+.profile-list {
+    height: 375px;
+    box-shadow: 0 -1px #b8b8b8;
+    overflow-y: auto;
+}
+
+.profile-icon {
+    color: red;
 }

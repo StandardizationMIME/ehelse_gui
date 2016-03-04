@@ -148,6 +148,7 @@ function generateTopicList(parent, topics){
             $scope.get('topics/' + id , function(data){
                 $scope.standards = data.documents;
                 $scope.topic = data;
+                console.log($scope.topic);
             }, function(){});
         };
 
