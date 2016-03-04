@@ -39,7 +39,19 @@ function generateTopicList(parent, topics){
         .otherwise({redirectTo: '/'})
     }]);
 
-    app.run([ '$http', '$rootScope', '$location', '$cookies',function($http, $rootScope, $cookies,  $location, MyResourceProvider) {
+
+    app.run([ '$http', '$rootScope',function($http, $rootScope, MyResourceProvider) {
+        $rootScope.login = function (username, authtoken) {
+
+            $rootScope.post(
+                'https://refkat.eu/v1/topics/',
+                {},
+                function(data){
+                    console.log(data);
+                },
+                function(){}
+            );
+
 
 
         $rootScope.userName = "";
