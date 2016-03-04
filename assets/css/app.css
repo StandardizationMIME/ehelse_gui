@@ -16,13 +16,9 @@
     border-radius: 10px;
     box-shadow: 1px 1px 2px 2px #b8b8b8;
 }
-.topic {
-    padding-top: 5px;
-    padding-bottom: 5px;
-}
+
 .sub-topic {
     padding-left: 10px;
-    padding-top: 11px;
 
 }
 .horizontal-align-div {
@@ -92,4 +88,8 @@ textarea {
 
 .center-align-text {
     text-align: center;
+}
+
+.clickable {
+    cursor: pointer;
 }
