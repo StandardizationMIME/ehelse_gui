@@ -36,6 +36,10 @@ function generateTopicList(parent, topics){
             controller: 'HomeController',
             templateUrl: 'common/main-window/main-view.html'
         })
+        .when('/:topicID?', {
+            controller: 'HomeController',
+            templateUrl: 'common/main-window/main-view.html'
+        })
         .otherwise({redirectTo: '/'})
     }]);
 
@@ -155,9 +159,13 @@ function generateTopicList(parent, topics){
             $scope.changeView("");
         };
 
-        $scope.postNewTopic = function(){
+        $scope.topicTitle = "Initial topicTitle value";
 
-            console.log($scope.topicIsInCatalog);
+
+        $scope.postNewTopic = function(){
+            console.log("Button was clicked");
+
+            console.log($scope.topicTitle);
             //var data = $.param({
             //    json: JSON.stringify({
             //        title: $scope.topicTitle,
