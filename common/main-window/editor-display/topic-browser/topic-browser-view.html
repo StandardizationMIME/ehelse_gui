@@ -13,7 +13,7 @@
             <span id=folder{{topic.id}} class="folder glyphicon glyphicon-folder-close"> </span>
             {{topic.title}}
         </a>
-        <div id=topic{{topic.id}} class="collapse">
+        <div id=/main-view/topic{{topic.id}} class="collapse">
             <div class="sub-topic" ng-repeat="subTopic in topic.children">
                 <a href=#subtopic{{subTopic.id}} id={{subTopic.id}} data-toggle="collapse" class="topic-text" ng-click="getStandards(subTopic.id)">
                     <span id=folder{{subTopic.id}} class="folder glyphicon glyphicon-folder-close"> </span>

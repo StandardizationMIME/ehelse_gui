@@ -136,6 +136,7 @@ function generateTopicList(parent, topics){
         $scope.get('topics/' , function(data){
             $scope.topics = data.topics;
             $scope.topicList = generateTopicList("", data.topics);
+            console.log($scope.topics);
 
         }, function(){});
 
