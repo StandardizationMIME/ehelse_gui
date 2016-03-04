@@ -1,31 +1,26 @@
 <!-- Panel for displaying list of standards and profiles -->
 <div class="col-lg-2 col-mg-2 col-sm-2 col-xs-2 file-browser">
-    <div class="standard-list">
-        <div>
-            <h4>{{topic.title}}</h4>
-        </div>
-        <div ng-repeat="standard in standards">
-            <p class="clickable">
-                <span  class="standard-icon glyphicon glyphicon-file"> </span>
-                {{standard.title}}
+    <div>
+        <div class="shadow-below">
+            <h4 class="selected">{{topic.title}}</h4>
+            <p class="tenPixVerticalPadding">
+                <a ng-click="changeView('newstandard')" class="clickable">
+                    <span class="glyphicon glyphicon-plus-sign plus-icon-standard"></span>
+                    Ny standard
+                </a>
+                <a ng-click="changeView('newstandard')" class="clickable tenPixHorizontalPadding">
+                    <span class="glyphicon glyphicon-plus-sign plus-icon-profile"></span>
+                    Ny profil
+                </a>
             </p>
         </div>
-        <div>
-            <p ng-click="changeView('newstandard')" class="clickable">
-                <span class="glyphicon glyphicon-plus-sign plus-icon"></span>
-                Ny standard
-            </p>
-        </div>
-    </div>
-    <div class="profile-list">
-        <div>
-            <h4>{{topic.title}}</h4>
-        </div>
-        <div ng-repeat="standard in standards">
-            <p class="clickable">
-                <span  class="standard-icon glyphicon glyphicon-file profile-icon"> </span>
-                {{standard.title}}
-            </p>
+        <div class="standard-list">
+            <div ng-repeat="standard in standards | filter:search">
+                <p class="clickable">
+                    <span  class="standard-icon glyphicon glyphicon-file"> </span>
+                    {{standard.title}}
+                </p>
+            </div>
         </div>
     </div>
 </div>
