@@ -45,10 +45,16 @@
 .topic-text {
     color: #0f0f0f;
 }
-.plus-icon {
+.plus-icon-standard {
     font-size: medium;
-    color: darkgrey;
+    color: #0068e7;
 }
+
+.plus-icon-profile {
+    font-size: medium;
+    color: red;
+}
+
 
 .body_background {
     background-color: #f3f3f3;
@@ -83,27 +89,49 @@ textarea {
     padding-left: 10px;
 }
 
+.tenPixVerticalPadding {
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
 .center-align-text {
     text-align: center;
 }
 
 .clickable:hover {
     cursor: pointer;
-    color: blue;
+    color: dodgerblue;
 }
 
 .standard-list {
-    height: 375px;
-    box-shadow: 0 1px #b8b8b8;
+    margin-top: 10px;
+    margin-bottom: 25px;
+    height: 650px;
     overflow-y: auto;
 }
 
-.profile-list {
-    height: 375px;
-    box-shadow: 0 -1px #b8b8b8;
-    overflow-y: auto;
-}
 
 .profile-icon {
     color: red;
+}
+
+.nopadding {
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
+.topic-padding {
+    padding: 20px;
+}
+
+.selected {
+    font-weight: bold;
+}
+
+.scrollable {
+    overflow-y: auto;
+}
+
+.shadow-below {
+    box-shadow: 0 1px #b8b8b8;
 }

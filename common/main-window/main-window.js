@@ -137,6 +137,10 @@ function generateTopicList(parent, topics){
     // Controller for selecting a topic.
     app.controller('TopicController', function($scope, $http){
 
+        $scope.topic = {
+            title: "Referansekatalogen"
+        };
+
         $scope.get('topics/' , function(data){
             $scope.topics = data.topics;
             $scope.topicList = generateTopicList("", data.topics);
@@ -148,8 +152,13 @@ function generateTopicList(parent, topics){
             $scope.get('topics/' + id , function(data){
                 $scope.standards = data.documents;
                 $scope.topic = data;
-                console.log($scope.topic);
+
             }, function(){});
+
+            <!-- Makes selected folder bold and toggles folder icon between opened and closed -->
+            $(".clickable").removeClass('selected');
+            $('#' + id).addClass('selected');
+            $('#folder' + id).toggleClass('glyphicon-folder-open','glyphicon-folder-close');
         };
 
         $scope.changeView = function(view) {
