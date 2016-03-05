@@ -165,40 +165,7 @@ function generateTopicList(parent, topics){
 
 
 
-    angular.module('ehelseEditor').directive('toolbar',function(){
-        return{
-            restrict: 'E',
-            templateUrl: 'app/components/toolbar/toolbar-view.html'
-        };
-    });
 
-    angular.module('ehelseEditor').directive('editorview',function(){
-        return{
-            restrict: 'E',
-            templateUrl: 'app/components/editor/editor-view.html'
-        };
-    });
-
-    angular.module('ehelseEditor').directive('topicview', function(){
-        return{
-            restrict: 'E',
-            templateUrl: 'app/components/topic/topic-view.html'
-        };
-    });
-
-    angular.module('ehelseEditor').directive('documentview', function(){
-        return{
-            restrict: 'E',
-            templateUrl: 'app/components/document/document-view.html'
-        };
-    });
-
-    angular.module('ehelseEditor').directive('contentview', function(){
-        return{
-            restrict: 'E',
-            templateUrl: 'app/components/content/content-view.html'
-        };
-    });
 
 
 })();
