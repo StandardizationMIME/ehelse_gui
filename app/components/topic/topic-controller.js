@@ -1,20 +1,20 @@
-angular.module('ehelseEditor').controller('TopicController', function($scope, $http){
+angular.module('ehelseEditor').controller('TopicController',['$rootScope', '$scope', '$http', function($rootScope, $scope, $http){
 
     $scope.topic = {
         title: "Referansekatalogen"
     };
 
     $scope.get('topics/' , function(data){
-        $scope.topics = data.topics;
-        $scope.topicList = generateTopicList("", data.topics);
-        console.log($scope.topics);
+        $rootScope.topics = data.topics;
+        $rootScope.topicList = generateTopicList("", data.topics);
+        console.log($rootScope.topics);
 
     }, function(){});
 
     $scope.getStandards = function(id) {
         $scope.get('topics/' + id , function(data){
-            $scope.standards = data.documents;
-            $scope.topic = data;
+            $rootScope.standards = data.documents;
+            $rootScope.topic = data;
 
         }, function(){});
 
@@ -25,5 +25,5 @@ angular.module('ehelseEditor').controller('TopicController', function($scope, $h
     };
 
 
-});
+}]);
 

@@ -34,6 +34,9 @@ function generateTopicList(parent, topics){
         $rootScope.password = "";
         $rootScope.apiUrl = 'https://refkat.eu/v1/';
 
+        $rootScope.topics = [];
+        $rootScope.topicsList = [];
+
         $rootScope.setUserName = function(userName){
             $rootScope.userName = userName;
         };
@@ -78,12 +81,5 @@ function generateTopicList(parent, topics){
         };
 
     }]);
-
-
-    angular.module('ehelseEditor').controller('TopicController', function($scope, $http) {
-
-    });
-
-
 
 })();
