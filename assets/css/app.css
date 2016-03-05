@@ -1,4 +1,4 @@
-.topic-folder-browser {
+.topic-browser {
     padding: 20px;
     overflow-y: auto;
     height: 800px;
@@ -16,25 +16,20 @@
     border-radius: 10px;
     box-shadow: 1px 1px 2px 2px #b8b8b8;
 }
-.topic {
-    padding-top: 5px;
-    padding-bottom: 5px;
-}
+
 .sub-topic {
     padding-left: 10px;
-    padding-top: 11px;
 
 }
 .horizontal-align-div {
     width: 50%;
     margin: 0 auto;
 }
-.standard-display {
+.file-browser {
     padding: 20px;
     height: 800px;
     background-color: #f3f3f3;
     box-shadow: 1px 1px 2px 1px #b8b8b8;
-    overflow-y: auto;
 }
 
 .btn-primary {
@@ -47,19 +42,20 @@
 .standard-icon {
     color: #0068e7;
 }
-.folder {
-    color: #0068e7;
-}
 .topic-text {
     color: #0f0f0f;
 }
-.plus-icon {
+.plus-icon-standard {
     font-size: medium;
-    color: green;
+    color: #0068e7;
 }
-.content-display {
 
+.plus-icon-profile {
+    font-size: medium;
+    color: red;
 }
+
+
 .body_background {
     background-color: #f3f3f3;
 }
@@ -76,14 +72,66 @@
 }
 
 .new-topic {
-    width: 300px;
-    height: 300px;
+    width: 400px;
     margin-left: auto;
     margin-right: auto;
     margin-top: 100px;
+    background-color: #e3e3e3;
 
 }
 
 textarea {
     resize: none;
+}
+
+.tenPixHorizontalPadding {
+    padding-right: 10px;
+    padding-left: 10px;
+}
+
+.tenPixVerticalPadding {
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.center-align-text {
+    text-align: center;
+}
+
+.clickable:hover {
+    cursor: pointer;
+    color: dodgerblue;
+}
+
+.standard-list {
+    margin-top: 10px;
+    margin-bottom: 25px;
+    height: 650px;
+    overflow-y: auto;
+}
+
+
+.profile-icon {
+    color: red;
+}
+
+.nopadding {
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
+.topic-padding {
+    padding: 20px;
+}
+
+.selected {
+    font-weight: bold;
+}
+
+.scrollable {
+    overflow-y: auto;
+}
+
+.shadow-below {
+    box-shadow: 0 1px #b8b8b8;
 }
