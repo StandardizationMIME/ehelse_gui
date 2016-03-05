@@ -1,6 +1,7 @@
 /**
  * Created by ARAGORN on 29.02.2016.
  */
+/*
 'use strict';
 
 angular.module('Authentication')
@@ -136,4 +137,4 @@ angular.module('Authentication')
             return output;
         }
     };
-});
+});*/

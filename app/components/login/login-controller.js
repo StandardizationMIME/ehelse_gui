@@ -4,13 +4,11 @@
 
 'use strict';
 
-angular.module('Authentication')
+angular.module('ehelseEditor')
 
 .controller('LoginController',
-    ['$scope', '$rootScope', '$location', '$http', 'AuthenticationService',
+    ['$scope', '$rootScope', '$location', '$http',
         function ($scope, $rootScope, $location, $http, AuthenticationService) {
-            // reset login status
-            AuthenticationService.ClearCredentials();
 
             $scope.login = function () {
                 console.log('login');

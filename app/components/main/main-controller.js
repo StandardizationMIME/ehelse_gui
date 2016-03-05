@@ -1,7 +1,3 @@
-/**
- * Created by Stian on 12.02.2016.
- */
-
 function generateTopicList(parent, topics){
     var paths = [];
     for (var i = 0; i < topics.length; i++) {
@@ -10,41 +6,15 @@ function generateTopicList(parent, topics){
             path: parent + "/" + topics[i].title
         });
         Array.prototype.push.apply(paths,generateTopicList(parent + "/" + topics[i].title, topics[i].children))
-        }
+    }
     return paths;
 }
 
 
 (function(){
 
-    angular.module('Authentication', []);
-    angular.module('Home', []);
 
-    var app = angular.module('mainApp', [
-        'Authentication',
-        'Home',
-        'ngRoute',
-        'ngCookies']);
-
-    app.config(['$routeProvider', function($routeProvider){
-        $routeProvider
-        .when('/', {
-            controller: 'LoginController',
-            templateUrl: 'common/login/login.html'
-        })
-        .when('/main-view/:topicID?', {
-            controller: 'HomeController',
-            templateUrl: 'common/main-window/main-view.html'
-        })
-        .when('/:topicID?', {
-            controller: 'HomeController',
-            templateUrl: 'common/main-window/main-view.html'
-        })
-        .otherwise({redirectTo: '/'})
-    }]);
-
-
-    app.run([ '$http', '$rootScope',function($http, $rootScope, MyResourceProvider) {
+    angular.module('ehelseEditor').run([ '$http', '$rootScope',function($http, $rootScope, MyResourceProvider) {
         $rootScope.login = function (username, authtoken) {
 
             $rootScope.post(
@@ -110,7 +80,7 @@ function generateTopicList(parent, topics){
     }]);
 
 
-    app.controller('LoginController', [ '$scope', '$rootScope', '$location',  function( $scope, $rootScope, $location) {
+    angular.module('ehelseEditor').controller('LoginController', [ '$scope', '$rootScope', '$location',  function( $scope, $rootScope, $location) {
         $scope.submit = function(){
             $rootScope.setUserName($scope.username);
             $rootScope.setPassword($scope.password);
@@ -135,7 +105,7 @@ function generateTopicList(parent, topics){
     }]);
 
     // Controller for selecting a topic.
-    app.controller('TopicController', function($scope, $http){
+    angular.module('ehelseEditor').controller('TopicController', function($scope, $http){
 
         $scope.topic = {
             title: "Referansekatalogen"
@@ -193,49 +163,40 @@ function generateTopicList(parent, topics){
 
     });
 
-    app.directive('loginpage', function(){
+
+
+    angular.module('ehelseEditor').directive('toolbar',function(){
         return{
             restrict: 'E',
-            templateUrl: 'common/login/login.html'
+            templateUrl: 'app/components/toolbar/toolbar-view.html'
         };
     });
 
-    app.directive('toolbar',function(){
+    angular.module('ehelseEditor').directive('editorview',function(){
         return{
             restrict: 'E',
-            templateUrl: 'common/main-window/toolbar/toolbar-view.html'
+            templateUrl: 'app/components/editor/editor-view.html'
         };
     });
 
-    // Directive for html used to display the edtior.
-    app.directive('editordisplay',function(){
+    angular.module('ehelseEditor').directive('topicview', function(){
         return{
             restrict: 'E',
-            templateUrl: 'common/main-window/editor-display/editor-display-view.html'
+            templateUrl: 'app/components/topic/topic-view.html'
         };
     });
 
-    // Directive for html used to display the list of standards.
-    app.directive('filebrowser', function(){
+    angular.module('ehelseEditor').directive('documentview', function(){
         return{
             restrict: 'E',
-            templateUrl: 'common/main-window/editor-display/file-browser/file-browser-view.html'
+            templateUrl: 'app/components/document/document-view.html'
         };
     });
 
-    // Directive for html used to display the content of standards/profiles.
-    app.directive('contentbrowser', function(){
+    angular.module('ehelseEditor').directive('contentview', function(){
         return{
             restrict: 'E',
-            templateUrl: 'common/main-window/editor-display/content-browser/content-browser-view.html'
-        };
-    });
-
-    // Directive for html used to display the topicbrowser.
-    app.directive('topicbrowser', function(){
-        return{
-            restrict: 'E',
-            templateUrl: 'common/main-window/editor-display/topic-browser/topic-browser-view.html'
+            templateUrl: 'app/components/content/content-view.html'
         };
     });
 
