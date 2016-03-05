@@ -1,21 +1,25 @@
 'use strict';
 
-angular.module('ehelseEditor')
+angular.module('ehelseEditor').controller('LoginController', [ '$scope', '$rootScope', '$location',  function( $scope, $rootScope, $location) {
+    $scope.submit = function(){
+        $rootScope.setUserName($scope.username);
+        $rootScope.setPassword($scope.password);
+        $scope.logIn();
+    };
 
-    .controller('LoginController',
-        ['$scope', '$rootScope', '$location', '$http',
-            function ($scope, $rootScope, $location, $http, AuthenticationService) {
+    $scope.logIn = function (username, authtoken) {
 
-                $scope.login = function () {
-                    console.log('login');
-                    $scope.dataLoading = true;
-                    $http.defaults.headers.common['Authorization'] = 'Basic ' +  $scope.username + ':' + $scope.password;
-                    console.log($http.defaults.headers.common['Authorization']);
+        $rootScope.post(
+            'topics/',
+            {},
+            function(data){
+                console.log(data);
+                if (data.create === 'created'){
+                    $location.path('/main-view').replace();
+                }
+            },
+            function(){}
+        );
 
-                    $http.post('http://refkat.eu/v1/topics/', {username : username, password: password})
-                        .success(function(response){
-                            alert(response);
-                        });
-
-                };
-            }]);
+    };
+}]);

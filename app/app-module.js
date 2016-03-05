@@ -1,8 +1,8 @@
- 'use strict';
+'use strict';
 
- angular.module('ehelseEditor')
+angular.module('ehelseEditor')
 
- .controller('MainController', ['$scope',
- function($scope){
+    .controller('MainController', ['$scope',
+     function($scope){
 
- }]);
+     }]);
