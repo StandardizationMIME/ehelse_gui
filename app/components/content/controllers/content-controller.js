@@ -9,13 +9,14 @@ angular.module('ehelseEditor').controller('ContentController', [ '$scope', '$htt
         var content = {
             title: topic.title,
             description: topic.description,
-            isInCatalog: topic.isInCatalog,
-            parent: topic.parent
+            is_in_catalog: topic.isInCatalog,
+            parent: null,   //placeholder values to test if it works
+            sequence: 1
         };
 
         $scope.post(
             'topics/',
-            content,
+            JSON.stringify(content),
             function(){
                 console.log("New topic created");
                 console.log(content);
@@ -30,15 +31,19 @@ angular.module('ehelseEditor').controller('ContentController', [ '$scope', '$htt
 
     $scope.postNewStandard = function(standard){
 
+
+
         var content = {
             title: standard.title,
             description: standard.description,
-            isInCatalog: standard.isInCatalog,
-            parent: standard.parent
+            is_in_catalog: standard.isInCatalog,
+            parent: 1,    //placeholder values to test if it works
+            sequence: 1,
+            topic_id: 12
         };
 
         $scope.post(
-            'topics/',
+            'standards/',
             content,
             function(){
                 console.log("New document created");

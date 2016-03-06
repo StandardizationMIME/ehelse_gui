@@ -1,4 +1,4 @@
-<form name="newTopicForm" role="form" ng-submit="postNewTopic(newTopic)" class="new-topic well">
+<form name="newTopicForm" role="form" ng-submit="postNewTopic(newTopic)" class="new-topic well" method="post">
     <h3 class="center-align-text">Nytt tema</h3>
     <div class="form-group">
         <label for="topicTitle">Tittel: </label>
@@ -16,7 +16,7 @@
     <div class="form-group" >
         <label for="topicParent">Foreldermappe: </label>
         <select name="topicParent" id="topicParent" class="form-control" ng-model="newTopic.parent" required>
-            <option value="none" ng-selected="true">Ingen</option>
+            <option ng-value="null" ng-selected="true">Ingen</option>
             <option ng-repeat="topic in topicList" value={{topic.id}}>{{topic.path}}</option>
         </select>
     </div>
