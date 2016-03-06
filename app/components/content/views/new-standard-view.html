@@ -1,22 +1,21 @@
-<form name="newStandardForm" role="form" ng-submit="" class="new-topic well">
+<form name="newStandardForm" role="form" ng-submit="postNewStandard(newStandard)" class="new-topic well">
     <h3 class="center-align-text">Ny standard/profil</h3>
     <div class="form-group">
         <label for="standardTitle">Tittel: </label>
-        <input type="text" name="standardTitle" id="standardTitle" ng-model="standardTitle" class="form-control" required/>
+        <input type="text" name="standardTitle" id="standardTitle" ng-model="newStandard.title" class="form-control" required/>
     </div>
     <div class="form-group">
         <label for="standardDescription">Beskrivelse: </label>
-        <textarea name="standardDescription" id="standardDescription" ng-model="standardDescription" class="form-control" rows="6" cols="50" required></textarea>
+        <textarea name="standardDescription" id="standardDescription" ng-model="newStandard.description" class="form-control" rows="6" cols="50" required></textarea>
     </div>
     <div class="form-group">
         <div class="checkbox">
-            <label for="standardIsInCatalog"><input type="checkbox" name="standardIsInCatalog" id="standardIsInCatalog" ng-model="standardIsInCatalog">Er i referansekatalogen</label>
+            <label for="standardIsInCatalog"><input value="true" type="checkbox" name="standardIsInCatalog" id="standardIsInCatalog" ng-model="newStandard.isInCatalog">Er i referansekatalogen</label>
         </div>
-        {{standardIsInCatalog}}
     </div>
     <div class="form-group">
         <label for="standardParent">Opprettes i: </label>
-        <select name="standardParent" id="standardParent" ng-model="standardParent" class="form-control">
+        <select name="standardParent" id="standardParent" ng-model="newStandard.parent" class="form-control">
             <option ng-repeat="topic in topicList" value={{topic.id}}>{{topic.path}}</option>
         </select>
     </div>

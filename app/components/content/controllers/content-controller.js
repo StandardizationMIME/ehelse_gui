@@ -2,27 +2,54 @@
 
 'use strict';
 
-angular.module('ehelseEditor').controller('ContentController', [ '$scope', function( $scope) {
+angular.module('ehelseEditor').controller('ContentController', [ '$scope', '$http','$rootScope', function( $scope, $rootScope) {
 
+    $scope.postNewTopic = function(topic){
 
-    $scope.topicTitle = "Initial topicTitle value";
+        var content = {
+            title: topic.title,
+            description: topic.description,
+            isInCatalog: topic.isInCatalog,
+            parent: topic.parent
+        };
 
-    $scope.postNewTopic = function(){
-        console.log("Button was clicked");
+        $scope.post(
+            'topics/',
+            content,
+            function(){
+                console.log("New topic created");
+                console.log(content);
+                $rootScope.view = "";
+            }
+            ,
+            function(){
+                console.log("New topic could not be created")
+            }
+        );
+    };
 
-        console.log($scope.topicTitle);
-        //var data = $.param({
-        //    json: JSON.stringify({
-        //        title: $scope.topicTitle,
-        //        description: $scope.topicDescription,
-        //        number: "",
-        //        isInCatalog: $scope.topicIsInCatalog,
-        //        sequence: "",
-        //        parent: $scope.topicParent
-        //    })
-        //});
-        //$scope.post("", data).success(function(data, status) {
-        //    $scope.hello = data;
-        //});
+    $scope.postNewStandard = function(standard){
+
+        var content = {
+            title: standard.title,
+            description: standard.description,
+            isInCatalog: standard.isInCatalog,
+            parent: standard.parent
+        };
+
+        $scope.post(
+            'topics/',
+            content,
+            function(){
+                console.log("New document created");
+                console.log(content);
+                console.log($scope.view);
+                $rootScope.view = "";
+            }
+            ,
+            function(){
+                console.log("New document could not be created")
+            }
+        );
     }
 }]);

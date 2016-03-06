@@ -1,26 +1,24 @@
-<form name="newTopicForm" role="form" ng-submit="postNewTopic()" class="new-topic well">
+<form name="newTopicForm" role="form" ng-submit="postNewTopic(newTopic)" class="new-topic well">
     <h3 class="center-align-text">Nytt tema</h3>
     <div class="form-group">
-        <label for="topicTitle">Title: </label>
-        <input type="text" name="topicTitle" id="topicTitle" class="form-control" ng-model="topicTitle" required />
+        <label for="topicTitle">Tittel: </label>
+        <input type="text" name="topicTitle" id="topicTitle" class="form-control" ng-model="newTopic.title" required />
     </div>
     <div class="form-group">
-        <label for="topicDescription">Description: </label>
-        <textarea name="topicDescription" id="topicDescription" class="form-control" ng-model="topicDescription" rows="6" cols="50" required></textarea>
+        <label for="topicDescription">Beskrivelse: </label>
+        <textarea name="topicDescription" id="topicDescription" class="form-control" ng-model="newTopic.description" rows="6" cols="50" required></textarea>
     </div>
     <div class="form-group">
         <div class="checkbox">
-            <label for="topicIsInCatalog"><input type="checkbox" name="topicIsInCatalog" id="topicIsInCatalog" ng-model="topicIsInCatalog">Er i referansekatalogen</label>
+            <label for="topicIsInCatalog"><input type="checkbox" name="topicIsInCatalog" id="topicIsInCatalog" ng-model="newTopic.isInCatalog">Er i referansekatalogen</label>
         </div>
-        {{topicIsInCatalog}}
     </div>
     <div class="form-group" >
         <label for="topicParent">Foreldermappe: </label>
-        <select name="topicParent" id="topicParent" class="form-control" ng-model="topicParent">
+        <select name="topicParent" id="topicParent" class="form-control" ng-model="newTopic.parent" required>
             <option value="none" ng-selected="true">Ingen</option>
             <option ng-repeat="topic in topicList" value={{topic.id}}>{{topic.path}}</option>
         </select>
-        {{topicParent}}
     </div>
     <div class="form-actions">
         <button type="submit" ng-disabled="form.$invalid" class="btn btn-success">Opprett nytt tema</button>

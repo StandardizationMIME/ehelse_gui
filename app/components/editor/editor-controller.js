@@ -1,11 +1,11 @@
 'use strict';
 
-angular.module('ehelseEditor').controller('EditorController', [ '$scope', function( $scope) {
+angular.module('ehelseEditor').controller('EditorController', [ '$scope', '$rootScope', function($rootScope, $scope) {
     $scope.changeView = function(view) {
-        $scope.view = view;
+        $rootScope.view = view;
     };
 
     $scope.cancelContentBrowser = function(){
-        $scope.changeView("");
+        $rootScope.view = "";
     };
 }]);

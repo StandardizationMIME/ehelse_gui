@@ -1,14 +1,12 @@
-angular.module('ehelseEditor').controller('TopicController',['$rootScope', '$scope', '$http', function($rootScope, $scope, $http){
+angular.module('ehelseEditor').controller('TopicController',['$rootScope', '$scope', function($rootScope, $scope){
 
-    $scope.topic = {
+    $rootScope.topic = {
         title: "Referansekatalogen"
     };
 
     $scope.get('topics/' , function(data){
         $rootScope.topics = data.topics;
         $rootScope.topicList = generateTopicList("", data.topics);
-        console.log($rootScope.topics);
-
     }, function(){});
 
     $scope.getStandards = function(id) {
