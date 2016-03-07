@@ -1,5 +1,5 @@
 <!-- Search bar -->
-<div class="row navigation-bar">
+<div ng-controller="ToolbarController" class="row navigation-bar">
 
     <div class="col-lg-2 col-mg-2 col-sm-2 col-xs-2">
         <div class="input-group input-group-sm">
@@ -16,7 +16,7 @@
     </div>
     <div class="col-lg-2 col-mg-2 col-sm-2 col-xs-2">
         <div class="horizontal-align-div">
-            <button type="submit" class="btn btn-primary">Administrer felter</button>
+            <button type="button" ng-click="openAdministerFields()" class="btn btn-primary">Administrer felter</button>
         </div>
     </div>
     <div class="col-lg-2 col-mg-2 col-sm-2 col-xs-2 pull-right">

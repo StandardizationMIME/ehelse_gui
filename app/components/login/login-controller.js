@@ -9,12 +9,11 @@ angular.module('ehelseEditor').controller('LoginController', [ '$scope', '$rootS
 
     $scope.logIn = function (username, authtoken) {
 
-        $rootScope.post(
-            'topics/',
-            {},
+        $rootScope.get(
+            'login/',
             function(data){
                 console.log(data);
-                if (data.create === 'created'){
+                if (data.authenticated === true){
                     $location.path('/main-view').replace();
                 }
             },

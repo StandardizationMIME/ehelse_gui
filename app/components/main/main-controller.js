@@ -30,6 +30,7 @@ function generateTopicList(parent, topics){
 
 
 
+
         $rootScope.userName = "";
         $rootScope.password = "";
         $rootScope.apiUrl = 'https://refkat.eu/v1/';
@@ -79,6 +80,16 @@ function generateTopicList(parent, topics){
                     error(data, status, headers, config);
                 });
         };
+
+        $rootScope.childControllers = {};
+
+        $rootScope.registerChildController = function(name, scope){
+            $rootScope.childControllers[name] = scope;
+        };
+
+        $rootScope.changeContentView = function(view){
+            $rootScope.childControllers['EditorController'].changeView(view);
+        }
 
     }]);
 
