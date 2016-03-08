@@ -9,8 +9,7 @@
         <h4>Administrer Standard Felter</h4>
         <form name="administerStandardFieldForm" role="form" ng-submit="" class="" method="post">
 
-                        <span class="field-item">
-                            <span class="field-item-field">Rekkefølge</span>
+                        <span class="field-item field-list-title">
                             <span class="field-item-field">Tittel</span>
                             <span class="field-item-field">Beskrivelse</span>
                             <span class="field-item-field">Obligatorisk</span>
@@ -19,7 +18,7 @@
 
             <ul ui-sortable="sortableOptions" ng-model="standardFields" class="list">
                 <li ng-repeat="field in standardFields" class="field-item">
-                    <input type="number" ng-model="field.sequence">
+                    <input type="hidden" ng-model="field.sequence">
                     <input type="text" ng-model="field.title" >
                     <input type="text" ng-model="field.description" >
                     <input type="checkbox" ng-model="field.mandatory" >
