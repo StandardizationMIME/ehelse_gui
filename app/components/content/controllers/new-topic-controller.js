@@ -1,26 +1,30 @@
-/**
- * Created by dagfs on 05.03.16.
- */
 'use strict';
 
-angular.module('ehelseEditor').controller('NewTopicController', [ '$scope', function( $scope) {
+angular.module('ehelseEditor').controller('NewTopicController', [ '$scope', "$rootScope", function( $scope, $rootScope) {
 
-    $scope.postNewTopic = function(){
-        console.log("Button was clicked");
+    $scope.newTopic = {
+        "title" : "",
+        "description" : "",
+        "isInCatalog": false,
+        "parent": $scope.selectedTopicId,
+        "sequence": 1
+    };
 
-        console.log($scope.topicTitle);
-        //var data = $.param({
-        //    json: JSON.stringify({
-        //        title: $scope.topicTitle,
-        //        description: $scope.topicDescription,
-        //        number: "",
-        //        isInCatalog: $scope.topicIsInCatalog,
-        //        sequence: "",
-        //        parent: $scope.topicParent
-        //    })
-        //});
-        //$scope.post("", data).success(function(data, status) {
-        //    $scope.hello = data;
-        //});
-    }
+    $scope.postNewTopic = function(topic){
+
+
+        $scope.post(
+            'topics/',
+            $scope.newTopic,
+            function(){
+                console.log("New topic created");
+                console.log($scope.newTopic);
+                $rootScope.view = "";
+            }
+            ,
+            function(){
+                console.log("New topic could not be created")
+            }
+        );
+    };
 }]);

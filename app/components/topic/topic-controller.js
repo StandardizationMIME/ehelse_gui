@@ -4,6 +4,13 @@ angular.module('ehelseEditor').controller('TopicController',['$rootScope', '$sco
         title: "Referansekatalogen"
     };
 
+    $rootScope.selectedTopicId = null;
+
+    $rootScope.setSelectedTopicId = function(topicId){
+        console.log("topic ", topicId, "selected");
+        $rootScope.selectedTopicId = topicId;
+    };
+
     $scope.get('topics/' , function(data){
         $rootScope.topics = data.topics;
         $rootScope.topicList = generateTopicList("", data.topics);

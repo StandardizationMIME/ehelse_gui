@@ -15,25 +15,11 @@ function generateTopicList(parent, topics){
 
 
     angular.module('ehelseEditor').run([ '$http', '$rootScope',function($http, $rootScope, MyResourceProvider) {
-        $rootScope.login = function (username, authtoken) {
-
-            $rootScope.post(
-                'https://refkat.eu/v1/topics/',
-                {},
-                function (data) {
-                    console.log(data);
-                },
-                function () {
-                }
-            );
-        };
-
-
 
 
         $rootScope.userName = "";
         $rootScope.password = "";
-        $rootScope.apiUrl = 'https://refkat.eu/v1/';
+        $rootScope.apiUrl = 'http://localhost:8080/index.php/v1/';
 
         $rootScope.topics = [];
         $rootScope.topicsList = [];
