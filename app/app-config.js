@@ -1,5 +1,5 @@
 angular
-    .module('ehelseEditor', ['ngRoute'
+    .module('ehelseEditor', ['ngRoute','ui.sortable',
     ])
 
     .constant('CONFIG',

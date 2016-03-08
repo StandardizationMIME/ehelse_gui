@@ -12,13 +12,17 @@
                 <thead>
                     <tr>
                         <td>Rekkefølge</td>
+                        <td>Rekkefølge</td>
                         <td>Tittel</td>
                         <td>Beskrivelse</td>
                         <td>Obligatorisk</td>
                     </tr>
                 </thead>
-                <tbody>
-                    <tr  ng-repeat="field in standardFields">
+                <tbody  class="list" ng-model="standardFields">
+                    <tr  ng-repeat="field in standardFields" class="item" style="cursor: move;">
+                        <td>
+                            dra meg
+                        </td>
                         <td>
                             <input type="number" ng-model="field.sequence">
                         </td>
@@ -38,6 +42,9 @@
             <input type="button" value="Lagre" ng-click="updateStandardFields()">
 
         </form>
+        <ul ui-sortable ng-model="standardFields" class="list">
+            <li ng-repeat="field in standardFields" class="item">{{ field.title }}</li>
+        </ul>
 
     </div>
     <div ng-show="isSet(2)">
