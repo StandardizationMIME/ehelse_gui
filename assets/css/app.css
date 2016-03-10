@@ -135,3 +135,42 @@ textarea {
 .shadow-below {
     box-shadow: 0 1px #b8b8b8;
 }
+
+/*****************Administer*Fields******************/
+
+.administer-fields ul{
+    margin: 0;
+    padding: 0;
+}
+
+.administer-fields li{
+    text-decoration: none;
+    list-style-type: none;
+    cursor: move;
+
+
+}
+
+.administer-fields .field-list-title{
+    display: inline-block;
+}
+
+.field-item{
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
+    margin: 0;
+    padding:5px;
+    background: #f3f3f3;
+    width: 100%;
+}
+
+.administer-fields .field-item .field-item-field:nth-child(1), .administer-fields .field-item input:nth-child(2){
+    width:150px;
+    display: inline-block;
+}
+
+
+.administer-fields .field-item .field-item-field:nth-child(2), .administer-fields .field-item input:nth-child(3){
+    width:400px;
+    display: inline-block;
+}

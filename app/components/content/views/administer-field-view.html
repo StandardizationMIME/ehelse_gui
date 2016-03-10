@@ -1,0 +1,67 @@
+
+<section ng-controller="AdministerFieldController" class="administer-fields" >
+    <ul class="nav nav-pills">
+        <li ng-class="{active:isSet(1)}"><a href ng-click="setTab(1)">Standard Felter</a></li>
+        <li ng-class="{active:isSet(2)}"><a href ng-click="setTab(2)">Profil Felter</a></li>
+    </ul>
+
+    <div ng-show="isSet(1)">
+        <h4>Administrer Standard Felter</h4>
+        <form name="administerStandardFieldForm" role="form" ng-submit="" class="" method="post">
+
+                        <span class="field-item field-list-title">
+                            <span class="field-item-field">Tittel</span>
+                            <span class="field-item-field">Beskrivelse</span>
+                            <span class="field-item-field">Obligatorisk</span>
+                        </span>
+
+
+            <ul ui-sortable="sortableOptions" ng-model="standardFields" class="list">
+                <li ng-repeat="field in standardFields" class="field-item">
+                    <input type="hidden" ng-model="field.sequence">
+                    <input type="text" ng-model="field.title" >
+                    <input type="text" ng-model="field.description" >
+                    <input type="checkbox" ng-model="field.mandatory" >
+                </li>
+            </ul>
+            <input type="button" value="Lagre" ng-click="updateStandardFields()">
+
+        </form>
+
+
+    </div>
+    <div ng-show="isSet(2)">
+        <h4>Administrer Profil Felter</h4>
+        <form name="administerStandardFieldForm" role="form" ng-submit="" class="" method="post">
+            <table >
+                <thead>
+                <tr>
+                    <td>Rekkefølge</td>
+                    <td>Tittel</td>
+                    <td>Beskrivelse</td>
+                    <td>Obligatorisk</td>
+                </tr>
+                </thead>
+                <tbody ng-repeat="field in profileFields">
+                <tr ng-model="field">
+                    <td>
+                        <input ng-model="field.sequence">
+                    </td>
+                    <td>
+                        <input ng-model="field.title" >
+                    </td>
+                    <td>
+                        <input ng-model="field.description" >
+                    </td>
+                    <td>
+                        <input ng-model="field.mandatory" >
+                    </td>
+                </tr>
+
+                </tbody>
+            </table>
+
+        </form>
+
+    </div>
+</section>
