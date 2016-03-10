@@ -1,8 +1,13 @@
 .topic-browser {
     padding: 20px;
-    overflow-y: auto;
     height: 800px;
 }
+
+.scrollable{
+    overflow-y: auto;
+    height: 680px;
+}
+
 .navigation-bar {
     min-height: 40px;
     max-width: 1800px;

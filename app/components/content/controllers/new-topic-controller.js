@@ -12,13 +12,14 @@ angular.module('ehelseEditor').controller('NewTopicController', [ '$scope', "$ro
 
     $scope.postNewTopic = function(topic){
 
-
+        console.log(topic);
         $scope.post(
             'topics/',
             $scope.newTopic,
-            function(){
+            function(data){
                 console.log("New topic created");
-                console.log($scope.newTopic);
+                console.log(data);
+                $rootScope.reloadTopic(data);
                 $rootScope.view = "";
             }
             ,
