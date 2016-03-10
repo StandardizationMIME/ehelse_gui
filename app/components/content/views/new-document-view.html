@@ -1,5 +1,5 @@
-<form ng-controller="NewDocumentController" name="newStandardForm" role="form" ng-submit="postNewStandard(newStandard)" class="new-topic well" method="post">
-    <h3 class="center-align-text">Ny standard</h3>
+<form ng-controller="NewDocumentController" name="newStandardForm" role="form" ng-submit="postNewDocument(newStandard)" class="new-topic well" method="post">
+    <h3 class="center-align-text" id="documentTitle">Ny {{documentType}}</h3>
     <div class="form-group">
         <label for="standardTitle">Tittel: </label>
         <input type="text" name="standardTitle" id="standardTitle" ng-model="newDocument.title" class="form-control" required/>
@@ -9,26 +9,13 @@
         <textarea name="standardDescription" id="standardDescription" ng-model="newDocument.description" class="form-control" rows="6" cols="50" required></textarea>
     </div>
     <div class="form-group">
-        <div class="checkbox">
-            <label for="standardIsInCatalog"><input value="true" type="checkbox" name="standardIsInCatalog" id="standardIsInCatalog" ng-model="newDocument.isInCatalog">Er i referansekatalogen</label>
-        </div>
-    </div>
-    <div class="form-group">
         <label for="standardParent">Opprettes i: </label>
-
         <select name="standardParent" id="standardParent" ng-model="newDocument.topicId" class="form-control">
             <option ng-repeat="topic in topicTupleList" value={{topic.id}}>{{topic.path}}</option>
         </select>
     </div>
     <div class="form-actions">
-        <button type="submit" ng-disabled="form.$invalid" class="btn btn-success">Opprett ny standard</button>
+        <button id="createDocumentButton" type="submit" ng-disabled="form.$invalid" class="btn btn-success">Opprett ny {{documentType}}</button>
         <button type="button" ng-click="cancelContentBrowser()" ng-disabled="form.$invalid" class="btn btn-danger pull-right">Avbryt</button>
     </div>
 </form>
-
-<!--
-"title": "std 1",
-"description": "string",
-"isInCatalog": true,
-"sequence": 0,
-"topicId": 4,-->

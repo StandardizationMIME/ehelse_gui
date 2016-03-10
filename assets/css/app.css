@@ -141,6 +141,11 @@ textarea {
     box-shadow: 0 1px #b8b8b8;
 }
 
+#notificationMessage {
+    position: absolute;
+    width: 98%;
+}
+
 /*****************Administer*Fields******************/
 
 .administer-fields ul{

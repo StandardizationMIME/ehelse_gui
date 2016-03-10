@@ -11,25 +11,26 @@ angular.module('ehelseEditor').controller('NewDocumentController', [ '$scope', '
         "sequence": 3
     };
 
-    console.log($rootScope.selectedTopicId);
-    console.log($scope.newDocument);
-
-    $scope.postNewStandard = function(standard){
-        console.log($scope.newDocument);
+    $scope.postNewDocument = function(standard){
+        var inputUrl = "";
+        if($rootScope.documentType == 'profil'){
+            inputUrl = 'profile';
+        }else if($rootScope.documentType == 'standard'){
+            inputUrl = 'standard';
+        }
 
         $scope.post(
-            'standards/',
+            inputUrl + 's/',
             $scope.newDocument,
             function(){
                 console.log("New document created");
-                console.log($scope.view);
-                $rootScope.notifyStandardSuccess("Ny standard ble opprettet")
+                $rootScope.notifyStandardSuccess("Ny standard ble opprettet");
                 $rootScope.view = "";
             }
             ,
             function(){
-                console.log("New document could not be created")
-                $rootScope.notifyStandardError("Standard kunne ikke opprettes")
+                console.log("New document could not be created");
+                $rootScope.notifyStandardError("Standard kunne ikke opprettes");
             }
         );
     }
