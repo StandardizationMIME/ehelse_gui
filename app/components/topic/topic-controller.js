@@ -7,8 +7,6 @@ angular.module('ehelseEditor').controller('TopicController',['$rootScope', '$sco
     };
 
     $rootScope.reloadTopic = function(topic){
-
-
         $scope.flatTopicList[topic.id] = topic;
         $scope.flatTopicList[topic.parent].children.push(topic);
     };
@@ -30,21 +28,22 @@ angular.module('ehelseEditor').controller('TopicController',['$rootScope', '$sco
         $rootScope.selectedTopicId = topicId;
     };
 
-    $scope.generateListOfTopicTuple = function(parent, topics){
+    $scope.generateListOfTopicTuple = function(level, parent, topics){
         var paths = [];
         for (var i = 0; i < topics.length; i++) {
             paths.push({
                 id: topics[i].id,
-                path: parent + "/" + topics[i].title
+                path: parent + "/" + topics[i].title,
+                level: level
             });
-            Array.prototype.push.apply(paths,$scope.generateListOfTopicTuple(parent + "/" + topics[i].title, topics[i].children))
+            Array.prototype.push.apply(paths,$scope.generateListOfTopicTuple(level+1, parent + "/" + topics[i].title, topics[i].children))
         }
         return paths;
     };
 
     $scope.get('topics/' , function(data){
         $rootScope.topics = data.topics;
-        $rootScope.topicTupleList = $scope.generateListOfTopicTuple("", data.topics);
+        $rootScope.topicTupleList = $scope.generateListOfTopicTuple(1,"", data.topics);
         $rootScope.flatTopicList = $scope.flattenTopicList($rootScope.topics);
         console.log($rootScope.flatTopicList);
     }, function(){});
