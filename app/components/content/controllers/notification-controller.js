@@ -23,7 +23,7 @@ angular.module('ehelseEditor').controller('NotificationController', [ '$scope', 
 
         notification.removeClass();
 
-        notification.fadeTo(2000, 500).slideUp(500, function() {});
+        notification.fadeTo(3000, 500).slideUp(500, function() {});
 
         if(type == "success"){
             notification.addClass('alert alert-success');
