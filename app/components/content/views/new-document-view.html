@@ -17,7 +17,7 @@
         <label for="standardParent">Opprettes i: </label>
 
         <select name="standardParent" id="standardParent" ng-model="newDocument.topicId" class="form-control">
-            <option ng-repeat="topic in topicList" value={{topic.id}}>{{topic.path}}</option>
+            <option ng-repeat="topic in topicTupleList" value={{topic.id}}>{{topic.path}}</option>
         </select>
     </div>
     <div class="form-actions">

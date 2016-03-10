@@ -1,14 +1,4 @@
-function generateTopicList(parent, topics){
-    var paths = [];
-    for (var i = 0; i < topics.length; i++) {
-        paths.push({
-            id: topics[i].id,
-            path: parent + "/" + topics[i].title
-        });
-        Array.prototype.push.apply(paths,generateTopicList(parent + "/" + topics[i].title, topics[i].children))
-    }
-    return paths;
-}
+
 
 
 (function(){

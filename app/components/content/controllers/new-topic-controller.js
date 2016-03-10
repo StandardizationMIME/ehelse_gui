@@ -15,15 +15,16 @@ angular.module('ehelseEditor').controller('NewTopicController', [ '$scope', "$ro
         $scope.post(
             'topics/',
             $scope.newTopic,
-            function(){
+            function(data){
                 console.log("New topic created");
-                console.log($scope.newTopic);
+                console.log(data);
+                $rootScope.reloadTopic(data);
                 $rootScope.notifyTopicSuccess("Ny standard har blitt opprettet");
                 $rootScope.view = "";
             }
             ,
             function(){
-                console.log("New topic could not be created")
+                console.log("New topic could not be created");
                 $rootScope.notifyTopicError("Standard ble ikke oppretet");
             }
         );
