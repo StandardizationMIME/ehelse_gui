@@ -19,13 +19,13 @@ angular.module('ehelseEditor').controller('NewTopicController', [ '$scope', "$ro
                 console.log("New topic created");
                 console.log(data);
                 $rootScope.reloadTopic(data);
-                $rootScope.notifyTopicSuccess("Ny standard har blitt opprettet");
+                $rootScope.notifyTopicSuccess("Nytt tema har blitt opprettet");
                 $rootScope.view = "";
             }
             ,
             function(){
                 console.log("New topic could not be created");
-                $rootScope.notifyTopicError("Standard ble ikke oppretet");
+                $rootScope.notifyTopicError("Tema ble ikke oppretet");
             }
         );
     };
