@@ -12,18 +12,19 @@ angular.module('ehelseEditor').controller('NewTopicController', [ '$scope', "$ro
 
     $scope.postNewTopic = function(topic){
 
-
         $scope.post(
             'topics/',
             $scope.newTopic,
             function(){
                 console.log("New topic created");
                 console.log($scope.newTopic);
+                $rootScope.notifyTopicSuccess("Ny standard har blitt opprettet");
                 $rootScope.view = "";
             }
             ,
             function(){
                 console.log("New topic could not be created")
+                $rootScope.notifyTopicError("Standard ble ikke oppretet");
             }
         );
     };

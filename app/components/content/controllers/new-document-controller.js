@@ -1,5 +1,4 @@
 
-
 'use strict';
 
 angular.module('ehelseEditor').controller('NewDocumentController', [ '$scope', '$http','$rootScope', function( $scope, $http, $rootScope) {
@@ -24,11 +23,13 @@ angular.module('ehelseEditor').controller('NewDocumentController', [ '$scope', '
             function(){
                 console.log("New document created");
                 console.log($scope.view);
+                $rootScope.notifyStandardSuccess("Ny standard ble opprettet")
                 $rootScope.view = "";
             }
             ,
             function(){
                 console.log("New document could not be created")
+                $rootScope.notifyStandardError("Standard kunne ikke opprettes")
             }
         );
     }

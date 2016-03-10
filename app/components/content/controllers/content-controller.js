@@ -4,8 +4,6 @@
 
 angular.module('ehelseEditor').controller('ContentController', [ '$scope', '$http','$rootScope', function( $scope, $rootScope) {
 
-
-
     $scope.postNewStandard = function(standard){
 
 
