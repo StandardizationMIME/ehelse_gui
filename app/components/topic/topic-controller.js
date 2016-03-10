@@ -8,7 +8,11 @@ angular.module('ehelseEditor').controller('TopicController',['$rootScope', '$sco
 
     $rootScope.reloadTopic = function(topic){
         $scope.flatTopicList[topic.id] = topic;
-        $scope.flatTopicList[topic.parent].children.push(topic);
+        if(topic.parent){
+            $scope.flatTopicList[topic.parent].children.push(topic);
+        }else {
+            $rootScope.topics.push(topic);
+        }
     };
 
     $scope.flattenTopicList = function(topicList){
@@ -21,7 +25,7 @@ angular.module('ehelseEditor').controller('TopicController',['$rootScope', '$sco
         return flattTopicObject;
     };
 
-    $rootScope.selectedTopicId = null;
+    $rootScope.selectedTopicId = "null";
 
     $rootScope.setSelectedTopicId = function(topicId){
         console.log("topic ", topicId, "selected");

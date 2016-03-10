@@ -16,7 +16,7 @@
     <div class="form-group" >
         <label for="topicParent">Foreldermappe: </label>
         <select name="topicParent" id="topicParent" class="form-control" ng-model="newTopic.parent" required>
-            <option ng-value="null" ng-selected="true">Ingen</option>
+            <option value="null" ng-selected="true">Ingen</option>
             <option ng-repeat="topic in topicTupleList" ng-if="topic.level <= 2" value={{topic.id}}>{{topic.path}}</option>
         </select>
     </div>

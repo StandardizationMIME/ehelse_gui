@@ -12,6 +12,10 @@ angular.module('ehelseEditor').controller('NewTopicController', [ '$scope', "$ro
 
     $scope.postNewTopic = function(topic){
 
+        if(topic.parent == "null"){
+            topic.parent = null;
+        }
+
         $scope.post(
             'topics/',
             $scope.newTopic,
