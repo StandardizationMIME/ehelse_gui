@@ -37,6 +37,10 @@
     box-shadow: 1px 1px 2px 1px #b8b8b8;
 }
 
+.content-view {
+    padding: 20px;
+}
+
 .btn-primary {
     -webkit-border-radius: 0 !important;
     -moz-border-radius: 0 !important;
@@ -53,6 +57,11 @@
 .plus-icon-standard {
     font-size: medium;
     color: #0068e7;
+}
+
+.delete-icon-standard {
+    font-size: medium;
+    color: darkgrey;
 }
 
 .plus-icon-profile {
@@ -143,8 +152,28 @@ textarea {
 
 #notificationMessage {
     position: absolute;
-    width: 98%;
+    width: 97%;
 }
+.nav-tabs {
+    border-color: #b8b8b8;
+}
+.zIndexHigh {
+    z-index: 1000000000;
+}
+.document-content {
+    width: 30%;
+    min-width: 200px;
+}
+.version-content {
+    width: 50%;
+    min-width: 200px;
+}
+input.document-id {
+    max-width: 70px;
+    float: right;
+    clear: both;
+}
+
 
 /*****************Administer*Fields******************/
 

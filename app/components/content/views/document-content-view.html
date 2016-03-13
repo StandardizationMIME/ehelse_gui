@@ -1,0 +1,119 @@
+<div ng-controller="DocumentContentController">
+    <h4 class="selected">{{document.title}}</h4>
+    <ul class="nav nav-tabs">
+        <li class="active clickable"><a data-toggle="tab" data-target="#standard">Standard</a></li>
+        <li class="clickable"><a data-toggle="tab" data-target="#standardVersion">Standard-versjon</a></li>
+    </ul>
+
+    <div class="tab-content">
+        <div id="standard" class="tab-pane fade in active tenPixVerticalPadding">
+            <form name="documentContent" role="form" ng-submit="" method="post" class="document-content">
+                <div class="form-group">
+                    <label for="documentTitle">Tittel: </label>
+                    <input type="text" name="documentTitle" id="documentTitle" ng-model="document.title" class="form-control" required/>
+                </div>
+                <div class="form-group">
+                    <label for="documentDescription">Beskrivelse: </label>
+                    <textarea name="documentDescription" id="documentDescription" ng-model="document.description" class="form-control" rows="6" cols="50" required>Default value</textarea>
+                </div>
+                <div class="form-group">
+                    <label for="documentParent">Plassering: </label>
+                    <select name="documentParent" id="documentParent" ng-model="document.topicId" class="form-control">
+                        <option></option>
+                    </select>
+                </div>
+            </form>
+        </div>
+        <div id="standardVersion" class="tab-pane fade">
+            <form name="documentVersion" role="form" ng-submit="" method="post" class="version-content">
+                <div class="form-inline form-group">
+                    <label for="documentId">Standard/profil-ID:</label>
+                    <input type="number" name="documentId" id="documentId" ng-model="document.documentId" class="form-control document-id" required />
+                </div>
+                <div class="form-inline form-group">
+                    <label for="targetGroups">Målgrupper:</label>
+                    <table class="table table-striped table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Anbefalt/obligatorisk for</th>
+                                <th>Merknad</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Gruppe 1</td>
+                                <td>Sende</td>
+                            </tr>
+                            <tr>
+                                <td>Gruppe 2</td>
+                                <td>Sende og motta</td>
+                            </tr>
+                            <tr>
+                                <td>Gruppe 3</td>
+                                <td>Sende og motta</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!--
+{
+  "id": 0,
+  "standardId": 0,
+  "targetGroups": [
+    {
+      "id": 0,
+      "deadline": "string",
+      "mandatory": "string",
+      "description": "string",
+      "targetGroup": {
+        "id": 0,
+        "name": "string",
+        "description": 0
+      },
+      "action": "string"
+    }
+  ],
+  "links": [
+    {
+      "linkCategory": {
+        "id": 0,
+        "name": "string",
+        "description": "string"
+      },
+      "links": [
+        {
+          "id": 0,
+          "text": "string",
+          "description": "string",
+          "url": "string"
+        }
+      ]
+    }
+  ],
+  "fields": [
+    {
+      "value": {
+        "string": "string",
+        "date": "2016-03-13",
+        "integer": 0
+      },
+      "Field": {
+        "id": 0,
+        "title": "string",
+        "description": "string",
+        "sequence": 0,
+        "fieldType": {
+          "id": 0,
+          "title": "string"
+        },
+        "mandatory": true
+      }
+    }
+  ]
+}
+-->

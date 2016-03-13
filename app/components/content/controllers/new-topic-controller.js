@@ -29,7 +29,7 @@ angular.module('ehelseEditor').controller('NewTopicController', [ '$scope', "$ro
             ,
             function(){
                 console.log("New topic could not be created");
-                $rootScope.notifyTopicError("Tema ble ikke oppretet");
+                $rootScope.notifyTopicError("Tema ble ikke opprettet");
             }
         );
     };
