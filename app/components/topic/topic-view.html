@@ -5,7 +5,7 @@
     <div class="shadow-below">
         <h4 class="selected">Temaer:</h4>
         <p class="tenPixVerticalPadding">
-            <a ng-click="changeView('newtopic'); " class="clickable tenpixverticalpadding">
+            <a ng-click="changeView('newtopic')" class="clickable tenpixverticalpadding">
                 <span class="glyphicon glyphicon-plus-sign plus-icon"></span>
                 Nytt tema
             </a>
@@ -25,7 +25,7 @@
                     </p>
                     <div id=topic{{subTopic.id}} class="collapse">
                         <div ng-repeat="subsubTopic in subTopic.children" class="sub-topic">
-                            <p href="" id={{subsubTopic.id}} class="topic-text clickable" ng-click="getStandards(subsubTopic.id); setSelectedTopicId(subsubTopic.id)">
+                            <p id={{subsubTopic.id}} class="topic-text clickable" ng-click="getStandards(subsubTopic.id); setSelectedTopicId(subsubTopic.id)">
                                 <span id=folder{{subsubTopic.id}} class="standard-icon glyphicon glyphicon-folder-close"> </span>
                                 {{subsubTopic.title}}
                             </p>

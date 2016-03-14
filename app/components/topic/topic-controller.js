@@ -32,6 +32,10 @@ angular.module('ehelseEditor').controller('TopicController',['$rootScope', '$sco
         $rootScope.selectedTopicId = topicId;
     };
 
+    $rootScope.reloadTopicTupleList = function() {
+        $rootScope.topicTupleList = $scope.generateListOfTopicTuple(1,"", $rootScope.topics);
+    };
+
     $scope.generateListOfTopicTuple = function(level, parent, topics){
         var paths = [];
         for (var i = 0; i < topics.length; i++) {
@@ -47,7 +51,7 @@ angular.module('ehelseEditor').controller('TopicController',['$rootScope', '$sco
 
     $scope.get('topics/' , function(data){
         $rootScope.topics = data.topics;
-        $rootScope.topicTupleList = $scope.generateListOfTopicTuple(1,"", data.topics);
+        $rootScope.reloadTopicTupleList();
         $rootScope.flatTopicList = $scope.flattenTopicList($rootScope.topics);
         console.log($rootScope.flatTopicList);
     }, function(){});

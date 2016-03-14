@@ -110,9 +110,15 @@ textarea {
 
 .center-align-text {
     text-align: center;
+    display: table-cell;
+    vertical-align: middle;
 }
 
 .clickable:hover {
+    cursor: pointer;
+    color: dodgerblue;
+}
+.document-clickable:hover {
     cursor: pointer;
     color: dodgerblue;
 }
@@ -165,14 +171,22 @@ textarea {
     min-width: 200px;
 }
 .version-content {
-    width: 50%;
+    width: 30%;
     min-width: 200px;
 }
-input.document-id {
+input.version-id {
     max-width: 70px;
     float: right;
     clear: both;
 }
+
+.document-version {
+    width: 100%;
+    margin-top: 20px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
 
 
 /*****************Administer*Fields******************/

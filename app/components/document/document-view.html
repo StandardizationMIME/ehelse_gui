@@ -1,5 +1,5 @@
 <!-- Panel for displaying list of standards and profiles -->
-<div class="col-lg-2 col-mg-2 col-sm-2 col-xs-2 file-browser">
+<div class="col-lg-2 col-mg-2 col-sm-2 col-xs-2 file-browser" ng-controller="DocumentController">
     <div>
         <div class="shadow-below">
             <h4 class="selected">{{topic.title}}</h4>
@@ -15,8 +15,8 @@
             </p>
         </div>
         <div class="standard-list">
-            <div ng-repeat="standard in standards | filter:search">
-                <p class="clickable">
+            <div ng-repeat="standard in standards | filter: search">
+                <p class="document-clickable" id=standard{{standard.id}} ng-click="getContent(standard.id);setSelectedDocumentId(standard.id)">
                     <span  class="standard-icon glyphicon glyphicon-file"> </span>
                     {{standard.title}}
                 </p>

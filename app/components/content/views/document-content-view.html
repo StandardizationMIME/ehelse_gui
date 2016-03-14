@@ -1,13 +1,13 @@
 <div ng-controller="DocumentContentController">
     <h4 class="selected">{{document.title}}</h4>
     <ul class="nav nav-tabs">
-        <li class="active clickable"><a data-toggle="tab" data-target="#standard">Standard</a></li>
-        <li class="clickable"><a data-toggle="tab" data-target="#standardVersion">Standard-versjon</a></li>
+        <li class="active clickable"><a data-toggle="tab" data-target="#documentTab">Standard</a></li>
+        <li class="clickable"><a data-toggle="tab" data-target="#documentVersionTab">Standard-versjon</a></li>
     </ul>
 
     <div class="tab-content">
-        <div id="standard" class="tab-pane fade in active tenPixVerticalPadding">
-            <form name="documentContent" role="form" ng-submit="" method="post" class="document-content">
+        <div id="documentTab" class="tab-pane fade in active document-version">
+            <form name="documentForm" role="form" ng-submit="" method="post" class="document-content">
                 <div class="form-group">
                     <label for="documentTitle">Tittel: </label>
                     <input type="text" name="documentTitle" id="documentTitle" ng-model="document.title" class="form-control" required/>
@@ -19,41 +19,26 @@
                 <div class="form-group">
                     <label for="documentParent">Plassering: </label>
                     <select name="documentParent" id="documentParent" ng-model="document.topicId" class="form-control">
-                        <option></option>
+                        <option ng-repeat="topic in topicTupleList" value={{topic.id}}>{{topic.path}}</option>
                     </select>
                 </div>
             </form>
         </div>
-        <div id="standardVersion" class="tab-pane fade">
-            <form name="documentVersion" role="form" ng-submit="" method="post" class="version-content">
-                <div class="form-inline form-group">
-                    <label for="documentId">Standard/profil-ID:</label>
-                    <input type="number" name="documentId" id="documentId" ng-model="document.documentId" class="form-control document-id" required />
+        <div id="documentVersionTab" class="tab-pane fade document-version">
+            <form name="documentVersionForm" role="form" ng-submit="" method="post" class="version-content">
+                <div class="form-group">
+                    <label for="documentVersion">Versjon: </label>
+                    <select class="form-control" name="documentVersion" id="documentVersion" ng-model="documentVersion.id" ng-change="update()">
+                        <option ng-repeat="version in documentVersions" value={{version.id}}>{{version.id}}</option>
+                    </select>
                 </div>
-                <div class="form-inline form-group">
-                    <label for="targetGroups">Målgrupper:</label>
-                    <table class="table table-striped table-bordered">
-                        <thead>
-                            <tr>
-                                <th>Anbefalt/obligatorisk for</th>
-                                <th>Merknad</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>Gruppe 1</td>
-                                <td>Sende</td>
-                            </tr>
-                            <tr>
-                                <td>Gruppe 2</td>
-                                <td>Sende og motta</td>
-                            </tr>
-                            <tr>
-                                <td>Gruppe 3</td>
-                                <td>Sende og motta</td>
-                            </tr>
-                        </tbody>
-                    </table>
+                <div ng-show="showTargetGroups">
+                    <h4>Målgrupper</h4>
+                    <p ng-repeat="targetGroup in selectedDocumentVersion.targetGroups">{{targetGroup.id}}</p>
+                </div>
+                <div ng-show="showLinks">
+                    <h4>Linker</h4>
+                    <p ng-repeat="link in selectedDocumentVersion.links">{{link}}</p>
                 </div>
             </form>
         </div>
