@@ -8,7 +8,8 @@ angular.module('ehelseEditor').controller('NewDocumentController', [ '$scope', '
         "title" : "",
         "description" : "",
         "isInCatalog": false,
-        "sequence": 3
+        "sequence": 3,
+        "comment": ""
     };
 
     $scope.postNewDocument = function(standard){
