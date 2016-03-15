@@ -23,8 +23,9 @@ angular.module('ehelseEditor').controller('NewDocumentController', [ '$scope', '
         $scope.post(
             inputUrl + 's/',
             $scope.newDocument,
-            function(){
+            function(data){
                 console.log("New document created");
+                $rootScope.addDocuments(data);
                 $rootScope.notifyStandardSuccess("Ny standard ble opprettet");
                 $rootScope.view = "";
             }

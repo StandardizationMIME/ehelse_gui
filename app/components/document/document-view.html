@@ -15,10 +15,10 @@
             </p>
         </div>
         <div class="standard-list">
-            <div ng-repeat="standard in standards | filter: search">
-                <p class="document-clickable" id=standard{{standard.id}} ng-click="getContent(standard.id);setSelectedDocumentId(standard.id)">
+            <div ng-repeat="document in documents | filter: search">
+                <p class="document-clickable" id=standard{{document.id}} ng-click="getContent(document.id);setSelectedDocumentId(document.id)">
                     <span  class="standard-icon glyphicon glyphicon-file"> </span>
-                    {{standard.title}}
+                    {{document.title}}
                 </p>
             </div>
         </div>

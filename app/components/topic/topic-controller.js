@@ -56,18 +56,7 @@ angular.module('ehelseEditor').controller('TopicController',['$rootScope', '$sco
         console.log($rootScope.flatTopicList);
     }, function(){});
 
-    $scope.getStandards = function(id) {
-        $scope.get('topics/' + id , function(data){
-            $rootScope.standards = data.documents;
-            $rootScope.topic = data;
 
-        }, function(){});
-
-        <!-- Makes selected folder bold and toggles folder icon between opened and closed -->
-        $(".clickable").removeClass('selected');
-        $('#' + id).addClass('selected');
-        $('#folder' + id).toggleClass('glyphicon-folder-open','glyphicon-folder-close');
-    };
 
 
 }]);
