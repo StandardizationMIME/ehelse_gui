@@ -12,6 +12,9 @@ angular.module('ehelseEditor').controller('EditorController', [ '$scope', '$root
 
     $scope.cancelContentBrowser = function(){
         $rootScope.view = "";
+        <!-- Makes selected folder bold and toggles folder icon between opened and closed -->
+        $(".document-clickable").removeClass('selected');
+        $('#standard' + id).addClass('selected');
     };
 
 }]);
