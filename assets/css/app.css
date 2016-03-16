@@ -3,9 +3,9 @@
     height: 800px;
 }
 
-.scrollable{
+.topic-list{
     overflow-y: auto;
-    height: 680px;
+    height: 650px;
 }
 
 .navigation-bar {
@@ -41,13 +41,13 @@
     padding: 20px;
 }
 
-.btn-primary {
-    -webkit-border-radius: 0 !important;
-    -moz-border-radius: 0 !important;
-    border-radius: 0 !important;
-    background-color: #0068e7;
+/*.btn-primary {*/
+    /*-webkit-border-radius: 0 !important;*/
+    /*-moz-border-radius: 0 !important;*/
+    /*border-radius: 0 !important;*/
+    /*background-color: #0068e7;*/
+/*}*/
 
-}
 .standard-icon {
     color: #0068e7;
 }
@@ -66,7 +66,7 @@
 
 .plus-icon-profile {
     font-size: medium;
-    color: red;
+    color: #f60e24;
 }
 
 
@@ -132,7 +132,7 @@ textarea {
 
 
 .profile-icon {
-    color: red;
+    color: #f60e24;
 }
 
 .nopadding {
@@ -185,6 +185,16 @@ input.version-id {
     margin-top: 20px;
     margin-left: 10px;
     margin-right: 10px;
+}
+
+.headline-box {
+    position: relative;
+    height: 50px;
+}
+
+.headline-box h4 {
+    position: absolute;
+    bottom: 0;
 }
 
 

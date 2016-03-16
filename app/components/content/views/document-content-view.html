@@ -1,5 +1,7 @@
 <div ng-controller="DocumentContentController">
-    <h4 class="selected">{{document.title}}</h4>
+    <div class="headline-box">
+        <h4 class="selected">{{document.title}}</h4>
+    </div>
     <ul class="nav nav-tabs">
         <li class="active clickable"><a data-toggle="tab" data-target="#documentTab">Standard</a></li>
         <li class="clickable"><a data-toggle="tab" data-target="#documentVersionTab">Standard-versjon</a></li>
@@ -22,6 +24,10 @@
                         <option ng-repeat="topic in topicTupleList" value={{topic.id}}>{{topic.path}}</option>
                     </select>
                 </div>
+                <div class="form-actions">
+                    <button type="submit" ng-disabled="true" class="btn btn-primary">Lagre endringer</button>
+                    <button type="button" class="btn btn-default pull-right" ng-click="cancelContentBrowser()">Lukk dokument</button>
+                </div>
             </form>
         </div>
         <div id="documentVersionTab" class="tab-pane fade document-version">
@@ -32,14 +38,7 @@
                         <option ng-repeat="version in documentVersions" value={{version.id}}>{{version.id}}</option>
                     </select>
                 </div>
-                <div ng-show="showTargetGroups">
-                    <h4>Målgrupper</h4>
-                    <p ng-repeat="targetGroup in selectedDocumentVersion.targetGroups">{{targetGroup.id}}</p>
-                </div>
-                <div ng-show="showLinks">
-                    <h4>Linker</h4>
-                    <p ng-repeat="link in selectedDocumentVersion.links">{{link}}</p>
-                </div>
+                <div></div>
             </form>
         </div>
     </div>

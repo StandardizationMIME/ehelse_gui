@@ -2,7 +2,9 @@
 <div class="col-lg-2 col-mg-2 col-sm-2 col-xs-2 file-browser" ng-controller="DocumentController">
     <div>
         <div class="shadow-below">
-            <h4 class="selected">{{topic.title}}</h4>
+            <div class="headline-box">
+                <h4 class="selected">{{topic.title}}</h4>
+            </div>
             <p class="tenPixVerticalPadding">
                 <a ng-click="changeView('newstandard', 'standard')" class="clickable">
                     <span class="glyphicon glyphicon-plus-sign plus-icon-standard"></span>
