@@ -55,7 +55,7 @@
     color: #0f0f0f;
 }
 .plus-icon-standard {
-    font-size: medium;
+    font-size: large;
     color: #0068e7;
 }
 
@@ -65,10 +65,19 @@
 }
 
 .plus-icon-profile {
-    font-size: medium;
+    font-size: large;
     color: #f60e24;
 }
 
+.plus-icon-utilityDocument{
+    font-size: large;
+    color: #1ae700;
+}
+
+#createNewDocument{
+    font-size: medium;
+    padding-bottom: 10px;
+}
 
 .body_background {
     background-color: #f3f3f3;
@@ -134,6 +143,11 @@ textarea {
 .profile-icon {
     color: #f60e24;
 }
+
+/*-----------Document Icon colors---------*/
+.standard{color: #0068e7;}
+.profile{color: #f60e24;}
+.utilityDocument{color: #1ae700;}
 
 .nopadding {
     padding: 0 !important;

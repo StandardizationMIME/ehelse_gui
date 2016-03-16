@@ -1,25 +1,27 @@
 <!-- Panel for displaying list of standards and profiles -->
-<div class="col-lg-2 col-mg-2 col-sm-2 col-xs-2 file-browser" ng-controller="DocumentController">
+<div class="col-lg-3 col-mg-3 col-sm-3 col-xs-3 file-browser" ng-controller="DocumentController">
     <div>
         <div class="shadow-below">
             <div class="headline-box">
                 <h4 class="selected">{{topic.title}}</h4>
             </div>
-            <p class="tenPixVerticalPadding">
-                <a ng-click="changeView('newstandard', 'standard')" class="clickable">
-                    <span class="glyphicon glyphicon-plus-sign plus-icon-standard"></span>
+            <ul id="createNewDocument" class="fa-ul">
+                <li><i class="fa-li fa fa-plus-circle plus-icon-standard"></i><a ng-click="changeView('newstandard', 'standard')" class="clickable">
                     Ny standard
-                </a>
-                <a ng-click="changeView('newstandard', 'profil')" class="clickable tenPixHorizontalPadding">
-                    <span class="glyphicon glyphicon-plus-sign plus-icon-profile"></span>
+                </a></li>
+                <li><i class="fa-li fa fa-plus-circle plus-icon-profile"></i><a ng-click="changeView('newstandard', 'profil')" class="clickable">
                     Ny profil
-                </a>
-            </p>
+                </a></li>
+                <!--I am not implemented yet :( -->
+                <li><i class="fa-li fa fa-plus-circle plus-icon-utilityDocument"></i><a ng-click="" class="clickable">
+                    Nytt støttedokument
+                </a></li>
+            </ul>
         </div>
         <div class="standard-list">
             <div ng-repeat="document in documents | filter: search">
                 <p class="document-clickable" id=standard{{document.id}} ng-click="getContent(document.id);setSelectedDocumentId(document.id)">
-                    <span  class="standard-icon glyphicon glyphicon-file"> </span>
+                    <span  class="glyphicon glyphicon-file {{document.document}}"> </span>
                     {{document.title}}
                 </p>
             </div>
