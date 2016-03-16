@@ -76,6 +76,7 @@
 
 #createNewDocument{
     font-size: medium;
+    padding-bottom: 10px;
 }
 
 .body_background {
