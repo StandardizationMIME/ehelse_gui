@@ -2,7 +2,7 @@
 
 'use strict';
 
-angular.module('ehelseEditor').controller('ContentController', [ '$scope', '$http','$rootScope', function( $scope, $rootScope) {
+angular.module('ehelseEditor').controller('ContentController', [ '$scope', '$rootScope', function( $scope, $rootScope) {
 
     $scope.postNewStandard = function(standard){
 

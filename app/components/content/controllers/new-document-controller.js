@@ -8,7 +8,8 @@ angular.module('ehelseEditor').controller('NewDocumentController', [ '$scope', '
         "title" : "",
         "description" : "",
         "isInCatalog": false,
-        "sequence": 3
+        "sequence": 3,
+        "comment": ""
     };
 
     $scope.postNewDocument = function(standard){
@@ -22,8 +23,9 @@ angular.module('ehelseEditor').controller('NewDocumentController', [ '$scope', '
         $scope.post(
             inputUrl + 's/',
             $scope.newDocument,
-            function(){
+            function(data){
                 console.log("New document created");
+                $rootScope.addDocuments(data);
                 $rootScope.notifyStandardSuccess("Ny standard ble opprettet");
                 $rootScope.view = "";
             }

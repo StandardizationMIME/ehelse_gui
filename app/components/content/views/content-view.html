@@ -1,10 +1,14 @@
 <!-- Panel for displaying the content of standards and profiles -->
-<div ng-controller="ContentController" class="col-lg-8 col-mg-8 col-sm-8 col-xs-8">
+<div ng-controller="ContentController" class="col-lg-8 col-mg-8 col-sm-8 col-xs-8 content-view">
 
     <!-- toast informing user -->
     <notification></notification>
 
+    <!-- control panel for adding new version etc -->
+    <!--<contentpanel></contentpanel>-->
+
     <!-- Content window displaying different forms etc. -->
+    <div ng-if="view == 'documentcontent'" ng-include="'app/components/content/views/document-content-view.html'"></div>
     <div ng-if="view == 'newtopic'" ng-include="'app/components/content/views/new-topic-view.html'"></div>
     <div ng-if="view == 'newstandard'" ng-include="'app/components/content/views/new-document-view.html'"></div>
     <div ng-if="view == 'administerfields'" ng-include="'app/components/content/views/administer-field-view.html'"></div>

@@ -25,11 +25,12 @@ angular.module('ehelseEditor').controller('NewTopicController', [ '$scope', "$ro
                 $rootScope.reloadTopic(data);
                 $rootScope.notifyTopicSuccess("Nytt tema har blitt opprettet");
                 $rootScope.view = "";
+                $rootScope.reloadTopicTupleList();
             }
             ,
             function(){
                 console.log("New topic could not be created");
-                $rootScope.notifyTopicError("Tema ble ikke oppretet");
+                $rootScope.notifyTopicError("Tema ble ikke opprettet");
             }
         );
     };
