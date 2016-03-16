@@ -135,6 +135,11 @@ textarea {
     color: #f60e24;
 }
 
+/*-----------Document Icon colors---------*/
+.standard{color: #0068e7;}
+.profile{color: #f60e24;}
+.utilityDocument{color: #1ae700;}
+
 .nopadding {
     padding: 0 !important;
     margin: 0 !important;

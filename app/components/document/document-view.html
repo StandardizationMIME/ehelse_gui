@@ -19,7 +19,7 @@
         <div class="standard-list">
             <div ng-repeat="document in documents | filter: search">
                 <p class="document-clickable" id=standard{{document.id}} ng-click="getContent(document.id);setSelectedDocumentId(document.id)">
-                    <span  class="standard-icon glyphicon glyphicon-file"> </span>
+                    <span  class="glyphicon glyphicon-file {{document.document}}"> </span>
                     {{document.title}}
                 </p>
             </div>
