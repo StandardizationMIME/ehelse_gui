@@ -251,3 +251,15 @@ input.version-id {
     width:400px;
     display: inline-block;
 }
+
+/* User dropdown start */
+ div>div>.dropdown-toggle{
+     margin-bottom: 0.5em;
+     background-color: inherit;
+     border: none;
+ }
+div>div>.dropdown-toggle:hover{
+    border-radius: 5%;
+}
+
+/* User dropdown end */
