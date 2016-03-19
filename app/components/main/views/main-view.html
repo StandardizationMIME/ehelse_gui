@@ -7,6 +7,9 @@
     <toolbar></toolbar>
 
     <!-- Editor display -->
-    <editorview></editorview>
+    <div ng-if="userPageView == ''" ng-include="app/components/editor/editor-view.html"></div>
+
+    <!-- Personal page -->
+    <div ng-if="userPageView == 'myPage'" ng-include="app/components/myPage/myPage-view.html"></div>
 
 </div>
