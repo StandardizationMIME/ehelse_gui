@@ -5,7 +5,7 @@
 
 
     angular.module('ehelseEditor').run([ '$http', '$rootScope',function($http, $rootScope, MyResourceProvider) {
-
+        $rootScope.userPageView = '';
 
         $rootScope.userName = "";
         $rootScope.password = "";
@@ -13,6 +13,8 @@
 
         $rootScope.topics = [];
         $rootScope.topicsList = [];
+
+
 
         $rootScope.setUserName = function(userName){
             $rootScope.userName = userName;
@@ -57,6 +59,11 @@
                 });
         };
 
+        $rootScope.changeUserView = function(view){
+            $rootScope.userPageView = view;
+            alert($rootScope.userPageView);
+        };
+
         $rootScope.childControllers = {};
 
         $rootScope.registerChildController = function(name, scope){
@@ -67,11 +74,8 @@
             $rootScope.childControllers['EditorController'].changeView(view);
         }
 
-        $rootScope.userPageView = '';
-        $rootScope.changeUserView = function(view){
-            $rootScope.userPageView = view;
-            alert($rootScope.userPageView);
-        };
+
+
 
     }]);
 
