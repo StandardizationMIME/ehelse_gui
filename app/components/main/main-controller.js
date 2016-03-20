@@ -5,8 +5,6 @@
 
 
     angular.module('ehelseEditor').run([ '$http', '$rootScope',function($http, $rootScope, MyResourceProvider) {
-        $rootScope.userPageView = '';
-
         $rootScope.userName = "";
         $rootScope.password = "";
         $rootScope.apiUrl = 'https://refkat.eu/v1/';
@@ -59,13 +57,7 @@
                 });
         };
 
-        $rootScope.changeUserView = function(view){
-            $rootScope.userPageView = view;
-            alert($rootScope.userPageView);
-        };
-
         $rootScope.childControllers = {};
-
         $rootScope.registerChildController = function(name, scope){
             $rootScope.childControllers[name] = scope;
         };
@@ -74,8 +66,10 @@
             $rootScope.childControllers['EditorController'].changeView(view);
         }
 
-
-
+        $rootScope.userPageView = '';
+        $rootScope.changeUserView = function(view){
+            $rootScope.userPageView = view;
+        };
 
     }]);
 
