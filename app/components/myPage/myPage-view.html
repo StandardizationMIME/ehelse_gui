@@ -1,26 +1,29 @@
 <div class="col-lg-offset-2 col-lg-10">
     <div class="row">
-        <div class="col-lg-5">
+        <div class="col-lg-4">
             <img src="http://placehold.it/200x200" class="img-circle" alt="profile_image"/>
         </div>
         <div class="col-lg-7">
-            <div>
-                <p>Navn</p>
-                <p class="dataField">Dag Frode Solberg</p>
+            <div class="row dataRow">
+                <p class="col-lg-2">Navn</p>
+                <p class="dataField col-lg-5">{{user.name}}</p>
+                <i class="fa fa-edit col-lg-1"></i>
             </div>
-            <div>
-                <p>Epost</p>
-                <p class="dataField">dagfrodesinepost@mail.smt</p>
+            <div class="row dataRow">
+                <p class="col-lg-2">Epost</p>
+                <p class="dataField col-lg-5">{{user.email}}</p>
+                <i class="fa fa-edit col-lg-1"></i>
             </div>
-            <div>
-                <p>Passord</p>
-                <p class="dataField">Sist endret dd-mm-yyyy</p>
+            <div class="row dataRow">
+                <p class="col-lg-2">Passord</p>
+                <p class="dataField col-lg-5">Sist endret dd-mm-yyyy</p>
+                <i class="fa fa-edit col-lg-1"></i>
             </div>
-            <div>
-                <p>Profilbilde</p>
-                <p class="dataField">filnavn.jpg</p>
+            <div class="row dataRow">
+                <p class="col-lg-2">Profilbilde</p>
+                <p class="dataField col-lg-5">{{user.profileImage}}</p>
+                <i class="fa fa-edit col-lg-1"></i>
             </div>
-
         </div>
     </div>
 </div>

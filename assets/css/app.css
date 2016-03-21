@@ -267,4 +267,5 @@ div>div>.dropdown-toggle:hover{
 .dataField{
     display: inline;
 }
+.dataRow:hover{background-color: #E6E6E6}
 /* MyPage end */
