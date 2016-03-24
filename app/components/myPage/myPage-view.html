@@ -1,28 +1,72 @@
-<div class="col-lg-offset-2 col-lg-10">
+<div ng-controller="MyPageController" class="col-lg-offset-2 col-lg-10">
     <div class="row">
         <div class="col-lg-4">
             <img src="http://placehold.it/200x200" class="img-circle" alt="profile_image"/>
         </div>
         <div class="col-lg-7">
-            <div class="row dataRow">
+            <div ng-click="toggleName()" class="row dataRow clickable">
                 <p class="col-lg-2">Navn</p>
                 <p class="dataField col-lg-5">{{user.name}}</p>
                 <i class="fa fa-edit col-lg-1"></i>
             </div>
-            <div class="row dataRow">
+            <div id="nameForm" class="row">
+                <form class="form-inline">
+                    <div class="form-group">
+                        <label for="name">Navn</label>
+                        <input type="text" class="form-control" id="name" placeholder="Navn" value="{{user.name}}">
+                        <button type="submit" class="btn btn-primary pull-right" ng-click="submitName()">Lagre</button>
+                    </div>
+                </form>
+            </div>
+            <div ng-click="toggleEmail()" class="row dataRow clickable">
                 <p class="col-lg-2">Epost</p>
                 <p class="dataField col-lg-5">{{user.email}}</p>
                 <i class="fa fa-edit col-lg-1"></i>
             </div>
-            <div class="row dataRow">
+            <div id="emailForm" class="row">
+                <form class="form-inline">
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" class="form-control" id="email" placeholder="Email" value="{{user.email}}">
+                        <button type="submit" class="btn btn-primary pull-right" ng-click="submitEmail()">Lagre</button>
+                    </div>
+                </form>
+            </div>
+            <div ng-click="togglePassword()" class="row dataRow clickable">
                 <p class="col-lg-2">Passord</p>
                 <p class="dataField col-lg-5">Sist endret dd-mm-yyyy</p>
                 <i class="fa fa-edit col-lg-1"></i>
             </div>
-            <div class="row dataRow">
+            <div id="passwordForm" class="row">
+                <form>
+                    <div class="form-group">
+                        <label for="oldPassword">Gammelt passord</label>
+                        <input type="password" class="form-control" id="oldPassword">
+                    </div>
+                    <div class="form-group">
+                        <label for="newPassword">Nytt passord</label>
+                        <input type="password" class="form-control" id="newPassword">
+                    </div>
+                    <div class="form-group">
+                        <label for="repeatNewPassword">Gjenta nytt passord</label>
+                        <input type="password" class="form-control" id="repeatNewPassword">
+                    </div>
+                    <button type="submit" class="btn btn-primary pull-right" ng-click="submitPassword()">Lagre</button>
+                </form>
+            </div>
+            <div ng-click="toggleImage()" class="row dataRow clickable">
                 <p class="col-lg-2">Profilbilde</p>
                 <p class="dataField col-lg-5">{{user.profileImage}}</p>
                 <i class="fa fa-edit col-lg-1"></i>
+            </div>
+            <div id="imageForm" class="row">
+                <form class="form-inline">
+                    <div class="form-group">
+                        <label for="image">Velg nytt profilbilde</label>
+                        <input type="file" class="form-control" id="image">
+                        <button type="submit" class="btn btn-primary pull-right" ng-click="submitImage()">Lagre</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>

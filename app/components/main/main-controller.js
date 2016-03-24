@@ -72,7 +72,7 @@
         };
 
         //test data
-        $rootScope.user = {id:1, name:"Dag Frode Solberg", email:"dag@mail.asd", profileImage:"img/url"};
+        $rootScope.user = {id:1, name:"Dag Frode Solberg", email:"dag@mail.asd", profileImage:"test.jpg"};
 
     }]);
 
