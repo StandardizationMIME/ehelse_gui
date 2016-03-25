@@ -264,8 +264,23 @@ div>div>.dropdown-toggle:hover{
 /* User dropdown end */
 
 /* MyPage start */
+#accountInfo{
+    margin-top: 5%;
+}
 .dataField{
     display: inline;
 }
-.dataRow:hover{background-color: #E6E6E6}
+.dataRow:hover{background-color: #E6E6E6;}
+
+.dataRow{
+    width: 75%;
+    margin-left: 5%;
+}
+.dataRow>*{
+    padding: 10px;
+    margin: 0;
+}
+.subForm{
+    padding: 2% 0% 2% 10%;
+}
 /* MyPage end */

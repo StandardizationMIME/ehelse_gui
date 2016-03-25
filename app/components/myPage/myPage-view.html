@@ -1,15 +1,18 @@
 <div ng-controller="MyPageController" class="col-lg-offset-2 col-lg-10">
-    <div class="row">
+    <div id="accountInfo" class="row">
         <div class="col-lg-4">
             <img src="http://placehold.it/200x200" class="img-circle" alt="profile_image"/>
         </div>
         <div class="col-lg-7">
+            <div class="row">
+                <h4 class="col-lg-2">Kontoinformasjon</h4>
+            </div>
             <div ng-click="toggleName()" class="row dataRow clickable">
                 <p class="col-lg-2">Navn</p>
                 <p class="dataField col-lg-5">{{user.name}}</p>
-                <i class="fa fa-edit col-lg-1"></i>
+                <i class="fa fa-edit col-lg-1 pull-right"></i>
             </div>
-            <div id="nameForm" class="row">
+            <div id="nameForm" class="row subForm">
                 <form class="form-inline">
                     <div class="form-group">
                         <label for="name">Navn</label>
@@ -21,9 +24,9 @@
             <div ng-click="toggleEmail()" class="row dataRow clickable">
                 <p class="col-lg-2">Epost</p>
                 <p class="dataField col-lg-5">{{user.email}}</p>
-                <i class="fa fa-edit col-lg-1"></i>
+                <i class="fa fa-edit col-lg-1 pull-right"></i>
             </div>
-            <div id="emailForm" class="row">
+            <div id="emailForm" class="row subForm">
                 <form class="form-inline">
                     <div class="form-group">
                         <label for="email">Email</label>
@@ -35,9 +38,9 @@
             <div ng-click="togglePassword()" class="row dataRow clickable">
                 <p class="col-lg-2">Passord</p>
                 <p class="dataField col-lg-5">Sist endret dd-mm-yyyy</p>
-                <i class="fa fa-edit col-lg-1"></i>
+                <i class="fa fa-edit col-lg-1 pull-right"></i>
             </div>
-            <div id="passwordForm" class="row">
+            <div id="passwordForm" class="row subForm">
                 <form>
                     <div class="form-group">
                         <label for="oldPassword">Gammelt passord</label>
@@ -57,9 +60,9 @@
             <div ng-click="toggleImage()" class="row dataRow clickable">
                 <p class="col-lg-2">Profilbilde</p>
                 <p class="dataField col-lg-5">{{user.profileImage}}</p>
-                <i class="fa fa-edit col-lg-1"></i>
+                <i class="fa fa-edit col-lg-1 pull-right"></i>
             </div>
-            <div id="imageForm" class="row">
+            <div id="imageForm" class="row subForm">
                 <form class="form-inline">
                     <div class="form-group">
                         <label for="image">Velg nytt profilbilde</label>
