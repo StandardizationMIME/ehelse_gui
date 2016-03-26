@@ -11,17 +11,23 @@
     <!-- Various buttons -->
     <div class="col-lg-2 col-mg-2 col-sm-2 col-xs-2">
         <div class="horizontal-align-div">
-            <button type="button" ng-click="openAdministerFields()" class="btn btn-primary">Administrer felter</button>
+            <button type="button" ng-click="openAdministerFields()" ng-show="userPageView == ''" class="btn btn-primary">Administrer felter</button>
         </div>
     </div>
 
-    <div class="col-lg-offset-4 col-lg-3 col-mg-offset-4 col-mg-3 col-sm-offset-4 col-sm-3 col-xs-offset-4 col-xs-3">
+    <div class="col-lg-2 col-mg-2 col-sm-2 col-xs-2">
+        <div class="horizontal-align-div">
+            <button type="button" ng-click="changeUserView('')" ng-show="userPageView != ''" class="btn btn-primary">Tilbake til editor</button>
+        </div>
+    </div>
+
+    <div class="col-lg-offset-2 col-lg-3 col-mg-offset-4 col-mg-3 col-sm-offset-4 col-sm-3 col-xs-offset-4 col-xs-3">
         <div class="horizontal-align-div dropdown">
             <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="" aria-expanded="true">
-                <img src="http://placehold.it/50x50" class="profile-image img-circle"> Dag Frode <span class="caret"></span></a>
+                <img src="http://placehold.it/50x50" class="profile-image img-circle"> {{user.name}} <span class="fa fa-caret-down fa-fw"></span></a>
             </button>
             <ul class="dropdown-menu">
-                <li><a href="#/">Min side</a></li>
+                <li><a class="clickable" ng-click="changeUserView('myPage')">Min side</a></li>
                 <li><a href="#/">Instillinger</a></li>
                 <li><a href="#/">Administrer brukere</a></li>
                 <li role="separator" class="divider"></li>
