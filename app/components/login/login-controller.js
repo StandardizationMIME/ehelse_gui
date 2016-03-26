@@ -11,7 +11,7 @@ angular.module('ehelseEditor').controller('LoginController', [ '$scope', '$rootS
     $scope.logIn = function (username, authtoken) {
 
         $rootScope.get(
-            'login/',
+            'users/login/',
             function(data){
                 console.log(data);
                 if (data.authenticated === true){
