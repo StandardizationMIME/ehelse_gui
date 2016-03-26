@@ -281,6 +281,19 @@ div>div>.dropdown-toggle:hover{
     margin: 0;
 }
 .subForm{
-    padding: 2% 0% 2% 10%;
+    width: 75%;
+    margin-left: 5%;
+    padding: 2% 7% 5% 0%;
+    background-color: #E6E6E6;
+}
+.subForm>*{
+    padding-left: 5%;
+}
+.activeRow{
+    font-weight: bolder;
+    color: dodgerblue;
+    background-color: #E6E6E6;
+    border-bottom: inset;
+    border-color: #ccc;
 }
 /* MyPage end */

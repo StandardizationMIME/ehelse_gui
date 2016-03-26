@@ -7,7 +7,9 @@
             <div class="row">
                 <h4 class="col-lg-2">Kontoinformasjon</h4>
             </div>
-            <div ng-click="toggleName()" class="row dataRow clickable">
+
+            <!-- Name Form -->
+            <div id="nameRow" ng-click="toggleName()" class="row dataRow clickable">
                 <p class="col-lg-2">Navn</p>
                 <p class="dataField col-lg-5">{{user.name}}</p>
                 <i class="fa fa-edit col-lg-1 pull-right"></i>
@@ -21,7 +23,9 @@
                     </div>
                 </form>
             </div>
-            <div ng-click="toggleEmail()" class="row dataRow clickable">
+
+            <!-- Email Form -->
+            <div id="emailRow" ng-click="toggleEmail()" class="row dataRow clickable">
                 <p class="col-lg-2">Epost</p>
                 <p class="dataField col-lg-5">{{user.email}}</p>
                 <i class="fa fa-edit col-lg-1 pull-right"></i>
@@ -35,7 +39,9 @@
                     </div>
                 </form>
             </div>
-            <div ng-click="togglePassword()" class="row dataRow clickable">
+
+            <!-- Password Form -->
+            <div id="passwordRow" ng-click="togglePassword()" class="row dataRow clickable">
                 <p class="col-lg-2">Passord</p>
                 <p class="dataField col-lg-5">Sist endret dd-mm-yyyy</p>
                 <i class="fa fa-edit col-lg-1 pull-right"></i>
@@ -57,7 +63,9 @@
                     <button type="submit" class="btn btn-primary pull-right" ng-click="submitPassword()">Lagre</button>
                 </form>
             </div>
-            <div ng-click="toggleImage()" class="row dataRow clickable">
+
+            <!-- Image Form -->
+            <div id="imageRow" ng-click="toggleImage()" class="row dataRow clickable">
                 <p class="col-lg-2">Profilbilde</p>
                 <p class="dataField col-lg-5">{{user.profileImage}}</p>
                 <i class="fa fa-edit col-lg-1 pull-right"></i>
@@ -71,6 +79,7 @@
                     </div>
                 </form>
             </div>
+
         </div>
     </div>
 </div>

@@ -10,28 +10,49 @@ angular.module('ehelseEditor').controller('MyPageController', ['$scope', '$rootS
 
     //toggle display functions
     $scope.toggleName = function () {
-        $("#nameForm").toggle();
-        $("#emailForm").hide();
-        $("#passwordForm").hide();
-        $("#imageForm").hide();
+        $("#nameForm").slideToggle( "fast");
+        $("#emailForm").slideUp("fast");
+        $("#passwordForm").slideUp("fast");
+        $("#imageForm").slideUp("fast");
+
+        $("#nameRow").toggleClass("activeRow");
+        $("#emailRow").removeClass("activeRow");
+        $("#passwordRow").removeClass("activeRow");
+        $("#imageRow").removeClass("activeRow");
+
     };
     $scope.toggleEmail = function () {
-        $("#emailForm").toggle();
-        $("#nameForm").hide();
-        $("#passwordForm").hide();
-        $("#imageForm").hide();
+        $("#emailForm").slideToggle( "fast");
+        $("#nameForm").slideUp("fast");
+        $("#passwordForm").slideUp("fast");
+        $("#imageForm").slideUp("fast");
+
+        $("#emailRow").toggleClass("activeRow");
+        $("#nameRow").removeClass("activeRow");
+        $("#passwordRow").removeClass("activeRow");
+        $("#imageRow").removeClass("activeRow");
     };
     $scope.togglePassword = function () {
-        $("#passwordForm").toggle();
-        $("#nameForm").hide();
-        $("#emailForm").hide();
-        $("#imageForm").hide();
+        $("#passwordForm").slideToggle( "fast");
+        $("#nameForm").slideUp("fast");
+        $("#emailForm").slideUp("fast");
+        $("#imageForm").slideUp("fast");
+
+        $("#passwordRow").toggleClass("activeRow");
+        $("#nameRow").removeClass("activeRow");
+        $("#emailRow").removeClass("activeRow");
+        $("#imageRow").removeClass("activeRow");
     };
     $scope.toggleImage = function () {
-        $("#imageForm").toggle();
-        $("#nameForm").hide();
-        $("#passwordForm").hide();
-        $("#emailForm").hide();
+        $("#imageForm").slideToggle( "fast");
+        $("#nameForm").slideUp("fast");
+        $("#passwordForm").slideUp("fast");
+        $("#emailForm").slideUp("fast");
+
+        $("#imageRow").toggleClass("activeRow");
+        $("#nameRow").removeClass("activeRow");
+        $("#emailRow").removeClass("activeRow");
+        $("#passwordRow").removeClass("activeRow");
     };
 
     $scope.submitName = function(){
