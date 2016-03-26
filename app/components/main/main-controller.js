@@ -74,12 +74,6 @@
         //test data
         $rootScope.user = {id:1, name:"Dag Frode Solberg", email:"dag@mail.asd", profileImage:"test.jpg"};
 
-        //TODO refactor to get user data
-        /*$scope.get('users/' + id, function(data){
-            $rootScope.document = data;
-            $rootScope.view = "documentcontent";
-        }, function(){});
-        */
     }]);
 
 })();
