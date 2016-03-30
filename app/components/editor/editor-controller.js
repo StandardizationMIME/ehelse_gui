@@ -5,9 +5,8 @@ angular.module('ehelseEditor').controller('EditorController', [ '$scope', '$root
 
     $scope.$parent.registerChildController('EditorController', $scope);
 
-    $scope.changeView = function(view, type) {
+    $scope.changeView = function(view) {
         $rootScope.view = view;
-        $rootScope.documentType = type;
     };
 
     $scope.cancelContentBrowser = function(){

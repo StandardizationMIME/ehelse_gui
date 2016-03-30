@@ -1,5 +1,6 @@
-<form ng-controller="NewDocumentController" name="newStandardForm" role="form" ng-submit="postNewDocument(newDocument)" class="new-topic well" method="post">
-    <h3 class="center-align-text" id="documentTitle">Ny {{documentType}}</h3>
+
+<form ng-controller="NewDocumentController" name="newStandardForm" role="form" ng-submit="postNewDocument(newDocument)" class="new-topic" method="post">
+    <h3 class="center-align-text" id="documentTitle">Nytt dokument</h3>
     <div class="form-group">
         <label for="standardTitle">Tittel: </label>
         <input type="text" name="standardTitle" id="standardTitle" ng-model="newDocument.title" class="form-control" required/>
@@ -15,7 +16,7 @@
         </select>
     </div>
     <div class="form-actions">
-        <button id="createDocumentButton" type="submit" ng-disabled="form.$invalid" class="btn btn-primary">Opprett ny {{documentType}}</button>
+        <button id="createDocumentButton" type="submit" ng-disabled="form.$invalid" class="btn btn-primary">Opprett nytt dokument</button>
         <button type="button" ng-click="cancelContentBrowser()" ng-disabled="form.$invalid" class="btn btn-default pull-right">Avbryt</button>
     </div>
 </form>
