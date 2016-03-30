@@ -1,4 +1,10 @@
 <div ng-controller="MyPageController" class="col-lg-offset-2 col-lg-10">
+
+    <div class="row">
+        <!-- toast informing user -->
+        <notification class="col-lg-offset-4 col-lg-6"></notification>
+    </div>
+
     <div id="accountInfo" class="row">
         <div class="col-lg-4">
             <img src="http://placehold.it/200x200" class="img-circle" alt="profile_image"/>
@@ -7,35 +13,41 @@
             <div class="row">
                 <h4 class="col-lg-2">Kontoinformasjon</h4>
             </div>
-            <div ng-click="toggleName()" class="row dataRow clickable">
+
+            <!-- Name Form -->
+            <div id="nameRow" ng-click="toggleName()" class="row dataRow clickable">
                 <p class="col-lg-2">Navn</p>
-                <p class="dataField col-lg-5">{{user.name}}</p>
+                <p class="dataField col-lg-5">{{currentUser.name}}</p>
                 <i class="fa fa-edit col-lg-1 pull-right"></i>
             </div>
             <div id="nameForm" class="row subForm">
                 <form class="form-inline">
                     <div class="form-group">
                         <label for="name">Navn</label>
-                        <input type="text" class="form-control" id="name" placeholder="Navn" value="{{user.name}}">
-                        <button type="submit" class="btn btn-primary pull-right" ng-click="submitName()">Lagre</button>
+                        <input type="text" class="form-control" id="name" placeholder="Navn" ng-model="myPage.name" >
+                        <button type="submit" class="btn btn-primary pull-right" ng-click="submit()">Lagre</button>
                     </div>
                 </form>
             </div>
-            <div ng-click="toggleEmail()" class="row dataRow clickable">
+
+            <!-- Email Form -->
+            <div id="emailRow" ng-click="toggleEmail()" class="row dataRow clickable">
                 <p class="col-lg-2">Epost</p>
-                <p class="dataField col-lg-5">{{user.email}}</p>
+                <p class="dataField col-lg-5">{{currentUser.email}}</p>
                 <i class="fa fa-edit col-lg-1 pull-right"></i>
             </div>
             <div id="emailForm" class="row subForm">
                 <form class="form-inline">
                     <div class="form-group">
                         <label for="email">Email</label>
-                        <input type="email" class="form-control" id="email" placeholder="Email" value="{{user.email}}">
-                        <button type="submit" class="btn btn-primary pull-right" ng-click="submitEmail()">Lagre</button>
+                        <input type="email" class="form-control" id="email" placeholder="Email" ng-model="myPage.email">
+                        <button type="submit" class="btn btn-primary pull-right" ng-click="submit()">Lagre</button>
                     </div>
                 </form>
             </div>
-            <div ng-click="togglePassword()" class="row dataRow clickable">
+
+            <!-- Password Form -->
+            <div id="passwordRow" ng-click="togglePassword()" class="row dataRow clickable">
                 <p class="col-lg-2">Passord</p>
                 <p class="dataField col-lg-5">Sist endret dd-mm-yyyy</p>
                 <i class="fa fa-edit col-lg-1 pull-right"></i>
@@ -57,20 +69,23 @@
                     <button type="submit" class="btn btn-primary pull-right" ng-click="submitPassword()">Lagre</button>
                 </form>
             </div>
-            <div ng-click="toggleImage()" class="row dataRow clickable">
+
+            <!-- Image Form -->
+            <div id="imageRow" ng-click="toggleImage()" class="row dataRow clickable">
                 <p class="col-lg-2">Profilbilde</p>
-                <p class="dataField col-lg-5">{{user.profileImage}}</p>
+                <p class="dataField col-lg-5">{{currentUser.profileImage}}</p>
                 <i class="fa fa-edit col-lg-1 pull-right"></i>
             </div>
             <div id="imageForm" class="row subForm">
                 <form class="form-inline">
                     <div class="form-group">
                         <label for="image">Velg nytt profilbilde</label>
-                        <input type="file" class="form-control" id="image">
-                        <button type="submit" class="btn btn-primary pull-right" ng-click="submitImage()">Lagre</button>
+                        <input type="file" class="form-control" ng-model="myPage.profileImage" id="image">
+                        <button type="submit" class="btn btn-primary pull-right" ng-click="submit()">Lagre</button>
                     </div>
                 </form>
             </div>
+
         </div>
     </div>
 </div>

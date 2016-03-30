@@ -10,41 +10,77 @@ angular.module('ehelseEditor').controller('MyPageController', ['$scope', '$rootS
 
     //toggle display functions
     $scope.toggleName = function () {
-        $("#nameForm").toggle();
-        $("#emailForm").hide();
-        $("#passwordForm").hide();
-        $("#imageForm").hide();
+        $("#nameForm").slideToggle( "fast");
+        $("#emailForm").slideUp("fast");
+        $("#passwordForm").slideUp("fast");
+        $("#imageForm").slideUp("fast");
+
+        $("#nameRow").toggleClass("activeRow");
+        $("#emailRow").removeClass("activeRow");
+        $("#passwordRow").removeClass("activeRow");
+        $("#imageRow").removeClass("activeRow");
+
     };
     $scope.toggleEmail = function () {
-        $("#emailForm").toggle();
-        $("#nameForm").hide();
-        $("#passwordForm").hide();
-        $("#imageForm").hide();
+        $("#emailForm").slideToggle( "fast");
+        $("#nameForm").slideUp("fast");
+        $("#passwordForm").slideUp("fast");
+        $("#imageForm").slideUp("fast");
+
+        $("#emailRow").toggleClass("activeRow");
+        $("#nameRow").removeClass("activeRow");
+        $("#passwordRow").removeClass("activeRow");
+        $("#imageRow").removeClass("activeRow");
     };
     $scope.togglePassword = function () {
-        $("#passwordForm").toggle();
-        $("#nameForm").hide();
-        $("#emailForm").hide();
-        $("#imageForm").hide();
+        $("#passwordForm").slideToggle( "fast");
+        $("#nameForm").slideUp("fast");
+        $("#emailForm").slideUp("fast");
+        $("#imageForm").slideUp("fast");
+
+        $("#passwordRow").toggleClass("activeRow");
+        $("#nameRow").removeClass("activeRow");
+        $("#emailRow").removeClass("activeRow");
+        $("#imageRow").removeClass("activeRow");
     };
     $scope.toggleImage = function () {
-        $("#imageForm").toggle();
-        $("#nameForm").hide();
-        $("#passwordForm").hide();
-        $("#emailForm").hide();
+        $("#imageForm").slideToggle( "fast");
+        $("#nameForm").slideUp("fast");
+        $("#passwordForm").slideUp("fast");
+        $("#emailForm").slideUp("fast");
+
+        $("#imageRow").toggleClass("activeRow");
+        $("#nameRow").removeClass("activeRow");
+        $("#emailRow").removeClass("activeRow");
+        $("#passwordRow").removeClass("activeRow");
     };
 
-    $scope.submitName = function(){
-        alert("submit name");
+    $scope.myPage = {
+        id: $rootScope.currentUser.id,
+        name: $rootScope.currentUser.name,
+        email: $rootScope.currentUser.email,
+        profileImage: $rootScope.currentUser.profileImage
     };
-    $scope.submitEmail = function(){
-        alert("submit email");
+    $scope.submit = function(){
+        $scope.put(
+            "users/"+$rootScope.currentUser.id,
+            $scope.myPage,
+            function(){
+                $rootScope.notifyStandardSuccess("Kontoinformasjonen din ble oppdatert");
+                $rootScope.currentUser = {
+                    id: $rootScope.currentUser.id,
+                    name: $scope.myPage.name,
+                    email: $scope.myPage.email,
+                    profileImage: $scope.myPage.profileImage
+                };
+            },
+            function(){
+                $rootScope.notifyTopicError("Kontoinformasjonen din ble ikke oppdatert");
+            }
+        );
     };
     $scope.submitPassword = function(){
-        alert("submit password");
-    };
-    $scope.submitImage = function(){
-        alert("submit image");
+        alert("I'm not implemented!")
     };
 
 }]);
