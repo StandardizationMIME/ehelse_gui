@@ -14,11 +14,7 @@ angular.module('ehelseEditor').controller('LoginController', [ '$scope', '$rootS
             'users/login/',
             function(data){
                 console.log(data);
-                if (data.authenticated === true){
-                    $location.path('/main-view').replace();
-                }else{
-                    $scope.password = '';
-                }
+                $location.path('/main-view').replace();
             },
             function(){}
         );
