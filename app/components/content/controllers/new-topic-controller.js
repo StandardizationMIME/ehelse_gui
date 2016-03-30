@@ -6,8 +6,9 @@ angular.module('ehelseEditor').controller('NewTopicController', [ '$scope', "$ro
         "title" : "",
         "description" : "",
         "isInCatalog": false,
-        "parent": $scope.selectedTopicId,
-        "sequence": 1
+        "parentId": $scope.selectedTopicId,
+        "sequence": 1,
+        "comment": ""
     };
 
     $scope.postNewTopic = function(topic){
@@ -22,10 +23,12 @@ angular.module('ehelseEditor').controller('NewTopicController', [ '$scope', "$ro
             function(data){
                 console.log("New topic created");
                 console.log(data);
+                console.log($scope.newTopic);
                 $rootScope.reloadTopic(data);
                 $rootScope.notifyTopicSuccess("Nytt tema har blitt opprettet");
                 $rootScope.view = "";
                 $rootScope.reloadTopicTupleList();
+
             }
             ,
             function(){
