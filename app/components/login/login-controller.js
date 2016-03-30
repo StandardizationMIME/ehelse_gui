@@ -13,6 +13,7 @@ angular.module('ehelseEditor').controller('LoginController', [ '$scope', '$rootS
         $rootScope.get(
             'users/login/',
             function(data){
+                $rootScope.currentUser = data;
                 console.log(data);
                 $location.path('/main-view').replace();
             },
