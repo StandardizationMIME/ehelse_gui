@@ -55,17 +55,32 @@ angular.module('ehelseEditor').controller('MyPageController', ['$scope', '$rootS
         $("#passwordRow").removeClass("activeRow");
     };
 
-    $scope.submitName = function(){
-        alert("submit name");
+    $scope.myPage = {
+        id: $rootScope.currentUser.id,
+        name: $rootScope.currentUser.name,
+        email: $rootScope.currentUser.email,
+        profileImage: $rootScope.currentUser.profileImage
     };
-    $scope.submitEmail = function(){
-        alert("submit email");
+    $scope.submit = function(){
+        $scope.put(
+            "users/"+$rootScope.currentUser.id,
+            $scope.myPage,
+            function(){
+                $rootScope.notifyStandardSuccess("Kontoinformasjonen din ble oppdatert");
+                $rootScope.currentUser = {
+                    id: $rootScope.currentUser.id,
+                    name: $scope.myPage.name,
+                    email: $scope.myPage.email,
+                    profileImage: $scope.myPage.profileImage
+                };
+            },
+            function(){
+                $rootScope.notifyTopicError("Kontoinformasjonen din ble ikke oppdatert");
+            }
+        );
     };
     $scope.submitPassword = function(){
-        alert("submit password");
-    };
-    $scope.submitImage = function(){
-        alert("submit image");
+        alert("I'm not implemented!")
     };
 
 }]);
