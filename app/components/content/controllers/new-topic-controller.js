@@ -28,6 +28,7 @@ angular.module('ehelseEditor').controller('NewTopicController', [ '$scope', "$ro
                 $rootScope.notifyTopicSuccess("Nytt tema har blitt opprettet");
                 $rootScope.view = "";
                 $rootScope.reloadTopicTupleList();
+                
 
             }
             ,
