@@ -3,7 +3,6 @@
 
 (function(){
 
-
     angular.module('ehelseEditor').run([ '$http', '$rootScope',function($http, $rootScope, MyResourceProvider) {
         $rootScope.userName = "";
         $rootScope.password = "";
@@ -11,7 +10,6 @@
 
         $rootScope.topics = [];
         $rootScope.topicsList = [];
-
 
 
         $rootScope.setUserName = function(userName){
@@ -67,12 +65,10 @@
         }
 
         $rootScope.userPageView = '';
+
         $rootScope.changeUserView = function(view){
             $rootScope.userPageView = view;
         };
-
-        //test data
-        $rootScope.user = {id:1, name:"Dag Frode Solberg", email:"dag@mail.asd", profileImage:"test.jpg"};
 
     }]);
 
