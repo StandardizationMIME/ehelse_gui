@@ -8,10 +8,8 @@
     <!-- MyPage toolbar -->
     <div ng-if="userPageView == 'myPage'" ng-include="'app/components/toolbar/myPageToolbar-view.html'"></div>
 
-    <!-- Administer toolbar -->
-    <!-- TODO IMPLEMENT ADMINISTER USERS
-    <div ng-if="toolbarView == ''" ng-include="'app/components/editor/editor-view.html'"></div>
-    -->
+    <!-- AdministerUsers toolbar -->
+    <div ng-if="userPageView == 'administerUsers'" ng-include="'app/components/toolbar/administerUsersToolbar-view.html'"></div>
 
     <!-- User dropdown menu -->
     <div class="col-lg-offset-2 col-lg-3 col-mg-offset-4 col-mg-3 col-sm-offset-4 col-sm-3 col-xs-offset-4 col-xs-3">
@@ -23,7 +21,7 @@
             </button>
             <ul class="dropdown-menu">
                 <li><a class="clickable" ng-click="changeUserView('myPage')">Min side</a></li>
-                <!-- <li><a href="#/">Administrer brukere</a></li> -->
+                <li><a class="clickable" ng-click="changeUserView('administerUsers')">Administrer brukere</a></li>
                 <li role="separator" class="divider"></li>
                 <li><a href="#/login">Logg av</a></li>
             </ul>
