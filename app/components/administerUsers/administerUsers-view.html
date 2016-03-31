@@ -1,4 +1,23 @@
 <div ng-controller="AdministerUsersController" class="col-lg-offset-2 col-lg-10">
 
+    <!-- toast informing user -->
+    <div class="row">
+        <notification class="col-lg-offset-4 col-lg-6"></notification>
+    </div>
 
+    <!-- displays all the users -->
+    <div id="userList">
+        <!-- TODO ng-repeat for all users -->
+        <div class="row">
+            <img class="col-lg-2 col-lg-offset-2" src="{{user.profileImage}}" alt="profileImage" />
+            <span class="col-lg-4">{{user.name}}</span>
+            <span class="col-lg-4">{{user.email}}</span>
+        </div>
+
+        <div class="row">
+            <button class="col-lg-2 col-lg-offset-2" ng-click="alert('Implement add user.')">+</button>
+            <span> class="col-lg-2 col-lg-offset-1"</span>
+        </div>
+
+    </div>
 </div>
