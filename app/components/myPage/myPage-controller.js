@@ -10,7 +10,7 @@ angular.module('ehelseEditor').controller('MyPageController', ['$scope', '$rootS
 
     //toggle display functions
     $scope.toggleName = function () {
-        $("#nameForm").slideToggle( "fast");
+        $("#nameForm").slideToggle("fast");
         $("#emailForm").slideUp("fast");
         $("#passwordForm").slideUp("fast");
         $("#imageForm").slideUp("fast");
@@ -19,10 +19,9 @@ angular.module('ehelseEditor').controller('MyPageController', ['$scope', '$rootS
         $("#emailRow").removeClass("activeRow");
         $("#passwordRow").removeClass("activeRow");
         $("#imageRow").removeClass("activeRow");
-
     };
     $scope.toggleEmail = function () {
-        $("#emailForm").slideToggle( "fast");
+        $("#emailForm").slideToggle("fast");
         $("#nameForm").slideUp("fast");
         $("#passwordForm").slideUp("fast");
         $("#imageForm").slideUp("fast");
@@ -33,7 +32,7 @@ angular.module('ehelseEditor').controller('MyPageController', ['$scope', '$rootS
         $("#imageRow").removeClass("activeRow");
     };
     $scope.togglePassword = function () {
-        $("#passwordForm").slideToggle( "fast");
+        $("#passwordForm").slideToggle("fast");
         $("#nameForm").slideUp("fast");
         $("#emailForm").slideUp("fast");
         $("#imageForm").slideUp("fast");
@@ -44,7 +43,7 @@ angular.module('ehelseEditor').controller('MyPageController', ['$scope', '$rootS
         $("#imageRow").removeClass("activeRow");
     };
     $scope.toggleImage = function () {
-        $("#imageForm").slideToggle( "fast");
+        $("#imageForm").slideToggle("fast");
         $("#nameForm").slideUp("fast");
         $("#passwordForm").slideUp("fast");
         $("#emailForm").slideUp("fast");
@@ -61,11 +60,11 @@ angular.module('ehelseEditor').controller('MyPageController', ['$scope', '$rootS
         email: $rootScope.currentUser.email,
         profileImage: $rootScope.currentUser.profileImage
     };
-    $scope.submit = function(){
+    $scope.submit = function () {
         $scope.put(
-            "users/"+$rootScope.currentUser.id,
+            "users/" + $rootScope.currentUser.id,
             $scope.myPage,
-            function(){
+            function () {
                 $rootScope.notifyStandardSuccess("Kontoinformasjonen din ble oppdatert");
                 $rootScope.currentUser = {
                     id: $rootScope.currentUser.id,
@@ -74,39 +73,40 @@ angular.module('ehelseEditor').controller('MyPageController', ['$scope', '$rootS
                     profileImage: $scope.myPage.profileImage
                 };
             },
-            function(){
+            function () {
                 $rootScope.notifyTopicError("Kontoinformasjonen din ble ikke oppdatert");
             }
         );
     };
 
-    $scope.changePassword = function(){
-        if($scope.newPassword === $scope.repeatNewPassword){
+    $scope.changePassword = function () {
+        if ($scope.newPassword === $scope.repeatNewPassword) {
             //check if written password equals the account password
-            if($rootScope.password === $scope.oldPassword){
+            if ($rootScope.password === $scope.oldPassword) {
                 $scope.put(
-                    "users/"+$rootScope.currentUser.id + "/password/",
+                    "users/" + $rootScope.currentUser.id + "/password/",
                     {password: $scope.newPassword},
-                    function(){
+                    function () {
                         $rootScope.notifyStandardSuccess("Passordet ditt er endret.");
                         $rootScope.password = $scope.newPassword;
                     },
-                    function(){
+                    function () {
                         $rootScope.notifyTopicError("Passordet ble ikke endret.");
                     }
                 );
-            }else{
+            } else {
                 $rootScope.notifyTopicError("Det gamle passordet er feil.");
             }
-        }else{
+        } else {
             $rootScope.notifyTopicError('"Nytt passord" og "Gjenta nytt passord" er ikke like.');
         }
+
         //Clear fields after attempt
-        /*
-        $scope.oldPassword = "";
-        $scope.newPassword = "";
-        $scope.repeatNewPassword = "";
-        */
+        /* TODO implement clearing of password fields after attempt. ATM that breaks the form becayse of 2-way data binding.
+         $scope.oldPassword = "";
+         $scope.newPassword = "";
+         $scope.repeatNewPassword = "";
+         */
     };
 
 }]);
