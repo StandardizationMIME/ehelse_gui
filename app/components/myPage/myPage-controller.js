@@ -79,8 +79,34 @@ angular.module('ehelseEditor').controller('MyPageController', ['$scope', '$rootS
             }
         );
     };
-    $scope.submitPassword = function(){
-        alert("I'm not implemented!")
+
+    $scope.changePassword = function(){
+        if($scope.newPassword === $scope.repeatNewPassword){
+            //check if written password equals the account password
+            if($rootScope.password === $scope.oldPassword){
+                $scope.put(
+                    "users/"+$rootScope.currentUser.id + "/password/",
+                    {password: $scope.newPassword},
+                    function(){
+                        $rootScope.notifyStandardSuccess("Passordet ditt er endret.");
+                        $rootScope.password = $scope.newPassword;
+                    },
+                    function(){
+                        $rootScope.notifyTopicError("Passordet ble ikke endret.");
+                    }
+                );
+            }else{
+                $rootScope.notifyTopicError("Det gamle passordet er feil.");
+            }
+        }else{
+            $rootScope.notifyTopicError('"Nytt passord" og "Gjenta nytt passord" er ikke like.');
+        }
+        //Clear fields after attempt
+        /*
+        $scope.oldPassword = "";
+        $scope.newPassword = "";
+        $scope.repeatNewPassword = "";
+        */
     };
 
 }]);
