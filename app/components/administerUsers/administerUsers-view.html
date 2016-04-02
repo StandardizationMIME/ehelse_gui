@@ -1,4 +1,4 @@
-<div ng-controller="AdministerUsersController" class="col-lg-offset-2 col-lg-10">
+<div ng-controller="AdministerUsersController" class="col-lg-offset-3 col-lg-10">
 
     <!-- toast informing user -->
     <div class="row">
@@ -6,17 +6,21 @@
     </div>
 
     <!-- displays all the users -->
-    <div id="userList">
+    <div id="userList" ng-repeat="users in userData">
         <!-- TODO ng-repeat for all users -->
-        <div class="row">
-            <img class="col-lg-2 col-lg-offset-2" src="{{user.profileImage}}" alt="profileImage" />
-            <span class="col-lg-4">{{user.name}}</span>
-            <span class="col-lg-4">{{user.email}}</span>
+        <div class="row user" ng-repeat="user in users">
+            <div class="col-lg-1 vcenter">
+                <img src="http://placehold.it/50x50" alt="{{user.name}}_profileImage"/>
+            </div>
+            <span class="col-lg-4 vcenter">{{user.name}}</span>
+            <span class="col-lg-4 vcenter">{{user.email}}</span>
         </div>
 
-        <div class="row">
-            <button class="col-lg-2 col-lg-offset-2" ng-click="alert('Implement add user.')">+</button>
-            <span> class="col-lg-2 col-lg-offset-1"</span>
+        <div id="addUser" class="row clickable" ng-click="alert('add user')">
+            <div class="col-lg-1 vcenter">
+                <img src="http://placehold.it/50x50" alt="{{user.name}}_profileImage"/>
+            </div>
+            <span class="col-lg-4 vcenter">Lag ny bruker</span>
         </div>
 
     </div>
