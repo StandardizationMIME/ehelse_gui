@@ -14,12 +14,11 @@
             </div>
             <span class="col-lg-4 vcenter">{{user.name}}</span>
             <span class="col-lg-4 vcenter">{{user.email}}</span>
+            <span class="fa fa-remove fa-fw vcenter clickable" ng-click="deleteUser(user.id,user.name)"></span>
         </div>
 
         <div id="addUser" class="row clickable" ng-click="alert('add user')">
-            <div class="col-lg-1 vcenter">
-                <img src="http://placehold.it/50x50" alt="{{user.name}}_profileImage"/>
-            </div>
+            <span class="fa fa-user-plus fa-fw"></span>
             <span class="col-lg-4 vcenter">Lag ny bruker</span>
         </div>
 
