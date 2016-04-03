@@ -8,16 +8,15 @@ angular.module('ehelseEditor').controller('AdministerUsersController', ['$scope'
     }, function () {
     });
 
-    //delete a specific user
+    //TODO add user
+    $scope.addUser = function(){
+
+
+    };
+
+    //delete specific user
     $scope.deleteUser = function (userId, name) {
-
-        /*
-         $rootScope.notifyTopicError("Passordet ble ikke endret.");
-         $rootScope.notifyStandardSuccess("Passordet ditt er endret.");
-         */
-
         var inputName = prompt("Skriv inn navnet til brukeren for å slette den for alltid: " + name + "");
-        //delete request goes here
 
         if (inputName === name) {
             $rootScope.delete("/users/" + userId, {}, function () {

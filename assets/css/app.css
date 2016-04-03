@@ -313,8 +313,9 @@ div>div>.dropdown-toggle:hover{
     border-radius: 50px;
     background-color: #fff;
     border: dashed #ccc thin;
-    width: 55%;
+    width: 25%;
     margin: 0.5em;
+    padding: 1em;
 }
 #addUser:hover{
     background-color: #adadad;
@@ -327,5 +328,9 @@ div>div>.dropdown-toggle:hover{
     display: inline-block;
     vertical-align: middle;
     float: none;
+}
+.removeUser{
+    color: #f60e24;
+    font-size: 2em;
 }
 /* Administer Users end */
