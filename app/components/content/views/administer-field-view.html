@@ -5,7 +5,7 @@
                 <h4>Administrer dokumentfelter</h4>
             </div>
             <p class="tenPixVerticalPadding">
-                <input type="button" value="Lagre" ng-click="updateStandardFields()"/>
+                <input type="button" value="Lagre" ng-click="updateStandardFields()" class="save-button"/>
             </p>
         </div>
         <form name="administerFieldForm" role="form" ng-submit="" method="post">
@@ -13,6 +13,7 @@
                 <label for="fieldTitle" class="field-item-field">Tittel</label>
                 <label for="fieldDescription" class="field-item-field">Beskrivelse</label>
                 <label for="fieldMandatory" class="field-item-field">Obligatorisk</label>
+                <label for="fieldeDelete" class="field-item-field pull-right">Slett felt</label>
             </span>
             <ul ui-sortable="sortableOptions" ng-model="documentFields">
                 <li ng-repeat="field in documentFields" class="field-item document-fields">
