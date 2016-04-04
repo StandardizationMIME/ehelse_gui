@@ -1,3 +1,49 @@
+/* ----- TABLE OF CONTENTS ----- */
+
+/* ----- CH1 generic ----- */
+/* ----- CH2 administerUsers ----- */
+/* ----- CH3 content ----- */
+/* ----- CH4 document ----- */
+/* ----- CH5 editor ----- */
+/* ----- CH6 login ----- */
+/* ----- CH7 main ----- */
+/* ----- CH8 myPage ----- */
+/* ----- CH9 toolbar ----- */
+/* ----- CH10 topic ----- */
+
+
+/* ----- CH1 generic ----- */
+
+
+/* ----- CH2 administerUsers ----- */
+
+
+/* ----- CH3 content ----- */
+
+
+/* ----- CH4 document ----- */
+
+
+/* ----- CH5 editor ----- */
+
+
+/* ----- CH6 login ----- */
+
+
+/* ----- CH7 main ----- */
+
+
+/* ----- CH8 myPage ----- */
+
+
+/* ----- CH9 toolbar ----- */
+
+
+/* ----- CH10 topic ----- */
+
+
+
+
 .topic-browser {
     padding: 20px;
     height: 800px;
@@ -278,7 +324,7 @@ div>div>.dropdown-toggle:hover{
 .subForm{
     width: 75%;
     margin-left: 5%;
-    padding: 2% 7% 5% 0%;
+    padding: 2% 7% 5% 0;
     background-color: #E6E6E6;
 }
 .subForm>*{
@@ -292,7 +338,6 @@ div>div>.dropdown-toggle:hover{
     border-color: #ccc;
 }
 /* MyPage end */
-
 
 /*~~~~~~~~~~~~TARGET GROUP~~~~~~~~~~~*/
 
@@ -308,3 +353,52 @@ div>div>.dropdown-toggle:hover{
 .target-group-add, .target-group-delete{
     color: #ffffff !important;
 }
+/* Administer Users start */
+#userList img{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+}
+.userRow{
+    border-radius: 50px;
+    background-color: #fff;
+    border: solid #ccc thin;
+    width: 70%;
+    margin: 0.5em;
+}
+#addUser{
+    color: #337AB7;
+    border-radius: 50px;
+    background-color: #fff;
+    border: dashed #ccc thin;
+    width: 23%;
+    margin: 0.5em;
+    padding: 1em;
+}
+#addUser:hover{
+    background-color: #adadad;
+    -webkit-transition: all 0.2s ease;
+    -moz-transition: all 0.2s ease;
+    -o-transition: all 0.2s ease;
+    transition: all 0.2s ease;
+}
+.vcenter {
+    display: inline-block;
+    vertical-align: middle;
+    float: none;
+}
+.removeUser{
+    color: #f60e24;
+    font-size: 2em;
+    padding-right: 1em;
+}
+.userRowName {
+    margin-left: 1em;
+}
+#administerUsersNotifications{
+    margin-bottom: 5%;
+}
+/* Administer Users end */
+
