@@ -95,11 +95,7 @@
 }
 
 .new-topic {
-    width: 400px;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 100px;
-    background-color: #e3e3e3;
+    width: 700px;
 
 }
 
@@ -250,4 +246,20 @@ input.version-id {
 .administer-fields .field-item .field-item-field:nth-child(2), .administer-fields .field-item input:nth-child(3){
     width:400px;
     display: inline-block;
+}
+
+
+/*~~~~~~~~~~~~TARGET GROUP~~~~~~~~~~~*/
+
+.target-group-grid{
+    overflow: scroll;
+    height: 750px;
+}
+
+.table-hover tbody tr:hover td, .table-hover tbody tr:hover th {
+    background-color: #c7c7c7;
+}
+
+.target-group-add, .target-group-delete{
+    color: #ffffff !important;
 }

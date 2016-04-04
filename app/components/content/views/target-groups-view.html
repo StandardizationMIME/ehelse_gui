@@ -1,0 +1,34 @@
+<div ng-controller="TargetGroupsController" class="target-group-grid">
+    <div style="margin-bottom: 20px;">
+        <h4 class="selected">Målgrupper
+            <!-- New TG button-->
+            <button type="button" class="small btn btn-success pull-right target-group-add"
+                    ng-click="showNewTGModal()"><i class="fa fa-remove"></i> Ny målgruppe </button>
+
+            <!-- Delete TG button -->
+            <button type="button" class="small btn btn-danger pull-right target-group-delete"
+                    ng-click="showDeleteTGModal()"><i class="fa fa-remove"></i> Slett </button>
+        </h4>
+    </div>
+    <div class="table-responsive">
+        <table class="table" id="targetGroupsTable">
+            <thead>
+            <tr>
+                <th class="col-md-3">Navn</th>
+                <th>Beskrivelse</th>
+                <th class="col-md-1">Forkortelse</th>
+                <th class="col-md-1">Overordnet målgrupper</th>
+            </tr>
+            </thead>
+            <tbody style="overflow-y: auto">
+            <tr ng-repeat="group in targetGroups" >
+                <td><input type="text" ng-model="group.title" class="form-control"></td>
+                <td><textarea cols="40" rows="3" name="" ng-model="group.description" class="form-control"></textarea></td>
+                <td><input type="text" ng-model="group.abbreviation" class="form-control"></td>
+                <td><select name="" class="form-control" ></select></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
