@@ -68,7 +68,6 @@ angular.module('ehelseEditor').controller('TopicController',['$rootScope', '$sco
         $rootScope.topics = data.topics;
         $rootScope.reloadTopicTupleList();
         $rootScope.flatTopicList = $scope.flattenTopicList($rootScope.topics);
-        console.log($rootScope.flatTopicList);
     }, function(){});
 
 

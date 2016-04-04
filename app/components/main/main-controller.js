@@ -3,9 +3,10 @@
 
 (function(){
 
-    angular.module('ehelseEditor').run([ '$http', '$rootScope',function($http, $rootScope, MyResourceProvider) {
-        $rootScope.userName = "";
-        $rootScope.password = "";
+    angular.module('ehelseEditor').run([ '$http', '$rootScope', '$cookies', '$location', function($http, $rootScope, $cookies, $location) {
+        $rootScope.userName = $cookies.get('username');
+        $rootScope.password = $cookies.get('password');
+        $rootScope.currentUser = $cookies.get('currentUser');
         $rootScope.apiUrl = 'https://refkat.eu/v1/';
 
         $rootScope.topics = [];
@@ -37,22 +38,79 @@
         };
 
 
-        $rootScope.http = function(method, url, data, success, error){
-            var credentials = btoa($rootScope.userName + ':' + $rootScope.password);
-            var authorization = {'Authorization': 'Basic ' + credentials};
-            $http({
-                url: $rootScope.apiUrl + url,
-                data: data,
-                method: method,
-                headers: authorization
-            }).success(function(data, status, headers, config){
+        $rootScope.http = function(method, url, payload, success, error){
+            var username = $rootScope.userName || $cookies.get('username');
+            var password = $rootScope.password || $cookies.get('password');
+            if(username && password){
+                var credentials = btoa( username + ':' + password);
+                var authorization = {'Authorization': 'Basic ' + credentials};
+                var request = {
+                    url: $rootScope.apiUrl + url,
+                    data: payload,
+                    method: method,
+                    headers: authorization
+                };
 
-                    success (data, status, headers, config);
-                }
-            ).error(
-                function(data, status, headers, config){
-                    error(data, status, headers, config);
-                });
+                $http(request).success(function(data, status, headers, config){
+                        console.log(
+                            request.method,
+                            request.url,
+                            "Success",
+                            {
+                                "request": request,
+                                "response":{
+                                    "data": data,
+                                    "status": status,
+                                    "headers": headers,
+                                    "config":config
+                                },
+                                "success":success,
+                                "error": error,
+                                "toString": function(){return "bla"}
+                            }
+                        );
+                        success (data, status, headers, config);
+                    }
+                ).error(
+
+                    function(data, status, headers, config){
+                        console.log(
+                            request.method,
+                            request.url,
+                            "Error",
+                            {
+                                "request": request,
+                                "response":{
+                                    "data": data,
+                                    "status": status,
+                                    "headers": headers,
+                                    "config":config
+                                },
+                                "success":success,
+                                "error": error,
+                                "toString": function(){return "bla"}
+                            }
+                        );
+                        error(data, status, headers, config);
+                    }
+                );
+            }
+            else {
+
+                $location.path('/login').replace();
+            }
+
+        };
+
+        $rootScope.logout = function(){
+            $rootScope.currentUser = null;
+            $rootScope.userName = null;
+            $rootScope.password = null;
+
+            $cookies.put('username', "");
+            $cookies.put('password', "");
+            $cookies.put('currentUser', "");
+            $location.path('/login').replace();
         };
 
         $rootScope.childControllers = {};
@@ -62,7 +120,7 @@
 
         $rootScope.changeContentView = function(view){
             $rootScope.childControllers['EditorController'].changeView(view);
-        }
+        };
 
         $rootScope.userPageView = '';
 
