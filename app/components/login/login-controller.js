@@ -1,10 +1,12 @@
 'use strict';
 
-angular.module('ehelseEditor').controller('LoginController', [ '$scope', '$rootScope', '$location',  function( $scope, $rootScope, $location) {
+angular.module('ehelseEditor').controller('LoginController', [ '$scope', '$rootScope', '$location', '$cookies', function( $scope, $rootScope, $location, $cookies) {
 
     $scope.submit = function(){
         $rootScope.setUserName($scope.username);
         $rootScope.setPassword($scope.password);
+        $cookies.put('username', $scope.username);
+        $cookies.put('password', $scope.password);
         $scope.logIn();
     };
 
@@ -14,7 +16,7 @@ angular.module('ehelseEditor').controller('LoginController', [ '$scope', '$rootS
             'users/login/',
             function(data){
                 $rootScope.currentUser = data;
-                console.log(data);
+                $cookies.put('currentUser', data);
                 $location.path('/main-view').replace();
             },
             function(){}
