@@ -1,8 +1,4 @@
-angular
-    .module('ehelseEditor', ['ngRoute','ui.sortable','angularModalService', 'checklist-model'
-    ])
-
-    .constant('CONFIG',
+angular.module('ehelseEditor', ['ngRoute','ui.sortable','angularModalService', 'checklist-model']).constant('CONFIG',
         {
             DebugMode: true,
             StepCounter: 0,

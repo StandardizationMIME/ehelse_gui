@@ -1,6 +1,20 @@
 'use strict';
 
-angular.module('ehelseEditor').controller('DocumentController', [ '$scope','$rootScope', function( $scope, $rootScope) {
+angular.module('ehelseEditor').controller('DocumentController', [ '$scope','$rootScope', 'ModalService', function( $scope, $rootScope, ModalService) {
+
+    //Modal for creating new topic
+    $scope.newDocumentModal = function(){
+        ModalService.showModal({
+            templateUrl: 'app/components/content/views/new-document-view.html',
+            controller: "modalController",
+            animation: false
+        }).then(function(modal) {
+            modal.element.modal();
+            modal.close.then(function(result) {
+                console.log(result);
+            });
+        });
+    };
 
 
     $scope.getContent = function(id) {

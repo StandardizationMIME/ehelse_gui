@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('ehelseEditor').controller('NewTopicController', [ '$scope', "$rootScope", function( $scope, $rootScope) {
+angular.module('ehelseEditor').controller('NewTopicController', [ '$scope', "$rootScope", "ModalService", function( $scope, $rootScope, ModalService) {
 
     $scope.newTopic = {
         "title" : "",
@@ -11,7 +11,8 @@ angular.module('ehelseEditor').controller('NewTopicController', [ '$scope', "$ro
         "comment": ""
     };
 
-    $scope.postNewTopic = function(topic){
+    $rootScope.postNewTopic = function(topic){
+        console.log("postNewTopic kjører");
 
         if(topic.parent == "null"){
             topic.parent = null;
@@ -26,10 +27,7 @@ angular.module('ehelseEditor').controller('NewTopicController', [ '$scope', "$ro
                 console.log($scope.newTopic);
                 $rootScope.reloadTopic(data);
                 $rootScope.notifyTopicSuccess("Nytt tema har blitt opprettet");
-                $rootScope.view = "";
                 $rootScope.reloadTopicTupleList();
-                
-
             }
             ,
             function(){
