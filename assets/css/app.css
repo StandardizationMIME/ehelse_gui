@@ -292,3 +292,19 @@ div>div>.dropdown-toggle:hover{
     border-color: #ccc;
 }
 /* MyPage end */
+
+
+/*~~~~~~~~~~~~TARGET GROUP~~~~~~~~~~~*/
+
+.target-group-grid{
+    overflow: scroll;
+    height: 750px;
+}
+
+.table-hover tbody tr:hover td, .table-hover tbody tr:hover th {
+    background-color: #c7c7c7;
+}
+
+.target-group-add, .target-group-delete{
+    color: #ffffff !important;
+}

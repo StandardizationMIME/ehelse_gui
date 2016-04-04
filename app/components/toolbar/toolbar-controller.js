@@ -6,5 +6,9 @@ angular.module('ehelseEditor').controller('ToolbarController',['$rootScope', '$s
       $rootScope.changeContentView('administerfields');
     };
 
+    $scope.openTargetGroups = function(){
+      $rootScope.changeContentView('targetgroups');
+    };
+
 }]);
 
