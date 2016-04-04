@@ -278,7 +278,7 @@ div>div>.dropdown-toggle:hover{
 .subForm{
     width: 75%;
     margin-left: 5%;
-    padding: 2% 7% 5% 0%;
+    padding: 2% 7% 5% 0;
     background-color: #E6E6E6;
 }
 .subForm>*{
@@ -301,11 +301,11 @@ div>div>.dropdown-toggle:hover{
     margin-top: 0.5em;
     margin-bottom: 0.5em;
 }
-.user{
+.userRow{
     border-radius: 50px;
     background-color: #fff;
     border: solid #ccc thin;
-    width: 55%;
+    width: 70%;
     margin: 0.5em;
 }
 #addUser{
@@ -313,7 +313,7 @@ div>div>.dropdown-toggle:hover{
     border-radius: 50px;
     background-color: #fff;
     border: dashed #ccc thin;
-    width: 25%;
+    width: 23%;
     margin: 0.5em;
     padding: 1em;
 }
@@ -332,5 +332,12 @@ div>div>.dropdown-toggle:hover{
 .removeUser{
     color: #f60e24;
     font-size: 2em;
+    padding-right: 1em;
+}
+.userRowName {
+    margin-left: 1em;
+}
+#administerUsersNotifications{
+    margin-bottom: 5%;
 }
 /* Administer Users end */

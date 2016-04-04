@@ -16,7 +16,7 @@ angular.module('ehelseEditor').controller('AdministerUsersController', ['$scope'
 
     //delete specific user
     $scope.deleteUser = function (userId, name) {
-        var inputName = prompt("Skriv inn navnet til brukeren for å slette den for alltid: " + name + "");
+        var inputName = prompt("Skriv inn navnet til brukeren for å slette den for alltid: \"" + name + "\"");
 
         if (inputName === name) {
             $rootScope.delete("/users/" + userId, {}, function () {

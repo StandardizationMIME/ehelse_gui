@@ -1,21 +1,16 @@
-<div ng-controller="AdministerUsersController" class="col-lg-offset-3 col-lg-10">
-    <!-- view title -->
-    <div class="row">
-        <notification class="col-lg-7"></notification>
-    </div>
-
+<div ng-controller="AdministerUsersController" class="col-lg-offset-2 col-lg-10">
     <!-- toast informing user -->
-    <div class="row">
-        <notification class="col-lg-7"></notification>
+    <div id="administerUsersNotifications" class="row">
+        <notification class="col-lg-8"></notification>
     </div>
 
     <!-- displays all the users -->
     <div id="userList" ng-repeat="users in userData">
-        <div class="row user" ng-repeat="user in users">
+        <div class="row userRow" ng-repeat="user in users">
             <div class="col-lg-1 vcenter">
                 <img src="http://placehold.it/50x50" alt="{{user.name}}_profileImage"/>
             </div>
-            <span class="col-lg-4 vcenter">{{user.name}}</span>
+            <span class="col-lg-4 vcenter userRowName">{{user.name}}</span>
             <span class="col-lg-6 vcenter">{{user.email}}</span>
             <span class="fa fa-remove fa-fw vcenter clickable removeUser" ng-click="deleteUser(user.id,user.name)"></span>
         </div>
