@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('ehelseEditor').controller('AdministerUsersController', ['$scope', '$rootScope', 'ModalService', function ($scope, $rootScope) {
+angular.module('ehelseEditor').controller('AdministerUsersController', ['$scope', '$rootScope', 'ModalService', function ($scope, $rootScope, ModalService) {
 
     //get all users in the system
     $rootScope.get("/users/", function (data) {
@@ -10,14 +10,14 @@ angular.module('ehelseEditor').controller('AdministerUsersController', ['$scope'
 
 
     //add user modal
-    $scope.addUserModal = function(){
+    $scope.addUserModal = function () {
         ModalService.showModal({
             templateUrl: "app/components/administerUsers/addUserModal-view.html",
             controller: "AddUserModalController",
             animation: false
-        }).then(function(modal) {
+        }).then(function (modal) {
             modal.element.modal();
-            modal.close.then(function(result) {
+            modal.close.then(function (result) {
                 console.log(result);
             });
         });
@@ -25,7 +25,7 @@ angular.module('ehelseEditor').controller('AdministerUsersController', ['$scope'
 
 
     //TODO add user
-    $scope.addUser = function(){
+    $scope.addUser = function () {
 
 
     };
