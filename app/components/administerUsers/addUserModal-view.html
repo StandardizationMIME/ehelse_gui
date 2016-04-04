@@ -1,0 +1,34 @@
+<div class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form ng-controller="AddUserModalController" name="newTopicForm" role="form" method="post">
+                <div class="modal-header">
+                    <h3 class="center-align-text">Nytt tema</h3>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="topicTitle">Tittel: </label>
+                        <input type="text" name="topicTitle" id="topicTitle" class="form-control" ng-model="newTopic.title" required />
+                    </div>
+                    <div class="form-group">
+                        <label for="topicDescription">Beskrivelse: </label>
+                        <textarea name="topicDescription" id="topicDescription" class="form-control" ng-model="newTopic.description" rows="6" cols="50"></textarea>
+                    </div>
+                    <div class="form-group" >
+                        <label for="topicParent">Opprett tema under: </label>
+                        <select name="topicParent" id="topicParent" class="form-control" ng-model="newTopic.parentId" required>
+                            <option ng-value="null" ng-selected="true">Ingen</option>
+                            <option ng-repeat="topic in topicTupleList" ng-if="topic.level <= 2" value={{topic.id}}>{{topic.path}}</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <div class="form-actions">
+                        <button ng-click="postNewTopic(newTopic)" data-dismiss="modal" type="submit" ng-disabled="form.$invalid" class="btn btn-primary">Opprett nytt tema</button>
+                        <button type="button" data-dismiss="modal" class="btn btn-default pull-right">Avbryt</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
