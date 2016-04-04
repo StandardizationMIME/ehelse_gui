@@ -20,6 +20,10 @@
 
 /* ----- CH3 content ----- */
 
+.document-fields {
+    overflow-y: hidden;
+}
+
 
 /* ----- CH4 document ----- */
 
@@ -31,6 +35,12 @@
 
 
 /* ----- CH7 main ----- */
+
+.mainLogo {
+    width: 800px;
+    height: auto;
+    margin: auto;
+}
 
 
 /* ----- CH8 myPage ----- */
@@ -256,6 +266,7 @@ input.version-id {
 
 /*****************Administer*Fields******************/
 
+
 .administer-fields ul{
     margin: 0;
     padding: 0;
@@ -265,19 +276,32 @@ input.version-id {
     text-decoration: none;
     list-style-type: none;
     cursor: move;
-
-
 }
 
 .administer-fields .field-list-title{
     display: inline-block;
 }
 
-.field-item{
-    border-top: 1px solid black;
+.field-mandatory {
+    display: inline-block;
+    margin-left: 40px;
+}
+
+span.field-item{
     border-bottom: 1px solid black;
-    margin: 0;
-    padding:5px;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-radius: 0;
+    box-shadow: none;
+}
+
+.field-item{
+    border: 1px none;
+    box-shadow: 1px 1px 1px 1px #b8b8b8;
+    border-radius: 10px;
+    margin-bottom: 8px;
+    padding:10px;
     background: #f3f3f3;
     width: 100%;
 }

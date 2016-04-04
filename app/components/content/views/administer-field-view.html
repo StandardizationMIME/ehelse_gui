@@ -1,67 +1,32 @@
-
-<section ng-controller="AdministerFieldController" class="administer-fields" >
-    <ul class="nav nav-pills">
-        <li ng-class="{active:isSet(1)}"><a href ng-click="setTab(1)">Standard Felter</a></li>
-        <li ng-class="{active:isSet(2)}"><a href ng-click="setTab(2)">Profil Felter</a></li>
-    </ul>
-
-    <div ng-show="isSet(1)">
-        <h4>Administrer Standard Felter</h4>
-        <form name="administerStandardFieldForm" role="form" ng-submit="" class="" method="post">
-
-                        <span class="field-item field-list-title">
-                            <span class="field-item-field">Tittel</span>
-                            <span class="field-item-field">Beskrivelse</span>
-                            <span class="field-item-field">Obligatorisk</span>
-                        </span>
-
-
-            <ul ui-sortable="sortableOptions" ng-model="standardFields" class="list">
-                <li ng-repeat="field in standardFields" class="field-item">
-                    <input type="hidden" ng-model="field.sequence">
-                    <input type="text" ng-model="field.title" >
-                    <input type="text" ng-model="field.description" >
-                    <input type="checkbox" ng-model="field.mandatory" >
+<section ng-controller="AdministerFieldController" class="administer-fields">
+    <div>
+        <div class="shadow-below">
+            <div class="headline-box">
+                <h4>Administrer dokumentfelter</h4>
+            </div>
+            <p class="tenPixVerticalPadding">
+                <input type="button" value="Lagre" ng-click="updateStandardFields()"/>
+            </p>
+        </div>
+        <form name="administerFieldForm" role="form" ng-submit="" method="post">
+            <span class="field-item field-list-title">
+                <label for="fieldTitle" class="field-item-field">Tittel</label>
+                <label for="fieldDescription" class="field-item-field">Beskrivelse</label>
+                <label for="fieldMandatory" class="field-item-field">Obligatorisk</label>
+            </span>
+            <ul ui-sortable="sortableOptions" ng-model="documentFields">
+                <li ng-repeat="field in documentFields" class="field-item document-fields">
+                    <input type="hidden" ng-model="field.sequence"/>
+                    <input id="fieldTitle" type="text" ng-model="field.title" class="form-control"/>
+                    <input id="fieldDescription" type="text" ng-model="field.description" class="form-control"/>
+                    <div class="field-mandatory">
+                        <input id="fieldMandatory" type="checkbox" ng-model="field.mandatory"/>
+                    </div>
+                    <div class="pull-right">
+                        <span class="fa fa-remove fa-fw vcenter clickable removeUser"></span>
+                    </div>
                 </li>
             </ul>
-            <input type="button" value="Lagre" ng-click="updateStandardFields()">
-
         </form>
-
-
-    </div>
-    <div ng-show="isSet(2)">
-        <h4>Administrer Profil Felter</h4>
-        <form name="administerStandardFieldForm" role="form" ng-submit="" class="" method="post">
-            <table >
-                <thead>
-                <tr>
-                    <td>Rekkefølge</td>
-                    <td>Tittel</td>
-                    <td>Beskrivelse</td>
-                    <td>Obligatorisk</td>
-                </tr>
-                </thead>
-                <tbody ng-repeat="field in profileFields">
-                <tr ng-model="field">
-                    <td>
-                        <input ng-model="field.sequence">
-                    </td>
-                    <td>
-                        <input ng-model="field.title" >
-                    </td>
-                    <td>
-                        <input ng-model="field.description" >
-                    </td>
-                    <td>
-                        <input ng-model="field.mandatory" >
-                    </td>
-                </tr>
-
-                </tbody>
-            </table>
-
-        </form>
-
     </div>
 </section>
