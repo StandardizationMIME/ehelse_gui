@@ -22,14 +22,6 @@ angular.module('ehelseEditor').controller('AdministerUsersController', ['$scope'
         });
     };
 
-
-
-    //TODO add user
-    $scope.addUser = function () {
-
-
-    };
-
     //delete specific user
     $scope.deleteUser = function (userId, name) {
         var inputName = prompt("Skriv inn navnet til brukeren for å slette den for alltid: \"" + name + "\"");

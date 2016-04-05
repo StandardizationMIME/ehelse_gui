@@ -2,10 +2,6 @@
 
 angular.module('ehelseEditor').controller('AddUserController', [ '$scope', '$http','$rootScope', function( $scope, $http, $rootScope) {
 
-    $scope.close = function(result) {
-        close(result, 200); // close, but give 200ms for bootstrap to animate
-    };
-
     $scope.newUser = {
         "name" : "",
         "email" : ""
@@ -13,8 +9,14 @@ angular.module('ehelseEditor').controller('AddUserController', [ '$scope', '$htt
 
     $scope.addUser = function(){
 
+
         if($scope.newUser.name != "" && $scope.newUser.email != ""){
-            $rootScope.post("/users/",$scope.newUser,function(){},function(){});
+            alert($scope.newUser.name + " + " + $scope.newUser.email);
+            $rootScope.post("users/",$scope.newUser,function(){
+                $scope.notifyStandardSuccess("Opprettet ny bruker.")
+            },function(){
+                $scope.notifyStandardError("Brukeren ble ikke opprettet.")
+            });
         }else{
             //feedback on empty
         }
