@@ -4,7 +4,7 @@ angular.module('ehelseEditor').controller('AdministerUsersController', ['$scope'
 
     //get all users in the system
     $rootScope.get("/users/", function (data) {
-        $scope.userData = data;
+        $scope.userList = data;
     }, function () {
     });
 

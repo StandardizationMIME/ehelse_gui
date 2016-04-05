@@ -11,8 +11,10 @@ angular.module('ehelseEditor').controller('AddUserController', [ '$scope', '$htt
 
 
         if($scope.newUser.name != "" && $scope.newUser.email != ""){
-            alert($scope.newUser.name + " + " + $scope.newUser.email);
-            $rootScope.post("users/",$scope.newUser,function(){
+
+            $rootScope.post("users/",$scope.newUser,function(data){
+                //FIXME ADD NEW USER TO LIST
+                //$scope.userList.push(data);
                 $scope.notifyStandardSuccess("Opprettet ny bruker.")
             },function(){
                 $scope.notifyStandardError("Brukeren ble ikke opprettet.")
