@@ -178,6 +178,7 @@ textarea {
     cursor: pointer;
     color: dodgerblue;
 }
+
 .document-clickable:hover {
     cursor: pointer;
     color: dodgerblue;
@@ -315,6 +316,32 @@ span.field-item{
 .administer-fields .field-item .field-item-field:nth-child(2), .administer-fields .field-item input:nth-child(3){
     width:400px;
     display: inline-block;
+}
+
+.draggable:hover {
+    background-color: #f9f9f9;
+}
+
+#addField {
+    border-radius: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 10px;
+    text-align: center;
+    margin-top: 20px;
+    margin-left: 0;
+    margin-right: 79%;
+    background-color: #0068e7;
+    color: white;
+    box-shadow: 1px 1px 1px 1px #b8b8b8;
+}
+
+#addField:hover{
+    background-color: #0099f9;
+    -webkit-transition: all 0.2s ease;
+    -moz-transition: all 0.2s ease;
+    -o-transition: all 0.2s ease;
+    transition: all 0.2s ease;
 }
 
 /* User dropdown start */

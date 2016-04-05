@@ -16,7 +16,7 @@
                 <label for="fieldeDelete" class="field-item-field pull-right">Slett felt</label>
             </span>
             <ul ui-sortable="sortableOptions" ng-model="documentFields">
-                <li ng-repeat="field in documentFields" class="field-item document-fields">
+                <li ng-repeat="field in documentFields" class="field-item document-fields draggable">
                     <input type="hidden" ng-model="field.sequence"/>
                     <input id="fieldTitle" type="text" ng-model="field.title" class="form-control"/>
                     <input id="fieldDescription" type="text" ng-model="field.description" class="form-control"/>
@@ -24,10 +24,14 @@
                         <input id="fieldMandatory" type="checkbox" ng-model="field.mandatory"/>
                     </div>
                     <div class="pull-right">
-                        <span class="fa fa-remove fa-fw vcenter clickable removeUser"></span>
+                        <span id="fieldeDelete" class="fa fa-remove fa-fw vcenter clickable removeUser"></span>
                     </div>
                 </li>
             </ul>
+            <div id="addField" class="row clickable" ng-click="openNewFieldModal()">
+                <span id="addNewField" class="fa fa-pencil-square-o fa-2x vcenter"></span>
+                <span class="col-lg-8 vcenter">Opprett nytt felt</span>
+            </div>
         </form>
     </div>
 </section>

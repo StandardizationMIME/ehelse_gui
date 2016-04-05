@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('ehelseEditor').controller('AdministerFieldController', [ '$scope','$rootScope', function( $scope, $rootScope) {
+angular.module('ehelseEditor').controller('AdministerFieldController', [ '$scope','$rootScope', 'ModalService', function( $scope, $rootScope, ModalService) {
 
     $scope.documentFields = [
         {
@@ -56,7 +56,18 @@ angular.module('ehelseEditor').controller('AdministerFieldController', [ '$scope
         containment: "parent"
     });
 
-
+    $scope.openNewFieldModal = function(){
+        ModalService.showModal({
+            templateUrl: 'app/components/content/views/new-field-modal.html',
+            controller: "NewFieldModalController",
+            animation: false
+        }).then(function(modal) {
+            modal.element.modal();
+            modal.close.then(function(result) {
+                console.log(result);
+            });
+        });
+    };
 
     $scope.sortableOptions = {
         stop: function(e, ui) {

@@ -2,10 +2,6 @@
 
 angular.module('ehelseEditor').controller('NewTopicModalController', [ '$scope', "$rootScope", "ModalService", function($scope, $rootScope, ModalService) {
 
-    $scope.close = function(result) {
-        close(result, 200); // close, but give 200ms for bootstrap to animate
-    };
-
     $scope.newTopic = {
         "title" : "",
         "description" : "",
