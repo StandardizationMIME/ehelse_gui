@@ -9,19 +9,19 @@ angular.module('ehelseEditor').controller('AdministerUsersController', ['$scope'
     });
 
 
-    //add user modal
-    $scope.addUserModal = function () {
+    $scope.openNewUserModal = function() {
         ModalService.showModal({
-            templateUrl: "app/components/administerUsers/addUserModal-view.html",
+            templateUrl: 'app/components/administerUsers/addUser/addUserModal-view.html',
             controller: "AddUserModalController",
             animation: false
-        }).then(function (modal) {
+        }).then(function(modal) {
             modal.element.modal();
-            modal.close.then(function (result) {
+            modal.close.then(function(result) {
                 console.log(result);
             });
         });
     };
+
 
 
     //TODO add user
