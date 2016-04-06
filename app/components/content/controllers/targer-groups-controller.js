@@ -68,8 +68,9 @@ angular.module('ehelseEditor').controller('TargetGroupsController',['$scope','Mo
     $rootScope.postNewTargetGroup = function(){
         console.log('postNewTargetGroup');
 
-        if($rootScope.newTargetGroup.parentId == "null"){
+        if($rootScope.newTargetGroup.parentId == "null" || $rootScope.newTargetGroup.parentId == ""){
             $rootScope.newTargetGroup.parentId = null;
+
         }
 
         $scope.post(
