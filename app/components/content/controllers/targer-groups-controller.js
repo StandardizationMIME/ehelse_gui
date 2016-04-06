@@ -10,7 +10,7 @@ angular.module('ehelseEditor').controller('TargetGroupsController',['$scope','Mo
         }).then(function(modal){
             modal.element.modal();
             modal.close.then(function(result){
-               console.log(result)
+                console.log(result)
             });
         });
     };
@@ -80,6 +80,7 @@ angular.module('ehelseEditor').controller('TargetGroupsController',['$scope','Mo
                 $rootScope.notifyMessage('Ny målgruppe lagt til!','success');
                 $rootScope.targetGroups.push(data);
                 $scope.updateTGTuples();
+                $scope.updateTGDictionary();
             },function(){
                 $rootScope.notifyMessage('Målgruppe ble ikke lagt til!','error')
             }
@@ -98,6 +99,7 @@ angular.module('ehelseEditor').controller('TargetGroupsController',['$scope','Mo
                 function(){
                     $scope.selectedTG.groups = [];
                     $scope.updateTGTuples();
+                    $scope.updateTGDictionary();
                 },
                 function(){}
             );
@@ -109,10 +111,11 @@ angular.module('ehelseEditor').controller('TargetGroupsController',['$scope','Mo
     $rootScope.getTargetGroups = function(){
         $scope.get('target-groups/',
             function(data){
-            $rootScope.targetGroups = data.targetGroups;
-            $scope.updateTGTuples();
+                $rootScope.targetGroups = data.targetGroups;
+                $scope.updateTGTuples();
+                $scope.updateTGDictionary();
             },function(){});
-        
+
     };
 
     $scope.updateTGTuples = function () {
@@ -133,6 +136,20 @@ angular.module('ehelseEditor').controller('TargetGroupsController',['$scope','Mo
             })
         }
         return tuples;
+    };
+
+    $scope.generateTargetGroupDictionary = function (targetGroups) {
+        var dictionay = {};
+
+        for (var i = 0; i < targetGroups.length; i++) {
+            var targetGroup = targetGroups[i];
+            dictionay[targetGroup.id] = targetGroup;
+        }
+        return dictionay;
+    };
+
+    $rootScope.updateTGDictionary = function () {
+        $rootScope.TGDictionary = $scope.generateTargetGroupDictionary($rootScope.targetGroups);
     };
 
 }]);
