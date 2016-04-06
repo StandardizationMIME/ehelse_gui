@@ -1,0 +1,10 @@
+angular.module('ehelseEditor').controller('EditTargetGroupController', ['$rootScope','$scope', 'close', function( $rootScope, $scope, close) {
+    $scope.close = function (result){
+        if (result == 'edit'){
+            $rootScope.saveTGChanges($rootScope.editGroup);
+            close("Endringene ble gjort",500);
+        }else{
+            close("Nothing changed",500);
+        }
+    };
+}]);

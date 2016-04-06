@@ -28,120 +28,110 @@ angular.module('ehelseEditor').controller('TargetGroupsController',['$scope','Mo
         });
     };
 
+    $scope.showEditTGModal = function(group){
+        console.log('showEditTGModal');
+        $rootScope.editGroup = group;
+        ModalService.showModal({
+            templateUrl: 'app/components/content/views/edit-target-group-modal.html',
+            controller: 'EditTargetGroupController',
+            animation: false
+        }).then(function(modal){
+            modal.element.modal();
+            modal.close.then(function(result){
+                console.log(result)
+            });
+        });
+    };
+
+    $rootScope.saveTGChanges = function(group){
+        $scope.put('target-groups/'+group.id,
+            group,
+            function(data){
+                console.log(data);
+                $rootScope.notifyMessage('Endringene ble lagret!','success')
+            },
+            function(data){
+                console.log(data);
+            });
+
+        console.log('saveTGChanges');
+    };
+
     $rootScope.newTargetGroup = {
         "id": "",
-        "title": "",
+        "name": "",
         "description": "",
-        "abbreviation": "",
-        "parent": ""
+        "parentId": "",
+        "abbreviation": ""
     };
 
     $rootScope.postNewTargetGroup = function(){
         console.log('postNewTargetGroup');
+
+        if($rootScope.newTargetGroup.parentId == "null"){
+            $rootScope.newTargetGroup.parentId = null;
+        }
+
         $scope.post(
-            'target_groups/',
+            'target-groups/',
             $scope.newTargetGroup,
             function(data){
-                $scope.notifyMessage('Ny målgruppe lagt til!','success');
+                $rootScope.notifyMessage('Ny målgruppe lagt til!','success');
+                $rootScope.targetGroups.push(data);
+                $scope.updateTGTuples();
             },function(){
-                $scope.notifyMessage('Målgruppe ble ikke lagt til!','error')
+                $rootScope.notifyMessage('Målgruppe ble ikke lagt til!','error')
             }
         );
     };
 
     $rootScope.selectedTG = {
         groups: []
+
     };
 
-    $scope.deleteTargetGroup = function(){
+    $rootScope.deleteTargetGroup = function(){
         for (var i = 0; i < $scope.selectedTG.groups.length; i++){
             $scope.delete(
-                'target_groups/'+i,
+                'target-groups/'+i,
                 function(){
                     $scope.selectedTG.groups = [];
+                    $scope.updateTGTuples();
                 },
                 function(){}
             );
         }
     };
 
-    $rootScope.targetGroups = [
-        {
-            "id": "1",
-            "title": "Apotek",
-            "description": "Apotek",
-            "abbreviation": "A",
-            "parentID": ""
-        },
-        {
-            "id": "2",
-            "title": "Allmennlegetjeneste",
-            "description": "Allmennlegetjeneste",
-            "abbreviation": "AL",
-            "parentID": ""
-        },
-        {
-            "id": "3",
-            "title": "Alle",
-            "description": "Gjelder de fleste foretak i helse- og omsorgstjenesten. For å vite om en standard er obligatorisk eller anbefalt for en gitt standard er det nødvendig å lese den.",
-            "abbreviation": "Alle",
-            "parentID": ""
-        },
-        {
-            "id": "4",
-            "title": "Apotek",
-            "description": "Apotek som kan levere multidosepakkede legemidler",
-            "abbreviation": "AM",
-            "parentID": ""
-        },
-        {
-            "id": "5",
-            "title": "Ambulanse",
-            "description": "Ambulansetjenesten",
-            "abbreviation": "AMB",
-            "parentID": ""
-        },
-        {
-            "id": "6",
-            "title": "AMK",
-            "description": "AMK-sentraler",
-            "abbreviation": "AMK",
-            "parentID": ""
-        },
-        {
-            "id": "7",
-            "title": "Avtalespes",
-            "description": "Avtalespesialister",
-            "abbreviation": "Spesialist",
-            "parentID": ""
-        },
-        {
-            "id": "8",
-            "title": "Bandasje",
-            "description": "Bandasjister",
-            "abbreviation": "B",
-            "parentID": ""
-        },
-        {
-            "id": "9",
-            "title": "Biokjemi",
-            "description": "​Virksomheter som utfører en medisinsk biokjemisk undersøkelse",
-            "abbreviation": "BIO",
-            "parentID": ""
-        },
-        {
-            "id": "10",
-            "title": "Fastlege",
-            "description": "Fastlege",
-            "abbreviation": "FL",
-            "parentID": ""
-        },
-        {
-            "id": "11",
-            "title": "Folketrygd",
-            "description": "Virksomheter som faller inn under folketrygdlovens kapittel 5, stønad ved helsetjenester",
-            "abbreviation": "FOLK",
-            "parentID": ""
+    $rootScope.targetGroups = [];
+
+    $rootScope.getTargetGroups = function(){
+        $scope.get('target-groups/',
+            function(data){
+            $rootScope.targetGroups = data.targetGroups;
+            $scope.updateTGTuples();
+            },function(){});
+        
+    };
+
+    $scope.updateTGTuples = function () {
+        $rootScope.TGTuples = $scope.generateListOfTargetGroupTuple($rootScope.targetGroups);
+
+    };
+
+    $rootScope.getTargetGroups();
+
+    $scope.generateListOfTargetGroupTuple = function(targetGroups) {
+        var tuples = [];
+
+        for (var i = 0; i < targetGroups.length; i++) {
+            var targetGroup = targetGroups[i];
+            tuples.push({
+                id: targetGroup.id,
+                name: targetGroup.name
+            })
         }
-    ];
+        return tuples;
+    };
+
 }]);

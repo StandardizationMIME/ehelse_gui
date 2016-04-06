@@ -17,7 +17,7 @@ angular.module('ehelseEditor').controller('NotificationController', [ '$scope', 
         $scope.notifyMessage(message, 'error');
     };
 
-    $scope.notifyMessage = function(message, type) {
+    $rootScope.notifyMessage = function(message, type) {
 
         var notification = $("#notificationMessage");
 

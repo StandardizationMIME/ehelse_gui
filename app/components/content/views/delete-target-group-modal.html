@@ -1,4 +1,4 @@
-<div class="modal fade">
+<div class="modal fade" tabindex='-1'>
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -8,12 +8,13 @@
             <div class="modal-body">
                 <form role="form">
                     <div class="form-group" ng-repeat="group in targetGroups">
-                        <input type="checkbox" checklist-model="selectedTG.groups" checklist-value="group.id"> {{group.title}}
+                        <input type="checkbox" checklist-model="selectedTG.groups" checklist-value="group.id"> {{group.name}}
                     </div>
                 </form>
+                {{selectedTG}}
             </div>
             <div class="modal-footer">
-                <button type="button" ng-click="close('add')" class="btn btn-primary" data-dismiss="modal">Slett valgte</button>
+                <button type="button" ng-click="close('delete')" class="btn btn-primary" data-dismiss="modal">Slett valgte</button>
                 <button type="button" ng-click="close('cancel')" class="btn btn-default" data-dismiss="modal">Avbryt</button>
             </div>
         </div>
