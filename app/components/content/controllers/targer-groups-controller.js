@@ -44,10 +44,16 @@ angular.module('ehelseEditor').controller('TargetGroupsController',['$scope','Mo
     };
 
     $rootScope.saveTGChanges = function(group){
+
+        if(group.parentId == "null" || group.parentId == ""){
+            group.parentId = null;
+        }
+
         $scope.put('target-groups/'+group.id,
             group,
             function(data){
                 console.log(data);
+                $scope.updateTGTuples();
                 $rootScope.notifyMessage('Endringene ble lagret!','success')
             },
             function(data){
@@ -57,13 +63,6 @@ angular.module('ehelseEditor').controller('TargetGroupsController',['$scope','Mo
         console.log('saveTGChanges');
     };
 
-    $rootScope.newTargetGroup = {
-        "id": "",
-        "name": "",
-        "description": "",
-        "parentId": "",
-        "abbreviation": ""
-    };
 
     $rootScope.postNewTargetGroup = function(){
         console.log('postNewTargetGroup');
@@ -81,6 +80,7 @@ angular.module('ehelseEditor').controller('TargetGroupsController',['$scope','Mo
                 $rootScope.targetGroups.push(data);
                 $scope.updateTGTuples();
                 $scope.updateTGDictionary();
+                $scope.clearNewTargetGroup();
             },function(){
                 $rootScope.notifyMessage('Målgruppe ble ikke lagt til!','error')
             }
@@ -123,7 +123,6 @@ angular.module('ehelseEditor').controller('TargetGroupsController',['$scope','Mo
 
     };
 
-    $rootScope.getTargetGroups();
 
     $scope.generateListOfTargetGroupTuple = function(targetGroups) {
         var tuples = [];
@@ -151,5 +150,18 @@ angular.module('ehelseEditor').controller('TargetGroupsController',['$scope','Mo
     $rootScope.updateTGDictionary = function () {
         $rootScope.TGDictionary = $scope.generateTargetGroupDictionary($rootScope.targetGroups);
     };
+
+    $scope.clearNewTargetGroup = function () {
+        $rootScope.newTargetGroup = {
+            "id": "",
+            "name": "",
+            "description": "",
+            "parentId": "",
+            "abbreviation": ""
+        };
+    };
+
+    $scope.clearNewTargetGroup();
+    $rootScope.getTargetGroups();
 
 }]);
