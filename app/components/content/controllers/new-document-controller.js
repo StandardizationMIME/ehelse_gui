@@ -26,13 +26,13 @@ angular.module('ehelseEditor').controller('NewDocumentController', [ '$scope', '
             function(data){
                 console.log("New document created");
                 $rootScope.addDocuments(data);
-                $rootScope.notifyStandardSuccess("Ny standard ble opprettet");
+                $rootScope.notifySuccess("Ny standard ble opprettet");
                 $rootScope.view = "";
             }
             ,
             function(){
                 console.log("New document could not be created");
-                $rootScope.notifyStandardError("Standard kunne ikke opprettes");
+                $rootScope.notifyError("Standard kunne ikke opprettes");
             }
         );
     }

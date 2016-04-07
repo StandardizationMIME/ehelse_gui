@@ -4,26 +4,20 @@ angular.module('ehelseEditor').controller('NotificationController', [ '$scope', 
 
     $('#feedback-alert').hide();
 
-    $rootScope.notifyTopicSuccess = function(message){
-        $scope.notifyMessage(message, 'success');
+    $rootScope.notifySuccess = function(message, time){
+        $scope.notifyMessage(message, 'success', time);
     };
-    $rootScope.notifyTopicError = function(message){
-        $scope.notifyMessage(message, 'error');
-    };
-    $rootScope.notifyStandardSuccess = function(message){
-        $scope.notifyMessage(message, 'success');
-    };
-    $rootScope.notifyStandardError = function(message){
-        $scope.notifyMessage(message, 'error');
+    $rootScope.notifyError = function(message, time){
+        $scope.notifyMessage(message, 'error', time);
     };
 
-    $scope.notifyMessage = function(message, type) {
+    $scope.notifyMessage = function(message, type, time) {
 
         var notification = $("#notificationMessage");
 
         notification.removeClass();
 
-        notification.fadeTo(3000, 500).slideUp(500, function() {});
+        notification.fadeTo(time, 500).slideUp(500, function() {});
 
         if(type == "success"){
             notification.addClass('alert alert-success');
