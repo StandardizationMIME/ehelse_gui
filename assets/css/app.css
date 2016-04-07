@@ -353,6 +353,11 @@ div>div>.dropdown-toggle:hover{
 .target-group-add, .target-group-delete{
     color: #ffffff !important;
 }
+
+input[readonly], textarea[readonly]{
+    background-color: #ffffff !important;
+}
+
 /* Administer Users start */
 #userList img{
     width: 50px;
