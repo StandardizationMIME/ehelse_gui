@@ -4,9 +4,10 @@ angular.module('ehelseEditor').controller('DocumentController', [ '$scope','$roo
 
     //Modal for creating new topic
     $scope.newDocumentModal = function(){
+        console.log("New document modal running");
         ModalService.showModal({
             templateUrl: 'app/components/content/views/new-document-view.html',
-            controller: "modalController",
+            controller: "NewDocumentController",
             animation: false
         }).then(function(modal) {
             modal.element.modal();
