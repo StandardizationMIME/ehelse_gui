@@ -109,4 +109,6 @@ angular.module('ehelseEditor').controller('MyPageController', ['$scope', '$rootS
          */
     };
 
+    console.log("mypage-ctrl",$rootScope.currentUser);
+
 }]);

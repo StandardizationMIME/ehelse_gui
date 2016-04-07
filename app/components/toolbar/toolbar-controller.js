@@ -10,5 +10,6 @@ angular.module('ehelseEditor').controller('ToolbarController',['$rootScope', '$s
       $rootScope.changeContentView('targetgroups');
     };
 
+    console.log($rootScope.currentUser);
 }]);
 
