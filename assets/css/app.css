@@ -245,6 +245,7 @@ input.version-id {
 .headline-box {
     position: relative;
     height: 50px;
+    overflow-x: auto;
 }
 
 .headline-box h4 {
