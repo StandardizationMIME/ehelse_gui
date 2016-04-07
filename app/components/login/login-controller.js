@@ -16,7 +16,7 @@ angular.module('ehelseEditor').controller('LoginController', [ '$scope', '$rootS
             'users/login/',
             function(data){
                 $rootScope.currentUser = data;
-                $cookies.put('currentUser', data);
+                $cookies.put('currentUser', angular.toJson(data));
                 $location.path('/main-view').replace();
             },
             function(){}

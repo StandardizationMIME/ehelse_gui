@@ -6,7 +6,10 @@
     angular.module('ehelseEditor').run([ '$http', '$rootScope', '$cookies', '$location', function($http, $rootScope, $cookies, $location) {
         $rootScope.userName = $cookies.get('username');
         $rootScope.password = $cookies.get('password');
-        $rootScope.currentUser = $cookies.get('currentUser');
+        var user= $cookies.get('currentUser');
+        if(user){
+            $rootScope.currentUser = angular.fromJson(user);
+        }
         $rootScope.apiUrl = 'https://refkat.eu/v1/';
 
         $rootScope.topics = [];
