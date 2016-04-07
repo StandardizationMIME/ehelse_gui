@@ -16,6 +16,56 @@
 
 
 /* ----- CH2 administerUsers ----- */
+#userList img{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+}
+.userRow{
+    border-radius: 50px;
+    background-color: #fff;
+    border: solid #ccc thin;
+    width: 70%;
+    margin: 0.5em;
+}
+#addUser{
+    color: #337AB7;
+    border-radius: 50px;
+    background-color: #fff;
+    border: dashed #ccc thin;
+    width: 23%;
+    margin: 0.5em;
+    padding: 1em;
+}
+#addUser:hover{
+    background-color: #adadad;
+    -webkit-transition: all 0.2s ease;
+    -moz-transition: all 0.2s ease;
+    -o-transition: all 0.2s ease;
+    transition: all 0.2s ease;
+}
+.vcenter {
+    display: inline-block;
+    vertical-align: middle;
+    float: none;
+}
+.removeUser{
+    color: #f60e24;
+    font-size: 2em;
+    padding-right: 1em;
+}
+.userRowName {
+    margin-left: 1em;
+}
+#administerUsersNotifications{
+    margin-bottom: 5%;
+}
+
+
+
+
 
 
 /* ----- CH3 content ----- */
@@ -34,9 +84,51 @@
 
 
 /* ----- CH8 myPage ----- */
+#accountInfo{
+    margin-top: 5%;
+}
+.dataField{
+    display: inline;
+}
+.dataRow:hover{background-color: #E6E6E6;}
 
+.dataRow{
+    width: 75%;
+    margin-left: 5%;
+}
+.dataRow>*{
+    padding: 10px;
+    margin: 0;
+}
+.subForm{
+    width: 75%;
+    margin-left: 5%;
+    padding: 2% 7% 5% 0;
+    background-color: #E6E6E6;
+}
+.subForm>*{
+    padding-left: 5%;
+}
+.activeRow{
+    font-weight: bolder;
+    color: dodgerblue;
+    background-color: #E6E6E6;
+    border-bottom: inset;
+    border-color: #ccc;
+}
 
 /* ----- CH9 toolbar ----- */
+
+/*toolbar start*/
+div>div>.dropdown-toggle{
+    margin-bottom: 0.5em;
+    background-color: inherit;
+    border: none;
+}
+div>div>.dropdown-toggle:hover{
+    border-radius: 5%;
+}
+/*toolbar end*/
 
 
 /* ----- CH10 topic ----- */
@@ -287,57 +379,10 @@ input.version-id {
     display: inline-block;
 }
 
-
 .administer-fields .field-item .field-item-field:nth-child(2), .administer-fields .field-item input:nth-child(3){
     width:400px;
     display: inline-block;
 }
-
-/* User dropdown start */
- div>div>.dropdown-toggle{
-     margin-bottom: 0.5em;
-     background-color: inherit;
-     border: none;
- }
-div>div>.dropdown-toggle:hover{
-    border-radius: 5%;
-}
-/* User dropdown end */
-
-/* MyPage start */
-#accountInfo{
-    margin-top: 5%;
-}
-.dataField{
-    display: inline;
-}
-.dataRow:hover{background-color: #E6E6E6;}
-
-.dataRow{
-    width: 75%;
-    margin-left: 5%;
-}
-.dataRow>*{
-    padding: 10px;
-    margin: 0;
-}
-.subForm{
-    width: 75%;
-    margin-left: 5%;
-    padding: 2% 7% 5% 0;
-    background-color: #E6E6E6;
-}
-.subForm>*{
-    padding-left: 5%;
-}
-.activeRow{
-    font-weight: bolder;
-    color: dodgerblue;
-    background-color: #E6E6E6;
-    border-bottom: inset;
-    border-color: #ccc;
-}
-/* MyPage end */
 
 /*~~~~~~~~~~~~TARGET GROUP~~~~~~~~~~~*/
 
@@ -353,52 +398,3 @@ div>div>.dropdown-toggle:hover{
 .target-group-add, .target-group-delete{
     color: #ffffff !important;
 }
-/* Administer Users start */
-#userList img{
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    margin-top: 0.5em;
-    margin-bottom: 0.5em;
-}
-.userRow{
-    border-radius: 50px;
-    background-color: #fff;
-    border: solid #ccc thin;
-    width: 70%;
-    margin: 0.5em;
-}
-#addUser{
-    color: #337AB7;
-    border-radius: 50px;
-    background-color: #fff;
-    border: dashed #ccc thin;
-    width: 23%;
-    margin: 0.5em;
-    padding: 1em;
-}
-#addUser:hover{
-    background-color: #adadad;
-    -webkit-transition: all 0.2s ease;
-    -moz-transition: all 0.2s ease;
-    -o-transition: all 0.2s ease;
-    transition: all 0.2s ease;
-}
-.vcenter {
-    display: inline-block;
-    vertical-align: middle;
-    float: none;
-}
-.removeUser{
-    color: #f60e24;
-    font-size: 2em;
-    padding-right: 1em;
-}
-.userRowName {
-    margin-left: 1em;
-}
-#administerUsersNotifications{
-    margin-bottom: 5%;
-}
-/* Administer Users end */
-
