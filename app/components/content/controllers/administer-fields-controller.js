@@ -1,119 +1,152 @@
-
-
 'use strict';
 
-angular.module('ehelseEditor').controller('AdministerFieldController', [ '$scope', '$http','$rootScope', function( $scope, $rootScope) {
+angular.module('ehelseEditor').controller('AdministerFieldController', [ '$scope','$rootScope', 'ModalService', function( $scope, $rootScope, ModalService) {
 
-    $scope.standardFields = [
+    $rootScope.documentFields = [
         {
-            "id": 0,
-            "title": "Utgiver",
-            "description": "Utgiveren av en standard",
-            "sequence": 1,
-            "fieldType" : {
-                "id" : 0,
-                "type" : "string"
+            'id': 0,
+            'title': 'Utgiver',
+            'description': 'Utgiveren av en standard',
+            'sequence': 1,
+            'fieldType' : {
+                'id' : 0,
+                'type' : 'string'
             }
         },
         {
-            "id": 0,
-            "title": "versjon",
-            "description": "Versj",
-            "sequence": 1,
-            "fieldType" : {
-                "id" : 0,
-                "type" : "integer"
+            'id': 1,
+            'title': 'versjon',
+            'description': 'Versj',
+            'sequence': 1,
+            'fieldType' : {
+                'id' : 0,
+                'type' : 'integer'
             },
-            "mandatory": true
+            'mandatory': true
         },
         {
-            "id": 0,
-            "title": "ver2323sjon",
-            "description": "Versj",
-            "sequence": 1,
-            "fieldType" : {
-                "id" : 0,
-                "type" : "integer"
+            'id': 2,
+            'title': 'ver2323sjon',
+            'description': 'Versj',
+            'sequence': 1,
+            'fieldType' : {
+                'id' : 0,
+                'type' : 'integer'
             },
-            "mandatory": true
+            'mandatory': true
         },
         {
-            "id": 0,
-            "title": "versjsasason",
-            "description": "Versj",
-            "sequence": 1,
-            "fieldType" : {
-                "id" : 0,
-                "type" : "integer"
+            'id': 3,
+            'title': 'versjsasason',
+            'description': 'Versj',
+            'sequence': 1,
+            'fieldType' : {
+                'id' : 0,
+                'type' : 'integer'
             },
-            "mandatory": true
+            'mandatory': true
         }
     ];
 
-    $scope.profileFields = [
-        {
-            "id": 0,
-            "title": "Utgiver",
-            "description": "Utgiveren av en standard",
-            "sequence": 1,
-            "fieldType" : {
-                "id" : 0,
-                "type" : "string"
+    $scope.openNewFieldModal = function(){
+        ModalService.showModal({
+            templateUrl: 'app/components/content/views/new-document-field-modal.html',
+            controller: 'DocumentFieldModalController',
+            animation: false
+        }).then(function(modal) {
+            modal.element.modal();
+            modal.close.then(function(result) {
+                console.log(result);
+            });
+        });
+    };
+
+
+    //$scope.generateListOfDocumentFieldsTuple = function(documentFields) {
+    //    var tuples = [];
+    //
+    //    for (var i = 0; i < documentFields.length; i++) {
+    //        var targetGroup = documentFields[i];
+    //        tuples.push({
+    //            id: documentFields.id,
+    //            title: documentFields.title
+    //        })
+    //    }
+    //    return tuples;
+    //};
+    //
+    //$scope.updateDFTuples = function() {
+    //    $rootScope.DFTuples = $scope.generateListOfDocumentFieldsTuple($scope.documentFields);
+    //};
+
+    //$scope.generateDocumentFieldsDictionary = function (documentFields) {
+    //    var dictionary = {};
+    //
+    //    for (var i = 0; i < documentFields.length; i++) {
+    //        var documentField = documentFields[i];
+    //        dictionary[documentField.id] = documentField;
+    //    }
+    //    return dictionary;
+    //};
+    //
+    //$scope.updateDFDictionary = function () {
+    //    $scope.DFDictionary = $scope.generateDocumentFieldsDictionary($scope.documentFields);
+    //};
+
+
+    $scope.getDocumentFieldById = function(id){
+        var documentFields = $rootScope.documentFields;
+        for (var i = 0; i < documentFields.length; i++){
+            if(documentFields[i].id == id){
+                return documentFields[i];
             }
-        },
-        {
-            "id": 0,
-            "title": "versjon",
-            "description": "Versj",
-            "sequence": 1,
-            "fieldType" : {
-                "id" : 0,
-                "type" : "integer"
-            },
-            "mandatory": true
         }
-    ];
-
-    $scope.fieldTypes = [
-        {
-            'id' : 0,
-            'title' : "string"
-        },
-        {
-            'id' : 0,
-            'title' : "integer"
-        },
-        {
-            'id' : 0,
-            'title' : "date"
-        },
-        {
-            'id' : 0,
-            'title' : "boolean"
-        }
-    ];
-
-    $scope.tab = 1;
-
-    $scope.setTab = function (tabId) {
-        this.tab = tabId;
+        return null;
     };
 
-    $scope.isSet = function (tabId) {
-        return this.tab === tabId;
+    $scope.editDocumentFieldModal = function(fieldId){
+     $rootScope.currentDocumentField = $scope.getDocumentFieldById(fieldId);
+        ModalService.showModal({
+            templateUrl: 'app/components/content/views/edit-document-field-modal.html',
+            controller: "DocumentFieldModalController",
+            animation: false
+        }).then(function(modal) {
+            modal.element.modal();
+            modal.close.then(function(result) {
+                console.log(result);
+            });
+        });
     };
 
-    $scope.updateStandardFields = function(){
-        console.log($scope.standardFields);
-    };
+
+
+
+    //$scope.clearNewDocumentField = function () {
+    //    $rootScope.newDocumentField = {
+    //        id: '',
+    //        title: '',
+    //        description: '',
+    //        sequence: '',
+    //        fieldType: {
+    //            id : '',
+    //            type : ''
+    //        }
+    //    };
+    //};
+
+
 
     $scope.sortableOptions = {
+        cancel: '.unsortable',
+        items: 'li:not(.unsortable)',
         stop: function(e, ui) {
-            var listItems = ui.item.context.parentNode.querySelectorAll("li");
+            var listItems = ui.item.context.parentNode.querySelectorAll('li');
             for(var i = 0; i < listItems.length; i++){
-                listItems[i].querySelectorAll("input")[0].value = i + 1;
+                listItems[i].querySelectorAll('input')[0].value = i + 1;
             }
         },
         axis: 'y'
     };
+
+
 }]);

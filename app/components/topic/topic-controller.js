@@ -6,7 +6,7 @@ angular.module('ehelseEditor').controller('TopicController',['$rootScope', '$sco
     $scope.newTopicModal = function(){
         ModalService.showModal({
             templateUrl: 'app/components/content/views/new-topic-view.html',
-            controller: "modalController",
+            controller: "NewTopicModalController",
             animation: false
         }).then(function(modal) {
             modal.element.modal();

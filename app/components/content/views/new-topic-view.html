@@ -1,7 +1,7 @@
 <div class="modal fade">
     <div class="modal-dialog">
         <div class="modal-content">
-            <form ng-controller="NewTopicController" name="newTopicForm" role="form" method="post">
+            <form ng-controller="NewTopicModalController" name="newTopicForm" role="form" method="post">
                 <div class="modal-header">
                     <h3 class="center-align-text">Nytt tema</h3>
                 </div>
@@ -24,7 +24,7 @@
                 </div>
                 <div class="modal-footer">
                     <div class="form-actions">
-                        <button ng-click="postNewTopic(newTopic)" data-dismiss="modal" type="submit" ng-disabled="form.$invalid" class="btn btn-primary">Opprett nytt tema</button>
+                        <button ng-click="postNewTopic(newTopic)" data-dismiss="modal" type="submit" ng-disabled="newTopicForm.$invalid" class="btn btn-primary">Opprett nytt tema</button>
                         <button type="button" data-dismiss="modal" class="btn btn-default pull-right">Avbryt</button>
                     </div>
                 </div>
