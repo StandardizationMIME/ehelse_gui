@@ -7,23 +7,29 @@ angular.module('ehelseEditor').controller('NewDocumentController', [ '$scope', '
         "topicId" : $rootScope.selectedTopicId,
         "title" : "",
         "description" : "",
-        "isInCatalog": false,
-        "sequence": 3,
-        "comment": "",
-        "targetGroups": [],
-        "fields": []
+        "sequence": "3",
+        "targetGroups": "",
+        "status": "",
+        "documentType": {
+            "id": "1",
+            "name": "standard"
+        }
     };
 
-    $scope.postNewDocument = function(standard){
-        var inputUrl = "";
-        if($rootScope.documentType == 'profil'){
-            inputUrl = 'profile';
-        }else if($rootScope.documentType == 'standard'){
-            inputUrl = 'standard';
-        }
+    $scope.get(
+        'document-types',
+        function(data){
+            console.log(data);
+            $scope.documentTypes = data.documentTypes;
+        },
+        function(){
 
+        }
+    );
+
+    $scope.postNewDocument = function(){
         $scope.post(
-            inputUrl + 's/',
+            'documents/',
             $scope.newDocument,
             function(data){
                 console.log("New document created");

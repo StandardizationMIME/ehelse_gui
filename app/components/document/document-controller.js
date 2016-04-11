@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('ehelseEditor').controller('DocumentController', [ '$scope','$rootScope', 'ModalService', function( $scope, $rootScope, ModalService) {
+angular.module('ehelseEditor').controller('DocumentController', [ '$scope','$rootScope', function( $scope, $rootScope) {
 
     $scope.getContent = function(id) {
         $scope.get('standards/' + id + '/versions/', function(data){
@@ -17,6 +17,8 @@ angular.module('ehelseEditor').controller('DocumentController', [ '$scope','$roo
         $(".document-clickable").removeClass('selected');
         $('#standard' + id).addClass('selected');
     };
+
+
 
 
     $rootScope.addDocuments = function(document){
