@@ -1,8 +1,47 @@
-<div class="form-group">
+<!--<div class="form-group">
     <label for="new-doc-tg">Målgrupper</label>
     <small class="text-muted">Trykk 'Velg' for å velge målgrupper</small>
     <ul id="new-doc-tg" class="list-group">
         <li class="list-group-item" ng-repeat="group in newDocument.targetGroups">{{group.name}}</li>
     </ul>
-    <button class="btn btn-default" ng-click="openModal('app/components/document/addDocument/addTargetGroupsToDocument/new-doc-tg-modal.html', 'NewDocTGController')">Velg</button>
+
+    <button class="btn btn-default" ng-click="showNewDocTGModal()">Velg</button>
+</div>-->
+
+<div class="form-group">
+    <label for="target-group-table">Målgrupper</label>
+    <table class="table table-condensed" id="target-group-table">
+        <thead>
+        <tr>
+            <th>Navn</th>
+            <th>Obligatorisk</th>
+            <th>Frist</th>
+            <th>Handling</th>
+            <th>Beskrivelse</th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="group in newDocument.targetGroups">
+            <!-- NAVN -->
+            <td><input class="form-control" type="text"></td>
+            <!-- OBLIGATORISK -->
+            <td><select class="form-control" name="" id="mandatory" ng-model="group.mandatory">
+                <option value="">Ja</option>
+                <option value="">Nei</option>
+            </select></td>
+            <!-- FRIST -->
+            <td><input class="form-control" type="text" id="deadline" ng-model="group.deadline"></td>
+            <!-- HANDLING -->
+            <td><select class="form-control" name="" id="action" ng-model="group.action">
+                <option value="">Send</option>
+                <option value="">Motta</option>
+                <option value="">Send og motta </option>
+            </select></td>
+            <!-- BESKRIVELSE -->
+            <td><textarea class="form-control" id="description" cols="30" rows="3" ng-model="group.description"></textarea></td>
+        </tr>
+        </tbody>
+    </table>
+    <button class="btn btn-default" ng-click="showAddTG()"><i class="fa fa-plus"></i>Legg til ny</button>
 </div>

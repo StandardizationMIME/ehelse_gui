@@ -7,13 +7,18 @@ angular.module('ehelseEditor').controller('NewDocumentController', [ '$scope', '
         "topicId" : $rootScope.selectedTopicId,
         "title" : "",
         "description" : "",
-        "sequence": "3",
-        "targetGroups": "",
-        "status": "",
-        "documentType": {
-            "id": "1",
-            "name": "standard"
-        }
+        "sequence": 3,
+        "comment": "",
+        "targetGroups": [
+            {
+                "id": 0,
+                "description": "",
+                "actionId": "",
+                "deadline": "",
+                "mandatoryId": "",
+                "targetGroupId": ""
+            }
+        ]
     };
 
     $scope.get(
@@ -47,6 +52,19 @@ angular.module('ehelseEditor').controller('NewDocumentController', [ '$scope', '
 
     //********** target groups ***********
 
+    $scope.showNewDocTGModal = function () {
+        ModalService.showModal({
+            templateUrl: 'app/components/content/views/new-doc-tg-modal.html',
+            controller: 'NewDocTGController',
+            animation: false
+        }).then(function (modal) {
+            modal.element.modal();
+            modal.close.then(function (result) {
+                console.log(result);
+            });
+        });
+    };
+
     $rootScope.targetGroups = [];
 
     $rootScope.getTargetGroups = function(){
@@ -68,7 +86,6 @@ angular.module('ehelseEditor').controller('NewDocumentController', [ '$scope', '
             $rootScope.selectedTGNewDoc.groups.push($scope.newDocument.targetGroups[i]);
         }
     };
-
 
     $rootScope.addTGToNewDoc = function () {
         $scope.newDocument.targetGroups = [];
@@ -97,5 +114,31 @@ angular.module('ehelseEditor').controller('NewDocumentController', [ '$scope', '
         }
     };
 
+    $scope.showAddTG = function () {
+        ModalService.showModal({
+            templateUrl: 'app/components/content/views/new-doc-add-tg-modal.html',
+            controller: 'AddTGNewDoc',
+            animation: false
+        }).then(function (modal) {
+            modal.element.modal();
+            modal.close.then(function (result) {
+                console.log(result);
+            });
+        });
+    };
+
+    $rootScope.newTargetGroup = {
+        "id": "",
+        "description": "test",
+        "actionId": "",
+        "deadline": "",
+        "mandatoryId": "",
+        "targetGroupId": ""
+    };
+
+    $rootScope.addNewTG = function() {
+        $scope.newDocument.targetGroups.push($rootScope.newTargetGroup);
+        console.log($scope.newDocument.targetGroups);
+    };
 
 }]);
