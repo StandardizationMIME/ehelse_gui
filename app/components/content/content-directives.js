@@ -24,3 +24,24 @@ angular.module('ehelseEditor').directive('documentfields',function () {
         templateUrl: 'app/components/content/views/new-document-fields.html'
     };
 });
+
+angular.module('ehelseEditor').directive('standardfields',function () {
+    return{
+        restrict: 'E',
+        templateUrl: 'app/components/content/views/standard-fields.html'
+    };
+});
+
+angular.module('ehelseEditor').directive('profilefields',function () {
+    return{
+        restrict: 'E',
+        templateUrl: 'app/components/content/views/profile-fields.html'
+    };
+});
+
+angular.module('ehelseEditor').directive('supportdocumentfields',function () {
+    return{
+        restrict: 'E',
+        templateUrl: 'app/components/content/views/support-document-fields.html'
+    };
+});

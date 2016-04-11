@@ -17,7 +17,7 @@ angular.module('ehelseEditor').controller('DocumentFieldModalController', [ '$sc
             "description": field.description,
             "sequence": "1",
             "mandatory": mandatoryString,
-            "documentTypeId": "1"
+            "documentTypeId": $rootScope.typeId
         };
         $scope.put(
             'document-fields/' + field.id,
@@ -51,7 +51,7 @@ angular.module('ehelseEditor').controller('DocumentFieldModalController', [ '$sc
             "description": field.description,
             "sequence": "1",
             "mandatory": mandatoryString,
-            "documentTypeId": "1"
+            "documentTypeId": $rootScope.typeId
         };
 
         $scope.post(
