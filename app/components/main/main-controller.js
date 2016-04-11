@@ -3,7 +3,7 @@
 
 (function(){
 
-    angular.module('ehelseEditor').run([ '$http', '$rootScope', '$cookies', '$location', function($http, $rootScope, $cookies, $location) {
+    angular.module('ehelseEditor').run([ '$http', '$rootScope', '$cookies', '$location', 'ModalService', function($http, $rootScope, $cookies, $location, ModalService) {
         $rootScope.userName = $cookies.get('username');
         $rootScope.password = $cookies.get('password');
         var user= $cookies.get('currentUser');
@@ -14,6 +14,19 @@
 
         $rootScope.topics = [];
         $rootScope.topicsList = [];
+
+        $rootScope.openModal = function(url, controller){
+            ModalService.showModal({
+                templateUrl: url,
+                controller: controller,
+                animation: false
+            }).then(function(modal) {
+                modal.element.modal();
+                modal.close.then(function(result) {
+                    console.log(result);
+                });
+            });
+        };
 
 
         $rootScope.setUserName = function(userName){

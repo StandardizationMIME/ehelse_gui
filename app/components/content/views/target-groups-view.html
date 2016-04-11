@@ -4,10 +4,10 @@
         <div class="btn-toolbar pull-right">
         <!-- Delete TG button -->
         <button type="button" class="btn btn-danger  small target-group-delete"
-                ng-click="showDeleteTGModal()" data-keyboard="true"><i class="fa fa-remove"></i> Slett målgrupper </button>
+                ng-click="openModal('app/components/content/views/delete-target-group-modal.html', 'DeleteTargetGroupController')" data-keyboard="true"><i class="fa fa-remove"></i> Slett målgrupper </button>
         <!-- New TG button-->
         <button type="button" class="btn btn-success  small target-group-add"
-                ng-click="showNewTGModal()" data-keyboard="true"><i class="fa fa-plus"></i> Ny målgruppe </button>
+                ng-click="openModal('app/components/content/views/new-target-group-modal.html', 'NewTargetGroupController')" data-keyboard="true"><i class="fa fa-plus"></i> Ny målgruppe </button>
         </div>
         </h4>
     </div>

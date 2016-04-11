@@ -40,19 +40,6 @@ angular.module('ehelseEditor').controller('NewDocumentController', [ '$scope', '
 
     //********** target groups ***********
 
-    $scope.showNewDocTGModal = function () {
-        ModalService.showModal({
-            templateUrl: 'app/components/content/views/new-doc-tg-modal.html',
-            controller: 'NewDocTGController',
-            animation: false    
-        }).then(function (modal) {
-            modal.element.modal();
-            modal.close.then(function (result) {
-                console.log(result);
-            });
-        });
-    };
-
     $rootScope.targetGroups = [];
 
     $rootScope.getTargetGroups = function(){

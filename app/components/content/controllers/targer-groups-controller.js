@@ -2,45 +2,10 @@
 
 angular.module('ehelseEditor').controller('TargetGroupsController',['$scope','ModalService','$rootScope', function($scope, ModalService, $rootScope){
 
-    $scope.showDeleteTGModal = function(){
-        ModalService.showModal({
-            templateUrl: 'app/components/content/views/delete-target-group-modal.html',
-            controller: 'DeleteTargetGroupController',
-            animation: false
-        }).then(function(modal){
-            modal.element.modal();
-            modal.close.then(function(result){
-                console.log(result)
-            });
-        });
-    };
-
-    $scope.showNewTGModal = function(){
-        ModalService.showModal({
-            templateUrl: 'app/components/content/views/new-target-group-modal.html',
-            controller: 'NewTargetGroupController',
-            animation: false
-        }).then(function(modal){
-            modal.element.modal();
-            modal.close.then(function(result){
-                console.log(result)
-            });
-        });
-    };
-
     $scope.showEditTGModal = function(group){
         console.log('showEditTGModal');
         $rootScope.editGroup = group;
-        ModalService.showModal({
-            templateUrl: 'app/components/content/views/edit-target-group-modal.html',
-            controller: 'EditTargetGroupController',
-            animation: false
-        }).then(function(modal){
-            modal.element.modal();
-            modal.close.then(function(result){
-                console.log(result)
-            });
-        });
+        $scope.openModal('app/components/content/views/edit-target-group-modal.html', 'EditTargetGroupController');
     };
 
     $rootScope.saveTGChanges = function(group){

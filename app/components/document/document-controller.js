@@ -2,22 +2,6 @@
 
 angular.module('ehelseEditor').controller('DocumentController', [ '$scope','$rootScope', 'ModalService', function( $scope, $rootScope, ModalService) {
 
-    //Modal for creating new topic
-    $scope.newDocumentModal = function(){
-        console.log("New document modal running");
-        ModalService.showModal({
-            templateUrl: 'app/components/content/views/new-document-view.html',
-            controller: "NewDocumentController",
-            animation: false
-        }).then(function(modal) {
-            modal.element.modal();
-            modal.close.then(function(result) {
-                console.log(result);
-            });
-        });
-    };
-
-
     $scope.getContent = function(id) {
         $scope.get('standards/' + id + '/versions/', function(data){
             $rootScope.documentVersions = data;
