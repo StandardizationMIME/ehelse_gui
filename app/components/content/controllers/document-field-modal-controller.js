@@ -1,67 +1,75 @@
 'use strict';
 
-angular.module('ehelseEditor').controller('DocumentFieldModalController', [ '$scope', "$rootScope", "ModalService", function($scope, $rootScope, ModalService) {
+angular.module('ehelseEditor').controller('DocumentFieldModalController', [ '$scope', "$rootScope", function($scope, $rootScope) {
 
-    $scope.submitDocumentFieldChange = function(field) {
-        console.log($rootScope.documentFields);
-        for (var i = 0; i < $rootScope.documentFields.length; i++){
-            if($rootScope.documentFields[i].id == field.id){
-                $rootScope.documentFields[i] = field;
-            }
+    $rootScope.submitDocumentFieldChange = function(field){
+
+        var mandatoryString = null;
+        if(field.mandatory){
+            mandatoryString = '1';
+        }else{
+            mandatoryString = '0';
         }
-        console.log($rootScope.documentFields);
-    };
 
-    //$rootScope.submitDocumentFieldChange = function(field){
-    //    $scope.put(
-    //        'documentFields/' +field.id,
-    //        field,
-    //        function(data){
-    //            console.log("Field has been edited");
-    //            console.log(data);
-    //            console.log(field);
-    //            $rootScope.notifySuccess("Endring har blitt lagret", 5000);
-    //        }
-    //        ,
-    //        function(){
-    //            console.log("Error: Change could not be saved.");
-    //            $rootScope.notifyError("Error: Endring ble ikke lagret!");
-    //        }
-    //    );
-    //};
-
-    $scope.postNewDocumentField = function(field) {
         var myField = {
-            'id': field.id,
-            'title': field.title,
-            'description': field.description,
-            'sequence': 1,
-            'fieldType': {
-                'id': 0,
-                'type': 'string'
-            },
-            'mandatory': field.mandatory
+            "id": field.id,
+            "name": field.name,
+            "description": field.description,
+            "sequence": "1",
+            "mandatory": mandatoryString,
+            "documentTypeId": "1"
         };
-        $rootScope.documentFields[$rootScope.documentFields.length] = myField;
-        $rootScope.notifyStandardSuccess('Nytt felt ble opprettet!')
+        $scope.put(
+            'document-fields/' + field.id,
+            myField,
+            function(data){
+                console.log("Field has been edited");
+                console.log(data);
+                console.log(field);
+                $rootScope.notifySuccess("Endring har blitt lagret", 5000);
+                $rootScope.updateDocumentFieldsList();
+            }
+            ,
+            function(){
+                console.log("Error: Change could not be saved.");
+                $rootScope.notifyError("Error: Endring ble ikke lagret!");
+            }
+        );
     };
 
-    //$rootScope.postNewDocumentField() = function(field){
-    //    $scope.post(
-    //        'documentFields/',
-    //        field,
-    //        function(data){
-    //            console.log("Field has been created");
-    //            console.log(data);
-    //            console.log(field);
-    //            $rootScope.notifySuccess("Felt har blitt opprettet", 5000);
-    //        }
-    //        ,
-    //        function(){
-    //            console.log("Error: Field could not be created.");
-    //            $rootScope.notifyError("Error: Felt ble ikke opprettet!");
-    //        }
-    //    );
-    //};
+    $scope.postNewDocumentField = function(field){
+        var mandatoryString = null;
+        if(field.mandatory){
+            mandatoryString = '1';
+        }else{
+            mandatoryString = '0';
+        }
+
+        var myField = {
+            "id": "",
+            "name": field.name,
+            "description": field.description,
+            "sequence": "1",
+            "mandatory": mandatoryString,
+            "documentTypeId": "1"
+        };
+
+        $scope.post(
+            'document-fields/',
+            myField,
+            function(data){
+                console.log("Field has been created");
+                console.log(data);
+                console.log(myField);
+                $rootScope.notifySuccess("Felt har blitt opprettet", 5000);
+                $rootScope.updateDocumentFieldsList();
+            }
+            ,
+            function(){
+                console.log("Error: Field could not be created.");
+                $rootScope.notifyError("Error: Felt ble ikke opprettet!", 5000);
+            }
+        );
+    };
 
 }]);

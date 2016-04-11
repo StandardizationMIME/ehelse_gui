@@ -10,7 +10,8 @@ angular.module('ehelseEditor').controller('NewDocumentController', [ '$scope', '
         "isInCatalog": false,
         "sequence": 3,
         "comment": "",
-        "targetGroups": []
+        "targetGroups": [],
+        "fields": []
     };
 
     $scope.postNewDocument = function(standard){
@@ -69,5 +70,26 @@ angular.module('ehelseEditor').controller('NewDocumentController', [ '$scope', '
             $scope.newDocument.targetGroups.push($rootScope.selectedTGNewDoc.groups[i]);
         }
     };
+
+
+    // ************** document fields ***************
+
+    $rootScope.selectedDocumentFields = [];
+
+    $rootScope.clearSelectedDocumentFields = function () {
+        $rootScope.selectedDocumentFields = [];
+        for (var i = 0; i < $scope.newDocument.fields.length; i++) {
+            $rootScope.selectedDocumentFields.push($scope.newDocument.fields[i]);
+        }
+    };
+
+
+    $rootScope.addDocumentFieldsToNewDoc = function () {
+        $scope.newDocument.fields = [];
+        for (var i = 0; i < $rootScope.selectedDocumentFields.length; i++) {
+            $scope.newDocument.fields.push($rootScope.selectedDocumentFields[i]);
+        }
+    };
+
 
 }]);

@@ -20,7 +20,7 @@ angular.module('ehelseEditor').controller('NewTopicModalController', [ '$scope',
 
         $scope.post(
             'topics/',
-            $scope.newTopic,
+            topic,
             function(data){
                 console.log("New topic created");
                 console.log(data);

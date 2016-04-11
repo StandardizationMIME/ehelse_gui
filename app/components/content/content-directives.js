@@ -17,3 +17,10 @@ angular.module('ehelseEditor').directive('targetgroup',function () {
         templateUrl: 'app/components/content/views/new-document-target-groups.html'
     };
 });
+
+angular.module('ehelseEditor').directive('documentfields',function () {
+    return{
+        restrict: 'E',
+        templateUrl: 'app/components/content/views/new-document-fields.html'
+    };
+});
