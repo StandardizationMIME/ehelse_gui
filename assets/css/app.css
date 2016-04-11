@@ -356,7 +356,7 @@ div>div>.dropdown-toggle:hover{
 }
 
 input[readonly], textarea[readonly]{
-    background-color: #ffffff !important;
+    background-color: #e4e4e4 !important;
 }
 
 /* Administer Users start */

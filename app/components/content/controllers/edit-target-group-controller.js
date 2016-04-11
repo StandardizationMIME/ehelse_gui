@@ -4,6 +4,7 @@ angular.module('ehelseEditor').controller('EditTargetGroupController', ['$rootSc
             $rootScope.saveTGChanges($rootScope.editGroup);
             close("Endringene ble gjort",500);
         }else{
+            $rootScope.getTargetGroups();
             close("Nothing changed",500);
         }
     };

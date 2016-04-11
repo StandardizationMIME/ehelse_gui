@@ -49,6 +49,7 @@ angular.module('ehelseEditor').controller('DocumentController', [ '$scope','$roo
         $(".clickable").removeClass('selected');
         $('#' + id).addClass('selected');
         $('#folder' + id).toggleClass('glyphicon-folder-open','glyphicon-folder-close');
+
     };
 
     $rootScope.setSelectedDocumentId = function(documentId){

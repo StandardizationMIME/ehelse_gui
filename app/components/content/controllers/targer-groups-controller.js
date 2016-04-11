@@ -89,7 +89,6 @@ angular.module('ehelseEditor').controller('TargetGroupsController',['$scope','Mo
 
     $rootScope.selectedTG = {
         groups: []
-
     };
 
     $rootScope.deleteTargetGroup = function(){

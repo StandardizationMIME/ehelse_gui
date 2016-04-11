@@ -1,7 +1,7 @@
 
 'use strict';
 
-angular.module('ehelseEditor').controller('NewDocumentController', [ '$scope', '$http','$rootScope', function( $scope, $http, $rootScope) {
+angular.module('ehelseEditor').controller('NewDocumentController', [ '$scope', '$http','$rootScope', 'ModalService', function( $scope, $http, $rootScope, ModalService) {
 
     $scope.newDocument = {
         "topicId" : $rootScope.selectedTopicId,
@@ -9,7 +9,8 @@ angular.module('ehelseEditor').controller('NewDocumentController', [ '$scope', '
         "description" : "",
         "isInCatalog": false,
         "sequence": 3,
-        "comment": ""
+        "comment": "",
+        "targetGroups": []
     };
 
     $scope.postNewDocument = function(standard){
@@ -35,5 +36,51 @@ angular.module('ehelseEditor').controller('NewDocumentController', [ '$scope', '
                 $rootScope.notifyStandardError("Standard kunne ikke opprettes");
             }
         );
-    }
+    };
+
+    //********** target groups ***********
+
+    $scope.showNewDocTGModal = function () {
+        ModalService.showModal({
+            templateUrl: 'app/components/content/views/new-doc-tg-modal.html',
+            controller: 'NewDocTGController',
+            animation: false    
+        }).then(function (modal) {
+            modal.element.modal();
+            modal.close.then(function (result) {
+                console.log(result);
+            });
+        });
+    };
+
+    $rootScope.targetGroups = [];
+
+    $rootScope.getTargetGroups = function(){
+        $scope.get('target-groups/',
+            function(data){
+                $rootScope.targetGroups = data.targetGroups;
+            },function(){});
+
+    };
+    $rootScope.getTargetGroups();
+
+    $rootScope.selectedTGNewDoc = {
+        groups: []
+    };
+
+    $rootScope.clearSelectedTG = function () {
+        $rootScope.selectedTGNewDoc.groups = [];
+        for (var i = 0; i < $scope.newDocument.targetGroups.length; i++) {
+            $rootScope.selectedTGNewDoc.groups.push($scope.newDocument.targetGroups[i]);
+        }
+    };
+
+
+    $rootScope.addTGToNewDoc = function () {
+        $scope.newDocument.targetGroups = [];
+        for (var i = 0; i < $rootScope.selectedTGNewDoc.groups.length; i++) {
+            $scope.newDocument.targetGroups.push($rootScope.selectedTGNewDoc.groups[i]);
+        }
+    };
+
 }]);
