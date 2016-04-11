@@ -26,13 +26,13 @@ angular.module('ehelseEditor').controller('NewTopicModalController', [ '$scope',
                 console.log(data);
                 console.log($scope.newTopic);
                 $rootScope.reloadTopic(data);
-                $rootScope.notifyTopicSuccess("Nytt tema har blitt opprettet");
+                $rootScope.notifySuccess("Nytt tema har blitt opprettet", 3000);
                 $rootScope.reloadTopicTupleList();
             }
             ,
             function(){
                 console.log("New topic could not be created");
-                $rootScope.notifyTopicError("Tema ble ikke opprettet");
+                $rootScope.notifyError("Tema ble ikke opprettet", 5000);
             }
         );
     };
