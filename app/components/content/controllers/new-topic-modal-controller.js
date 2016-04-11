@@ -14,8 +14,8 @@ angular.module('ehelseEditor').controller('NewTopicModalController', [ '$scope',
     $rootScope.postNewTopic = function(topic){
         console.log("postNewTopic kjører");
 
-        if(topic.parent == "null"){
-            topic.parent = null;
+        if(topic.parentId == "null"){
+            topic.parentId = null;
         }
 
         $scope.post(

@@ -1,6 +1,6 @@
-angular.module('ehelseEditor').controller('DeleteTargetGroupController', function($scope, close) {
+angular.module('ehelseEditor').controller('DeleteTargetGroupController',['$rootScope','$scope','close', function($rootScope, $scope, close) {
     $scope.close = function (result){
-        if (result == 'add'){
+        if (result == 'delete'){
             $rootScope.deleteTargetGroup();
             close("New TG added!",500);
         }else{
@@ -9,4 +9,4 @@ angular.module('ehelseEditor').controller('DeleteTargetGroupController', functio
     };
 
 
-});
+}]);

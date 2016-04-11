@@ -351,6 +351,7 @@ input.version-id {
 .headline-box {
     position: relative;
     height: 50px;
+    overflow-x: auto;
 }
 
 .headline-box h4 {
@@ -503,4 +504,59 @@ div>div>.dropdown-toggle:hover{
 
 .target-group-add, .target-group-delete{
     color: #ffffff !important;
+
 }
+
+input[readonly], textarea[readonly]{
+    background-color: #e4e4e4 !important;
+}
+
+/* Administer Users start */
+#userList img{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+}
+.userRow{
+    border-radius: 50px;
+    background-color: #fff;
+    border: solid #ccc thin;
+    width: 70%;
+    margin: 0.5em;
+}
+#addUser{
+    color: #337AB7;
+    border-radius: 50px;
+    background-color: #fff;
+    border: dashed #ccc thin;
+    width: 23%;
+    margin: 0.5em;
+    padding: 1em;
+}
+#addUser:hover{
+    background-color: #adadad;
+    -webkit-transition: all 0.2s ease;
+    -moz-transition: all 0.2s ease;
+    -o-transition: all 0.2s ease;
+    transition: all 0.2s ease;
+}
+.vcenter {
+    display: inline-block;
+    vertical-align: middle;
+    float: none;
+}
+.removeUser{
+    color: #f60e24;
+    font-size: 2em;
+    padding-right: 1em;
+}
+.userRowName {
+    margin-left: 1em;
+}
+#administerUsersNotifications{
+    margin-bottom: 5%;
+}
+/* Administer Users end */
+

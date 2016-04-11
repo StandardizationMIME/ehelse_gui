@@ -10,3 +10,10 @@ angular.module('ehelseEditor').directive('contentpanel',function(){
         templateUrl: 'app/components/content/views/content-panel-view.html'
     };
 });
+
+angular.module('ehelseEditor').directive('targetgroup',function () {
+    return{
+        restrict: 'E',
+        templateUrl: 'app/components/content/views/new-document-target-groups.html'
+    };
+});

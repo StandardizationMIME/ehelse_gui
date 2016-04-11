@@ -36,8 +36,8 @@
             $rootScope.http("get", url, {} , success, error);
         };
 
-        $rootScope.delete = function(url, data, success, error){
-            $rootScope.http("delete", url, data, success, error);
+        $rootScope.delete = function(url, success, error){
+            $rootScope.http("delete", url, {}, success, error);
         };
 
 
