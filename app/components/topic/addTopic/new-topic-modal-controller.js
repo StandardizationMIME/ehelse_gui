@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('ehelseEditor').controller('NewTopicModalController', [ '$scope', "$rootScope", "ModalService", function($scope, $rootScope, ModalService) {
+angular.module('ehelseEditor').controller('NewTopicModalController', [ '$scope', "$rootScope", function($scope, $rootScope) {
 
     $scope.newTopic = {
         "title" : "",
@@ -20,7 +20,7 @@ angular.module('ehelseEditor').controller('NewTopicModalController', [ '$scope',
 
         $scope.post(
             'topics/',
-            $scope.newTopic,
+            topic,
             function(data){
                 console.log("New topic created");
                 console.log(data);

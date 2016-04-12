@@ -7,22 +7,29 @@ angular.module('ehelseEditor').controller('NewDocumentController', [ '$scope', '
         "topicId" : $rootScope.selectedTopicId,
         "title" : "",
         "description" : "",
-        "isInCatalog": false,
-        "sequence": 3,
-        "comment": "",
-        "targetGroups": []
+        "sequence": "3",
+        "targetGroups": "",
+        "status": "",
+        "documentType": {
+            "id": "1",
+            "name": "standard"
+        }
     };
 
-    $scope.postNewDocument = function(standard){
-        var inputUrl = "";
-        if($rootScope.documentType == 'profil'){
-            inputUrl = 'profile';
-        }else if($rootScope.documentType == 'standard'){
-            inputUrl = 'standard';
-        }
+    $scope.get(
+        'document-types',
+        function(data){
+            console.log(data);
+            $scope.documentTypes = data.documentTypes;
+        },
+        function(){
 
+        }
+    );
+
+    $scope.postNewDocument = function(){
         $scope.post(
-            inputUrl + 's/',
+            'documents/',
             $scope.newDocument,
             function(data){
                 console.log("New document created");
@@ -39,19 +46,6 @@ angular.module('ehelseEditor').controller('NewDocumentController', [ '$scope', '
     };
 
     //********** target groups ***********
-
-    $scope.showNewDocTGModal = function () {
-        ModalService.showModal({
-            templateUrl: 'app/components/content/views/new-doc-tg-modal.html',
-            controller: 'NewDocTGController',
-            animation: false    
-        }).then(function (modal) {
-            modal.element.modal();
-            modal.close.then(function (result) {
-                console.log(result);
-            });
-        });
-    };
 
     $rootScope.targetGroups = [];
 
@@ -82,5 +76,26 @@ angular.module('ehelseEditor').controller('NewDocumentController', [ '$scope', '
             $scope.newDocument.targetGroups.push($rootScope.selectedTGNewDoc.groups[i]);
         }
     };
+
+
+    // ************** document fields ***************
+
+    $rootScope.selectedDocumentFields = [];
+
+    $rootScope.clearSelectedDocumentFields = function () {
+        $rootScope.selectedDocumentFields = [];
+        for (var i = 0; i < $scope.newDocument.fields.length; i++) {
+            $rootScope.selectedDocumentFields.push($scope.newDocument.fields[i]);
+        }
+    };
+
+
+    $rootScope.addDocumentFieldsToNewDoc = function () {
+        $scope.newDocument.fields = [];
+        for (var i = 0; i < $rootScope.selectedDocumentFields.length; i++) {
+            $scope.newDocument.fields.push($rootScope.selectedDocumentFields[i]);
+        }
+    };
+
 
 }]);

@@ -10,6 +10,7 @@
 /* ----- CH8 myPage ----- */
 /* ----- CH9 toolbar ----- */
 /* ----- CH10 topic ----- */
+/* ----- CH11 Administer Fields ----- */
 
 
 /* ----- CH1 generic ----- */
@@ -146,7 +147,93 @@ div>div>.dropdown-toggle:hover{
 
 /* ----- CH10 topic ----- */
 
+/* topic end */
 
+/* ----- CH11 Administer fields ----- */
+
+.administer-fields ul{
+    margin: 0;
+    padding: 0;
+}
+
+.administer-fields li{
+    text-decoration: none;
+    list-style-type: none;
+    cursor: move;
+}
+
+.administer-fields .field-list-title{
+    display: inline-block;
+}
+
+.field-mandatory {
+    display: inline-block;
+    margin-left: 40px;
+}
+
+.edit-field{
+    font-size: 2em;
+    padding-right: 1em;
+}
+
+span.field-item{
+    border-bottom: 1px solid black;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-radius: 0;
+    box-shadow: none;
+    font-weight: 700;
+}
+
+.field-item{
+    border: 1px none;
+    box-shadow: 1px 1px 1px 1px #b8b8b8;
+    border-radius: 10px;
+    margin-bottom: 8px;
+    padding:10px;
+    width: 100%;
+}
+
+.administer-fields .field-item .field-item-field:nth-child(1), .administer-fields .field-item input:nth-child(2){
+    width:150px;
+    display: inline-block;
+}
+
+.administer-fields .field-item .field-item-field:nth-child(2), .administer-fields .field-item input:nth-child(3){
+    width:400px;
+    display: inline-block;
+}
+
+
+.draggable:hover {
+    background-color: #f9f9f9;
+}
+
+.addField {
+    border-radius: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 10px;
+    text-align: center;
+    margin-top: 20px;
+    margin-left: 0;
+    margin-right: 79%;
+    background-color: #0068e7;
+    color: white;
+    box-shadow: 1px 1px 1px 1px #b8b8b8;
+}
+
+.addField:hover{
+    background-color: #0099f9;
+    cursor: pointer;
+    -webkit-transition: all 0.2s ease;
+    -moz-transition: all 0.2s ease;
+    -o-transition: all 0.2s ease;
+    transition: all 0.2s ease;
+}
+
+/* ----- Administer fields end ----- */
 
 
 .topic-browser {
@@ -359,91 +446,6 @@ input.version-id {
     bottom: 0;
 }
 
-
-
-/*****************Administer*Fields******************/
-
-
-.administer-fields ul{
-    margin: 0;
-    padding: 0;
-}
-
-.administer-fields li{
-    text-decoration: none;
-    list-style-type: none;
-    cursor: move;
-}
-
-.administer-fields .field-list-title{
-    display: inline-block;
-}
-
-.field-mandatory {
-    display: inline-block;
-    margin-left: 40px;
-}
-
-.edit-field{
-    font-size: 2em;
-    padding-right: 1em;
-}
-
-span.field-item{
-    border-bottom: 1px solid black;
-    border-top: none;
-    border-left: none;
-    border-right: none;
-    border-radius: 0;
-    box-shadow: none;
-}
-
-.field-item{
-    border: 1px none;
-    box-shadow: 1px 1px 1px 1px #b8b8b8;
-    border-radius: 10px;
-    margin-bottom: 8px;
-    padding:10px;
-    background: #f3f3f3;
-    width: 100%;
-}
-
-.administer-fields .field-item .field-item-field:nth-child(1), .administer-fields .field-item input:nth-child(2){
-    width:150px;
-    display: inline-block;
-}
-
-.administer-fields .field-item .field-item-field:nth-child(2), .administer-fields .field-item input:nth-child(3){
-    width:400px;
-    display: inline-block;
-}
-
-
-.draggable:hover {
-    background-color: #f9f9f9;
-}
-
-#addField {
-    border-radius: 10px;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    padding-left: 10px;
-    text-align: center;
-    margin-top: 20px;
-    margin-left: 0;
-    margin-right: 79%;
-    background-color: #0068e7;
-    color: white;
-    box-shadow: 1px 1px 1px 1px #b8b8b8;
-}
-
-#addField:hover{
-    background-color: #0099f9;
-    -webkit-transition: all 0.2s ease;
-    -moz-transition: all 0.2s ease;
-    -o-transition: all 0.2s ease;
-    transition: all 0.2s ease;
-}
 
 /* User dropdown start */
  div>div>.dropdown-toggle{

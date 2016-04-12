@@ -1,0 +1,6 @@
+<div class="form-group" ng-controller="AddFieldsController">
+    <ul id="new-doc-fields" class="list-group">
+        <li class="list-group-item" ng-repeat="field in newDocument.fields">{{field.title}}</li>
+    </ul>
+    <button class="btn btn-default" ng-click="openModal('app/components/document/addDocument/addFieldsToDocument/choose-fields-modal.html', 'AddFieldsController')"><span class="fa fa-plus-circle plus-icon-standard"></span> Legg til felter</button>
+</div>

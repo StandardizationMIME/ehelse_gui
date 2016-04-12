@@ -2,21 +2,6 @@
 
 angular.module('ehelseEditor').controller('TopicController',['$rootScope', '$scope', "ModalService", function($rootScope, $scope, ModalService){
 
-    //Modal for creating new topic
-    $scope.newTopicModal = function(){
-        ModalService.showModal({
-            templateUrl: 'app/components/content/views/new-topic-view.html',
-            controller: "NewTopicModalController",
-            animation: false
-        }).then(function(modal) {
-            modal.element.modal();
-            modal.close.then(function(result) {
-                console.log(result);
-            });
-        });
-    };
-
-
     $rootScope.topic = {
         title: "Referansekatalogen"
     };
