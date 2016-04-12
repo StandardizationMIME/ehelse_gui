@@ -3,6 +3,7 @@
 angular.module('ehelseEditor').factory('DocumentType', ['$rootScope', function($rootScope) {
 
     var document_types = [];
+    var document_types_dict = {};
     var document_types_option_list = [];
 
     function getDocumentTypes(){
@@ -11,11 +12,17 @@ angular.module('ehelseEditor').factory('DocumentType', ['$rootScope', function($
             function ( data ){
                 Array.prototype.push.apply(document_types, data.documentTypes);
                 Array.prototype.push.apply(document_types_option_list, generateDocumentTypesOptionList(document_types));
+                generateDocumentTypeDict(document_types);
             },
             function (data) {
                 console.log("No document types found");
             }
         )
+    }
+    function generateDocumentTypeDict(document_types){
+        for(var i = 0; i < document_types.length; i++){
+            document_types_dict[document_types[i].id] = document_types[i];
+        }
     }
 
     getDocumentTypes();
@@ -35,6 +42,7 @@ angular.module('ehelseEditor').factory('DocumentType', ['$rootScope', function($
 
     return {
         document_types : document_types,
+        document_types_dict: document_types_dict,
         document_types_option_list : document_types_option_list
     };
 }]);

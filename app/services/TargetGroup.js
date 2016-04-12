@@ -5,13 +5,12 @@ angular.module('ehelseEditor').factory('TargetGroup', ['$rootScope', function($r
     var target_groups = [];
     var target_groups_dict = {};
 
-    function getTargetGroups(){
+    function httpGetTargetGroups(){
         $rootScope.get(
             'target-groups/',
             function ( data ){
                 Array.prototype.push.apply(target_groups, data.targetGroups);
                 generateTargetGroupDict(target_groups);
-                console.log(target_groups_dict[1].name);
 
             },
             function (data) {
@@ -26,13 +25,15 @@ angular.module('ehelseEditor').factory('TargetGroup', ['$rootScope', function($r
         }
     }
 
-    getTargetGroups();
+    httpGetTargetGroups();
 
-
+    function getTargetGroups(){
+        return target_groups;
+    }
 
 
     return {
-        target_groups : target_groups,
+        getTargetGroups : getTargetGroups,
         target_groups_dict : target_groups_dict
     };
 }]);

@@ -18,21 +18,31 @@
             <!-- NAVN -->
             <td>{{target_groups_dict[group.targetGroupId].name}}</td>
             <!-- OBLIGATORISK -->
-            <td><select class="form-control" name="" id="mandatory" ng-model="group.mandatory">
+            <td>
+                <select class="form-control" name="" id="mandatory" ng-model="group.mandatory">
                 <option ng-repeat="mandatory in mandatory_option_list" value="{{mandatory.value}}">{{mandatory.name}}</option>
-            </select></td>
+            </select>
+            </td>
             <!-- FRIST -->
-            <td><input class="form-control" type="text" id="deadline" ng-model="group.deadline"></td>
+            <td>
+                <input class="form-control" type="text" id="deadline" ng-model="group.deadline">
+            </td>
             <!-- HANDLING -->
-            <td><select class="form-control" name="" id="action" ng-model="group.action">
-                <option value="">Send</option>
-                <option value="">Motta</option>
-                <option value="">Send og motta </option>
-            </select></td>
+            <td>
+                <select class="form-control" name="" id="action" ng-model="group.action">
+                <option ng-repeat="action in actions_option_list" value="{{action.value}}">{{action.name}}</option>
+            </select>
+            </td>
             <!-- BESKRIVELSE -->
-            <td><textarea class="form-control" id="description" cols="30" rows="3" ng-model="group.description"></textarea></td>
+            <td>
+                <input type="text" class="form-control" id="description"  ng-model="group.description"/>
+            </td>
+            <!-- Slett -->
+            <td>
+                <button type="button" class="form-control" ng-click="removeTargetGroup(group)"/>
+            </td>
         </tr>
         </tbody>
     </table>
-    <button class="btn btn-default" ng-click="showAddTG()"><i class="fa fa-plus"></i>Legg til ny</button>
+    <button class="btn btn-default" type="button" ng-click="showAddTargetGroupModal()"><i class="fa fa-plus"></i>Legg til ny</button>
 </div>

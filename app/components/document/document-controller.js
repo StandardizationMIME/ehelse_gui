@@ -1,6 +1,8 @@
 'use strict';
 
-angular.module('ehelseEditor').controller('DocumentController', [ '$scope','$rootScope', function( $scope, $rootScope) {
+angular.module('ehelseEditor').controller('DocumentController', [ '$scope','$rootScope', 'DocumentType', 'Document', function( $scope, $rootScope, DocumentType, Document) {
+
+    $scope.document_types_dict = DocumentType.document_types_dict;
 
     $scope.getContent = function(id) {
         $scope.get('standards/' + id + '/versions/', function(data){
@@ -44,7 +46,9 @@ angular.module('ehelseEditor').controller('DocumentController', [ '$scope','$roo
     };
 
 
-    $scope.openDocument = function(){
+    $scope.openDocument = function(document){
+        Document.setDocument(document);
         $rootScope.changeContentView('document');
+        $rootScope.setDocument(Document.getDocument());
     };
 }]);

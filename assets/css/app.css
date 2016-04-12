@@ -25,6 +25,9 @@
 .height-500{
     height: 500px;
 }
+.height-800{
+    height: 800px;
+}
 
 /* ----- CH2 administerUsers ----- */
 #userList img{
@@ -386,9 +389,9 @@ textarea {
 }
 
 /*-----------Document Icon colors---------*/
-.standard{color: #0068e7;}
-.profile{color: #f60e24;}
-.utilityDocument{color: #1ae700;}
+.d1{color: #0068e7;}
+.d2{color: #f60e24;}
+.d3{color: #1ae700;}
 
 .nopadding {
     padding: 0 !important;
