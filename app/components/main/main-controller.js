@@ -28,6 +28,12 @@
             });
         };
 
+        $rootScope.openConfirmationModal = function(message, id){
+            $rootScope.confirmationMessage = message;
+            $rootScope.deleteId = id;
+            $rootScope.openModal('app/components/main/confirmation/confirmation-modal.html', 'ConfirmationModalController');
+        };
+
 
         $rootScope.setUserName = function(userName){
             $rootScope.userName = userName;

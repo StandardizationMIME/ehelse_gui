@@ -8,12 +8,10 @@ angular.module('ehelseEditor').controller('NewDocumentController', [ '$scope', '
         "title" : "",
         "description" : "",
         "sequence": "3",
-        "targetGroups": "",
+        "targetGroups": [],
         "status": "",
-        "documentType": {
-            "id": "1",
-            "name": "standard"
-        }
+        "documentTypeId": 1,
+        "fields": []
     };
 
     $scope.get(
@@ -28,6 +26,7 @@ angular.module('ehelseEditor').controller('NewDocumentController', [ '$scope', '
     );
 
     $scope.postNewDocument = function(){
+        console.log($scope.newDocument);
         $scope.post(
             'documents/',
             $scope.newDocument,
