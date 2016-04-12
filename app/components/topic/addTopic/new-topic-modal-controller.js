@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('ehelseEditor').controller('NewTopicModalController', [ '$scope', "$rootScope", "ModalService", function($scope, $rootScope, ModalService) {
+angular.module('ehelseEditor').controller('NewTopicModalController', [ '$scope', "$rootScope", function($scope, $rootScope) {
 
     $scope.newTopic = {
         "title" : "",

@@ -1,10 +1,10 @@
 <form name="administerFieldForm" role="form" ng-submit="" method="post">
-                    <span class="field-item field-list-title">
-                        <span class="field-item-field">Tittel</span>
-                        <span class="field-item-field">Beskrivelse</span>
-                        <span class="field-item-field">Obligatorisk</span>
-                        <span class="field-item-field pull-right">Rediger felt</span>
-                    </span>
+    <span class="field-item field-list-title">
+        <span class="field-item-field">Tittel</span>
+        <span class="field-item-field">Beskrivelse</span>
+        <span class="field-item-field">Obligatorisk</span>
+        <span class="field-item-field pull-right">Rediger felt</span>
+    </span>
     <ul ui-sortable="sortableOptions" ng-model="documentFields">
         <li ng-repeat="field in profileFields" class="field-item document-fields draggable">
             <span class="field-item-field">{{field.name}}</span>
