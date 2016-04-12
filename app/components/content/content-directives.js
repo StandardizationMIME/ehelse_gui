@@ -11,20 +11,6 @@ angular.module('ehelseEditor').directive('contentpanel',function(){
     };
 });
 
-angular.module('ehelseEditor').directive('targetgroup',function () {
-    return{
-        restrict: 'E',
-        templateUrl: 'app/components/content/views/new-document-target-groups.html'
-    };
-});
-
-angular.module('ehelseEditor').directive('documentfields',function () {
-    return{
-        restrict: 'E',
-        templateUrl: 'app/components/content/views/new-document-fields.html'
-    };
-});
-
 angular.module('ehelseEditor').directive('standardfields',function () {
     return{
         restrict: 'E',

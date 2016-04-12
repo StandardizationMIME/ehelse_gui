@@ -15,6 +15,6 @@ angular.module('ehelseEditor').directive('documentview', function(){
 angular.module('ehelseEditor').directive('contentview', function(){
     return{
         restrict: 'E',
-        templateUrl: 'app/components/content/views/content-view.html'
+        templateUrl: 'app/components/content/content-view.html'
     };
 });
