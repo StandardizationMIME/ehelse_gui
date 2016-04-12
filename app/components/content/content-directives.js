@@ -4,30 +4,24 @@ angular.module('ehelseEditor').directive('notification',function(){
         templateUrl: 'app/components/content/views/notification-view.html'
     };
 });
-angular.module('ehelseEditor').directive('contentpanel',function(){
-    return{
-        restrict: 'E',
-        templateUrl: 'app/components/content/views/content-panel-view.html'
-    };
-});
 
 angular.module('ehelseEditor').directive('standardfields',function () {
     return{
         restrict: 'E',
-        templateUrl: 'app/components/content/views/standard-fields.html'
+        templateUrl: 'app/components/content/administerFields/directives/standard-fields.html'
     };
 });
 
 angular.module('ehelseEditor').directive('profilefields',function () {
     return{
         restrict: 'E',
-        templateUrl: 'app/components/content/views/profile-fields.html'
+        templateUrl: 'app/components/content/administerFields/directives/profile-fields.html'
     };
 });
 
 angular.module('ehelseEditor').directive('supportdocumentfields',function () {
     return{
         restrict: 'E',
-        templateUrl: 'app/components/content/views/support-document-fields.html'
+        templateUrl: 'app/components/content/administerFields/directives/support-document-fields.html'
     };
 });

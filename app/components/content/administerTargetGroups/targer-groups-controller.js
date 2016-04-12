@@ -5,7 +5,7 @@ angular.module('ehelseEditor').controller('TargetGroupsController',['$scope','Mo
     $scope.showEditTGModal = function(group){
         console.log('showEditTGModal');
         $rootScope.editGroup = group;
-        $scope.openModal('app/components/content/views/edit-target-group-modal.html', 'EditTargetGroupController');
+        $scope.openModal('app/components/content/administerTargetGroups/editTargetGroups/edit-target-group-modal.html', 'EditTargetGroupController');
     };
 
     $rootScope.saveTGChanges = function(group){

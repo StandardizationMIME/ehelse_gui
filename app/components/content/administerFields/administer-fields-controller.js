@@ -51,7 +51,7 @@ angular.module('ehelseEditor').controller('AdministerFieldsController', ['$scope
 
     $scope.editDocumentFieldModal = function(fieldId) {
         $scope.getDocumentFieldById(fieldId);
-        $scope.openModal('app/components/content/views/edit-document-field-modal.html', 'DocumentFieldModalController');
+        $scope.openModal('app/components/content/administerFields/editFields/edit-document-field-modal.html', 'DocumentFieldModalController');
     };
 
 
