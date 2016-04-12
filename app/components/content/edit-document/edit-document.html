@@ -1,0 +1,42 @@
+
+<form ng-controller="EditDocumentController" name="DocumentForm" role="form" method="post">
+
+    <div >
+
+        <!-- choose document type -->
+        <div class="form-group">
+            <label for="documentType">Type dokument: </label>
+            <select name="documentType" id="documentType" ng-model="newDocument.documentType" class="form-control">
+                <option ng-repeat="document_type in document_types_option_list" value="{{document_type.value}}">{{document_type.name}}</option>
+            </select>
+        </div>
+
+        <!-- Choose document title -->
+        <div class="form-group">
+            <label for="standardTitle">Tittel: </label>
+            <input type="text" name="standardTitle" id="standardTitle" ng-model="newDocument.title" class="form-control" required/>
+        </div>
+
+        <!-- Choose document description -->
+        <div class="form-group">
+            <label for="standardDescription">Beskrivelse: </label>
+            <textarea name="standardDescription" id="standardDescription" ng-model="newDocument.description" class="form-control" rows="6" cols="50" required></textarea>
+        </div>
+
+        <!-- Choose which topic to create document under -->
+        <div class="form-group">
+            <label for="standardParent">Opprettes i: </label>
+            <select name="standardParent" id="standardParent" ng-model="newDocument.topicId" class="form-control">
+                <option ng-repeat="topic in topicTupleList" value={{topic.id}}>{{topic.path}}</option>
+            </select>
+        </div>
+
+        <!-- Choose document fields -->
+        <document-fields></document-fields>
+
+        <!-- Choose target groups -->
+        <document-target-groups></document-target-groups>
+
+    </div>
+
+</form>

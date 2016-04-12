@@ -42,4 +42,9 @@ angular.module('ehelseEditor').controller('DocumentController', [ '$scope','$roo
     $rootScope.setSelectedDocumentId = function(documentId){
         $rootScope.selectedDocumentId = documentId;
     };
+
+
+    $scope.openDocument = function(){
+        $rootScope.changeContentView('document');
+    };
 }]);

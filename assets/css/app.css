@@ -19,6 +19,13 @@
     background-color: #0068e7;
 }
 
+.overflow-auto{
+    overflow: auto;
+}
+.height-500{
+    height: 500px;
+}
+
 /* ----- CH2 administerUsers ----- */
 #userList img{
     width: 50px;
