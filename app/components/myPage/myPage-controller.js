@@ -65,7 +65,7 @@ angular.module('ehelseEditor').controller('MyPageController', ['$scope', '$rootS
             "users/" + $rootScope.currentUser.id,
             $scope.myPage,
             function () {
-                $rootScope.notifySuccess("Kontoinformasjonen din ble oppdatert");
+                $rootScope.notifySuccess("Kontoinformasjonen din ble oppdatert",6000);
                 $rootScope.currentUser = {
                     id: $rootScope.currentUser.id,
                     name: $scope.myPage.name,
@@ -74,7 +74,7 @@ angular.module('ehelseEditor').controller('MyPageController', ['$scope', '$rootS
                 };
             },
             function () {
-                $rootScope.notifyTopicError("Kontoinformasjonen din ble ikke oppdatert");
+                $rootScope.notifyError("Kontoinformasjonen din ble ikke oppdatert",6000);
             }
         );
     };
@@ -91,14 +91,14 @@ angular.module('ehelseEditor').controller('MyPageController', ['$scope', '$rootS
                         $rootScope.password = $scope.newPassword;
                     },
                     function () {
-                        $rootScope.notifyTopicError("Passordet ble ikke endret.",6000);
+                        $rootScope.notifyError("Passordet ble ikke endret.",6000);
                     }
                 );
             } else {
-                $rootScope.notifyTopicError("Det gamle passordet er feil.",6000);
+                $rootScope.notifyError("Det gamle passordet er feil.",6000);
             }
         } else {
-            $rootScope.notifyTopicError('"Nytt passord" og "Gjenta nytt passord" er ikke like.',6000);
+            $rootScope.notifyError('"Nytt passord" og "Gjenta nytt passord" er ikke like.',6000);
         }
 
         //Clear fields after attempt
@@ -108,7 +108,5 @@ angular.module('ehelseEditor').controller('MyPageController', ['$scope', '$rootS
          $scope.repeatNewPassword = "";
          */
     };
-
-    console.log("mypage-ctrl",$rootScope.currentUser);
 
 }]);
