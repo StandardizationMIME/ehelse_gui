@@ -89,8 +89,35 @@
 }
 
 
+
 /* ----- CH4 document ----- */
 
+/* document-field */
+
+.document-fields-container{
+
+}
+
+
+.document-fields-field-name{
+    width:25%;
+    display: inline-block;
+}
+
+.document-fields-field-value{
+    width:60%;
+    display: inline-block;
+
+}
+
+.document-fields-field-value input{
+    width:100%;
+}
+
+.document-fields-field-remove{
+    width:10%;
+    display: inline-block;
+}
 
 /* ----- CH5 editor ----- */
 
@@ -572,3 +599,4 @@ input[readonly], textarea[readonly]{
 }
 /* Administer Users end */
 
+/* Document

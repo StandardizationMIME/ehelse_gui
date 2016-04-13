@@ -9,8 +9,8 @@
 
             <div class="modal-body">
                 <form role="form">
-                    <div class="form-group" ng-repeat="field in documentFields">
-                        <input id={{field.id}} type="checkbox" data-checklist-model="selectedDocumentFields.fields" data-checklist-value="field">
+                    <div ng-if="document_fields_ids.indexOf(field.id) == -1" class="form-group" ng-repeat="field in fields">
+                        <input id={{field.id}} type="checkbox"  data-checklist-model="selected_document_fields_ids" data-checklist-value="field.id">
                         <label for={{field.id}}>{{field.name}}</label>
                     </div>
                 </form>
