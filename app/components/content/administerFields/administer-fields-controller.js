@@ -29,6 +29,20 @@ angular.module('ehelseEditor').controller('AdministerFieldsController', ['$scope
 
     $rootScope.updateDocumentFieldsList();
 
+    $rootScope.deleteFieldById = function(id){
+        $scope.delete(
+            'document-fields/' + id,
+            function(){
+                $rootScope.updateDocumentFieldsList();
+                $rootScope.confirmationValue = false;
+                console.log("Successfully deleted field");
+                $rootScope.notifySuccess("Felt ble sletta!", 5000);
+            },
+            function(){
+
+            }
+        )
+    };
 
     $scope.getDocumentFieldById = function (id) {
         $scope.get(
@@ -53,6 +67,8 @@ angular.module('ehelseEditor').controller('AdministerFieldsController', ['$scope
         $scope.getDocumentFieldById(fieldId);
         $scope.openModal('app/components/content/administerFields/editFields/edit-document-field-modal.html', 'DocumentFieldModalController');
     };
+
+
 
 
     $scope.sortableOptions = {

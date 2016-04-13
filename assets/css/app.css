@@ -81,6 +81,24 @@
 
 /* ----- CH4 document ----- */
 
+/* document1 = standard */
+.document1 {
+    color: #0068e7;
+    font-size: 1.3em;
+}
+
+/* document2 = profile */
+.document2 {
+    color: red;
+    font-size: 1.3em;
+}
+
+/* document3 = støttedokument */
+.document3 {
+    color: forestgreen;
+    font-size: 1.3em;
+}
+
 
 /* ----- CH5 editor ----- */
 
@@ -150,6 +168,11 @@ div>div>.dropdown-toggle:hover{
 /* topic end */
 
 /* ----- CH11 Administer fields ----- */
+
+.edit-field-text {
+    margin-right: 10px;
+    margin-left: 200px;
+}
 
 .administer-fields ul{
     margin: 0;
