@@ -3,6 +3,10 @@
 'use strict';
 
 angular.module('ehelseEditor').controller('ContentController', [ '$scope', '$rootScope', function( $scope, $rootScope) {
+    $scope.document;
+    $rootScope.setDocument = function(document){
+        $scope.document = document;
+    };
 
     $scope.postNewStandard = function(standard){
 

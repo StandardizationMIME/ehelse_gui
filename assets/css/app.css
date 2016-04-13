@@ -22,6 +22,16 @@ input:invalid {
     background-color: #0068e7;
 }
 
+.overflow-auto{
+    overflow: auto;
+}
+.height-500{
+    height: 500px;
+}
+.height-800{
+    height: 800px;
+}
+
 /* ----- CH2 administerUsers ----- */
 #userList img{
     width: 50px;
@@ -82,6 +92,7 @@ input:invalid {
 }
 
 
+
 /* ----- CH4 document ----- */
 
 /* document1 = standard */
@@ -102,6 +113,32 @@ input:invalid {
     font-size: 1.3em;
 }
 
+/* document-field */
+
+.document-fields-container{
+
+}
+
+
+.document-fields-field-name{
+    width:25%;
+    display: inline-block;
+}
+
+.document-fields-field-value{
+    width:60%;
+    display: inline-block;
+
+}
+
+.document-fields-field-value input{
+    width:100%;
+}
+
+.document-fields-field-remove{
+    width:10%;
+    display: inline-block;
+}
 
 /* ----- CH5 editor ----- */
 
@@ -405,9 +442,9 @@ textarea {
 }
 
 /*-----------Document Icon colors---------*/
-.standard{color: #0068e7;}
-.profile{color: #f60e24;}
-.utilityDocument{color: #1ae700;}
+.d1{color: #0068e7;}
+.d2{color: #f60e24;}
+.d3{color: #1ae700;}
 
 .nopadding {
     padding: 0 !important;
@@ -588,3 +625,4 @@ input[readonly], textarea[readonly]{
 }
 /* Administer Users end */
 
+/* Document

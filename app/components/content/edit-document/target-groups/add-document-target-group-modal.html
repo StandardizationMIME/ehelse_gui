@@ -11,8 +11,8 @@
 
             <div class="modal-body">
                 <form role="form">
-                    <div class="form-group" ng-repeat="group in targetGroups">
-                        <input type="checkbox" data-checklist-model="selectedTGNewDoc.groups" data-checklist-value="group"> {{group.name}}
+                    <div class="form-group" ng-if="document_target_groups_ids.indexOf(group.id) == -1"  ng-repeat="group in target_groups">
+                        <input type="checkbox" data-checklist-model="selected_target_groups_ids" data-checklist-value="group.id"> {{group.name}}
                     </div>
                 </form>
             </div>

@@ -2,7 +2,7 @@
 
 angular.module('ehelseEditor')
 
-    .controller('MainController', ['$scope',
-     function($scope){
+    .controller('MainController', ['$scope','DocumentType', 'TargetGroup', 'Mandatory', 'Action', 'DocumentField',
+     function($scope, DocumentType, TargetGroup, Mandatory, Action, DocumentField){
 
      }]);

@@ -1,6 +1,8 @@
 'use strict';
 
-angular.module('ehelseEditor').controller('DocumentController', [ '$scope','$rootScope', function( $scope, $rootScope) {
+angular.module('ehelseEditor').controller('DocumentController', [ '$scope','$rootScope', 'DocumentType', 'Document', function( $scope, $rootScope, DocumentType, Document) {
+
+    $scope.document_types_dict = DocumentType.document_types_dict;
 
 
     <!-- Makes selected folder bold and toggles folder icon between opened and closed -->
@@ -30,5 +32,12 @@ angular.module('ehelseEditor').controller('DocumentController', [ '$scope','$roo
 
     $rootScope.setSelectedDocumentId = function(documentId){
         $rootScope.selectedDocumentId = documentId;
+    };
+
+
+    $scope.openDocument = function(document){
+        Document.setDocument(document);
+        $rootScope.changeContentView('document');
+        $rootScope.setDocument(Document.getDocument());
     };
 }]);

@@ -8,8 +8,8 @@ angular.module('ehelseEditor').controller('TopicController',['$rootScope', '$sco
 
     $rootScope.reloadTopic = function(topic){
         $scope.flatTopicList[topic.id] = topic;
-        if(topic.parent){
-            $scope.flatTopicList[topic.parent].children.push(topic);
+        if(topic.parentId){
+            $scope.flatTopicList[topic.parentId].children.push(topic);
         }else {
             $rootScope.topics.push(topic);
         }

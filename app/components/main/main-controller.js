@@ -10,7 +10,8 @@
         if(user){
             $rootScope.currentUser = angular.fromJson(user);
         }
-        $rootScope.apiUrl = 'https://refkat.eu/v1/';
+        //$rootScope.apiUrl = 'https://refkat.eu/v1/';
+        $rootScope.apiUrl = 'http://localhost:8080/index.php/v1/';
 
         $rootScope.topics = [];
         $rootScope.topicsList = [];
