@@ -1,6 +1,9 @@
 /* ----- TABLE OF CONTENTS ----- */
 
 /* ----- CH1 generic ----- */
+input:invalid {
+    border: 1px solid red;
+}
 /* ----- CH2 administerUsers ----- */
 /* ----- CH3 content ----- */
 /* ----- CH4 document ----- */
