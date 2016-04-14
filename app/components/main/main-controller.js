@@ -1,38 +1,40 @@
-function generateTopicList(parent, topics){
-    var paths = [];
-    for (var i = 0; i < topics.length; i++) {
-        paths.push({
-            id: topics[i].id,
-            path: parent + "/" + topics[i].title
-        });
-        Array.prototype.push.apply(paths,generateTopicList(parent + "/" + topics[i].title, topics[i].children))
-    }
-    return paths;
-}
+
 
 
 (function(){
 
+    angular.module('ehelseEditor').run([ '$http', '$rootScope', '$cookies', '$location', 'ModalService', function($http, $rootScope, $cookies, $location, ModalService) {
+        $rootScope.userName = $cookies.get('username');
+        $rootScope.password = $cookies.get('password');
+        var user= $cookies.get('currentUser');
+        if(user){
+            $rootScope.currentUser = angular.fromJson(user);
+        }
+        $rootScope.apiUrl = 'https://refkat.eu/v1/';
+        //$rootScope.apiUrl = 'http://localhost:8080/index.php/v1/';
 
-    angular.module('ehelseEditor').run([ '$http', '$rootScope',function($http, $rootScope, MyResourceProvider) {
-        $rootScope.login = function (username, authtoken) {
+        $rootScope.topics = [];
+        $rootScope.topicsList = [];
 
-            $rootScope.post(
-                'https://refkat.eu/v1/topics/',
-                {},
-                function (data) {
-                    console.log(data);
-                },
-                function () {
-                }
-            );
+        $rootScope.openModal = function(url, controller){
+            ModalService.showModal({
+                templateUrl: url,
+                controller: controller,
+                animation: false
+            }).then(function(modal) {
+                modal.element.modal();
+                modal.close.then(function(result) {
+                    console.log(result);
+                });
+            });
         };
 
+        $rootScope.openConfirmationModal = function(message, id){
+            $rootScope.confirmationMessage = message;
+            $rootScope.deleteId = id;
+            $rootScope.openModal('app/components/main/confirmation/confirmation-modal.html', 'ConfirmationModalController');
+        };
 
-
-        $rootScope.userName = "";
-        $rootScope.password = "";
-        $rootScope.apiUrl = 'https://refkat.eu/v1/';
 
         $rootScope.setUserName = function(userName){
             $rootScope.userName = userName;
@@ -54,36 +56,102 @@ function generateTopicList(parent, topics){
             $rootScope.http("get", url, {} , success, error);
         };
 
-        $rootScope.delete = function(url, data, success, error){
-            $rootScope.http("delete", url, data, success, error);
+        $rootScope.delete = function(url, success, error){
+            $rootScope.http("delete", url, {}, success, error);
         };
 
 
-        $rootScope.http = function(method, url, data, success, error){
-            var credentials = btoa($rootScope.userName + ':' + $rootScope.password);
-            var authorization = {'Authorization': 'Basic ' + credentials};
-            $http({
-                url: $rootScope.apiUrl + url,
-                data: data,
-                method: method,
-                headers: authorization
-            }).success(function(data, status, headers, config){
+        $rootScope.http = function(method, url, payload, success, error){
+            var username = $rootScope.userName || $cookies.get('username');
+            var password = $rootScope.password || $cookies.get('password');
+            if(username && password){
+                var credentials = btoa( username + ':' + password);
+                var authorization = {'Authorization': 'Basic ' + credentials};
+                var request = {
+                    url: $rootScope.apiUrl + url,
+                    data: payload,
+                    method: method,
+                    headers: authorization
+                };
 
-                    success (data, status, headers, config);
-                }
-            ).error(
-                function(data, status, headers, config){
-                    error(data, status, headers, config);
-                });
+                $http(request).success(function(data, status, headers, config){
+                        console.log(
+                            request.method,
+                            request.url,
+                            "Success",
+                            {
+                                "request": request,
+                                "response":{
+                                    "data": data,
+                                    "status": status,
+                                    "headers": headers,
+                                    "config":config
+                                },
+                                "success":success,
+                                "error": error,
+                                "toString": function(){return "bla"}
+                            }
+                        );
+                        success (data, status, headers, config);
+                    }
+                ).error(
+
+                    function(data, status, headers, config){
+                        console.log(
+                            request.method,
+                            request.url,
+                            "Error",
+                            {
+                                "request": request,
+                                "response":{
+                                    "data": data,
+                                    "status": status,
+                                    "headers": headers,
+                                    "config":config
+                                },
+                                "success":success,
+                                "error": error,
+                                "toString": function(){return "bla"}
+                            }
+                        );
+                        error(data, status, headers, config);
+                    }
+                );
+            }
+            else {
+
+                $location.path('/login').replace();
+            }
+
+        };
+
+        $rootScope.logout = function(){
+            $rootScope.currentUser = null;
+            $rootScope.userName = null;
+            $rootScope.password = null;
+
+            $cookies.put('username', "");
+            $cookies.put('password', "");
+            $cookies.put('currentUser', "");
+            $location.path('/login').replace();
+        };
+
+        $rootScope.childControllers = {};
+        $rootScope.registerChildController = function(name, scope){
+            $rootScope.childControllers[name] = scope;
+        };
+
+        $rootScope.changeContentView = function(view){
+            $rootScope.childControllers['EditorController'].changeView(view);
+        };
+
+        $rootScope.userPageView = '';
+
+        $rootScope.changeUserView = function(view){
+            $rootScope.userPageView = view;
+            console.log($rootScope.userPageView);
         };
 
     }]);
-
-
-    angular.module('ehelseEditor').controller('TopicController', function($scope, $http) {
-
-    });
-
-
 
 })();

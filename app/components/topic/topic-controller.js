@@ -1,29 +1,62 @@
-angular.module('ehelseEditor').controller('TopicController', function($scope, $http){
 
-    $scope.topic = {
+
+angular.module('ehelseEditor').controller('TopicController',['$rootScope', '$scope', "ModalService", function($rootScope, $scope, ModalService){
+
+    $rootScope.topic = {
         title: "Referansekatalogen"
     };
 
-    $scope.get('topics/' , function(data){
-        $scope.topics = data.topics;
-        $scope.topicList = generateTopicList("", data.topics);
-        console.log($scope.topics);
-
-    }, function(){});
-
-    $scope.getStandards = function(id) {
-        $scope.get('topics/' + id , function(data){
-            $scope.standards = data.documents;
-            $scope.topic = data;
-
-        }, function(){});
-
-        <!-- Makes selected folder bold and toggles folder icon between opened and closed -->
-        $(".clickable").removeClass('selected');
-        $('#' + id).addClass('selected');
-        $('#folder' + id).toggleClass('glyphicon-folder-open','glyphicon-folder-close');
+    $rootScope.reloadTopic = function(topic){
+        $scope.flatTopicList[topic.id] = topic;
+        if(topic.parentId){
+            $scope.flatTopicList[topic.parentId].children.push(topic);
+        }else {
+            $rootScope.topics.push(topic);
+        }
     };
 
+    $scope.flattenTopicList = function(topicList){
+        var flattTopicObject= {};
+        for(var i = 0; i < topicList.length; i++){
+            flattTopicObject[topicList[i].id] = topicList[i];
+            $.extend(flattTopicObject,
+                $scope.flattenTopicList(topicList[i].children));
+        }
+        return flattTopicObject;
+    };
 
-});
+    $rootScope.selectedTopicId = "null";
+
+    $rootScope.setSelectedTopicId = function(topicId){
+        console.log("topic ", topicId, "selected");
+        $rootScope.selectedTopicId = topicId;
+    };
+
+    $rootScope.reloadTopicTupleList = function() {
+        $rootScope.topicTupleList = $scope.generateListOfTopicTuple(1,"", $rootScope.topics);
+    };
+
+    $scope.generateListOfTopicTuple = function(level, parent, topics){
+        var paths = [];
+        for (var i = 0; i < topics.length; i++) {
+            paths.push({
+                id: topics[i].id,
+                path: parent + "/" + topics[i].title,
+                level: level
+            });
+            Array.prototype.push.apply(paths,$scope.generateListOfTopicTuple(level+1, parent + "/" + topics[i].title, topics[i].children))
+        }
+        return paths;
+    };
+
+    $scope.get('topics/' , function(data){
+        $rootScope.topics = data.topics;
+        $rootScope.reloadTopicTupleList();
+        $rootScope.flatTopicList = $scope.flattenTopicList($rootScope.topics);
+    }, function(){});
+
+
+
+
+}]);
 

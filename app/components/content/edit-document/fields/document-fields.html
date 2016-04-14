@@ -1,0 +1,12 @@
+<div class="form-group" class="document-fields-container" >
+    <ul id="new-doc-fields" class="list-group">
+        <li class="list-group-item" ng-repeat="field in document.fields">
+            <span class="document-fields-field-name">{{fields_dict[field.fieldId].name}}</span>
+            <span class="document-fields-field-value"><input type="text" ng-model="field.value"></span>
+            <span class="document-fields-field-remove"><button type="button" ng-click="removeField(field)">X</button></span>
+        </li>
+    </ul>
+
+
+    <button class="btn btn-default" ng-click="openModal('app/components/content/edit-document/fields/add-document-fields-modal.html', 'AddDocumentFieldsController')"><span class="fa fa-plus-circle plus-icon-standard"></span> Legg til felter</button>
+</div>

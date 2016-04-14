@@ -1,8 +1,295 @@
-.topic-browser {
-    padding: 20px;
-    overflow-y: auto;
+/* ----- TABLE OF CONTENTS ----- */
+
+/* ----- CH1 generic ----- */
+input:invalid {
+    border: 1px solid red;
+}
+/* ----- CH2 administerUsers ----- */
+/* ----- CH3 content ----- */
+/* ----- CH4 document ----- */
+/* ----- CH5 editor ----- */
+/* ----- CH6 login ----- */
+/* ----- CH7 main ----- */
+/* ----- CH8 myPage ----- */
+/* ----- CH9 toolbar ----- */
+/* ----- CH10 topic ----- */
+/* ----- CH11 Administer Fields ----- */
+
+
+/* ----- CH1 generic ----- */
+
+.btn-primary {
+    background-color: #0068e7;
+}
+
+.overflow-auto{
+    overflow: auto;
+}
+.height-500{
+    height: 500px;
+}
+.height-800{
     height: 800px;
 }
+
+/* ----- CH2 administerUsers ----- */
+#userList img{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+}
+.userRow{
+    border-radius: 50px;
+    background-color: #fff;
+    border: solid #ccc thin;
+    width: 70%;
+    margin: 0.5em;
+}
+#addUser{
+    color: #337AB7;
+    border-radius: 50px;
+    background-color: #fff;
+    border: dashed #ccc thin;
+    width: 23%;
+    margin: 0.5em;
+    padding: 1em;
+}
+#addUser:hover{
+    background-color: #adadad;
+    -webkit-transition: all 0.2s ease;
+    -moz-transition: all 0.2s ease;
+    -o-transition: all 0.2s ease;
+    transition: all 0.2s ease;
+}
+.vcenter {
+    display: inline-block;
+    vertical-align: middle;
+    float: none;
+}
+.removeUser{
+    color: #f60e24;
+    font-size: 2em;
+    padding-right: 1em;
+}
+.userRowName {
+    margin-left: 1em;
+}
+#administerUsersNotifications{
+    margin-bottom: 5%;
+}
+
+
+
+
+
+
+/* ----- CH3 content ----- */
+
+.document-fields {
+    overflow-y: hidden;
+}
+
+
+
+/* ----- CH4 document ----- */
+
+
+.document-fields-container{
+
+}
+
+
+.document-fields-field-name{
+    width:25%;
+    display: inline-block;
+}
+
+.document-fields-field-value{
+    width:60%;
+    display: inline-block;
+
+}
+
+.document-fields-field-value input{
+    width:100%;
+}
+
+.document-fields-field-remove{
+    width:10%;
+    display: inline-block;
+}
+
+/* ----- CH5 editor ----- */
+
+
+/* ----- CH6 login ----- */
+
+
+/* ----- CH7 main ----- */
+
+.mainLogo {
+    width: 800px;
+    height: auto;
+    margin: auto;
+}
+
+
+/* ----- CH8 myPage ----- */
+#accountInfo{
+    margin-top: 5%;
+}
+.dataField{
+    display: inline;
+}
+.dataRow:hover{background-color: #E6E6E6;}
+
+.dataRow{
+    width: 75%;
+    margin-left: 5%;
+}
+.dataRow>*{
+    padding: 10px;
+    margin: 0;
+}
+.subForm{
+    width: 75%;
+    margin-left: 5%;
+    padding: 2% 7% 5% 0;
+    background-color: #E6E6E6;
+}
+.subForm>*{
+    padding-left: 5%;
+}
+.activeRow{
+    font-weight: bolder;
+    color: dodgerblue;
+    background-color: #E6E6E6;
+    border-bottom: inset;
+    border-color: #ccc;
+}
+
+/* ----- CH9 toolbar ----- */
+
+/*toolbar start*/
+div>div>.dropdown-toggle{
+    margin-bottom: 0.5em;
+    background-color: inherit;
+    border: none;
+}
+div>div>.dropdown-toggle:hover{
+    border-radius: 5%;
+}
+/*toolbar end*/
+
+
+/* ----- CH10 topic ----- */
+
+/* topic end */
+
+/* ----- CH11 Administer fields ----- */
+
+.edit-field-text {
+    margin-right: 10px;
+    margin-left: 200px;
+}
+
+.administer-fields ul{
+    margin: 0;
+    padding: 0;
+}
+
+.administer-fields li{
+    text-decoration: none;
+    list-style-type: none;
+    cursor: move;
+}
+
+.administer-fields .field-list-title{
+    display: inline-block;
+}
+
+.field-mandatory {
+    display: inline-block;
+    margin-left: 40px;
+}
+
+.edit-field{
+    font-size: 2em;
+    padding-right: 1em;
+}
+
+span.field-item{
+    border-bottom: 1px solid black;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-radius: 0;
+    box-shadow: none;
+    font-weight: 700;
+}
+
+.field-item{
+    border: 1px none;
+    box-shadow: 1px 1px 1px 1px #b8b8b8;
+    border-radius: 10px;
+    margin-bottom: 8px;
+    padding:10px;
+    width: 100%;
+}
+
+.administer-fields .field-item .field-item-field:nth-child(1), .administer-fields .field-item input:nth-child(2){
+    width:150px;
+    display: inline-block;
+}
+
+.administer-fields .field-item .field-item-field:nth-child(2), .administer-fields .field-item input:nth-child(3){
+    width:400px;
+    display: inline-block;
+}
+
+
+.draggable:hover {
+    background-color: #f9f9f9;
+}
+
+.addField {
+    border-radius: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 10px;
+    text-align: center;
+    margin-top: 20px;
+    margin-left: 0;
+    margin-right: 79%;
+    background-color: #0068e7;
+    color: white;
+    box-shadow: 1px 1px 1px 1px #b8b8b8;
+}
+
+.addField:hover{
+    background-color: #0099f9;
+    cursor: pointer;
+    -webkit-transition: all 0.2s ease;
+    -moz-transition: all 0.2s ease;
+    -o-transition: all 0.2s ease;
+    transition: all 0.2s ease;
+}
+
+/* ----- Administer fields end ----- */
+
+
+.topic-browser {
+    padding: 20px;
+    height: 800px;
+}
+
+.topic-list{
+    overflow-y: auto;
+    height: 650px;
+}
+
 .navigation-bar {
     min-height: 40px;
     max-width: 1800px;
@@ -32,13 +319,17 @@
     box-shadow: 1px 1px 2px 1px #b8b8b8;
 }
 
-.btn-primary {
-    -webkit-border-radius: 0 !important;
-    -moz-border-radius: 0 !important;
-    border-radius: 0 !important;
-    background-color: #0068e7;
-
+.content-view {
+    padding: 20px;
 }
+
+/*.btn-primary {*/
+    /*-webkit-border-radius: 0 !important;*/
+    /*-moz-border-radius: 0 !important;*/
+    /*border-radius: 0 !important;*/
+    /*background-color: #0068e7;*/
+/*}*/
+
 .standard-icon {
     color: #0068e7;
 }
@@ -46,15 +337,29 @@
     color: #0f0f0f;
 }
 .plus-icon-standard {
-    font-size: medium;
+    font-size: large;
     color: #0068e7;
 }
 
-.plus-icon-profile {
+.delete-icon-standard {
     font-size: medium;
-    color: red;
+    color: darkgrey;
 }
 
+.plus-icon-profile {
+    font-size: large;
+    color: #f60e24;
+}
+
+.plus-icon-utilityDocument{
+    font-size: large;
+    color: #1ae700;
+}
+
+#createNewDocument{
+    font-size: medium;
+    padding-bottom: 10px;
+}
 
 .body_background {
     background-color: #f3f3f3;
@@ -73,11 +378,6 @@
 
 .new-topic {
     width: 400px;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 100px;
-    background-color: #e3e3e3;
-
 }
 
 textarea {
@@ -96,9 +396,16 @@ textarea {
 
 .center-align-text {
     text-align: center;
+    display: table-cell;
+    vertical-align: middle;
 }
 
 .clickable:hover {
+    cursor: pointer;
+    color: dodgerblue;
+}
+
+.document-clickable:hover {
     cursor: pointer;
     color: dodgerblue;
 }
@@ -112,8 +419,13 @@ textarea {
 
 
 .profile-icon {
-    color: red;
+    color: #f60e24;
 }
+
+/*-----------Document Icon colors---------*/
+.d1{color: #0068e7; font-size: 1.3em;}
+.d2{color: #f60e24; font-size: 1.3em;}
+.d3{color: forestgreen; font-size: 1.3em;}
 
 .nopadding {
     padding: 0 !important;
@@ -135,3 +447,163 @@ textarea {
 .shadow-below {
     box-shadow: 0 1px #b8b8b8;
 }
+
+#notificationMessage {
+    position: absolute;
+    width: 97%;
+}
+.nav-tabs {
+    border-color: #b8b8b8;
+}
+.zIndexHigh {
+    z-index: 1000000000;
+}
+.document-content {
+    width: 45%;
+    min-width: 200px;
+}
+.version-content {
+    width: 30%;
+    min-width: 200px;
+}
+input.version-id {
+    max-width: 70px;
+    float: right;
+    clear: both;
+}
+
+.document-version {
+    width: 100%;
+    margin-top: 20px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.headline-box {
+    position: relative;
+    height: 50px;
+    overflow-x: auto;
+}
+
+.headline-box h4 {
+    position: absolute;
+    bottom: 0;
+}
+
+
+/* User dropdown start */
+ div>div>.dropdown-toggle{
+     margin-bottom: 0.5em;
+     background-color: inherit;
+     border: none;
+ }
+div>div>.dropdown-toggle:hover{
+    border-radius: 5%;
+}
+/* User dropdown end */
+
+/* MyPage start */
+#accountInfo{
+    margin-top: 5%;
+}
+.dataField{
+    display: inline;
+}
+.dataRow:hover{background-color: #E6E6E6;}
+
+.dataRow{
+    width: 75%;
+    margin-left: 5%;
+}
+.dataRow>*{
+    padding: 10px;
+    margin: 0;
+}
+.subForm{
+    width: 75%;
+    margin-left: 5%;
+    padding: 2% 7% 5% 0;
+    background-color: #E6E6E6;
+}
+.subForm>*{
+    padding-left: 5%;
+}
+.activeRow{
+    font-weight: bolder;
+    color: dodgerblue;
+    background-color: #E6E6E6;
+    border-bottom: inset;
+    border-color: #ccc;
+}
+/* MyPage end */
+
+/*~~~~~~~~~~~~TARGET GROUP~~~~~~~~~~~*/
+
+.target-group-grid{
+    overflow: scroll;
+    height: 750px;
+}
+
+.table-hover tbody tr:hover td, .table-hover tbody tr:hover th {
+    background-color: #c7c7c7;
+}
+
+.target-group-add, .target-group-delete{
+    color: #ffffff !important;
+
+}
+
+input[readonly], textarea[readonly]{
+    background-color: #e4e4e4 !important;
+}
+
+/* Administer Users start */
+#userList img{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+}
+.userRow{
+    border-radius: 50px;
+    background-color: #fff;
+    border: solid #ccc thin;
+    width: 70%;
+    margin: 0.5em;
+}
+#addUser{
+    color: #337AB7;
+    border-radius: 50px;
+    background-color: #fff;
+    border: dashed #ccc thin;
+    width: 23%;
+    margin: 0.5em;
+    padding: 1em;
+}
+#addUser:hover{
+    background-color: #adadad;
+    -webkit-transition: all 0.2s ease;
+    -moz-transition: all 0.2s ease;
+    -o-transition: all 0.2s ease;
+    transition: all 0.2s ease;
+}
+.vcenter {
+    display: inline-block;
+    vertical-align: middle;
+    float: none;
+}
+.removeUser{
+    color: #f60e24;
+    font-size: 2em;
+    padding-right: 1em;
+}
+.userRowName {
+    margin-left: 1em;
+}
+#administerUsersNotifications{
+    margin-bottom: 5%;
+}
+/* Administer Users end */
+
+/* Document

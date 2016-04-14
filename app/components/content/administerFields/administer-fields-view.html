@@ -1,0 +1,24 @@
+<section ng-controller="AdministerFieldsController">
+    <div>
+        <div class="headline-box">
+            <h4 class="selected">Administrer felter:</h4>
+        </div>
+        <ul class="nav nav-tabs">
+            <li class="active clickable"><a data-toggle="tab" data-target="#standardFieldsTab">Standarder</a></li>
+            <li class="clickable"><a data-toggle="tab" data-target="#profileFieldsTab">Profiler</a></li>
+            <li class="clickable"><a data-toggle="tab" data-target="#supportFieldsTab">Støttedokumenter</a></li>
+        </ul>
+
+        <div class="tab-content">
+            <div id="standardFieldsTab" class="tab-pane fade in active administer-fields">
+                <standardfields></standardfields>
+            </div>
+            <div id="profileFieldsTab" class="tab-pane fade administer-fields">
+                <profilefields></profilefields>
+            </div>
+            <div id="supportFieldsTab" class="tab-pane fade administer-fields">
+                <supportdocumentfields></supportdocumentfields>
+            </div>
+        </div>
+    </div>
+</section>

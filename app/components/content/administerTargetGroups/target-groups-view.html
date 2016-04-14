@@ -1,0 +1,38 @@
+<div ng-controller="TargetGroupsController" class="target-group-grid">
+    <div style="margin-bottom: 20px;">
+        <h4 class="selected">Målgrupper
+        <div class="btn-toolbar pull-right">
+        <!-- Delete TG button -->
+        <button type="button" class="btn btn-default  small target-group-delete"
+                ng-click="openModal('app/components/content/administerTargetGroups/deleteTargetGroups/delete-target-group-modal.html', 'DeleteTargetGroupController')" data-keyboard="true"><i class="fa fa-remove"></i> Slett målgrupper </button>
+        <!-- New TG button-->
+        <button type="button" class="btn btn-primary  small target-group-add"
+                ng-click="openModal('app/components/content/administerTargetGroups/addTargetGroups/new-target-group-modal.html', 'NewTargetGroupController')" data-keyboard="true"><i class="fa fa-plus"></i> Ny målgruppe </button>
+        </div>
+        </h4>
+    </div>
+    <div class="table-responsive">
+        <table class="table" id="targetGroupsTable">
+            <thead>
+            <tr>
+                <th class="col-md-3">Navn</th>
+                <th>Beskrivelse</th>
+                <th class="col-md-1">Forkortelse</th>
+                <th class="col-md-2">Overordnet målgrupper</th>
+            </tr>
+            </thead>
+            <tbody>
+            <div style="overflow-y: scroll">
+                <tr ng-repeat="group in targetGroups" >
+                    <td><input type="text" ng-model="group.name" class="form-control" readonly></td>
+                    <td><textarea cols="40" rows="3" name="" ng-model="group.description" class="form-control" readonly></textarea></td>
+                    <td><input type="text" ng-model="group.abbreviation" class="form-control" readonly></td>
+                    <td><input type="text" value="{{TGDictionary[group.parentId].name}}" class="form-control" readonly></td>
+                    <td><a href="" ng-click="showEditTGModal(group)" data-keyboard="true"><i class="fa fa-pencil-square-o fa-2x"></i></a></td>
+                </tr>
+            </div>
+            </tbody>
+        </table>
+    </div>
+</div>
+

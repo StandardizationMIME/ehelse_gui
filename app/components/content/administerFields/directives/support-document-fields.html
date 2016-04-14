@@ -1,0 +1,28 @@
+<form name="administerFieldForm" role="form" ng-submit="" method="post">
+    <span class="field-item field-list-title">
+        <span class="field-item-field">Tittel</span>
+        <span class="field-item-field">Beskrivelse</span>
+        <span class="field-item-field">Obligatorisk</span>
+        <span class="field-item-field pull-right">Rediger felt &nbsp; Slett &nbsp;</span>
+    </span>
+    <ul ui-sortable="sortableOptions" ng-model="documentFields">
+        <li ng-repeat="field in supportDocumentFields" class="field-item document-fields draggable">
+            <span class="field-item-field">{{field.name}}</span>
+            <span class="field-item-field">{{field.description}}</span>
+            <span class="field-item-field" ng-if="field.mandatory == '1'">Ja</span>
+            <span class="field-item-field" ng-if="field.mandatory == '0'">Nei</span>
+            <div class="pull-right">
+                <span ng-click="openConfirmationModal('Er du sikker på at du vil slette denne?', field.id)" id="editProfileField" class="fa fa-remove fa-fw vcenter clickable removeUser edit-field unsortable"></span>
+            </div>
+            <div class="pull-right">
+                <span ng-click="editDocumentFieldModal(field.id);setTypeId('3')" id="deleteProfileField" class="fa fa-pencil-square-o fa-2x vcenter clickable edit-field unsortable"></span>
+            </div>
+            <input type="hidden" ng-model="field.sequence"/>
+        </li>
+    </ul>
+    <div id="addSupportDocumentField" class="row addField"
+         ng-click="openModal('app/components/content/administerFields/addFields/new-document-field-modal.html', 'DocumentFieldModalController');setTypeId('3')">
+        <span id="addNewProfileField" class="fa fa-pencil-square-o fa-2x vcenter"></span>
+        <span class="col-lg-8 vcenter">Opprett nytt felt</span>
+    </div>
+</form>

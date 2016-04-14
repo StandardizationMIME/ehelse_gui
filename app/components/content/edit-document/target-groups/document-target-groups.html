@@ -1,0 +1,48 @@
+
+
+<div class="form-group">
+    <label for="target-group-table">Målgrupper</label>
+    <table class="table table-condensed" id="target-group-table">
+        <thead>
+        <tr>
+            <th>Navn</th>
+            <th>Obligatorisk</th>
+            <th>Frist</th>
+            <th>Handling</th>
+            <th>Beskrivelse</th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="group in document.targetGroups">
+            <!-- NAVN -->
+            <td>{{target_groups_dict[group.targetGroupId].name}}</td>
+            <!-- OBLIGATORISK -->
+            <td>
+                <select class="form-control" name="" id="mandatory" ng-model="group.mandatory">
+                <option ng-repeat="mandatory in mandatory_option_list" value="{{mandatory.value}}">{{mandatory.name}}</option>
+            </select>
+            </td>
+            <!-- FRIST -->
+            <td>
+                <input class="form-control" type="text" id="deadline" ng-model="group.deadline">
+            </td>
+            <!-- HANDLING -->
+            <td>
+                <select class="form-control" name="" id="action" ng-model="group.action">
+                <option ng-repeat="action in actions_option_list" value="{{action.value}}">{{action.name}}</option>
+            </select>
+            </td>
+            <!-- BESKRIVELSE -->
+            <td>
+                <input type="text" class="form-control" id="description"  ng-model="group.description"/>
+            </td>
+            <!-- Slett -->
+            <td>
+                <button type="button" class="form-control" ng-click="removeTargetGroup(group)"/>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <button class="btn btn-default" type="button" ng-click="openModal('app/components/content/edit-document/target-groups/add-document-target-group-modal.html', 'AddDocumentTargetGroupModelController')"><i class="fa fa-plus"></i>Legg til ny</button>
+</div>

@@ -7,7 +7,7 @@ angular.module('ehelseEditor')
             })
             .when('/main-view/', {
                 controller: 'MainController',
-                templateUrl: 'app/components/main/views/main-view.html'
+                templateUrl: 'app/components/main/main-view.html'
             })
             .otherwise({redirectTo: '/'})
     }]);

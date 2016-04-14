@@ -1,0 +1,27 @@
+<div ng-controller="AdministerUsersController" class="col-lg-offset-2 col-lg-10">
+    <!-- toast informing user -->
+    <div id="administerUsersNotifications" class="row">
+        <notification class="col-lg-8"></notification>
+    </div>
+
+    <!-- displays all the users -->
+    <div id="userList">
+        <div class="row">
+            <h3>Registrerte brukere</h3>
+        </div>
+        <div class="row userRow" ng-repeat="user in userList">
+            <div class="col-lg-1 vcenter">
+                <img src="http://placehold.it/50x50" alt="{{user.name}}_profileImage"/>
+            </div>
+            <span class="col-lg-4 vcenter userRowName">{{user.name}}</span>
+            <span class="col-lg-6 vcenter">{{user.email}}</span>
+            <span class="fa fa-remove fa-fw vcenter clickable removeUser" ng-click="deleteUser(user)"></span>
+        </div>
+
+        <div id="addUser" class="row clickable" ng-click="addUser()">
+            <span id="addNewUser" class="fa fa-user-plus fa-3x vcenter"></span>
+            <span class="col-lg-8 vcenter">Opprett ny bruker</span>
+        </div>
+
+    </div>
+</div>
