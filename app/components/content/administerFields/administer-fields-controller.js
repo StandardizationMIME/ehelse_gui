@@ -1,63 +1,44 @@
 'use strict';
 
-angular.module('ehelseEditor').controller('AdministerFieldsController', ['$scope', '$rootScope', function ($scope, $rootScope) {
+angular.module('ehelseEditor').controller('AdministerFieldsController', ['$scope', '$rootScope', 'DocumentField', function ($scope, $rootScope, DocumentField) {
 
-    $rootScope.documentFields = [];
+    $scope.documentFields = DocumentField.document_fields;
 
-    $rootScope.updateDocumentFieldsList = function(){
-        $scope.get('document-fields/',
-            function (data) {
-                $rootScope.standardFields = [];
-                $rootScope.profileFields = [];
-                $rootScope.supportDocumentFields = [];
-                for (var i = 0; i < data.documentFields.length; i++) {
-                    if(data.documentFields[i].documentTypeId == 1){
-                        $rootScope.standardFields.push(data.documentFields[i]);
-                    }else if(data.documentFields[i].documentTypeId == 2){
-                        $rootScope.profileFields.push(data.documentFields[i]);
-                    }else if(data.documentFields[i].documentTypeId == 3) {
-                        $rootScope.supportDocumentFields.push(data.documentFields[i]);
-                    }
-                }
-            }, function () {
-            });
-    };
+    console.log($scope.documentFields);
+
 
     $rootScope.setTypeId = function(number){
         $rootScope.typeId = number;
     };
 
-    $rootScope.updateDocumentFieldsList();
+    $rootScope.deleteFieldById = function(field){
 
-    $rootScope.deleteFieldById = function(id){
-        $scope.delete(
-            'document-fields/' + id,
+        DocumentField.delete(
+            field,
             function(){
-                $rootScope.updateDocumentFieldsList();
                 $rootScope.confirmationValue = false;
                 console.log("Successfully deleted field");
-                $rootScope.notifySuccess("Felt ble sletta!", 5000);
+                $rootScope.notifySuccess("Felt ble slettet!", 5000);
             },
             function(){
 
             }
-        )
+        );
     };
 
     $scope.getDocumentFieldById = function (id) {
-        $scope.get(
-            'document-fields/' + id,
-            function (data) {
 
+        DocumentField.getFieldById(
+            id,
+            function(data){
                 if(data.mandatory == '0'){
                     data.mandatory = false;
                 }else if(data.mandatory == '1'){
                     data.mandatory = true;
                 }
-
                 $rootScope.currentDocumentField = data;
             },
-            function () {
+            function(){
                 console.log("error");
             }
         );
