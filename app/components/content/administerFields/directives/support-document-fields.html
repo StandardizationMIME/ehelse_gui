@@ -12,7 +12,7 @@
             <span class="field-item-field" ng-if="field.mandatory == '1'">Ja</span>
             <span class="field-item-field" ng-if="field.mandatory == '0'">Nei</span>
             <div class="pull-right">
-                <span ng-click="openConfirmationModal('Er du sikker på at du vil slette denne?', field)" id="deleteProfileField" class="fa fa-remove fa-fw vcenter clickable removeUser edit-field unsortable"></span>
+                <span ng-click="openConfirmationModal('Er du sikker på at du vil slette denne?', field, 'field')" id="deleteProfileField" class="fa fa-remove fa-fw vcenter clickable removeUser edit-field unsortable"></span>
             </div>
             <div class="pull-right">
                 <span ng-click="editDocumentFieldModal(field.id);setTypeId('3')"  id="editProfileField" class="fa fa-pencil-square-o fa-2x vcenter clickable edit-field unsortable"></span>

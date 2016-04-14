@@ -29,9 +29,10 @@
             });
         };
 
-        $rootScope.openConfirmationModal = function(message, objectToDelete){
+        $rootScope.openConfirmationModal = function(message, objectToDelete, typeAsString){
             $rootScope.confirmationMessage = message;
             $rootScope.objectToDelete = objectToDelete;
+            $rootScope.typeAsString = typeAsString;
             $rootScope.openModal('app/components/main/confirmation/confirmation-modal.html', 'ConfirmationModalController');
         };
 
