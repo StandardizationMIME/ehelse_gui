@@ -95,25 +95,6 @@ input:invalid {
 
 /* ----- CH4 document ----- */
 
-/* document1 = standard */
-.document1 {
-    color: #0068e7;
-    font-size: 1.3em;
-}
-
-/* document2 = profile */
-.document2 {
-    color: red;
-    font-size: 1.3em;
-}
-
-/* document3 = støttedokument */
-.document3 {
-    color: forestgreen;
-    font-size: 1.3em;
-}
-
-/* document-field */
 
 .document-fields-container{
 
@@ -442,9 +423,9 @@ textarea {
 }
 
 /*-----------Document Icon colors---------*/
-.d1{color: #0068e7;}
-.d2{color: #f60e24;}
-.d3{color: #1ae700;}
+.d1{color: #0068e7; font-size: 1.3em;}
+.d2{color: #f60e24; font-size: 1.3em;}
+.d3{color: forestgreen; font-size: 1.3em;}
 
 .nopadding {
     padding: 0 !important;

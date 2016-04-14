@@ -16,8 +16,7 @@
             <div ng-repeat="document in documents | filter: search">
 
                 <p class="document-clickable" id=standard{{document.id}} ng-click="openDocument(document)">
-                    <span  class="glyphicon glyphicon-file d{{document.documentTypeId}}"> </span>
-
+                    <span  class="fa fa-file-text d{{document.documentTypeId}}"> </span>
                     {{document.title}}
                 </p>
             </div>
