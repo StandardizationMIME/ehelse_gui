@@ -1,9 +1,6 @@
 /* ----- TABLE OF CONTENTS ----- */
 
 /* ----- CH1 generic ----- */
-input:invalid {
-    border: 1px solid red;
-}
 /* ----- CH2 administerUsers ----- */
 /* ----- CH3 content ----- */
 /* ----- CH4 document ----- */
@@ -17,7 +14,9 @@ input:invalid {
 
 
 /* ----- CH1 generic ----- */
-
+input:invalid {
+    border: 1px solid red;
+}
 .btn-primary {
     background-color: #0068e7;
 }
@@ -125,7 +124,9 @@ input:invalid {
 
 
 /* ----- CH6 login ----- */
-
+.login-page button{
+    margin-bottom: 1em;
+}
 
 /* ----- CH7 main ----- */
 
@@ -450,7 +451,7 @@ textarea {
 
 #notificationMessage {
     position: absolute;
-    width: 97%;
+    width: 100%;
 }
 .nav-tabs {
     border-color: #b8b8b8;
