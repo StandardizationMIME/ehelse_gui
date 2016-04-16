@@ -32,7 +32,7 @@ angular.module('ehelseEditor').controller('DocumentFieldModalController', [ '$sc
             ,
             function(){
                 console.log("Error: Change could not be saved.");
-                $rootScope.notifyError("Error: Endring ble ikke lagret!");
+                $rootScope.notifyError("Error: Endring ble ikke lagret!", 5000);
             }
         );
     };

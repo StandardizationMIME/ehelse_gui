@@ -26,7 +26,7 @@ angular.module('ehelseEditor').controller('NewTopicModalController', [ '$scope',
                 console.log(data);
                 console.log($scope.newTopic);
                 $rootScope.reloadTopic(data);
-                $rootScope.notifySuccess("Nytt tema har blitt opprettet", 3000);
+                $rootScope.notifySuccess("Nytt tema har blitt opprettet", 5000);
                 $rootScope.reloadTopicTupleList();
             }
             ,

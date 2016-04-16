@@ -19,7 +19,7 @@ angular.module('ehelseEditor').controller('TargetGroupsController',['$scope','Mo
             function(data){
                 console.log(data);
                 $scope.updateTGTuples();
-                $rootScope.notifySuccess('Endringene ble lagret!');
+                $rootScope.notifySuccess('Endringene ble lagret!',6000);
             },
             function(data){
                 console.log(data);
@@ -41,13 +41,13 @@ angular.module('ehelseEditor').controller('TargetGroupsController',['$scope','Mo
             'target-groups/',
             $scope.newTargetGroup,
             function(data){
-                $rootScope.notifySuccess('Ny målgruppe lagt til!');
+                $rootScope.notifySuccess('Ny målgruppe lagt til!',6000);
                 $rootScope.targetGroups.push(data);
                 $scope.updateTGTuples();
                 $scope.updateTGDictionary();
                 $scope.clearNewTargetGroup();
             },function(){
-                $rootScope.notifyError('Målgruppe ble ikke lagt til!');
+                $rootScope.notifyError('Målgruppe ble ikke lagt til!',6000);
             }
         );
     };
