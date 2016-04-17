@@ -184,6 +184,12 @@ div>div>.dropdown-toggle{
 div>div>.dropdown-toggle:hover{
     border-radius: 5%;
 }
+.limit-length{
+    width: 200px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
 /*toolbar end*/
 
 

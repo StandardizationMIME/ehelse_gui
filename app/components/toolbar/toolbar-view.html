@@ -9,22 +9,27 @@
     <div ng-if="userPageView == 'myPage'" ng-include="'app/components/toolbar/myPageToolbar-view.html'"></div>
 
     <!-- AdministerUsers toolbar -->
-    <div ng-if="userPageView == 'administerUsers'" ng-include="'app/components/toolbar/administerUsersToolbar-view.html'"></div>
+    <div ng-if="userPageView == 'administerUsers'"
+         ng-include="'app/components/toolbar/administerUsersToolbar-view.html'"></div>
 
     <!-- User dropdown menu -->
-    <div class="col-lg-offset-2 col-lg-3 col-mg-offset-4 col-mg-3 col-sm-offset-4 col-sm-3 col-xs-offset-4 col-xs-3">
-        <div class="horizontal-align-div dropdown">
-            <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown"
-                    aria-haspopup="" aria-expanded="true">
-                <img src="http://placehold.it/50x50" class="profile-image img-circle"> {{currentUser.name}} <span
-                    class="fa fa-caret-down fa-fw"></span></a>
+    <div class="vcenter col-lg-offset-2 col-lg-4 col-mg-offset-2 col-mg-4 col-sm-offset-2 col-sm-4 col-xs-offset-2 col-xs-4">
+        <button type="button" class="btn btn-default dropdown-toggle limit-length" data-toggle="dropdown" aria-haspopup="true"
+                aria-expanded="false">
+            <img src="http://placehold.it/50x50" class="profile-image img-circle"> {{currentUser.name}}
+            <span class="fa fa-caret-down fa-fw"></span>
+        </button>
+        <ul class="dropdown-menu">
+            <li><a class="clickable" ng-click="changeUserView('myPage')">Min side</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a class="clickable" ng-click="logout()">Logg av</a></li>
+        </ul>
+
+        <div class="vcenter">
+            <button ng-click="changeUserView('administerUsers')" type="button" class="btn menu_tooltip" data-toggle="tooltip" data-placement="top" title="Administrer brukere">
+                <span class="fa fa-users"></span>
             </button>
-            <ul class="dropdown-menu">
-                <li><a class="clickable" ng-click="changeUserView('myPage')">Min side</a></li>
-                <li><a class="clickable" ng-click="changeUserView('administerUsers')">Administrer brukere</a></li>
-                <li role="separator" class="divider"></li>
-                <li><a class="clickable" ng-click="logout()">Logg av</a></li>
-            </ul>
         </div>
     </div>
+
 </div>
