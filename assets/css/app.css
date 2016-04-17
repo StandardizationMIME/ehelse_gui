@@ -89,7 +89,9 @@ input:invalid {
 .document-fields {
     overflow-y: hidden;
 }
-
+.contentWindow{
+    margin-top: 4em;
+}
 
 
 /* ----- CH4 document ----- */

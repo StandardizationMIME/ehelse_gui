@@ -68,12 +68,12 @@ angular.module('ehelseEditor').factory('Document', ['$rootScope', function($root
                 'documents/' + document.id,
                 document,
                 function (data) {
-                    $rootScope.notifySuccess("Dokumentet ble oppdatert");
+                    $rootScope.notifySuccess("Dokumentet ble oppdatert",6000);
                 }
                 ,
                 function () {
                     console.log("New document could not be created");
-                    $rootScope.notifyError("Standard kunne ikke opprettes");
+                    $rootScope.notifyError("Standard kunne ikke opprettes",6000);
                 }
             );
         }
@@ -84,12 +84,12 @@ angular.module('ehelseEditor').factory('Document', ['$rootScope', function($root
                 function (data) {
                     console.log("New document created");
                     $rootScope.addDocuments(data);
-                    $rootScope.notifySuccess("Ny standard ble opprettet");
+                    $rootScope.notifySuccess("Ny standard ble opprettet",6000);
                 }
                 ,
                 function () {
                     console.log("New document could not be created");
-                    $rootScope.notifyError("Standard kunne ikke opprettes");
+                    $rootScope.notifyError("Standard kunne ikke opprettes",6000);
                 }
             );
         }
