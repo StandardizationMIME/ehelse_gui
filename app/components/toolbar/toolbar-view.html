@@ -1,25 +1,43 @@
 <div ng-controller="ToolbarController">
 
+
+
     <ul class="nav nav-pills">
-        <li><a href="#">
-            <div class="mainLogo navbar-brand">
-                <object data="assets/img/ehelseLogo.svg" type="image/svg+xml">
-                    <img src="assets/img/ehelseLogo.png" alt="ehelse logo"/>
-                </object>
+        <div class="container-fluid">
+
+
+
+
+        <li class="absolute-bottom" ng-if="userPageView == ''" ng-include="'app/components/toolbar/toolbarButtons/searchbarView.html'"></li>
+        <li class="absolute-bottom" ng-if="userPageView == ''"
+            ng-include="'app/components/toolbar/toolbarButtons/administerFieldsButton.html'"></li>
+        <li class="absolute-bottom" ng-if="userPageView == ''"
+            ng-include="'app/components/toolbar/toolbarButtons/administerTargetGroupsButton.html'"></li>
+
+        <li class="navbar-right">
+            <button ng-click="changeUserView('administerUsers')" type="button" class="btn btn-primary menu_tooltip"
+                    data-toggle="tooltip" data-placement="top" title="Administrer brukere">
+                <span class="fa fa-users"></span>
+            </button>
+        </li>
+        <li class="navbar-right">
+            <div id="toolbar-dropdown" class="vcenter col-lg-4 col-mg-4 col-sm-4 col-xs-4">
+                <button type="button" class="btn btn-default dropdown-toggle limit-length" data-toggle="dropdown"
+                        aria-haspopup="true"
+                        aria-expanded="false">
+                    <img src="http://placehold.it/50x50" class="profile-image img-circle">
+                    {{currentUser.name}}
+                    <span class="fa fa-caret-down fa-fw"></span>
+                </button>
+                <ul class="dropdown-menu">
+                    <li class="limit-length"><a class="clickable" ng-click="changeUserView('myPage')">Min side</a></li>
+                    <li role="separator" class="divider"></li>
+                    <li><a class="clickable" ng-click="logout()">Logg av</a></li>
+                </ul>
             </div>
-        </a></li>
-
-        <li ng-if="userPageView == ''" ng-include="'app/components/toolbar/toolbarButtons/searchbarView.html'"></li>
-        <li ng-if="userPageView == ''" ng-include="'app/components/toolbar/toolbarButtons/administerFieldsButton.html'"></li>
-        <li ng-if="userPageView == ''" ng-include="'app/components/toolbar/toolbarButtons/administerTargetGroupsButton.html'"></li>
-        <li ></li>
-        <li></li>
+        </li>
+        </div>
     </ul>
-
-    <!-- Logo -->
-
-
-    <!-- Custom toolbars for different routes -->
 
     <!-- Editor toolbar -->
     <div ng-if="userPageView == ''" ng-include="'app/components/toolbar/editorToolbar-view.html'"></div>
@@ -32,26 +50,6 @@
          ng-include="'app/components/toolbar/administerUsersToolbar-view.html'"></div>
 
     <!-- User dropdown menu -->
-    <div id="toolbar-dropdown" class="vcenter col-lg-4 col-mg-4 col-sm-4 col-xs-4">
-        <button type="button" class="btn btn-default dropdown-toggle limit-length" data-toggle="dropdown"
-                aria-haspopup="true"
-                aria-expanded="false">
-            <img src="http://placehold.it/50x50" class="profile-image img-circle">
-            {{currentUser.name}}
-            <span class="fa fa-caret-down fa-fw"></span>
-        </button>
-        <ul class="dropdown-menu">
-            <li class="limit-length"><a class="clickable" ng-click="changeUserView('myPage')">Min side</a></li>
-            <li role="separator" class="divider"></li>
-            <li><a class="clickable" ng-click="logout()">Logg av</a></li>
-        </ul>
 
-        <div class="vcenter">
-            <button ng-click="changeUserView('administerUsers')" type="button" class="btn btn-primary menu_tooltip"
-                    data-toggle="tooltip" data-placement="top" title="Administrer brukere">
-                <span class="fa fa-users"></span>
-            </button>
-        </div>
-    </div>
 
 </div>
