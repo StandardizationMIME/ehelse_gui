@@ -566,17 +566,15 @@ div>div>.dropdown-toggle:hover{
 }
 
 .tg-table{
-    margin-top: 20px;
+    overflow-y: auto;
+    height: 650px;
 }
 
 
 .table-hover tbody tr:hover td, .table-hover tbody tr:hover th {
     background-color: #c7c7c7;
 }
-.target-group-add{
-    color: #ffffff !important;
 
-}
 
 input[readonly], textarea[readonly]{
     background-color: #e4e4e4 !important;

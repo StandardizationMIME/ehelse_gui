@@ -1,16 +1,17 @@
 <div ng-controller="TargetGroupsController" class="target-group-grid">
 
-    <div class="tg-top-toolbar">
-        <h4 class="selected">Målgrupper
-        <div class="btn-toolbar pull-right">
-            <!-- New TG button-->
-            <button type="button" class="btn btn-primary  small target-group-add"
-                    ng-click="openModal('app/components/content/administerTargetGroups/addTargetGroups/new-target-group-modal.html', 'NewTargetGroupController')" data-keyboard="true"><i class="fa fa-plus"></i> Ny målgruppe </button>
+
+    <div class="shadow-below clearfix" style="padding-bottom: 40px">
+        <div class="headline-box">
+            <h4 class="selected">Målgrupper</h4>
+            <button type="button" class="btn btn-default pull-right" style="margin-top: 15px"
+                    ng-click="openModal('app/components/content/administerTargetGroups/addTargetGroups/new-target-group-modal.html', 'NewTargetGroupController')"
+                    data-keyboard="true"><span class="fa fa-plus-circle plus-icon-standard"></span> Ny målgruppe</button>
         </div>
-        </h4>
+
     </div>
 
-    <div class="table-responsive tg-table">
+    <div class="table-responsive overflow-auto tg-table">
         <table class="table" id="targetGroupsTable">
             <thead>
             <tr>
