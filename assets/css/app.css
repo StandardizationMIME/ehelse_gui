@@ -566,8 +566,7 @@ div>div>.dropdown-toggle:hover{
 .table-hover tbody tr:hover td, .table-hover tbody tr:hover th {
     background-color: #c7c7c7;
 }
-
-.target-group-add, .target-group-delete{
+.target-group-add{
     color: #ffffff !important;
 
 }
