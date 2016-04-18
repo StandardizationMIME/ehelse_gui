@@ -559,9 +559,16 @@ div>div>.dropdown-toggle:hover{
 /*~~~~~~~~~~~~TARGET GROUP~~~~~~~~~~~*/
 
 .target-group-grid{
-    overflow: scroll;
     height: 750px;
 }
+
+.tg-top-toolbar{
+}
+
+.tg-table{
+    margin-top: 20px;
+}
+
 
 .table-hover tbody tr:hover td, .table-hover tbody tr:hover th {
     background-color: #c7c7c7;

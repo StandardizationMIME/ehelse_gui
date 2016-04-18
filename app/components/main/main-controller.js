@@ -29,6 +29,12 @@
             });
         };
 
+        $rootScope.openConfirmationTGModal = function(message,id){
+            $rootScope.confirmMsg = message;
+            $rootScope.deleteTGId = id;
+            $rootScope.openModal('app/components/main/confirmation/confirmation-tg-modal.html', 'ConfirmationTGModalController');
+        };
+
         $rootScope.openConfirmationModal = function(message, id){
             $rootScope.confirmationMessage = message;
             $rootScope.deleteId = id;

@@ -1,17 +1,16 @@
 <div ng-controller="TargetGroupsController" class="target-group-grid">
-    <div style="margin-bottom: 20px;">
+
+    <div class="tg-top-toolbar">
         <h4 class="selected">Målgrupper
         <div class="btn-toolbar pull-right">
-        <!-- Delete TG button -->
-        <button type="button" class="btn btn-default  small target-group-delete"
-                ng-click="openModal('app/components/content/administerTargetGroups/deleteTargetGroups/delete-target-group-modal.html', 'DeleteTargetGroupController')" data-keyboard="true"><i class="fa fa-remove"></i> Slett målgrupper </button>
-        <!-- New TG button-->
-        <button type="button" class="btn btn-primary  small target-group-add"
-                ng-click="openModal('app/components/content/administerTargetGroups/addTargetGroups/new-target-group-modal.html', 'NewTargetGroupController')" data-keyboard="true"><i class="fa fa-plus"></i> Ny målgruppe </button>
+            <!-- New TG button-->
+            <button type="button" class="btn btn-primary  small target-group-add"
+                    ng-click="openModal('app/components/content/administerTargetGroups/addTargetGroups/new-target-group-modal.html', 'NewTargetGroupController')" data-keyboard="true"><i class="fa fa-plus"></i> Ny målgruppe </button>
         </div>
         </h4>
     </div>
-    <div class="table-responsive">
+
+    <div class="table-responsive tg-table">
         <table class="table" id="targetGroupsTable">
             <thead>
             <tr>
@@ -22,17 +21,19 @@
             </tr>
             </thead>
             <tbody>
-            <div style="overflow-y: scroll">
+            <div>
                 <tr ng-repeat="group in targetGroups" >
                     <td>{{group.name}}</td>
                     <td>{{group.description}}</textarea></td>
                     <td>{{group.abbreviation}}</td>
                     <td>{{TGDictionary[group.parentId].name}}</td>
-                    <td><a href="" ng-click="showEditTGModal(group)" data-keyboard="true"><i class="fa fa-pencil-square-o fa-2x"></i></a></td>
+                    <td><span ng-click="showEditTGModal(group)" data-keyboard="true" class="fa fa-pencil-square-o fa-2x clickable"></span></td>
+                    <td><span ng-click="openConfirmationTGModal('Er du sikker på at du vil slette målgruppe?',group.id)" class="fa fa-remove clickable removeUser"></span></td>
                 </tr>
             </div>
             </tbody>
         </table>
     </div>
+
 </div>
 

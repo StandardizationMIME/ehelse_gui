@@ -52,24 +52,6 @@ angular.module('ehelseEditor').controller('TargetGroupsController',['$scope','Mo
         );
     };
 
-    $rootScope.selectedTG = {
-        groups: []
-    };
-
-    $rootScope.deleteTargetGroup = function(){
-        for (var i = 0; i < $scope.selectedTG.groups.length; i++){
-            $scope.delete(
-                'target-groups/'+i,
-                function(){
-                    $scope.selectedTG.groups = [];
-                    $scope.updateTGTuples();
-                    $scope.updateTGDictionary();
-                },
-                function(){}
-            );
-        }
-    };
-
     $rootScope.targetGroups = [];
 
     $rootScope.getTargetGroups = function(){
@@ -123,6 +105,15 @@ angular.module('ehelseEditor').controller('TargetGroupsController',['$scope','Mo
             "parentId": "",
             "abbreviation": ""
         };
+    };
+
+    $rootScope.deleteTargetGroupById = function(id) {
+        $scope.delete(
+            'target-groups/'+id,
+            function(){
+                $scope.updateTGTuples();
+                $scope.updateTGDictionary();
+            },function(){});
     };
 
     $scope.clearNewTargetGroup();
