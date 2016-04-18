@@ -2,8 +2,9 @@ angular.module('ehelseEditor').controller('ConfirmationModalController',['$rootS
 
     $scope.returnTrue = function() {
         $rootScope.confirmationValue = true;
-        $rootScope.deleteFieldById($rootScope.deleteId);
-        console.log($rootScope.confirmationValue);
+        if($rootScope.typeAsString == 'field'){
+            $rootScope.deleteFieldById($rootScope.objectToDelete);
+        }
     }
 
 }]);

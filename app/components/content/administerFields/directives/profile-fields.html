@@ -6,13 +6,13 @@
         <span class="field-item-field pull-right">Rediger felt &nbsp; Slett &nbsp;</span>
     </span>
     <ul ui-sortable="sortableOptions" ng-model="documentFields">
-        <li ng-repeat="field in profileFields" class="field-item document-fields draggable">
+        <li ng-repeat="field in documentFields" ng-if="field.documentTypeId == 2" class="field-item document-fields draggable">
             <span class="field-item-field">{{field.name}}</span>
             <span class="field-item-field">{{field.description}}</span>
             <span class="field-item-field" ng-if="field.mandatory == '1'">Ja</span>
             <span class="field-item-field" ng-if="field.mandatory == '0'">Nei</span>
             <div class="pull-right">
-                <span ng-click="openConfirmationModal('Er du sikker på at du vil slette denne?', field.id)" id="editProfileField" class="fa fa-remove fa-fw vcenter clickable removeUser edit-field unsortable"></span>
+                <span ng-click="openConfirmationModal('Er du sikker på at du vil slette denne?', field, 'field')" id="editProfileField" class="fa fa-remove fa-fw vcenter clickable removeUser edit-field unsortable"></span>
             </div>
             <div class="pull-right">
                 <span ng-click="editDocumentFieldModal(field.id);setTypeId('2')" id="deleteProfileField" class="fa fa-pencil-square-o fa-2x vcenter clickable edit-field unsortable"></span>
