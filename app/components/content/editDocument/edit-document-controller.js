@@ -20,7 +20,7 @@ angular.module('ehelseEditor').controller('EditDocumentController',
 
             $scope.showAddTargetGroupModal = function () {
                 ModalService.showModal({
-                    templateUrl: 'app/components/content/edit-document/target-groups/add-document-target-group-modal.html',
+                    templateUrl: 'app/components/content/editDocument/target-groups/add-document-target-group-modal.html',
                     controller: 'AddDocumentTargetGroupModelController',
                     animation: false
                 }).then(function (modal) {

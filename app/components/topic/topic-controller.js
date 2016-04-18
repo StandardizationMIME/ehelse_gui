@@ -27,9 +27,14 @@ angular.module('ehelseEditor').controller('TopicController',['$rootScope', '$sco
 
     $rootScope.selectedTopicId = "null";
 
-    $rootScope.setSelectedTopicId = function(topicId){
-        console.log("topic ", topicId, "selected");
-        $rootScope.selectedTopicId = topicId;
+    $rootScope.setSelectedTopic = function(topicId){
+        $scope.get('topics/' + topicId,
+            function(data){
+                $rootScope.selectedTopic = data;
+            },
+            function(){}
+        );
+        $rootScope.changeContentView('editTopic');
     };
 
     $rootScope.reloadTopicTupleList = function() {
