@@ -10,6 +10,7 @@ angular.module('ehelseEditor').controller('EditDocumentController',
             $scope.actions_option_list = Action.actions_option_list;
             $scope.fields_dict = DocumentField.document_fields_dict;
             $scope.document = Document.getCurrentDocument();
+            $scope.setCurrentDocumentFieldsByDocumentDocumentTypeId = Document.setCurrentDocumentFieldsByDocumentDocumentTypeId;
 
             console.log($scope.document);
             $scope.removeTargetGroup = Document.removeCurrentDocumentTargetGroup;

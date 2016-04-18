@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('ehelseEditor').factory('Document', ['$rootScope', function($rootScope) {
+angular.module('ehelseEditor').factory('Document', ['$rootScope', 'DocumentField', function($rootScope, DocumentField) {
 
 
     function newDocument(){
@@ -157,8 +157,12 @@ angular.module('ehelseEditor').factory('Document', ['$rootScope', function($root
     function setCurrentDocument(document){
         if(!document) {
             document = newDocument();
+            setDocument(current_document, document);
+            setCurrentDocumentFieldsByDocumentDocumentTypeId();
         }
-        setDocument(current_document, document)
+        else{
+            setDocument(current_document, document);
+        }
     }
 
     function getDocumentsByTopicId(id){
@@ -170,6 +174,14 @@ angular.module('ehelseEditor').factory('Document', ['$rootScope', function($root
         return documents;
     }
 
+
+    function setCurrentDocumentFieldsByDocumentDocumentTypeId(){
+        current_document.fields.length = 0;
+        extendCurrentDocumentFieldsByFieldIds(DocumentField.getRequiredDocumentFieldIdsByDocumentTypeId(current_document.documentTypeId))
+    }
+
+
+
     return {
         getCurrentDocumentTargetGroupsIds : getTargetGroupsIds,
         getCurrentDocument : getCurrentDocument,
@@ -180,6 +192,7 @@ angular.module('ehelseEditor').factory('Document', ['$rootScope', function($root
         getCurrentDocumentFieldIds : getCurrentDocumentFieldIds,
         extendCurrentDocumentFieldsByFieldIds: extendCurrentDocumentFieldsByFieldIds,
         removeCurrentDocumentField: removeField,
-        getDocumentsByTopicId :getDocumentsByTopicId
+        getDocumentsByTopicId :getDocumentsByTopicId,
+        setCurrentDocumentFieldsByDocumentDocumentTypeId: setCurrentDocumentFieldsByDocumentDocumentTypeId
     };
 }]);
