@@ -4,8 +4,13 @@ angular.module('ehelseEditor').controller('TargetGroupsController',['$scope','Mo
 
     $scope.showEditTGModal = function(group){
         console.log('showEditTGModal');
-        $rootScope.editGroup = group;
+        $rootScope.editGroup = $scope.cloneTargetGroupForEditing(group);
         $scope.openModal('app/components/content/administerTargetGroups/editTargetGroups/edit-target-group-modal.html', 'EditTargetGroupController');
+    };
+
+
+    $scope.cloneTargetGroupForEditing = function(group){
+        return (JSON.parse(JSON.stringify(group)));
     };
 
     $rootScope.saveTGChanges = function(group){
@@ -20,10 +25,12 @@ angular.module('ehelseEditor').controller('TargetGroupsController',['$scope','Mo
                 console.log(data);
                 $scope.updateTGTuples();
                 $rootScope.notifySuccess('Endringene ble lagret!');
+                $scope.getTargetGroups();
             },
             function(data){
                 console.log(data);
             });
+
 
         console.log('saveTGChanges');
     };

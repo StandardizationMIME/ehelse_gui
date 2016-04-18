@@ -23,7 +23,7 @@
             </thead>
             <tbody>
             <div>
-                <tr ng-repeat="group in targetGroups" >
+                <tr ng-repeat="group in targetGroups | orderBy:'name'" >
                     <td>{{group.name}}</td>
                     <td>{{group.description}}</textarea></td>
                     <td>{{group.abbreviation}}</td>
