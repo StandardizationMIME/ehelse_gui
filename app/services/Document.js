@@ -5,9 +5,10 @@ angular.module('ehelseEditor').factory('Document', ['$rootScope', function($root
 
     function newDocument(){
         return {
+            "id": null,
             "topicId" : $rootScope.selectedTopicId,
             "title" : "",
-            "documentTypeId":null,
+            "documentTypeId":"1",
             "statusId": null,
             "nextDocumentId": null,
             "previousDocumentId": null,
@@ -21,12 +22,13 @@ angular.module('ehelseEditor').factory('Document', ['$rootScope', function($root
     }
 
 
-    var document = newDocument();
+    var current_document = newDocument();
+    var documents = [];
 
 
-    function extendDocumentTargetGroupsByTargetGroupIds(target_groups_ids){
+    function extendCurrentDocumentTargetGroupsByTargetGroupIds(target_groups_ids){
         for(var i = 0; i < target_groups_ids.length; i++){
-            document.targetGroups.push({
+            current_document.targetGroups.push({
                 targetGroupId:target_groups_ids[i],
                 description:"",
                 actionId: null,
@@ -37,37 +39,38 @@ angular.module('ehelseEditor').factory('Document', ['$rootScope', function($root
     }
 
 
-    function extendDocumentFieldsByFieldIds(field_ids){
+    function extendCurrentDocumentFieldsByFieldIds(field_ids){
         for(var i = 0; i < field_ids.length; i++){
-            document.fields.push({fieldId:field_ids[i], value:""});
+            current_document.fields.push({fieldId:field_ids[i], value:""});
         }
-        console.log(document.fields);
+        console.log(current_document.fields);
     }
 
 
     function removeTargetGroup(group){
 
-        var index = document.targetGroups.indexOf(group);
+        var index = current_document.targetGroups.indexOf(group);
         if (index > -1) {
-            document.targetGroups.splice(index, 1);
+            current_document.targetGroups.splice(index, 1);
         }
     }
 
     function removeField(field){
 
-        var index = document.fields.indexOf(field);
+        var index = current_document.fields.indexOf(field);
         if (index > -1) {
-            document.fields.splice(index, 1);
+            current_document.fields.splice(index, 1);
         }
     }
 
-    function submit(){
-        if(document.id){
+    function submitCurrentDocument(){
+        if(current_document.id){
 
             $rootScope.put(
-                'documents/' + document.id,
-                document,
+                'documents/' + current_document.id,
+                current_document,
                 function (data) {
+                    updateDocumentInDocumentsList(data);
                     $rootScope.notifySuccess("Dokumentet ble oppdatert",6000);
                 }
                 ,
@@ -80,15 +83,14 @@ angular.module('ehelseEditor').factory('Document', ['$rootScope', function($root
         else {
             $rootScope.post(
                 'documents/',
-                document,
+                current_document,
                 function (data) {
-                    console.log("New document created");
-                    $rootScope.addDocuments(data);
+                    setCurrentDocument(data);
+                    documents.push(data);
                     $rootScope.notifySuccess("Ny standard ble opprettet",6000);
                 }
                 ,
                 function () {
-                    console.log("New document could not be created");
                     $rootScope.notifyError("Standard kunne ikke opprettes",6000);
                 }
             );
@@ -96,12 +98,11 @@ angular.module('ehelseEditor').factory('Document', ['$rootScope', function($root
     }
 
 
-    function getDocument(){
-        return document;
+    function getCurrentDocument(){
+        return current_document;
     }
 
 
-    var target_groups_ids = [];
     function getTargetGroupsIdsHelper(targetGroups){
         var ids = [];
         for( var i = 0; i < targetGroups.length; i++){
@@ -111,13 +112,18 @@ angular.module('ehelseEditor').factory('Document', ['$rootScope', function($root
     }
 
     function getTargetGroupsIds(){
-        target_groups_ids = getTargetGroupsIdsHelper(document.targetGroups);
-        return target_groups_ids;
+        return getTargetGroupsIdsHelper(current_document.targetGroups);
     }
 
+    function updateDocumentInDocumentsList(document){
+        for(var i = 0; i < documents.length; i++){
+            if(documents[i].id == document.id){
+                setDocument(documents[i], document);
+                break;
+            }
+        }
+    }
 
-
-    var document_field_ids = [];
 
     function getDocumentFieldIdsHelper(documentFields){
         var ids = [];
@@ -127,29 +133,53 @@ angular.module('ehelseEditor').factory('Document', ['$rootScope', function($root
         return ids;
     }
 
-    function getDocumentFieldIds(){
-        document_field_ids = getDocumentFieldIdsHelper(document.fields);
-        return document_field_ids;
+    function getCurrentDocumentFieldIds(){
+        return  getDocumentFieldIdsHelper(current_document.fields);
     }
 
 
-    function setDocument(d){
-        if(!d) {
-            d = newDocument();
+    function setDocument(a, b){
+        a.id = b.id;
+        a.topicId = b.topicId;
+        a.title = b.title;
+        a.documentTypeId = b.documentTypeId;
+        a.statusId = b.statusId;
+        a.nextDocumentId = b.nextDocumentId;
+        a.previousDocumentId = b.previousDocumentId;
+        a.description = b.description;
+        a.sequence = b.sequence;
+        a.comment = b.comment;
+        a.targetGroups = b.targetGroups;
+        a.fields = b.fields;
+        a.links = b.links;
+    }
+
+    function setCurrentDocument(document){
+        if(!document) {
+            document = newDocument();
         }
-        document = d;
-        target_groups_ids = getTargetGroupsIds(document.targetGroups);
+        setDocument(current_document, document)
+    }
+
+    function getDocumentsByTopicId(id){
+        documents = [];
+        $rootScope.get('topics/' + id , function(data){
+            Array.prototype.push.apply(documents, data.documents);
+
+        }, function(){});
+        return documents;
     }
 
     return {
-        getTargetGroupsIds : getTargetGroupsIds,
-        getDocument : getDocument,
-        extendDocumentTargetGroupsByTargetGroupIds : extendDocumentTargetGroupsByTargetGroupIds,
-        removeTargetGroup :removeTargetGroup,
-        submit: submit,
-        setDocument : setDocument,
-        getDocumentFieldIds : getDocumentFieldIds,
-        extendDocumentFieldsByFieldIds: extendDocumentFieldsByFieldIds,
-        removeField: removeField
+        getCurrentDocumentTargetGroupsIds : getTargetGroupsIds,
+        getCurrentDocument : getCurrentDocument,
+        extendCurrentDocumentTargetGroupsByTargetGroupIds : extendCurrentDocumentTargetGroupsByTargetGroupIds,
+        removeCurrentDocumentTargetGroup :removeTargetGroup,
+        submitCurrentDocument: submitCurrentDocument,
+        setCurrentDocument : setCurrentDocument,
+        getCurrentDocumentFieldIds : getCurrentDocumentFieldIds,
+        extendCurrentDocumentFieldsByFieldIds: extendCurrentDocumentFieldsByFieldIds,
+        removeCurrentDocumentField: removeField,
+        getDocumentsByTopicId :getDocumentsByTopicId
     };
 }]);
