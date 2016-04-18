@@ -1,14 +1,4 @@
 <div class="container-fluid" ng-controller="MainController">
-
-    <!-- Header -->
-    <div class="mainLogo tenPixVerticalPadding">
-        <object data="assets/img/ehelseLogo.svg" type="image/svg+xml" >
-            <img src="assets/img/ehelseLogo.png" alt="ehelse logo"/>
-        </object>
-    </div>
-
-
-
     <!-- Toolbar -->
     <toolbar></toolbar>
 
@@ -21,5 +11,4 @@
     <!-- Administer users page -->
     <div ng-if="userPageView == 'administerUsers'"
          ng-include="'app/components/administerUsers/administerUsers-view.html'"></div>
-
 </div>
