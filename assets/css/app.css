@@ -31,6 +31,15 @@ input:invalid {
     height: 800px;
 }
 
+.half-width {
+    width: 50%;
+}
+
+.twelvePixVerticalPadding{
+    padding-top: 12px;
+    padding-bottom: 12px;
+}
+
 /* ----- CH2 administerUsers ----- */
 #userList img{
     width: 50px;
@@ -88,9 +97,6 @@ input:invalid {
 
 .document-fields {
     overflow-y: hidden;
-}
-.contentWindow{
-    margin-top: 4em;
 }
 
 
@@ -188,6 +194,16 @@ div>div>.dropdown-toggle:hover{
 
 
 /* ----- CH10 topic ----- */
+
+.edit-topic-icon {
+    font-size: large;
+    color: #0068e7;
+}
+
+.delete-topic-icon {
+    font-size: large;
+    color: red;
+}
 
 /* topic end */
 
@@ -323,7 +339,7 @@ span.field-item{
 }
 
 .content-view {
-    padding: 20px;
+    padding-top: 16px;
 }
 
 /*.btn-primary {*/
