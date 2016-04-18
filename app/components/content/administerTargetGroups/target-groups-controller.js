@@ -4,8 +4,13 @@ angular.module('ehelseEditor').controller('TargetGroupsController',['$scope','Mo
 
     $scope.showEditTGModal = function(group){
         console.log('showEditTGModal');
-        $rootScope.editGroup = group;
+        $rootScope.editGroup = $scope.cloneTargetGroupForEditing(group);
         $scope.openModal('app/components/content/administerTargetGroups/editTargetGroups/edit-target-group-modal.html', 'EditTargetGroupController');
+    };
+
+
+    $scope.cloneTargetGroupForEditing = function(group){
+        return (JSON.parse(JSON.stringify(group)));
     };
 
     $rootScope.saveTGChanges = function(group){
@@ -20,10 +25,12 @@ angular.module('ehelseEditor').controller('TargetGroupsController',['$scope','Mo
                 console.log(data);
                 $scope.updateTGTuples();
                 $rootScope.notifySuccess('Endringene ble lagret!',6000);
+                $scope.getTargetGroups();
             },
             function(data){
                 console.log(data);
             });
+
 
         console.log('saveTGChanges');
     };
@@ -50,24 +57,6 @@ angular.module('ehelseEditor').controller('TargetGroupsController',['$scope','Mo
                 $rootScope.notifyError('Målgruppe ble ikke lagt til!',6000);
             }
         );
-    };
-
-    $rootScope.selectedTG = {
-        groups: []
-    };
-
-    $rootScope.deleteTargetGroup = function(){
-        for (var i = 0; i < $scope.selectedTG.groups.length; i++){
-            $scope.delete(
-                'target-groups/'+i,
-                function(){
-                    $scope.selectedTG.groups = [];
-                    $scope.updateTGTuples();
-                    $scope.updateTGDictionary();
-                },
-                function(){}
-            );
-        }
     };
 
     $rootScope.targetGroups = [];
@@ -123,6 +112,15 @@ angular.module('ehelseEditor').controller('TargetGroupsController',['$scope','Mo
             "parentId": "",
             "abbreviation": ""
         };
+    };
+
+    $rootScope.deleteTargetGroupById = function(id) {
+        $scope.delete(
+            'target-groups/'+id,
+            function(){
+                $scope.updateTGTuples();
+                $scope.updateTGDictionary();
+            },function(){});
     };
 
     $scope.clearNewTargetGroup();

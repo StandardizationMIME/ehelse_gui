@@ -559,18 +559,22 @@ div>div>.dropdown-toggle:hover{
 /*~~~~~~~~~~~~TARGET GROUP~~~~~~~~~~~*/
 
 .target-group-grid{
-    overflow: scroll;
     height: 750px;
 }
+
+.tg-top-toolbar{
+}
+
+.tg-table{
+    overflow-y: auto;
+    height: 650px;
+}
+
 
 .table-hover tbody tr:hover td, .table-hover tbody tr:hover th {
     background-color: #c7c7c7;
 }
 
-.target-group-add, .target-group-delete{
-    color: #ffffff !important;
-
-}
 
 input[readonly], textarea[readonly]{
     background-color: #e4e4e4 !important;
