@@ -8,7 +8,7 @@
         <!-- choose document type -->
         <div class="form-group">
             <label for="documentType">Type dokument: </label>
-            <select name="documentType" id="documentType" ng-model="document.documentTypeId" class="form-control">
+            <select name="documentType" id="documentType"  ng-change="setCurrentDocumentFieldsByDocumentDocumentTypeId();" ng-model="document.documentTypeId" class="form-control">
                 <option ng-repeat="document_type in document_types_option_list" value="{{document_type.value}}">{{document_type.name}}</option>
             </select>
         </div>

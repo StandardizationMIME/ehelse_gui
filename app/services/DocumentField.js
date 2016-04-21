@@ -163,7 +163,15 @@ angular.module('ehelseEditor').factory('DocumentField', ['$rootScope', function(
         );
     }
 
-
+    function getRequiredDocumentFieldIdsByDocumentTypeId(documentTypeId){
+        var ids = [];
+        for( var i = 0; i < document_fields.length; i++){
+            if(document_fields[i].documentTypeId == documentTypeId && document_fields[i].mandatory != "0"){
+                ids.push(document_fields[i].id);
+            }
+        }
+        return ids;
+    }
 
     return {
         document_fields : document_fields,
@@ -172,6 +180,7 @@ angular.module('ehelseEditor').factory('DocumentField', ['$rootScope', function(
         create: create,
         edit: edit,
         delete: remove,
-        getFieldById: getFieldById
+        getFieldById: getFieldById,
+        getRequiredDocumentFieldIdsByDocumentTypeId: getRequiredDocumentFieldIdsByDocumentTypeId
     };
 }]);

@@ -9,13 +9,14 @@ angular.module('ehelseEditor').controller('EditDocumentController',
             $scope.mandatory_option_list = Mandatory.mandatory_option_list;
             $scope.actions_option_list = Action.actions_option_list;
             $scope.fields_dict = DocumentField.document_fields_dict;
-
+            $scope.document = Document.getCurrentDocument();
+            $scope.setCurrentDocumentFieldsByDocumentDocumentTypeId = Document.setCurrentDocumentFieldsByDocumentDocumentTypeId;
 
             console.log($scope.document);
-            $scope.removeTargetGroup = Document.removeTargetGroup;
-            $scope.removeField = Document.removeField;
+            $scope.removeTargetGroup = Document.removeCurrentDocumentTargetGroup;
+            $scope.removeField = Document.removeCurrentDocumentField;
 
-            $scope.submit = Document.submit;
+            $scope.submit = Document.submitCurrentDocument;
 
 
             $scope.showAddTargetGroupModal = function () {
