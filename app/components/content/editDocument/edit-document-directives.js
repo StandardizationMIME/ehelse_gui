@@ -12,3 +12,11 @@ angular.module('ehelseEditor').directive('documentFields',function () {
         templateUrl: 'app/components/content/editDocument/fields/document-fields.html'
     };
 });
+
+
+angular.module('ehelseEditor').directive('documentLinkCategories',function () {
+    return{
+        restrict: 'E',
+        templateUrl: 'app/components/content/editDocument/links/document-links.html'
+    };
+});
