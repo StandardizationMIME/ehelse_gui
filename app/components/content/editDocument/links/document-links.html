@@ -1,0 +1,28 @@
+<div class="form-group" class="document-links-container" >
+    <ul id="document-link-categories" class="list-group">
+        <li class="list-group-item" ng-repeat="linkCategory in linkCategories">
+            <span>
+                <ul>
+                    <li ng-repeat="link in linkCategory.links">
+                        <span class="document-fields-field-name"><input type="text" ng-model="link.text"></span>
+                        <span class="document-fields-field-value"><input type="text" ng-model="link.url"></span>
+                        <span class="document-fields-field-remove"><button type="button" ng-click="removeLink(link)">X</button></span>
+                    </li>
+                </ul>
+
+    <button class="btn btn-default" ng-click="openModal('app/components/content/editDocument/links/add-document-links-modal.html', 'AddDocumentLinksController')">
+        <span class="fa fa-plus-circle plus-icon-standard"></span>
+        Legg til lenke
+    </button>
+            </span>
+        </li>
+    </ul>
+
+    <button class="btn btn-default" ng-click="openModal('app/components/content/editDocument/links/add-document-link-categories-modal.html', 'AddDocumentLinkCategoriesController')">
+        <span class="fa fa-plus-circle plus-icon-standard"></span>
+        Legg til lenke kategori
+    </button>
+</div>
+
+
+
