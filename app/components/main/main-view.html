@@ -1,16 +1,18 @@
 <div class="container-fluid" ng-controller="MainController">
 
-    <!-- Header -->
-    <div class="mainLogo tenPixVerticalPadding">
-        <object data="assets/img/ehelseLogo.svg" type="image/svg+xml" >
-            <img src="assets/img/ehelseLogo.png" alt="ehelse logo"/>
-        </object>
+    <div class="row relative">
+        <div class="mainLogo col-lg-2 col-md-2 col-sm-2 col-xs-2">
+            <object data="assets/img/ehelseLogo.svg" type="image/svg+xml">
+                <img src="assets/img/ehelseLogo.png" alt="ehelse logo"/>
+            </object>
+        </div>
+
+        <toolbar class="col-lg-10 col-md-10 col-sm-10 col-xs-10 absolute-bottom"></toolbar>
     </div>
 
 
-
     <!-- Toolbar -->
-    <toolbar></toolbar>
+
 
     <!-- Editor display -->
     <div ng-if="userPageView == ''" ng-include="'app/components/editor/editor-view.html'"></div>
@@ -21,5 +23,4 @@
     <!-- Administer users page -->
     <div ng-if="userPageView == 'administerUsers'"
          ng-include="'app/components/administerUsers/administerUsers-view.html'"></div>
-
 </div>
