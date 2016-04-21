@@ -2,93 +2,39 @@
 
     <nav class="navbar navbar-default">
         <div class="container-fluid">
-                <form class="navbar-form navbar-left" role="search" ng-if="userPageView == ''"
-                      ng-include="'app/components/toolbar/toolbarButtons/searchbarView.html'">
-                    <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Søk...">
-                    </div>
-                    <button type="submit" class="btn btn-default">Submit</button>
-                </form>
-                <ul class="nav navbar-nav">
-                    <li class="navElementMargin" ng-if="userPageView == ''"
-                        ng-include="'app/components/toolbar/toolbarButtons/administerFieldsButton.html'"></li>
-                    <li class="navElementMargin" ng-if="userPageView == ''"
-                        ng-include="'app/components/toolbar/toolbarButtons/administerTargetGroupsButton.html'"></li>
-                </ul>
 
-                <ul class="nav navbar-nav navbar-right">
-                    <li class="dropdown">
-                        <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-                           aria-expanded="false">{{currentUser.name}} <span class="caret"></span></a>
-                        <ul class="dropdown-menu">
-                            <li><a class="clickable" ng-click="changeUserView('myPage')">Min side</a></li>
-                            <li role="separator" class="divider"></li>
-                            <li><a class="clickable" ng-click="logout()">Logg av</a></li>
-                        </ul>
-                    </li>
-                    <li class="navElementMargin">
-                        <button ng-click="changeUserView('administerUsers')" type="button" class="btn btn-primary navbar-btn"><span
-                                class="fa fa-users"></span></button>
-                    </li>
-                </ul>
+            <!-- Right part of toolbar -->
+            <div class="navbar-form navbar-left"
+                 ng-include="userPageView == '' ? 'app/components/toolbar/toolbarButtons/searchbarView.html' : 'app/components/toolbar/toolbarButtons/returnToEditorButton.html'">
+            </div>
+
+            <ul class="nav navbar-nav">
+                <li class="navElementMargin" ng-if="userPageView == ''"
+                    ng-include="'app/components/toolbar/toolbarButtons/administerFieldsButton.html'"></li>
+
+                <li class="navElementMargin" ng-if="userPageView == ''"
+                    ng-include="'app/components/toolbar/toolbarButtons/administerTargetGroupsButton.html'"></li>
+            </ul>
+
+            <!-- Left part of toolbar -->
+            <ul class="nav navbar-nav navbar-right">
+
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                       aria-expanded="false">{{currentUser.name}} <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a class="clickable" ng-click="changeUserView('myPage')">Min side</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a class="clickable" ng-click="logout()">Logg av</a></li>
+                    </ul>
+                </li>
+
+                <li class="navElementMargin">
+                    <button ng-click="changeUserView('administerUsers')" type="button"
+                            class="btn btn-primary navbar-btn"><span
+                            class="fa fa-users"></span></button>
+                </li>
+            </ul>
         </div>
     </nav>
-
-
-    <!-- ----------------- -->
-
-    <!--
-
-    <ul class="nav nav-pills">
-        <div class="container-fluid">
-
-
-
-
-        <li class="absolute-bottom" ng-if="userPageView == ''"
-            ng-include="'app/components/toolbar/toolbarButtons/administerFieldsButton.html'"></li>
-        <li class="absolute-bottom" ng-if="userPageView == ''"
-            ng-include="'app/components/toolbar/toolbarButtons/administerTargetGroupsButton.html'"></li>
-
-        <li class="navbar-right">
-            <button ng-click="changeUserView('administerUsers')" type="button" class="btn btn-primary menu_tooltip"
-                    data-toggle="tooltip" data-placement="top" title="Administrer brukere">
-                <span class="fa fa-users"></span>
-            </button>
-        </li>
-        <li class="navbar-right">
-            <div id="toolbar-dropdown" class="vcenter col-lg-4 col-mg-4 col-sm-4 col-xs-4">
-                <button type="button" class="btn btn-default dropdown-toggle limit-length" data-toggle="dropdown"
-                        aria-haspopup="true"
-                        aria-expanded="false">
-                    <img src="http://placehold.it/50x50" class="profile-image img-circle">
-                    {{currentUser.name}}
-                    <span class="fa fa-caret-down fa-fw"></span>
-                </button>
-                <ul class="dropdown-menu">
-                    <li class="limit-length"><a class="clickable" ng-click="changeUserView('myPage')">Min side</a></li>
-                    <li role="separator" class="divider"></li>
-                    <li><a class="clickable" ng-click="logout()">Logg av</a></li>
-                </ul>
-            </div>
-        </li>
-        </div>
-    </ul>
-
-    -->
-
-
-    <!-- Editor toolbar -->
-    <div ng-if="userPageView == ''" ng-include="'app/components/toolbar/editorToolbar-view.html'"></div>
-
-    <!-- MyPage toolbar -->
-    <div ng-if="userPageView == 'myPage'" ng-include="'app/components/toolbar/myPageToolbar-view.html'"></div>
-
-    <!-- AdministerUsers toolbar -->
-    <div ng-if="userPageView == 'administerUsers'"
-         ng-include="'app/components/toolbar/administerUsersToolbar-view.html'"></div>
-
-    <!-- User dropdown menu -->
-
-
 </div>
