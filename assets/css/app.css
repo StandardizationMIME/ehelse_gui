@@ -582,13 +582,35 @@ div>div>.dropdown-toggle:hover{
     height: 750px;
 }
 
-.tg-top-toolbar{
+
+.tg-table {
+    overflow-y: auto;
+    overflow-x: hidden;
+    height: 600px;
 }
 
-.tg-table{
+.tg-tbody {
+    display: block;
     overflow-y: auto;
-    height: 650px;
+    overflow-x: hidden;
+    height: 600px;
 }
+
+.tg-thead {
+    background-color: #0068e7;
+    color: white;
+    display: block;
+    position:relative;
+    font-size: 13px;
+}
+
+.tg:nth-child(1) { width: 25.4%; }
+.tg:nth-child(2) { width: 34% }
+.tg:nth-child(3) { width: 8.6% }
+.tg:nth-child(4) { width: 18% }
+.tg:nth-child(5) { width: 7.5% }
+.tg:nth-child(6) { width: 5% }
+
 
 
 .table-hover tbody tr:hover td, .table-hover tbody tr:hover th {
