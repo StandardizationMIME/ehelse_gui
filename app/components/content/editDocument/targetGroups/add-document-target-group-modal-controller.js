@@ -13,7 +13,7 @@ angular.module('ehelseEditor').controller('AddDocumentTargetGroupModelController
             Document.extendCurrentDocumentTargetGroupsByTargetGroupIds($scope.selected_target_groups_ids);
             close("New TG added to new doc!",500);
         }else{
-            $scope.document_target_groups_ids = Document.getTargetGroupsIds();
+            $scope.document_target_groups_ids = Document.getCurrentDocumentTargetGroupsIds();
             close("Nothing added",500);
         }
     };

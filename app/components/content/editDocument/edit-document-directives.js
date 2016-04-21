@@ -2,7 +2,7 @@
 angular.module('ehelseEditor').directive('documentTargetGroups',function () {
     return{
         restrict: 'E',
-        templateUrl: 'app/components/content/editDocument/target-groups/document-target-groups.html'
+        templateUrl: 'app/components/content/editDocument/targetGroups/document-target-groups.html'
     };
 });
 
