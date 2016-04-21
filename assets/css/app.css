@@ -196,18 +196,15 @@ div>div>.dropdown-toggle{
 div>div>.dropdown-toggle:hover{
     border-radius: 5%;
 }
-.limit-length{
-    width: 300px;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+.navElementMargin{
+    margin-right: 0.5em;
 }
-#toolbar-dropdown>button{
-    width: 17em;
-}
-#toolbar-dropdown>ul{
-    width: 17em;
-    margin-left: 1em;
+
+#editorNav{
+    background-color: #f3f3f3;
+    border-radius: 10px;
+    box-shadow: 1px 1px 1px 1px #b8b8b8;
+    margin-left: 20px;
 }
 
 /* ----- CH10 topic ----- */
