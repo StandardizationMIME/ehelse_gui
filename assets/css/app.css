@@ -33,9 +33,6 @@
     vertical-align: sub;
     float: none;
 }
-input:invalid {
-    border: 1px solid red;
-}
 .btn-primary {
     background-color: #0068e7;
 }
