@@ -16,7 +16,7 @@
     </div>
     <div class="half-width">
         <div class="form-group">
-            <label for="editTopicTitle">Tittel: </label>
+            <label for="editTopicTitle">Tittel: </label><span class="requiredIcon" data-toggle="tooltip" title="Obligatorisk felt" data-placement="top">*</span>
             <input type="text" name="editTopicTitle" id="editTopicTitle" class="form-control"
                    ng-model="selectedTopic.title" required/>
         </div>
@@ -26,7 +26,7 @@
                       ng-model="selectedTopic.description" rows="6" cols="50"></textarea>
         </div>
         <div class="form-group">
-            <label for="editTopicParent">Tema ligger under: </label>
+            <label for="editTopicParent">Tema ligger under: </label><span class="requiredIcon" data-toggle="tooltip" title="Obligatorisk felt" data-placement="top">*</span>
             <select name="editTopicParent" id="editTopicParent" class="form-control" ng-model="selectedTopic.parentId" required>
                 <option value="null" ng-selected="true">Ingen</option>
                 <option ng-repeat="topic in topicTupleList" ng-if="topic.level <= 2" value={{topic.id}}>{{topic.path}}</option>

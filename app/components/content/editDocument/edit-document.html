@@ -29,13 +29,13 @@
 
         <!-- Choose document title -->
         <div class="form-group half-width">
-            <label for="standardTitle">Tittel: </label>
+            <label for="standardTitle">Tittel: </label><span class="requiredIcon" data-toggle="tooltip" title="Obligatorisk felt" data-placement="top">*</span>
             <input type="text" name="standardTitle" id="standardTitle" ng-model="document.title" class="form-control" required/>
         </div>
 
         <!-- Choose document description -->
         <div class="form-group half-width">
-            <label for="standardDescription">Beskrivelse: </label>
+            <label for="standardDescription">Beskrivelse: </label><span class="requiredIcon" data-toggle="tooltip" title="Obligatorisk felt" data-placement="top">*</span>
             <textarea name="standardDescription" id="standardDescription" ng-model="document.description" class="form-control" rows="6" cols="50" required></textarea>
         </div>
 

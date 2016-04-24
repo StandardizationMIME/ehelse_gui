@@ -16,6 +16,8 @@
 /* ----- CH1 generic ----- */
 .requiredIcon{
     color:red;
+    font-size: 20px;
+    margin-left: 5px;
 }
 .relative{
     position: relative;
