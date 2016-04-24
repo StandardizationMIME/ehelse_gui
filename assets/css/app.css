@@ -14,6 +14,9 @@
 
 
 /* ----- CH1 generic ----- */
+.requiredIcon{
+    color:red;
+}
 .relative{
     position: relative;
 }
