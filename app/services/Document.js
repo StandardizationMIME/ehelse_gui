@@ -63,6 +63,17 @@ angular.module('ehelseEditor').factory('Document', ['$rootScope', 'DocumentField
         }
     }
 
+    function removeCurrentDocumentLink(link){
+
+        var index = current_document.links.indexOf(link);
+        if (index > -1) {
+            current_document.links.splice(index, 1);
+        }
+        generateCurrentDocumentLinksAsLinkCategoryList();
+    }
+
+
+
     function submitCurrentDocument(){
         if(current_document.id){
 
@@ -191,7 +202,6 @@ angular.module('ehelseEditor').factory('Document', ['$rootScope', 'DocumentField
             }
             link_category_dict[link.linkCategoryId].links.push(link);
         }
-        console.log(link_category_dict);
         link_category_list.length = 0;
 
         for (var prop in link_category_dict) {
@@ -200,12 +210,48 @@ angular.module('ehelseEditor').factory('Document', ['$rootScope', 'DocumentField
 
             link_category_list.push(link_category_dict[prop]);
         }
+        console.log(link_category_list);
+        console.log(current_document.links);
     }
 
     function getCurrentDocumentLinksAsLinkCategoryList(){
         return link_category_list;
     }
 
+    function getCurrentDocumentLinkCategoriesIds(){
+        var link_category_ids = [];
+        for(var i = 0; i < current_document.links.length; i++){
+            link_category_ids.push(current_document.links[i].linkCategoryId);
+        }
+        console.log(link_category_ids);
+        return link_category_ids;
+    }
+
+    function extendCurrentDocumentLinkCategoriesByLinkCategoriesIds(ids){
+        for(var i = 0; i < ids.length; i++){
+            addLinkToCurrentDocumentByLinkCategoryId(ids[i]);
+        }
+        generateCurrentDocumentLinksAsLinkCategoryList();
+    }
+
+    function addLinkToCurrentDocumentByLinkCategoryId(id){
+        console.log(id);
+        current_document.links.push({linkCategoryId: id, text:"", url: ""});
+        generateCurrentDocumentLinksAsLinkCategoryList();
+    }
+
+
+    function removeCurrentDocumentLinksByCategoryId(linkCategoryId){
+        var tmp_list = [];
+        for(var i = 0; i < current_document.links.length; i++){
+            if(current_document.links[i].linkCategoryId != linkCategoryId){
+                tmp_list.push(current_document.links[i]);
+            }
+        }
+        current_document.links.length = 0;
+        Array.prototype.push.apply(current_document.links, tmp_list);
+        generateCurrentDocumentLinksAsLinkCategoryList();
+    }
 
     return {
         getCurrentDocumentTargetGroupsIds : getTargetGroupsIds,
@@ -219,6 +265,11 @@ angular.module('ehelseEditor').factory('Document', ['$rootScope', 'DocumentField
         removeCurrentDocumentField: removeField,
         getDocumentsByTopicId :getDocumentsByTopicId,
         setCurrentDocumentFieldsByDocumentDocumentTypeId: setCurrentDocumentFieldsByDocumentDocumentTypeId,
-        getCurrentDocumentLinksAsLinkCategoryList: getCurrentDocumentLinksAsLinkCategoryList
+        getCurrentDocumentLinksAsLinkCategoryList: getCurrentDocumentLinksAsLinkCategoryList,
+        getCurrentDocumentLinkCategoriesIds: getCurrentDocumentLinkCategoriesIds,
+        extendCurrentDocumentLinkCategoriesByLinkCategoriesIds: extendCurrentDocumentLinkCategoriesByLinkCategoriesIds,
+        addLinkToCurrentDocumentByLinkCategoryId: addLinkToCurrentDocumentByLinkCategoryId,
+        removeCurrentDocumentLink:removeCurrentDocumentLink,
+        removeCurrentDocumentLinksByCategoryId: removeCurrentDocumentLinksByCategoryId
     };
 }]);

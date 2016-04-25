@@ -2,6 +2,7 @@
     <h2>Lenker</h2>
     <ul id="document-link-categories" class="list-group">
         <li class="list-group-item" ng-repeat="linkCategory in linkCategories">
+            <span>{{linkCategoriesDict[linkCategory.id].name}}</span><button type="button" ng-click="removeLinkCategory(linkCategory.id)">X</button>
             <span>
                 <ul>
                     <li ng-repeat="link in linkCategory.links">
@@ -11,7 +12,7 @@
                     </li>
                 </ul>
 
-    <button class="btn btn-default" ng-click="openModal('app/components/content/editDocument/links/add-document-links-modal.html', 'AddDocumentLinksController')">
+    <button type="button" class="btn btn-default" ng-click="addLinkToDocument(linkCategory.id);">
         <span class="fa fa-plus-circle plus-icon-standard"></span>
         Legg til lenke
     </button>
@@ -19,7 +20,7 @@
         </li>
     </ul>
 
-    <button class="btn btn-default" ng-click="openModal('app/components/content/editDocument/links/add-document-link-categories-modal.html', 'AddDocumentLinkCategoriesController')">
+    <button type="button" class="btn btn-default" ng-click="openModal('app/components/content/editDocument/links/add-document-link-categories-modal.html', 'AddDocumentLinkCategoriesController')">
         <span class="fa fa-plus-circle plus-icon-standard"></span>
         Legg til lenke kategori
     </button>
