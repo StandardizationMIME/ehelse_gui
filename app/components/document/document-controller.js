@@ -5,7 +5,7 @@ angular.module('ehelseEditor').controller('DocumentController', [ '$scope','$roo
     $scope.document_types_dict = DocumentType.document_types_dict;
     $scope.documents = [];
 
-
+    
 
     $rootScope.getDocuments = function(id) {
         $scope.documents = Document.getDocumentsByTopicId(id);
