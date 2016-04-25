@@ -18,8 +18,12 @@
 
         <ul class="nav navbar-nav">
             <li class="navElementMargin" ng-if="userPageView == ''">
-                <button ng-click="openAdministerFields()" type="button" class="btn btn-primary navbar-btn">Administrer felter</button>
-                <button ng-click="openTargetGroups()" type="button" class="btn btn-primary navbar-btn">Administrer målgrupper</button>
+                <button ng-click="openAdministerFields()" type="button" class="btn btn-primary navbar-btn">Administrer
+                    felter
+                </button>
+                <button ng-click="openTargetGroups()" type="button" class="btn btn-primary navbar-btn">Administrer
+                    målgrupper
+                </button>
             </li>
         </ul>
 
@@ -35,10 +39,10 @@
                     <li><a class="clickable" ng-click="logout()">Logg av</a></li>
                 </ul>
             </li>
-
             <li class="navElementMargin">
                 <button ng-click="changeUserView('administerUsers')" type="button"
-                        class="btn btn-primary navbar-btn"><span
+                        class="btn btn-primary navbar-btn" data-toggle="tooltip" title="Administrer brukere"
+                        data-placement="top"><span
                         class="fa fa-users"></span></button>
             </li>
         </ul>

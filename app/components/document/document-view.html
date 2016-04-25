@@ -3,7 +3,7 @@
     <div>
         <div class="shadow-below">
             <div class="headline-box">
-                <h4 class="selected">{{topic.title}}</h4>
+                <h4 class="selectedHeading">{{topic.title}}</h4>
             </div>
             <p class="tenPixVerticalPadding">
                 <button type="button" ng-click="openDocument()" class="btn btn-default">
@@ -15,7 +15,7 @@
         <div class="standard-list">
             <div ng-repeat="document in documents | filter: search">
 
-                <p class="document-clickable" id=standard{{document.id}} ng-click="openDocument(document)">
+                <p class="clickable item-text" id="document{{document.id}}" ng-click="openDocument(document)">
                     <span  class="fa fa-file-text d{{document.documentTypeId}}"> </span>
                     {{document.title}}
                 </p>

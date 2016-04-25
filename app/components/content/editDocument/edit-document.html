@@ -31,7 +31,7 @@
 
         <!-- Choose document title -->
         <div class="form-group">
-            <label class="col-sm-3 control-label" for="standardTitle">Tittel: </label>
+            <label class="col-sm-3 control-label" for="standardTitle">Tittel: </label><span class="requiredIcon" data-toggle="tooltip" title="Obligatorisk felt" data-placement="top">*</span>
             <div class="form-group col-sm-9">
               <input type="text" name="standardTitle" id="standardTitle" ng-model="document.title" class="form-control" required/>
             </div>
@@ -39,7 +39,7 @@
 
         <!-- Choose document description -->
         <div class="form-group">
-            <label class="col-sm-3 control-label" for="standardDescription">Beskrivelse: </label>
+            <label class="col-sm-3 control-label" for="standardDescription">Beskrivelse: </label><span class="requiredIcon" data-toggle="tooltip" title="Obligatorisk felt" data-placement="top">*</span>
             <div class="form-group col-sm-9">
                 <textarea name="standardDescription" id="standardDescription" ng-model="document.description" class="form-control" rows="6" cols="50" required></textarea>
             </div>

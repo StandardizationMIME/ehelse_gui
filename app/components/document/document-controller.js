@@ -12,8 +12,8 @@ angular.module('ehelseEditor').controller('DocumentController', [ '$scope','$roo
 
 
         <!-- Makes selected folder bold and toggles folder icon between opened and closed -->
-        $(".clickable").removeClass('selected');
-        $('#' + id).addClass('selected');
+        $(".clickable").removeClass('selectedTopic');
+        $('#' + id).addClass('selectedTopic');
         $('#folder' + id).toggleClass('glyphicon-folder-open','glyphicon-folder-close');
 
     };
@@ -26,5 +26,9 @@ angular.module('ehelseEditor').controller('DocumentController', [ '$scope','$roo
     $scope.openDocument = function(document){
         Document.setCurrentDocument(document);
         $rootScope.changeContentView('document');
+
+        $(".clickable").removeClass('selectedDocument');
+        $('#document' + document.id).addClass('selectedDocument');
+
     };
 }]);

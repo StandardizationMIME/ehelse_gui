@@ -14,6 +14,11 @@
 
 
 /* ----- CH1 generic ----- */
+.requiredIcon{
+    color:red;
+    font-size: 20px;
+    margin-left: 5px;
+}
 .relative{
     position: relative;
 }
@@ -37,9 +42,6 @@
     display: inline-block;
     vertical-align: sub;
     float: none;
-}
-input:invalid {
-    border: 1px solid red;
 }
 .btn-primary {
     background-color: #0068e7;
@@ -340,7 +342,7 @@ span.field-item{
 
 
 .topic-browser {
-    padding: 20px;
+    padding: 20px 15px 15px 15px;
     height: 800px;
 }
 
@@ -372,7 +374,7 @@ span.field-item{
     margin: 0 auto;
 }
 .file-browser {
-    padding: 20px;
+    padding: 20px 15px 20px 15px;
     height: 800px;
     background-color: #f3f3f3;
     box-shadow: 1px 1px 2px 1px #b8b8b8;
@@ -392,8 +394,9 @@ span.field-item{
 .standard-icon {
     color: #0068e7;
 }
-.topic-text {
+.item-text {
     color: #0f0f0f;
+    padding: 5px;
 }
 .plus-icon-standard {
     font-size: large;
@@ -464,11 +467,6 @@ textarea {
     color: dodgerblue;
 }
 
-.document-clickable:hover {
-    cursor: pointer;
-    color: dodgerblue;
-}
-
 .standard-list {
     margin-top: 10px;
     margin-bottom: 25px;
@@ -495,8 +493,18 @@ textarea {
     padding: 20px;
 }
 
-.selected {
+.selectedHeading {
     font-weight: bold;
+}
+.selectedTopic {
+    font-weight: bold;
+    border-radius: 5px;
+    background-color: #e7e7e7;
+}
+.selectedDocument {
+    font-weight: bold;
+    border-radius: 5px;
+    background-color: #e7e7e7;
 }
 
 .scrollable {
