@@ -23,7 +23,8 @@ angular.module('ehelseEditor').controller('DocumentController', [ '$scope','$roo
     };
 
 
-    $scope.openDocument = function(document){
+    $scope.openDocument = function(state, document){
+        $rootScope.buttonState = state;
         Document.setCurrentDocument(document);
         $rootScope.changeContentView('document');
     };

@@ -6,7 +6,7 @@
                 <h4 class="selected">{{topic.title}}</h4>
             </div>
             <p class="tenPixVerticalPadding">
-                <button type="button" ng-click="openDocument()" class="btn btn-default">
+                <button type="button" ng-click="openDocument('newDocument')" class="btn btn-default">
                     <span class="fa fa-plus-circle plus-icon-standard"></span>
                     Nytt dokument
                 </button>
@@ -15,7 +15,7 @@
         <div class="standard-list">
             <div ng-repeat="document in documents | filter: search">
 
-                <p class="document-clickable" id=standard{{document.id}} ng-click="openDocument(document)">
+                <p class="document-clickable" id=standard{{document.id}} ng-click="openDocument('editDocument', document)">
                     <span  class="fa fa-file-text d{{document.documentTypeId}}"> </span>
                     {{document.title}}
                 </p>
