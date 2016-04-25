@@ -1,4 +1,4 @@
-<div class="modal fade" tabindex='-1'>
+<div class="modal fade">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -9,7 +9,7 @@
                 <form role="form" ng-submit="">  <!-- change submit..? -->
                     <div class="form-group">
                         <label>Navn: </label>
-                        <input type="text" ng-model="editGroup.name" class="form-control" required>
+                        <input focus-me="shouldBeOpen" type="text" ng-model="editGroup.name" class="form-control" required>
                     </div>
                     <div class="form-group">
                         <label>Beskrivelse: </label>
@@ -29,7 +29,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" ng-click="close('edit')" class="btn btn-primary" data-dismiss="modal">Lagre</button>
-                <button type="button" ng-click="close('cancel')" class="btn btn-default" data-dismiss="modal">Avbryt</button>
+                <button type="button" ng-click="close()" class="btn btn-default" data-dismiss="modal">Avbryt</button>
             </div>
         </div>
     </div>

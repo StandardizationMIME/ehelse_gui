@@ -20,7 +20,7 @@
             <input type="hidden" ng-model="field.sequence"/>
         </li>
     </ul>
-    <div id="addProfileField" class="row addField" ng-click="openModal('app/components/content/administerFields/addFields/new-document-field-modal.html', 'DocumentFieldModalController');setTypeId('2')">
+    <div id="addProfileField" class="row addField" ng-click="showNewFieldModal();setTypeId('2')">
         <span id="addNewProfileField" class="fa fa-pencil-square-o fa-2x vcenter"></span>
         <span class="col-lg-8 vcenter">Opprett nytt felt</span>
     </div>

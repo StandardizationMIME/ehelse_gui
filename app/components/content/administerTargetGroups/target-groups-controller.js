@@ -5,10 +5,15 @@ angular.module('ehelseEditor').controller('TargetGroupsController',['$scope','Mo
     $scope.showEditTGModal = function(group){
         console.log('showEditTGModal');
         $rootScope.editGroup = $scope.cloneTargetGroupForEditing(group);
-        $scope.openModal('app/components/content/administerTargetGroups/editTargetGroups/edit-target-group-modal.html', 'EditTargetGroupController');
+        $rootScope.shouldBeOpen = true;
+        $rootScope.openModal('app/components/content/administerTargetGroups/editTargetGroups/edit-target-group-modal.html', 'EditTargetGroupController');
     };
 
-
+    $scope.showNewTGModal = function () {
+        $rootScope.shouldBeOpen = true;
+        $rootScope.openModal('app/components/content/administerTargetGroups/addTargetGroups/new-target-group-modal.html', 'NewTargetGroupController');
+    };
+    
     $scope.cloneTargetGroupForEditing = function(group){
         return (JSON.parse(JSON.stringify(group)));
     };
@@ -32,12 +37,12 @@ angular.module('ehelseEditor').controller('TargetGroupsController',['$scope','Mo
             });
 
 
-        console.log('saveTGChanges');
+        console.log('function saveTGChanges(group)');
     };
 
 
     $rootScope.postNewTargetGroup = function(){
-        console.log('postNewTargetGroup');
+        console.log('function postNewTargetGroup()');
 
         if($rootScope.newTargetGroup.parentId == "null" || $rootScope.newTargetGroup.parentId == ""){
             $rootScope.newTargetGroup.parentId = null;
@@ -127,36 +132,5 @@ angular.module('ehelseEditor').controller('TargetGroupsController',['$scope','Mo
     $scope.clearNewTargetGroup();
     $rootScope.getTargetGroups();
 
-    
-    $scope.open = function (){
-        console.log('function open()');
-        $rootScope.shouldBeOpen = true;
-        $rootScope.openModal('app/components/content/administerTargetGroups/addTargetGroups/new-target-group-modal.html', 'NewTargetGroupController');
-    };
-    $scope.close = function (){
-        $rootScope.shouldBeOpen = false;
-    };
-
-    }])
-
-    .directive('focusMe', function ($timeout, $parse) {
-        return{
-            link: function (scope, element, attrs, model) {
-                var model = $parse(attrs.focusMe);
-                scope.$watch(model, function(value) {
-                    console.log('value = ',value);
-                    if (value === true ){
-                        $timeout(function () {
-                            element[0].focus();
-                        },300);
-                    }
-                });
-                element.bind('blur',function () {
-                    console.log('blur');
-                    scope.$apply(model.assign(scope, false));
-                })
-            }
-        };
-    }
-);
+}]);
 
