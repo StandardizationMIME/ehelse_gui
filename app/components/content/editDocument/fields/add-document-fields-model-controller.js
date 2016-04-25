@@ -9,7 +9,7 @@ angular.module('ehelseEditor').controller('AddDocumentFieldsController',['$rootS
             Document.extendCurrentDocumentFieldsByFieldIds($scope.selected_document_fields_ids);
 
         }else{
-            $scope.selected_document_fields_ids = Document.getDocumentFieldIds();
+            $scope.selected_document_fields_ids = Document.getCurrentDocumentFieldIds();
         }
     };
 }]);
