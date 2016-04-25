@@ -120,6 +120,7 @@ angular.module('ehelseEditor').controller('TargetGroupsController',['$scope','Mo
             function(){
                 $scope.updateTGTuples();
                 $scope.updateTGDictionary();
+                $rootScope.getTargetGroups();
             },function(){});
     };
 
