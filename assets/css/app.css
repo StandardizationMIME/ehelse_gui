@@ -50,8 +50,16 @@ input:invalid {
     height: 800px;
 }
 
+.input-right {
+    margin-left: 20%;
+}
+
 .half-width {
-    width: 50%;
+    width: 70%;
+}
+
+.widthSeventyPercent {
+    width: 70%;
 }
 
 .twelvePixVerticalPadding{
@@ -117,9 +125,6 @@ input:invalid {
 /* ----- CH4 document ----- */
 
 
-.document-fields-container{
-
-}
 
 
 .document-fields-field-name{
@@ -142,6 +147,11 @@ input:invalid {
     display: inline-block;
 }
 
+.document-edit {
+    overflow-y: auto;
+    height: 650px;
+}
+
 /* ----- CH5 editor ----- */
 
 
@@ -156,6 +166,7 @@ input:invalid {
     width: 200px;
     height: auto;
     margin: auto;
+    margin-left: 2%;
 }
 
 
@@ -210,9 +221,13 @@ div>div>.dropdown-toggle:hover{
     background-color: #f3f3f3;
     border-radius: 10px;
     box-shadow: 1px 1px 1px 1px #b8b8b8;
-    margin-left: 20px;
+    margin-left: 7%;
+    margin-right: 0;
 }
 
+#searchbar {
+    width: 365px;
+}
 /* ----- CH10 topic ----- */
 
 .edit-topic-icon {
