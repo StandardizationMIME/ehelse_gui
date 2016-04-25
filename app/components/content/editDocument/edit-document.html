@@ -1,9 +1,8 @@
-
 <form ng-controller="EditDocumentController" name="DocumentForm" role="form" >
 
     <div class="shadow-below">
         <div class="headline-box">
-            <h4 class="selected">Rediger tema</h4>
+            <h4 class="selectedHeading">Rediger tema</h4>
         </div>
         <p class="twelvePixVerticalPadding">
             <button type="button" class="btn btn-default" ng-click="submit()">
@@ -17,43 +16,54 @@
         </p>
     </div>
 
-    <div class="container-fluid document-edit">
+    <div class="document-edit">
 
-        <!-- choose document type -->
-        <div class="form-group">
-            <label class="col-sm-3 control-label" for="documentType">Type dokument: </label>
-            <div class="form-group col-sm-9">
-                <select name="documentType" id="documentType"  ng-change="setCurrentDocumentFieldsByDocumentDocumentTypeId();" ng-model="document.documentTypeId" class="form-control half-width">
-                    <option ng-repeat="document_type in document_types_option_list" value="{{document_type.value}}">{{document_type.name}}</option>
-                </select>
+        <div class="panel panel-default">
+            <div class="panel-body">
+
+                <!-- choose document type -->
+                <div class="form-group">
+                    <label class="col-sm-3 control-label" for="documentType">Type dokument: </label>
+                    <div class="form-group col-sm-9">
+                        <select name="documentType" id="documentType"  ng-change="setCurrentDocumentFieldsByDocumentDocumentTypeId();" ng-model="document.documentTypeId" class="form-control half-width">
+                            <option ng-repeat="document_type in document_types_option_list" value="{{document_type.value}}">{{document_type.name}}</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Choose document title -->
+                <div class="form-group">
+                    <label class="col-sm-3 control-label" for="standardTitle">Tittel: <span class="requiredIcon" data-toggle="tooltip" title="Obligatorisk felt" data-placement="top">*</span></label>
+                    <div class="form-group col-sm-9">
+                        <input type="text" name="standardTitle" id="standardTitle" ng-model="document.title" class="form-control half-width" required/>
+                    </div>
+                </div>
+
+                <!-- Choose document description -->
+                <div class="form-group">
+                    <label class="col-sm-3 control-label" for="standardDescription">Beskrivelse: <span class="requiredIcon" data-toggle="tooltip" title="Obligatorisk felt" data-placement="top">*</span></label>
+                    <div class="form-group col-sm-9">
+                        <textarea name="standardDescription" id="standardDescription" ng-model="document.description" class="form-control half-width" rows="6" cols="50" required></textarea>
+                    </div>
+                </div>
+
+                <!-- Choose which topic to create document under -->
+                <div class="form-group">
+                    <label class="col-sm-3 control-label" for="standardParent">Opprettes i: </label>
+                    <div class="form-group col-sm-9">
+                        <select name="standardParent" id="standardParent" ng-model="document.topicId" class="form-control half-width">
+                            <option ng-repeat="topic in topicTupleList" value={{topic.id}}>{{topic.path}}</option>
+                        </select>
+                    </div>
+                </div>
+
+
             </div>
         </div>
 
-        <!-- Choose document title -->
-        <div class="form-group">
-            <label class="col-sm-3 control-label" for="standardTitle">Tittel: <span class="requiredIcon" data-toggle="tooltip" title="Obligatorisk felt" data-placement="top">*</span></label>
-            <div class="form-group col-sm-9">
-              <input type="text" name="standardTitle" id="standardTitle" ng-model="document.title" class="form-control half-width" required/>
-            </div>
-        </div>
 
-        <!-- Choose document description -->
-        <div class="form-group">
-            <label class="col-sm-3 control-label" for="standardDescription">Beskrivelse: <span class="requiredIcon" data-toggle="tooltip" title="Obligatorisk felt" data-placement="top">*</span></label>
-            <div class="form-group col-sm-9">
-                <textarea name="standardDescription" id="standardDescription" ng-model="document.description" class="form-control half-width" rows="6" cols="50" required></textarea>
-            </div>
-        </div>
 
-        <!-- Choose which topic to create document under -->
-        <div class="form-group">
-            <label class="col-sm-3 control-label" for="standardParent">Opprettes i: </label>
-            <div class="form-group col-sm-9">
-                <select name="standardParent" id="standardParent" ng-model="document.topicId" class="form-control half-width">
-                    <option ng-repeat="topic in topicTupleList" value={{topic.id}}>{{topic.path}}</option>
-                </select>
-            </div>
-        </div>
+
 
         <!-- Choose document fields -->
         <document-fields></document-fields>

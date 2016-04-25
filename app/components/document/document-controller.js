@@ -18,11 +18,6 @@ angular.module('ehelseEditor').controller('DocumentController', [ '$scope','$roo
 
     };
 
-    $rootScope.setSelectedDocumentId = function(documentId){
-        $rootScope.selectedDocumentId = documentId;
-    };
-
-
     $scope.openDocument = function(document){
         Document.setCurrentDocument(document);
         $rootScope.changeContentView('document');

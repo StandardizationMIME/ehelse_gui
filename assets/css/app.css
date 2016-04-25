@@ -246,6 +246,11 @@ div>div>.dropdown-toggle:hover{
     font-size: large;
     color: red;
 }
+.delete-target-group-icon{
+    font-size: large;
+    color: red;
+    padding-top: 10px;
+}
 
 /* topic end */
 
