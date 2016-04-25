@@ -127,4 +127,36 @@ angular.module('ehelseEditor').controller('TargetGroupsController',['$scope','Mo
     $scope.clearNewTargetGroup();
     $rootScope.getTargetGroups();
 
-}]);
+    
+    $scope.open = function (){
+        console.log('function open()');
+        $rootScope.shouldBeOpen = true;
+        $rootScope.openModal('app/components/content/administerTargetGroups/addTargetGroups/new-target-group-modal.html', 'NewTargetGroupController');
+    };
+    $scope.close = function (){
+        $rootScope.shouldBeOpen = false;
+    };
+
+    }])
+
+    .directive('focusMe', function ($timeout, $parse) {
+        return{
+            link: function (scope, element, attrs, model) {
+                var model = $parse(attrs.focusMe);
+                scope.$watch(model, function(value) {
+                    console.log('value = ',value);
+                    if (value === true ){
+                        $timeout(function () {
+                            element[0].focus();
+                        },300);
+                    }
+                });
+                element.bind('blur',function () {
+                    console.log('blur');
+                    scope.$apply(model.assign(scope, false));
+                })
+            }
+        };
+    }
+);
+
