@@ -23,7 +23,7 @@
         <div class="form-group">
             <label class="col-sm-3 control-label" for="documentType">Type dokument: </label>
             <div class="form-group col-sm-9">
-                <select name="documentType" id="documentType"  ng-change="setCurrentDocumentFieldsByDocumentDocumentTypeId();" ng-model="document.documentTypeId" class="form-control">
+                <select name="documentType" id="documentType"  ng-change="setCurrentDocumentFieldsByDocumentDocumentTypeId();" ng-model="document.documentTypeId" class="form-control half-width">
                     <option ng-repeat="document_type in document_types_option_list" value="{{document_type.value}}">{{document_type.name}}</option>
                 </select>
             </div>
@@ -33,7 +33,7 @@
         <div class="form-group">
             <label class="col-sm-3 control-label" for="standardTitle">Tittel: <span class="requiredIcon" data-toggle="tooltip" title="Obligatorisk felt" data-placement="top">*</span></label>
             <div class="form-group col-sm-9">
-              <input type="text" name="standardTitle" id="standardTitle" ng-model="document.title" class="form-control" required/>
+              <input type="text" name="standardTitle" id="standardTitle" ng-model="document.title" class="form-control half-width" required/>
             </div>
         </div>
 
@@ -41,7 +41,7 @@
         <div class="form-group">
             <label class="col-sm-3 control-label" for="standardDescription">Beskrivelse: <span class="requiredIcon" data-toggle="tooltip" title="Obligatorisk felt" data-placement="top">*</span></label>
             <div class="form-group col-sm-9">
-                <textarea name="standardDescription" id="standardDescription" ng-model="document.description" class="form-control" rows="6" cols="50" required></textarea>
+                <textarea name="standardDescription" id="standardDescription" ng-model="document.description" class="form-control half-width" rows="6" cols="50" required></textarea>
             </div>
         </div>
 
@@ -49,7 +49,7 @@
         <div class="form-group">
             <label class="col-sm-3 control-label" for="standardParent">Opprettes i: </label>
             <div class="form-group col-sm-9">
-                <select name="standardParent" id="standardParent" ng-model="document.topicId" class="form-control">
+                <select name="standardParent" id="standardParent" ng-model="document.topicId" class="form-control half-width">
                     <option ng-repeat="topic in topicTupleList" value={{topic.id}}>{{topic.path}}</option>
                 </select>
             </div>
