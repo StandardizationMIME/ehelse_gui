@@ -2,8 +2,8 @@
 'use strict';
 
 angular.module('ehelseEditor').controller('EditDocumentController',
-    [ '$scope', '$http','$rootScope', 'ModalService', 'DocumentType', 'TargetGroup', 'Mandatory', 'Action','Document', 'DocumentField',
-        function( $scope, $http, $rootScope, ModalService, DocumentType, TargetGroup, Mandatory, Action, Document, DocumentField) {
+    [ '$scope', '$http','$rootScope', 'ModalService', 'DocumentType', 'TargetGroup', 'Mandatory', 'Action','Document', 'DocumentField','LinkCategory',
+        function( $scope, $http, $rootScope, ModalService, DocumentType, TargetGroup, Mandatory, Action, Document, DocumentField, LinkCategory) {
             $scope.document_types_option_list = DocumentType.document_types_option_list;
             $scope.target_groups_dict = TargetGroup.target_groups_dict;
             $scope.mandatory_option_list = Mandatory.mandatory_option_list;
@@ -11,12 +11,18 @@ angular.module('ehelseEditor').controller('EditDocumentController',
             $scope.fields_dict = DocumentField.document_fields_dict;
             $scope.document = Document.getCurrentDocument();
             $scope.setCurrentDocumentFieldsByDocumentDocumentTypeId = Document.setCurrentDocumentFieldsByDocumentDocumentTypeId;
+            $scope.linkCategories = Document.getCurrentDocumentLinksAsLinkCategoryList();
 
             console.log($scope.document);
             $scope.removeTargetGroup = Document.removeCurrentDocumentTargetGroup;
             $scope.removeField = Document.removeCurrentDocumentField;
+            $scope.removeLink = Document.removeCurrentDocumentLink;
+            $scope.linkCategoriesDict = LinkCategory.getLinkCategoryDict();
+            $scope.removeLinkCategory = Document.removeCurrentDocumentLinksByCategoryId;
+
 
             $scope.submit = Document.submitCurrentDocument;
+            $scope.addLinkToDocument = Document.addLinkToCurrentDocumentByLinkCategoryId;
 
 
             $scope.showAddTargetGroupModal = function () {

@@ -24,7 +24,7 @@ angular.module('ehelseEditor').factory('Document', ['$rootScope', 'DocumentField
 
     var current_document = newDocument();
     var documents = [];
-
+    var link_category_list = [];
 
     function extendCurrentDocumentTargetGroupsByTargetGroupIds(target_groups_ids){
         for(var i = 0; i < target_groups_ids.length; i++){
@@ -62,6 +62,17 @@ angular.module('ehelseEditor').factory('Document', ['$rootScope', 'DocumentField
             current_document.fields.splice(index, 1);
         }
     }
+
+    function removeCurrentDocumentLink(link){
+
+        var index = current_document.links.indexOf(link);
+        if (index > -1) {
+            current_document.links.splice(index, 1);
+        }
+        generateCurrentDocumentLinksAsLinkCategoryList();
+    }
+
+
 
     function submitCurrentDocument(){
         if(current_document.id){
@@ -163,6 +174,7 @@ angular.module('ehelseEditor').factory('Document', ['$rootScope', 'DocumentField
         else{
             setDocument(current_document, document);
         }
+        generateCurrentDocumentLinksAsLinkCategoryList();
     }
 
     function getDocumentsByTopicId(id){
@@ -180,7 +192,66 @@ angular.module('ehelseEditor').factory('Document', ['$rootScope', 'DocumentField
         extendCurrentDocumentFieldsByFieldIds(DocumentField.getRequiredDocumentFieldIdsByDocumentTypeId(current_document.documentTypeId))
     }
 
+    function generateCurrentDocumentLinksAsLinkCategoryList(){
 
+        var link_category_dict = {};
+        for(var i = 0; i < current_document.links.length; i++){
+            var link = current_document.links[i];
+            if(!link_category_dict[link.linkCategoryId]){
+                link_category_dict[link.linkCategoryId] = {id:link.linkCategoryId, links: []};
+            }
+            link_category_dict[link.linkCategoryId].links.push(link);
+        }
+        link_category_list.length = 0;
+
+        for (var prop in link_category_dict) {
+            // skip loop if the property is from prototype
+            if(!link_category_dict.hasOwnProperty(prop)) continue;
+
+            link_category_list.push(link_category_dict[prop]);
+        }
+        console.log(link_category_list);
+        console.log(current_document.links);
+    }
+
+    function getCurrentDocumentLinksAsLinkCategoryList(){
+        return link_category_list;
+    }
+
+    function getCurrentDocumentLinkCategoriesIds(){
+        var link_category_ids = [];
+        for(var i = 0; i < current_document.links.length; i++){
+            link_category_ids.push(current_document.links[i].linkCategoryId);
+        }
+        console.log(link_category_ids);
+        return link_category_ids;
+    }
+
+    function extendCurrentDocumentLinkCategoriesByLinkCategoriesIds(ids){
+        for(var i = 0; i < ids.length; i++){
+            addLinkToCurrentDocumentByLinkCategoryId(ids[i]);
+        }
+        generateCurrentDocumentLinksAsLinkCategoryList();
+    }
+
+    function addLinkToCurrentDocumentByLinkCategoryId(id){
+        console.log(id);
+        current_document.links.push({linkCategoryId: id, text:"", url: ""});
+        generateCurrentDocumentLinksAsLinkCategoryList();
+    }
+
+
+    function removeCurrentDocumentLinksByCategoryId(linkCategoryId){
+        var tmp_list = [];
+        for(var i = 0; i < current_document.links.length; i++){
+            if(current_document.links[i].linkCategoryId != linkCategoryId){
+                tmp_list.push(current_document.links[i]);
+            }
+        }
+        current_document.links.length = 0;
+        Array.prototype.push.apply(current_document.links, tmp_list);
+        generateCurrentDocumentLinksAsLinkCategoryList();
+    }
 
     return {
         getCurrentDocumentTargetGroupsIds : getTargetGroupsIds,
@@ -193,6 +264,12 @@ angular.module('ehelseEditor').factory('Document', ['$rootScope', 'DocumentField
         extendCurrentDocumentFieldsByFieldIds: extendCurrentDocumentFieldsByFieldIds,
         removeCurrentDocumentField: removeField,
         getDocumentsByTopicId :getDocumentsByTopicId,
-        setCurrentDocumentFieldsByDocumentDocumentTypeId: setCurrentDocumentFieldsByDocumentDocumentTypeId
+        setCurrentDocumentFieldsByDocumentDocumentTypeId: setCurrentDocumentFieldsByDocumentDocumentTypeId,
+        getCurrentDocumentLinksAsLinkCategoryList: getCurrentDocumentLinksAsLinkCategoryList,
+        getCurrentDocumentLinkCategoriesIds: getCurrentDocumentLinkCategoriesIds,
+        extendCurrentDocumentLinkCategoriesByLinkCategoriesIds: extendCurrentDocumentLinkCategoriesByLinkCategoriesIds,
+        addLinkToCurrentDocumentByLinkCategoryId: addLinkToCurrentDocumentByLinkCategoryId,
+        removeCurrentDocumentLink:removeCurrentDocumentLink,
+        removeCurrentDocumentLinksByCategoryId: removeCurrentDocumentLinksByCategoryId
     };
 }]);
