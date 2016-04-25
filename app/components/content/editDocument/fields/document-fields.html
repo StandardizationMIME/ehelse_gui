@@ -1,9 +1,9 @@
-<div class="form-group col-sm-12" >
+<div class="form-group col-sm-12 col-md-12 col-lg-12" >
     <ul id="new-doc-fields" class="list-group">
         <li class="list-group-item" ng-repeat="field in document.fields">
             <span class="document-fields-field-name">{{fields_dict[field.fieldId].name}}</span>
-            <span class="document-fields-field-value"><input type="text" ng-model="field.value"></span>
-            <span class="document-fields-field-remove"><button type="button" ng-click="removeField(field)">X</button></span>
+            <span class="document-fields-field-value"><input type="text" ng-model="field.value" class="form-control"></span>
+            <span class="document-fields-field-remove"><button type="button" class="btn btn-default" ng-click="removeField(field)"><i class="fa fa-remove delete-topic-icon"></i></button></span>
         </li>
     </ul>
 
