@@ -1,8 +1,6 @@
 <!-- Panel for displaying the content of standards and profiles -->
 <div ng-controller="ContentController" class="col-lg-7 col-mg-7 col-sm-7 col-xs-7 content-view height-800">
-
-    <!-- notification informing user -->
-    <notification></notification>
+    
 
     <!-- Content window displaying different forms etc. -->
     <div ng-if="view == 'document'" ng-include="'app/components/content/editDocument/edit-document.html'"></div>

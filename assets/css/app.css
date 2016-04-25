@@ -23,6 +23,11 @@
     bottom:0;
 }
 
+.absolute-top{
+    position: absolute;
+    top: 0;
+}
+
 .vcenter {
     display: inline-block;
     vertical-align: middle;
@@ -504,7 +509,8 @@ textarea {
 
 #notificationMessage {
     position: absolute;
-    width: 100%;
+    width: 75%;
+    margin-left: 18.5%;
 }
 .nav-tabs {
     border-color: #b8b8b8;
