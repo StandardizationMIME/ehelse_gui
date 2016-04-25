@@ -15,7 +15,7 @@
         <div class="standard-list">
             <div ng-repeat="document in documents | filter: search">
 
-                <p class="document-clickable" id=standard{{document.id}} ng-click="openDocument(document)">
+                <p class="clickable item-text" id="document{{document.id}}" ng-click="openDocument(document)">
                     <span  class="fa fa-file-text d{{document.documentTypeId}}"> </span>
                     {{document.title}}
                 </p>
