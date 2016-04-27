@@ -195,6 +195,7 @@
     font-size: 11px;
 }
 
+
 .new-profile-icon {
     margin-top: 15px;
     color: #f60e24;
@@ -220,6 +221,15 @@
     border-radius: 15px;
     cursor: pointer;
 
+}
+
+
+
+.link-group-panel{
+    margin-bottom: 2px;
+}
+.link-category-group{
+    margin-bottom: 30px;
 }
 
 
