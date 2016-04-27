@@ -1,0 +1,20 @@
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <h3 class="panel-title selectedHeading">Felter</h3>
+    </div>
+    <div class="panel-body">
+        <div class="form-group" >
+            <ul id="new-doc-fields" class="list-group">
+                <li class="list-group-item" ng-repeat="field in document.fields">
+                    <span class="document-fields-field-name">{{fields_dict[field.fieldId].name}}</span>
+                    <span class="document-fields-field-value"><input type="text" ng-model="field.value"></span>
+                    <span class="fa fa-remove pull-right delete-topic-icon clickable" ng-click="removeField(field)"></span>
+                </li>
+            </ul>
+
+
+            <button type="button" class="btn btn-default" ng-click="openModal('app/components/content/editDocument/fields/add-document-fields-modal.html', 'AddDocumentFieldsController')"><span class="fa fa-plus-circle plus-icon-standard"></span> Legg til felter</button>
+
+        </div>
+    </div>
+</div>

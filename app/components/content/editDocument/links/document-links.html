@@ -1,0 +1,59 @@
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <h3 class="panel-title selectedHeading">Lenker</h3>
+    </div>
+    <div class="panel-body">
+
+        <div class="form-group" class="document-links-container">
+
+            <div ng-repeat="linkCategory in linkCategories" class="link-category-group">
+
+
+                <div class="panel panel-default link-group-panel">
+
+                    <div class="panel-heading">
+                        <h3 class="panel-title">{{linkCategoriesDict[linkCategory.id].name}}
+                            <span class="fa fa-remove delete-topic-icon clickable" ng-click="removeLinkCategory(linkCategory.id)"></span>
+                        </h3>
+                    </div>
+
+                    <ul class="list-group">
+                        <li class="list-group-item" ng-repeat="link in linkCategory.links">
+                            <span class="document-fields-field-name"><input class="form-control" type="text" placeholder="Navn" ng-model="link.text"></span>
+                            <span class="document-fields-field-value"><input class="form-control" type="text" placeholder="URL" ng-model="link.url"></span>
+                            <span class="fa fa-remove delete-topic-icon clickable" ng-click="removeLink(link)"></span>
+                        </li>
+                    </ul>
+
+
+                </div>
+
+                <button type="button" class="btn btn-default" ng-click="addLinkToDocument(linkCategory.id);">
+                    <span class="fa fa-plus-circle plus-icon-standard"></span>
+                    Legg til lenke
+                </button>
+
+            </div>
+
+
+
+
+
+
+            <button type="button" class="btn btn-default"
+                    ng-click="openModal('app/components/content/editDocument/links/add-document-link-categories-modal.html', 'AddDocumentLinkCategoriesController')">
+                <span class="fa fa-plus-circle plus-icon-standard"></span>
+                Legg til lenke-kategori
+            </button>
+
+
+        </div>
+
+
+    </div>
+</div>
+
+
+
+
+

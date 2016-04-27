@@ -4,8 +4,18 @@ angular.module('ehelseEditor').controller('TargetGroupsController',['$scope','Mo
 
     $scope.showEditTGModal = function(group){
         console.log('showEditTGModal');
-        $rootScope.editGroup = group;
-        $scope.openModal('app/components/content/administerTargetGroups/editTargetGroups/edit-target-group-modal.html', 'EditTargetGroupController');
+        $rootScope.editGroup = $scope.cloneTargetGroupForEditing(group);
+        $rootScope.shouldBeOpen = true;
+        $rootScope.openModal('app/components/content/administerTargetGroups/editTargetGroups/edit-target-group-modal.html', 'EditTargetGroupController');
+    };
+
+    $scope.showNewTGModal = function () {
+        $rootScope.shouldBeOpen = true;
+        $rootScope.openModal('app/components/content/administerTargetGroups/addTargetGroups/new-target-group-modal.html', 'NewTargetGroupController');
+    };
+    
+    $scope.cloneTargetGroupForEditing = function(group){
+        return (JSON.parse(JSON.stringify(group)));
     };
 
     $rootScope.saveTGChanges = function(group){
@@ -19,18 +29,20 @@ angular.module('ehelseEditor').controller('TargetGroupsController',['$scope','Mo
             function(data){
                 console.log(data);
                 $scope.updateTGTuples();
-                $rootScope.notifySuccess('Endringene ble lagret!');
+                $rootScope.notifySuccess('Endringene ble lagret!',6000);
+                $scope.getTargetGroups();
             },
             function(data){
                 console.log(data);
             });
 
-        console.log('saveTGChanges');
+
+        console.log('function saveTGChanges(group)');
     };
 
 
     $rootScope.postNewTargetGroup = function(){
-        console.log('postNewTargetGroup');
+        console.log('function postNewTargetGroup()');
 
         if($rootScope.newTargetGroup.parentId == "null" || $rootScope.newTargetGroup.parentId == ""){
             $rootScope.newTargetGroup.parentId = null;
@@ -41,33 +53,15 @@ angular.module('ehelseEditor').controller('TargetGroupsController',['$scope','Mo
             'target-groups/',
             $scope.newTargetGroup,
             function(data){
-                $rootScope.notifySuccess('Ny målgruppe lagt til!');
+                $rootScope.notifySuccess('Ny målgruppe lagt til!',6000);
                 $rootScope.targetGroups.push(data);
                 $scope.updateTGTuples();
                 $scope.updateTGDictionary();
                 $scope.clearNewTargetGroup();
             },function(){
-                $rootScope.notifyError('Målgruppe ble ikke lagt til!');
+                $rootScope.notifyError('Målgruppe ble ikke lagt til!',6000);
             }
         );
-    };
-
-    $rootScope.selectedTG = {
-        groups: []
-    };
-
-    $rootScope.deleteTargetGroup = function(){
-        for (var i = 0; i < $scope.selectedTG.groups.length; i++){
-            $scope.delete(
-                'target-groups/'+i,
-                function(){
-                    $scope.selectedTG.groups = [];
-                    $scope.updateTGTuples();
-                    $scope.updateTGDictionary();
-                },
-                function(){}
-            );
-        }
     };
 
     $rootScope.targetGroups = [];
@@ -125,7 +119,18 @@ angular.module('ehelseEditor').controller('TargetGroupsController',['$scope','Mo
         };
     };
 
+    $rootScope.deleteTargetGroupById = function(id) {
+        $scope.delete(
+            'target-groups/'+id,
+            function(){
+                $scope.updateTGTuples();
+                $scope.updateTGDictionary();
+                $rootScope.getTargetGroups();
+            },function(){});
+    };
+
     $scope.clearNewTargetGroup();
     $rootScope.getTargetGroups();
 
 }]);
+

@@ -1,22 +1,21 @@
-<div class="modal fade" tabindex='-1'>
+<div class="modal fade">
     <div class="modal-dialog">
         <div class="modal-content">
 
-
             <div class="modal-header">
-                <button type="button" class="close" ng-click="close('cancel')" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h4 class="modal-title">Velg målgrupper</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Felter</h4>
+                <small> Velg en eller flere felter</small>
             </div>
-
 
             <div class="modal-body">
                 <form role="form">
-                    <div class="form-group" ng-if="document_target_groups_ids.indexOf(group.id) == -1"  ng-repeat="group in target_groups">
-                        <input type="checkbox" data-checklist-model="selected_target_groups_ids" data-checklist-value="group.id"> {{group.name}}
+                    <div ng-if="document_fields_ids.indexOf(field.id) == -1" class="form-group" ng-repeat="field in fields">
+                        <input id={{field.id}} type="checkbox"  data-checklist-model="selected_document_fields_ids" data-checklist-value="field.id">
+                        <label for={{field.id}}>{{field.name}}</label>
                     </div>
                 </form>
             </div>
-
 
             <div class="modal-footer">
                 <button type="button" ng-click="close('add')" class="btn btn-primary" data-dismiss="modal">Lagre</button>

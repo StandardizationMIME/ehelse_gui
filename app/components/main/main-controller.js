@@ -29,9 +29,19 @@
             });
         };
 
-        $rootScope.openConfirmationModal = function(message, id){
+        $rootScope.openConfirmationTGModal = function(message,id){
+            $rootScope.confirmMsg = message;
+            $rootScope.deleteTGId = id;
+            $rootScope.openModal('app/components/main/confirmation/confirmation-tg-modal.html', 'ConfirmationTGModalController');
+        };
+
+        $rootScope.openConfirmationModal = function(message, objectToDelete, method){
+
             $rootScope.confirmationMessage = message;
-            $rootScope.deleteId = id;
+            $rootScope.objectToDelete = objectToDelete;
+            $rootScope.confirmationFunction = function(){
+                method($rootScope.objectToDelete);
+            };
             $rootScope.openModal('app/components/main/confirmation/confirmation-modal.html', 'ConfirmationModalController');
         };
 

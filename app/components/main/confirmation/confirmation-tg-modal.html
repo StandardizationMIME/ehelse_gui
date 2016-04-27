@@ -1,9 +1,9 @@
 <div class="modal fade">
     <div class="modal-dialog">
         <div class="modal-content">
-            <form name="newTopicForm" role="form" method="post">
-                <div class="modal-header">
-                    <h4 class="center-align-text">{{confirmationMessage}}</h4>
+            <form ng-controller="NewTopicModalController" name="newTopicForm" role="form" method="post">
+                <div class="modal-body">
+                    <h5 class="center-align-text">{{confirmMsg}}</h5>
                 </div>
                 <div class="modal-footer">
                     <button class="btn btn-primary" ng-click="returnTrue()" data-dismiss="modal">Ja</button>
