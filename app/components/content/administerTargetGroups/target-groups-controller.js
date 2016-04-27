@@ -5,10 +5,15 @@ angular.module('ehelseEditor').controller('TargetGroupsController',['$scope','Mo
     $scope.showEditTGModal = function(group){
         console.log('showEditTGModal');
         $rootScope.editGroup = $scope.cloneTargetGroupForEditing(group);
-        $scope.openModal('app/components/content/administerTargetGroups/editTargetGroups/edit-target-group-modal.html', 'EditTargetGroupController');
+        $rootScope.shouldBeOpen = true;
+        $rootScope.openModal('app/components/content/administerTargetGroups/editTargetGroups/edit-target-group-modal.html', 'EditTargetGroupController');
     };
 
-
+    $scope.showNewTGModal = function () {
+        $rootScope.shouldBeOpen = true;
+        $rootScope.openModal('app/components/content/administerTargetGroups/addTargetGroups/new-target-group-modal.html', 'NewTargetGroupController');
+    };
+    
     $scope.cloneTargetGroupForEditing = function(group){
         return (JSON.parse(JSON.stringify(group)));
     };
@@ -32,12 +37,12 @@ angular.module('ehelseEditor').controller('TargetGroupsController',['$scope','Mo
             });
 
 
-        console.log('saveTGChanges');
+        console.log('function saveTGChanges(group)');
     };
 
 
     $rootScope.postNewTargetGroup = function(){
-        console.log('postNewTargetGroup');
+        console.log('function postNewTargetGroup()');
 
         if($rootScope.newTargetGroup.parentId == "null" || $rootScope.newTargetGroup.parentId == ""){
             $rootScope.newTargetGroup.parentId = null;
@@ -120,6 +125,7 @@ angular.module('ehelseEditor').controller('TargetGroupsController',['$scope','Mo
             function(){
                 $scope.updateTGTuples();
                 $scope.updateTGDictionary();
+                $rootScope.getTargetGroups();
             },function(){});
     };
 
@@ -127,3 +133,4 @@ angular.module('ehelseEditor').controller('TargetGroupsController',['$scope','Mo
     $rootScope.getTargetGroups();
 
 }]);
+

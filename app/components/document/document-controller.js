@@ -18,7 +18,14 @@ angular.module('ehelseEditor').controller('DocumentController', [ '$scope','$roo
 
     };
 
-    $scope.openDocument = function(document){
+
+    $rootScope.setSelectedDocumentId = function(documentId){
+        $rootScope.selectedDocumentId = documentId;
+    };
+
+
+    $scope.openDocument = function(state, document){
+        $rootScope.buttonState = state;
         Document.setCurrentDocument(document);
         $rootScope.changeContentView('document');
 

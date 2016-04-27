@@ -2,6 +2,11 @@
 
 angular.module('ehelseEditor').controller('TopicController',['$rootScope', '$scope', "ModalService", function($rootScope, $scope, ModalService){
 
+    $scope.showNewTopicModal = function () {
+        $rootScope.shouldBeOpen = true;
+        $rootScope.openModal('app/components/topic/addTopic/new-topic-view.html', 'NewTopicModalController');
+    };
+
     $rootScope.topic = {
         title: "Referansekatalogen"
     };

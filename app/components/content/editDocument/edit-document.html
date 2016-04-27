@@ -2,10 +2,16 @@
 
     <div class="shadow-below">
         <div class="headline-box">
-            <h4 class="selectedHeading">Rediger tema</h4>
+            <h4 class="selected" ng-if="buttonState == 'editTopic'">Rediger tema</h4>
+            <h4 class="selected" ng-if="buttonState == 'newDocument'">Nytt dokument</h4>
+            <h4 class="selected" ng-if="buttonState == 'editDocument'">Rediger dokument</h4>
         </div>
         <p class="twelvePixVerticalPadding">
-            <button type="button" class="btn btn-default" ng-click="submit()">
+            <button type="button" class="btn btn-default" ng-click="submit()" ng-if="buttonState == 'newDocument'">
+                <span class="fa fa-check-circle edit-topic-icon"></span>
+                Opprett dokument
+            </button>
+            <button type="button" class="btn btn-default" ng-click="submit()" ng-if="buttonState == 'editDocument'">
                 <span class="fa fa-check-circle edit-topic-icon"></span>
                 Lagre dokument
             </button>

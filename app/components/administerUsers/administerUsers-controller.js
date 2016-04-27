@@ -9,6 +9,7 @@ angular.module('ehelseEditor').controller('AdministerUsersController', ['$scope'
     });
 
     $scope.addUser = function () {
+        $rootScope.shouldBeOpen = true;
         $scope.openModal('app/components/administerUsers/addUser/add-user-modal-view.html', 'AddUserModalController');
     };
 
