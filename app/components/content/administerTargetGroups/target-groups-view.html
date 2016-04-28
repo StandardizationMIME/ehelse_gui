@@ -15,11 +15,11 @@
         <div class="headline-box">
             <h4 class="selected">Administrer målgrupper</h4>
         </div>
-        <p class="twelvePixVerticalPadding">
+        <p class="twelve-pix-vertical-padding">
             <button type="button" class="btn btn-default"
                     ng-click="showNewTGModal()"
                     data-keyboard="true" id="triggerFocus">
-                <span class="fa fa-plus-circle plus-icon-standard"></span>
+                <span class="fa fa-plus-circle plus-icon"></span>
                 Ny målgruppe
             </button>
         </p>
@@ -44,7 +44,7 @@
                     <td class="tg">{{group.abbreviation}}</td>
                     <td class="tg">{{TGDictionary[group.parentId].name}}</td>
                     <td class="tg"><span ng-click="showEditTGModal(group)" data-keyboard="true" class="fa fa-pencil-square-o fa-2x clickable"></span></td>
-                    <td class="tg"><span ng-click="openConfirmationTGModal('Er du sikker på at du vil slette målgruppe?',group.id)" class="fa fa-remove clickable removeUser"></span></td>
+                    <td class="tg"><span ng-click="openConfirmationTGModal('Er du sikker på at du vil slette målgruppe?',group.id)" class="fa fa-remove clickable remove-user"></span></td>
                 </tr>
             </tbody>
         </table>

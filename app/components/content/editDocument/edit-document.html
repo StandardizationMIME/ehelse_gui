@@ -6,7 +6,7 @@
             <h4 class="selected" ng-if="buttonState == 'newDocument'">Nytt dokument</h4>
             <h4 class="selected" ng-if="buttonState == 'editDocument'">Rediger dokument</h4>
         </div>
-        <p class="twelvePixVerticalPadding">
+        <p class="twelve-pix-vertical-padding">
             <button type="button" class="btn btn-default" ng-click="submit()" ng-if="buttonState == 'newDocument'">
                 <span class="fa fa-check-circle edit-topic-icon"></span>
                 Opprett dokument
@@ -39,7 +39,7 @@
 
                 <!-- Choose document title -->
                 <div class="form-group">
-                    <label class="col-sm-3 control-label" for="standardTitle">Tittel: <span class="requiredIcon" data-toggle="tooltip" title="Obligatorisk felt" data-placement="top">*</span></label>
+                    <label class="col-sm-3 control-label" for="standardTitle">Tittel: <span class="required-icon" data-toggle="tooltip" title="Obligatorisk felt" data-placement="top">*</span></label>
                     <div class="form-group col-sm-9">
                         <input type="text" name="standardTitle" id="standardTitle" ng-model="document.title" class="form-control half-width" required/>
                     </div>
@@ -47,7 +47,7 @@
 
                 <!-- Choose document description -->
                 <div class="form-group">
-                    <label class="col-sm-3 control-label" for="standardDescription">Beskrivelse: <span class="requiredIcon" data-toggle="tooltip" title="Obligatorisk felt" data-placement="top">*</span></label>
+                    <label class="col-sm-3 control-label" for="standardDescription">Beskrivelse: <span class="required-icon" data-toggle="tooltip" title="Obligatorisk felt" data-placement="top">*</span></label>
                     <div class="form-group col-sm-9">
                         <textarea name="standardDescription" id="standardDescription" ng-model="document.description" class="form-control half-width" rows="6" cols="50" required></textarea>
                     </div>
