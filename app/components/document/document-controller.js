@@ -4,8 +4,9 @@ angular.module('ehelseEditor').controller('DocumentController', [ '$scope','$roo
 
     $scope.document_types_dict = DocumentType.document_types_dict;
     $scope.documents = [];
+    $scope.selected_document_id = null;
 
-    
+
 
     $rootScope.getDocuments = function(id) {
         $scope.documents = Document.getDocumentsByTopicId(id);
@@ -25,6 +26,7 @@ angular.module('ehelseEditor').controller('DocumentController', [ '$scope','$roo
 
 
     $scope.openDocument = function(state, document){
+        $scope.selected_document_id = document.id;
         $rootScope.buttonState = state;
         Document.setCurrentDocument(document);
         $rootScope.changeContentView('document');
