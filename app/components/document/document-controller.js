@@ -25,8 +25,12 @@ angular.module('ehelseEditor').controller('DocumentController', [ '$scope','$roo
 
 
     $scope.openDocument = function(document){
-        if(document.documentTypeId == 1){
-            $rootScope.setButtonState('editDocument');
+        if(document){
+            if(document.documentTypeId == 1){
+                $rootScope.setButtonState('editDocument');
+            }else{
+                $rootScope.setButtonState('newDocument');
+            }
         }else{
             $rootScope.setButtonState('newDocument');
         }
