@@ -21,7 +21,14 @@ angular.module('ehelseEditor').controller('EditDocumentController',
             $scope.removeLinkCategory = Document.removeCurrentDocumentLinksByCategoryId;
 
 
-            $scope.submit = Document.submitCurrentDocument;
+            $scope.submit = function(){
+                Document.submitCurrentDocument();
+
+                //TODO MARIUS FORTSETT HER OG SETT PRISTINE
+
+            }
+
+
             $scope.addLinkToDocument = Document.addLinkToCurrentDocumentByLinkCategoryId;
 
 
