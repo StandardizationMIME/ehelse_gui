@@ -12,7 +12,7 @@
             <span class="field-item-field" ng-if="field.mandatory == '1'">Ja</span>
             <span class="field-item-field" ng-if="field.mandatory == '0'">Nei</span>
             <div class="pull-right">
-                <span ng-click="openConfirmationModal('Sletter du dette feltet vil det forsvinne fra alle eksisterende dokumenter. Er du sikker på at du vil slette?', field, deleteFieldById)" id="editProfileField" class="fa fa-remove fa-fw vcenter clickable removeUser edit-field unsortable"></span>
+                <span ng-click="openConfirmationModal('Sletter du dette feltet vil det forsvinne fra alle eksisterende dokumenter. Er du sikker på at du vil slette?', field, deleteFieldById)" id="editProfileField" class="fa fa-remove fa-fw vcenter clickable remove-user edit-field unsortable"></span>
             </div>
             <div class="pull-right">
                 <span ng-click="editDocumentFieldModal(field.id);setTypeId('1')" id="deleteProfileField" class="fa fa-pencil-square-o fa-2x vcenter clickable edit-field unsortable"></span>
@@ -20,7 +20,7 @@
             <input type="hidden" ng-model="field.sequence"/>
         </li>
     </ul>
-    <div id="addStandardField" class="addField row" ng-click="showNewFieldModal();setTypeId('1')">
+    <div id="addStandardField" class="add-field row" ng-click="showNewFieldModal();setTypeId('1')">
         <span id="addNewStandardField" class="fa fa-pencil-square-o fa-2x vcenter"></span>
         <span class="col-lg-8 vcenter">Opprett nytt felt</span>
     </div>
