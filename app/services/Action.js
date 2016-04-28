@@ -34,6 +34,24 @@ angular.module('ehelseEditor').factory('Action', ['$rootScope', function($rootSc
         return tuples;
     }
 
+    function createAction(action, success, error) {
+        
+        $rootScope.post(
+            'actions/',
+            action,
+            function ( data ){
+                actions.push(data);
+                generateactionsOptionList(actions);
+                success(data);
+            }, 
+            error
+        );
+    }
+
+    function editAction(action, success, error){
+        
+    }
+    
     return {
         actions : actions,
         actions_option_list : actions_option_list
