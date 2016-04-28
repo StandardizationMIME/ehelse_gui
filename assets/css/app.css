@@ -775,4 +775,13 @@ input[readonly], textarea[readonly]{
 }
 /* Administer Users end */
 
-/* Document
+/* Document */
+
+
+/* BIGGER CHECKBOX */
+input[type=checkbox] {
+    transform: scale(1.5);
+    -ms-transform: scale(1.5);
+    -webkit-transform: scale(1.5);
+    padding: 100px;
+}
