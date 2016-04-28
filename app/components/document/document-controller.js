@@ -26,13 +26,11 @@ angular.module('ehelseEditor').controller('DocumentController', [ '$scope','$roo
 
 
     $scope.openDocument = function(state, document){
-        $scope.selected_document_id = document.id;
+        if(document){
+            $scope.selected_document_id = document.id;
+        }
         $rootScope.buttonState = state;
         Document.setCurrentDocument(document);
         $rootScope.changeContentView('document');
-
-        $(".clickable").removeClass('selectedDocument');
-        $('#document' + document.id).addClass('selectedDocument');
-
     };
 }]);
