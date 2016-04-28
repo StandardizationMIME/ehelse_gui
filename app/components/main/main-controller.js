@@ -162,6 +162,20 @@
             console.log($rootScope.userPageView);
         };
 
+        $rootScope.setButtonState = function(state) {
+            $rootScope.buttonState = state;
+
+            var documentEdit = $('#document-edit');
+            if($rootScope.buttonState == 'newDocument'){
+                documentEdit.addClass('new-document');
+                documentEdit.removeClass('edit-document');
+            }
+            else{
+                documentEdit.addClass('edit-document');
+                documentEdit.removeClass('new-document');
+            }
+        }
+
     }]);
 
 })();

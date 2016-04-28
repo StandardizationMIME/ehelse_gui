@@ -4,6 +4,7 @@
 angular.module('ehelseEditor').controller('EditDocumentController',
     [ '$scope', '$http','$rootScope', 'ModalService', 'DocumentType', 'TargetGroup', 'Mandatory', 'Action','Document', 'DocumentField','LinkCategory',
         function( $scope, $http, $rootScope, ModalService, DocumentType, TargetGroup, Mandatory, Action, Document, DocumentField, LinkCategory) {
+
             $scope.document_types_option_list = DocumentType.document_types_option_list;
             $scope.target_groups_dict = TargetGroup.target_groups_dict;
             $scope.mandatory_option_list = Mandatory.mandatory_option_list;
@@ -52,4 +53,11 @@ angular.module('ehelseEditor').controller('EditDocumentController',
                 console.log($scope.document.targetGroups);
             };
 
-        }]);
+            $scope.newProfile = function(standardId){
+                console.log("NewProfile kjører " + standardId);
+                Document.setCurrentDocument(Document.getNewProfile(standardId));
+            };
+
+        }
+
+        ]);

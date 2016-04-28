@@ -1,0 +1,26 @@
+<div class="container-fluid profile-bar" ng-controller="EditDocumentController" ng-if="buttonState == 'editDocument'">
+
+    <ul class="profiles-container">
+        <li class="new-profile-container">
+            <div class="new-profile-button" ng-click="setButtonState('newDocument');newProfile(document.id)">
+                <div class="new-profile-icon">
+                    <span class="fa fa-plus-circle fa-2x"> </span>
+                </div>
+                <div class="new-profile-text">
+                    Opprett ny profil
+                </div>
+            </div>
+        </li>
+
+        <li ng-repeat="profile in relatedProfiles" class="profile-container" data-toggle="tooltip"
+            title="{{profile.title}}" data-placement="top" ng-if="buttonState == 'editDocument'" ng-click="setButtonState('editDocument');openDocument(profile)" >
+            <div class="profile-icon">
+                <span class="fa fa-file-text"> </span>
+            </div>
+            <div class="profile-text">
+                {{profile.title}}
+            </div>
+        </li>
+    </ul>
+
+</div>
