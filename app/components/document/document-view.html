@@ -15,7 +15,7 @@
         <div class="standard-list">
             <div ng-repeat="document in documents | filter: search">
 
-                <p class="document-clickable" id=standard{{document.id}} ng-click="openDocument('editDocument', document)">
+                <p class="clickable" id=standard{{document.id}} ng-class="document.id == selected_document_id ? 'selected-document' : ''" ng-click="openDocument('editDocument', document)">
                     <span  class="fa fa-file-text d{{document.documentTypeId}}"> </span>
                     {{document.title}}
                 </p>
@@ -23,3 +23,5 @@
         </div>
     </div>
 </div>
+
+
