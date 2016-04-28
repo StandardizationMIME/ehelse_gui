@@ -10,5 +10,8 @@ angular.module('ehelseEditor').controller('ToolbarController',['$rootScope', '$s
       $rootScope.changeContentView('targetgroups');
     };
 
+    $scope.openAdministerActions = function () {
+      $rootScope.changeContentView('administeractions');  
+    };
 }]);
 
