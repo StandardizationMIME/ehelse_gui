@@ -7,9 +7,8 @@
                 </div>
                 <div class="modal-body">
                     <div class="form-group">
-                        <label for="actionName">Tittel: </label>
-                        <input id="actionName" focus-me="shouldBeOpen" ng-model="newAction.name" type="text" class="form-control" required/>
-                        <input id="actionName" focus-me="shouldBeOpen" ng-model="newAction.name" type="text" class="form-control" required/>
+                        <label for="newActionName">Tittel: </label>
+                        <input id="newActionName" focus-me="shouldBeOpen" ng-model="newAction.name" type="text" class="form-control" required/>
                     </div>
                     <div class="form-group">
                         <label for="actionDescription">Beskrivelse: </label>
@@ -18,8 +17,7 @@
                 </div>
                 <div class="modal-footer">
                     <div class="form-actions">
-                        <button ng-show="true" ng-click="postNewAction(newAction)" data-dismiss="modal" type="submit" ng-disabled="addActionForm.$invalid" class="btn btn-primary">Opprett</button>
-                        <button ng-show="false" ng-click="" data-dismiss="modal" type="submit" ng-disabled=".$invalid" class="btn btn-primary">Lagre endring</button>
+                        <button ng-click="postNewAction(newAction)" data-dismiss="modal" type="submit" ng-disabled="addActionForm.$invalid" class="btn btn-primary">Opprett</button>
                         <button type="button" data-dismiss="modal" class="btn btn-default pull-right">Avbryt</button>
                     </div>
                 </div>

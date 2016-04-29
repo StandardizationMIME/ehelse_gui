@@ -460,3 +460,7 @@ span.field-item{
 .administer-actions{
     width: 90%;
 }
+
+.action-list-item{
+    display: inline-block;
+}

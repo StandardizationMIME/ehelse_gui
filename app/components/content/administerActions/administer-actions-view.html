@@ -16,17 +16,17 @@
         <ul class="list-group col-lg-12">
             <li class="list-group-item active">
                 <span class="col-lg-2">Tittel</span>
-                <span class="">Beskrivelse</span>
+                <span>Beskrivelse</span>
                 <div class="pull-right">
                     <span>Rediger &nbsp; Slett &nbsp;</span>
                 </div>
             </li>
             <li class="list-group-item" ng-repeat="action in actionsOptionList">
                 <span class="col-lg-2">{{action.name}}</span>
-                <span>{{action.description}}</span>
+                <span class="action-list-item">{{action.description}}</span>
                 <div class="pull-right">
-                    <span class="fa fa-pencil-square-o fa-2x vcenter clickable" ng-click=""></span>
-                    <span class="fa fa-remove fa-fw vcenter clickable remove-user" ng-click=""></span>
+                    <span class="fa fa-pencil-square-o fa-2x vcenter clickable" ng-click="showEditActionModal(action.id)"></span>
+                    <span class="fa fa-remove fa-fw vcenter clickable remove-user" ng-click="openConfirmationModal('Er du sikker på at du vil slette?', action, deleteActionById)"></span>
                 </div>
             </li>
         </ul>

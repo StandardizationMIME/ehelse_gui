@@ -5,22 +5,48 @@ angular.module('ehelseEditor').controller('AdministerActionController',['$scope'
 
     $scope.showNewActionModal = function () {
         $rootScope.shouldBeOpen = true;
-        $rootScope.openModal('app/components/content/administerActions/addEditActions/add-edit-actions-modal.html', 'AddEditActionController');
+        $rootScope.openModal('app/components/content/administerActions/addEditActions/add-action-modal.html', 'AddEditActionController');
     };
 
+    $scope.deleteActionById = function (action) {
+        
+        Action.deleteAction(
+            action,
+            function () {
+                console.log("Successfully deleted action");
+                $rootScope.notifySuccess("Handling ble slettet!", 5000);
+            },
+            function () {
+
+            }
+        );
+    };
     
-    $scope.cleanAction = function () {
+    $scope.getActionById = function (id) {
+
+        Action.getById(
+            id,
+            function (data) {
+                $rootScope.currentAction = data;
+            },
+            function () {
+                console.log(error);
+            }
+        );
+    };
+    
+    $scope.showEditActionModal = function (actionId) {
+        $scope.getActionById(actionId);
+        $rootScope.shouldBeOpen = true;
+        $rootScope.openModal('app/components/content/administerActions/addEditActions/edit-action-modal.html', 'AddEditActionController');
+    };
+
+   /* $scope.cleanAction = function () {
         $rootScope.newAction = {
             "id": "",
             "name": "",
             "description": ""
         };
-    };
-    $scope.submitActionChange = function (action) {
-        
-    };
+    };*/
     
-    $scope.postNewAction = function () {
-        
-    }
 }]);
