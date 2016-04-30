@@ -5,7 +5,7 @@ angular.module('ehelseEditor').controller('EditDocumentController',
     [ '$scope', '$http','$rootScope', 'ModalService', 'DocumentType', 'TargetGroup', 'Mandatory', 'Action','Document', 'DocumentField','LinkCategory',
         function( $scope, $http, $rootScope, ModalService, DocumentType, TargetGroup, Mandatory, Action, Document, DocumentField, LinkCategory) {
             $scope.document_types_option_list = DocumentType.document_types_option_list;
-            $scope.target_groups_dict = TargetGroup.target_groups_dict;
+            $scope.target_groups_dict = TargetGroup.getAllAsDict();
             $scope.mandatory_option_list = Mandatory.mandatory_option_list;
             $scope.actions_option_list = Action.actions_option_list;
             $scope.fields_dict = DocumentField.document_fields_dict;
@@ -37,19 +37,4 @@ angular.module('ehelseEditor').controller('EditDocumentController',
                     });
                 });
             };
-
-            $rootScope.newTargetGroup = {
-                "id": "",
-                "description": "test",
-                "actionId": "",
-                "deadline": "",
-                "mandatoryId": "",
-                "targetGroupId": ""
-            };
-
-            $rootScope.addNewTargetGroupsToDocument = function() {
-                $scope.document.targetGroups.push($rootScope.newTargetGroup);
-                console.log($scope.document.targetGroups);
-            };
-
         }]);
