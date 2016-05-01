@@ -1,12 +1,12 @@
 'use strict';
 
-angular.module('ehelseEditor').factory('Document', ['$rootScope', 'DocumentField', function($rootScope, DocumentField) {
+angular.module('ehelseEditor').factory('Document', ['$rootScope', 'DocumentField', 'Topic', function($rootScope, DocumentField, Topic) {
 
 
     function newDocument(){
         return {
             "id": null,
-            "topicId" : $rootScope.selectedTopicId,
+            "topicId" : Topic.getSelected().id,
             "title" : "",
             "documentTypeId":"1",
             "statusId": null,
