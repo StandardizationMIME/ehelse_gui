@@ -60,6 +60,18 @@ angular.module('ehelseEditor').factory('Topic', ['$rootScope', function($rootSco
         generateTopicOptionsList(topics);
     }
 
+    function updateTopic(data){
+        var old_topic = topics_dict[data.id];
+        if(old_topic.parentId != data.parentId){
+            removeById(old_topic.id);
+            setTopic(topics_dict[data.id], data);
+            addTopic(old_topic);
+        }
+        else{
+            setTopic(topics_dict[data.id], data);
+        }
+    }
+
 
     function submit(topic){
 
@@ -71,7 +83,7 @@ angular.module('ehelseEditor').factory('Topic', ['$rootScope', function($rootSco
             $rootScope.put('topics/'+topic.id,
                 topic,
                 function(data){
-                    setTopic(topics_dict[data.id], data);
+                    updateTopic(data);
                     generateTopicOptionsList(topics);
                     $rootScope.notifySuccess('Tema ble oppdatert',6000);
 
@@ -95,10 +107,18 @@ angular.module('ehelseEditor').factory('Topic', ['$rootScope', function($rootSco
     }
 
     function removeById(id){
-        var index = topics.indexOf(topics_dict[id]);
+        var element = topics_dict[id];
+        var siblings = topics_dict[element.parentId].children;
+        removeElementFromArray(element, siblings);
+    }
+
+    function removeElementFromArray(element, array){
+        var index = array.indexOf(element);
         if (index > -1) {
-            topics.splice(index, 1);
+            array.splice(index, 1);
         }
+        generateTopicOptionsList(topics);
+        generateTopicDict(topics);
     }
 
     function newTopic(){
@@ -141,8 +161,6 @@ angular.module('ehelseEditor').factory('Topic', ['$rootScope', function($rootSco
             $rootScope.delete('topics/'+id,
                 function(data){
                     removeById(id);
-                    generateTopicDict(topic);
-                    generateTopicOptionsList(topic);
                     $rootScope.notifySuccess('Topic ble fjernet',6000);
 
                 },
