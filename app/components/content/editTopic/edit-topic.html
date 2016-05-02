@@ -1,10 +1,10 @@
-<form ng-controller="EditTopicController" name="editTopicForm" role="form" method="post">
+<form ng-controller="EditTopicController" name="EditTopicController.editTopicForm" role="form" method="post">
     <div class="shadow-below">
         <div class="headline-box">
             <h4 class="selected-heading">Rediger tema</h4>
         </div>
         <p class="twelve-pix-vertical-padding">
-            <button ng-click="saveTopicChange()" type="button" class="btn btn-default">
+            <button ng-click="saveTopicChange(EditTopicController.editTopicForm)" type="button" class="btn btn-primary" ng-disabled="EditTopicController.editTopicForm.$pristine">
                 <span class="fa fa-check-circle edit-topic-icon"></span>
                 Lagre tema
             </button>

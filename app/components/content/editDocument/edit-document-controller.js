@@ -24,8 +24,6 @@ angular.module('ehelseEditor').controller('EditDocumentController',
             $scope.submit = function(form){
                 Document.submitCurrentDocument();
                 form.$setPristine();
-                //TODO MARIUS FORTSETT HER OG SETT PRISTINE
-
             }
 
 
