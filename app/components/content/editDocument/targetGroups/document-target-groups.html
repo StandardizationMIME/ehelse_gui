@@ -22,7 +22,7 @@
                     <td>{{target_groups_dict[group.targetGroupId].name}}</td>
                     <!-- OBLIGATORISK -->
                     <td>
-                        <select class="form-control" name="" id="mandatory" ng-model="group.mandatory">
+                        <select class="form-control" name="" id="mandatory" ng-model="group.mandatoryId">
                             <option ng-repeat="mandatory in mandatory_option_list" value="{{mandatory.value}}">{{mandatory.name}}</option>
                         </select>
                     </td>
