@@ -1,26 +1,8 @@
-/*angular.module('ehelseEditor')
-    .config(['$routeProvider', function($routeProvider){
-        $routeProvider
-            .when('/', {
-                controller: 'LoginController',
-                templateUrl: 'app/components/login/login-view.html'
-            })
-            .when('/main-view/', {
-                controller: 'MainController',
-                templateUrl: 'app/components/main/main-view.html'
-            })
-            .otherwise({redirectTo: '/'})
-    }]);
-*/
-
-//NEW ROUTING
 angular.module("ehelseEditor")
     .config(function($stateProvider, $urlRouterProvider) {
 
-        // For any unmatched url, redirect to loginView
         $urlRouterProvider.otherwise("/");
 
-        // Possible URL matches
         $stateProvider
             .state("login", {
                 controller: "LoginController",
