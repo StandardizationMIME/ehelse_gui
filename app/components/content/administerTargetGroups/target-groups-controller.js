@@ -2,6 +2,7 @@
 
 angular.module('ehelseEditor').controller('TargetGroupsController',['$scope','ModalService','$rootScope', 'TargetGroup', function($scope, ModalService, $rootScope, TargetGroup){
     $scope.targetGroups = TargetGroup.getAll();
+    $scope.TGDictionary = TargetGroup.getAllAsDict();
 
 
     $scope.showEditTGModal = function(group){
@@ -16,4 +17,3 @@ angular.module('ehelseEditor').controller('TargetGroupsController',['$scope','Mo
     };
 
 }]);
-

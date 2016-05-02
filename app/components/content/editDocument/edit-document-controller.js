@@ -27,6 +27,9 @@ angular.module('ehelseEditor').controller('EditDocumentController',
                 form.$setPristine();
             };
 
+            $scope.deleteDocument = function(){
+                Document.deleteCurrentDocument();
+            };
 
             $scope.addLinkToDocument = Document.addLinkToCurrentDocumentByLinkCategoryId;
 
@@ -46,10 +49,12 @@ angular.module('ehelseEditor').controller('EditDocumentController',
 
 
             $scope.newProfile = function(standardId){
-                console.log("NewProfile kjører " + standardId);
                 Document.setCurrentDocument(Document.getNewProfile(standardId));
             };
 
+
         }
+
+
 
     ]);

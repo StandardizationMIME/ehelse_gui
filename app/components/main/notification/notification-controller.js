@@ -17,7 +17,7 @@ angular.module('ehelseEditor').controller('NotificationController', [ '$scope', 
 
         notification.removeClass();
 
-        notification.fadeTo(100000, 500).slideUp(500, function() {});
+        notification.fadeTo(time, 500).slideUp(500, function() {});
 
         if(type == "success"){
             notification.addClass('alert alert-success');

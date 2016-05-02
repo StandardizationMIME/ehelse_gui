@@ -221,6 +221,20 @@ angular.module('ehelseEditor').factory('Document', ['$rootScope', 'DocumentField
         }
     }
 
+    function deleteCurrentDocument() {
+        $rootScope.delete(
+            'documents/' + current_document.id,
+            function(){
+
+                $rootScope.notifySuccess("Dokumentet ble slettet", 5000);
+            },
+            function(){
+                console.log("Document could not be deleted");
+                $rootScope.notifyError("Dokument kunne ikke bli slettet", 5000);
+            }
+        )
+    }
+
 
     function getCurrentDocument() {
         return current_document;
@@ -384,6 +398,7 @@ angular.module('ehelseEditor').factory('Document', ['$rootScope', 'DocumentField
         setCurrentDocument: setCurrentDocument,
         getNewProfile: getNewProfile,
         getAllDocuments: getAllDocuments,
+        deleteCurrentDocument: deleteCurrentDocument,
         getCurrentDocumentFieldIds: getCurrentDocumentFieldIds,
         extendCurrentDocumentFieldsByFieldIds: extendCurrentDocumentFieldsByFieldIds,
         removeCurrentDocumentField: removeField,
