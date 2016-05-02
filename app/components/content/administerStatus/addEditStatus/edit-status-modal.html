@@ -1,0 +1,27 @@
+<div class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form ng-controller="AddEditStatusController" name="editStatusForm" role="form" method="post">
+                <div class="modal-header">
+                    <h3>Endre status</h3>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="editStatusName">Tittel: </label>
+                        <input id="editStatusName" focus-me="shouldBeOpen" ng-model="currentStatus.name" type="text" class="form-control" required/>
+                    </div>
+                    <div class="form-group">
+                        <label for="editStatusDescription">Beskrivelse: </label>
+                        <textarea id="editStatusDescription" ng-model="currentStatus.description" class="form-control"></textarea>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <div class="form-actions">
+                        <button ng-click="submitStatusChange(currentStatus)" data-dismiss="modal" type="submit" ng-disabled="editStatusForm.$invalid" class="btn btn-primary">Lagre endring</button>
+                        <button type="button" data-dismiss="modal" class="btn btn-default pull-right">Avbryt</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
