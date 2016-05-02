@@ -19,6 +19,13 @@ angular.module('ehelseEditor').directive('supportdocumentfields',function () {
     };
 });
 
+angular.module('ehelseEditor').directive('profilescontainer',function () {
+    return{
+        restrict: 'E',
+        templateUrl: 'app/components/content/editDocument/profiles/profiles-container.html'
+    };
+});
+
 angular.module('ehelseEditor').directive('focusMe', function ($timeout, $parse) {
     return{
         link: function (scope, element, attrs, model) {

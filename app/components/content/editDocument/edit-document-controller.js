@@ -4,6 +4,7 @@
 angular.module('ehelseEditor').controller('EditDocumentController',
     [ '$scope', '$http','$rootScope', 'ModalService', 'DocumentType', 'TargetGroup', 'Mandatory', 'Action','Document', 'DocumentField','LinkCategory', 'Topic',
         function( $scope, $http, $rootScope, ModalService, DocumentType, TargetGroup, Mandatory, Action, Document, DocumentField, LinkCategory, Topic) {
+
             $scope.document_types_option_list = DocumentType.document_types_option_list;
             $scope.target_groups_dict = TargetGroup.getAllAsDict();
             $scope.mandatory_option_list = Mandatory.mandatory_option_list;
@@ -24,7 +25,7 @@ angular.module('ehelseEditor').controller('EditDocumentController',
             $scope.submit = function(form){
                 Document.submitCurrentDocument();
                 form.$setPristine();
-            }
+            };
 
 
             $scope.addLinkToDocument = Document.addLinkToCurrentDocumentByLinkCategoryId;
@@ -42,4 +43,13 @@ angular.module('ehelseEditor').controller('EditDocumentController',
                     });
                 });
             };
-        }]);
+
+
+            $scope.newProfile = function(standardId){
+                console.log("NewProfile kjører " + standardId);
+                Document.setCurrentDocument(Document.getNewProfile(standardId));
+            };
+
+        }
+
+    ]);
