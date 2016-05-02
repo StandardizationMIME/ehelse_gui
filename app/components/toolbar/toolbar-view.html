@@ -2,7 +2,7 @@
 
     <nav class="ehese-navbar navbar-default container-fluid">
         <!-- Left part of toolbar -->
-        <div class="navbar-form navbar-left" ng-if="userPageView == ''">
+        <div class="navbar-form navbar-left" ng-if="$state.includes('main-view.editor-view')">
             <form role="search">
                 <div class="form-group">
                     <input id="searchbar" type="text" class="form-control" placeholder="Søk...">
@@ -10,14 +10,14 @@
                 <button type="submit" class="btn btn-default"><span class="fa fa-search"></span></button>
             </form>
         </div>
-        <div class="navbar-form navbar-left" ng-if="$state.includes('main-view.min-side')">
+        <div class="navbar-form navbar-left" ng-if="$state.includes('main-view.min-side') || $state.includes('main-view.administrer-brukere')">
             <button type="button" ui-sref="main-view.editor-view"
                     class="btn btn-primary">Tilbake til editor
             </button>
         </div>
 
         <ul class="nav navbar-nav">
-            <li class="navElementMargin" ng-if="userPageView == ''">
+            <li class="navElementMargin" ng-if="$state.includes('main-view.editor-view')">
                 <div class="btn-group">
                     <button type="button" class="btn btn-primary dropdown-toggle navbar-btn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Administrer <span class="caret"></span>
@@ -28,14 +28,6 @@
                         <li><a href="" ng-click="openAdministerActions()">Handlinger</a></li>
                     </ul>
                 </div>
-                <!--
-                <button ng-click="openAdministerFields()" type="button" class="btn btn-primary navbar-btn">Administrer
-                    felter
-                </button>
-                <button ng-click="openTargetGroups()" type="button" class="btn btn-primary navbar-btn">Administrer
-                    målgrupper
-                </button>
-                -->
             </li>
         </ul>
 
@@ -51,10 +43,10 @@
                     <li><a class="clickable" ui-sref="login">Logg av</a></li>
                 </ul>
             </li>
-            <li class="navElementMargin">
+            <li class="nav-element-margin">
                 <button ui-sref="main-view.administrer-brukere" type="button"
                         class="btn btn-primary navbar-btn" data-toggle="tooltip" title="Administrer brukere"
-                        data-placement="top"><span
+                        data-placement="bottom"><span
                         class="fa fa-users"></span></button>
             </li>
         </ul>

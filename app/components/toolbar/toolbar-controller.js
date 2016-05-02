@@ -1,17 +1,6 @@
-angular.module('ehelseEditor').controller('ToolbarController',['$rootScope', '$scope', function($rootScope, $scope){
-
+angular.module('ehelseEditor').controller('ToolbarController',['$state','$rootScope', '$scope', function($state,$rootScope, $scope){
     $scope.$parent.registerChildController('ToolbarController', $scope);
 
-    $scope.openAdministerFields = function(){
-      $rootScope.changeContentView('administerfields');
-    };
-
-    $scope.openTargetGroups = function(){
-      $rootScope.changeContentView('targetgroups');
-    };
-
-    $scope.openAdministerActions = function () {
-      $rootScope.changeContentView('administeractions');  
-    };
+    $scope.$state = $state;
 }]);
 

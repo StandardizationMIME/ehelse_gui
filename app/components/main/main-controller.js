@@ -1,9 +1,7 @@
-
-
-
 (function(){
 
-    angular.module('ehelseEditor').run(['$http', '$rootScope', '$cookies', '$location', 'ModalService', function($http, $rootScope, $cookies, $location, ModalService) {
+    angular.module('ehelseEditor').run(['$state','$http', '$rootScope', '$cookies', '$location', 'ModalService', function($state,$http, $rootScope, $cookies, $location, ModalService) {
+        $rootScope.$state = $state;
         $rootScope.userName = $cookies.get('username');
         $rootScope.password = $cookies.get('password');
         var user= $cookies.get('currentUser');
@@ -68,7 +66,6 @@
             $rootScope.http("delete", url, {}, success, error);
         };
 
-
         $rootScope.http = function(method, url, payload, success, error){
             var username = $rootScope.userName || $cookies.get('username');
             var password = $rootScope.password || $cookies.get('password');
@@ -127,8 +124,7 @@
                 );
             }
             else {
-
-                $location.path('/login').replace();
+                $rootScope.$state.go('login');
             }
 
         };
@@ -141,23 +137,12 @@
             $cookies.put('username', "");
             $cookies.put('password', "");
             $cookies.put('currentUser', "");
-            $location.path('/login').replace();
+            $rootScope.$state.go('login');
         };
 
         $rootScope.childControllers = {};
         $rootScope.registerChildController = function(name, scope){
             $rootScope.childControllers[name] = scope;
-        };
-
-        $rootScope.changeContentView = function(view){
-            $rootScope.childControllers['EditorController'].changeView(view);
-        };
-
-        $rootScope.userPageView = '';
-
-        $rootScope.changeUserView = function(view){
-            $rootScope.userPageView = view;
-            console.log($rootScope.userPageView);
         };
 
         $rootScope.setButtonState = function(state) {

@@ -1,7 +1,8 @@
 'use strict';
 
-angular.module('ehelseEditor').controller('LoginController', [ '$scope', '$rootScope', '$location', '$cookies', function( $scope, $rootScope, $location, $cookies) {
+angular.module('ehelseEditor').controller('LoginController', [ '$scope', '$rootScope', '$location', '$cookies', '$state', function( $scope, $rootScope, $location, $cookies, $state) {
 
+    $scope.$state = $state;
     $scope.submit = function(){
         $rootScope.setUserName($scope.username);
         $rootScope.setPassword($scope.password);
@@ -17,7 +18,7 @@ angular.module('ehelseEditor').controller('LoginController', [ '$scope', '$rootS
             function(data){
                 $rootScope.currentUser = data;
                 $cookies.put('currentUser', angular.toJson(data));
-                $location.path('/main-view/editor-view').replace();
+                $scope.$state.go('main-view.editor-view');
             },
             function(){
                 $rootScope.notifyError("Passord og/eller brukernavn er feil.",12000);
