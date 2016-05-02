@@ -17,7 +17,7 @@ angular.module('ehelseEditor').controller('LoginController', [ '$scope', '$rootS
             function(data){
                 $rootScope.currentUser = data;
                 $cookies.put('currentUser', angular.toJson(data));
-                $location.path('/main-view').replace();
+                $location.path('/main-view/editor-view').replace();
             },
             function(){
                 $rootScope.notifyError("Passord og/eller brukernavn er feil.",12000);

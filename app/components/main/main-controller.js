@@ -3,7 +3,7 @@
 
 (function(){
 
-    angular.module('ehelseEditor').run([ '$http', '$rootScope', '$cookies', '$location', 'ModalService', function($http, $rootScope, $cookies, $location, ModalService) {
+    angular.module('ehelseEditor').run(['$http', '$rootScope', '$cookies', '$location', 'ModalService', function($http, $rootScope, $cookies, $location, ModalService) {
         $rootScope.userName = $cookies.get('username');
         $rootScope.password = $cookies.get('password');
         var user= $cookies.get('currentUser');
