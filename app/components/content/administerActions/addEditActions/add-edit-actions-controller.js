@@ -7,7 +7,7 @@ angular.module('ehelseEditor').controller('AddEditActionController', ['$scope', 
             action,
             function (data) {
                 console.log("Action has been edited");
-                $rootScope.notifySuccess("Endring har blit lagret", 5000);
+                $rootScope.notifySuccess("Endring har blitt lagret", 5000);
             },
             function () {
                 $rootScope.notifyError("Error: Endring ble ikke lagret!", 5000);
