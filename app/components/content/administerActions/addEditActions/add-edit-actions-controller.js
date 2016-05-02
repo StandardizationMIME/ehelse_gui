@@ -7,9 +7,7 @@ angular.module('ehelseEditor').controller('AddEditActionController', ['$scope', 
             action,
             function (data) {
                 console.log("Action has been edited");
-                console.log(data);
-                console.log(action);
-                $rootScope.notifyMessage("Endring har blit lagret", 5000);
+                $rootScope.notifySuccess("Endring har blit lagret", 5000);
             },
             function () {
                 $rootScope.notifyError("Error: Endring ble ikke lagret!", 5000);
@@ -18,10 +16,10 @@ angular.module('ehelseEditor').controller('AddEditActionController', ['$scope', 
     };
 
     $scope.postNewAction = function (action) {
-        Action.createAction(
-            action,
-            function (data) {
-                console.log(data);
+
+        Action.createAction(action,
+            function (data){
+                console.log("Action has been created");
                 $rootScope.notifySuccess("Hendelse har blitt opprettet", 5000);
             },
             function () {
@@ -29,13 +27,4 @@ angular.module('ehelseEditor').controller('AddEditActionController', ['$scope', 
             });
     };
 
-    $scope.close = function (result){
-        if (result == 'add'){
-            close("New action added",500);
-        }else if (result == 'edit'){
-            close("Action changed",500);
-        }else{
-            close("Canceled",500);
-        }
-    };
 }]);

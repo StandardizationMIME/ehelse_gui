@@ -40,18 +40,21 @@ angular.module('ehelseEditor').factory('Action', ['$rootScope', function($rootSc
             'actions/' + action.id,
             action,
             function (data) {
-                var action = actions_option_list[data.id];
+                for (var i = 0; i < actions_option_list.length; i++) {
+                    if (data.id == actions_option_list[i].id){
+                        var action = actions_option_list[i];
+                    }
+                }
                 action.name = data.name;
                 action.description = data.description;
                 success(data);
             },
             error
         );
-        console.log("editAction: " + action);
     }
     
     function createAction(action, success, error) {
-        var mandatoryString = " ";
+        var mandatoryString = "";
         if (action.description) {
             mandatoryString = action.description;
         }
@@ -82,7 +85,6 @@ angular.module('ehelseEditor').factory('Action', ['$rootScope', function($rootSc
     }
 
     function deleteAction(action, success, error) {
-        console.log("DELTED ACTION: " + action);
         $rootScope.delete(
             'actions/' + action.id,
             function () {
@@ -95,7 +97,6 @@ angular.module('ehelseEditor').factory('Action', ['$rootScope', function($rootSc
     }
 
     function getById(id, success, error) {
-        console.log(id);
         $rootScope.get(
             'actions/' + id,
             function (data) {
