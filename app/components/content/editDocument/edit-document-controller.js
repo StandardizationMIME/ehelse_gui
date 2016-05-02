@@ -21,7 +21,12 @@ angular.module('ehelseEditor').controller('EditDocumentController',
             $scope.removeLinkCategory = Document.removeCurrentDocumentLinksByCategoryId;
 
 
-            $scope.submit = Document.submitCurrentDocument;
+            $scope.submit = function(form){
+                Document.submitCurrentDocument();
+                form.$setPristine();
+            }
+
+
             $scope.addLinkToDocument = Document.addLinkToCurrentDocumentByLinkCategoryId;
 
 

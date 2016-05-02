@@ -13,8 +13,8 @@ angular.module('ehelseEditor').controller('DocumentController', [ '$scope','$roo
 
 
         <!-- Makes selected folder bold and toggles folder icon between opened and closed -->
-        $(".clickable").removeClass('selectedTopic');
-        $('#' + id).addClass('selectedTopic');
+        $(".clickable").removeClass('selected-item');
+        $('#' + id).addClass('selected-item');
         $('#folder' + id).toggleClass('glyphicon-folder-open','glyphicon-folder-close');
 
     };

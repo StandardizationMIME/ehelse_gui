@@ -1,10 +1,10 @@
-<form ng-controller="EditTopicController" name="editTopicForm" role="form" method="post">
+<form ng-controller="EditTopicController" name="EditTopicController.editTopicForm" role="form" method="post">
     <div class="shadow-below">
         <div class="headline-box">
             <h4 class="selected-heading">Rediger tema</h4>
         </div>
         <p class="twelve-pix-vertical-padding">
-            <button ng-click="saveTopicChange()" type="button" class="btn btn-default">
+            <button ng-click="saveTopicChange(EditTopicController.editTopicForm)" type="button" class="btn btn-primary" ng-disabled="EditTopicController.editTopicForm.$pristine">
                 <span class="fa fa-check-circle edit-topic-icon"></span>
                 Lagre tema
             </button>
@@ -14,23 +14,69 @@
             </button>
         </p>
     </div>
+
+
+
+
+
+
+
+
+
+
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <!-- choose document type -->
+            <div class="form-group">
+                <label class="col-sm-3 control-label"  for="editTopicTitle">Tittel: <span class="required-icon" data-toggle="tooltip" title="Obligatorisk felt" data-placement="top">*</span></label>
+                <div class="form-group col-sm-9">
+                    <input type="text" name="editTopicTitle" id="editTopicTitle" class="form-control half-width"
+                           ng-model="selectedTopic.title" required/>
+                </div>
+            </div>
+
+            <!-- Choose topic title -->
+            <div class="form-group">
+                <label class="col-sm-3 control-label" for="editTopicDescription">Beskrivelse: </label>
+                <div class="form-group col-sm-9">
+                    <textarea name="editTopicDescription" id="editTopicDescription" class="form-control half-width"
+                              ng-model="selectedTopic.description" rows="6" cols="50"></textarea>
+                </div>
+            </div>
+
+            <!-- Choose topic description -->
+            <div class="form-group">
+                <label class="col-sm-3 control-label" for="editTopicParent">Tema ligger under: </label>
+                <div class="form-group col-sm-9">
+                    <select name="editTopicParent" id="editTopicParent" class="form-control half-width" ng-model="selectedTopic.parentId">
+                        <option value="">Ingen</option>
+                        <option ng-repeat="topic in topicTupleList" ng-if="topic.level <= 2" value={{topic.id}}>{{topic.path}}</option>
+                    </select>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
     <div class="half-width">
-        <div class="form-group">
-            <label for="editTopicTitle">Tittel: </label><span class="required-icon" data-toggle="tooltip" title="Obligatorisk felt" data-placement="top">*</span>
-            <input type="text" name="editTopicTitle" id="editTopicTitle" class="form-control"
-                   ng-model="selectedTopic.title" required/>
-        </div>
-        <div class="form-group">
-            <label for="editTopicDescription">Beskrivelse: </label>
-            <textarea name="editTopicDescription" id="editTopicDescription" class="form-control"
-                      ng-model="selectedTopic.description" rows="6" cols="50"></textarea>
-        </div>
-        <div class="form-group">
-            <label for="editTopicParent">Tema ligger under: </label><span class="required-icon" data-toggle="tooltip" title="Obligatorisk felt" data-placement="top">*</span>
-            <select name="editTopicParent" id="editTopicParent" class="form-control" ng-model="selectedTopic.parentId" required>
-                <option value="null" ng-selected="true">Ingen</option>
-                <option ng-repeat="topic in topicTupleList" ng-if="topic.level <= 2" value={{topic.id}}>{{topic.path}}</option>
-            </select>
-        </div>
+
+
+
+
+
+
+
+
+
+
+
     </div>
 </form>
