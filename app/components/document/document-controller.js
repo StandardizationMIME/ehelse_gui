@@ -21,7 +21,7 @@ angular.module('ehelseEditor').controller('DocumentController', [ '$scope','$roo
 
 
     $rootScope.setSelectedDocumentId = function(documentId){
-        $rootScope.selectedDocumentId = documentId;
+        $rootScope.selected_document_id = documentId;
     };
 
     $scope.setCurrentStandard = function(standard){
@@ -48,6 +48,7 @@ angular.module('ehelseEditor').controller('DocumentController', [ '$scope','$roo
     $rootScope.openDocument = function(document){
 
         $scope.checkButtonState(document);
+        $scope.selected_document_id = document.id;
 
         Document.setCurrentDocument(document);
         $rootScope.changeContentView('document');
