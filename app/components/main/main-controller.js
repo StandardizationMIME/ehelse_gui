@@ -166,14 +166,23 @@
             $rootScope.buttonState = state;
 
             var documentEdit = $('#document-edit');
-            if($rootScope.buttonState == 'newDocument'){
+            if(state == 'newDocument'){
                 documentEdit.addClass('new-document');
-                documentEdit.removeClass('edit-document');
+                documentEdit.removeClass('edit-document new-profile edit-profile');
             }
-            else{
+            else if(state == 'editDocument'){
                 documentEdit.addClass('edit-document');
-                documentEdit.removeClass('new-document');
+                documentEdit.removeClass('new-profile edit-profile new-document');
             }
+            else if(state == 'editProfile'){
+                documentEdit.addClass('edit-profile');
+                documentEdit.removeClass('edit-document new-profile new-document');
+            }
+            else {
+                documentEdit.addClass('new-profile');
+                documentEdit.removeClass('edit-document edit-profile new-document');
+            }
+
         }
 
     }]);
