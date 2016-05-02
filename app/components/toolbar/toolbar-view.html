@@ -18,12 +18,24 @@
 
         <ul class="nav navbar-nav">
             <li class="navElementMargin" ng-if="userPageView == ''">
+                <div class="btn-group">
+                    <button type="button" class="btn btn-primary dropdown-toggle navbar-btn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Administrer <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><a href="" ng-click="openAdministerFields()">Felter</a></li>
+                        <li><a href="" ng-click="openTargetGroups()">Målgrupper</a></li>
+                        <li><a href="" ng-click="openAdministerActions()">Handlinger</a></li>
+                    </ul>
+                </div>
+                <!--
                 <button ng-click="openAdministerFields()" type="button" class="btn btn-primary navbar-btn">Administrer
                     felter
                 </button>
                 <button ng-click="openTargetGroups()" type="button" class="btn btn-primary navbar-btn">Administrer
                     målgrupper
                 </button>
+                -->
             </li>
         </ul>
 
