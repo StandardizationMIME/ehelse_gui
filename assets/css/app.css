@@ -82,9 +82,8 @@ h1,h2,h3,h4{ font-weight: bold;}
     box-shadow: 0 1px #b8b8b8;
 }
 #notification-message {
-    position: absolute;
     width: 75%;
-    margin-left: 18.5%;
+    margin:0 auto;
 }
 .nav-tabs {
     border-color: #b8b8b8;
@@ -818,5 +817,10 @@ input[type=checkbox] {
     -ms-transform: scale(1.5);
     -webkit-transform: scale(1.5);
     padding: 100px;
->>>>>>> origin/102-sort_tg
+}
+
+#notification-container{
+    position: absolute;
+    width: 100%;
+    top:0;
 }

@@ -1,10 +1,3 @@
-angular.module('ehelseEditor').directive('notification',function(){
-    return{
-        restrict: 'E',
-        templateUrl: 'app/components/content/notification/notification-view.html'
-    };
-});
-
 angular.module('ehelseEditor').directive('standardfields',function () {
     return{
         restrict: 'E',

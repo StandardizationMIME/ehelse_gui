@@ -12,3 +12,10 @@ angular.module('ehelseEditor').directive('editorview',function(){
     };
 });
 
+angular.module('ehelseEditor').directive('notification',function(){
+    return{
+        restrict: 'E',
+        templateUrl: 'app/components/main/notification/notification-view.html'
+    };
+});
+

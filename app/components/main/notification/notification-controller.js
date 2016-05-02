@@ -13,11 +13,11 @@ angular.module('ehelseEditor').controller('NotificationController', [ '$scope', 
 
     $scope.notifyMessage = function(message, type, time) {
 
-        var notification = $("#notificationMessage");
+        var notification = $("#notification-message");
 
         notification.removeClass();
 
-        notification.fadeTo(time, 500).slideUp(500, function() {});
+        notification.fadeTo(100000, 500).slideUp(500, function() {});
 
         if(type == "success"){
             notification.addClass('alert alert-success');
