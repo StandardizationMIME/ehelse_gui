@@ -461,6 +461,362 @@ span.field-item{
     width: 90%;
 }
 
-.action-list-item{
+.action-list-item {
     display: inline-block;
+}
+.navigation-bar {
+    min-height: 40px;
+    max-width: 1800px;
+    margin: auto;
+}
+.editor-display {
+    max-width: 1800px;
+    margin: auto;
+    height: 800px;
+    background-color: #f3f3f3;
+    border-radius: 10px;
+    box-shadow: 1px 1px 2px 2px #b8b8b8;
+}
+
+.sub-topic {
+    padding-left: 10px;
+
+}
+.horizontal-align-div {
+    width: 50%;
+    margin: 0 auto;
+}
+.file-browser {
+    padding: 20px 15px 20px 15px;
+    height: 800px;
+    background-color: #f3f3f3;
+    box-shadow: 1px 1px 2px 1px #b8b8b8;
+}
+
+.content-view {
+    padding-top: 16px;
+}
+
+/*.btn-primary {*/
+    /*-webkit-border-radius: 0 !important;*/
+    /*-moz-border-radius: 0 !important;*/
+    /*border-radius: 0 !important;*/
+    /*background-color: #0068e7;*/
+/*}*/
+
+.standard-icon {
+    color: #0068e7;
+}
+.item-text {
+    color: #0f0f0f;
+    padding: 5px;
+}
+.plus-icon-standard {
+    font-size: large;
+    color: #0068e7;
+}
+
+.delete-icon-standard {
+    font-size: medium;
+    color: darkgrey;
+}
+
+.plus-icon-profile {
+    font-size: large;
+    color: #f60e24;
+}
+
+.plus-icon-utilityDocument{
+    font-size: large;
+    color: #1ae700;
+}
+
+#createNewDocument{
+    font-size: medium;
+    padding-bottom: 10px;
+}
+
+.body_background {
+    background-color: #f3f3f3;
+}
+
+.login-page {
+    width: 300px;
+    height: 300px;
+    position: absolute;
+    top:0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+}
+
+.new-topic {
+    width: 400px;
+}
+
+textarea {
+    resize: none;
+}
+
+.tenPixHorizontalPadding {
+    padding-right: 10px;
+    padding-left: 10px;
+}
+
+.tenPixVerticalPadding {
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.center-align-text {
+    text-align: center;
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.clickable:hover {
+    cursor: pointer;
+    color: dodgerblue;
+}
+
+.standard-list {
+    margin-top: 10px;
+    margin-bottom: 25px;
+    height: 650px;
+    overflow-y: auto;
+}
+
+
+/*-----------Document Icon colors---------*/
+.d1{color: #0068e7; font-size: 1.3em;}
+.d2{color: #f60e24; font-size: 1.3em;}
+.d3{color: forestgreen; font-size: 1.3em;}
+
+.nopadding {
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
+.topic-padding {
+    padding: 20px;
+}
+
+.selectedHeading {
+    font-weight: bold;
+}
+.selectedTopic {
+    font-weight: bold;
+    border-radius: 5px;
+    background-color: #e7e7e7;
+}
+.selectedDocument {
+    font-weight: bold;
+    border-radius: 5px;
+    background-color: #e7e7e7;
+}
+
+.scrollable {
+    overflow-y: auto;
+}
+
+.shadow-below {
+    box-shadow: 0 1px #b8b8b8;
+}
+
+#notificationMessage {
+    position: absolute;
+    width: 75%;
+    margin-left: 18.5%;
+}
+.nav-tabs {
+    border-color: #b8b8b8;
+}
+.zIndexHigh {
+    z-index: 1000000000;
+}
+.document-content {
+    width: 45%;
+    min-width: 200px;
+}
+.version-content {
+    width: 30%;
+    min-width: 200px;
+}
+input.version-id {
+    max-width: 70px;
+    float: right;
+    clear: both;
+}
+
+.document-version {
+    width: 100%;
+    margin-top: 20px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.headline-box {
+    position: relative;
+    height: 50px;
+    overflow-x: auto;
+}
+
+.headline-box h4 {
+    position: absolute;
+    bottom: 0;
+}
+
+
+/* User dropdown start */
+ div>div>.dropdown-toggle{
+     margin-bottom: 0.5em;
+     background-color: inherit;
+     border: none;
+ }
+div>div>.dropdown-toggle:hover{
+    border-radius: 5%;
+}
+/* User dropdown end */
+
+/* MyPage start */
+#accountInfo{
+    margin-top: 5%;
+}
+.dataField{
+    display: inline;
+}
+.dataRow:hover{background-color: #E6E6E6;}
+
+.dataRow{
+    width: 75%;
+    margin-left: 5%;
+}
+.dataRow>*{
+    padding: 10px;
+    margin: 0;
+}
+.subForm{
+    width: 75%;
+    margin-left: 5%;
+    padding: 2% 7% 5% 0;
+    background-color: #E6E6E6;
+}
+.subForm>*{
+    padding-left: 5%;
+}
+.activeRow{
+    font-weight: bolder;
+    color: dodgerblue;
+    background-color: #E6E6E6;
+    border-bottom: inset;
+    border-color: #ccc;
+}
+/* MyPage end */
+
+/*~~~~~~~~~~~~TARGET GROUP~~~~~~~~~~~*/
+
+.target-group-grid{
+    height: 750px;
+}
+
+
+.tg-table {
+    overflow-y: auto;
+    overflow-x: hidden;
+    height: 600px;
+}
+
+.tg-tbody {
+    display: block;
+    overflow-y: auto;
+    overflow-x: hidden;
+    height: 600px;
+}
+
+.tg-thead {
+    background-color: #0068e7;
+    color: white;
+    display: block;
+    position:relative;
+    font-size: 14px;
+}
+
+.tg:nth-child(1) { width: 25% }
+.tg:nth-child(2) { width: 32.3% }
+.tg:nth-child(3) { width: 8.6% }
+.tg:nth-child(4) { width: 18% }
+.tg:nth-child(5) { width: 7.5% }
+.tg:nth-child(6) { width: 5% }
+
+
+
+.table-hover tbody tr:hover td, .table-hover tbody tr:hover th {
+    background-color: #c7c7c7;
+}
+
+
+input[readonly], textarea[readonly]{
+    background-color: #e4e4e4 !important;
+}
+
+/* Administer Users start */
+#userList img{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+}
+.userRow{
+    border-radius: 50px;
+    background-color: #fff;
+    border: solid #ccc thin;
+    width: 70%;
+    margin: 0.5em;
+}
+#addUser{
+    color: #337AB7;
+    border-radius: 50px;
+    background-color: #fff;
+    border: dashed #ccc thin;
+    width: 23%;
+    margin: 0.5em;
+    padding: 1em;
+}
+#addUser:hover{
+    background-color: #adadad;
+    -webkit-transition: all 0.2s ease;
+    -moz-transition: all 0.2s ease;
+    -o-transition: all 0.2s ease;
+    transition: all 0.2s ease;
+}
+.vcenter {
+    display: inline-block;
+    vertical-align: middle;
+    float: none;
+}
+.removeUser{
+    color: #f60e24;
+    font-size: 2em;
+    padding-right: 1em;
+}
+.userRowName {
+    margin-left: 1em;
+}
+#administerUsersNotifications{
+    margin-bottom: 5%;
+}
+/* Administer Users end */
+
+/* Document */
+
+
+/* BIGGER CHECKBOX */
+input[type=checkbox] {
+    transform: scale(1.5);
+    -ms-transform: scale(1.5);
+    -webkit-transform: scale(1.5);
+    padding: 100px;
+>>>>>>> origin/102-sort_tg
 }
