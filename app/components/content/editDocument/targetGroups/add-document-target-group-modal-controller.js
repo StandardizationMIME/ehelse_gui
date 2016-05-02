@@ -3,7 +3,7 @@ angular.module('ehelseEditor').controller('AddDocumentTargetGroupModelController
         function($rootScope, $scope, close, TargetGroup, Document) {
 
             $scope.document_target_groups = Document.getCurrentDocument().targetGroups;
-    $scope.target_groups = TargetGroup.getTargetGroups();
+    $scope.target_groups = TargetGroup.getAll();
 
     $scope.selected_target_groups_ids = [];
             $scope.document_target_groups_ids = Document.getCurrentDocumentTargetGroupsIds();

@@ -11,7 +11,6 @@ angular.module('ehelseEditor').factory('DocumentField', ['$rootScope', function(
             'document-fields',
             function ( data ){
                 Array.prototype.push.apply(document_fields, data.documentFields);
-                console.log(data.documentFields);
                 generateDocumentFieldDict(document_fields);
                 generateDocumentFieldTypeDict(document_fields);
             },
@@ -34,7 +33,6 @@ angular.module('ehelseEditor').factory('DocumentField', ['$rootScope', function(
         for(var i = 0; i < document_fields.length; i++){
             document_fields_dict[document_fields[i].id] = document_fields[i];
         }
-        console.log(document_fields_dict);
     }
 
 
@@ -131,7 +129,6 @@ angular.module('ehelseEditor').factory('DocumentField', ['$rootScope', function(
     }
 
     function remove(field, success, error){
-        console.log(field);
         $rootScope.delete(
             'document-fields/' + field.id,
             function(){

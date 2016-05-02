@@ -1,10 +1,10 @@
-angular.module('ehelseEditor').controller('EditTargetGroupController', ['$rootScope','$scope', 'close', function( $rootScope, $scope, close) {
+angular.module('ehelseEditor').controller('EditTargetGroupController',
+    ['$rootScope','$scope', 'close', 'TargetGroup', function( $rootScope, $scope, close, TargetGroup) {
+        $scope.TGTuples = TargetGroup.getAllAsOptionsList();
     $scope.close = function (result){
         if (result == 'edit'){
-            $rootScope.saveTGChanges($rootScope.editGroup);
-            close("Endringene ble gjort",500);
+            TargetGroup.submit($rootScope.editGroup);
         }else{
-            $rootScope.getTargetGroups();
             close("Nothing changed",500);
         }
     };
