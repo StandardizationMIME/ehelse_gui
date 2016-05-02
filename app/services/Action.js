@@ -84,15 +84,20 @@ angular.module('ehelseEditor').factory('Action', ['$rootScope', function($rootSc
         }
     }
 
-    function deleteAction(action, success, error) {
+    function deleteAction(action) {
         $rootScope.delete(
             'actions/' + action.id,
             function () {
                 removeAction(action);
                 generateActionsOptionList(action);
-                success();
+                console.log("Successfully deleted action");
+                $rootScope.notifySuccess("Handling ble slettet!", 5000);
+
             },
-            error
+            function(){
+                $rootScope.notifyError("Kunne ikke slette", 5000);
+            }
+
         );
     }
 

@@ -10,16 +10,7 @@ angular.module('ehelseEditor').controller('AdministerActionController',['$scope'
 
     $scope.deleteActionById = function (action) {
         
-        Action.deleteAction(
-            action,
-            function () {
-                console.log("Successfully deleted action");
-                $rootScope.notifySuccess("Handling ble slettet!", 5000);
-            },
-            function () {
-
-            }
-        );
+        Action.deleteAction(action);
     };
     
     $scope.getActionById = function (id) {
