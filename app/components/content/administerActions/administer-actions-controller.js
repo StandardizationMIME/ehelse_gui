@@ -32,12 +32,4 @@ angular.module('ehelseEditor').controller('AdministerActionController',['$scope'
         $rootScope.openModal('app/components/content/administerActions/addEditActions/edit-action-modal.html', 'AddEditActionController');
     };
 
-   /* $scope.cleanAction = function () {
-        $rootScope.newAction = {
-            "id": "",
-            "name": "",
-            "description": ""
-        };
-    };*/
-    
 }]);

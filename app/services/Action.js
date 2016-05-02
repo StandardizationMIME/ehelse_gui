@@ -73,7 +73,6 @@ angular.module('ehelseEditor').factory('Action', ['$rootScope', function($rootSc
                 success(data);
             },
             error
-
         );
     }
 

@@ -407,7 +407,7 @@ span.field-item{
     transition: all 0.2s ease;
 }
 /* -------- AdministerActions -------- */
-.administer-actions{
+.administer-actions, .administer-status{
     width: 90%;
 }
 
