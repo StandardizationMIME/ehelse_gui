@@ -47,7 +47,10 @@ angular.module('ehelseEditor').factory('Action', ['$rootScope', function($rootSc
     function generateActionsOptionList(actions){
         actions_option_list.length = 0;
         for (var i = 0; i < actions.length; i++) {
-            actions_option_list.push(actions[i]);
+            actions_option_list.push({
+                name: actions[i].name,
+                value: actions[i].id
+            });
         }
     }
 
@@ -58,8 +61,6 @@ angular.module('ehelseEditor').factory('Action', ['$rootScope', function($rootSc
     }
 
     function submit(action){
-
-
         if(action.id){
             $rootScope.put('actions/'+action.id,
                 action,

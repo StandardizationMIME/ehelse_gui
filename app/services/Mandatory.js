@@ -3,44 +3,72 @@
 angular.module('ehelseEditor').factory('Mandatory', ['$rootScope', function($rootScope) {
 
     var mandatory = [];
+    var mandatory_dict = {};
     var mandatory_option_list = [];
 
-    function getMandatory(){
-        $rootScope.get(
-            'mandatory/',
-            function ( data ){
-                Array.prototype.push.apply(mandatory, data.mandatory);
-                Array.prototype.push.apply(mandatory_option_list, generateMandatoryOptionList(mandatory));
-            },
-            function (data) {
-                console.log("No document types found");
-            }
-        )
+    $rootScope.get(
+        'mandatory/',
+        function ( data ){
+            Array.prototype.push.apply(mandatory, data.mandatory);
+            generateMandatoryDict(mandatory);
+            generateMandatoryOptionList(mandatory);
+        },
+        function (data) {
+            console.log("No document types found");
+        }
+    );
+
+    function newMandatory(){
+        return {
+            id: null,
+            name: "",
+            description: ""
+        }
     }
 
-    getMandatory();
+    function add(man){
+        mandatory.push(man);
+        generateMandatoryDict(mandatory);
+        generateMandatoryOptionList(mandatory);
+    }
+
+    function set(a,b){
+        a.id = b.id;
+        a.name = b.name;
+        a.description = b.description;
+    }
+
+    function clone(mandatory){
+        var m = {};
+        set(m, mandatory);
+        return m;
+    }
 
     function generateMandatoryOptionList(mandatory){
-        var tuples = [];
-
+        mandatory_option_list.length = 0;
         for (var i = 0; i < mandatory.length; i++) {
-            var mandator = mandatory[i];
-            tuples.push({
-                id: mandator.id,
-                name: mandator.name,
-                description: mandator.description
-            })
+            mandatory_option_list.push({
+                name: mandatory[i].name,
+                value: mandatory[i].id
+            });
         }
-        return tuples;
     }
 
-    function removeMandatory(mandatory) {
-        var index = mandatory_option_list.indexOf(mandatory);
-        if (index > -1) {
-            mandatory_option_list.splice(index,1);
+    function generateMandatoryDict(mandatory){
+        for(var i = 0; i < mandatory.length; i++){
+            mandatory_dict[mandatory[i].id] = mandatory[i];
         }
     }
-    
+
+    function removeMandatory(m) {
+        var index = mandatory.indexOf(m);
+        if (index > -1) {
+            mandatory.splice(index,1);
+        }
+        generateMandatoryDict(mandatory);
+        generateMandatoryOptionList(mandatory);
+    }
+
     function deleteMandatory(mandatory) {
         $rootScope.delete(
             'mandatory/' + mandatory.id,
@@ -54,65 +82,62 @@ angular.module('ehelseEditor').factory('Mandatory', ['$rootScope', function($roo
             }
         );
     }
-    
-    function createMandatory(mandatory, success, error) {
-        var tempString = "";
-        if (mandatory.description) {
-            tempString = mandatory.description;
+
+
+    function submit(man){
+        if(man.id){
+            $rootScope.put('mandatory/'+man.id,
+                man,
+                function(data){
+                    set(mandatory_dict[data.id], data);
+                    generateMandatoryDict(mandatory);
+                    generateMandatoryOptionList(mandatory);
+                    $rootScope.notifySuccess('Mandatory ble oppdatert',6000);
+
+                },
+                function(data){
+                    $rootScope.notifyError('Mandatory ble ikke oppdatert.',6000);
+                });
         }
-
-        var myMandatory = {
-            "id": "",
-            "name": mandatory.name,
-            "description": tempString
-        };
-
-        $rootScope.post(
-            'mandatory/',
-            myMandatory,
-            function (data) {
-                mandatory_option_list.push(data);
-                generateMandatoryOptionList(mandatory_option_list);
-                success(data);
-            },
-            error
-        );
-    }
-
-    function editMandatory(mandatory, success, error) {
-        $rootScope.put(
-            'mandatory/' + mandatory.id,
-            mandatory,
-            function (data) {
-                for (var i = 0; i < mandatory_option_list.length; i++) {
-                    if (data.id == mandatory_option_list[i].id){
-                        var mandatory = mandatory_option_list[i];
-                    }
+        else{
+            $rootScope.post(
+                'mandatory/',
+                man,
+                function(data){
+                    $rootScope.notifySuccess('Ny mandatory ble opprettet.',6000);
+                    add(data);
+                },function(){
+                    $rootScope.notifyError('Mandatory ble ikke opprettet.',6000);
                 }
-                mandatory.name = data.name;
-                mandatory.description = data.description;
-                success(data);
-            },
-            error
-        )
+            );
+        }
     }
-    
-    function getById(id, success, error) {
-        $rootScope.get(
-            'mandatory/' + id,
-            function (data) {
-                success(data);
-            },
-            error
-        );
+
+    function getAll(){
+        return mandatory;
     }
-    
+
+    function getAllAsDict(){
+        return mandatory_dict;
+    }
+
+    function getAllAsOptionsList(){
+        return mandatory_option_list;
+    }
+
+    function getById(id) {
+        return mandatory_dict[id];
+    }
+
     return {
+        new: newMandatory,
+        clone: clone,
+        submit: submit,
+        delete: deleteMandatory,
+
         getById: getById,
-        editMandatory: editMandatory,
-        createMandatory: createMandatory,
-        deleteMandatory: deleteMandatory,
-        mandatory : mandatory,
-        mandatory_option_list : mandatory_option_list
+        getAll: getAll,
+        getAllAsDict:getAllAsDict,
+        getAllAsOptionsList:getAllAsOptionsList
     };
 }]);
