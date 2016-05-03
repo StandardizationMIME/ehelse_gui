@@ -25,7 +25,6 @@ angular.module('ehelseEditor').factory('Action', ['$rootScope', function($rootSc
 
         for (var i = 0; i < actions.length; i++) {
             var mandator = actions[i];
-            console.log(mandator);
             tuples.push({
                 id: mandator.id,
                 name: mandator.name,
