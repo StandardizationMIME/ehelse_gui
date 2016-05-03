@@ -14,16 +14,9 @@
     </div>
 
 
-    <!-- Toolbar -->
+    <!-- Secondary View -->
+    <div ui-view></div>
 
 
-    <!-- Editor display -->
-    <div ng-if="userPageView == ''" ng-include="'app/components/editor/editor-view.html'"></div>
 
-    <!-- Personal page -->
-    <div ng-if="userPageView == 'myPage'" ng-include="'app/components/myPage/myPage-view.html'"></div>
-
-    <!-- Administer users page -->
-    <div ng-if="userPageView == 'administerUsers'"
-         ng-include="'app/components/administerUsers/administerUsers-view.html'"></div>
 </div>

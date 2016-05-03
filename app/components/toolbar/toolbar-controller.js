@@ -1,5 +1,4 @@
-angular.module('ehelseEditor').controller('ToolbarController',['$rootScope', '$scope', function($rootScope, $scope){
-
+angular.module('ehelseEditor').controller('ToolbarController',['$state','$rootScope', '$scope', function($state,$rootScope, $scope){
     $scope.$parent.registerChildController('ToolbarController', $scope);
 
     $scope.openAdministerFields = function(){
@@ -24,6 +23,7 @@ angular.module('ehelseEditor').controller('ToolbarController',['$rootScope', '$s
     
     $scope.openAdministerMandatory = function () {
       $rootScope.changeContentView('administermandatory');  
-    }
+    };
+    $scope.$state = $state;
 }]);
 

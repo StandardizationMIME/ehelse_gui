@@ -156,7 +156,6 @@ angular.module('ehelseEditor').factory('Document', ['$rootScope', 'DocumentField
         for (var i = 0; i < field_ids.length; i++) {
             current_document.fields.push({fieldId: field_ids[i], value: ""});
         }
-        console.log(current_document.fields);
     }
 
 
@@ -198,7 +197,6 @@ angular.module('ehelseEditor').factory('Document', ['$rootScope', 'DocumentField
                 }
                 ,
                 function () {
-                    console.log("New document could not be created");
                     $rootScope.notifyError("Standard kunne ikke opprettes", 6000);
                 }
             );
@@ -324,8 +322,6 @@ angular.module('ehelseEditor').factory('Document', ['$rootScope', 'DocumentField
 
             link_category_list.push(link_category_dict[prop]);
         }
-        console.log(link_category_list);
-        console.log(current_document.links);
     }
 
     function getCurrentDocumentLinksAsLinkCategoryList() {
@@ -337,7 +333,6 @@ angular.module('ehelseEditor').factory('Document', ['$rootScope', 'DocumentField
         for (var i = 0; i < current_document.links.length; i++) {
             link_category_ids.push(current_document.links[i].linkCategoryId);
         }
-        console.log(link_category_ids);
         return link_category_ids;
     }
 
@@ -349,7 +344,6 @@ angular.module('ehelseEditor').factory('Document', ['$rootScope', 'DocumentField
     }
 
     function addLinkToCurrentDocumentByLinkCategoryId(id) {
-        console.log(id);
         current_document.links.push({linkCategoryId: id, text: "", url: ""});
         generateCurrentDocumentLinksAsLinkCategoryList();
     }
