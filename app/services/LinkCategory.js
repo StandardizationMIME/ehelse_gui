@@ -1,54 +1,95 @@
 'use strict';
 
 angular.module('ehelseEditor').factory('LinkCategory', ['$rootScope', function($rootScope) {
-    var document_link_categories= [];
-    var document_link_categories_dict = {};
+    var link_categories= [];
+    var link_categories_dict = {};
 
-    function retrieveLinkCategories(){
-        $rootScope.get(
-            'link-categories',
-            function ( data ){
-                document_link_categories.length = 0;
-                Array.prototype.push.apply(document_link_categories, data.link_categories);
-                generateLinkCategoryDict();
-                console.log(document_link_categories_dict);
+    $rootScope.get(
+        'link-categories',
+        function ( data ){
+            link_categories.length = 0;
+            Array.prototype.push.apply(link_categories, data.link_categories);
+            generateLinkCategoryDict();
 
-            },
-            function (data) {
-                console.log("No Link Categories found");
-            }
-        );
+        },
+        function (data) {
+            console.log("No Link Categories found");
+        }
+    );
+
+    function newLinkCategory(){
+        return {
+            id: null,
+            name: "",
+            description: ""
+        }
     }
 
-    retrieveLinkCategories();
+    function clone(link_category){
+        var lk = {};
+        set(lk, link_category);
+        return lk;
+    }
+
+    function set(a, b){
+        a.id = b.id;
+        a.name = b.name;
+        a.description = b.description;
+    }
+
+    function add(link_category){
+        link_categories.push(link_category);
+        generateLinkCategoryDict();
+    }
+
 
     function generateLinkCategoryDict(){
-        for(var i = 0; i < document_link_categories.length; i++){
-            document_link_categories_dict[document_link_categories[i].id] = document_link_categories[i];
+        for(var i = 0; i < link_categories.length; i++){
+            link_categories_dict[link_categories[i].id] = link_categories[i];
         }
     }
 
-    function createLinkCategory(linkCategory, success, error){
-        console.log(linkCategory);
-        $rootScope.post(
-            'link-categories/',
-            linkCategory,
-            function (data) {
-                document_link_categories.push(data);
-                generateLinkCategoryDict();
-                success(data);
-            },
-            error
-        );
+
+
+    function submit(link_category){
+
+
+        if(link_category.id){
+            $rootScope.put(
+                'link-categories/'+link_category.id,
+                link_category,
+                function(data){
+                    set(link_categories_dict[data.id], data);
+                    generateLinkCategoryDict(link_categories);
+                    $rootScope.notifySuccess('Lenke kategori ble oppdatert',6000);
+
+                },
+                function(data){
+                    $rootScope.notifyError('Lenke kategori ble ikke oppdatert.',6000);
+                });
+        }
+        else{
+            $rootScope.post(
+                'link-categories/',
+                link_category,
+                function(data){
+                    $rootScope.notifySuccess('Ny målgruppe ble opprettet.',6000);
+                    add(data);
+                },function(){
+                    $rootScope.notifyError('Målgruppe ble ikke opprettet.',6000);
+                }
+            );
+        }
     }
+
+
 
     function removeLinkCategory(linkCategory){
-        var index = document_link_categories.indexOf(linkCategory);
+        var index = link_categories.indexOf(linkCategory);
         if (index > -1) {
-            document_link_categories.splice(index, 1);
+            link_categories.splice(index, 1);
         }
-        console.log(document_link_categories_dict);
-    };
+    }
 
     function deleteLinkCategory(linkCategory){
         $rootScope.delete(
@@ -57,7 +98,6 @@ angular.module('ehelseEditor').factory('LinkCategory', ['$rootScope', function($
                 removeLinkCategory(linkCategory);
                 generateLinkCategoryDict();
                 $rootScope.notifySuccess("Link kategorien ble slettet!", 5000);
-                console.log("Successfully deleted link category");
             },
             function () {
                 $rootScope.notifyError("Kunne ikke slette", 5000);
@@ -65,13 +105,10 @@ angular.module('ehelseEditor').factory('LinkCategory', ['$rootScope', function($
         );
     }
 
-    function getLinkCategoryDict(){
-        return document_link_categories_dict;
+    function getAllAsDict(){
+        return link_categories_dict;
     }
 
-    function getLinkCategories(){
-        return document_link_categories;
-    }
 
     function getById(id, success, error){
         $rootScope.get(
@@ -83,27 +120,18 @@ angular.module('ehelseEditor').factory('LinkCategory', ['$rootScope', function($
         )
     }
 
-    function editLinkCategory(linkCategory, success, error){
-        $rootScope.put(
-            'link-categories/' + linkCategory.id,
-            linkCategory,
-            function (data){
-                var linkCat = document_link_categories_dict[data.id];
-                linkCat.name = data.name;
-                linkCat.description = data.description;
-                success(data);
-            },
-            error
-        )
+
+    function getAll(){
+        return link_categories
     }
 
     return {
-        editLinkCategory: editLinkCategory,
+        new: newLinkCategory,
+        clone: clone,
+        submit: submit,
+        delete: deleteLinkCategory,
         getById: getById,
-        deleteLinkCategory: deleteLinkCategory,
-        createLinkCategory: createLinkCategory,
-        getLinkCategories:getLinkCategories,
-        getLinkCategoryDict:getLinkCategoryDict,
-        document_link_categories: document_link_categories
+        getAll: getAll,
+        getAllAsDict: getAllAsDict
     };
 }]);

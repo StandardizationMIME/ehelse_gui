@@ -1,7 +1,7 @@
 angular.module('ehelseEditor').controller('AddDocumentLinkCategoriesController',['$rootScope','$scope', 'Document', 'LinkCategory',
     function($rootScope, $scope, Document, LinkCategory) {
 
-        $scope.link_categories = LinkCategory.getLinkCategories();
+        $scope.link_categories = LinkCategory.getAll();
         $scope.selected_document_link_categories_ids = [];
         $scope.document_link_categories_ids = Document.getCurrentDocumentLinkCategoriesIds();
         console.log($scope.link_categories);
