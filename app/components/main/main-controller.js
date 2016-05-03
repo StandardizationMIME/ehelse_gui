@@ -166,8 +166,14 @@
                 documentEdit.removeClass('edit-document edit-profile new-document');
             }
 
-        }
+        };
+
+        $rootScope.changeContentView = function(view){
+            $rootScope.childControllers['EditorController'].changeView(view);
+        };
 
     }]);
+
+
 
 })();
