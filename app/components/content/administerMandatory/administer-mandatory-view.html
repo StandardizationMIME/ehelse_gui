@@ -1,0 +1,35 @@
+<div ng-controller="AdministerMandatoryController">
+    <div class="shadow-below">
+        <div class="headline-box">
+            <h4 class="selected">Administrer mandatory</h4>
+        </div>
+        <p class="twelve-pix-vertical-padding">
+            <button type="button" class="btn btn-default"
+                    ng-click="openNewMandatoryModal()"
+                    data-keyboard="true" id="triggerFocus">
+                <span class="fa fa-plus-circle plus-icon"></span>
+                Legg til ny
+            </button>
+        </p>
+    </div>
+    <div class="administer-mandatory container">
+        <ul class="list-group col-lg-12">
+            <li class="list-group-item active">
+                <span class="col-lg-2">Tittel</span>
+                <span>Beskrivelse</span>
+                <div class="pull-right">
+                    <span>Rediger &nbsp; Slett &nbsp;</span>
+                </div>
+            </li>
+            <li class="list-group-item" ng-repeat="mandatory in mandatories">
+                <span class="col-lg-2">{{mandatory.name}}</span>
+                <span class="action-list-item">{{mandatory.description}}</span>
+                <div class="pull-right">
+                    <span class="fa fa-pencil-square-o fa-2x vcenter clickable" ng-click="openEditMandatoryModal(mandatory.id)"></span>
+                    <span class="fa fa-remove fa-fw vcenter clickable remove-user" ng-click="openConfirmationModal('Er du sikker på at du vil slette?', mandatory, deleteMandatory)"></span>
+                </div>
+            </li>
+        </ul>
+    </div>
+
+</div>

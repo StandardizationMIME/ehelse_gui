@@ -3,83 +3,100 @@
 angular.module('ehelseEditor').factory('Action', ['$rootScope', function($rootScope) {
 
     var actions = [];
+    var actions_dict = {};
     var actions_option_list = [];
 
-    function getActions(){
-        $rootScope.get(
-            'actions/',
-            function ( data ){
-                Array.prototype.push.apply(actions, data.actions);
-                Array.prototype.push.apply(actions_option_list, generateActionsOptionList(actions));
-            },
-            function (data) {
-                console.log("No document types found");
-            }
-        )
+    function newAction(){
+        return {
+            id: null,
+            name: "",
+            description: ""
+        };
     }
 
-    getActions();
+    function set(a, b){
+        a.id = b.id;
+        a.name = b.name;
+        a.description = b.description;
+    }
+
+    function add(action){
+        actions.push(action);
+        generateActionsDict(actions);
+        generateActionsOptionList(actions);
+    }
+
+    function clone(action){
+        var a = {};
+        set(a, action);
+        return a;
+    }
+
+    $rootScope.get(
+        'actions/',
+        function ( data ){
+            Array.prototype.push.apply(actions, data.actions);
+            generateActionsOptionList(actions);
+            generateActionsDict(actions);
+        },
+        function (data) {
+            console.log("No document types found");
+        }
+    );
 
     function generateActionsOptionList(actions){
-        var tuples = [];
-
+        actions_option_list.length = 0;
         for (var i = 0; i < actions.length; i++) {
-            var mandator = actions[i];
-            tuples.push({
-                id: mandator.id,
-                name: mandator.name,
-                description: mandator.description
-            })
+            actions_option_list.push({
+                name: actions[i].name,
+                value: actions[i].id
+            });
         }
-        return tuples;
     }
-    
-    function editAction(action, success, error) {
-        $rootScope.put(
-            'actions/' + action.id,
-            action,
-            function (data) {
-                for (var i = 0; i < actions_option_list.length; i++) {
-                    if (data.id == actions_option_list[i].id){
-                        var action = actions_option_list[i];
-                    }
-                }
-                action.name = data.name;
-                action.description = data.description;
-                success(data);
-            },
-            error
-        );
-    }
-    
-    function createAction(action, success, error) {
-        var mandatoryString = "";
-        if (action.description) {
-            mandatoryString = action.description;
-        }
-        var myAction = {
-            "id": "",
-            "name": action.name,
-            "description": mandatoryString
-        };
 
-        $rootScope.post(
-            'actions/',
-            myAction,
-            function (data) {
-                actions_option_list.push(data);
-                generateActionsOptionList(actions_option_list);
-                success(data);
-            },
-            error
-        );
+    function generateActionsDict(actions){
+        for(var i = 0; i < actions.length; i++){
+            actions_dict[actions[i].id] = actions[i];
+        }
     }
+
+    function submit(action){
+        if(action.id){
+            $rootScope.put('actions/'+action.id,
+                action,
+                function(data){
+                    set(actions_dict[data.id], data);
+                    generateActionsDict(actions);
+                    generateActionsOptionList(actions);
+                    $rootScope.notifySuccess('Handling ble oppdatert',6000);
+
+                },
+                function(data){
+                    $rootScope.notifyError('Handling ble ikke oppdatert.',6000);
+                });
+        }
+        else{
+            $rootScope.post(
+                'actions/',
+                action,
+                function(data){
+                    $rootScope.notifySuccess('Ny handling ble opprettet.',6000);
+                    add(data);
+                },function(){
+                    $rootScope.notifyError('Handling ble ikke opprettet.',6000);
+                }
+            );
+        }
+    }
+
 
     function removeAction(action) {
-        var index = actions_option_list.indexOf(action);
+        var index = actions.indexOf(action);
         if (index > -1) {
-            actions_option_list.splice(index,1);
+            actions.splice(index,1);
         }
+        generateActionsDict(actions);
+        generateActionsOptionList(actions)
     }
 
     function deleteAction(action) {
@@ -87,8 +104,6 @@ angular.module('ehelseEditor').factory('Action', ['$rootScope', function($rootSc
             'actions/' + action.id,
             function () {
                 removeAction(action);
-                generateActionsOptionList(action);
-                console.log("Successfully deleted action");
                 $rootScope.notifySuccess("Handling ble slettet!", 5000);
 
             },
@@ -99,22 +114,32 @@ angular.module('ehelseEditor').factory('Action', ['$rootScope', function($rootSc
         );
     }
 
-    function getById(id, success, error) {
-        $rootScope.get(
-            'actions/' + id,
-            function (data) {
-                success(data);
-            },
-            error
-        );
+    function getAllAsDict(){
+        return actions_dict;
+    }
+
+    function getAll(){
+        return actions;
+    }
+
+    function getAllAsOptionsList(){
+        return actions_option_list;
+    }
+
+    function getById(id){
+        return actions_dict[id];
     }
 
     return {
-        editAction: editAction, 
-        getById: getById,
-        createAction: createAction,
-        deleteAction: deleteAction,
-        actions : actions,
-        actions_option_list : actions_option_list
+        new: newAction,
+        clone: clone,
+
+        submit: submit,
+        delete: deleteAction,
+
+        getById : getById,
+        getAll : getAll,
+        getAllAsDict: getAllAsDict,
+        getAllAsOptionsList : getAllAsOptionsList
     };
 }]);

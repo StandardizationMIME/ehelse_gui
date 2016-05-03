@@ -21,5 +21,9 @@ angular.module('ehelseEditor').controller('ToolbarController',['$rootScope', '$s
     $scope.openAdministerLinkCategories = function () {
       $rootScope.changeContentView('administerlinkcategories');
     };
+    
+    $scope.openAdministerMandatory = function () {
+      $rootScope.changeContentView('administermandatory');  
+    }
 }]);
 

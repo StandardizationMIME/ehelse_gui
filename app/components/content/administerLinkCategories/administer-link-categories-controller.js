@@ -12,23 +12,13 @@ angular.module('ehelseEditor').controller('AdministerLinkCategoriesController',[
     $scope.deleteLinkCategoryById = LinkCategory.delete;
 
     $scope.showEditLinkCategoryModal = function (linkCategoryId) {
-        $scope.getLinkCategoryById(linkCategoryId);
+        $rootScope.currentLinkCategory = LinkCategory.clone(LinkCategory.getById(linkCategoryId));
         $rootScope.shouldBeOpen = true;
         $rootScope.openModal('app/components/content/administerLinkCategories/addEditLinkCategories/edit-link-category-modal.html', 'AddEditLinkCategoriesController');
 
 
     };
 
-    $scope.getLinkCategoryById = function (id) {
-        LinkCategory.getById(
-            id,
-            function(data){
-                $rootScope.currentLinkCategory = data;
-            },
-            function () {
-                console.log(error);
-            }
-        );
-    };
+
 
 }]);
