@@ -16,6 +16,10 @@ angular.module('ehelseEditor').controller('ToolbarController',['$rootScope', '$s
 
     $scope.openAdministerStatus = function(){
       $rootScope.changeContentView('administerstatus');
-    }
+    };
+
+    $scope.openAdministerLinkCategories = function () {
+      $rootScope.changeContentView('administerlinkcategories');
+    };
 }]);
 

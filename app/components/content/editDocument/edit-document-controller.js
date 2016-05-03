@@ -18,7 +18,7 @@ angular.module('ehelseEditor').controller('EditDocumentController',
             $scope.removeTargetGroup = Document.removeCurrentDocumentTargetGroup;
             $scope.removeField = Document.removeCurrentDocumentField;
             $scope.removeLink = Document.removeCurrentDocumentLink;
-            $scope.linkCategoriesDict = LinkCategory.getLinkCategoryDict();
+            $scope.linkCategoriesDict = LinkCategory.getAllAsDict();
             $scope.removeLinkCategory = Document.removeCurrentDocumentLinksByCategoryId;
 
 

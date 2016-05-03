@@ -407,7 +407,7 @@ span.field-item{
     transition: all 0.2s ease;
 }
 /* -------- AdministerActions -------- */
-.administer-actions, .administer-status{
+.administer-actions, .administer-status, .administer-link-categories{
     width: 90%;
 }
 
