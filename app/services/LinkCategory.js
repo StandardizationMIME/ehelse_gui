@@ -110,14 +110,8 @@ angular.module('ehelseEditor').factory('LinkCategory', ['$rootScope', function($
     }
 
 
-    function getById(id, success, error){
-        $rootScope.get(
-            'link-categories/' + id,
-            function (data) {
-                success(data);
-            },
-            error
-        )
+    function getById(id){
+        return link_categories_dict[id];
     }
 
 
