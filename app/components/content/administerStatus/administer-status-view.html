@@ -21,12 +21,12 @@
                     <span>Rediger &nbsp; Slett &nbsp;</span>
                 </div>
             </li>
-            <li class="list-group-item" ng-repeat="status in statusOptionList">
+            <li class="list-group-item" ng-repeat="status in statuses">
                 <span class="col-lg-3">{{status.name}}</span>
                 <span class="action-list-item">{{status.description}}</span>
                 <div class="pull-right">
                     <span class="fa fa-pencil-square-o fa-2x vcenter clickable" ng-click="showEditStatusModal(status.id)"></span>
-                    <span class="fa fa-remove fa-fw vcenter clickable remove-user" ng-click="openConfirmationModal('Er du sikker på at du vil slette?', status, deleteStatusById)"></span>
+                    <span class="fa fa-remove fa-fw vcenter clickable remove-user" ng-click="openConfirmationModal('Er du sikker på at du vil slette?', status, deleteStatus)"></span>
                 </div>
             </li>
         </ul>

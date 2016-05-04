@@ -3,84 +3,98 @@
 angular.module('ehelseEditor').factory('Status',['$rootScope',function($rootScope){
 
     var status = [];
+    var status_dict = {};
     var status_option_list = [];
 
-    function getStatus(){
-        $rootScope. get(
-            'status/',
-            function (data){
-                Array.prototype.push.apply(status, data.status);
-                Array.prototype.push.apply(status_option_list, generateStatusOptionList(status));
-            },
-            function (data){
+    $rootScope. get(
+        'status/',
+        function (data){
+            Array.prototype.push.apply(status, data.status);
+            generateStatusOptionList(status);
+            generateStatusDict(status);
+        },
+        function (data){
 
-            }
-        )
+        }
+    );
+
+
+    function generateStatusDict(status){
+        for(var i = 0; i < status.length; i++){
+            status_dict[status[i].id] = status[i];
+        }
     }
 
-    getStatus();
+    function newStatus(){
+        return {
+            id: null,
+            name: "",
+            description: ""
+        }
+    }
+
+    function clone(s){
+        var cs = {};
+        set(cs, s);
+        return cs;
+    }
+
+    function set(a,b){
+        a.id = b.id;
+        a.name = b.name;
+        a.description = b.description;
+    }
+
+    function add(s){
+        status.push(s);
+        generateStatusDict(status);
+        generateStatusOptionList(status);
+    }
 
     function generateStatusOptionList(status){
-        var tuples = [];
+        status_option_list.length = 0;
 
         for (var i = 0; i < status.length; i++){
-            var mandator = status[i];
-            tuples.push({
-                id: mandator.id,
-                name: mandator.name,
-                description: mandator.description
+            status_option_list.push({
+                value: status[i].id,
+                name: status[i].name
             })
         }
-        return tuples;
     }
 
-    function createStatus(status, success, error) {
-        var tempString = "";
-        if (status.description) {
-            tempString = status.description;
+    function submit(status){
+        if(status.id){
+            $rootScope.put('status/'+status.id,
+                status,
+                function(data){
+                    set(status_dict[data.id], data);
+                    generateStatusDict(status);
+                    generateStatusOptionList(status);
+                    $rootScope.notifySuccess('Status ble oppdatert',6000);
+
+                },
+                function(data){
+                    $rootScope.notifyError('Status ble ikke oppdatert.',6000);
+                });
         }
-
-        var myStatus = {
-            "id": "",
-            "name": status.name,
-            "description": tempString
-        }
-
-        $rootScope.post(
-            'status/',
-            myStatus,
-            function (data) {
-                status_option_list.push(data);
-                generateStatusOptionList(status_option_list);
-                success(data);
-            },
-            error
-        );
-
-    }
-
-    function editStatus(status, success, error) {
-        $rootScope.put(
-            'status/' + status.id,
-            status,
-            function (data) {
-                for (var i = 0; i < status_option_list.length; i++) {
-                    if (data.id == status_option_list[i].id) {
-                        var status = status_option_list[i];
-                    }
+        else{
+            $rootScope.post(
+                'status/',
+                status,
+                function(data){
+                    $rootScope.notifySuccess('Ny status ble opprettet.',6000);
+                    add(data);
+                },function(){
+                    $rootScope.notifyError('Status ble ikke opprettet.',6000);
                 }
-                status.name = data.name;
-                status.description = data.description;
-                success(data);
-            },
-            error
-        );
+            );
+        }
     }
 
-    function removeStatus(status){
-        var index = status_option_list.indexOf(status);
+    function removeStatus(s){
+        var index = status.indexOf(s);
         if (index > -1) {
-            status_option_list.splice(index,1)
+            status.splice(index,1)
         }
     }
 
@@ -90,6 +104,7 @@ angular.module('ehelseEditor').factory('Status',['$rootScope',function($rootScop
             function (){
                 removeStatus(status);
                 generateStatusOptionList(status);
+                generateStatusDict(status);
                 $rootScope.notifySuccess("Status ble slettet!", 5000);
             },
             function (){
@@ -98,22 +113,32 @@ angular.module('ehelseEditor').factory('Status',['$rootScope',function($rootScop
         );
     }
 
-    function getById(id, success, error){
-        $rootScope.get(
-            'status/' + id,
-            function (data){
-                success(data);
-            },
-            error
-        );
+    function getById(id){
+        return status_dict[id];
+    }
+
+    function getAll(){
+        return status;
+    }
+
+    function getAllAsOptionsList(){
+        return status_option_list;
+    }
+
+    function getAllAsDict(){
+        return status_dict;
     }
 
     return {
+        new: newStatus,
+        clone: clone,
+
         getById: getById,
-        deleteStatus: deleteStatus,
-        createStatus: createStatus,
-        editStatus: editStatus,
-        status: status,
-        status_option_list: status_option_list
+        getAll: getAll,
+        getAllAsDict: getAllAsDict,
+        getAllAsOptionsList: getAllAsOptionsList,
+
+        delete: deleteStatus,
+        submit: submit
     }
 }]);
