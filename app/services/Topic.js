@@ -185,12 +185,7 @@ angular.module('ehelseEditor').factory('Topic', ['$rootScope', function($rootSco
         return topics_dict[id];
     }
     function setSelectedById(id){
-            $rootScope.get('topics/' + id,
-                function(data){
-                    setTopic(selected_topic, data);
-                },
-                function(){}
-            );
+        setTopic(selected_topic, topics_dict[id]);
     }
     function getSelected(){
         return selected_topic;

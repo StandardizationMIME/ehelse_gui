@@ -5,36 +5,45 @@ angular.module('ehelseEditor').factory('Document', ['$rootScope', 'DocumentField
 
     function newDocument() {
         return {
-            "id": null,
-            "topicId": $rootScope.selectedTopicId,
-            "title": "",
-            "documentTypeId": "1",
-            "statusId": null,
-            "previousDocumentId": null,
-            "description": "",
-            "sequence": 0,
-            "comment": "",
-            "targetGroups": [],
-            "fields": [],
-            "links": []
-        }
+            id: null,
+            timestamp: null,
+            title: "",
+            description: "",
+            statusId: null,
+            sequence: 0,
+            topicId: Topic.getSelected().id,
+            comment: "",
+            documentTypeId: "1",
+            standardId: null,
+            previousDocumentId: null,
+            internalId: null,
+            hisNumber: null,
+            profiles: [],
+            links: [],
+            fields: [],
+            targetGroups: []
+        };
     }
 
     function newProfile(standardId) {
         return {
-            "id": null,
-            "topicId": $rootScope.selectedTopicId,
-            "title": "",
-            "documentTypeId": "2",
-            "statusId": null,
-            "previousDocumentId": null,
-            "description": "",
-            "sequence": 0,
-            "comment": "",
-            "targetGroups": [],
-            "fields": [],
-            "links": [],
-            "standardId": standardId
+            id: null,
+            timestamp: null,
+            title: "",
+            description: "",
+            statusId: null,
+            sequence: 0,
+            topicId: Topic.getSelected().id,
+            comment: "",
+            documentTypeId: "2",
+            standardId: standardId,
+            previousDocumentId: null,
+            internalId: null,
+            hisNumber: null,
+            profiles: [],
+            links: [],
+            fields: [],
+            targetGroups: []
         }
     }
 
