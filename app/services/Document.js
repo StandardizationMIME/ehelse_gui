@@ -225,8 +225,9 @@ angular.module('ehelseEditor').factory('Document', ['$rootScope', 'DocumentField
         $rootScope.delete(
             'documents/' + current_document.id,
             function(){
-
+                deleteCurrentDocumentFromDocumentsList();
                 $rootScope.notifySuccess("Dokumentet ble slettet", 5000);
+                $rootScope.changeContentView('');
             },
             function(){
                 console.log("Document could not be deleted");
@@ -257,6 +258,15 @@ angular.module('ehelseEditor').factory('Document', ['$rootScope', 'DocumentField
         for (var i = 0; i < documents.length; i++) {
             if (documents[i].id == document.id) {
                 setDocument(documents[i], document);
+                break;
+            }
+        }
+    }
+
+    function deleteCurrentDocumentFromDocumentsList() {
+        for (var i = 0; i < documents.length; i++) {
+            if (documents[i].id == current_document.id) {
+                documents.splice(i,1);
                 break;
             }
         }
