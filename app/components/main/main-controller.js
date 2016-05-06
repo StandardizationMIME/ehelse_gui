@@ -145,7 +145,6 @@
             $rootScope.childControllers[name] = scope;
         };
 
-<<<<<<< HEAD
         $rootScope.setButtonState = function(state) {
             $rootScope.buttonState = state;
 
@@ -172,10 +171,7 @@
         $rootScope.changeContentView = function(view){
             $rootScope.childControllers['EditorController'].changeView(view);
         };
-=======
-        $rootScope.changeContentView = function(view){
-            $rootScope.childControllers['EditorController'].changeView(view);
-        };
+
 
         $rootScope.userPageView = '';
 
@@ -183,11 +179,5 @@
             $rootScope.userPageView = view;
             console.log($rootScope.userPageView);
         };
-
->>>>>>> 83d7468a99aec5753abad01dc76de0012dcfa3cf
-
     }]);
-
-
-
 })();
