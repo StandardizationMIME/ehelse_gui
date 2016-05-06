@@ -507,13 +507,14 @@ div>div>.dropdown-toggle:hover{
 }
 .administer-fields .field-list-title{
     display: inline-block;
+    background-color: #337ab7;
+    color: white;
 }
 .edit-field{
     font-size: 2em;
     padding-right: 1em;
 }
 span.field-item{
-    border-bottom: 1px solid black;
     border-top: none;
     border-left: none;
     border-right: none;
@@ -526,8 +527,11 @@ span.field-item{
     box-shadow: 1px 1px 1px 1px #b8b8b8;
     border-radius: 10px;
     margin-bottom: 8px;
+    margin-left: 0.5%;
+    margin-top: 0.5%;
     padding:10px;
-    width: 100%;
+    width: 99%;
+
 }
 .administer-fields .field-item .field-item-field:nth-child(1), .administer-fields .field-item input:nth-child(2){
     width:150px;
@@ -562,6 +566,13 @@ span.field-item{
     -o-transition: all 0.2s ease;
     transition: all 0.2s ease;
 }
+
+.field-list {
+    height: 540px;
+    overflow-y: auto;
+}
+
+
 /* -------- AdministerActions -------- */
 .administer-actions, .administer-status, .administer-link-categories, .administer-mandatory{
     width: 90%;
