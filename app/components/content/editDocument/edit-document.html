@@ -17,15 +17,15 @@
                 <span class="fa fa-check-circle-o edit-topic-icon"></span>
                 Lagre dokument
             </button>
-            <button type="button" class="btn btn-default" ng-click="submit();setButtonState('editProfile')" ng-if="buttonState == 'editProfile'">
+            <button type="button" class="btn btn-primary" ng-click="submit();setButtonState('editProfile')" ng-if="buttonState == 'editProfile'" ng-disabled="EditDocumentController.DocumentForm.$invalid || EditDocumentController.DocumentForm.$pristine">
                 <span class="fa fa-check-circle edit-topic-icon"></span>
                 Lagre profil
             </button>
-            <button type="button" class="btn btn-default" ng-click="submit();setButtonState('editProfile')" ng-if="buttonState == 'newProfile'">
+            <button type="button" class="btn btn-primary" ng-click="submit();setButtonState('editProfile')" ng-if="buttonState == 'newProfile'" ng-disabled="EditDocumentController.DocumentForm.$invalid || EditDocumentController.DocumentForm.$pristine">
                 <span class="fa fa-check-circle edit-topic-icon"></span>
                 Opprett profil
             </button>
-            <button type="button" class="btn btn-default pull-right">
+            <button type="button" class="btn btn-default pull-right" ng-click="deleteDocument(document)">
                 <span class="fa fa-remove delete-topic-icon ten-pix-horizontal-padding"></span>
                 Slett dokument
             </button>

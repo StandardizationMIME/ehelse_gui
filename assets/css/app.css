@@ -31,7 +31,7 @@ h1,h2,h3,h4{ font-weight: bold;}
     float: none;
 }
 .btn-primary {
-    background-color: #0068e7;
+    background-color: #337ab7;
 }
 .height-800{
     height: 800px;
@@ -53,11 +53,11 @@ h1,h2,h3,h4{ font-weight: bold;}
 }
 .clickable:hover {
     cursor: pointer;
-    color: dodgerblue;
+    color: #337ab7;
 }
 .plus-icon {
     font-size: large;
-    color: #0068e7;
+    color: #337ab7;
 }
 .body_background {
     background-color: #f3f3f3;
@@ -67,9 +67,10 @@ h1,h2,h3,h4{ font-weight: bold;}
     display: table-cell;
     vertical-align: middle;
 }
-.d1{color: #0068e7; font-size: 1.3em;}
-.d2{color: #f60e24; font-size: 1.3em;}
-.d3{color: forestgreen; font-size: 1.3em;}
+.d1{color: #337ab7; font-size: 1.3em;}
+.d2{color: #c13a47; font-size: 1.3em;}
+.d3{color: #58a739; font-size: 1.3em;}
+
 .selected-item {
     font-weight: bold;
     border-radius: 5px;
@@ -100,6 +101,7 @@ h1,h2,h3,h4{ font-weight: bold;}
     position: absolute;
     bottom: 0;
 }
+
 /* ------------------------------------------------ CH2 ADMINISTER_USERS ----------------------------------------- */
 #user-list img{
     width: 50px;
@@ -132,7 +134,7 @@ h1,h2,h3,h4{ font-weight: bold;}
     transition: all 0.2s ease;
 }
 .remove-user {
-    color: #f60e24;
+    color: #c13a47;
     font-size: 2em;
     padding-right: 1em;
 }
@@ -163,7 +165,7 @@ textarea {
     height: 600px;
 }
 .tg-thead {
-    background-color: #0068e7;
+    background-color: #337ab7;
     color: white;
     display: block;
     position:relative;
@@ -219,6 +221,153 @@ input[readonly], textarea[readonly]{
     background-color: #f3f3f3;
     box-shadow: 1px 1px 2px 1px #b8b8b8;
 }
+
+/* Profile stuff(stian) */
+
+.edit-document {
+    overflow-y: auto;
+    height: 553px;
+}
+
+.new-document {
+    overflow-y: auto;
+    height: 640px;
+}
+
+.edit-profile {
+    overflow-y: auto;
+    height: 553px;
+}
+
+.new-profile {
+    overflow-y: auto;
+    height: 553px;
+}
+
+.profile-bar {
+    -ms-transform: translate(-28px,0); /* IE 9 */
+    -webkit-transform: translate(-28px,0); /* Safari */
+    transform: translate(-28px,0);
+}
+
+.profiles-container {
+    box-shadow: -3px -3px 2px -2px #b8b8b8;
+    height: 112px;
+    width: 105%;
+    display: block;
+    white-space: nowrap;
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding-left: 12px;
+}
+
+.profile-container {
+    padding-top: 20px;
+    margin-left: 6px;
+    margin-right: 6px;
+    padding-bottom: 20px;
+    width: 85px;
+    display: inline-block;
+    cursor: pointer;
+}
+
+
+.profile-icon {
+    color: #c13a47;
+    font-size: 2.3em;
+    text-align: center;
+}
+
+.profile-text {
+    text-align: center;
+    font-size: 11px;
+    -o-text-overflow: ellipsis;   /* Opera */
+    text-overflow: ellipsis;      /* IE, Safari (WebKit) */
+    overflow: hidden;
+    white-space: nowrap;
+    width: 85px;
+}
+
+.new-profile-text{
+    text-align: center;
+    font-size: 11px;
+    width: 100px;
+}
+
+
+.new-profile-icon {
+    margin-top: 10px;
+    color: #c13a47;
+    font-size: 1.5em;
+    text-align: center;
+}
+
+.return-to-document-icon {
+    padding-top: 10px;
+    color: #337ab7;
+    font-size: 3.5em;
+    text-align: center;
+    width: 100px;
+    cursor: pointer;
+}
+
+.new-profile-container {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    margin-left: 5px;
+    margin-right: 5px;
+    display: inline-block;
+}
+
+.new-profile-button {
+    height: 85px;
+    border: 1px dashed #d5d5d5;
+    border-radius: 15px;
+    background-color: white;
+}
+
+.new-profile-button:hover {
+    background-color: #ffe1e1;
+    cursor: pointer;
+    padding-bottom: 20px;
+}
+
+.selected-profile {
+    font-weight: bolder;
+    color: #e7e7e7;
+    background-color: #c13a47;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    border-radius: 2px;
+}
+
+.selected-profile-icon {
+    color: white;
+}
+
+.panel1 {
+    color: white;
+    background-color: #337ab7;
+}
+.panel2 {
+    color: white;
+    background-color: #c13a47;
+}
+.panel3 {
+    color: white;
+    background-color: #58a739;
+}
+
+.panel-border1 {
+    border-color: #337ab7;
+}
+.panel-border2 {
+    border-color: #c13a47;
+}
+.panel-border3 {
+    border-color: #58a739;
+}
+
 /* -------------------------------------------- CH5 EDITOR ----------------------------------------- */
 .editor-display {
     max-width: 1800px;
@@ -277,7 +426,7 @@ input[readonly], textarea[readonly]{
 }
 .active-row {
     font-weight: bolder;
-    color: dodgerblue;
+    color: #337ab7;
     background-color: #E6E6E6;
     border-bottom: inset;
     border-color: #ccc;
@@ -330,7 +479,7 @@ div>div>.dropdown-toggle:hover{
     padding-left: 10px;
 }
 .standard-icon {
-    color: #0068e7;
+    color: #337ab7;
 }
 .item-text {
     color: #0f0f0f;
@@ -394,7 +543,7 @@ span.field-item{
     margin-top: 20px;
     margin-left: 0;
     margin-right: 79%;
-    background-color: #0068e7;
+    background-color: #337ab7;
     color: white;
     box-shadow: 1px 1px 1px 1px #b8b8b8;
 }
@@ -454,7 +603,7 @@ span.field-item{
 /*}*/
 
 .standard-icon {
-    color: #0068e7;
+    color: #337ab7;
 }
 .item-text {
     color: #0f0f0f;
@@ -462,7 +611,7 @@ span.field-item{
 }
 .plus-icon-standard {
     font-size: large;
-    color: #0068e7;
+    color: #337ab7;
 }
 
 .delete-icon-standard {
@@ -472,7 +621,7 @@ span.field-item{
 
 .plus-icon-profile {
     font-size: large;
-    color: #f60e24;
+    color: #c13a47;
 }
 
 .plus-icon-utilityDocument{
@@ -526,7 +675,7 @@ textarea {
 
 .clickable:hover {
     cursor: pointer;
-    color: dodgerblue;
+    color: #337ab7;
 }
 
 .standard-list {
@@ -538,9 +687,9 @@ textarea {
 
 
 /*-----------Document Icon colors---------*/
-.d1{color: #0068e7; font-size: 1.3em;}
-.d2{color: #f60e24; font-size: 1.3em;}
-.d3{color: forestgreen; font-size: 1.3em;}
+.d1{color: #337ab7; font-size: 1.3em;}
+.d2{color: #c13a47; font-size: 1.3em;}
+.d3{color: #58a739; font-size: 1.3em;}
 
 .nopadding {
     padding: 0 !important;
@@ -656,7 +805,7 @@ div>div>.dropdown-toggle:hover{
 }
 .activeRow{
     font-weight: bolder;
-    color: dodgerblue;
+    color: #337ab7;
     background-color: #E6E6E6;
     border-bottom: inset;
     border-color: #ccc;
@@ -684,7 +833,7 @@ div>div>.dropdown-toggle:hover{
 }
 
 .tg-thead {
-    background-color: #0068e7;
+    background-color: #337ab7;
     color: white;
     display: block;
     position:relative;
@@ -746,7 +895,7 @@ input[readonly], textarea[readonly]{
     float: none;
 }
 .removeUser{
-    color: #f60e24;
+    color: #c13a47;
     font-size: 2em;
     padding-right: 1em;
 }

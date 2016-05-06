@@ -172,8 +172,12 @@
             $rootScope.childControllers['EditorController'].changeView(view);
         };
 
+
+        $rootScope.userPageView = '';
+
+        $rootScope.changeUserView = function(view){
+            $rootScope.userPageView = view;
+            console.log($rootScope.userPageView);
+        };
     }]);
-
-
-
 })();

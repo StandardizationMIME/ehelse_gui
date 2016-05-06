@@ -6,8 +6,6 @@ angular.module('ehelseEditor').controller('DocumentController', [ '$scope','$roo
     $scope.documents = [];
     $scope.selected_document_id = null;
 
-
-
     $rootScope.getDocuments = function(id) {
         $scope.documents = Document.getDocumentsByTopicId(id);
 
@@ -19,13 +17,32 @@ angular.module('ehelseEditor').controller('DocumentController', [ '$scope','$roo
 
     };
 
-
     $rootScope.setSelectedDocumentId = function(documentId){
         $rootScope.selected_document_id = documentId;
     };
 
     $scope.setCurrentStandard = function(standard){
         $rootScope.currentStandard = standard;
+    };
+
+    $rootScope.setButtonState = function(state) {
+        $rootScope.buttonState = state;
+
+        var documentEdit = $('#document-edit');
+        documentEdit.removeClass('new-document edit-document new-profile edit-profile');
+        if(state == 'newDocument'){
+            documentEdit.addClass('new-document');
+        }
+        else if(state == 'editDocument'){
+            documentEdit.addClass('edit-document');
+        }
+        else if(state == 'editProfile'){
+            documentEdit.addClass('edit-profile');
+        }
+        else if(state == 'newProfile'){
+            documentEdit.addClass('new-profile');
+        }
+
     };
 
     $scope.checkButtonState = function(document){
@@ -44,7 +61,6 @@ angular.module('ehelseEditor').controller('DocumentController', [ '$scope','$roo
         }
     };
 
-
     $rootScope.openDocument = function(document){
         $scope.checkButtonState(document);
         $scope.selected_document_id = document.id;
@@ -52,7 +68,6 @@ angular.module('ehelseEditor').controller('DocumentController', [ '$scope','$roo
             document = null;
         }
         else{
-
 
         }
         Document.setCurrentDocument(document);
@@ -65,13 +80,13 @@ angular.module('ehelseEditor').controller('DocumentController', [ '$scope','$roo
             $(".profile" + document.id).addClass('selected-profile');
             $(".profile-icon" + document.id).addClass('selected-profile-icon');
 
+        }
 
         }
         if($rootScope.buttonState == 'editDocument'){
             $rootScope.relatedProfiles = [];
             var allDocuments = Document.getAllDocuments();
             for (var key in allDocuments) {
-                console.log(allDocuments[key].standardId + "   ---    " + document.id );
                 if(allDocuments[key].standardId == document.id) {
                     $rootScope.relatedProfiles.push(allDocuments[key]);
                 }
