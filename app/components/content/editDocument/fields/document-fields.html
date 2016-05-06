@@ -6,9 +6,13 @@
         <div class="form-group" >
             <ul id="new-doc-fields" class="list-group">
                 <li class="list-group-item" ng-repeat="field in document.fields">
-                    <span class="document-fields-field-name">{{fields_dict[field.fieldId].name}}</span>
-                    <span class="document-fields-field-value"><input type="text" ng-model="field.value"></span>
-                    <span class="fa fa-remove pull-right delete-topic-icon clickable" ng-click="removeField(field)"></span>
+                    <span class="document-fields-field-name">{{fields_dict[field.fieldId].name}}
+                    <span ng-if="fields_dict[field.fieldId].mandatory === '1'" class="required-icon" data-toggle="tooltip" title="" data-placement="top" data-original-title="Obligatorisk felt">*</span>
+                    </span>
+                    <span class="document-fields-field-value">
+                        <input required type="text" name="f{{field.id}}" ng-model="field.value">
+                    </span>
+                    <span ng-if="fields_dict[field.fieldId].mandatory === '0'" class="fa fa-remove pull-right delete-topic-icon clickable" ng-click="removeField(field)"></span>
                 </li>
             </ul>
 
