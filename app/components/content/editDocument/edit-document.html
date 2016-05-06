@@ -62,6 +62,37 @@
                                class="form-control half-width" required/>
                     </div>
                 </div>
+                <!-- Choose Internal ID title -->
+                <div class="form-group">
+                    <label class="col-sm-3 control-label" for="internalID">Intern ID: <span class="required-icon"
+                                                                                            data-toggle="tooltip"
+                                                                                            title="Obligatorisk felt"
+                                                                                            data-placement="top">*</span></label>
+                    <div class="form-group col-sm-9">
+                        <input type="text" name="standardTitle" id="internalID" ng-model="document.internalId"
+                               class="form-control half-width" required/>
+                    </div>
+                </div>
+                <!-- Choose his number-->
+                <div class="form-group">
+                    <label class="col-sm-3 control-label" for="hisNumber">HIS nummer: </label>
+                    <div class="form-group col-sm-9">
+                        <input type="text" name="standardTitle" id="hisNumber" ng-model="document.hisNumber"
+                               class="form-control half-width" />
+                    </div>
+                </div>
+                <!-- choose status -->
+                <div class="form-group">
+                    <label class="col-sm-3 control-label" for="statusid">Status: </label>
+                    <div class="form-group col-sm-9">
+                        <select name="statusid" id="statusid"
+                                ng-model="document.statusId" class="form-control half-width">
+                            <option ng-repeat="status in status_option_list"
+                                    value="{{status.value}}">{{status.name}}
+                            </option>
+                        </select>
+                    </div>
+                </div>
 
                 <!-- Choose document description -->
                 <div class="form-group">

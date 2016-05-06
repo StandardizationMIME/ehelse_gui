@@ -2,8 +2,8 @@
 'use strict';
 
 angular.module('ehelseEditor').controller('EditDocumentController',
-    [ '$scope', '$http','$rootScope', 'ModalService', 'DocumentType', 'TargetGroup', 'Mandatory', 'Action','Document', 'DocumentField','LinkCategory', 'Topic',
-        function( $scope, $http, $rootScope, ModalService, DocumentType, TargetGroup, Mandatory, Action, Document, DocumentField, LinkCategory, Topic) {
+    [ '$scope', '$http','$rootScope', 'ModalService', 'DocumentType', 'TargetGroup', 'Mandatory', 'Action','Document', 'DocumentField','LinkCategory', 'Topic','Status',
+        function( $scope, $http, $rootScope, ModalService, DocumentType, TargetGroup, Mandatory, Action, Document, DocumentField, LinkCategory, Topic, Status) {
 
             $scope.document_types_option_list = DocumentType.document_types_option_list;
             $scope.target_groups_dict = TargetGroup.getAllAsDict();
@@ -19,6 +19,7 @@ angular.module('ehelseEditor').controller('EditDocumentController',
             $scope.removeLink = Document.removeCurrentDocumentLink;
             $scope.linkCategoriesDict = LinkCategory.getAllAsDict();
             $scope.removeLinkCategory = Document.removeCurrentDocumentLinksByCategoryId;
+            $scope.status_option_list = Status.getAllAsOptionsList();
 
 
             $scope.submit = function(form){

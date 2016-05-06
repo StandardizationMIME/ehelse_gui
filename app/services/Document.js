@@ -9,7 +9,7 @@ angular.module('ehelseEditor').factory('Document', ['$rootScope', 'DocumentField
             timestamp: null,
             title: "",
             description: "",
-            statusId: null,
+            statusId: 1,
             sequence: 0,
             topicId: Topic.getSelected().id,
             comment: "",
@@ -31,7 +31,7 @@ angular.module('ehelseEditor').factory('Document', ['$rootScope', 'DocumentField
             timestamp: null,
             title: "",
             description: "",
-            statusId: null,
+            statusId: 1,
             sequence: 0,
             topicId: Topic.getSelected().id,
             comment: "",
@@ -299,6 +299,8 @@ angular.module('ehelseEditor').factory('Document', ['$rootScope', 'DocumentField
         a.title = b.title;
         a.documentTypeId = b.documentTypeId;
         a.statusId = b.statusId;
+        a.internalId = b.internalId;
+        a.hisNumber = b.hisNumber;
         a.nextDocumentId = b.nextDocumentId;
         a.previousDocumentId = b.previousDocumentId;
         a.description = b.description;
