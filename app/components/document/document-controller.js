@@ -81,8 +81,6 @@ angular.module('ehelseEditor').controller('DocumentController', [ '$scope','$roo
             $(".profile-icon" + document.id).addClass('selected-profile-icon');
 
         }
-
-        }
         if($rootScope.buttonState == 'editDocument'){
             $rootScope.relatedProfiles = [];
             var allDocuments = Document.getAllDocuments();
