@@ -326,6 +326,7 @@ angular.module('ehelseEditor').factory('Document', ['$rootScope', 'DocumentField
     function getDocumentsByTopicId(id) {
         documents = [];
         $rootScope.get('topics/' + id, function (data) {
+            documents.length = 0;
             Array.prototype.push.apply(documents, data.documents);
 
         }, function () {
