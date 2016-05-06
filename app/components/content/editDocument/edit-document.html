@@ -1,4 +1,4 @@
-<form ng-controller="EditDocumentController" name="EditDocumentController.DocumentForm"  role="form">
+<form ng-controller="EditDocumentController" name="EditDocumentController.DocumentForm"  role="form" class="shadow-below">
 
     <div class="shadow-below">
         <div class="headline-box">
@@ -25,7 +25,7 @@
                 <span class="fa fa-check-circle edit-topic-icon"></span>
                 Opprett profil
             </button>
-            <button type="button" class="btn btn-default pull-right" ng-click="deleteDocument(document)">
+            <button type="button" class="btn btn-default pull-right" ng-if="buttonState == 'editProfile' || buttonState == 'editDocument'" ng-click="openConfirmationModal('Er du sikker på at du vil slette dokumentet?', document, deleteDocument)">
                 <span class="fa fa-remove delete-topic-icon ten-pix-horizontal-padding"></span>
                 Slett dokument
             </button>

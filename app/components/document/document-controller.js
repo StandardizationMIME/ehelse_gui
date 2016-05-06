@@ -63,7 +63,9 @@ angular.module('ehelseEditor').controller('DocumentController', [ '$scope','$roo
 
     $rootScope.openDocument = function(document){
         $scope.checkButtonState(document);
-        $scope.selected_document_id = document.id;
+        if(document){
+            $scope.selected_document_id = document.id;
+        }
         if(document == "newDocument"){
             document = null;
         }

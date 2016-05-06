@@ -3,9 +3,9 @@
         <span class="field-item-field">Tittel</span>
         <span class="field-item-field">Beskrivelse</span>
         <span class="field-item-field">Obligatorisk</span>
-        <span class="field-item-field pull-right">Rediger felt &nbsp; Slett &nbsp;</span>
+        <span class="field-item-field pull-right">Rediger felt &nbsp; Slett &nbsp;&nbsp;&nbsp;</span>
     </span>
-    <ul ui-sortable="sortableOptions" ng-model="documentFields">
+    <ul ui-sortable="sortableOptions" ng-model="documentFields" class="field-list shadow-below">
         <li ng-repeat="field in documentFields" ng-if="field.documentTypeId == 1" class="field-item document-fields draggable">
             <span class="field-item-field">{{field.name}}</span>
             <span class="field-item-field">{{field.description}}</span>

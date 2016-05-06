@@ -13,8 +13,8 @@
 /*------------------------------------------------------------------------------------------------------ */
 /* ----------------------------------------------- CH1 GENERIC ----------------------------------------- */
 h1,h2,h3,h4{ font-weight: bold;}
-.required-icon {
-    color:red;
+.requi#c13a47-icon {
+    color:#c13a47;
     font-size: 20px;
     margin-left: 5px;
 }
@@ -85,6 +85,13 @@ h1,h2,h3,h4{ font-weight: bold;}
 #notification-message {
     width: 75%;
     margin:0 auto;
+}
+
+#notification-container{
+    position: absolute;
+    width: 100%;
+    top:0;
+    left: 9.7%;
 }
 .nav-tabs {
     border-color: #b8b8b8;
@@ -460,11 +467,11 @@ div>div>.dropdown-toggle:hover{
 }
 .delete-topic-icon {
     font-size: large;
-    color: red;
+    color: #c13a47;
 }
 .delete-target-group-icon{
     font-size: large;
-    color: red;
+    color: #c13a47;
     padding-top: 10px;
 }
 .topic-browser {
@@ -500,13 +507,14 @@ div>div>.dropdown-toggle:hover{
 }
 .administer-fields .field-list-title{
     display: inline-block;
+    background-color: #337ab7;
+    color: white;
 }
 .edit-field{
     font-size: 2em;
     padding-right: 1em;
 }
 span.field-item{
-    border-bottom: 1px solid black;
     border-top: none;
     border-left: none;
     border-right: none;
@@ -519,8 +527,11 @@ span.field-item{
     box-shadow: 1px 1px 1px 1px #b8b8b8;
     border-radius: 10px;
     margin-bottom: 8px;
+    margin-left: 0.5%;
+    margin-top: 0.5%;
     padding:10px;
-    width: 100%;
+    width: 99%;
+
 }
 .administer-fields .field-item .field-item-field:nth-child(1), .administer-fields .field-item input:nth-child(2){
     width:150px;
@@ -555,6 +566,13 @@ span.field-item{
     -o-transition: all 0.2s ease;
     transition: all 0.2s ease;
 }
+
+.field-list {
+    height: 540px;
+    overflow-y: auto;
+}
+
+
 /* -------- AdministerActions -------- */
 .administer-actions, .administer-status, .administer-link-categories, .administer-mandatory{
     width: 90%;
@@ -918,138 +936,11 @@ input[type=checkbox] {
     padding: 100px;
 }
 
-#notification-container{
-    position: absolute;
-    width: 100%;
-    top:0;
-}
 
 .ehese-navbar {
     margin: 3px;
 }
-/* Profile stuff(stian) */
 
-.edit-document {
-    overflow-y: auto;
-    height: 553px;
-}
-
-.new-document {
-    overflow-y: auto;
-    height: 640px;
-}
-
-.edit-profile {
-    overflow-y: auto;
-    height: 553px;
-}
-
-.new-profile {
-    overflow-y: auto;
-    height: 553px;
-}
-
-.profile-bar {
-    -ms-transform: translate(-28px,0); /* IE 9 */
-    -webkit-transform: translate(-28px,0); /* Safari */
-    transform: translate(-28px,0);
-}
-
-.profiles-container {
-    box-shadow: -3px -3px 2px -2px #b8b8b8;
-    height: 112px;
-    width: 105%;
-    display: block;
-    white-space: nowrap;
-    overflow-x: auto;
-    overflow-y: hidden;
-    padding-left: 12px;
-}
-
-.profile-container {
-    padding-top: 20px;
-    margin-left: 6px;
-    margin-right: 6px;
-    padding-bottom: 20px;
-    width: 85px;
-    display: inline-block;
-    cursor: pointer;
-}
-
-
-.profile-icon {
-    color: #f60e24;
-    font-size: 2.3em;
-    text-align: center;
-}
-
-.profile-text {
-    text-align: center;
-    font-size: 11px;
-    -o-text-overflow: ellipsis;   /* Opera */
-    text-overflow: ellipsis;      /* IE, Safari (WebKit) */
-    overflow: hidden;
-    white-space: nowrap;
-    width: 85px;
-}
-
-.new-profile-text{
-    text-align: center;
-    font-size: 11px;
-    width: 100px;
-}
-
-
-.new-profile-icon {
-    margin-top: 10px;
-    color: #f60e24;
-    font-size: 1.5em;
-    text-align: center;
-}
-
-.return-to-document-icon {
-    padding-top: 10px;
-    color: #0068e7;
-    font-size: 3.5em;
-    text-align: center;
-    width: 100px;
-    cursor: pointer;
-}
-
-.new-profile-container {
-    padding-top: 10px;
-    padding-bottom: 10px;
-    margin-left: 5px;
-    margin-right: 5px;
-    display: inline-block;
-}
-
-.new-profile-button {
-    height: 85px;
-    border: 1px dashed #d5d5d5;
-    border-radius: 15px;
-    background-color: white;
-}
-
-.new-profile-button:hover {
-    background-color: #ffe1e1;
-    cursor: pointer;
-    padding-bottom: 20px;
-}
-
-.selected-profile {
-    font-weight: bolder;
-    color: #e7e7e7;
-    background-color: #f60e24;
-    padding-top: 20px;
-    padding-bottom: 20px;
-    border-radius: 2px;
-}
-
-.selected-profile-icon {
-    color: white;
-}
-
-input.ng-invalid-required{
+input.ng-invalid-requi#c13a47{
     background-color: rgba(255,0,0,0.3);
 }
