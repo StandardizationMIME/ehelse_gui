@@ -1,12 +1,12 @@
-<form name="administerFieldForm" role="form" ng-submit="" method="post">
+<form name="administerFieldForm" role="form" method="post">
     <span class="field-item field-list-title">
         <span class="field-item-field">Tittel</span>
         <span class="field-item-field">Beskrivelse</span>
         <span class="field-item-field">Obligatorisk</span>
         <span class="field-item-field pull-right">Rediger felt &nbsp; Slett &nbsp;&nbsp;&nbsp;</span>
     </span>
-    <ul ui-sortable="sortableOptions" ng-model="documentFields" class="field-list shadow-below">
-        <li ng-repeat="field in documentFields" ng-if="field.documentTypeId == 3" class="field-item document-fields draggable">
+    <ul ng-model="documentFields" class="field-item list-group" style="margin-left: 5px">
+        <li ng-repeat="field in documentFields | orderBy: 'sequence'" ng-if="field.documentTypeId == 3" class="list-group-item ">
             <span class="field-item-field">{{field.name}}</span>
             <span class="field-item-field">{{field.description}}</span>
             <span class="field-item-field" ng-if="field.mandatory == '1'">Ja</span>

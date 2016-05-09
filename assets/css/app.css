@@ -503,7 +503,6 @@ div>div>.dropdown-toggle:hover{
 .administer-fields li{
     text-decoration: none;
     list-style-type: none;
-    cursor: move;
 }
 .administer-fields .field-list-title{
     display: inline-block;

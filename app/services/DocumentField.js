@@ -72,7 +72,7 @@ angular.module('ehelseEditor').factory('DocumentField', ['$rootScope', function(
             "id": "",
             "name": field.name,
             "description": field.description,
-            "sequence": "1",
+            "sequence": field.sequence,
             "mandatory": mandatoryString,
             "documentTypeId": $rootScope.typeId
         };
@@ -103,7 +103,7 @@ angular.module('ehelseEditor').factory('DocumentField', ['$rootScope', function(
             "id": field.id,
             "name": field.name,
             "description": field.description,
-            "sequence": "1",
+            "sequence": field.sequence,
             "mandatory": mandatoryString,
             "documentTypeId": $rootScope.typeId
         };
@@ -115,6 +115,7 @@ angular.module('ehelseEditor').factory('DocumentField', ['$rootScope', function(
                 document_field.name = data.name;
                 document_field.description = data.description;
                 document_field.mandatory = data.mandatory;
+                document_field.sequence = data.sequence;
                 success(data)
             },
             error
