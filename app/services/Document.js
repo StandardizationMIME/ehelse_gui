@@ -103,7 +103,10 @@ angular.module('ehelseEditor').factory('Document', ['$rootScope', 'DocumentField
 
 
     function submitCurrentDocument() {
-        console.log(current_document.standardId);
+
+        var populatedProfiles = [];
+        Array.prototype.push.apply(populatedProfiles, current_document.populatedProfiles);
+        current_document.populatedProfiles.length = 0;
         if (current_document.id) {
 
             $rootScope.put(
@@ -112,6 +115,7 @@ angular.module('ehelseEditor').factory('Document', ['$rootScope', 'DocumentField
                 function (data) {
                     updateDocumentInDocumentsList(data);
                     $rootScope.notifySuccess("Dokumentet ble oppdatert", 6000);
+                    Array.prototype.push.apply(current_document.populatedProfiles, populatedProfiles);
                 }
                 ,
                 function () {
@@ -128,6 +132,7 @@ angular.module('ehelseEditor').factory('Document', ['$rootScope', 'DocumentField
                     topic_documents.push(data);
                     $rootScope.notifySuccess("Ny standard ble opprettet", 6000);
                     $rootScope.buttonState = 'editDocument';
+                    Array.prototype.push.apply(current_document.populatedProfiles, populatedProfiles);
                 }
                 ,
                 function () {
