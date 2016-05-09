@@ -137,6 +137,7 @@
             $cookies.put('username', "");
             $cookies.put('password', "");
             $cookies.put('currentUser', "");
+            $rootScope.view = "";
             $rootScope.$state.go('login');
         };
 
