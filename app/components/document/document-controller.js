@@ -7,6 +7,7 @@ angular.module('ehelseEditor').controller('DocumentController', [ '$scope','$roo
     $scope.selected_document_id = null;
 
     $rootScope.getDocuments = function(id) {
+        $scope.selected_document_id = null;
         $scope.documents = Document.getDocumentsByTopicId(id);
 
 
@@ -14,6 +15,7 @@ angular.module('ehelseEditor').controller('DocumentController', [ '$scope','$roo
         $(".clickable").removeClass('selected-item');
         $('#' + id).addClass('selected-item');
         $('#folder' + id).toggleClass('glyphicon-folder-open','glyphicon-folder-close');
+
 
     };
 
