@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('ehelseEditor').controller('AdministerActionController',['$scope', '$rootScope', 'Action', function($scope, $rootScope, Action){
-    $scope.actionsOptionList = Action.getAllAsOptionsList();
+    $scope.actions = Action.getAll();
 
 
     $scope.showNewActionModal = function () {
@@ -10,9 +10,7 @@ angular.module('ehelseEditor').controller('AdministerActionController',['$scope'
     };
 
     $scope.deleteActionById = Action.delete;
-    
 
-    
     $scope.showEditActionModal = function (actionId) {
         $rootScope.currentAction = Action.clone(Action.getById(actionId));
         $rootScope.shouldBeOpen = true;
