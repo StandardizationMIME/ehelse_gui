@@ -5,10 +5,10 @@ angular.module('ehelseEditor').controller('NotificationController', [ '$scope', 
     $('#feedback-alert').hide();
 
     $rootScope.notifySuccess = function(message, time){
-        $scope.notifyMessage(message, 'success', time);
+        $scope.notifyMessage("<span class='fa fa-check-circle-o' style='font-size: 25px;'></span>  " + message, 'success', time);
     };
     $rootScope.notifyError = function(message, time){
-        $scope.notifyMessage(message, 'error', time);
+        $scope.notifyMessage("<span class='fa fa-ban' style='font-size: 25px;'></span>  " + message, 'error', time);
     };
 
     $scope.notifyMessage = function(message, type, time) {

@@ -202,11 +202,11 @@ angular.module('ehelseEditor').factory('Document', ['$rootScope', 'DocumentField
                 current_document,
                 function (data) {
                     updateDocumentInDocumentsList(data);
-                    $rootScope.notifySuccess("Dokumentet ble oppdatert", 6000);
+                    $rootScope.notifySuccess("Dokumentet ble oppdatert", 3000);
                 }
                 ,
                 function () {
-                    $rootScope.notifyError("Standard kunne ikke opprettes", 6000);
+                    $rootScope.notifyError("Dokumentet kunne ikke opprettes", 3000);
                 }
             );
         }
@@ -217,12 +217,12 @@ angular.module('ehelseEditor').factory('Document', ['$rootScope', 'DocumentField
                 function (data) {
                     setCurrentDocument(data);
                     documents.push(data);
-                    $rootScope.notifySuccess("Ny standard ble opprettet", 6000);
+                    $rootScope.notifySuccess("Dokumentet ble ikke opprettet", 3000);
                     $rootScope.buttonState = 'editDocument';
                 }
                 ,
                 function () {
-                    $rootScope.notifyError("Standard kunne ikke opprettes", 6000);
+                    $rootScope.notifyError("Dokumentet kunne ikke opprettes", 3000);
                 }
             );
         }

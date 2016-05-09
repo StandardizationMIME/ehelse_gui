@@ -92,6 +92,10 @@ h1,h2,h3,h4{ font-weight: bold;}
     background-color: #58a739;
     border-radius: 10px;
 }
+#notification-message.alert-danger {
+    background-color: #c13a47;
+    border-color: #ebccd1;
+}
 #notification-message>a{
     color: #ffffff;
     font-weight: bolder;

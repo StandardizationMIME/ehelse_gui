@@ -68,11 +68,11 @@ angular.module('ehelseEditor').factory('Action', ['$rootScope', function($rootSc
                     set(actions_dict[data.id], data);
                     generateActionsDict(actions);
                     generateActionsOptionList(actions);
-                    $rootScope.notifySuccess('Handling ble oppdatert',6000);
+                    $rootScope.notifySuccess('Handling ble oppdatert',3000);
 
                 },
                 function(data){
-                    $rootScope.notifyError('Handling ble ikke oppdatert.',6000);
+                    $rootScope.notifyError('Handling ble ikke oppdatert.',3000);
                 });
         }
         else{
@@ -80,10 +80,10 @@ angular.module('ehelseEditor').factory('Action', ['$rootScope', function($rootSc
                 'actions/',
                 action,
                 function(data){
-                    $rootScope.notifySuccess('Ny handling ble opprettet.',6000);
+                    $rootScope.notifySuccess('Ny handling ble opprettet.',3000);
                     add(data);
                 },function(){
-                    $rootScope.notifyError('Handling ble ikke opprettet.',6000);
+                    $rootScope.notifyError('Handling ble ikke opprettet.',3000);
                 }
             );
         }
@@ -104,11 +104,11 @@ angular.module('ehelseEditor').factory('Action', ['$rootScope', function($rootSc
             'actions/' + action.id,
             function () {
                 removeAction(action);
-                $rootScope.notifySuccess("Handling ble slettet!", 5000);
+                $rootScope.notifySuccess("Handling ble slettet!", 3000);
 
             },
             function(){
-                $rootScope.notifyError("Kunne ikke slette", 5000);
+                $rootScope.notifyError("Kunne ikke slette", 3000);
             }
 
         );

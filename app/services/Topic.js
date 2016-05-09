@@ -85,11 +85,11 @@ angular.module('ehelseEditor').factory('Topic', ['$rootScope', function($rootSco
                 function(data){
                     updateTopic(data);
                     generateTopicOptionsList(topics);
-                    $rootScope.notifySuccess('Tema ble oppdatert',6000);
+                    $rootScope.notifySuccess('Tema ble oppdatert',3000);
 
                 },
                 function(data){
-                    $rootScope.notifyError('Tema ble ikke oppdatert.',6000);
+                    $rootScope.notifyError('Tema ble ikke oppdatert.',3000);
                 });
         }
         else{
@@ -97,10 +97,10 @@ angular.module('ehelseEditor').factory('Topic', ['$rootScope', function($rootSco
                 'topics/',
                 topic,
                 function(data){
-                    $rootScope.notifySuccess('Ny tema ble opprettet.',6000);
+                    $rootScope.notifySuccess('Ny tema ble opprettet.',3000);
                     addTopic(data);
                 },function(){
-                    $rootScope.notifyError('Tema ble ikke opprettet.',6000);
+                    $rootScope.notifyError('Tema ble ikke opprettet.',3000);
                 }
             );
         }
@@ -161,11 +161,11 @@ angular.module('ehelseEditor').factory('Topic', ['$rootScope', function($rootSco
             $rootScope.delete('topics/'+id,
                 function(data){
                     removeById(id);
-                    $rootScope.notifySuccess('Topic ble fjernet',6000);
+                    $rootScope.notifySuccess('Topic ble fjernet',3000);
 
                 },
                 function(data){
-                    $rootScope.notifyError('Topic ble ikke fjernet.',6000);
+                    $rootScope.notifyError('Topic ble ikke fjernet.',3000);
                 });
         }
     }
