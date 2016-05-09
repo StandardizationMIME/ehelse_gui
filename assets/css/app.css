@@ -90,7 +90,7 @@ h1,h2,h3,h4{ font-weight: bold;}
 #notification-container{
     position: absolute;
     width: 100%;
-    top:0;
+    top: 3px;
     left: 9.7%;
 }
 .nav-tabs {
