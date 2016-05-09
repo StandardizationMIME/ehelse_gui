@@ -70,11 +70,11 @@ angular.module('ehelseEditor').factory('Status',['$rootScope',function($rootScop
                     set(status_dict[data.id], data);
                     generateStatusDict(status);
                     generateStatusOptionList(status);
-                    $rootScope.notifySuccess('Status ble oppdatert',6000);
+                    $rootScope.notifySuccess('Status ble oppdatert',3000);
 
                 },
                 function(data){
-                    $rootScope.notifyError('Status ble ikke oppdatert.',6000);
+                    $rootScope.notifyError('Status ble ikke oppdatert.',3000);
                 });
         }
         else{
@@ -82,10 +82,10 @@ angular.module('ehelseEditor').factory('Status',['$rootScope',function($rootScop
                 'status/',
                 status,
                 function(data){
-                    $rootScope.notifySuccess('Ny status ble opprettet.',6000);
+                    $rootScope.notifySuccess('Ny status ble opprettet.',3000);
                     add(data);
                 },function(){
-                    $rootScope.notifyError('Status ble ikke opprettet.',6000);
+                    $rootScope.notifyError('Status ble ikke opprettet.',3000);
                 }
             );
         }
@@ -105,10 +105,10 @@ angular.module('ehelseEditor').factory('Status',['$rootScope',function($rootScop
                 removeStatus(status);
                 generateStatusOptionList(status);
                 generateStatusDict(status);
-                $rootScope.notifySuccess("Status ble slettet!", 5000);
+                $rootScope.notifySuccess("Status ble slettet!", 3000);
             },
             function (){
-                $rootScope.notifyError("Kunne ikke slette", 5000);
+                $rootScope.notifyError("Kunne ikke slette", 3000);
             }
         );
     }

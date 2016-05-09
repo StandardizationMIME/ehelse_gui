@@ -61,11 +61,11 @@ angular.module('ehelseEditor').factory('LinkCategory', ['$rootScope', function($
                 function(data){
                     set(link_categories_dict[data.id], data);
                     generateLinkCategoryDict(link_categories);
-                    $rootScope.notifySuccess('Lenke kategori ble oppdatert',6000);
+                    $rootScope.notifySuccess('Lenke-kategori ble oppdatert',3000);
 
                 },
                 function(data){
-                    $rootScope.notifyError('Lenke kategori ble ikke oppdatert.',6000);
+                    $rootScope.notifyError('Lenke-kategori ble ikke oppdatert.',3000);
                 });
         }
         else{
@@ -73,10 +73,10 @@ angular.module('ehelseEditor').factory('LinkCategory', ['$rootScope', function($
                 'link-categories/',
                 link_category,
                 function(data){
-                    $rootScope.notifySuccess('Ny målgruppe ble opprettet.',6000);
+                    $rootScope.notifySuccess('Ny målgruppe ble opprettet.',3000);
                     add(data);
                 },function(){
-                    $rootScope.notifyError('Målgruppe ble ikke opprettet.',6000);
+                    $rootScope.notifyError('Målgruppe ble ikke opprettet.',3000);
                 }
             );
         }
@@ -97,10 +97,10 @@ angular.module('ehelseEditor').factory('LinkCategory', ['$rootScope', function($
             function () {
                 removeLinkCategory(linkCategory);
                 generateLinkCategoryDict();
-                $rootScope.notifySuccess("Link kategorien ble slettet!", 5000);
+                $rootScope.notifySuccess("Link-kategorien ble slettet!", 3000);
             },
             function () {
-                $rootScope.notifyError("Kunne ikke slette", 5000);
+                $rootScope.notifyError("Kunne ikke slette", 3000);
             }
         );
     }

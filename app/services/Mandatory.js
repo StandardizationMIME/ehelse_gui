@@ -75,10 +75,10 @@ angular.module('ehelseEditor').factory('Mandatory', ['$rootScope', function($roo
             function () {
                 removeMandatory(mandatory);
                 generateMandatoryOptionList(mandatory);
-                $rootScope.notifySuccess("Mandatory ble slettet!", 5000);
+                $rootScope.notifySuccess("Obligatoriskhet ble slettet!", 3000);
             },
             function () {
-                $rootScope.notifyError("Kunne ikke slette", 5000);
+                $rootScope.notifyError("Kunne ikke slette obligatoriskhet", 3000);
             }
         );
     }
@@ -92,11 +92,11 @@ angular.module('ehelseEditor').factory('Mandatory', ['$rootScope', function($roo
                     set(mandatory_dict[data.id], data);
                     generateMandatoryDict(mandatory);
                     generateMandatoryOptionList(mandatory);
-                    $rootScope.notifySuccess('Mandatory ble oppdatert',6000);
+                    $rootScope.notifySuccess('Obligatoriskhet ble oppdatert',3000);
 
                 },
                 function(data){
-                    $rootScope.notifyError('Mandatory ble ikke oppdatert.',6000);
+                    $rootScope.notifyError('Obligatoriskhet ble ikke oppdatert.',3000);
                 });
         }
         else{
@@ -104,10 +104,10 @@ angular.module('ehelseEditor').factory('Mandatory', ['$rootScope', function($roo
                 'mandatory/',
                 man,
                 function(data){
-                    $rootScope.notifySuccess('Ny mandatory ble opprettet.',6000);
+                    $rootScope.notifySuccess('Ny obligatoriskhet ble opprettet.',3000);
                     add(data);
                 },function(){
-                    $rootScope.notifyError('Mandatory ble ikke opprettet.',6000);
+                    $rootScope.notifyError('Obligatoriskhet ble ikke opprettet.',3000);
                 }
             );
         }
