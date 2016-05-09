@@ -63,19 +63,16 @@ angular.module('ehelseEditor').controller('DocumentController', [ '$scope','$roo
 
     $rootScope.openDocument = function(document){
         $scope.checkButtonState(document);
-        if(document){
-            $scope.selected_document_id = document.id;
-        }
+
         if(document == "newDocument"){
             document = null;
-        }
-        else{
-
         }
         Document.setCurrentDocument(document);
         $rootScope.changeContentView('document');
 
         if(document){
+
+            $scope.selected_document_id = document.id;
             <!-- Make selected profile stand out -->
             $(".profile-container").removeClass('selected-profile');
             $(".profile-icon").removeClass('selected-profile-icon');
