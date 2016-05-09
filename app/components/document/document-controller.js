@@ -29,22 +29,6 @@ angular.module('ehelseEditor').controller('DocumentController', [ '$scope','$roo
 
     $rootScope.setButtonState = function(state) {
         $rootScope.buttonState = state;
-
-        var documentEdit = $('#document-edit');
-        documentEdit.removeClass('new-document edit-document new-profile edit-profile');
-        if(state == 'newDocument'){
-            documentEdit.addClass('new-document');
-        }
-        else if(state == 'editDocument'){
-            documentEdit.addClass('edit-document');
-        }
-        else if(state == 'editProfile'){
-            documentEdit.addClass('edit-profile');
-        }
-        else if(state == 'newProfile'){
-            documentEdit.addClass('new-profile');
-        }
-
     };
 
     $scope.checkButtonState = function(document){

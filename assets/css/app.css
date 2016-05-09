@@ -241,22 +241,22 @@ input[readonly], textarea[readonly]{
 
 /* Profile stuff(stian) */
 
-.edit-document {
+.editDocument {
     overflow-y: auto;
     height: 553px;
 }
 
-.new-document {
+.newDocument {
     overflow-y: auto;
     height: 640px;
 }
 
-.edit-profile {
+.editProfile {
     overflow-y: auto;
     height: 553px;
 }
 
-.new-profile {
+.newProfile {
     overflow-y: auto;
     height: 553px;
 }

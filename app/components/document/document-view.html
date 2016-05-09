@@ -14,7 +14,7 @@
         </div>
         <div class="standard-list">
             <div ng-repeat="document in documents | filter: search">
-                <p class="clickable" id=standard{{document.id}} ng-class="document.id == selected_document_id ? 'selected-item' : ''" ng-click="openDocument(document);setButtonState('editDocument');setCurrentStandard(document)">
+                <p class="clickable" id=standard{{document.id}} ng-class="document.id == selected_document_id ? 'selected-item' : ''" ng-click="setButtonState('editDocument');openDocument(document);setCurrentStandard(document)">
                     <span  class="fa fa-file-text d{{document.documentTypeId}}"> </span>
                     {{document.title}}
                 </p>
