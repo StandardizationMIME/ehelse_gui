@@ -232,7 +232,12 @@ angular.module('ehelseEditor').factory('Document', ['$rootScope', 'DocumentField
             setDocument(current_document, document);
         }
         generateCurrentDocumentLinksAsLinkCategoryList();
-        getRelatedProfiles(document);
+
+        if(document.standardId){
+            getRelatedProfiles(document);
+        }else{
+            getProfiles(document)
+        }
     }
 
     function getDocumentsByTopicId(id) {
@@ -250,7 +255,6 @@ angular.module('ehelseEditor').factory('Document', ['$rootScope', 'DocumentField
         });
         return topic_documents;
     }
-
 
     function setCurrentDocumentFieldsByDocumentDocumentTypeId() {
         current_document.fields.length = 0;
@@ -348,7 +352,7 @@ angular.module('ehelseEditor').factory('Document', ['$rootScope', 'DocumentField
         return documents;
     }
 
-    function getRelatedProfiles(document) {
+    function getProfiles(document) {
 
         var profiles = null;
         if(documents_dict[document.id]) {
@@ -362,6 +366,21 @@ angular.module('ehelseEditor').factory('Document', ['$rootScope', 'DocumentField
             }
         }
         console.log(document);
+    }
+
+    function getRelatedProfiles(document) {
+
+        var profiles = null;
+        if(documents_dict[document.standardId]) {
+            profiles = documents_dict[document.standardId].profiles;
+        }
+
+        if(profiles) {
+            document.populatedProfiles.length = 0;
+            for (var i = 0; i < profiles.length; i++) {
+                document.populatedProfiles.push(documents_dict[profiles[i].id])
+            }
+        }
     }
 
     getAllDocuments();
