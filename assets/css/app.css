@@ -12,6 +12,10 @@
 /* ----- CH11 ADMINISTER_FIELDS ----- */
 /*------------------------------------------------------------------------------------------------------ */
 /* ----------------------------------------------- CH1 GENERIC ----------------------------------------- */
+html,body {
+    max-width: 100%;
+    overflow-x: hidden;
+}
 h1,h2,h3,h4{ font-weight: bold;}
 .requi#c13a47-icon {
     color:#c13a47;
@@ -85,6 +89,12 @@ h1,h2,h3,h4{ font-weight: bold;}
 #notification-message {
     width: 75%;
     margin:0 auto;
+    background-color: #58a739;
+    border-radius: 10px;
+}
+#notification-message>a{
+    color: #ffffff;
+    font-weight: bolder;
 }
 
 #notification-container{
