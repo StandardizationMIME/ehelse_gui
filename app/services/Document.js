@@ -292,7 +292,6 @@ angular.module('ehelseEditor').factory('Document', ['$rootScope', 'DocumentField
         return getDocumentFieldIdsHelper(current_document.fields);
     }
 
-
     function setDocument(a, b) {
         a.id = b.id;
         a.topicId = b.topicId;
@@ -309,6 +308,13 @@ angular.module('ehelseEditor').factory('Document', ['$rootScope', 'DocumentField
         a.targetGroups = b.targetGroups;
         a.fields = b.fields;
         a.links = b.links;
+    }
+
+
+    function clone(document){
+        var d = {};
+        setDocument(d, document);
+        return d;
     }
 
     function setCurrentDocument(document) {
@@ -405,6 +411,13 @@ angular.module('ehelseEditor').factory('Document', ['$rootScope', 'DocumentField
         return allDocuments;
     }
 
+    function newVersion(document){
+        var new_version = clone(document);
+        new_version.previousDocumentId = new_version.id;
+        new_version.id = null;
+        return new_version;
+    }
+
     return {
         getCurrentDocumentTargetGroupsIds: getTargetGroupsIds,
         getCurrentDocument: getCurrentDocument,
@@ -413,6 +426,7 @@ angular.module('ehelseEditor').factory('Document', ['$rootScope', 'DocumentField
         submitCurrentDocument: submitCurrentDocument,
         setCurrentDocument: setCurrentDocument,
         getNewProfile: getNewProfile,
+        newVersion: newVersion,
         getAllDocuments: getAllDocuments,
         deleteCurrentDocument: deleteCurrentDocument,
         getCurrentDocumentFieldIds: getCurrentDocumentFieldIds,

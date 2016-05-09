@@ -17,13 +17,9 @@
                 <span class="fa fa-check-circle-o edit-topic-icon"></span>
                 Lagre dokument
             </button>
-            <button type="button" class="btn btn-primary" ng-click="submit();setButtonState('editProfile')" ng-if="buttonState == 'editProfile'" ng-disabled="EditDocumentController.DocumentForm.$invalid || EditDocumentController.DocumentForm.$pristine">
-                <span class="fa fa-check-circle edit-topic-icon"></span>
-                Lagre profil
-            </button>
-            <button type="button" class="btn btn-primary" ng-click="submit();setButtonState('editProfile')" ng-if="buttonState == 'newProfile'" ng-disabled="EditDocumentController.DocumentForm.$invalid || EditDocumentController.DocumentForm.$pristine">
-                <span class="fa fa-check-circle edit-topic-icon"></span>
-                Opprett profil
+            <button type="button" class="btn btn-default pull-right" ng-if="buttonState == 'editDocument'" ng-click="newVersion(document)">
+                <span class="fa fa-remove delete-topic-icon ten-pix-horizontal-padding"></span>
+                Ny versjon
             </button>
             <button type="button" class="btn btn-default pull-right" ng-if="buttonState == 'editProfile' || buttonState == 'editDocument'" ng-click="openConfirmationModal('Er du sikker på at du vil slette dokumentet?', document, deleteDocument)">
                 <span class="fa fa-remove delete-topic-icon ten-pix-horizontal-padding"></span>

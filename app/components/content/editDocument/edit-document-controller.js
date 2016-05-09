@@ -52,6 +52,12 @@ angular.module('ehelseEditor').controller('EditDocumentController',
                 Document.setCurrentDocument(Document.getNewProfile(standardId));
             };
 
+            $scope.newVersion = function(document){
+                Document.setCurrentDocument(Document.newVersion(document));
+                $rootScope.notifySuccess("Ny versjon klargjort", 6000);
+                $rootScope.setButtonState("newDocument");
+            }
+
 
         }
 
