@@ -6,7 +6,7 @@
         <span class="field-item-field pull-right">Rediger felt &nbsp; Slett &nbsp;&nbsp;&nbsp;</span>
     </span>
     <ul ng-model="documentFields" class="field-item list-group" style="margin-left: 5px">
-        <li ng-repeat="field in documentFields | orderBy: 'sequence'" ng-if="field.documentTypeId == 3" class="list-group-item ">
+        <li ng-repeat="field in documentFields | orderBy:getSequence" ng-if="field.documentTypeId == 3" class="list-group-item ">
             <span class="field-item-field">{{field.name}}</span>
             <span class="field-item-field">{{field.description}}</span>
             <span class="field-item-field" ng-if="field.mandatory == '1'">Ja</span>
@@ -17,7 +17,6 @@
             <div class="pull-right">
                 <span ng-click="editDocumentFieldModal(field.id);setTypeId('3')"  id="editProfileField" class="fa fa-pencil-square-o fa-2x vcenter clickable edit-field unsortable"></span>
             </div>
-            <input type="hidden" ng-model="field.sequence"/>
         </li>
     </ul>
     <div id="addSupportDocumentField" class="row add-field" ng-click="showNewFieldModal();setTypeId('3')">
