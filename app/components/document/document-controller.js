@@ -7,6 +7,7 @@ angular.module('ehelseEditor').controller('DocumentController', [ '$scope','$roo
     $scope.selected_document_id = null;
 
     $rootScope.getDocuments = function(id) {
+        $scope.selected_document_id = null;
         $scope.documents = Document.getDocumentsByTopicId(id);
 
 
@@ -14,6 +15,7 @@ angular.module('ehelseEditor').controller('DocumentController', [ '$scope','$roo
         $(".clickable").removeClass('selected-item');
         $('#' + id).addClass('selected-item');
         $('#folder' + id).toggleClass('glyphicon-folder-open','glyphicon-folder-close');
+
 
     };
 
@@ -27,22 +29,6 @@ angular.module('ehelseEditor').controller('DocumentController', [ '$scope','$roo
 
     $rootScope.setButtonState = function(state) {
         $rootScope.buttonState = state;
-
-        var documentEdit = $('#document-edit');
-        documentEdit.removeClass('new-document edit-document new-profile edit-profile');
-        if(state == 'newDocument'){
-            documentEdit.addClass('new-document');
-        }
-        else if(state == 'editDocument'){
-            documentEdit.addClass('edit-document');
-        }
-        else if(state == 'editProfile'){
-            documentEdit.addClass('edit-profile');
-        }
-        else if(state == 'newProfile'){
-            documentEdit.addClass('new-profile');
-        }
-
     };
 
     $scope.checkButtonState = function(document){
@@ -71,7 +57,6 @@ angular.module('ehelseEditor').controller('DocumentController', [ '$scope','$roo
         $rootScope.changeContentView('document');
 
         if(document){
-
             $scope.selected_document_id = document.id;
             <!-- Make selected profile stand out -->
             $(".profile-container").removeClass('selected-profile');
@@ -80,14 +65,6 @@ angular.module('ehelseEditor').controller('DocumentController', [ '$scope','$roo
             $(".profile-icon" + document.id).addClass('selected-profile-icon');
 
         }
-        if($rootScope.buttonState == 'editDocument'){
-            $rootScope.relatedProfiles = [];
-            var allDocuments = Document.getAllDocuments();
-            for (var key in allDocuments) {
-                if(allDocuments[key].standardId == document.id) {
-                    $rootScope.relatedProfiles.push(allDocuments[key]);
-                }
-            }
-        }
+
     };
 }]);

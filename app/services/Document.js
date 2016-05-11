@@ -21,7 +21,8 @@ angular.module('ehelseEditor').factory('Document', ['$rootScope', 'DocumentField
             profiles: [],
             links: [],
             fields: [],
-            targetGroups: []
+            targetGroups: [],
+            populatedProfiles: []
         };
     }
 
@@ -43,110 +44,17 @@ angular.module('ehelseEditor').factory('Document', ['$rootScope', 'DocumentField
             profiles: [],
             links: [],
             fields: [],
-            targetGroups: []
+            targetGroups: [],
+            populatedProfiles: []
         }
     }
 
 
-    var allDocuments = {
-        34: {
-            "id": "34",
-            "timestamp": "2016-04-13 11:02:14",
-            "title": "Sikkerhetskrav for systemer - selvdeklarering",
-            "description": "",
-            "statusId": null,
-            "sequence": "0",
-            "topicId": "136",
-            "comment": "",
-            "documentTypeId": "2",
-            "standardId": "70",
-            "previousDocumentId": null,
-            "profiles": [],
-            "links": [],
-            "fields": [],
-            "targetGroups": []
-        },
-        63: {
-            "id": "63",
-            "timestamp": "2016-04-27 13:08:31",
-            "title": "Krav til tjenestebasert adressering og identifikatorer ved elektronisk samhandling",
-            "description": "TBA",
-            "statusId": null,
-            "sequence": "0",
-            "topicId": "141",
-            "comment": "",
-            "documentTypeId": "2",
-            "standardId": "69",
-            "previousDocumentId": null,
-            "profiles": [],
-            "links": [],
-            "fields": [
-                {
-                    "fieldId": "76",
-                    "value": "136.1"
-                }
-            ],
-            "targetGroups": [
-                {
-                    "documentId": "63",
-                    "description": "",
-                    "actionId": null,
-                    "deadline": "",
-                    "mandatoryId": null,
-                    "targetGroupId": "3"
-                }
-            ]
-        },
-        64: {
-            "id": "64",
-            "timestamp": "2016-04-28 11:55:06",
-            "title": "TITLE TITLE TITLE",
-            "description": "sdd",
-            "statusId": null,
-            "sequence": "0",
-            "topicId": "136",
-            "comment": "",
-            "documentTypeId": "2",
-            "standardId": "70",
-            "previousDocumentId": null,
-            "profiles": [],
-            "links": [],
-            "fields": [
-                {
-                    "fieldId": "76",
-                    "value": ""
-                }
-            ],
-            "targetGroups": []
-        },
-        65: {
-            "id": "65",
-            "timestamp": "2016-04-28 12:02:33",
-            "title": "asdsad",
-            "description": "asdsda",
-            "statusId": null,
-            "sequence": "0",
-            "topicId": "136",
-            "comment": "",
-            "documentTypeId": "2",
-            "standardId": "70",
-            "previousDocumentId": null,
-            "profiles": [],
-            "links": [],
-            "fields": [
-                {
-                    "fieldId": "76",
-                    "value": ""
-                }
-            ],
-            "targetGroups": []
-        }
-    };
-
-
     var current_document = newDocument();
-    var documents = [];
+    var topic_documents = [];
     var link_category_list = [];
+    var documents = [];
+    var documents_dict = {};
 
     function extendCurrentDocumentTargetGroupsByTargetGroupIds(target_groups_ids) {
         for (var i = 0; i < target_groups_ids.length; i++) {
@@ -195,6 +103,10 @@ angular.module('ehelseEditor').factory('Document', ['$rootScope', 'DocumentField
 
 
     function submitCurrentDocument() {
+
+        var populatedProfiles = [];
+        Array.prototype.push.apply(populatedProfiles, current_document.populatedProfiles);
+        current_document.populatedProfiles.length = 0;
         if (current_document.id) {
 
             $rootScope.put(
@@ -203,6 +115,7 @@ angular.module('ehelseEditor').factory('Document', ['$rootScope', 'DocumentField
                 function (data) {
                     updateDocumentInDocumentsList(data);
                     $rootScope.notifySuccess("Dokumentet ble oppdatert", 3000);
+                    Array.prototype.push.apply(current_document.populatedProfiles, populatedProfiles);
                 }
                 ,
                 function () {
@@ -216,9 +129,10 @@ angular.module('ehelseEditor').factory('Document', ['$rootScope', 'DocumentField
                 current_document,
                 function (data) {
                     setCurrentDocument(data);
-                    documents.push(data);
-                    $rootScope.notifySuccess("Dokumentet ble ikke opprettet", 3000);
+                    topic_documents.push(data);
+                    $rootScope.notifySuccess("Ny standard ble opprettet", 3000);
                     $rootScope.buttonState = 'editDocument';
+                    Array.prototype.push.apply(current_document.populatedProfiles, populatedProfiles);
                 }
                 ,
                 function () {
@@ -262,18 +176,18 @@ angular.module('ehelseEditor').factory('Document', ['$rootScope', 'DocumentField
     }
 
     function updateDocumentInDocumentsList(document) {
-        for (var i = 0; i < documents.length; i++) {
-            if (documents[i].id == document.id) {
-                setDocument(documents[i], document);
+        for (var i = 0; i < topic_documents.length; i++) {
+            if (topic_documents[i].id == document.id) {
+                setDocument(topic_documents[i], document);
                 break;
             }
         }
     }
 
     function deleteCurrentDocumentFromDocumentsList() {
-        for (var i = 0; i < documents.length; i++) {
-            if (documents[i].id == current_document.id) {
-                documents.splice(i,1);
+        for (var i = 0; i < topic_documents.length; i++) {
+            if (topic_documents[i].id == current_document.id) {
+                topic_documents.splice(i,1);
                 break;
             }
         }
@@ -308,6 +222,8 @@ angular.module('ehelseEditor').factory('Document', ['$rootScope', 'DocumentField
         a.targetGroups = b.targetGroups;
         a.fields = b.fields;
         a.links = b.links;
+        a.standardId = b.standardId;
+        a.populatedProfiles = b.populatedProfiles || [];
     }
 
 
@@ -327,19 +243,29 @@ angular.module('ehelseEditor').factory('Document', ['$rootScope', 'DocumentField
             setDocument(current_document, document);
         }
         generateCurrentDocumentLinksAsLinkCategoryList();
+
+        if(document.standardId){
+            getRelatedProfiles(document);
+        }else{
+            getProfiles(document)
+        }
     }
 
     function getDocumentsByTopicId(id) {
-        documents = [];
+        topic_documents = [];
         $rootScope.get('topics/' + id, function (data) {
-            documents.length = 0;
-            Array.prototype.push.apply(documents, data.documents);
+            topic_documents.length = 0;
+
+            for(var i = 0; i < data.documents.length; i++){
+                var document = data.documents[i];
+                document.populatedProfiles = [];
+                topic_documents.push(document);
+            }
 
         }, function () {
         });
-        return documents;
+        return topic_documents;
     }
-
 
     function setCurrentDocumentFieldsByDocumentDocumentTypeId() {
         current_document.fields.length = 0;
@@ -408,7 +334,23 @@ angular.module('ehelseEditor').factory('Document', ['$rootScope', 'DocumentField
     }
 
     function getAllDocuments() {
-        return allDocuments;
+        $rootScope.get(
+            'documents/',
+            function (data) {
+                documents.length = 0;
+
+                for(var i = 0; i < data.documents.length; i++){
+                    var document = data.documents[i];
+                    document.populatedProfiles = [];
+                    documents.push(document);
+                }
+
+                generateDocumentDict(documents);
+            },
+            function () {
+                console.log("Could not load documents");
+            }
+        );
     }
 
     function newVersion(document){
@@ -417,6 +359,49 @@ angular.module('ehelseEditor').factory('Document', ['$rootScope', 'DocumentField
         new_version.id = null;
         return new_version;
     }
+
+    function generateDocumentDict(documents){
+        for(var i = 0; i < documents.length; i++){
+            documents_dict[documents[i].id] = documents[i];
+        }
+    }
+
+    function getAll(){
+        return documents;
+    }
+
+    function getProfiles(document) {
+
+        var profiles = null;
+        if(documents_dict[document.id]) {
+            profiles = documents_dict[document.id].profiles;
+        }
+
+        if(profiles) {
+            document.populatedProfiles.length = 0;
+            for (var i = 0; i < profiles.length; i++) {
+                document.populatedProfiles.push(documents_dict[profiles[i].id])
+            }
+        }
+        console.log(document);
+    }
+
+    function getRelatedProfiles(document) {
+
+        var profiles = null;
+        if(documents_dict[document.standardId]) {
+            profiles = documents_dict[document.standardId].profiles;
+        }
+
+        if(profiles) {
+            document.populatedProfiles.length = 0;
+            for (var i = 0; i < profiles.length; i++) {
+                document.populatedProfiles.push(documents_dict[profiles[i].id])
+            }
+        }
+    }
+
+    getAllDocuments();
 
     return {
         getCurrentDocumentTargetGroupsIds: getTargetGroupsIds,
@@ -427,7 +412,7 @@ angular.module('ehelseEditor').factory('Document', ['$rootScope', 'DocumentField
         setCurrentDocument: setCurrentDocument,
         getNewProfile: getNewProfile,
         newVersion: newVersion,
-        getAllDocuments: getAllDocuments,
+        getAll: getAll,
         deleteCurrentDocument: deleteCurrentDocument,
         getCurrentDocumentFieldIds: getCurrentDocumentFieldIds,
         extendCurrentDocumentFieldsByFieldIds: extendCurrentDocumentFieldsByFieldIds,

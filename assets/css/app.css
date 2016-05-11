@@ -168,6 +168,14 @@ h1,h2,h3,h4{ font-weight: bold;}
 textarea {
     resize: none;
 }
+
+.administer-views {
+    height: 650px;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+
 /* -------------------------------------------- CH3 CONTENT ----------------------------------------- */
 .document-fields {
     overflow-y: hidden;
@@ -192,12 +200,14 @@ textarea {
     position:relative;
     font-size: 13px;
 }
+
 .tg:nth-child(1) { width: 25.4%; }
 .tg:nth-child(2) { width: 34% }
 .tg:nth-child(3) { width: 8.6% }
 .tg:nth-child(4) { width: 18% }
 .tg:nth-child(5) { width: 7.5% }
 .tg:nth-child(6) { width: 5% }
+
 .table-hover tbody tr:hover td, .table-hover tbody tr:hover th {
     background-color: #c7c7c7;
 }
@@ -245,22 +255,22 @@ input[readonly], textarea[readonly]{
 
 /* Profile stuff(stian) */
 
-.edit-document {
+.editDocument {
     overflow-y: auto;
     height: 553px;
 }
 
-.new-document {
+.newDocument {
     overflow-y: auto;
     height: 640px;
 }
 
-.edit-profile {
+.editProfile {
     overflow-y: auto;
     height: 553px;
 }
 
-.new-profile {
+.newProfile {
     overflow-y: auto;
     height: 553px;
 }
