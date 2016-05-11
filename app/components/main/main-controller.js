@@ -160,5 +160,9 @@
             $rootScope.userPageView = view;
             console.log($rootScope.userPageView);
         };
+
+        $rootScope.getSequence = function(object){
+            return parseInt(object.sequence);
+        }
     }]);
 })();

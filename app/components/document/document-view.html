@@ -13,7 +13,7 @@
             </p>
         </div>
         <div class="standard-list">
-            <div ng-repeat="document in documents | filter: search">
+            <div ng-repeat="document in documents | filter: search | orderBy:getSequence">
                 <p class="clickable" id=standard{{document.id}} ng-class="document.id == current_document.id ? 'selected-item' : ''" ng-click="setButtonState('editDocument');openDocument(document);">
                     <span  class="fa fa-file-text d{{document.documentTypeId}}"> </span>
                     {{document.title}}

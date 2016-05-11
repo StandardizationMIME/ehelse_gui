@@ -16,8 +16,6 @@ angular.module('ehelseEditor').controller('TopicController',['$rootScope', '$sco
         $rootScope.changeContentView('editTopic');
     };
 
-    $rootScope.getSequence = function(object){
-        return parseInt(object.sequence);
-    }
+
 }]);
 
