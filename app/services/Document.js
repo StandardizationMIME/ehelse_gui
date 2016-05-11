@@ -104,7 +104,6 @@ angular.module('ehelseEditor').factory('Document', ['$rootScope', 'DocumentField
 
 
     function submitCurrentDocument() {
-
         current_document.populatedProfiles.length = 0;
         if (current_document.id) {
 
@@ -118,8 +117,10 @@ angular.module('ehelseEditor').factory('Document', ['$rootScope', 'DocumentField
                     $rootScope.notifySuccess("Dokumentet ble oppdatert", 3000);
                 }
                 ,
-                function () {
-                    $rootScope.notifyError("Dokumentet kunne ikke opprettes", 3000);
+                function (data) {
+                    var error = getErrorMessage(data);
+                    setCurrentDocument(current_document);
+                    $rootScope.notifyError("Dokumentet kunne ikke opprettes: " + error, 3000);
                 }
             );
         }
@@ -142,11 +143,28 @@ angular.module('ehelseEditor').factory('Document', ['$rootScope', 'DocumentField
                     $rootScope.buttonState = 'editDocument';
                 }
                 ,
-                function () {
-                    $rootScope.notifyError("Dokumentet kunne ikke opprettes", 3000);
+                function (data) {
+                    var error = getErrorMessage(data);
+                    setCurrentDocument(current_document);
+                    $rootScope.notifyError("Dokumentet kunne ikke opprettes: " + error, 3000);
                 }
             );
         }
+    }
+
+    function getErrorMessage(error){
+        var error_message = "";
+        var message = error.message;
+        var INTERNAL_ID = "Internal id";
+        var HIS = "HIS";
+
+        if(message.indexOf(INTERNAL_ID) > -1){
+            error_message = "Intern ID må være unik";
+        }
+        else if (message.indexOf(HIS) > -1){
+            error_message = "HIS nummer må være unik";
+        }
+        return error_message;
     }
 
     function deleteCurrentDocument() {
