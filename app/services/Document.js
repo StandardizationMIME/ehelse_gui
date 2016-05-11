@@ -55,6 +55,7 @@ angular.module('ehelseEditor').factory('Document', ['$rootScope', 'DocumentField
     var link_category_list = [];
     var documents = [];
     var documents_dict = {};
+    var topics_documents_dict = {};
 
     function extendCurrentDocumentTargetGroupsByTargetGroupIds(target_groups_ids) {
         for (var i = 0; i < target_groups_ids.length; i++) {
@@ -363,6 +364,18 @@ angular.module('ehelseEditor').factory('Document', ['$rootScope', 'DocumentField
     function generateDocumentDict(documents){
         for(var i = 0; i < documents.length; i++){
             documents_dict[documents[i].id] = documents[i];
+        }
+    }
+
+    function generateTopicsDocumentsDict(documents){
+        var document;
+        for(var i = 0; i < documents.length; i++){
+            document = documents[i];
+            if(!topics_documents_dict[document.topicId]){
+
+            }
+            documents_dict[documents[i].id] = documents[i];
+
         }
     }
 
