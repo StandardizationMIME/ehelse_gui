@@ -105,8 +105,6 @@ angular.module('ehelseEditor').factory('Document', ['$rootScope', 'DocumentField
 
     function submitCurrentDocument() {
 
-        var populatedProfiles = [];
-        Array.prototype.push.apply(populatedProfiles, current_document.populatedProfiles);
         current_document.populatedProfiles.length = 0;
         if (current_document.id) {
 
@@ -114,9 +112,10 @@ angular.module('ehelseEditor').factory('Document', ['$rootScope', 'DocumentField
                 'documents/' + current_document.id,
                 current_document,
                 function (data) {
+                    data.populatedProfiles = [];
+                    setCurrentDocument(current_document);
                     updateDocumentInDocumentsList(data);
                     $rootScope.notifySuccess("Dokumentet ble oppdatert", 3000);
-                    Array.prototype.push.apply(current_document.populatedProfiles, populatedProfiles);
                 }
                 ,
                 function () {
@@ -130,12 +129,17 @@ angular.module('ehelseEditor').factory('Document', ['$rootScope', 'DocumentField
                 current_document,
                 function (data) {
                     data.populatedProfiles = [];
-                    setCurrentDocument(data);
+                    //push profile id to standard
+                    if(data.standardId){
+                        documents_dict[data.standardId].profiles.push({id:data.id});
+                        console.log(documents_dict[data.standardId].profiles);
+                    }
                     documents.push(data);
+                    generateDocumentDict(documents);
                     generateTopicsDocumentsDict(documents);
+                    setCurrentDocument(data);
                     $rootScope.notifySuccess("Ny standard ble opprettet", 3000);
                     $rootScope.buttonState = 'editDocument';
-                    Array.prototype.push.apply(current_document.populatedProfiles, populatedProfiles);
                 }
                 ,
                 function () {
