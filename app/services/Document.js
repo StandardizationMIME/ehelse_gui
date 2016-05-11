@@ -135,6 +135,9 @@ angular.module('ehelseEditor').factory('Document', ['$rootScope', 'DocumentField
                         documents_dict[data.standardId].profiles.push({id:data.id});
                         console.log(documents_dict[data.standardId].profiles);
                     }
+                    if( data.previousDocumentId){
+                        documents_dict[data.previousDocumentId].nextDocumentId = data.id;
+                    }
                     documents.push(data);
                     generateDocumentDict(documents);
                     generateTopicsDocumentsDict(documents);
@@ -201,16 +204,12 @@ angular.module('ehelseEditor').factory('Document', ['$rootScope', 'DocumentField
     }
 
     function updateDocumentInDocumentsList(document) {
-        for (var i = 0; i < documents.length; i++) {
-            if (documents[i].id == document.id) {
-                setDocument(documents[i], document);
-                break;
-            }
-        }
+        setDocument(documents_dict[document.id], document);
         generateTopicsDocumentsDict(documents);
     }
 
     function deleteCurrentDocumentFromDocumentsList() {
+        documents_dict[current_document.nextDocumentId].previousDocumentId = null;
         for (var i = 0; i < documents.length; i++) {
             if (documents[i].id == current_document.id) {
                 documents.splice(i,1);
