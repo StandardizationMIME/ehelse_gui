@@ -4,10 +4,9 @@ angular.module('ehelseEditor').controller('DocumentController', [ '$scope','$roo
 
     $scope.document_types_dict = DocumentType.document_types_dict;
     $scope.documents = [];
-    $scope.selected_document_id = null;
+    $scope.current_document = Document.getCurrentDocument();
 
     $rootScope.getDocuments = function(id) {
-        $scope.selected_document_id = null;
         $scope.documents = Document.getDocumentsByTopicId(id);
 
 
@@ -19,15 +18,7 @@ angular.module('ehelseEditor').controller('DocumentController', [ '$scope','$roo
 
     };
 
-    $rootScope.setSelectedDocumentId = function(documentId){
-        $rootScope.selected_document_id = documentId;
-    };
-
-    $scope.setCurrentStandard = function(standard){
-        $rootScope.currentStandard = standard;
-    };
-
-    $rootScope.setButtonState = function(state) {
+     $rootScope.setButtonState = function(state) {
         $rootScope.buttonState = state;
     };
 
@@ -47,6 +38,10 @@ angular.module('ehelseEditor').controller('DocumentController', [ '$scope','$roo
         }
     };
 
+    $rootScope.openDocumentById = function(id){
+        $rootScope.openDocument(Document.getById(id));
+    };
+
     $rootScope.openDocument = function(document){
         $scope.checkButtonState(document);
 
@@ -55,16 +50,5 @@ angular.module('ehelseEditor').controller('DocumentController', [ '$scope','$roo
         }
         Document.setCurrentDocument(document);
         $rootScope.changeContentView('document');
-
-        if(document){
-            $scope.selected_document_id = document.id;
-            <!-- Make selected profile stand out -->
-            $(".profile-container").removeClass('selected-profile');
-            $(".profile-icon").removeClass('selected-profile-icon');
-            $(".profile" + document.id).addClass('selected-profile');
-            $(".profile-icon" + document.id).addClass('selected-profile-icon');
-
-        }
-
     };
 }]);

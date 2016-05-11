@@ -1,6 +1,7 @@
 <div class="container-fluid profile-bar" ng-if="buttonState == 'editDocument' || buttonState == 'editProfile' || buttonState == 'newProfile'">
 
     <ul class="profiles-container">
+        <!--new profile-->
         <li class="new-profile-container" ng-if="buttonState == 'editDocument'">
             <div class="new-profile-button" ng-click="setButtonState('newProfile');newProfile(document.id)">
                 <div class="new-profile-icon">
@@ -11,16 +12,17 @@
                 </div>
             </div>
         </li>
-        <li class="new-profile-container" ng-if="buttonState == 'editProfile' || buttonState == 'newProfile'">
-            <div ng-click="setButtonState('editDocument'); openDocument(currentStandard)">
+        <!--return to document-->
+        <li class="new-profile-container"  ng-if="buttonState == 'editProfile' || buttonState == 'newProfile'">
+            <div ng-click="setButtonState('editDocument'); openDocumentById(document.standardId)">
                 <div class="return-to-document-icon">
                     <span class="fa fa-arrow-circle-left"></span>
                 </div>
             </div>
         </li>
 
-        <li ng-repeat="profile in document.populatedProfiles" class="profile-container profile{{profile.id}}" ng-click="setButtonState('editProfile');openDocument(profile)">
-            <div class="profile-icon profile-icon{{profile.id}}" data-toggle="tooltip" title="{{profile.title}}" data-placement="top">
+        <li ng-repeat="profile in document.populatedProfiles" class="profile-container profile{{profile.id}}" ng-class="profile.id == document.id ? 'selected-profile' : ''"ng-class="document.id == current_document.id ? 'selected-profile' : ''" ng-click="setButtonState('editProfile');openDocument(profile)">
+            <div class="profile-icon profile-icon{{profile.id}}" ng-class="document.id == profile.id ? 'selected-profile-icon' : ''" data-toggle="tooltip" title="{{profile.title}}" data-placement="top">
                 <span class="fa fa-file-text"></span>
             </div>
             <div class="profile-text">

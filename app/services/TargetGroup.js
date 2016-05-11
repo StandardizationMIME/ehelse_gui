@@ -9,7 +9,7 @@ angular.module('ehelseEditor').factory('TargetGroup', ['$rootScope', function($r
     $rootScope.get(
         'target-groups/',
         function ( data ){
-            Array.prototype.push.apply(target_groups, data.targetGroups);
+            Array.prototype.push.apply(target_groups, data.target_groups);
             generateTargetGroupDict(target_groups);
             generateTargetGroupOptionsList(target_groups);
 
