@@ -1,6 +1,7 @@
 <div class="container-fluid profile-bar" ng-if="buttonState == 'editDocument' || buttonState == 'editProfile' || buttonState == 'newProfile'">
 
     <ul class="profiles-container">
+        <!--new profile-->
         <li class="new-profile-container" ng-if="buttonState == 'editDocument'">
             <div class="new-profile-button" ng-click="setButtonState('newProfile');newProfile(document.id)">
                 <div class="new-profile-icon">
@@ -11,8 +12,9 @@
                 </div>
             </div>
         </li>
+        <!--return to document-->
         <li class="new-profile-container" ng-if="buttonState == 'editProfile' || buttonState == 'newProfile'">
-            <div ng-click="setButtonState('editDocument'); openDocument(currentStandard)">
+            <div ng-click="setButtonState('editDocument'); openDocumentById(document.standardId)">
                 <div class="return-to-document-icon">
                     <span class="fa fa-arrow-circle-left"></span>
                 </div>

@@ -13,6 +13,10 @@
                 <span class="fa fa-check-circle edit-topic-icon"></span>
                 Opprett dokument
             </button>
+            <button type="button" class="btn btn-primary" ng-click="submit(EditDocumentController.DocumentForm);setButtonState('editProfile');"  ng-if="buttonState == 'newProfile'" ng-disabled="EditDocumentController.DocumentForm.$invalid || EditDocumentController.DocumentForm.$pristine">
+                <span class="fa fa-check-circle edit-topic-icon"></span>
+                Opprett profil
+            </button>
             <button type="button" class="btn btn-primary" ng-disabled="EditDocumentController.DocumentForm.$invalid || EditDocumentController.DocumentForm.$pristine" ng-click="submit(EditDocumentController.DocumentForm)" ng-if="buttonState == 'editDocument'">
                 <span class="fa fa-check-circle-o edit-topic-icon"></span>
                 Lagre dokument
