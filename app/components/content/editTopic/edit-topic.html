@@ -15,18 +15,9 @@
         </p>
     </div>
 
-
-
-
-
-
-
-
-
-
     <div class="panel panel-default">
         <div class="panel-body">
-            <!-- choose document type -->
+            <!-- choose topic title -->
             <div class="form-group">
                 <label class="col-sm-3 control-label"  for="editTopicTitle">Tittel: <span class="required-icon" data-toggle="tooltip" title="Obligatorisk felt" data-placement="top">*</span></label>
                 <div class="form-group col-sm-9">
@@ -35,7 +26,7 @@
                 </div>
             </div>
 
-            <!-- Choose topic title -->
+            <!-- Choose beskrivelse -->
             <div class="form-group">
                 <label class="col-sm-3 control-label" for="editTopicDescription">Beskrivelse: </label>
                 <div class="form-group col-sm-9">
@@ -44,7 +35,16 @@
                 </div>
             </div>
 
-            <!-- Choose topic description -->
+            <!-- Choose sequence -->
+            <div class="form-group">
+                <label class="col-sm-3 control-label" for="editTopicSequence">Beskrivelse: </label>
+                <div class="form-group col-sm-9">
+                    <input type="number" string-to-number name="editTopicSequence" id="editTopicSequence" class="form-control half-width"
+                              ng-model="selectedTopic.sequence" />
+                </div>
+            </div>
+
+            <!-- Choose topic parent -->
             <div class="form-group">
                 <label class="col-sm-3 control-label" for="editTopicParent">Tema ligger under: </label>
                 <div class="form-group col-sm-9">
