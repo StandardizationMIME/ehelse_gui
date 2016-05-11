@@ -50,15 +50,5 @@ angular.module('ehelseEditor').controller('DocumentController', [ '$scope','$roo
         }
         Document.setCurrentDocument(document);
         $rootScope.changeContentView('document');
-
-        if(document){
-            $scope.selected_document_id = document.id;
-            <!-- Make selected profile stand out -->
-            $(".profile-container").removeClass('selected-profile');
-            $(".profile-icon").removeClass('selected-profile-icon');
-            $(".profile" + document.id).addClass('selected-profile');
-            $(".profile-icon" + document.id).addClass('selected-profile-icon');
-        }
-
     };
 }]);
