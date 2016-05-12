@@ -280,6 +280,9 @@ angular.module('ehelseEditor').factory('Document', ['$rootScope', 'DocumentField
     }
 
     function getDocumentsByTopicId(id) {
+        if(!Array.isArray(topics_documents_dict[id])){
+            topics_documents_dict[id] = [];
+        }
         return topics_documents_dict[id];
     }
 
@@ -399,7 +402,7 @@ angular.module('ehelseEditor').factory('Document', ['$rootScope', 'DocumentField
         var document;
         for(var i = 0; i < documents.length; i++){
             document = documents[i];
-            if(!topics_documents_dict[document.topicId]){
+            if(!Array.isArray(topics_documents_dict[document.topicId])){
                 topics_documents_dict[document.topicId] = [];
             }
             topics_documents_dict[document.topicId].push(document);
