@@ -87,11 +87,11 @@ angular.module('ehelseEditor').controller('MyPageController', ['$scope', '$rootS
                     "users/" + $rootScope.currentUser.id + "/password/",
                     {password: $scope.newPassword},
                     function () {
-                        $rootScope.notifySuccess("Passordet ditt er endret.",6000);
+                        $rootScope.notifySuccess("Passordet ditt er endret.",3000);
                         $rootScope.password = $scope.newPassword;
                     },
                     function () {
-                        $rootScope.notifyError("Passordet ble ikke endret.",6000);
+                        $rootScope.notifyError("Passordet ble ikke endret.",3000);
                     }
                 );
             } else {
