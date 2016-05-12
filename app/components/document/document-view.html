@@ -3,19 +3,18 @@
     <div>
         <div class="shadow-below">
             <div class="headline-box">
-                <h4 class="selectedHeading">{{topic.title}}</h4>
+                <h4 class="selected-heading">{{topic.title}}{{current_document.id}}</h4>
             </div>
-            <p class="tenPixVerticalPadding">
-                <button type="button" ng-click="openDocument('newDocument')" class="btn btn-default">
-                    <span class="fa fa-plus-circle plus-icon-standard"></span>
+            <p class="ten-pix-vertical-padding">
+                <button type="button" ng-click="setButtonState('newDocument');openDocument()" class="btn btn-default">
+                    <span class="fa fa-plus-circle plus-icon"></span>
                     Nytt dokument
                 </button>
             </p>
         </div>
         <div class="standard-list">
-            <div ng-repeat="document in documents | filter: search">
-
-                <p class="document-clickable" id=standard{{document.id}} ng-click="openDocument('editDocument', document)">
+            <div ng-repeat="document in documents | filter: search | orderBy:getSequence">
+                <p class="clickable" id=standard{{document.id}} ng-class="document.id == current_document.id ? 'selected-item' : ''" ng-click="setButtonState('editDocument');openDocument(document);">
                     <span  class="fa fa-file-text d{{document.documentTypeId}}"> </span>
                     {{document.title}}
                 </p>
@@ -23,3 +22,5 @@
         </div>
     </div>
 </div>
+
+

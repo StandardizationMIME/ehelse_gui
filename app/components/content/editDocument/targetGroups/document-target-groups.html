@@ -1,6 +1,6 @@
-<div class="panel panel-primary">
-    <div class="panel-heading">
-        <h3 class="panel-title selectedHeading">Målgrupper</h3>
+<div class="panel panel-border{{document.documentTypeId}}">
+    <div class="panel-heading panel{{document.documentTypeId}}">
+        <h3 class="panel-title selected-heading"><span class="fa fa-bullseye"></span> Målgrupper</h3>
     </div>
     <div class="panel-body">
 
@@ -22,7 +22,7 @@
                     <td>{{target_groups_dict[group.targetGroupId].name}}</td>
                     <!-- OBLIGATORISK -->
                     <td>
-                        <select class="form-control" name="" id="mandatory" ng-model="group.mandatory">
+                        <select class="form-control" name="" id="mandatory" ng-model="group.mandatoryId">
                             <option ng-repeat="mandatory in mandatory_option_list" value="{{mandatory.value}}">{{mandatory.name}}</option>
                         </select>
                     </td>
@@ -47,7 +47,7 @@
                 </tr>
                 </tbody>
             </table>
-            <button class="btn btn-default" type="button" ng-click="openModal('app/components/content/editDocument/targetGroups/add-document-target-group-modal.html', 'AddDocumentTargetGroupModelController')"><span class="fa fa-plus-circle plus-icon-standard"></span> Legg til ny</button>
+            <button class="btn btn-default" type="button" ng-click="openModal('app/components/content/editDocument/targetGroups/add-document-target-group-modal.html', 'AddDocumentTargetGroupModelController')"><span class="fa fa-plus-circle plus-icon"></span> Legg til ny</button>
         </div>
 
 

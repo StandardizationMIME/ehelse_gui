@@ -2,26 +2,35 @@
 'use strict';
 
 angular.module('ehelseEditor').controller('EditDocumentController',
-    [ '$scope', '$http','$rootScope', 'ModalService', 'DocumentType', 'TargetGroup', 'Mandatory', 'Action','Document', 'DocumentField','LinkCategory',
-        function( $scope, $http, $rootScope, ModalService, DocumentType, TargetGroup, Mandatory, Action, Document, DocumentField, LinkCategory) {
+    [ '$scope', '$http','$rootScope', 'ModalService', 'DocumentType', 'TargetGroup', 'Mandatory', 'Action','Document', 'DocumentField','LinkCategory', 'Topic','Status',
+        function( $scope, $http, $rootScope, ModalService, DocumentType, TargetGroup, Mandatory, Action, Document, DocumentField, LinkCategory, Topic, Status) {
+
             $scope.document_types_option_list = DocumentType.document_types_option_list;
-            $scope.target_groups_dict = TargetGroup.target_groups_dict;
-            $scope.mandatory_option_list = Mandatory.mandatory_option_list;
-            $scope.actions_option_list = Action.actions_option_list;
+            $scope.target_groups_dict = TargetGroup.getAllAsDict();
+            $scope.mandatory_option_list = Mandatory.getAllAsOptionsList();
+            $scope.actions_option_list = Action.getAllAsOptionsList();
             $scope.fields_dict = DocumentField.document_fields_dict;
             $scope.document = Document.getCurrentDocument();
             $scope.setCurrentDocumentFieldsByDocumentDocumentTypeId = Document.setCurrentDocumentFieldsByDocumentDocumentTypeId;
             $scope.linkCategories = Document.getCurrentDocumentLinksAsLinkCategoryList();
-
-            console.log($scope.document);
+            $scope.topicTupleList = Topic.getAllAsOptionsList();
             $scope.removeTargetGroup = Document.removeCurrentDocumentTargetGroup;
             $scope.removeField = Document.removeCurrentDocumentField;
             $scope.removeLink = Document.removeCurrentDocumentLink;
-            $scope.linkCategoriesDict = LinkCategory.getLinkCategoryDict();
+            $scope.linkCategoriesDict = LinkCategory.getAllAsDict();
             $scope.removeLinkCategory = Document.removeCurrentDocumentLinksByCategoryId;
+            $scope.status_option_list = Status.getAllAsOptionsList();
 
 
-            $scope.submit = Document.submitCurrentDocument;
+            $scope.submit = function(form){
+                Document.submitCurrentDocument();
+                form.$setPristine();
+            };
+
+            $scope.deleteDocument = function(){
+                Document.deleteCurrentDocument();
+            };
+
             $scope.addLinkToDocument = Document.addLinkToCurrentDocumentByLinkCategoryId;
 
 
@@ -38,18 +47,20 @@ angular.module('ehelseEditor').controller('EditDocumentController',
                 });
             };
 
-            $rootScope.newTargetGroup = {
-                "id": "",
-                "description": "test",
-                "actionId": "",
-                "deadline": "",
-                "mandatoryId": "",
-                "targetGroupId": ""
+
+            $scope.newProfile = function(standardId){
+                Document.setCurrentDocument(Document.getNewProfile(standardId));
             };
 
-            $rootScope.addNewTargetGroupsToDocument = function() {
-                $scope.document.targetGroups.push($rootScope.newTargetGroup);
-                console.log($scope.document.targetGroups);
-            };
+            $scope.newVersion = function(document){
+                Document.setCurrentDocument(Document.newVersion(document));
+                $rootScope.notifySuccess("Ny versjon klargjort", 6000);
+                $rootScope.setButtonState("newDocument");
+            }
 
-        }]);
+
+        }
+
+
+
+    ]);

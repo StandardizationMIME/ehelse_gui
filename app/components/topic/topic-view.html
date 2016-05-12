@@ -4,29 +4,29 @@
     <!-- Iterates through the list of topics and display them as folders -->
     <div class="shadow-below">
         <div class="headline-box">
-            <h4 class="selectedHeading">Temaer:</h4>
+            <h4 class="selected-heading">Temaer:</h4>
         </div>
-        <p class="tenPixVerticalPadding">
+        <p class="ten-pix-vertical-padding">
             <button type="button" ng-click="showNewTopicModal()" class="btn btn-default">
-                <span class="fa fa-plus-circle plus-icon-standard"></span>
+                <span class="fa fa-plus-circle plus-icon"></span>
                 Nytt tema
             </button>
         </p>
     </div>
     <div class="topic-list" >
-        <div ng-repeat="topic in topics">
+        <div ng-repeat="topic in topics | orderBy:getSequence">
             <p data-target=#topic{{topic.id}} id={{topic.id}} data-toggle="collapse" class="item-text clickable" ng-click="getDocuments(topic.id); setSelectedTopic(topic.id)">
                 <span id=folder{{topic.id}} class="standard-icon glyphicon glyphicon-folder-close"> </span>
                 {{topic.title}}
             </p>
             <div id=topic{{topic.id}} class="collapse">
-                <div class="sub-topic" ng-repeat="subTopic in topic.children">
+                <div class="sub-topic" ng-repeat="subTopic in topic.children | orderBy:getSequence">
                     <p data-target=#topic{{subTopic.id}} id={{subTopic.id}} data-toggle="collapse" class="item-text clickable" ng-click="getDocuments(subTopic.id); setSelectedTopic(subTopic.id)">
                         <span id=folder{{subTopic.id}} class="standard-icon glyphicon glyphicon-folder-close"> </span>
                         {{subTopic.title}}
                     </p>
                     <div id=topic{{subTopic.id}} class="collapse">
-                        <div ng-repeat="subsubTopic in subTopic.children" class="sub-topic">
+                        <div ng-repeat="subsubTopic in subTopic.children | orderBy:getSequence" class="sub-topic">
                             <p id={{subsubTopic.id}} class="item-text clickable" ng-click="getDocuments(subsubTopic.id); setSelectedTopic(subsubTopic.id)">
                                 <span id=folder{{subsubTopic.id}} class="standard-icon glyphicon glyphicon-folder-close"> </span>
                                 {{subsubTopic.title}}

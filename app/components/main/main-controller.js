@@ -1,9 +1,7 @@
-
-
-
 (function(){
 
-    angular.module('ehelseEditor').run([ '$http', '$rootScope', '$cookies', '$location', 'ModalService', function($http, $rootScope, $cookies, $location, ModalService) {
+    angular.module('ehelseEditor').run(['$state','$http', '$rootScope', '$cookies', '$location', 'ModalService', function($state,$http, $rootScope, $cookies, $location, ModalService) {
+        $rootScope.$state = $state;
         $rootScope.userName = $cookies.get('username');
         $rootScope.password = $cookies.get('password');
         var user= $cookies.get('currentUser');
@@ -13,8 +11,6 @@
         $rootScope.apiUrl = 'https://refkat.eu/v1/';
         //$rootScope.apiUrl = 'http://localhost:8080/index.php/v1/';
 
-        $rootScope.topics = [];
-        $rootScope.topicsList = [];
 
         $rootScope.openModal = function(url, controller){
             ModalService.showModal({
@@ -69,7 +65,6 @@
         $rootScope.delete = function(url, success, error){
             $rootScope.http("delete", url, {}, success, error);
         };
-
 
         $rootScope.http = function(method, url, payload, success, error){
             var username = $rootScope.userName || $cookies.get('username');
@@ -129,8 +124,7 @@
                 );
             }
             else {
-
-                $location.path('/login').replace();
+                $rootScope.$state.go('login');
             }
 
         };
@@ -143,7 +137,7 @@
             $cookies.put('username', "");
             $cookies.put('password', "");
             $cookies.put('currentUser', "");
-            $location.path('/login').replace();
+            $rootScope.$state.go('login');
         };
 
         $rootScope.childControllers = {};
@@ -151,9 +145,14 @@
             $rootScope.childControllers[name] = scope;
         };
 
+        $rootScope.setButtonState = function(state) {
+            $rootScope.buttonState = state;
+        };
+
         $rootScope.changeContentView = function(view){
             $rootScope.childControllers['EditorController'].changeView(view);
         };
+
 
         $rootScope.userPageView = '';
 
@@ -162,6 +161,8 @@
             console.log($rootScope.userPageView);
         };
 
+        $rootScope.getSequence = function(object){
+            return parseInt(object.sequence);
+        }
     }]);
-
 })();

@@ -14,6 +14,10 @@
                         <label for="documentFieldDescription">Beskrivelse: </label>
                         <textarea id="documentFieldDescription" ng-model="currentDocumentField.description" class="form-control"></textarea>
                     </div>
+                    <div class="form-group">
+                        <label for="documentFieldSequence">Rekkefølge: </label>
+                        <input id="documentFieldSequence" ng-model="currentDocumentField.sequence" string-to-number type="number" class="form-control" required>
+                    </div>
                     <div class="form-inline">
                         <label for="documentFieldMandatory">Obligatorisk: </label>
                         <input id="documentFieldMandatory" type="checkbox" ng-model="currentDocumentField.mandatory"/>

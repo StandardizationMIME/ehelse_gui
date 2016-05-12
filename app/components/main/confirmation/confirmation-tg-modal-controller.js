@@ -1,7 +1,7 @@
-angular.module('ehelseEditor').controller('ConfirmationTGModalController',['$rootScope', '$scope', function($rootScope, $scope){
+angular.module('ehelseEditor').controller('ConfirmationTGModalController',['$rootScope', '$scope', 'TargetGroup', function($rootScope, $scope, TargetGroup){
 
     $scope.returnTrue = function() {
-        $rootScope.deleteTargetGroupById($rootScope.deleteTGId);
+        TargetGroup.deleteById($rootScope.deleteTGId);
     }
 
 }]);

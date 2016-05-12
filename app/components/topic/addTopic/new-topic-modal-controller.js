@@ -1,39 +1,17 @@
 'use strict';
 
-angular.module('ehelseEditor').controller('NewTopicModalController', [ '$scope', "$rootScope", function($scope, $rootScope) {
-
+angular.module('ehelseEditor').controller('NewTopicModalController', [ '$scope', "$rootScope",'Topic', function($scope, $rootScope, Topic) {
+    $scope.topicTupleList = Topic.getAllAsOptionsList();
     $scope.newTopic = {
         "title" : "",
         "description" : "",
         "isInCatalog": false,
-        "parentId": $scope.selectedTopicId,
+        "parentId": Topic.getSelected().id,
         "sequence": 1,
         "comment": ""
     };
 
     $rootScope.postNewTopic = function(topic){
-        console.log("postNewTopic kjører");
-
-        if(topic.parentId == "null"){
-            topic.parentId = null;
-        }
-
-        $scope.post(
-            'topics/',
-            topic,
-            function(data){
-                console.log("New topic created");
-                console.log(data);
-                console.log($scope.newTopic);
-                $rootScope.reloadTopic(data);
-                $rootScope.notifySuccess("Nytt tema har blitt opprettet", 5000);
-                $rootScope.reloadTopicTupleList();
-            }
-            ,
-            function(){
-                console.log("New topic could not be created");
-                $rootScope.notifyError("Tema ble ikke opprettet", 5000);
-            }
-        );
+        Topic.submit(topic);
     };
 }]);

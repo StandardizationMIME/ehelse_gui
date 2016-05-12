@@ -21,7 +21,6 @@ angular.module('ehelseEditor').controller('DocumentFieldModalController', [ '$sc
 
 
     $scope.postNewDocumentField = function(field){
-
         DocumentField.create(field,
             function(data){
                 console.log("Field has been created");

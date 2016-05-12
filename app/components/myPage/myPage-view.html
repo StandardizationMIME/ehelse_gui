@@ -6,7 +6,7 @@
     </div>
 
     <!-- Account information -->
-    <div id="accountInfo" class="row">
+    <div id="account-info" class="row">
         <div class="col-lg-4">
             <img src="http://placehold.it/200x200" class="img-circle" alt="profile_image"/>
         </div>
@@ -16,12 +16,12 @@
             </div>
 
             <!-- Name Form -->
-            <div id="nameRow" ng-click="toggleName()" class="row dataRow clickable">
+            <div id="nameRow" ng-click="toggleName()" class="row data-row clickable">
                 <p class="col-lg-2">Navn</p>
-                <p class="dataField col-lg-5">{{currentUser.name}}</p>
+                <p class="data-field col-lg-5">{{currentUser.name}}</p>
                 <i class="fa fa-edit col-lg-1 pull-right"></i>
             </div>
-            <div id="nameForm" class="row subForm">
+            <div id="nameForm" class="row sub-form">
                 <form class="form-inline" name="editNameForm">
                     <div class="form-group">
                         <label for="name">Navn</label>
@@ -32,12 +32,12 @@
             </div>
 
             <!-- Email Form -->
-            <div id="emailRow" ng-click="toggleEmail()" class="row dataRow clickable">
+            <div id="emailRow" ng-click="toggleEmail()" class="row data-row clickable">
                 <p class="col-lg-2">Epost</p>
-                <p class="dataField col-lg-5">{{currentUser.email}}</p>
+                <p class="data-field col-lg-5">{{currentUser.email}}</p>
                 <i class="fa fa-edit col-lg-1 pull-right"></i>
             </div>
-            <div id="emailForm" class="row subForm">
+            <div id="emailForm" class="row sub-form">
                 <form class="form-inline" name="editEmailForm">
                     <div class="form-group">
                         <label for="email">Email</label>
@@ -48,23 +48,23 @@
             </div>
 
             <!-- Password Form -->
-            <div id="passwordRow" ng-click="togglePassword()" class="row dataRow clickable">
+            <div id="passwordRow" ng-click="togglePassword()" class="row data-row clickable">
                 <p class="col-lg-2">Passord</p>
-                <p class="dataField col-lg-7">Sist endret {{currentUser.pwDateEdited}}</p>
+                <p class="data-field col-lg-7">Sist endret {{currentUser.pwDateEdited}}</p>
                 <i class="fa fa-edit col-lg-1 pull-right"></i>
             </div>
-            <div id="passwordForm" class="row subForm">
+            <div id="passwordForm" class="row sub-form">
                 <form name="editPasswordForm">
                     <div class="form-group">
-                        <label for="oldPassword">Gammelt passord</label><span class="requiredIcon" data-toggle="tooltip" title="Obligatorisk felt" data-placement="top">*</span>
+                        <label for="oldPassword">Gammelt passord</label><span class="required-icon" data-toggle="tooltip" title="Obligatorisk felt" data-placement="top">*</span>
                         <input type="password" class="form-control" id="oldPassword" ng-model="oldPassword" required>
                     </div>
                     <div class="form-group">
-                        <label for="newPassword">Nytt passord</label><span class="requiredIcon" data-toggle="tooltip" title="Obligatorisk felt" data-placement="top">*</span>
+                        <label for="newPassword">Nytt passord</label><span class="required-icon" data-toggle="tooltip" title="Obligatorisk felt" data-placement="top">*</span>
                         <input type="password" class="form-control" id="newPassword" ng-model="newPassword" required>
                     </div>
                     <div class="form-group">
-                        <label for="repeatNewPassword">Gjenta nytt passord</label><span class="requiredIcon" data-toggle="tooltip" title="Obligatorisk felt" data-placement="top">*</span>
+                        <label for="repeatNewPassword">Gjenta nytt passord</label><span class="required-icon" data-toggle="tooltip" title="Obligatorisk felt" data-placement="top">*</span>
                         <input type="password" class="form-control" id="repeatNewPassword" ng-model="repeatNewPassword" required>
                     </div>
                     <button type="submit" ng-disabled="editPasswordForm.$invalid" class="btn btn-primary pull-right" ng-click="changePassword()">Lagre</button>
@@ -72,12 +72,12 @@
             </div>
 
             <!-- Image Form -->
-            <div id="imageRow" ng-click="toggleImage()" class="row dataRow clickable">
+            <div id="imageRow" ng-click="toggleImage()" class="row data-row clickable">
                 <p class="col-lg-2">Profilbilde</p>
-                <p class="dataField col-lg-5">{{currentUser.profileImage}}</p>
+                <p class="data-field col-lg-5">{{currentUser.profileImage}}</p>
                 <i class="fa fa-edit col-lg-1 pull-right"></i>
             </div>
-            <div id="imageForm" class="row subForm">
+            <div id="imageForm" class="row sub-form">
                 <form class="form-inline" name="editProfileImageForm">
                     <div class="form-group">
                         <label for="image">Velg nytt profilbilde</label>

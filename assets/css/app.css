@@ -1,95 +1,144 @@
-/* ----- TABLE OF CONTENTS ----- */
-
-/* ----- CH1 generic ----- */
-/* ----- CH2 administerUsers ----- */
-/* ----- CH3 content ----- */
-/* ----- CH4 document ----- */
-/* ----- CH5 editor ----- */
-/* ----- CH6 login ----- */
-/* ----- CH7 main ----- */
-/* ----- CH8 myPage ----- */
-/* ----- CH9 toolbar ----- */
-/* ----- CH10 topic ----- */
-/* ----- CH11 Administer Fields ----- */
-
-
-/* ----- CH1 generic ----- */
-.requiredIcon{
-    color:red;
+/* --------------------------------------------- TABLE OF CONTENTS ------------------------------------- */
+/* ----- CH1 GENERIC ----- */
+/* ----- CH2 ADMINISTER_USERS ----- */
+/* ----- CH3 CONTENT ----- */
+/* ----- CH4 DOCUMENT ----- */
+/* ----- CH5 EDITOR ----- */
+/* ----- CH6 LOGIN ----- */
+/* ----- CH7 MAIN ----- */
+/* ----- CH8 MY_PAGE ----- */
+/* ----- CH9 TOOLBAR ----- */
+/* ----- CH10 TOPIC ----- */
+/* ----- CH11 ADMINISTER_FIELDS ----- */
+/*------------------------------------------------------------------------------------------------------ */
+/* ----------------------------------------------- CH1 GENERIC ----------------------------------------- */
+html,body {
+    max-width: 100%;
+    overflow-x: hidden;
+}
+h1,h2,h3,h4{ font-weight: bold;}
+.requi#c13a47-icon {
+    color:#c13a47;
     font-size: 20px;
     margin-left: 5px;
 }
 .relative{
     position: relative;
 }
-
 .absolute-bottom{
     position: absolute;
     bottom:0;
 }
-
-.absolute-top{
-    position: absolute;
-    top: 0;
-}
-
 .vcenter {
     display: inline-block;
     vertical-align: middle;
     float: none;
 }
-.vbottom{
-    display: inline-block;
-    vertical-align: sub;
-    float: none;
-}
 .btn-primary {
-    background-color: #0068e7;
-}
-
-.overflow-auto{
-    overflow: auto;
-}
-.height-500{
-    height: 500px;
+    background-color: #337ab7;
 }
 .height-800{
     height: 800px;
 }
-
-.input-right {
-    margin-left: 20%;
-}
-
 .half-width {
     width: 70%;
 }
-
-.widthSeventyPercent {
-    width: 70%;
-}
-
-.twelvePixVerticalPadding{
+.twelve-pix-vertical-padding {
     padding-top: 12px;
     padding-bottom: 12px;
 }
+.ten-pix-horizontal-padding {
+    padding-right: 10px;
+    padding-left: 10px;
+}
+.ten-pix-vertical-padding {
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+.clickable:hover {
+    cursor: pointer;
+    color: #337ab7;
+}
+.plus-icon {
+    font-size: large;
+    color: #337ab7;
+}
+.body_background {
+    background-color: #f3f3f3;
+}
+.center-align-text {
+    text-align: center;
+    display: table-cell;
+    vertical-align: middle;
+}
+.d1{color: #337ab7; font-size: 1.3em;}
+.d2{color: #c13a47; font-size: 1.3em;}
+.d3{color: #58a739; font-size: 1.3em;}
 
-/* ----- CH2 administerUsers ----- */
-#userList img{
+.selected-item {
+    font-weight: bold;
+    border-radius: 5px;
+    background-color: #e7e7e7;
+}
+.scrollable {
+    overflow-y: auto;
+}
+.shadow-below {
+    box-shadow: 0 1px #b8b8b8;
+}
+#notification-message {
+    width: 75%;
+    margin:0 auto;
+    background-color: #58a739;
+    border-radius: 10px;
+}
+#notification-message.alert-danger {
+    background-color: #c13a47;
+    border-color: #ebccd1;
+}
+#notification-message>a{
+    color: #ffffff;
+    font-weight: bolder;
+}
+
+#notification-container{
+    position: absolute;
+    width: 100%;
+    top: 3px;
+    left: 9.7%;
+}
+.nav-tabs {
+    border-color: #b8b8b8;
+}
+.z-index-high {
+    z-index: 1000000000;
+}
+.headline-box {
+    position: relative;
+    height: 50px;
+    overflow-x: auto;
+}
+.headline-box h4 {
+    position: absolute;
+    bottom: 0;
+}
+
+/* ------------------------------------------------ CH2 ADMINISTER_USERS ----------------------------------------- */
+#user-list img{
     width: 50px;
     height: 50px;
     border-radius: 50%;
     margin-top: 0.5em;
     margin-bottom: 0.5em;
 }
-.userRow{
+.user-row {
     border-radius: 50px;
     background-color: #fff;
     border: solid #ccc thin;
     width: 70%;
     margin: 0.5em;
 }
-#addUser{
+#add-user {
     color: #337AB7;
     border-radius: 50px;
     background-color: #fff;
@@ -98,131 +147,91 @@
     margin: 0.5em;
     padding: 1em;
 }
-#addUser:hover{
+#add-user:hover{
     background-color: #adadad;
     -webkit-transition: all 0.2s ease;
     -moz-transition: all 0.2s ease;
     -o-transition: all 0.2s ease;
     transition: all 0.2s ease;
 }
-.removeUser{
-    color: #f60e24;
+.remove-user {
+    color: #c13a47;
     font-size: 2em;
     padding-right: 1em;
 }
-.userRowName {
+.user-row-name {
     margin-left: 1em;
 }
-#administerUsersNotifications{
+#administer-users-notifications {
     margin-bottom: 5%;
+}
+textarea {
+    resize: none;
+}
+
+.administer-views {
+    height: 650px;
+    overflow-y: auto;
+    overflow-x: hidden;
 }
 
 
-
-
-
-
-/* ----- CH3 content ----- */
-
+/* -------------------------------------------- CH3 CONTENT ----------------------------------------- */
 .document-fields {
     overflow-y: hidden;
 }
+.content-view {
+    padding-top: 16px;
+}
+/*~~~~~~~~~~~~TARGET GROUP~~~~~~~~~~~*/
+.target-group-grid{
+    height: 750px;
+}
+.tg-tbody {
+    display: block;
+    overflow-y: auto;
+    overflow-x: hidden;
+    height: 600px;
+}
+.tg-thead {
+    background-color: #337ab7;
+    color: white;
+    display: block;
+    position:relative;
+    font-size: 13px;
+}
 
+.tg:nth-child(1) { width: 25.4%; }
+.tg:nth-child(2) { width: 34% }
+.tg:nth-child(3) { width: 8.6% }
+.tg:nth-child(4) { width: 18% }
+.tg:nth-child(5) { width: 7.5% }
+.tg:nth-child(6) { width: 5% }
 
-/* ----- CH4 document ----- */
-
-
-
-
+.table-hover tbody tr:hover td, .table-hover tbody tr:hover th {
+    background-color: #c7c7c7;
+}
+input[readonly], textarea[readonly]{
+    background-color: #e4e4e4 !important;
+}
+/* -------------------------------------------- CH4 DOCUMENT ----------------------------------------- */
 .document-fields-field-name{
     width:25%;
     display: inline-block;
 }
-
 .document-fields-field-value{
     width:60%;
     display: inline-block;
-
 }
-
 .document-fields-field-value input{
     width:100%;
 }
+
 
 .document-fields-field-remove{
     width:10%;
     display: inline-block;
 }
-
-.document-edit {
-    overflow-y: auto;
-    height: 545px;
-}
-
-.profile-bar {
-    -ms-transform: translate(-30px,0); /* IE 9 */
-    -webkit-transform: translate(-30px,0); /* Safari */
-    transform: translate(-30px,0);
-}
-
-.profiles-container {
-    box-shadow: 0 -3px 2px -2px #b8b8b8;
-    height: 120px;
-    width: 106%;
-    display: block;
-    white-space: nowrap;
-    overflow-x: auto;
-    overflow-y: hidden;
-    background-color: #e2e3f1;
-}
-
-.profile-container {
-    margin: 10px;
-    width: 100px;
-    display: inline-block;
-}
-
-.profile-icon {
-    color: #f60e24;
-    font-size: 1.5em;
-    text-align: center;
-}
-
-.profile-text {
-    width: 100px;
-    white-space: normal;
-    text-align: center;
-    font-size: 11px;
-}
-
-
-.new-profile-icon {
-    margin-top: 15px;
-    color: #f60e24;
-    font-size: 1.5em;
-    text-align: center;
-}
-
-.new-profile-container {
-    -ms-transform: translate(0,-15px); /* IE 9 */
-    -webkit-transform: translate(0,-15px); /* Safari */
-    transform: translate(0,-15px);
-    display: inline-block;
-}
-
-.new-profile-button {
-    height: 90px;
-    border: 1px dashed #f60e24;
-    border-radius: 15px;
-}
-
-.new-profile-button:hover {
-    background-color: #f5f5f5;
-    border-radius: 15px;
-    cursor: pointer;
-
-}
-
 
 
 .link-group-panel{
@@ -231,61 +240,229 @@
 .link-category-group{
     margin-bottom: 30px;
 }
+.standard-list {
+    margin-top: 10px;
+    margin-bottom: 25px;
+    height: 650px;
+    overflow-y: auto;
+}
+.file-browser {
+    padding: 20px 15px 20px 15px;
+    height: 800px;
+    background-color: #f3f3f3;
+    box-shadow: 1px 1px 2px 1px #b8b8b8;
+}
+
+/* Profile stuff(stian) */
+
+.editDocument {
+    overflow-y: auto;
+    height: 553px;
+}
+
+.newDocument {
+    overflow-y: auto;
+    height: 640px;
+}
+
+.editProfile {
+    overflow-y: auto;
+    height: 553px;
+}
+
+.newProfile {
+    overflow-y: auto;
+    height: 553px;
+}
+
+.profile-bar {
+    -ms-transform: translate(-28px,0); /* IE 9 */
+    -webkit-transform: translate(-28px,0); /* Safari */
+    transform: translate(-28px,0);
+}
+
+.profiles-container {
+    box-shadow: -3px -3px 2px -2px #b8b8b8;
+    height: 112px;
+    width: 105%;
+    display: block;
+    white-space: nowrap;
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding-left: 12px;
+}
+
+.profile-container {
+    padding-top: 20px;
+    margin-left: 6px;
+    margin-right: 6px;
+    padding-bottom: 20px;
+    width: 85px;
+    display: inline-block;
+    cursor: pointer;
+}
 
 
-/* ----- CH5 editor ----- */
+.profile-icon {
+    color: #c13a47;
+    font-size: 2.3em;
+    text-align: center;
+}
+
+.profile-text {
+    text-align: center;
+    font-size: 11px;
+    -o-text-overflow: ellipsis;   /* Opera */
+    text-overflow: ellipsis;      /* IE, Safari (WebKit) */
+    overflow: hidden;
+    white-space: nowrap;
+    width: 85px;
+}
+
+.new-profile-text{
+    text-align: center;
+    font-size: 11px;
+    width: 100px;
+}
 
 
-/* ----- CH6 login ----- */
+.new-profile-icon {
+    margin-top: 10px;
+    color: #c13a47;
+    font-size: 1.5em;
+    text-align: center;
+}
+
+.return-to-document-icon {
+    padding-top: 10px;
+    color: #337ab7;
+    font-size: 3.5em;
+    text-align: center;
+    width: 100px;
+    cursor: pointer;
+}
+
+.new-profile-container {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    margin-left: 5px;
+    margin-right: 5px;
+    display: inline-block;
+}
+
+.new-profile-button {
+    height: 85px;
+    border: 1px dashed #d5d5d5;
+    border-radius: 15px;
+    background-color: white;
+}
+
+.new-profile-button:hover {
+    background-color: #ffe1e1;
+    cursor: pointer;
+    padding-bottom: 20px;
+}
+
+.selected-profile {
+    font-weight: bolder;
+    color: #e7e7e7;
+    background-color: #c13a47;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    border-radius: 2px;
+}
+
+.selected-profile-icon {
+    color: white;
+}
+
+.panel1 {
+    color: white;
+    background-color: #337ab7;
+}
+.panel2 {
+    color: white;
+    background-color: #c13a47;
+}
+.panel3 {
+    color: white;
+    background-color: #58a739;
+}
+
+.panel-border1 {
+    border-color: #337ab7;
+}
+.panel-border2 {
+    border-color: #c13a47;
+}
+.panel-border3 {
+    border-color: #58a739;
+}
+
+/* -------------------------------------------- CH5 EDITOR ----------------------------------------- */
+.editor-display {
+    max-width: 1800px;
+    margin: auto;
+    height: 800px;
+    background-color: #f3f3f3;
+    border-radius: 10px;
+    box-shadow: 1px 1px 2px 2px #b8b8b8;
+}
+/* -------------------------------------------- CH6 LOGIN ----------------------------------------- */
 .login-page button{
     margin-bottom: 1em;
 }
-
-/* ----- CH7 main ----- */
-
-.mainLogo {
-    width: 200px;
-    height: auto;
+.login-page {
+    width: 300px;
+    height: 300px;
+    position: absolute;
+    top:0;
+    bottom: 0;
+    left: 0;
+    right: 0;
     margin: auto;
-    margin-left: 2%;
+}
+/* -------------------------------------------- CH7 MAIN ----------------------------------------- */
+.main-logo {
+    width: 22%;
+    height: auto;
+    display: inline-block;
 }
 
-
-/* ----- CH8 myPage ----- */
-#accountInfo{
+/* -------------------------------------------- CH8 MY_PAGE ----------------------------------------- */
+#account-info {
     margin-top: 5%;
 }
-.dataField{
+.data-field {
     display: inline;
 }
-.dataRow:hover{background-color: #E6E6E6;}
+.data-row:hover{background-color: #E6E6E6;}
 
-.dataRow{
+.data-row {
     width: 75%;
     margin-left: 5%;
 }
-.dataRow>*{
+.data-row >*{
     padding: 10px;
     margin: 0;
 }
-.subForm{
+.sub-form {
     width: 75%;
     margin-left: 5%;
     padding: 2% 7% 5% 0;
     background-color: #E6E6E6;
 }
-.subForm>*{
+.sub-form >*{
     padding-left: 5%;
 }
-.activeRow{
+.active-row {
     font-weight: bolder;
-    color: dodgerblue;
+    color: #337ab7;
     background-color: #E6E6E6;
     border-bottom: inset;
     border-color: #ccc;
 }
-
-/* ----- CH9 toolbar ----- */
+/* -------------------------------------------- CH9 TOOLBAR ----------------------------------------- */
 div>div>.dropdown-toggle{
     margin-bottom: 0.5em;
     background-color: inherit;
@@ -297,71 +474,70 @@ div>div>.dropdown-toggle:hover{
 .navElementMargin{
     margin-right: 0.5em;
 }
-
-#editorNav{
+#editor-nav {
     background-color: #f3f3f3;
     border-radius: 10px;
     box-shadow: 1px 1px 1px 1px #b8b8b8;
-    margin-left: 7%;
-    margin-right: 0;
+    display: inline-block;
+    width:75%;
 }
-
 #searchbar {
     width: 365px;
 }
-/* ----- CH10 topic ----- */
-
+/* -------------------------------------------- CH10 TOPIC ----------------------------------------- */
 .edit-topic-icon {
     font-size: large;
-    color: #0068e7;
+    color: #ffffff;
 }
-
 .delete-topic-icon {
     font-size: large;
-    color: red;
+    color: #c13a47;
 }
 .delete-target-group-icon{
     font-size: large;
-    color: red;
+    color: #c13a47;
     padding-top: 10px;
 }
-
-/* topic end */
-
-/* ----- CH11 Administer fields ----- */
-
-.edit-field-text {
-    margin-right: 10px;
-    margin-left: 200px;
+.topic-browser {
+    padding: 20px 15px 15px 15px;
+    height: 800px;
 }
-
+.topic-list{
+    overflow-y: auto;
+    height: 650px;
+}
+.sub-topic {
+    padding-left: 10px;
+}
+.standard-icon {
+    color: #337ab7;
+}
+.item-text {
+    color: #0f0f0f;
+    padding: 5px;
+}
+.new-topic {
+    width: 400px;
+}
+/* -------------------------------------------- CH11 ADMINISTER_FIELDS ----------------------------------------- */
 .administer-fields ul{
     margin: 0;
     padding: 0;
 }
-
 .administer-fields li{
     text-decoration: none;
     list-style-type: none;
-    cursor: move;
 }
-
 .administer-fields .field-list-title{
     display: inline-block;
+    background-color: #337ab7;
+    color: white;
 }
-
-.field-mandatory {
-    display: inline-block;
-    margin-left: 40px;
-}
-
 .edit-field{
     font-size: 2em;
     padding-right: 1em;
 }
-
 span.field-item{
-    border-bottom: 1px solid black;
     border-top: none;
     border-left: none;
     border-right: none;
@@ -369,16 +545,17 @@ span.field-item{
     box-shadow: none;
     font-weight: 700;
 }
-
 .field-item{
     border: 1px none;
     box-shadow: 1px 1px 1px 1px #b8b8b8;
     border-radius: 10px;
     margin-bottom: 8px;
+    margin-left: 0.5%;
+    margin-top: 0.5%;
     padding:10px;
-    width: 100%;
-}
+    width: 99%;
 
+}
 .administer-fields .field-item .field-item-field:nth-child(1), .administer-fields .field-item input:nth-child(2){
     width:150px;
     display: inline-block;
@@ -388,13 +565,10 @@ span.field-item{
     width:400px;
     display: inline-block;
 }
-
-
 .draggable:hover {
     background-color: #f9f9f9;
 }
-
-.addField {
+.add-field {
     border-radius: 10px;
     padding-top: 10px;
     padding-bottom: 10px;
@@ -403,12 +577,11 @@ span.field-item{
     margin-top: 20px;
     margin-left: 0;
     margin-right: 79%;
-    background-color: #0068e7;
+    background-color: #337ab7;
     color: white;
     box-shadow: 1px 1px 1px 1px #b8b8b8;
 }
-
-.addField:hover{
+.add-field:hover{
     background-color: #0099f9;
     cursor: pointer;
     -webkit-transition: all 0.2s ease;
@@ -417,21 +590,21 @@ span.field-item{
     transition: all 0.2s ease;
 }
 
-/* ----- Administer fields end ----- */
-
-
-.topic-browser {
-    padding: 20px 15px 15px 15px;
-    height: 800px;
-}
-
-.topic-list{
+.field-list {
+    height: 540px;
     overflow-y: auto;
-    height: 650px;
 }
 
+
+/* -------- AdministerActions -------- */
+.administer-actions, .administer-status, .administer-link-categories, .administer-mandatory{
+    width: 90%;
+}
+
+.action-list-item {
+    display: inline-block;
+}
 .navigation-bar {
-    min-height: 40px;
     max-width: 1800px;
     margin: auto;
 }
@@ -471,7 +644,7 @@ span.field-item{
 /*}*/
 
 .standard-icon {
-    color: #0068e7;
+    color: #337ab7;
 }
 .item-text {
     color: #0f0f0f;
@@ -479,7 +652,7 @@ span.field-item{
 }
 .plus-icon-standard {
     font-size: large;
-    color: #0068e7;
+    color: #337ab7;
 }
 
 .delete-icon-standard {
@@ -489,7 +662,7 @@ span.field-item{
 
 .plus-icon-profile {
     font-size: large;
-    color: #f60e24;
+    color: #c13a47;
 }
 
 .plus-icon-utilityDocument{
@@ -543,7 +716,7 @@ textarea {
 
 .clickable:hover {
     cursor: pointer;
-    color: dodgerblue;
+    color: #337ab7;
 }
 
 .standard-list {
@@ -555,9 +728,9 @@ textarea {
 
 
 /*-----------Document Icon colors---------*/
-.d1{color: #0068e7; font-size: 1.3em;}
-.d2{color: #f60e24; font-size: 1.3em;}
-.d3{color: forestgreen; font-size: 1.3em;}
+.d1{color: #337ab7; font-size: 1.3em;}
+.d2{color: #c13a47; font-size: 1.3em;}
+.d3{color: #58a739; font-size: 1.3em;}
 
 .nopadding {
     padding: 0 !important;
@@ -673,7 +846,7 @@ div>div>.dropdown-toggle:hover{
 }
 .activeRow{
     font-weight: bolder;
-    color: dodgerblue;
+    color: #337ab7;
     background-color: #E6E6E6;
     border-bottom: inset;
     border-color: #ccc;
@@ -701,15 +874,15 @@ div>div>.dropdown-toggle:hover{
 }
 
 .tg-thead {
-    background-color: #0068e7;
+    background-color: #337ab7;
     color: white;
     display: block;
     position:relative;
-    font-size: 13px;
+    font-size: 14px;
 }
 
-.tg:nth-child(1) { width: 25.4%; }
-.tg:nth-child(2) { width: 34% }
+.tg:nth-child(1) { width: 25% }
+.tg:nth-child(2) { width: 32.3% }
 .tg:nth-child(3) { width: 8.6% }
 .tg:nth-child(4) { width: 18% }
 .tg:nth-child(5) { width: 7.5% }
@@ -763,7 +936,7 @@ input[readonly], textarea[readonly]{
     float: none;
 }
 .removeUser{
-    color: #f60e24;
+    color: #c13a47;
     font-size: 2em;
     padding-right: 1em;
 }
@@ -775,4 +948,22 @@ input[readonly], textarea[readonly]{
 }
 /* Administer Users end */
 
-/* Document
+/* Document */
+
+
+/* BIGGER CHECKBOX */
+input[type=checkbox] {
+    transform: scale(1.5);
+    -ms-transform: scale(1.5);
+    -webkit-transform: scale(1.5);
+    padding: 100px;
+}
+
+
+.ehese-navbar {
+    margin: 3px;
+}
+
+input.ng-invalid-requi#c13a47{
+    background-color: rgba(255,0,0,0.3);
+}
