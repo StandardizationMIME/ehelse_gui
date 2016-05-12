@@ -143,7 +143,6 @@ angular.module('ehelseEditor').factory('Document', ['$rootScope', 'DocumentField
                     generateTopicsDocumentsDict(documents);
                     setCurrentDocument(data);
                     $rootScope.notifySuccess("Ny standard ble opprettet", 3000);
-                    $rootScope.buttonState = 'editDocument';
                 }
                 ,
                 function (data) {
@@ -174,6 +173,14 @@ angular.module('ehelseEditor').factory('Document', ['$rootScope', 'DocumentField
         $rootScope.delete(
             'documents/' + current_document.id,
             function(){
+                if(current_document.standardId){
+                    var sib = documents_dict[current_document.standardId].profiles;
+                    for(var i = 0; i < sib.length; i++){
+                        if(current_document.id == sib[i].id){
+                            sib.splice(i,1);
+                        }
+                    }
+                }
                 deleteCurrentDocumentFromDocumentsList();
                 $rootScope.notifySuccess("Dokumentet ble slettet", 3000);
                 $rootScope.changeContentView('');
@@ -280,6 +287,9 @@ angular.module('ehelseEditor').factory('Document', ['$rootScope', 'DocumentField
     }
 
     function getDocumentsByTopicId(id) {
+        if(!Array.isArray(topics_documents_dict[id])){
+            topics_documents_dict[id] = [];
+        }
         return topics_documents_dict[id];
     }
 
@@ -399,7 +409,7 @@ angular.module('ehelseEditor').factory('Document', ['$rootScope', 'DocumentField
         var document;
         for(var i = 0; i < documents.length; i++){
             document = documents[i];
-            if(!topics_documents_dict[document.topicId]){
+            if(!Array.isArray(topics_documents_dict[document.topicId])){
                 topics_documents_dict[document.topicId] = [];
             }
             topics_documents_dict[document.topicId].push(document);
