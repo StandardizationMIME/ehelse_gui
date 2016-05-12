@@ -173,6 +173,14 @@ angular.module('ehelseEditor').factory('Document', ['$rootScope', 'DocumentField
         $rootScope.delete(
             'documents/' + current_document.id,
             function(){
+                if(current_document.standardId){
+                    var sib = documents_dict[current_document.standardId].profiles;
+                    for(var i = 0; i < sib.length; i++){
+                        if(current_document.id == sib[i].id){
+                            sib.splice(i,1);
+                        }
+                    }
+                }
                 deleteCurrentDocumentFromDocumentsList();
                 $rootScope.notifySuccess("Dokumentet ble slettet", 3000);
                 $rootScope.changeContentView('');
