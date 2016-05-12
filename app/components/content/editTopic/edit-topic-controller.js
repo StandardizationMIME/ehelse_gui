@@ -10,6 +10,7 @@ angular.module('ehelseEditor').controller('EditTopicController', [ '$scope','$ro
 
     $rootScope.deleteTopic = function(topic){
         Topic.deleteById(topic.id);
+        $rootScope.changeContentView('');
     };
 
 }]);
