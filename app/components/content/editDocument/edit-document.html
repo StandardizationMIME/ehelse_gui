@@ -23,13 +23,13 @@
                 <span class="fa fa-check-circle-o edit-topic-icon"></span>
                 Lagre dokument
             </button>
-            <button type="button" class="btn btn-default pull-right" ng-if="(buttonState == 'editProfile' || buttonState == 'editDocument') && !document.nextDocumentId" ng-click="newVersion(document)">
-                <span class="fa fa-clone"></span>
-                Ny versjon
-            </button>
             <button type="button" class="btn btn-danger pull-right" ng-if="buttonState == 'editProfile' || buttonState == 'editDocument'" ng-click="openConfirmationModal('Er du sikker på at du vil slette dokumentet?', document, deleteDocument)">
                 <span class="fa fa-remove"></span>
                 Slett dokument
+            </button>
+            <button type="button" class="btn btn-default pull-right" ng-if="(buttonState == 'editProfile' || buttonState == 'editDocument') && !document.nextDocumentId" ng-click="newVersion(document)">
+                <span class="fa fa-clone"></span>
+                Ny versjon
             </button>
         </p>
     </div>
