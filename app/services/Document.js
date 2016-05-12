@@ -209,7 +209,9 @@ angular.module('ehelseEditor').factory('Document', ['$rootScope', 'DocumentField
     }
 
     function deleteCurrentDocumentFromDocumentsList() {
-        documents_dict[current_document.nextDocumentId].previousDocumentId = null;
+        if(documents_dict[current_document.nextDocumentId]){
+            documents_dict[current_document.nextDocumentId].previousDocumentId = null;
+        }
         for (var i = 0; i < documents.length; i++) {
             if (documents[i].id == current_document.id) {
                 documents.splice(i,1);
