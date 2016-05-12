@@ -17,10 +17,5 @@ angular.module('ehelseEditor').controller('TopicController',['$rootScope', '$sco
     };
 
 
-
-
-
-
-
 }]);
 
