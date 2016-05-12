@@ -91,7 +91,7 @@ angular.module('ehelseEditor').controller('MyPageController', ['$scope', '$rootS
                         $rootScope.password = $scope.newPassword;
                     },
                     function () {
-                        $rootScope.notifyError("Passordet ble ikke endret.",6000);
+                        $rootScope.notifyError("Passordet ble ikke endret.",3000);
                     }
                 );
             } else {
