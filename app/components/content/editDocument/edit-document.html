@@ -1,5 +1,7 @@
 <form ng-controller="EditDocumentController" name="EditDocumentController.DocumentForm"  role="form">
 
+
+
     <div class="shadow-below">
         <div class="headline-box">
             <h4 class="selected" ng-if="buttonState == 'editTopic'">Rediger tema</h4>
@@ -22,19 +24,30 @@
                 Lagre dokument
             </button>
             <button type="button" class="btn btn-default pull-right" ng-if="(buttonState == 'editProfile' || buttonState == 'editDocument') && !document.nextDocumentId" ng-click="newVersion(document)">
-                <span class="fa fa-remove delete-topic-icon ten-pix-horizontal-padding"></span>
+                <span class="fa fa-clone"></span>
                 Ny versjon
             </button>
-            <button type="button" class="btn btn-default pull-right" ng-if="buttonState == 'editProfile' || buttonState == 'editDocument'" ng-click="openConfirmationModal('Er du sikker på at du vil slette dokumentet?', document, deleteDocument)">
-                <span class="fa fa-remove delete-topic-icon ten-pix-horizontal-padding"></span>
+            <button type="button" class="btn btn-danger pull-right" ng-if="buttonState == 'editProfile' || buttonState == 'editDocument'" ng-click="openConfirmationModal('Er du sikker på at du vil slette dokumentet?', document, deleteDocument)">
+                <span class="fa fa-remove"></span>
                 Slett dokument
             </button>
         </p>
     </div>
     <div id="document-edit" class="{{buttonState}}">
 
+        <button type="button" class="btn btn-default " ng-if="document.nextDocumentId" ng-click="openDocumentById(document.nextDocumentId)">
+            <span class="fa "></span>
+            Neste versjon
+        </button>
+        <button type="button" class="btn btn-default " ng-if="document.previousDocumentId" ng-click="openDocumentById(document.previousDocumentId)">
+            <span class="fa "></span>
+            Tidligere versjon
+        </button>
+        
         <div class="panel panel-default">
             <div class="panel-body">
+
+
 
                 <!-- choose document type -->
                 <div class="form-group">
@@ -126,14 +139,7 @@
             </div>
         </div>
 
-        <button type="button" class="btn btn-default " ng-if="document.nextDocumentId" ng-click="openDocumentById(document.nextDocumentId)">
-            <span class="fa "></span>
-            Neste versjon
-        </button>
-        <button type="button" class="btn btn-default " ng-if="document.previousDocumentId" ng-click="openDocumentById(document.previousDocumentId)">
-            <span class="fa "></span>
-            Tidligere versjon
-        </button>
+
 
 
         <!-- Choose document fields -->
