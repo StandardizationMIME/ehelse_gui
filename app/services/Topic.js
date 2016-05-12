@@ -108,8 +108,14 @@ angular.module('ehelseEditor').factory('Topic', ['$rootScope', function($rootSco
 
     function removeById(id){
         var element = topics_dict[id];
-        var siblings = topics_dict[element.parentId].children;
-        removeElementFromArray(element, siblings);
+        if(topics_dict[element.parentId]){
+            var siblings = topics_dict[element.parentId].children;
+            removeElementFromArray(element, siblings);
+        }
+        else{
+            removeElementFromArray(element, topics);
+        }
+
     }
 
     function removeElementFromArray(element, array){
