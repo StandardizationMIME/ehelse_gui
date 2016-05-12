@@ -89,7 +89,7 @@ angular.module('ehelseEditor').factory('Topic', ['$rootScope', function($rootSco
 
                 },
                 function(data){
-                    $rootScope.notifyError('Tema ble ikke oppdatert.',3000);
+                    $rootScope.notifyError('Tema ble ikke oppdatert.',6000);
                 });
         }
         else{
@@ -100,7 +100,7 @@ angular.module('ehelseEditor').factory('Topic', ['$rootScope', function($rootSco
                     $rootScope.notifySuccess('Ny tema ble opprettet.',3000);
                     addTopic(data);
                 },function(){
-                    $rootScope.notifyError('Tema ble ikke opprettet.',3000);
+                    $rootScope.notifyError('Tema ble ikke opprettet.',6000);
                 }
             );
         }
@@ -165,7 +165,7 @@ angular.module('ehelseEditor').factory('Topic', ['$rootScope', function($rootSco
 
                 },
                 function(data){
-                    $rootScope.notifyError('Topic ble ikke fjernet.',3000);
+                    $rootScope.notifyError('Topic ble ikke fjernet.',6000);
                 });
         }
     }

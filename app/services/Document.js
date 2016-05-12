@@ -120,7 +120,7 @@ angular.module('ehelseEditor').factory('Document', ['$rootScope', 'DocumentField
                 function (data) {
                     var error = getErrorMessage(data);
                     setCurrentDocument(current_document);
-                    $rootScope.notifyError("Dokumentet kunne ikke opprettes: " + error, 3000);
+                    $rootScope.notifyError("Dokumentet kunne ikke opprettes: " + error, 6000);
                 }
             );
         }
@@ -149,7 +149,7 @@ angular.module('ehelseEditor').factory('Document', ['$rootScope', 'DocumentField
                 function (data) {
                     var error = getErrorMessage(data);
                     setCurrentDocument(current_document);
-                    $rootScope.notifyError("Dokumentet kunne ikke opprettes: " + error, 3000);
+                    $rootScope.notifyError("Dokumentet kunne ikke opprettes: " + error, 6000);
                 }
             );
         }
@@ -175,12 +175,12 @@ angular.module('ehelseEditor').factory('Document', ['$rootScope', 'DocumentField
             'documents/' + current_document.id,
             function(){
                 deleteCurrentDocumentFromDocumentsList();
-                $rootScope.notifySuccess("Dokumentet ble slettet", 5000);
+                $rootScope.notifySuccess("Dokumentet ble slettet", 3000);
                 $rootScope.changeContentView('');
             },
             function(){
                 console.log("Document could not be deleted");
-                $rootScope.notifyError("Dokument kunne ikke bli slettet", 5000);
+                $rootScope.notifyError("Dokument kunne ikke bli slettet", 6000);
             }
         )
     }

@@ -72,7 +72,7 @@ angular.module('ehelseEditor').factory('Action', ['$rootScope', function($rootSc
 
                 },
                 function(data){
-                    $rootScope.notifyError('Handling ble ikke oppdatert.',3000);
+                    $rootScope.notifyError('Handling ble ikke oppdatert.',6000);
                 });
         }
         else{
@@ -83,7 +83,7 @@ angular.module('ehelseEditor').factory('Action', ['$rootScope', function($rootSc
                     $rootScope.notifySuccess('Ny handling ble opprettet.',3000);
                     add(data);
                 },function(){
-                    $rootScope.notifyError('Handling ble ikke opprettet.',3000);
+                    $rootScope.notifyError('Handling ble ikke opprettet.',6000);
                 }
             );
         }
@@ -108,7 +108,7 @@ angular.module('ehelseEditor').factory('Action', ['$rootScope', function($rootSc
 
             },
             function(){
-                $rootScope.notifyError("Kunne ikke slette", 3000);
+                $rootScope.notifyError("Kunne ikke slette", 6000);
             }
 
         );

@@ -9,11 +9,11 @@ angular.module('ehelseEditor').controller('DocumentFieldModalController', [ '$sc
                 console.log("Field has been edited");
                 console.log(data);
                 console.log(field);
-                $rootScope.notifySuccess("Endring har blitt lagret", 5000);
+                $rootScope.notifySuccess("Endring har blitt lagret", 3000);
             },
             function(){
                 console.log("Error: Change could not be saved.");
-                $rootScope.notifyError("Error: Endring ble ikke lagret!", 5000);
+                $rootScope.notifyError("Error: Endring ble ikke lagret!", 6000);
             }
         );
     };
@@ -25,11 +25,11 @@ angular.module('ehelseEditor').controller('DocumentFieldModalController', [ '$sc
             function(data){
                 console.log("Field has been created");
                 console.log(data);
-                $rootScope.notifySuccess("Felt har blitt opprettet", 5000);
+                $rootScope.notifySuccess("Felt har blitt opprettet", 3000);
             },
             function(){
                 console.log("Error: Field could not be created.");
-                $rootScope.notifyError("Error: Felt ble ikke opprettet!", 5000);
+                $rootScope.notifyError("Error: Felt ble ikke opprettet!", 6000);
             });
     };
 
