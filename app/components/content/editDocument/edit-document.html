@@ -42,8 +42,8 @@
                     <div class="form-group col-sm-9">
                         <select name="documentType" id="documentType"
                                 ng-change="setCurrentDocumentFieldsByDocumentDocumentTypeId();"
-                                ng-model="document.documentTypeId" class="form-control half-width">
-                            <option ng-repeat="document_type in document_types_option_list"
+                                ng-model="document.documentTypeId" class="form-control half-width" ng-disabled="buttonState == 'editDocument' || buttonState == 'newProfile' || buttonState == 'editProfile'">
+                            <option ng-repeat="document_type in document_types_option_list" ng-if="document_type.value == '1' && !document.standardId || document_type.value == '2' && document.standardId || document_type.value == '3'  && !document.standardId"
                                     value="{{document_type.value}}">{{document_type.name}}
                             </option>
                         </select>
