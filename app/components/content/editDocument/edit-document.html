@@ -21,7 +21,7 @@
                 <span class="fa fa-check-circle-o edit-topic-icon"></span>
                 Lagre dokument
             </button>
-            <button type="button" class="btn btn-default pull-right" ng-if="buttonState == 'editProfile' || buttonState == 'editDocument'" ng-click="newVersion(document)">
+            <button type="button" class="btn btn-default pull-right" ng-if="(buttonState == 'editProfile' || buttonState == 'editDocument') && !document.nextDocumentId" ng-click="newVersion(document)">
                 <span class="fa fa-remove delete-topic-icon ten-pix-horizontal-padding"></span>
                 Ny versjon
             </button>
@@ -116,6 +116,15 @@
 
             </div>
         </div>
+
+        <button type="button" class="btn btn-default " ng-if="document.nextDocumentId" ng-click="openDocumentById(document.nextDocumentId)">
+            <span class="fa "></span>
+            Neste versjon
+        </button>
+        <button type="button" class="btn btn-default " ng-if="document.previousDocumentId" ng-click="openDocumentById(document.previousDocumentId)">
+            <span class="fa "></span>
+            Tidligere versjon
+        </button>
 
 
         <!-- Choose document fields -->
