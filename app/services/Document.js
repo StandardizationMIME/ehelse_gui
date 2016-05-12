@@ -143,7 +143,6 @@ angular.module('ehelseEditor').factory('Document', ['$rootScope', 'DocumentField
                     generateTopicsDocumentsDict(documents);
                     setCurrentDocument(data);
                     $rootScope.notifySuccess("Ny standard ble opprettet", 3000);
-                    $rootScope.buttonState = 'editDocument';
                 }
                 ,
                 function (data) {
