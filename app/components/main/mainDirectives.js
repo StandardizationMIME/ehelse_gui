@@ -2,19 +2,19 @@ angular.module('ehelseEditor')
     .directive('toolbar',function(){
         return{
             restrict: 'E',
-            templateUrl: 'app/components/toolbar/toolbar-view.html'
+            templateUrl: 'app/components/toolbar/toolbarView.html'
         };
     })
     .directive('editorview',function(){
         return{
             restrict: 'E',
-            templateUrl: 'app/components/editor/editor-view.html'
+            templateUrl: 'app/components/editor/editorView.html'
         };
     })
     .directive('notification',function(){
         return{
             restrict: 'E',
-            templateUrl: 'app/components/main/notification/notification-view.html'
+            templateUrl: 'app/components/main/notification/notificationView.html'
         };
     })
     .directive('stringToNumber', function() {

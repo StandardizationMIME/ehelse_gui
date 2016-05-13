@@ -4,7 +4,7 @@ angular.module('ehelseEditor').controller('TopicController',['$rootScope', '$sco
     $scope.topics = Topic.getAll();
     $scope.showNewTopicModal = function () {
         $rootScope.shouldBeOpen = true;
-        $rootScope.openModal('app/components/topic/addTopic/new-topic-view.html', 'NewTopicModalController');
+        $rootScope.openModal('app/components/topic/addTopic/newTopicView.html', 'NewTopicModalController');
     };
 
     $rootScope.topic = {

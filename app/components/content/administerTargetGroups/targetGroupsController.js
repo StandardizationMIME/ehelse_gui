@@ -8,12 +8,12 @@ angular.module('ehelseEditor').controller('TargetGroupsController',['$scope','Mo
     $scope.showEditTGModal = function(group){
         $rootScope.shouldBeOpen = true;
         $rootScope.editGroup = TargetGroup.clone(group);
-        $rootScope.openModal('app/components/content/administerTargetGroups/editTargetGroups/edit-target-group-modal.html', 'EditTargetGroupController');
+        $rootScope.openModal('app/components/content/administerTargetGroups/editTargetGroups/editTargetGroupModal.html', 'EditTargetGroupController');
     };
 
     $scope.showNewTGModal = function () {
         $rootScope.shouldBeOpen = true;
-        $rootScope.openModal('app/components/content/administerTargetGroups/addTargetGroups/new-target-group-modal.html', 'NewTargetGroupController');
+        $rootScope.openModal('app/components/content/administerTargetGroups/addTargetGroups/newTargetGroupModal.html', 'NewTargetGroupController');
     };
 
 }]);

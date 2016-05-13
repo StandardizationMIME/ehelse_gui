@@ -6,7 +6,7 @@ angular.module('ehelseEditor').controller('AdministerLinkCategoriesController',[
 
     $scope.showNewLinkCategoryModal = function(){
         $rootScope.shouldBeOpen = true;
-        $rootScope.openModal('app/components/content/administerLinkCategories/addEditLinkCategories/add-link-category-modal.html','AddEditLinkCategoriesController');
+        $rootScope.openModal('app/components/content/administerLinkCategories/addEditLinkCategories/addLinkCategoryModal.html','AddEditLinkCategoriesController');
     };
 
     $scope.deleteLinkCategoryById = LinkCategory.delete;
@@ -14,7 +14,7 @@ angular.module('ehelseEditor').controller('AdministerLinkCategoriesController',[
     $scope.showEditLinkCategoryModal = function (linkCategoryId) {
         $rootScope.currentLinkCategory = LinkCategory.clone(LinkCategory.getById(linkCategoryId));
         $rootScope.shouldBeOpen = true;
-        $rootScope.openModal('app/components/content/administerLinkCategories/addEditLinkCategories/edit-link-category-modal.html', 'AddEditLinkCategoriesController');
+        $rootScope.openModal('app/components/content/administerLinkCategories/addEditLinkCategories/editLinkCategoryModal.html', 'AddEditLinkCategoriesController');
 
 
     };

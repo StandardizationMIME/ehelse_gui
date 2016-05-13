@@ -1,28 +1,28 @@
 angular.module('ehelseEditor').directive('standardfields',function () {
     return{
         restrict: 'E',
-        templateUrl: 'app/components/content/administerFields/directives/standard-fields.html'
+        templateUrl: 'app/components/content/administerFields/directives/standardFields.html'
     };
 });
 
 angular.module('ehelseEditor').directive('profilefields',function () {
     return{
         restrict: 'E',
-        templateUrl: 'app/components/content/administerFields/directives/profile-fields.html'
+        templateUrl: 'app/components/content/administerFields/directives/profileFields.html'
     };
 });
 
 angular.module('ehelseEditor').directive('supportdocumentfields',function () {
     return{
         restrict: 'E',
-        templateUrl: 'app/components/content/administerFields/directives/support-document-fields.html'
+        templateUrl: 'app/components/content/administerFields/directives/supportDocumentFields.html'
     };
 });
 
 angular.module('ehelseEditor').directive('profilescontainer',function () {
     return{
         restrict: 'E',
-        templateUrl: 'app/components/content/editDocument/profiles/profiles-container.html'
+        templateUrl: 'app/components/content/editDocument/profiles/profilesContainer.html'
     };
 });
 
