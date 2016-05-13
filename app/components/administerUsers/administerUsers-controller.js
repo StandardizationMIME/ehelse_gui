@@ -14,6 +14,7 @@ angular.module('ehelseEditor').controller('AdministerUsersController', ['$scope'
     };
 
     $scope.deleteUser = function (user) {
+        $rootScope.shouldBeOpen = true;
         $rootScope.userToDelete = user;
         $scope.openModal('app/components/administerUsers/deleteUser/delete-user-modal-view.html', 'DeleteUserModalController');
     };
