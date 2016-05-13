@@ -17,7 +17,7 @@
                     </div>
                     <div class="form-group">
                         <label for="sequence">Rekkefølge: <span class="required-icon" data-toggle="tooltip" title="Obligatorisk felt" data-placement="top">*</span></label>
-                        <input type="number" string-to-number name="sequence" id="sequence" class="form-control" ng-model="newTopic.sequence" />
+                        <input type="number" min="1" string-to-number name="sequence" id="sequence" class="form-control" ng-model="newTopic.sequence" />
                     </div>
                     <div class="form-group" >
                         <label for="topicParent">Opprett tema under: </label>
