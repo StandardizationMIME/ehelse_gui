@@ -7,17 +7,16 @@
             <ul id="new-doc-fields" class="list-group">
                 <li class="list-group-item" ng-repeat="field in document.fields">
                     <span class="document-fields-field-name">{{fields_dict[field.fieldId].name}}
-                    <span ng-if="fields_dict[field.fieldId].mandatory === '1'" class="required-icon" data-toggle="tooltip" title="" data-placement="top" data-original-title="Obligatorisk felt">*</span>
+                    <span ng-if="fields_dict[field.fieldId].mandatory == 1" class="required-icon" data-toggle="tooltip" title="" data-placement="top" data-original-title="Obligatorisk felt">*</span>
                     </span>
                     <span class="document-fields-field-value">
                         <input required type="text" name="f{{field.id}}" ng-model="field.value">
                     </span>
-                    <span ng-if="fields_dict[field.fieldId].mandatory === '0'" class="fa fa-remove pull-right delete-topic-icon clickable" ng-click="removeField(field)"></span>
+                    <span ng-if="fields_dict[field.fieldId].mandatory == 0" class="fa fa-remove pull-right delete-topic-icon clickable" ng-click="removeField(field)"></span>
                 </li>
             </ul>
 
             <button type="button" class="btn btn-default" ng-click="openModal('app/components/content/editDocument/fields/addDocumentFieldsModal.html', 'AddDocumentFieldsController')"><span class="fa fa-plus-circle plus-icon"></span> Legg til felter</button>
-
         </div>
     </div>
 </div>

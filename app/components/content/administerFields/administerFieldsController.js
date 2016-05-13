@@ -1,11 +1,8 @@
-'use strict';
+"use strict";
 
-angular.module('ehelseEditor').controller('AdministerFieldsController', ['$scope', '$rootScope', 'DocumentField', function ($scope, $rootScope, DocumentField) {
+angular.module("ehelseEditor").controller("AdministerFieldsController", ["$scope", "$rootScope", "DocumentField", function ($scope, $rootScope, DocumentField) {
 
     $scope.documentFields = DocumentField.document_fields;
-
-    console.log($scope.documentFields);
-
 
     $rootScope.setTypeId = function(number){
         $rootScope.typeId = number;
@@ -31,9 +28,9 @@ angular.module('ehelseEditor').controller('AdministerFieldsController', ['$scope
         DocumentField.getFieldById(
             id,
             function(data){
-                if(data.mandatory == '0'){
+                if(data.mandatory == "0"){
                     data.mandatory = false;
-                }else if(data.mandatory == '1'){
+                }else if(data.mandatory == "1"){
                     data.mandatory = true;
                 }
                 $rootScope.currentDocumentField = data;
@@ -47,29 +44,29 @@ angular.module('ehelseEditor').controller('AdministerFieldsController', ['$scope
     $scope.editDocumentFieldModal = function(fieldId) {
         $scope.getDocumentFieldById(fieldId);
         $rootScope.shouldBeOpen = true;
-        $scope.openModal('app/components/content/administerFields/editFields/editDocumentFieldModal.html', 'DocumentFieldModalController');
+        $scope.openModal("app/components/content/administerFields/editFields/editDocumentFieldModal.html", "DocumentFieldModalController");
     };
 
 
 
 
     $scope.sortableOptions = {
-        cancel: '.unsortable',
-        items: 'li:not(.unsortable)',
+        cancel: ".unsortable",
+        items: "li:not(.unsortable)",
         stop: function (e, ui) {
-            var listItems = ui.item.context.parentNode.querySelectorAll('li');
+            var listItems = ui.item.context.parentNode.querySelectorAll("li");
             for (var i = 0; i < listItems.length; i++) {
-                listItems[i].querySelectorAll('input')[0].value = i + 1;
+                listItems[i].querySelectorAll("input")[0].value = i + 1;
             }
         },
-        axis: 'y'
+        axis: "y"
     };
 
 
     $scope.showNewFieldModal = function () {
         $rootScope.shouldBeOpen = true;
-        $rootScope.openModal('app/components/content/administerFields/addFields/newDocumentFieldModal.html', 'DocumentFieldModalController');
-        console.log('showNewFieldModal?');
+        $rootScope.openModal("app/components/content/administerFields/addFields/newDocumentFieldModal.html", "DocumentFieldModalController");
+        console.log("showNewFieldModal?");
     };
     
 }]);

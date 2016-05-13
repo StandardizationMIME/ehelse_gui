@@ -1,6 +1,6 @@
-'use strict';
+"use strict";
 
-angular.module('ehelseEditor').factory('Topic', ['$rootScope', function($rootScope) {
+angular.module("ehelseEditor").factory("Topic", ["$rootScope", function($rootScope) {
 
     var topics = [];
     var topics_dict = {};
@@ -8,7 +8,7 @@ angular.module('ehelseEditor').factory('Topic', ['$rootScope', function($rootSco
     var selected_topic = {};
 
     $rootScope.get(
-        'topics/',
+        "topics/",
         function ( data ){
             Array.prototype.push.apply(topics, data.topics);
             generateTopicDict(topics);
@@ -80,27 +80,27 @@ angular.module('ehelseEditor').factory('Topic', ['$rootScope', function($rootSco
         }
 
         if(topic.id){
-            $rootScope.put('topics/'+topic.id,
+            $rootScope.put("topics/"+topic.id,
                 topic,
                 function(data){
                     updateTopic(data);
                     generateTopicOptionsList(topics);
-                    $rootScope.notifySuccess('Tema ble oppdatert',3000);
+                    $rootScope.notifySuccess("Tema ble oppdatert",3000);
 
                 },
                 function(data){
-                    $rootScope.notifyError('Tema ble ikke oppdatert.',6000);
+                    $rootScope.notifyError("Tema ble ikke oppdatert.",6000);
                 });
         }
         else{
             $rootScope.post(
-                'topics/',
+                "topics/",
                 topic,
                 function(data){
-                    $rootScope.notifySuccess('Ny tema ble opprettet.',3000);
+                    $rootScope.notifySuccess("Ny tema ble opprettet.",3000);
                     addTopic(data);
                 },function(){
-                    $rootScope.notifyError('Tema ble ikke opprettet.',6000);
+                    $rootScope.notifyError("Tema ble ikke opprettet.",6000);
                 }
             );
         }
@@ -164,14 +164,14 @@ angular.module('ehelseEditor').factory('Topic', ['$rootScope', function($rootSco
     }
     function deleteById(id){
         if(id){
-            $rootScope.delete('topics/'+id,
+            $rootScope.delete("topics/"+id,
                 function(data){
                     removeById(id);
-                    $rootScope.notifySuccess('Topic ble fjernet',3000);
+                    $rootScope.notifySuccess("Topic ble fjernet",3000);
 
                 },
                 function(data){
-                    $rootScope.notifyError('Topic ble ikke fjernet.',6000);
+                    $rootScope.notifyError("Topic ble ikke fjernet.",6000);
                 });
         }
     }

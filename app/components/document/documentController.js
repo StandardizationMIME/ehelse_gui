@@ -1,6 +1,6 @@
-'use strict';
+"use strict";
 
-angular.module('ehelseEditor').controller('DocumentController', [ '$scope','$rootScope', 'DocumentType', 'Document', function( $scope, $rootScope, DocumentType, Document) {
+angular.module("ehelseEditor").controller("DocumentController", [ "$scope","$rootScope", "DocumentType", "Document", function( $scope, $rootScope, DocumentType, Document) {
 
     $scope.document_types_dict = DocumentType.document_types_dict;
     $scope.documents = [];
@@ -15,10 +15,10 @@ angular.module('ehelseEditor').controller('DocumentController', [ '$scope','$roo
 
     $rootScope.toggleSelectedTopic = function(id) {
         <!-- Makes selected folder bold and toggles folder icon between opened and closed -->
-        $(".clickable").removeClass('selected-item');
+        $(".clickable").removeClass("selected-item");
         if(id){
-            $('#' + id).addClass('selected-item');
-            $('#folder' + id).toggleClass('glyphicon-folder-open','glyphicon-folder-close');
+            $("#" + id).addClass("selected-item");
+            $("#folder" + id).toggleClass("glyphicon-folder-open","glyphicon-folder-close");
         }
     };
 
@@ -29,16 +29,16 @@ angular.module('ehelseEditor').controller('DocumentController', [ '$scope','$roo
     $scope.checkButtonState = function(document){
         if(document){
             if(document.documentTypeId == 1){
-                $rootScope.setButtonState('editDocument');
+                $rootScope.setButtonState("editDocument");
             }
             else if(document.documentTypeId == 2) {
-                $rootScope.setButtonState('editProfile');
+                $rootScope.setButtonState("editProfile");
             }
             else {
-                $rootScope.setButtonState('newDocument');
+                $rootScope.setButtonState("newDocument");
             }
         }else{
-            $rootScope.setButtonState('newDocument');
+            $rootScope.setButtonState("newDocument");
         }
     };
 
@@ -54,6 +54,6 @@ angular.module('ehelseEditor').controller('DocumentController', [ '$scope','$roo
             document = null;
         }
         Document.setCurrentDocument(document);
-        $rootScope.changeContentView('document');
+        $rootScope.changeContentView("document");
     };
 }]);

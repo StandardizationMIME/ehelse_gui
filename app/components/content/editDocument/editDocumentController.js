@@ -1,8 +1,8 @@
 
-'use strict';
+"use strict";
 
-angular.module('ehelseEditor').controller('EditDocumentController',
-    [ '$scope', '$http','$rootScope', 'ModalService', 'DocumentType', 'TargetGroup', 'Mandatory', 'Action','Document', 'DocumentField','LinkCategory', 'Topic','Status',
+angular.module("ehelseEditor").controller("EditDocumentController",
+    [ "$scope", "$http","$rootScope", "ModalService", "DocumentType", "TargetGroup", "Mandatory", "Action","Document", "DocumentField","LinkCategory", "Topic","Status",
         function( $scope, $http, $rootScope, ModalService, DocumentType, TargetGroup, Mandatory, Action, Document, DocumentField, LinkCategory, Topic, Status) {
 
             $scope.document_types_option_list = DocumentType.document_types_option_list;
@@ -36,8 +36,8 @@ angular.module('ehelseEditor').controller('EditDocumentController',
 
             $scope.showAddTargetGroupModal = function () {
                 ModalService.showModal({
-                    templateUrl: 'app/components/content/editDocument/target-groups/addDocumentTargetGroupModal.html',
-                    controller: 'AddDocumentTargetGroupModelController',
+                    templateUrl: "app/components/content/editDocument/target-groups/addDocumentTargetGroupModal.html",
+                    controller: "AddDocumentTargetGroupModelController",
                     animation: false
                 }).then(function (modal) {
                     modal.element.modal();
@@ -55,7 +55,7 @@ angular.module('ehelseEditor').controller('EditDocumentController',
             $scope.newVersion = function(document){
                 Document.setCurrentDocument(Document.newVersion(document));
                 $rootScope.notifySuccess("Ny versjon klargjort", 4000);
-                $rootScope.setButtonState("newDocument");
+                $rootScope.setButtonState('newDocument');
             }
 
 

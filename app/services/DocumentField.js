@@ -1,6 +1,6 @@
-'use strict';
+"use strict";
 
-angular.module('ehelseEditor').factory('DocumentField', ['$rootScope', function($rootScope) {
+angular.module("ehelseEditor").factory("DocumentField", ["$rootScope", function($rootScope) {
 
     var document_fields = [];
     var document_types_fields_dict = {};
@@ -8,7 +8,7 @@ angular.module('ehelseEditor').factory('DocumentField', ['$rootScope', function(
 
     function getDocumentTypes(){
         $rootScope.get(
-            'document-fields',
+            "document-fields",
             function ( data ){
                 Array.prototype.push.apply(document_fields, data.documentFields);
                 generateDocumentFieldDict(document_fields);
@@ -63,15 +63,15 @@ angular.module('ehelseEditor').factory('DocumentField', ['$rootScope', function(
 
         var mandatoryString = null;
         if(field.mandatory){
-            mandatoryString = '1';
+            mandatoryString = "1";
         }else{
-            mandatoryString = '0';
+            mandatoryString = "0";
         }
         var sequenceInt = null;
         if(field.sequence){
             sequenceInt = field.sequence;
         }else{
-            sequenceInt = '1';
+            sequenceInt = "1";
         }
 
         var myField = {
@@ -84,7 +84,7 @@ angular.module('ehelseEditor').factory('DocumentField', ['$rootScope', function(
         };
 
         $rootScope.post(
-            'document-fields/',
+            "document-fields/",
             myField,
             function(data){
                 document_fields.push(data);
@@ -100,9 +100,9 @@ angular.module('ehelseEditor').factory('DocumentField', ['$rootScope', function(
 
         var mandatoryString = null;
         if(field.mandatory){
-            mandatoryString = '1';
+            mandatoryString = "1";
         }else{
-            mandatoryString = '0';
+            mandatoryString = "0";
         }
 
         var myField = {
@@ -114,7 +114,7 @@ angular.module('ehelseEditor').factory('DocumentField', ['$rootScope', function(
             "documentTypeId": $rootScope.typeId
         };
         $rootScope.put(
-            'document-fields/' + field.id,
+            "document-fields/" + field.id,
             myField,
             function(data){
                 var document_field = document_fields_dict[data.id];
@@ -137,7 +137,7 @@ angular.module('ehelseEditor').factory('DocumentField', ['$rootScope', function(
 
     function remove(field, success, error){
         $rootScope.delete(
-            'document-fields/' + field.id,
+            "document-fields/" + field.id,
             function(){
                 removeField(field);
                 generateDocumentFieldDict(document_fields);
@@ -159,7 +159,7 @@ angular.module('ehelseEditor').factory('DocumentField', ['$rootScope', function(
 
     function getFieldById(id, success, error){
         $rootScope.get(
-            'document-fields/' + id,
+            "document-fields/" + id,
             function (data) {
                 success(data);
             },

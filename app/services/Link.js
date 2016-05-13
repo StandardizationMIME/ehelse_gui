@@ -1,6 +1,6 @@
-'use strict';
+"use strict";
 
-angular.module('ehelseEditor').factory('Link', ['$rootScope', function($rootScope) {
+angular.module("ehelseEditor").factory("Link", ["$rootScope", function($rootScope) {
 
     return {
     }

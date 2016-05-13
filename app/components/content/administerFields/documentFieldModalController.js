@@ -1,6 +1,6 @@
-'use strict';
+"use strict";
 
-angular.module('ehelseEditor').controller('DocumentFieldModalController', [ '$scope', "$rootScope","DocumentField", function($scope, $rootScope, DocumentField) {
+angular.module("ehelseEditor").controller("DocumentFieldModalController", [ "$scope", "$rootScope","DocumentField", function($scope, $rootScope, DocumentField) {
 
     $rootScope.submitDocumentFieldChange = function(field){
         DocumentField.edit(

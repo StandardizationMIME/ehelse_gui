@@ -1,6 +1,6 @@
-'use strict';
+"use strict";
 
-angular.module('ehelseEditor').factory('Document', ['$rootScope', 'DocumentField', 'Topic', function($rootScope, DocumentField, Topic) {
+angular.module("ehelseEditor").factory("Document", ["$rootScope", "DocumentField", "Topic", function($rootScope, DocumentField, Topic) {
 
 
     function newDocument() {
@@ -108,7 +108,7 @@ angular.module('ehelseEditor').factory('Document', ['$rootScope', 'DocumentField
         if (current_document.id) {
 
             $rootScope.put(
-                'documents/' + current_document.id,
+                "documents/" + current_document.id,
                 current_document,
                 function (data) {
                     data.populatedProfiles = [];
@@ -126,7 +126,7 @@ angular.module('ehelseEditor').factory('Document', ['$rootScope', 'DocumentField
         }
         else {
             $rootScope.post(
-                'documents/',
+                "documents/",
                 current_document,
                 function (data) {
                     data.populatedProfiles = [];
@@ -171,7 +171,7 @@ angular.module('ehelseEditor').factory('Document', ['$rootScope', 'DocumentField
 
     function deleteCurrentDocument() {
         $rootScope.delete(
-            'documents/' + current_document.id,
+            "documents/" + current_document.id,
             function(){
                 if(current_document.standardId){
                     var sib = documents_dict[current_document.standardId].profiles;
@@ -183,7 +183,7 @@ angular.module('ehelseEditor').factory('Document', ['$rootScope', 'DocumentField
                 }
                 deleteCurrentDocumentFromDocumentsList();
                 $rootScope.notifySuccess("Dokumentet ble slettet", 3000);
-                $rootScope.changeContentView('');
+                $rootScope.changeContentView("");
             },
             function(){
                 console.log("Document could not be deleted");
@@ -361,7 +361,7 @@ angular.module('ehelseEditor').factory('Document', ['$rootScope', 'DocumentField
 
     function getAllDocuments() {
         $rootScope.get(
-            'documents/',
+            "documents/",
             function (data) {
                 documents.length = 0;
 
