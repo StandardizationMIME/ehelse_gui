@@ -10,6 +10,7 @@
                 <span class="fa fa-plus-circle plus-icon"></span>
                 Ny målgruppe
             </button>
+            <label class="pull-right"><input class="form-control input-sm" ng-model="searchText" placeholder="Søk..."></label>
         </p>
     </div>
 
@@ -34,7 +35,7 @@
                 </tr>
             </thead>
             <tbody class="tg-tbody shadow-below">
-                <tr ng-repeat="group in targetGroups | orderBy:sortType:sortReverse">
+                <tr ng-repeat="group in targetGroups | orderBy:sortType:sortReverse | filter: searchText">
                     <td class="tg">{{group.name}}</td>
                     <td class="tg">{{group.description}}</td>
                     <td class="tg">{{group.abbreviation}}</td>
