@@ -65,7 +65,7 @@ angular.module('ehelseEditor').factory('LinkCategory', ['$rootScope', function($
 
                 },
                 function(data){
-                    $rootScope.notifyError('Lenke-kategori ble ikke oppdatert.',3000);
+                    $rootScope.notifyError('Lenke-kategori ble ikke oppdatert.',6000);
                 });
         }
         else{
@@ -76,7 +76,7 @@ angular.module('ehelseEditor').factory('LinkCategory', ['$rootScope', function($
                     $rootScope.notifySuccess('Ny målgruppe ble opprettet.',3000);
                     add(data);
                 },function(){
-                    $rootScope.notifyError('Målgruppe ble ikke opprettet.',3000);
+                    $rootScope.notifyError('Målgruppe ble ikke opprettet.',6000);
                 }
             );
         }
@@ -100,7 +100,7 @@ angular.module('ehelseEditor').factory('LinkCategory', ['$rootScope', function($
                 $rootScope.notifySuccess("Link-kategorien ble slettet!", 3000);
             },
             function () {
-                $rootScope.notifyError("Kunne ikke slette", 3000);
+                $rootScope.notifyError("Kunne ikke slette", 6000);
             }
         );
     }

@@ -122,7 +122,27 @@ h1,h2,h3,h4{ font-weight: bold;}
     position: absolute;
     bottom: 0;
 }
-
+.red-color {
+    color: #c13a47;
+}
+.red-background {
+    background-color: #c13a47;
+}
+.blue-color {
+    color: #337AB7;
+}
+.blue-background {
+    background-color: #337AB7;
+}
+.green-color {
+    color: #58a739;
+}
+.green-background {
+    background-color: #58a739;
+}
+.font-size-large {
+    font-size: large;
+}
 /* ------------------------------------------------ CH2 ADMINISTER_USERS ----------------------------------------- */
 #user-list img{
     width: 50px;
@@ -398,7 +418,10 @@ input[readonly], textarea[readonly]{
 .panel-border3 {
     border-color: #58a739;
 }
-
+.edit-document-modal {
+    max-height: 650px;
+    overflow-y: auto;
+}
 /* -------------------------------------------- CH5 EDITOR ----------------------------------------- */
 .editor-display {
     max-width: 1800px;
@@ -428,6 +451,10 @@ input[readonly], textarea[readonly]{
     height: auto;
     display: inline-block;
 }
+.alternative-logo {
+    width: 300px;
+    height: auto;
+}
 
 /* -------------------------------------------- CH8 MY_PAGE ----------------------------------------- */
 #account-info {
@@ -435,12 +462,14 @@ input[readonly], textarea[readonly]{
 }
 .data-field {
     display: inline;
+    font-weight: bold;
 }
 .data-row:hover{background-color: #E6E6E6;}
 
 .data-row {
     width: 75%;
     margin-left: 5%;
+    font-size: 16px;
 }
 .data-row >*{
     padding: 10px;
@@ -461,6 +490,9 @@ input[readonly], textarea[readonly]{
     background-color: #E6E6E6;
     border-bottom: inset;
     border-color: #ccc;
+}
+.data-edit-icon {
+    font-size: 1.5em;
 }
 /* -------------------------------------------- CH9 TOOLBAR ----------------------------------------- */
 div>div>.dropdown-toggle{
@@ -722,6 +754,10 @@ textarea {
     margin-top: 10px;
     margin-bottom: 25px;
     height: 650px;
+    overflow-y: auto;
+}
+.administer-fields-list {
+    height: 550px;
     overflow-y: auto;
 }
 

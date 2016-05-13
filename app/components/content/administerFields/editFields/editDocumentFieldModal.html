@@ -1,0 +1,35 @@
+<div class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form ng-controller="DocumentFieldModalController" name="editDocumentFieldForm" role="form" method="post">
+                <div class="modal-header">
+                    <h3>Rediger felt</h3>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="documentFieldTitle">Tittel: </label>
+                        <input focus-me="shouldBeOpen" id="documentFieldTitle" ng-model="currentDocumentField.name" type="text" class="form-control" required/>
+                    </div>
+                    <div class="form-group">
+                        <label for="documentFieldDescription">Beskrivelse: </label>
+                        <textarea id="documentFieldDescription" ng-model="currentDocumentField.description" class="form-control"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="documentFieldSequence">Rekkefølge: </label>
+                        <input id="documentFieldSequence" ng-model="currentDocumentField.sequence" string-to-number type="number" min="1" class="form-control">
+                    </div>
+                    <div class="form-inline">
+                        <label for="documentFieldMandatory">Obligatorisk: </label>
+                        <input id="documentFieldMandatory" type="checkbox" ng-model="currentDocumentField.mandatory"/>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <div class="form-actions">
+                        <button ng-click="submitDocumentFieldChange(currentDocumentField)" data-dismiss="modal" type="submit" ng-disabled="editDocumentFieldForm.$invalid" class="btn btn-primary">Lagre endring</button>
+                        <button type="button" data-dismiss="modal" class="btn btn-default pull-right">Avbryt</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

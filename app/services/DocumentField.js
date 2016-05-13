@@ -67,12 +67,18 @@ angular.module('ehelseEditor').factory('DocumentField', ['$rootScope', function(
         }else{
             mandatoryString = '0';
         }
+        var sequenceInt = null;
+        if(field.sequence){
+            sequenceInt = field.sequence;
+        }else{
+            sequenceInt = '1';
+        }
 
         var myField = {
             "id": "",
             "name": field.name,
             "description": field.description,
-            "sequence": field.sequence,
+            "sequence": sequenceInt,
             "mandatory": mandatoryString,
             "documentTypeId": $rootScope.typeId
         };

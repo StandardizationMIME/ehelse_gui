@@ -78,7 +78,7 @@ angular.module('ehelseEditor').factory('Mandatory', ['$rootScope', function($roo
                 $rootScope.notifySuccess("Obligatoriskhet ble slettet!", 3000);
             },
             function () {
-                $rootScope.notifyError("Kunne ikke slette obligatoriskhet", 3000);
+                $rootScope.notifyError("Kunne ikke slette obligatoriskhet", 6000);
             }
         );
     }
@@ -96,7 +96,7 @@ angular.module('ehelseEditor').factory('Mandatory', ['$rootScope', function($roo
 
                 },
                 function(data){
-                    $rootScope.notifyError('Obligatoriskhet ble ikke oppdatert.',3000);
+                    $rootScope.notifyError('Obligatoriskhet ble ikke oppdatert.',6000);
                 });
         }
         else{
@@ -107,7 +107,7 @@ angular.module('ehelseEditor').factory('Mandatory', ['$rootScope', function($roo
                     $rootScope.notifySuccess('Ny obligatoriskhet ble opprettet.',3000);
                     add(data);
                 },function(){
-                    $rootScope.notifyError('Obligatoriskhet ble ikke opprettet.',3000);
+                    $rootScope.notifyError('Obligatoriskhet ble ikke opprettet.',6000);
                 }
             );
         }

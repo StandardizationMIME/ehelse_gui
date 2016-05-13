@@ -74,7 +74,7 @@ angular.module('ehelseEditor').factory('Status',['$rootScope',function($rootScop
 
                 },
                 function(data){
-                    $rootScope.notifyError('Status ble ikke oppdatert.',3000);
+                    $rootScope.notifyError('Status ble ikke oppdatert.',6000);
                 });
         }
         else{
@@ -85,7 +85,7 @@ angular.module('ehelseEditor').factory('Status',['$rootScope',function($rootScop
                     $rootScope.notifySuccess('Ny status ble opprettet.',3000);
                     add(data);
                 },function(){
-                    $rootScope.notifyError('Status ble ikke opprettet.',3000);
+                    $rootScope.notifyError('Status ble ikke opprettet.',6000);
                 }
             );
         }
@@ -108,7 +108,7 @@ angular.module('ehelseEditor').factory('Status',['$rootScope',function($rootScop
                 $rootScope.notifySuccess("Status ble slettet!", 3000);
             },
             function (){
-                $rootScope.notifyError("Kunne ikke slette", 3000);
+                $rootScope.notifyError("Kunne ikke slette", 6000);
             }
         );
     }

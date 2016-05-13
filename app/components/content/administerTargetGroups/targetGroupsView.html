@@ -1,0 +1,52 @@
+<div ng-controller="TargetGroupsController" class="target-group-grid">
+    <div class="shadow-below">
+        <div class="headline-box">
+            <h4 class="selected">Administrer målgrupper</h4>
+        </div>
+        <p class="twelve-pix-vertical-padding">
+            <button type="button" class="btn btn-default"
+                    ng-click="showNewTGModal()"
+                    data-keyboard="true" id="triggerFocus">
+                <span class="fa fa-plus-circle plus-icon"></span>
+                Ny målgruppe
+            </button>
+            <label class="pull-right"><input class="form-control input-sm" ng-model="searchText" placeholder="Søk..."></label>
+        </p>
+    </div>
+
+    <div class="table-responsive">
+        <table class="table table-striped" id="targetGroupsTable">
+            <thead class="tg-thead">
+                <tr>
+                    <th class="col-md-3"><a ng-click="sortType = 'name'; sortReverse = !sortReverse" style="color: white; text-decoration: none; cursor: pointer">Navn &#13;&#10;</a>
+                        <span ng-show="sortType == 'name' && !sortReverse" class="fa fa-caret-down"></span>
+                        <span ng-show="sortType == 'name' &&  sortReverse" class="fa fa-caret-up"></span></th>
+                    <th class="col-md-4"><a ng-click="sortType = 'description'; sortReverse = !sortReverse" style="color: white; text-decoration: none; cursor: pointer">Beskrivelse &#13;&#10;</a>
+                        <span ng-show="sortType == 'description' && !sortReverse" class="fa fa-caret-down"></span>
+                        <span ng-show="sortType == 'description' &&  sortReverse" class="fa fa-caret-up"></span></th>
+                    <th class="col-md-1"><a ng-click="sortType = 'abbreviation'; sortReverse = !sortReverse" style="color: white; text-decoration: none; cursor: pointer">Forkortelse &#13;&#10;</a>
+                        <span ng-show="sortType == 'abbreviation' && !sortReverse" class="fa fa-caret-down"></span>
+                        <span ng-show="sortType == 'abbreviation' &&  sortReverse" class="fa fa-caret-up"></span></th>
+                    <th class="col-md-2"><a ng-click="sortType = 'parentId'; sortReverse = !sortReverse" style="color: white; text-decoration: none; cursor: pointer">Overordnet målgruppe</a>
+                        <span ng-show="sortType == 'parentId' && !sortReverse" class="fa fa-caret-down"></span>
+                        <span ng-show="sortType == 'parentId' &&  sortReverse" class="fa fa-caret-up"></span></th>
+                    <th class="col-md-1">Rediger</th>
+                    <th class="col-md-1">Slett</th>
+                </tr>
+            </thead>
+            <tbody class="tg-tbody shadow-below">
+                <tr ng-repeat="group in targetGroups | orderBy:sortType:sortReverse | filter: searchText">
+                    <td class="tg">{{group.name}}</td>
+                    <td class="tg">{{group.description}}</td>
+                    <td class="tg">{{group.abbreviation}}</td>
+                    <td class="tg">{{TGDictionary[group.parentId].name}}</td>
+                    <td class="tg"><span ng-click="showEditTGModal(group)" data-keyboard="true" class="fa fa-pencil-square-o fa-2x clickable"></span></td>
+                    <td class="tg"><span ng-click="openConfirmationTGModal('Er du sikker på at du vil slette målgruppe?',group.id)" class="fa fa-remove clickable remove-user"></span></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+</div>
+
+

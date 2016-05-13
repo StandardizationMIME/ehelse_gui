@@ -70,7 +70,7 @@ angular.module('ehelseEditor').factory('TargetGroup', ['$rootScope', function($r
 
                 },
                 function(data){
-                    $rootScope.notifyError('Målgruppe ble ikke oppdatert.',3000);
+                    $rootScope.notifyError('Målgruppe ble ikke oppdatert.',6000);
                 });
         }
         else{
@@ -81,7 +81,7 @@ angular.module('ehelseEditor').factory('TargetGroup', ['$rootScope', function($r
                     $rootScope.notifySuccess('Ny målgruppe ble opprettet.',3000);
                     addTargetGroup(data);
                 },function(){
-                    $rootScope.notifyError('Målgruppe ble ikke opprettet.',3000);
+                    $rootScope.notifyError('Målgruppe ble ikke opprettet.',6000);
                 }
             );
         }
@@ -106,7 +106,7 @@ angular.module('ehelseEditor').factory('TargetGroup', ['$rootScope', function($r
 
                 },
                 function(data){
-                    $rootScope.notifyError('Målgruppe ble ikke fjernet.',3000);
+                    $rootScope.notifyError('Målgruppe ble ikke fjernet.',6000);
                 });
         }
     }
