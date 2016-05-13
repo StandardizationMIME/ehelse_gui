@@ -1,26 +1,29 @@
 <form name="administerFieldForm" role="form" method="post">
+    <div class="ten-pix-vertical-padding">
+        <button type="button" ng-click="showNewFieldModal();setTypeId('2')" class="btn btn-default">
+            <span class="fa fa-plus-circle red-color font-size-large"></span>
+            Opprett nytt felt
+        </button>
+    </div>
+
     <span class="field-item field-list-title panel2">
         <span class="field-item-field">Tittel</span>
         <span class="field-item-field">Beskrivelse</span>
         <span class="field-item-field">Obligatorisk</span>
         <span class="field-item-field pull-right">Rediger felt &nbsp; Slett &nbsp;&nbsp;&nbsp;</span>
     </span>
-    <ul ng-model="documentFields" class="field-item list-group" style="margin-left: 5px">
+    <ul ng-model="documentFields" class="field-item list-group administer-fields-list shadow-below" style="margin-left: 5px">
         <li ng-repeat="field in documentFields | orderBy:getSequence" ng-if="field.documentTypeId == 2" class="list-group-item">
             <span class="field-item-field">{{field.name}}</span>
             <span class="field-item-field">{{field.description}}</span>
             <span class="field-item-field" ng-if="field.mandatory == '1'">Ja</span>
             <span class="field-item-field" ng-if="field.mandatory == '0'">Nei</span>
             <div class="pull-right">
-                <span ng-click="openConfirmationModal('Sletter du dette feltet vil det forsvinne fra alle eksisterende dokumenter. Er du sikker på at du vil slette?', field, deleteFieldById)" id="editProfileField" class="fa fa-remove fa-fw vcenter clickable remove-user edit-field unsortable"></span>
+                <span ng-click="openConfirmationModal('Er du sikker på at du vil slette feltet?', field, deleteFieldById)" id="editProfileField" class="fa fa-remove fa-fw vcenter clickable remove-user edit-field unsortable"></span>
             </div>
             <div class="pull-right">
                 <span ng-click="editDocumentFieldModal(field.id);setTypeId('2')" id="deleteProfileField" class="fa fa-pencil-square-o fa-2x vcenter clickable edit-field unsortable"></span>
             </div>
         </li>
     </ul>
-    <div id="addProfileField" class="row add-field" ng-click="showNewFieldModal();setTypeId('2')">
-        <span id="addNewProfileField" class="fa fa-plus-circle fa-2x vcenter"></span>
-        <span class="col-lg-8 vcenter">Opprett nytt felt</span>
-    </div>
 </form>

@@ -2,7 +2,7 @@ angular.module('ehelseEditor').controller('AddDocumentFieldsController',['$rootS
     function($rootScope, $scope, Document, DocumentField) {
 
     $scope.fields = DocumentField.getFieldsByDocumentTypeId(Document.getCurrentDocument().documentTypeId);
-         $scope.selected_document_fields_ids = [];
+        $scope.selected_document_fields_ids = [];
         $scope.document_fields_ids = Document.getCurrentDocumentFieldIds();
     $scope.close = function (result){
         if (result == 'add'){

@@ -1,28 +1,39 @@
-angular.module('ehelseEditor').controller('ToolbarController',['$state','$rootScope', '$scope', function($state,$rootScope, $scope){
+angular.module('ehelseEditor').controller('ToolbarController', ['$state', '$rootScope', '$scope', function ($state, $rootScope, $scope) {
     $scope.$parent.registerChildController('ToolbarController', $scope);
-
-    $scope.openAdministerFields = function(){
-      $rootScope.changeContentView('administerfields');
+    $scope.deselectTopicAndDocument = function(){
+        $rootScope.toggleSelectedTopic("");
+        $rootScope.getDocuments("");
+        $rootScope.selected_document = "";
     };
 
-    $scope.openTargetGroups = function(){
-      $rootScope.changeContentView('targetgroups');
+    $scope.openAdministerFields = function () {
+        $scope.deselectTopicAndDocument();
+        $rootScope.changeContentView('administerfields');
     };
 
-    $scope.openAdministerActions = function(){
-      $rootScope.changeContentView('administeractions');  
+    $scope.openTargetGroups = function () {
+        $scope.deselectTopicAndDocument();
+        $rootScope.changeContentView('targetgroups');
     };
 
-    $scope.openAdministerStatus = function(){
-      $rootScope.changeContentView('administerstatus');
+    $scope.openAdministerActions = function () {
+        $scope.deselectTopicAndDocument();
+        $rootScope.changeContentView('administeractions');
+    };
+
+    $scope.openAdministerStatus = function () {
+        $scope.deselectTopicAndDocument();
+        $rootScope.changeContentView('administerstatus');
     };
 
     $scope.openAdministerLinkCategories = function () {
-      $rootScope.changeContentView('administerlinkcategories');
+        $scope.deselectTopicAndDocument();
+        $rootScope.changeContentView('administerlinkcategories');
     };
-    
+
     $scope.openAdministerMandatory = function () {
-      $rootScope.changeContentView('administermandatory');  
+        $scope.deselectTopicAndDocument();
+        $rootScope.changeContentView('administermandatory');
     };
     $scope.$state = $state;
 }]);
