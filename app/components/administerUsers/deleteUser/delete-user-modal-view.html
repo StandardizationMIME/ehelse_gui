@@ -11,7 +11,7 @@
                     </div>
                     <div class="form-group">
                         <label for="deleteUserName">Navn:</label>
-                        <input type="text" pattern="{{userToDelete.name}}" name="deleteUserName" id="deleteUserName" ng-model="userInput.name" class="form-control" required autofocus />
+                        <input focus-me="shouldBeOpen" type="text" pattern="{{userToDelete.name}}" name="deleteUserName" id="deleteUserName" ng-model="userInput.name" class="form-control" autocomplete="off" required/>
                     </div>
                 </div>
                 <div class="modal-footer">
