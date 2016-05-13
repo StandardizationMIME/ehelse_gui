@@ -6,13 +6,13 @@ angular.module('ehelseEditor').controller('AdministerStatusController',['$scope'
 
     $scope.showNewStatusModal = function () {
         $rootScope.shouldBeOpen = true;
-        $rootScope.openModal('app/components/content/administerStatus/addEditStatus/add-status-modal.html', 'AddEditStatusController');
+        $rootScope.openModal('app/components/content/administerStatus/addEditStatus/addStatusModal.html', 'AddEditStatusController');
     };
 
     $scope.showEditStatusModal = function (statusId) {
         $rootScope.currentStatus = Status.clone(Status.getById(statusId));
         $rootScope.shouldBeOpen = true;
-        $rootScope.openModal('app/components/content/administerStatus/addEditStatus/edit-status-modal.html', 'AddEditStatusController');
+        $rootScope.openModal('app/components/content/administerStatus/addEditStatus/editStatusModal.html', 'AddEditStatusController');
     };
 
     $scope.deleteStatus = Status.delete;

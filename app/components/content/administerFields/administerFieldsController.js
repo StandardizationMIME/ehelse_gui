@@ -47,7 +47,7 @@ angular.module('ehelseEditor').controller('AdministerFieldsController', ['$scope
     $scope.editDocumentFieldModal = function(fieldId) {
         $scope.getDocumentFieldById(fieldId);
         $rootScope.shouldBeOpen = true;
-        $scope.openModal('app/components/content/administerFields/editFields/edit-document-field-modal.html', 'DocumentFieldModalController');
+        $scope.openModal('app/components/content/administerFields/editFields/editDocumentFieldModal.html', 'DocumentFieldModalController');
     };
 
 
@@ -68,7 +68,7 @@ angular.module('ehelseEditor').controller('AdministerFieldsController', ['$scope
 
     $scope.showNewFieldModal = function () {
         $rootScope.shouldBeOpen = true;
-        $rootScope.openModal('app/components/content/administerFields/addFields/new-document-field-modal.html', 'DocumentFieldModalController');
+        $rootScope.openModal('app/components/content/administerFields/addFields/newDocumentFieldModal.html', 'DocumentFieldModalController');
         console.log('showNewFieldModal?');
     };
     
