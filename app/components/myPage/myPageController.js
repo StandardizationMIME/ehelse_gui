@@ -1,6 +1,6 @@
-'use strict';
+"use strict";
 
-angular.module('ehelseEditor').controller('MyPageController', ['$scope', '$rootScope', function ($scope, $rootScope) {
+angular.module("ehelseEditor").controller("MyPageController", ["$scope", "$rootScope", function ($scope, $rootScope) {
 
     //hide all forms
     $("#nameForm").hide();
@@ -98,7 +98,7 @@ angular.module('ehelseEditor').controller('MyPageController', ['$scope', '$rootS
                 $rootScope.notifyError("Det gamle passordet er feil.",6000);
             }
         } else {
-            $rootScope.notifyError('"Nytt passord" og "Gjenta nytt passord" er ikke like.',6000);
+            $rootScope.notifyError("'Nytt passord' og 'Gjenta nytt passord' er ikke like.",6000);
         }
 
         //Clear fields after attempt

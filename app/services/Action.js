@@ -1,6 +1,6 @@
-'use strict';
+"use strict";
 
-angular.module('ehelseEditor').factory('Action', ['$rootScope', function($rootScope) {
+angular.module("ehelseEditor").factory("Action", ["$rootScope", function($rootScope) {
 
     var actions = [];
     var actions_dict = {};
@@ -33,7 +33,7 @@ angular.module('ehelseEditor').factory('Action', ['$rootScope', function($rootSc
     }
 
     $rootScope.get(
-        'actions/',
+        "actions/",
         function ( data ){
             Array.prototype.push.apply(actions, data.actions);
             generateActionsOptionList(actions);
@@ -62,28 +62,28 @@ angular.module('ehelseEditor').factory('Action', ['$rootScope', function($rootSc
 
     function submit(action){
         if(action.id){
-            $rootScope.put('actions/'+action.id,
+            $rootScope.put("actions/"+action.id,
                 action,
                 function(data){
                     set(actions_dict[data.id], data);
                     generateActionsDict(actions);
                     generateActionsOptionList(actions);
-                    $rootScope.notifySuccess('Handling ble oppdatert',3000);
+                    $rootScope.notifySuccess("Handling ble oppdatert",3000);
 
                 },
                 function(data){
-                    $rootScope.notifyError('Handling ble ikke oppdatert.',6000);
+                    $rootScope.notifyError("Handling ble ikke oppdatert.",6000);
                 });
         }
         else{
             $rootScope.post(
-                'actions/',
+                "actions/",
                 action,
                 function(data){
-                    $rootScope.notifySuccess('Ny handling ble opprettet.',3000);
+                    $rootScope.notifySuccess("Ny handling ble opprettet.",3000);
                     add(data);
                 },function(){
-                    $rootScope.notifyError('Handling ble ikke opprettet.',6000);
+                    $rootScope.notifyError("Handling ble ikke opprettet.",6000);
                 }
             );
         }
@@ -101,7 +101,7 @@ angular.module('ehelseEditor').factory('Action', ['$rootScope', function($rootSc
 
     function deleteAction(action) {
         $rootScope.delete(
-            'actions/' + action.id,
+            "actions/" + action.id,
             function () {
                 removeAction(action);
                 $rootScope.notifySuccess("Handling ble slettet!", 3000);

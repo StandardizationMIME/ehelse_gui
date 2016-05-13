@@ -1,12 +1,12 @@
-'use strict';
+"use strict";
 
-angular.module('ehelseEditor').controller('DeleteUserController', ['$scope', '$http', '$rootScope', function ($scope, $http, $rootScope) {
+angular.module("ehelseEditor").controller("DeleteUserController", ["$scope", "$http", "$rootScope", function ($scope, $http, $rootScope) {
     var userId = $rootScope.userToDelete.id;
     var username = $rootScope.userToDelete.name;
 
     $scope.deleteSpecificUser = function () {
         if ($scope.userInput.name === username) {
-            $rootScope.delete('/users/' + userId, function () {
+            $rootScope.delete("/users/" + userId, function () {
 
                 var arrayIndex = $rootScope.userList.indexOf($rootScope.userToDelete);
                 if (arrayIndex > -1) {
@@ -14,10 +14,10 @@ angular.module('ehelseEditor').controller('DeleteUserController', ['$scope', '$h
                 }
                 $rootScope.notifySuccess("Brukeren ble slettet.",3000);
             }, function () {
-                $rootScope.notifyError('Brukeren ble ikke slettet.',6000);
+                $rootScope.notifyError("Brukeren ble ikke slettet.",6000);
             });
         } else {
-            $rootScope.notifyError('Brukeren ble ikke slettet; navnet du skrev inn var ikke riktig.',6000);
+            $rootScope.notifyError("Brukeren ble ikke slettet; navnet du skrev inn var ikke riktig.",6000);
         }
     };
 

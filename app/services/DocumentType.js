@@ -1,6 +1,6 @@
-'use strict';
+"use strict";
 
-angular.module('ehelseEditor').factory('DocumentType', ['$rootScope', function($rootScope) {
+angular.module("ehelseEditor").factory("DocumentType", ["$rootScope", function($rootScope) {
 
     var document_types = [];
     var document_types_dict = {};
@@ -8,7 +8,7 @@ angular.module('ehelseEditor').factory('DocumentType', ['$rootScope', function($
 
     function getDocumentTypes(){
         $rootScope.get(
-            'document-types',
+            "document-types",
             function ( data ){
                 Array.prototype.push.apply(document_types, data.documentTypes);
                 Array.prototype.push.apply(document_types_option_list, generateDocumentTypesOptionList(document_types));

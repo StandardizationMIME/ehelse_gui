@@ -1,6 +1,6 @@
-'use strict';
+"use strict";
 
-angular.module('ehelseEditor').controller('AddEditActionController', ['$scope', '$rootScope', 'Action', function($scope, $rootScope, Action) {
+angular.module("ehelseEditor").controller("AddEditActionController", ["$scope", "$rootScope", "Action", function($scope, $rootScope, Action) {
 
     $rootScope.submitActionChange = Action.submit;
 

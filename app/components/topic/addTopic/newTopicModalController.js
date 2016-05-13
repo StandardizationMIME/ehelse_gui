@@ -1,6 +1,6 @@
-'use strict';
+"use strict";
 
-angular.module('ehelseEditor').controller('NewTopicModalController', [ '$scope', "$rootScope",'Topic', function($scope, $rootScope, Topic) {
+angular.module("ehelseEditor").controller("NewTopicModalController", [ "$scope", "$rootScope","Topic", function($scope, $rootScope, Topic) {
     $scope.topicTupleList = Topic.getAllAsOptionsList();
     $scope.newTopic = {
         "title" : "",

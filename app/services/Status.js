@@ -1,13 +1,13 @@
-'use strict';
+"use strict";
 
-angular.module('ehelseEditor').factory('Status',['$rootScope',function($rootScope){
+angular.module("ehelseEditor").factory("Status",["$rootScope",function($rootScope){
 
     var status = [];
     var status_dict = {};
     var status_option_list = [];
 
     $rootScope. get(
-        'status/',
+        "status/",
         function (data){
             Array.prototype.push.apply(status, data.status);
             generateStatusOptionList(status);
@@ -64,28 +64,28 @@ angular.module('ehelseEditor').factory('Status',['$rootScope',function($rootScop
 
     function submit(status){
         if(status.id){
-            $rootScope.put('status/'+status.id,
+            $rootScope.put("status/"+status.id,
                 status,
                 function(data){
                     set(status_dict[data.id], data);
                     generateStatusDict(status);
                     generateStatusOptionList(status);
-                    $rootScope.notifySuccess('Status ble oppdatert',3000);
+                    $rootScope.notifySuccess("Status ble oppdatert",3000);
 
                 },
                 function(data){
-                    $rootScope.notifyError('Status ble ikke oppdatert.',6000);
+                    $rootScope.notifyError("Status ble ikke oppdatert.",6000);
                 });
         }
         else{
             $rootScope.post(
-                'status/',
+                "status/",
                 status,
                 function(data){
-                    $rootScope.notifySuccess('Ny status ble opprettet.',3000);
+                    $rootScope.notifySuccess("Ny status ble opprettet.",3000);
                     add(data);
                 },function(){
-                    $rootScope.notifyError('Status ble ikke opprettet.',6000);
+                    $rootScope.notifyError("Status ble ikke opprettet.",6000);
                 }
             );
         }
@@ -100,7 +100,7 @@ angular.module('ehelseEditor').factory('Status',['$rootScope',function($rootScop
 
     function deleteStatus(status) {
         $rootScope.delete(
-            'status/' + status.id,
+            "status/" + status.id,
             function (){
                 removeStatus(status);
                 generateStatusOptionList(status);

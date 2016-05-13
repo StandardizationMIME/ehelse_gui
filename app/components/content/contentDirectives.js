@@ -1,32 +1,32 @@
-angular.module('ehelseEditor').directive('standardfields',function () {
+angular.module("ehelseEditor").directive("standardfields",function () {
     return{
-        restrict: 'E',
-        templateUrl: 'app/components/content/administerFields/directives/standardFields.html'
+        restrict: "E",
+        templateUrl: "app/components/content/administerFields/directives/standardFields.html"
     };
 });
 
-angular.module('ehelseEditor').directive('profilefields',function () {
+angular.module("ehelseEditor").directive("profilefields",function () {
     return{
-        restrict: 'E',
-        templateUrl: 'app/components/content/administerFields/directives/profileFields.html'
+        restrict: "E",
+        templateUrl: "app/components/content/administerFields/directives/profileFields.html"
     };
 });
 
-angular.module('ehelseEditor').directive('supportdocumentfields',function () {
+angular.module("ehelseEditor").directive("supportdocumentfields",function () {
     return{
-        restrict: 'E',
-        templateUrl: 'app/components/content/administerFields/directives/supportDocumentFields.html'
+        restrict: "E",
+        templateUrl: "app/components/content/administerFields/directives/supportDocumentFields.html"
     };
 });
 
-angular.module('ehelseEditor').directive('profilescontainer',function () {
+angular.module("ehelseEditor").directive("profilescontainer",function () {
     return{
-        restrict: 'E',
-        templateUrl: 'app/components/content/editDocument/profiles/profilesContainer.html'
+        restrict: "E",
+        templateUrl: "app/components/content/editDocument/profiles/profilesContainer.html"
     };
 });
 
-angular.module('ehelseEditor').directive('focusMe', function ($timeout, $parse) {
+angular.module("ehelseEditor").directive("focusMe", function ($timeout, $parse) {
     return{
         link: function (scope, element, attrs, model) {
             var model = $parse(attrs.focusMe);
@@ -37,7 +37,7 @@ angular.module('ehelseEditor').directive('focusMe', function ($timeout, $parse) 
                     },150);
                 }
             });
-            element.bind('blur',function () {
+            element.bind("blur",function () {
                 scope.$apply(model.assign(scope, false));
             })
         }

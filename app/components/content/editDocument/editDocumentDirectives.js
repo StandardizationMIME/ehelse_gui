@@ -1,22 +1,22 @@
 
-angular.module('ehelseEditor').directive('documentTargetGroups',function () {
+angular.module("ehelseEditor").directive("documentTargetGroups",function () {
     return{
-        restrict: 'E',
-        templateUrl: 'app/components/content/editDocument/targetGroups/documentTargetGroups.html'
+        restrict: "E",
+        templateUrl: "app/components/content/editDocument/targetGroups/documentTargetGroups.html"
     };
 });
 
-angular.module('ehelseEditor').directive('documentFields',function () {
+angular.module("ehelseEditor").directive("documentFields",function () {
     return{
-        restrict: 'E',
-        templateUrl: 'app/components/content/editDocument/fields/documentFields.html'
+        restrict: "E",
+        templateUrl: "app/components/content/editDocument/fields/documentFields.html"
     };
 });
 
 
-angular.module('ehelseEditor').directive('documentLinkCategories',function () {
+angular.module("ehelseEditor").directive("documentLinkCategories",function () {
     return{
-        restrict: 'E',
-        templateUrl: 'app/components/content/editDocument/links/documentLinks.html'
+        restrict: "E",
+        templateUrl: "app/components/content/editDocument/links/documentLinks.html"
     };
 });

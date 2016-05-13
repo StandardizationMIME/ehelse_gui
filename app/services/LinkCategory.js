@@ -1,11 +1,11 @@
-'use strict';
+"use strict";
 
-angular.module('ehelseEditor').factory('LinkCategory', ['$rootScope', function($rootScope) {
+angular.module("ehelseEditor").factory("LinkCategory", ["$rootScope", function($rootScope) {
     var link_categories= [];
     var link_categories_dict = {};
 
     $rootScope.get(
-        'link-categories',
+        "link-categories",
         function ( data ){
             link_categories.length = 0;
             Array.prototype.push.apply(link_categories, data.link_categories);
@@ -56,27 +56,27 @@ angular.module('ehelseEditor').factory('LinkCategory', ['$rootScope', function($
 
         if(link_category.id){
             $rootScope.put(
-                'link-categories/'+link_category.id,
+                "link-categories/"+link_category.id,
                 link_category,
                 function(data){
                     set(link_categories_dict[data.id], data);
                     generateLinkCategoryDict(link_categories);
-                    $rootScope.notifySuccess('Lenke-kategori ble oppdatert',3000);
+                    $rootScope.notifySuccess("Lenke-kategori ble oppdatert",3000);
 
                 },
                 function(data){
-                    $rootScope.notifyError('Lenke-kategori ble ikke oppdatert.',6000);
+                    $rootScope.notifyError("Lenke-kategori ble ikke oppdatert.",6000);
                 });
         }
         else{
             $rootScope.post(
-                'link-categories/',
+                "link-categories/",
                 link_category,
                 function(data){
-                    $rootScope.notifySuccess('Ny målgruppe ble opprettet.',3000);
+                    $rootScope.notifySuccess("Ny målgruppe ble opprettet.",3000);
                     add(data);
                 },function(){
-                    $rootScope.notifyError('Målgruppe ble ikke opprettet.',6000);
+                    $rootScope.notifyError("Målgruppe ble ikke opprettet.",6000);
                 }
             );
         }
@@ -93,7 +93,7 @@ angular.module('ehelseEditor').factory('LinkCategory', ['$rootScope', function($
 
     function deleteLinkCategory(linkCategory){
         $rootScope.delete(
-            'link-categories/'+ linkCategory.id,
+            "link-categories/"+ linkCategory.id,
             function () {
                 removeLinkCategory(linkCategory);
                 generateLinkCategoryDict();

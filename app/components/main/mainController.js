@@ -1,15 +1,15 @@
 (function(){
 
-    angular.module('ehelseEditor').run(['$state','$http', '$rootScope', '$cookies', '$location', 'ModalService', function($state,$http, $rootScope, $cookies, $location, ModalService) {
+    angular.module("ehelseEditor").run(["$state","$http", "$rootScope", "$cookies", "$location", "ModalService", function($state,$http, $rootScope, $cookies, $location, ModalService) {
         $rootScope.$state = $state;
-        $rootScope.userName = $cookies.get('username');
-        $rootScope.password = $cookies.get('password');
-        var user= $cookies.get('currentUser');
+        $rootScope.userName = $cookies.get("username");
+        $rootScope.password = $cookies.get("password");
+        var user= $cookies.get("currentUser");
         if(user){
             $rootScope.currentUser = angular.fromJson(user);
         }
-        $rootScope.apiUrl = 'https://refkat.eu/v1/';
-        //$rootScope.apiUrl = 'http://localhost:8080/index.php/v1/';
+        $rootScope.apiUrl = "https://refkat.eu/v1/";
+        //$rootScope.apiUrl = "http://localhost:8080/index.php/v1/";
 
 
         $rootScope.openModal = function(url, controller){
@@ -28,7 +28,7 @@
         $rootScope.openConfirmationTGModal = function(message,id){
             $rootScope.confirmMsg = message;
             $rootScope.deleteTGId = id;
-            $rootScope.openModal('app/components/main/confirmation/confirmationTgModal.html', 'ConfirmationTGModalController');
+            $rootScope.openModal("app/components/main/confirmation/confirmationTgModal.html", "ConfirmationTGModalController");
         };
 
         $rootScope.openConfirmationModal = function(message, objectToDelete, method){
@@ -38,7 +38,7 @@
             $rootScope.confirmationFunction = function(){
                 method($rootScope.objectToDelete);
             };
-            $rootScope.openModal('app/components/main/confirmation/confirmationModal.html', 'ConfirmationModalController');
+            $rootScope.openModal("app/components/main/confirmation/confirmationModal.html", "ConfirmationModalController");
         };
 
 
@@ -67,11 +67,11 @@
         };
 
         $rootScope.http = function(method, url, payload, success, error){
-            var username = $rootScope.userName || $cookies.get('username');
-            var password = $rootScope.password || $cookies.get('password');
+            var username = $rootScope.userName || $cookies.get("username");
+            var password = $rootScope.password || $cookies.get("password");
             if(username && password){
-                var credentials = btoa( username + ':' + password);
-                var authorization = {'Authorization': 'Basic ' + credentials};
+                var credentials = btoa( username + ":" + password);
+                var authorization = {"Authorization": "Basic " + credentials};
                 var request = {
                     url: $rootScope.apiUrl + url,
                     data: payload,
@@ -124,7 +124,7 @@
                 );
             }
             else {
-                $rootScope.$state.go('login');
+                $rootScope.$state.go("login");
             }
 
         };
@@ -134,11 +134,11 @@
             $rootScope.userName = null;
             $rootScope.password = null;
 
-            $cookies.put('username', "");
-            $cookies.put('password', "");
-            $cookies.put('currentUser', "");
+            $cookies.put("username", "");
+            $cookies.put("password", "");
+            $cookies.put("currentUser", "");
             $rootScope.view = "";
-            $rootScope.$state.go('login');
+            $rootScope.$state.go("login");
         };
 
         $rootScope.childControllers = {};
@@ -151,11 +151,11 @@
         };
 
         $rootScope.changeContentView = function(view){
-            $rootScope.childControllers['EditorController'].changeView(view);
+            $rootScope.childControllers["EditorController"].changeView(view);
         };
 
 
-        $rootScope.userPageView = '';
+        $rootScope.userPageView = "";
 
         $rootScope.changeUserView = function(view){
             $rootScope.userPageView = view;

@@ -1,6 +1,6 @@
 <form name="administerFieldForm" role="form" method="post">
     <div class="ten-pix-vertical-padding">
-        <button type="button" ng-click="showNewFieldModal();setTypeId('2')" class="btn btn-default">
+        <button type="button" ng-click="showNewFieldModal();setTypeId(2)" class="btn btn-default">
             <span class="fa fa-plus-circle red-color font-size-large"></span>
             Opprett nytt felt
         </button>
@@ -16,13 +16,13 @@
         <li ng-repeat="field in documentFields | orderBy:getSequence" ng-if="field.documentTypeId == 2" class="list-group-item">
             <span class="field-item-field">{{field.name}}</span>
             <span class="field-item-field">{{field.description}}</span>
-            <span class="field-item-field" ng-if="field.mandatory == '1'">Ja</span>
-            <span class="field-item-field" ng-if="field.mandatory == '0'">Nei</span>
+            <span class="field-item-field" ng-if="field.mandatory == 1">Ja</span>
+            <span class="field-item-field" ng-if="field.mandatory == 0">Nei</span>
             <div class="pull-right">
                 <span ng-click="openConfirmationModal('Er du sikker på at du vil slette feltet?', field, deleteFieldById)" id="editProfileField" class="fa fa-remove fa-fw vcenter clickable remove-user edit-field unsortable"></span>
             </div>
             <div class="pull-right">
-                <span ng-click="editDocumentFieldModal(field.id);setTypeId('2')" id="deleteProfileField" class="fa fa-pencil-square-o fa-2x vcenter clickable edit-field unsortable"></span>
+                <span ng-click="editDocumentFieldModal(field.id);setTypeId(2)" id="deleteProfileField" class="fa fa-pencil-square-o fa-2x vcenter clickable edit-field unsortable"></span>
             </div>
         </li>
     </ul>

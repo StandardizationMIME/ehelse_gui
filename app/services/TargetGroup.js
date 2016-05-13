@@ -1,13 +1,13 @@
-'use strict';
+"use strict";
 
-angular.module('ehelseEditor').factory('TargetGroup', ['$rootScope', function($rootScope) {
+angular.module("ehelseEditor").factory("TargetGroup", ["$rootScope", function($rootScope) {
 
     var target_groups = [];
     var target_groups_dict = {};
     var target_groups_options_list= [];
 
     $rootScope.get(
-        'target-groups/',
+        "target-groups/",
         function ( data ){
             Array.prototype.push.apply(target_groups, data.targetGroups);
             generateTargetGroupDict(target_groups);
@@ -61,27 +61,27 @@ angular.module('ehelseEditor').factory('TargetGroup', ['$rootScope', function($r
         }
 
         if(group.id){
-            $rootScope.put('target-groups/'+group.id,
+            $rootScope.put("target-groups/"+group.id,
                 group,
                 function(data){
                     setTargetGroup(target_groups_dict[data.id], data);
                     generateTargetGroupOptionsList(target_groups);
-                    $rootScope.notifySuccess('Målgruppe ble oppdatert',3000);
+                    $rootScope.notifySuccess("Målgruppe ble oppdatert",3000);
 
                 },
                 function(data){
-                    $rootScope.notifyError('Målgruppe ble ikke oppdatert.',6000);
+                    $rootScope.notifyError("Målgruppe ble ikke oppdatert.",6000);
                 });
         }
         else{
             $rootScope.post(
-                'target-groups/',
+                "target-groups/",
                 group,
                 function(data){
-                    $rootScope.notifySuccess('Ny målgruppe ble opprettet.',3000);
+                    $rootScope.notifySuccess("Ny målgruppe ble opprettet.",3000);
                     addTargetGroup(data);
                 },function(){
-                    $rootScope.notifyError('Målgruppe ble ikke opprettet.',6000);
+                    $rootScope.notifyError("Målgruppe ble ikke opprettet.",6000);
                 }
             );
         }
@@ -97,16 +97,16 @@ angular.module('ehelseEditor').factory('TargetGroup', ['$rootScope', function($r
 
     function deleteById(id){
         if(id){
-            $rootScope.delete('target-groups/'+id,
+            $rootScope.delete("target-groups/"+id,
                 function(data){
                     removeById(id);
                     generateTargetGroupOptionsList(target_groups);
                     generateTargetGroupDict(target_groups);
-                    $rootScope.notifySuccess('Målgruppe ble fjernet',3000);
+                    $rootScope.notifySuccess("Målgruppe ble fjernet",3000);
 
                 },
                 function(data){
-                    $rootScope.notifyError('Målgruppe ble ikke fjernet.',6000);
+                    $rootScope.notifyError("Målgruppe ble ikke fjernet.",6000);
                 });
         }
     }
