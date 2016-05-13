@@ -8,18 +8,20 @@
     <!-- Account information -->
     <div id="account-info" class="row">
         <div class="col-lg-4">
-            <img src="http://placehold.it/200x200" class="img-circle" alt="profile_image"/>
+            <img src="assets/img/ehelseLogoAlternative.png" alt="ehelse logo" class="img-circle alternative-logo"/>
         </div>
+
+
         <div class="col-lg-7">
             <div class="row">
-                <h4 class="col-lg-2">Kontoinformasjon</h4>
+                <h3 class="col-lg-2">Kontoinformasjon</h3>
             </div>
 
             <!-- Name Form -->
             <div id="nameRow" ng-click="toggleName()" class="row data-row clickable">
                 <p class="col-lg-2">Navn</p>
                 <p class="data-field col-lg-5">{{currentUser.name}}</p>
-                <i class="fa fa-edit col-lg-1 pull-right"></i>
+                <i class="fa fa-edit col-lg-1 pull-right data-edit-icon"></i>
             </div>
             <div id="nameForm" class="row sub-form">
                 <form class="form-inline" name="editNameForm">
@@ -35,7 +37,7 @@
             <div id="emailRow" ng-click="toggleEmail()" class="row data-row clickable">
                 <p class="col-lg-2">Epost</p>
                 <p class="data-field col-lg-5">{{currentUser.email}}</p>
-                <i class="fa fa-edit col-lg-1 pull-right"></i>
+                <i class="fa fa-edit col-lg-1 pull-right data-edit-icon"></i>
             </div>
             <div id="emailForm" class="row sub-form">
                 <form class="form-inline" name="editEmailForm">
@@ -51,7 +53,7 @@
             <div id="passwordRow" ng-click="togglePassword()" class="row data-row clickable">
                 <p class="col-lg-2">Passord</p>
                 <p class="data-field col-lg-7">Sist endret {{currentUser.pwDateEdited}}</p>
-                <i class="fa fa-edit col-lg-1 pull-right"></i>
+                <i class="fa fa-edit col-lg-1 pull-right data-edit-icon"></i>
             </div>
             <div id="passwordForm" class="row sub-form">
                 <form name="editPasswordForm">
@@ -68,22 +70,6 @@
                         <input type="password" class="form-control" id="repeatNewPassword" ng-model="repeatNewPassword" required>
                     </div>
                     <button type="submit" ng-disabled="editPasswordForm.$invalid" class="btn btn-primary pull-right" ng-click="changePassword()">Lagre</button>
-                </form>
-            </div>
-
-            <!-- Image Form -->
-            <div id="imageRow" ng-click="toggleImage()" class="row data-row clickable">
-                <p class="col-lg-2">Profilbilde</p>
-                <p class="data-field col-lg-5">{{currentUser.profileImage}}</p>
-                <i class="fa fa-edit col-lg-1 pull-right"></i>
-            </div>
-            <div id="imageForm" class="row sub-form">
-                <form class="form-inline" name="editProfileImageForm">
-                    <div class="form-group">
-                        <label for="image">Velg nytt profilbilde</label>
-                        <input type="file" class="form-control" ng-model="myPage.profileImage" id="image" required>
-                        <button type="submit" ng-disabled="editProfileImageForm.$invalid" class="btn btn-primary pull-right" ng-click="submit()">Lagre</button>
-                    </div>
                 </form>
             </div>
 

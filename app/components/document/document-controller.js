@@ -7,15 +7,19 @@ angular.module('ehelseEditor').controller('DocumentController', [ '$scope','$roo
     $scope.current_document = Document.getCurrentDocument();
 
     $rootScope.getDocuments = function(id) {
-        $scope.selected_document = "";
+        $rootScope.selected_document = "";
         $scope.documents = Document.getDocumentsByTopicId(id);
 
+        $rootScope.toggleSelectedTopic(id);
+    };
+
+    $rootScope.toggleSelectedTopic = function(id) {
         <!-- Makes selected folder bold and toggles folder icon between opened and closed -->
         $(".clickable").removeClass('selected-item');
-        $('#' + id).addClass('selected-item');
-        $('#folder' + id).toggleClass('glyphicon-folder-open','glyphicon-folder-close');
-
-
+        if(id){
+            $('#' + id).addClass('selected-item');
+            $('#folder' + id).toggleClass('glyphicon-folder-open','glyphicon-folder-close');
+        }
     };
 
      $rootScope.setButtonState = function(state) {
@@ -43,7 +47,7 @@ angular.module('ehelseEditor').controller('DocumentController', [ '$scope','$roo
     };
 
     $rootScope.openDocument = function(document){
-        $scope.selected_document = document;
+        $rootScope.selected_document = document;
         $scope.checkButtonState(document);
 
         if(document == "newDocument"){
