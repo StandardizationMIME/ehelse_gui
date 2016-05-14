@@ -1,6 +1,6 @@
-"use strict";
+'use strict';
 
-angular.module("ehelseEditor").controller("MyPageController", ["$scope", "$rootScope", function ($scope, $rootScope) {
+angular.module('ehelseEditor').controller('MyPageController', ['$scope', '$rootScope', function ($scope, $rootScope) {
 
     //hide all forms
     $("#nameForm").hide();
@@ -15,10 +15,10 @@ angular.module("ehelseEditor").controller("MyPageController", ["$scope", "$rootS
         $("#passwordForm").slideUp("fast");
         $("#imageForm").slideUp("fast");
 
-        $("#nameRow").toggleClass("activeRow");
-        $("#emailRow").removeClass("activeRow");
-        $("#passwordRow").removeClass("activeRow");
-        $("#imageRow").removeClass("activeRow");
+        $("#nameRow").toggleClass("active-row");
+        $("#emailRow").removeClass("active-row");
+        $("#passwordRow").removeClass("active-row");
+        $("#imageRow").removeClass("active-row");
     };
     $scope.toggleEmail = function () {
         $("#emailForm").slideToggle("fast");
@@ -26,10 +26,10 @@ angular.module("ehelseEditor").controller("MyPageController", ["$scope", "$rootS
         $("#passwordForm").slideUp("fast");
         $("#imageForm").slideUp("fast");
 
-        $("#emailRow").toggleClass("activeRow");
-        $("#nameRow").removeClass("activeRow");
-        $("#passwordRow").removeClass("activeRow");
-        $("#imageRow").removeClass("activeRow");
+        $("#emailRow").toggleClass("active-row");
+        $("#nameRow").removeClass("active-row");
+        $("#passwordRow").removeClass("active-row");
+        $("#imageRow").removeClass("active-row");
     };
     $scope.togglePassword = function () {
         $("#passwordForm").slideToggle("fast");
@@ -37,10 +37,10 @@ angular.module("ehelseEditor").controller("MyPageController", ["$scope", "$rootS
         $("#emailForm").slideUp("fast");
         $("#imageForm").slideUp("fast");
 
-        $("#passwordRow").toggleClass("activeRow");
-        $("#nameRow").removeClass("activeRow");
-        $("#emailRow").removeClass("activeRow");
-        $("#imageRow").removeClass("activeRow");
+        $("#passwordRow").toggleClass("active-row");
+        $("#nameRow").removeClass("active-row");
+        $("#emailRow").removeClass("active-row");
+        $("#imageRow").removeClass("active-row");
     };
     $scope.toggleImage = function () {
         $("#imageForm").slideToggle("fast");
@@ -48,10 +48,10 @@ angular.module("ehelseEditor").controller("MyPageController", ["$scope", "$rootS
         $("#passwordForm").slideUp("fast");
         $("#emailForm").slideUp("fast");
 
-        $("#imageRow").toggleClass("activeRow");
-        $("#nameRow").removeClass("activeRow");
-        $("#emailRow").removeClass("activeRow");
-        $("#passwordRow").removeClass("activeRow");
+        $("#imageRow").toggleClass("active-row");
+        $("#nameRow").removeClass("active-row");
+        $("#emailRow").removeClass("active-row");
+        $("#passwordRow").removeClass("active-row");
     };
 
     $scope.myPage = {
@@ -98,7 +98,7 @@ angular.module("ehelseEditor").controller("MyPageController", ["$scope", "$rootS
                 $rootScope.notifyError("Det gamle passordet er feil.",6000);
             }
         } else {
-            $rootScope.notifyError("'Nytt passord' og 'Gjenta nytt passord' er ikke like.",6000);
+            $rootScope.notifyError('"Nytt passord" og "Gjenta nytt passord" er ikke like.',6000);
         }
 
         //Clear fields after attempt
