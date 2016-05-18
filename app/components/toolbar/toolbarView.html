@@ -2,6 +2,8 @@
 
     <nav class="ehese-navbar navbar-default container-fluid">
         <!-- Left part of toolbar -->
+
+       <!-- To be implemented in summer job
         <div class="navbar-form navbar-left" ng-if="$state.includes('main-view.editor-view')">
             <form role="search">
                 <div class="form-group">
@@ -10,6 +12,7 @@
                 <button type="submit" class="btn btn-default"><span class="fa fa-search"></span></button>
             </form>
         </div>
+        -->
         <div class="navbar-form navbar-left" ng-if="$state.includes('main-view.min-side') || $state.includes('main-view.administrer-brukere')">
             <button type="button" ui-sref="main-view.editor-view"
                     class="btn btn-primary">Tilbake til editor
@@ -36,21 +39,24 @@
 
         <!-- Right part of toolbar -->
         <ul class="nav navbar-nav navbar-right">
-
-            <li class="dropdown">
-                <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-                   aria-expanded="false">{{currentUser.name}} <span class="caret"></span></a>
-                <ul class="dropdown-menu">
-                    <li><a class="clickable" ui-sref="main-view.min-side">Min side</a></li>
-                    <li role="separator" class="divider"></li>
-                    <li><a class="clickable" ng-click="logout()">Logg av</a></li>
-                </ul>
+            <li class="navbar-form"><output class="">{{currentUser.name}}</output></li>
+            <li class="nav-element-margin">
+                <button ui-sref="main-view.min-side" type="button"
+                        class="btn btn-primary navbar-btn" data-toggle="tooltip" title="Min side"
+                        data-placement="bottom"><span
+                        class="fa fa-user"></span></button>
             </li>
             <li class="nav-element-margin">
                 <button ui-sref="main-view.administrer-brukere" type="button"
                         class="btn btn-primary navbar-btn" data-toggle="tooltip" title="Administrer brukere"
                         data-placement="bottom"><span
                         class="fa fa-users"></span></button>
+            </li>
+            <li class="nav-element-margin">
+                <button ng-click="logout()" type="button"
+                        class="btn btn-primary navbar-btn" data-toggle="tooltip" title="Logg av"
+                        data-placement="bottom"><span
+                        class="fa fa-sign-out"></span></button>
             </li>
         </ul>
     </nav>
