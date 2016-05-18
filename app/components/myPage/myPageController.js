@@ -36,11 +36,14 @@ angular.module("ehelseEditor").controller("MyPageController", ["$scope", "$rootS
         $("#emailRow").removeClass("active-row");
     };
 
+    //temporary store values for avoiding live updates when writing in fields
     $scope.myPage = {
         id: $rootScope.currentUser.id,
         name: $rootScope.currentUser.name,
         email: $rootScope.currentUser.email
     };
+
+    //submit all data
     $scope.submit = function () {
         $scope.put(
             "users/" + $rootScope.currentUser.id,
@@ -89,13 +92,5 @@ angular.module("ehelseEditor").controller("MyPageController", ["$scope", "$rootS
         } else {
             $rootScope.notifyError('"Nytt passord" og "Gjenta nytt passord" er ikke like.',6000);
         }
-
-        //Clear fields after attempt
-        /* TODO implement clearing of password fields after attempt. ATM that breaks the form becayse of 2-way data binding.
-         $scope.oldPassword = "";
-         $scope.newPassword = "";
-         $scope.repeatNewPassword = "";
-         */
     };
-
 }]);

@@ -1,6 +1,7 @@
 angular.module("ehelseEditor")
     .config(function($stateProvider, $urlRouterProvider) {
 
+        //redirect to "/" if nothing else matches
         $urlRouterProvider.otherwise("/");
 
         $stateProvider
