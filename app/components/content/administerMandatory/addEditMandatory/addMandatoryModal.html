@@ -2,22 +2,36 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <form ng-controller="AddEditMandatoryController" name="addMandatoryForm" role="form" method="post">
+
+                <!-- Modal title -->
                 <div class="modal-header">
                     <h3>Opprett mandatory</h3>
                 </div>
+
+                <!-- Mandatory value input fields -->
                 <div class="modal-body">
+
+                    <!-- Title -->
                     <div class="form-group">
                         <label for="newMandatoryName">Tittel: </label>
                         <input id="newMandatoryName" focus-me="shouldBeOpen" ng-model="newMandatory.name" type="text" class="form-control" required/>
                     </div>
+
+                    <!-- Description -->
                     <div class="form-group">
                         <label for="newMandatoryDescription">Beskrivelse: </label>
                         <textarea id="newMandatoryDescription" ng-model="newMandatory.description" class="form-control"></textarea>
                     </div>
                 </div>
+
+                <!-- Modal footer -->
                 <div class="modal-footer">
                     <div class="form-actions">
+
+                        <!-- Create new mandatory value and close modal -->
                         <button ng-click="postNewMandatory(newMandatory)" data-dismiss="modal" type="submit" ng-disabled="addMandatoryForm.$invalid" class="btn btn-primary">Opprett</button>
+
+                        <!-- Cancel and close modal -->
                         <button type="button" data-dismiss="modal" class="btn btn-default pull-right">Avbryt</button>
                     </div>
                 </div>

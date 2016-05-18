@@ -2,22 +2,36 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <form ng-controller="AddEditStatusController" name="addStatusForm" role="form" method="post">
+
+                <!-- Modal title -->
                 <div class="modal-header">
                     <h3>Opprett status</h3>
                 </div>
+
+                <!-- Status input fields -->
                 <div class="modal-body">
+
+                    <!-- Status title -->
                     <div class="form-group">
                         <label for="newStatusName">Tittel: </label>
                         <input id="newStatusName" focus-me="shouldBeOpen" ng-model="newStatus.name" type="text" class="form-control" required/>
                     </div>
+
+                    <!-- Description -->
                     <div class="form-group">
                         <label for="newStatusDescription">Beskrivelse: </label>
                         <textarea id="newStatusDescription" ng-model="newStatus.description" class="form-control"></textarea>
                     </div>
                 </div>
+
+                <!-- Modal footer -->
                 <div class="modal-footer">
                     <div class="form-actions">
-                        <button ng-click="postNewStatus(newStatus)" data-dismiss="modal" type="submit" ng-disabled="addStatusForm.$invalid" class="btn btn-primary">Opprett</button>
+
+                        <!-- Create new status and close modal -->
+                        <button ng-click="postNewStatus(newStatus)" data-dismiss="modal" type="submit" ng-disabled="addStatusForm.$invalid" class="btn btn-primary">Opprett status</button>
+
+                        <!-- Cancel and close modal -->
                         <button type="button" data-dismiss="modal" class="btn btn-default pull-right">Avbryt</button>
                     </div>
                 </div>

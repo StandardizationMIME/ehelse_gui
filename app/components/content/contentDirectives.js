@@ -1,3 +1,6 @@
+
+//Directives used in the content part of the GUI
+
 angular.module("ehelseEditor").directive("standardfields",function () {
     return{
         restrict: "E",

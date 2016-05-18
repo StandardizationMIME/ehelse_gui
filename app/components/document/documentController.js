@@ -2,19 +2,20 @@
 
 angular.module("ehelseEditor").controller("DocumentController", [ "$scope","$rootScope", "DocumentType", "Document", function( $scope, $rootScope, DocumentType, Document) {
 
+    // Save document values to scope to easier access it in the html files
     $scope.document_types_dict = DocumentType.document_types_dict;
     $scope.documents = [];
     $scope.current_document = Document.getCurrentDocument();
 
+    // Get documents of the selected topic
     $rootScope.getDocuments = function(id) {
         $rootScope.selected_document = "";
         $scope.documents = Document.getDocumentsByTopicId(id);
-
         $rootScope.toggleSelectedTopic(id);
     };
 
+    // Makes selected folder bold and toggles folder icon between opened and closed
     $rootScope.toggleSelectedTopic = function(id) {
-        <!-- Makes selected folder bold and toggles folder icon between opened and closed -->
         $(".clickable").removeClass("selected-item");
         if(id){
             $("#" + id).addClass("selected-item");
@@ -22,10 +23,12 @@ angular.module("ehelseEditor").controller("DocumentController", [ "$scope","$roo
         }
     };
 
+    // Set the document state to toggle different aspects of the view
      $rootScope.setDocumentState = function(state) {
         $rootScope.documentState = state;
     };
 
+    // Check and update the value of documentState
     $scope.checkDocumentState = function(document){
         if(document){
             if(document.documentTypeId == 1){
@@ -42,10 +45,12 @@ angular.module("ehelseEditor").controller("DocumentController", [ "$scope","$roo
         }
     };
 
+    // Open document by id
     $rootScope.openDocumentById = function(id){
         $rootScope.openDocument(Document.getById(id));
     };
 
+    // Open selected document
     $rootScope.openDocument = function(document){
         $rootScope.selected_document = document;
         $scope.checkDocumentState(document);

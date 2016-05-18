@@ -1,3 +1,5 @@
+
+// Directives used in MainView.html
 angular.module("ehelseEditor")
     .directive("toolbar",function(){
         return{

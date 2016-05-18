@@ -1,26 +1,40 @@
 <div class="modal fade">
     <div class="modal-dialog">
         <div class="modal-content">
+
+            <!-- Title -->
             <div class="modal-header">
                 <button type="button" class="close" ng-click="close()" data-dismiss="modal" aria-hidden="true">&times;</button>
                 <h4 class="modal-title">Legg til ny målgruppe</h4>
             </div>
+
+            <!-- Target group input fields -->
             <div class="modal-body">
                 <form role="form">
+
+                    <!-- Name -->
                     <div class="form-group">
                         <label>Navn: </label>
                         <input focus-me="shouldBeOpen" type="text" ng-model="newTargetGroup.name" class="form-control" required>
                     </div>
+
+                    <!-- Description -->
                     <div class="form-group">
                         <label>Beskrivelse: </label><span class="required-icon" data-toggle="tooltip" title="Obligatorisk felt" data-placement="top">*</span>
                         <textarea ng-model="newTargetGroup.description" class="form-control" rows="5" cols="40" required></textarea>
                     </div>
+
+                    <!-- Abbreviation -->
                     <div class="form-group">
                         <label>Forkortelse: </label>
                         <input type="text" ng-model="newTargetGroup.abbreviation" class="form-control">
                     </div>
+
+                    <!-- Target group parent -->
                     <div class="form-group">
                         <label>Overordnet målgrupper: </label>
+
+                        <!-- List of all target group parent options -->
                         <select ng-model="newTargetGroup.parentId" class="form-control" >
                             <option ng-repeat="tuple in TGTuples" value="{{tuple.id}}">{{tuple.name}}</option>
                         </select>
@@ -28,7 +42,11 @@
                 </form>
             </div>
             <div class="modal-footer">
+
+                <!-- Create new modal -->
                 <button type="button" ng-click="close('add')" class="btn btn-primary" data-dismiss="modal">Legg til</button>
+
+                <!-- Cancel and close modal -->
                 <button type="button" ng-click="close()" class="btn btn-default" data-dismiss="modal">Avbryt</button>
             </div>
         </div>

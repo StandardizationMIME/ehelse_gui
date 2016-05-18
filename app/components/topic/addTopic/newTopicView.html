@@ -2,23 +2,35 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <form ng-controller="NewTopicModalController" name="newTopicForm" role="form" method="post">
+
+                <!-- Modal Title -->
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                     <h3 class="center-align-text">Nytt tema</h3>
                 </div>
+
+                <!-- Topic input fields -->
                 <div class="modal-body">
+
+                    <!-- Title -->
                     <div class="form-group">
                         <label for="topicTitle">Tittel: <span class="required-icon" data-toggle="tooltip" title="Obligatorisk felt" data-placement="top">*</span></label>
                         <input focus-me="shouldBeOpen" type="text" name="topicTitle" id="topicTitle" class="form-control" ng-model="newTopic.title" required />
                     </div>
+
+                    <!-- Description -->
                     <div class="form-group">
                         <label for="topicDescription">Beskrivelse: </label>
                         <textarea name="topicDescription" id="topicDescription" class="form-control" ng-model="newTopic.description" rows="6" cols="50"></textarea>
                     </div>
+
+                    <!-- Order -->
                     <div class="form-group">
                         <label for="sequence">Rekkefølge: <span class="required-icon" data-toggle="tooltip" title="Obligatorisk felt" data-placement="top">*</span></label>
                         <input type="number" min="1" string-to-number name="sequence" id="sequence" class="form-control" ng-model="newTopic.sequence" />
                     </div>
+
+                    <!-- Select topic parent -->
                     <div class="form-group" >
                         <label for="topicParent">Opprett tema under: </label>
                         <select name="topicParent" id="topicParent" class="form-control" ng-model="newTopic.parentId">
@@ -27,9 +39,15 @@
                         </select>
                     </div>
                 </div>
+
+                <!-- Modal footer -->
                 <div class="modal-footer">
                     <div class="form-actions">
+
+                        <!-- Create new topic and close modal -->
                         <button ng-click="postNewTopic(newTopic)" data-dismiss="modal" type="submit" ng-disabled="newTopicForm.$invalid" class="btn btn-primary">Opprett nytt tema</button>
+
+                        <!-- Cancel and close modal -->
                         <button type="button" data-dismiss="modal" class="btn btn-default pull-right">Avbryt</button>
                     </div>
                 </div>

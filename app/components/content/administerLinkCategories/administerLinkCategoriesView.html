@@ -1,8 +1,12 @@
 <div ng-controller="AdministerLinkCategoriesController">
     <div class="shadow-below">
+
+        <!-- Title -->
         <div class="headline-box">
             <h4 class="selected">Administrer link-kategoriene</h4>
         </div>
+
+        <!-- Create new link category -->
         <p class="twelve-pix-vertical-padding">
             <button type="button" class="btn btn-default"
                     ng-click="showNewLinkCategoryModal()"
@@ -12,23 +16,36 @@
             </button>
         </p>
     </div>
+
     <div class="table-responsive administer-views shadow-below">
+
+        <!-- Table listing all link categories in the system -->
         <table class="table table-striped" id="AdministerLinkCategoriesTable">
+
+            <!-- Table headers -->
             <thead class="white-color blue-background">
-            <tr>
-                <th>Tittel</th>
-                <th>Beskrivelse</th>
-                <th>Rediger</th>
-                <th>Slett</th>
-            </tr>
+                <tr>
+                    <th>Tittel</th>
+                    <th>Beskrivelse</th>
+                    <th>Rediger</th>
+                    <th>Slett</th>
+                </tr>
             </thead>
+
+            <!-- Table body -->
             <tbody>
-            <tr ng-repeat="linkCategory in linkCategory">
-                <td>{{linkCategory.name}}</td>
-                <td>{{linkCategory.description}}</td>
-                <td><span class="fa fa-pencil-square-o fa-2x vcenter clickable" ng-click="showEditLinkCategoryModal(linkCategory.id)"></span></td>
-                <td><span class="fa fa-remove fa-fw vcenter clickable remove-user" ng-click="openConfirmationModal('Er du sikker på at du vil slette?', linkCategory, deleteLinkCategoryById)"></span></td>
-            </tr>
+                <tr ng-repeat="linkCategory in linkCategory">
+
+                    <!-- Link category info -->
+                    <td>{{linkCategory.name}}</td>
+                    <td>{{linkCategory.description}}</td>
+
+                    <!-- Edit link category -->
+                    <td><span class="fa fa-pencil-square-o fa-2x vcenter clickable" ng-click="showEditLinkCategoryModal(linkCategory.id)"></span></td>
+
+                    <!-- Delete link category -->
+                    <td><span class="fa fa-remove fa-fw vcenter clickable remove-user" ng-click="openConfirmationModal('Er du sikker på at du vil slette?', linkCategory, deleteLinkCategoryById)"></span></td>
+                </tr>
             </tbody>
         </table>
     </div>

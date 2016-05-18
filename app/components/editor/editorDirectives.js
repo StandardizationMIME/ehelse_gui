@@ -1,3 +1,5 @@
+
+// Directives used in editorView.html
 angular.module("ehelseEditor").directive("topicview", function(){
     return{
         restrict: "E",

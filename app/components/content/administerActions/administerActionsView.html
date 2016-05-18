@@ -1,8 +1,12 @@
 <div ng-controller="AdministerActionController">
     <div class="shadow-below">
+
+        <!-- Title -->
         <div class="headline-box">
             <h4 class="selected">Administrer handlinger</h4>
         </div>
+
+        <!-- Open modal for creating new action -->
         <p class="twelve-pix-vertical-padding">
             <button type="button" class="btn btn-default"
                     ng-click="showNewActionModal()"
@@ -12,23 +16,36 @@
             </button>
         </p>
     </div>
+
     <div class="table-responsive administer-views shadow-below">
+
+        <!-- Table listing all actions in the system -->
         <table class="table table-striped" id="AdministerActionsTable">
+
+            <!-- Table headers -->
             <thead class="white-color blue-background">
-            <tr>
-                <th>Tittel</th>
-                <th>Beskrivelse</th>
-                <th>Rediger</th>
-                <th>Slett</th>
-            </tr>
+                <tr>
+                    <th>Tittel</th>
+                    <th>Beskrivelse</th>
+                    <th>Rediger</th>
+                    <th>Slett</th>
+                </tr>
             </thead>
+
+            <!-- Table body -->
             <tbody>
-            <tr ng-repeat="action in actions">
-                <td>{{action.name}}</td>
-                <td>{{action.description}}</td>
-                <td><span class="fa fa-pencil-square-o fa-2x vcenter clickable" ng-click="showEditActionModal(action.id)"></span></td>
-                <td><span class="fa fa-remove fa-fw vcenter clickable remove-user" ng-click="openConfirmationModal('Er du sikker på at du vil slette?', action, deleteActionById)"></span></td>
-            </tr>
+                <tr ng-repeat="action in actions">
+
+                    <!-- Action info -->
+                    <td>{{action.name}}</td>
+                    <td>{{action.description}}</td>
+
+                    <!-- Edit action -->
+                    <td><span class="fa fa-pencil-square-o fa-2x vcenter clickable" ng-click="showEditActionModal(action.id)"></span></td>
+
+                    <!-- Delete action -->
+                    <td><span class="fa fa-remove fa-fw vcenter clickable remove-user" ng-click="openConfirmationModal('Er du sikker på at du vil slette?', action, deleteActionById)"></span></td>
+                </tr>
             </tbody>
         </table>
     </div>

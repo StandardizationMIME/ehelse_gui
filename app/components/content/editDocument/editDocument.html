@@ -1,8 +1,10 @@
 <form ng-controller="EditDocumentController" name="EditDocumentController.DocumentForm"  role="form">
 
 
-
+    <!-- This div contains the toolbar of the document with -->
     <div class="shadow-below">
+
+        <!-- Headline displaying document type or state -->
         <div class="headline-box">
             <h4 class="selected" ng-if="documentState == 'editTopic'">Rediger tema</h4>
             <h4 class="selected" ng-if="documentState == 'newDocument'">Nytt dokument</h4>
@@ -10,6 +12,8 @@
             <h4 class="selected" ng-if="documentState == 'editProfile'">Rediger profil</h4>
             <h4 class="selected" ng-if="documentState == 'newProfile'">Ny profil</h4>
         </div>
+
+        <!-- All buttons used in the various document states and types -->
         <p class="twelve-pix-vertical-padding">
             <button type="button" class="btn btn-primary" ng-click="submit(EditDocumentController.DocumentForm);setDocumentnState('editDocument');" ng-if="documentState == 'newDocument'" ng-disabled="EditDocumentController.DocumentForm.$invalid || EditDocumentController.DocumentForm.$pristine">
                 <span class="fa fa-check-circle edit-topic-icon"></span>
@@ -33,8 +37,11 @@
             </button>
         </p>
     </div>
+
+    <!-- This div contains the content of the document -->
     <div class="{{documentState}} shadow-below">
 
+        <!-- Buttons toggling between document versions -->
         <button type="button" class="btn btn-default " ng-if="document.nextDocumentId" ng-click="openDocumentById(document.nextDocumentId)">
             <span class="fa "></span>
             Neste versjon
@@ -43,11 +50,9 @@
             <span class="fa "></span>
             Tidligere versjon
         </button>
-        
+
         <div class="panel panel-default">
             <div class="panel-body">
-
-
 
                 <!-- choose document type -->
                 <div class="form-group">
@@ -74,6 +79,7 @@
                                class="form-control half-width" required/>
                     </div>
                 </div>
+
                 <!-- Choose Internal ID title -->
                 <div class="form-group">
                     <label class="col-sm-3 control-label" for="internalID">Intern ID: <span class="required-icon"
@@ -85,6 +91,7 @@
                                class="form-control half-width" required/>
                     </div>
                 </div>
+
                 <!-- Choose his number-->
                 <div class="form-group">
                     <label class="col-sm-3 control-label" for="hisNumber">HIS nummer: </label>
@@ -93,6 +100,7 @@
                                class="form-control half-width" />
                     </div>
                 </div>
+
                 <!-- choose status -->
                 <div class="form-group">
                     <label class="col-sm-3 control-label" for="statusid">Status: </label>
@@ -106,7 +114,7 @@
                     </div>
                 </div>
 
-                <!--sequence-->
+                <!-- choose sequence-->
                 <div class="form-group">
                     <label class="col-sm-3 control-label" for="sequence">Rekkefølge: </label>
                     <div class="form-group col-sm-9">
@@ -134,8 +142,6 @@
                         </select>
                     </div>
                 </div>
-
-
             </div>
         </div>
 
@@ -148,6 +154,7 @@
         <!-- Choose target groups -->
         <document-target-groups></document-target-groups>
 
+        <!-- Choose document link categories + links -->
         <document-link-categories></document-link-categories>
 
     </div>

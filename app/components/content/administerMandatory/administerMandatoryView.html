@@ -1,8 +1,12 @@
 <div ng-controller="AdministerMandatoryController">
     <div class="shadow-below">
+
+        <!-- Title -->
         <div class="headline-box">
             <h4 class="selected">Administrer mandatory</h4>
         </div>
+
+        <!-- Open modal for adding new mandatory value -->
         <p class="twelve-pix-vertical-padding">
             <button type="button" class="btn btn-default"
                     ng-click="openNewMandatoryModal()"
@@ -12,23 +16,36 @@
             </button>
         </p>
     </div>
+
     <div class="table-responsive administer-views shadow-below">
+
+        <!-- Table listing all mandatory values in the system -->
         <table class="table table-striped" id="AdministerMandatoriesTable">
+
+            <!-- Table headers -->
             <thead class="white-color blue-background">
-            <tr>
-                <th>Tittel</th>
-                <th>Beskrivelse</th>
-                <th>Rediger</th>
-                <th>Slett</th>
-            </tr>
+                <tr>
+                    <th>Tittel</th>
+                    <th>Beskrivelse</th>
+                    <th>Rediger</th>
+                    <th>Slett</th>
+                </tr>
             </thead>
+
+            <!-- Table body -->
             <tbody>
-            <tr ng-repeat="mandatory in mandatories">
-                <td>{{mandatory.name}}</td>
-                <td>{{mandatory.description}}</td>
-                <td><span class="fa fa-pencil-square-o fa-2x vcenter clickable" ng-click="openEditMandatoryModal(mandatory.id)"></span></td>
-                <td><span class="fa fa-remove fa-fw vcenter clickable remove-user" ng-click="openConfirmationModal('Er du sikker på at du vil slette?', mandatory, deleteMandatory)"></span></td>
-            </tr>
+                <tr ng-repeat="mandatory in mandatories">
+
+                    <!-- Mandatory value info -->
+                    <td>{{mandatory.name}}</td>
+                    <td>{{mandatory.description}}</td>
+
+                    <!-- Edit status -->
+                    <td><span class="fa fa-pencil-square-o fa-2x vcenter clickable" ng-click="openEditMandatoryModal(mandatory.id)"></span></td>
+
+                    <!-- Delete status -->
+                    <td><span class="fa fa-remove fa-fw vcenter clickable remove-user" ng-click="openConfirmationModal('Er du sikker på at du vil slette?', mandatory, deleteMandatory)"></span></td>
+                </tr>
             </tbody>
         </table>
     </div>

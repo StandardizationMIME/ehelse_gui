@@ -13,12 +13,15 @@
             </form>
         </div>
         -->
+
+        <!-- Back to editor -->
         <div class="navbar-form navbar-left" ng-if="$state.includes('main-view.min-side') || $state.includes('main-view.administrer-brukere')">
             <button type="button" ui-sref="main-view.editor-view"
                     class="btn btn-primary">Tilbake til editor
             </button>
         </div>
 
+        <!-- Navigation bar with dropdown for selecting administer views -->
         <ul class="nav navbar-nav">
             <li class="nav-element-margin" ng-if="$state.includes('main-view.editor-view')">
                 <div class="btn-group">
@@ -39,19 +42,27 @@
 
         <!-- Right part of toolbar -->
         <ul class="nav navbar-nav navbar-right">
+
+            <!-- Name of logged in user -->
             <li class="navbar-form"><output class="">{{currentUser.name}}</output></li>
+
+            <!-- My page -->
             <li class="nav-element-margin">
                 <button ui-sref="main-view.min-side" type="button"
                         class="btn btn-primary navbar-btn" data-toggle="tooltip" title="Min side"
                         data-placement="bottom"><span
                         class="fa fa-user"></span></button>
             </li>
+
+            <!-- Administer users -->
             <li class="nav-element-margin">
                 <button ui-sref="main-view.administrer-brukere" type="button"
                         class="btn btn-primary navbar-btn" data-toggle="tooltip" title="Administrer brukere"
                         data-placement="bottom"><span
                         class="fa fa-users"></span></button>
             </li>
+
+            <!-- Log out -->
             <li class="nav-element-margin">
                 <button ng-click="logout()" type="button"
                         class="btn btn-primary navbar-btn" data-toggle="tooltip" title="Logg av"

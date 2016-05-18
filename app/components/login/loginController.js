@@ -5,6 +5,8 @@ angular.module("ehelseEditor").controller("LoginController", [ "$scope", "$rootS
     $scope.feedback = "";
     $rootScope.password = null;
     $scope.$state = $state;
+
+    // Submit login info and try to log in
     $scope.submit = function(){
         $rootScope.setUserName($scope.username);
         $rootScope.setPassword($scope.password);
@@ -13,8 +15,8 @@ angular.module("ehelseEditor").controller("LoginController", [ "$scope", "$rootS
         $scope.logIn();
     };
 
+    // Login
     $scope.logIn = function (username, authtoken) {
-
         $rootScope.get(
             "users/login/",
             function(data){

@@ -1,13 +1,20 @@
 <form ng-controller="EditTopicController" name="EditTopicController.editTopicForm" role="form" method="post">
     <div class="shadow-below">
         <div class="headline-box">
+
+            <!-- Title -->
             <h4 class="selected-heading">Rediger tema</h4>
         </div>
+
         <p class="twelve-pix-vertical-padding">
+
+            <!-- Save change -->
             <button ng-click="saveTopicChange(EditTopicController.editTopicForm)" type="button" class="btn btn-primary" ng-disabled="EditTopicController.editTopicForm.$pristine">
                 <span class="fa fa-check-circle-o edit-topic-icon"></span>
                  Lagre tema
             </button>
+
+            <!-- Delete topic -->
             <button ng-click="openConfirmationModal('Er du sikker på at du vil slette temaet?', selectedTopic, deleteTopic)" type="button" class="btn btn-danger pull-right">
                 <span class="fa fa-remove"></span>
                 Slett tema
@@ -17,6 +24,7 @@
 
     <div class="panel panel-default">
         <div class="panel-body">
+
             <!-- choose topic title -->
             <div class="form-group">
                 <label class="col-sm-3 control-label"  for="editTopicTitle">Tittel: <span class="required-icon" data-toggle="tooltip" title="Obligatorisk felt" data-placement="top">*</span></label>
@@ -26,7 +34,7 @@
                 </div>
             </div>
 
-            <!-- Choose beskrivelse -->
+            <!-- Choose description -->
             <div class="form-group">
                 <label class="col-sm-3 control-label" for="editTopicDescription">Beskrivelse: </label>
                 <div class="form-group col-sm-9">
@@ -56,27 +64,5 @@
             </div>
 
         </div>
-    </div>
-
-
-
-
-
-
-
-
-
-    <div class="half-width">
-
-
-
-
-
-
-
-
-
-
-
     </div>
 </form>

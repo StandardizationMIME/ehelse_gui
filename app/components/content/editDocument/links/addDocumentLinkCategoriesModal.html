@@ -2,14 +2,18 @@
     <div class="modal-dialog">
         <div class="modal-content">
 
+            <!-- Modal title -->
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                 <h4 class="modal-title">Lenke-kategorier</h4>
                 <span>Velg en eller flere kategorier</span>
             </div>
 
+            <!-- Modal body -->
             <div class="modal-body edit-document-modal">
                 <form role="form">
+
+                    <!-- List all link categories in the system, with a checkbox -->
                     <div ng-if="document_link_categories_ids.indexOf(link_category.id) == -1" class="form-group" ng-repeat="link_category in link_categories">
                         <input id={{link_category.id}} type="checkbox"  data-checklist-model="selected_document_link_categories_ids" data-checklist-value="link_category.id">
                         <label for={{link_category.id}}>{{link_category.name}}</label>
@@ -17,8 +21,13 @@
                 </form>
             </div>
 
+            <!-- Modal footer -->
             <div class="modal-footer">
+
+                <!-- Save changes -->
                 <button type="button" ng-click="close('add')" class="btn btn-primary" data-dismiss="modal">Lagre</button>
+
+                <!-- Cancel changes -->
                 <button type="button" ng-click="close('cancel')" class="btn btn-default" data-dismiss="modal">Avbryt</button>
             </div>
         </div>

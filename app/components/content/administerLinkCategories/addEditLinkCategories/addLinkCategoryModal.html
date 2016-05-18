@@ -2,22 +2,36 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <form ng-controller="AddEditLinkCategoriesController" name="addLinkCategoryForm" role="form" method="post">
+
+                <!-- Modal title -->
                 <div class="modal-header">
                     <h3>Opprett link kategori</h3>
                 </div>
+
+                <!-- Link category input fields -->
                 <div class="modal-body">
+
+                    <!-- Title -->
                     <div class="form-group">
                         <label for="newLinkCategoryName">Tittel: </label>
                         <input id="newLinkCategoryName" focus-me="shouldBeOpen" ng-model="newLinkCategory.name" type="text" class="form-control" required/>
                     </div>
+
+                    <!-- Description -->
                     <div class="form-group">
                         <label for="newLinkCategoryDescription">Beskrivelse: </label>
                         <textarea id="newLinkCategoryDescription" ng-model="newLinkCategory.description" class="form-control"></textarea>
                     </div>
                 </div>
+
+                <!-- Modal footer -->
                 <div class="modal-footer">
                     <div class="form-actions">
+
+                        <!-- Create link category and close modal -->
                         <button ng-click="postNewLinkCategory(newLinkCategory)" data-dismiss="modal" type="submit" ng-disabled="addLinkCategoryForm.$invalid" class="btn btn-primary">Opprett</button>
+
+                        <!-- Cancel and close modal -->
                         <button type="button" data-dismiss="modal" class="btn btn-default pull-right">Avbryt</button>
                     </div>
                 </div>

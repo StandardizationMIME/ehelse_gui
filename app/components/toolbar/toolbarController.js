@@ -1,11 +1,15 @@
 angular.module("ehelseEditor").controller("ToolbarController", ["$state", "$rootScope", "$scope", function ($state, $rootScope, $scope) {
+
     $scope.$parent.registerChildController("ToolbarController", $scope);
+
+    // Remove selected graphics from topics and documents
     $scope.deselectTopicAndDocument = function(){
         $rootScope.toggleSelectedTopic("");
         $rootScope.getDocuments("");
         $rootScope.selected_document = "";
     };
 
+    // Open the different administer views in the content window
     $scope.openAdministerFields = function () {
         $scope.deselectTopicAndDocument();
         $rootScope.changeContentView("administerfields");
@@ -35,6 +39,8 @@ angular.module("ehelseEditor").controller("ToolbarController", ["$state", "$root
         $scope.deselectTopicAndDocument();
         $rootScope.changeContentView("administermandatory");
     };
+
+    // Initialize state
     $scope.$state = $state;
 }]);
 

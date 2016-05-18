@@ -2,25 +2,31 @@
     <div class="modal-dialog">
         <div class="modal-content">
 
-
+            <!-- Modal header with title -->
             <div class="modal-header">
                 <button type="button" class="close" ng-click="close('cancel')" data-dismiss="modal" aria-hidden="true">&times;</button>
                 <h4 class="modal-title">Målgrupper</h4>
                 <span>Velg en eller flere målgrupper</span>
             </div>
 
-
+            <!-- Modal body -->
             <div class="modal-body edit-document-modal">
                 <form role="form">
+
+                    <!-- List all target groups in the system, with a checkbox -->
                     <div class="form-group" ng-if="document_target_groups_ids.indexOf(group.id) == -1"  ng-repeat="group in target_groups | orderBy: 'name' | filter: searchText">
                         <input type="checkbox" data-checklist-model="selected_target_groups_ids" data-checklist-value="group.id"> {{group.name}}
                     </div>
                 </form>
             </div>
 
-
+            <!-- Modal footer -->
             <div class="modal-footer">
+
+                <!-- Save changes -->
                 <button type="button" ng-click="close('add')" class="btn btn-primary" data-dismiss="modal">Lagre</button>
+
+                <!-- Cancel Changes -->
                 <button type="button" ng-click="close('cancel')" class="btn btn-default" data-dismiss="modal">Avbryt</button>
             </div>
         </div>

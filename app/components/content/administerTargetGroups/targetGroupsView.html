@@ -1,21 +1,31 @@
 <div ng-controller="TargetGroupsController" class="target-group-grid">
     <div class="shadow-below">
+
+        <!-- Title -->
         <div class="headline-box">
             <h4 class="selected">Administrer målgrupper</h4>
         </div>
+
         <p class="twelve-pix-vertical-padding">
+
+            <!-- Open modal for creating new target group -->
             <button type="button" class="btn btn-default"
                     ng-click="showNewTGModal()"
                     data-keyboard="true" id="triggerFocus">
                 <span class="fa fa-plus-circle plus-icon"></span>
                 Ny målgruppe
             </button>
+
+            <!-- Search bar for filtering target groups -->
             <label class="pull-right"><input class="form-control input-sm" ng-model="searchText" placeholder="Søk..."></label>
         </p>
     </div>
 
+    <!-- Table for displaying all target groups in the system -->
     <div class="table-responsive">
         <table class="table table-striped" id="targetGroupsTable" ng-init="sortType = 'name'; sortReverse = sortReverse">
+
+            <!-- Table headers with code allowing sorting -->
             <thead class="tg-thead">
                 <tr>
                     <th class="col-md-3" ng-click="sortType = 'name'; sortReverse = !sortReverse"><a class="sortable-columns">Navn &#13;&#10;</a>
@@ -34,13 +44,23 @@
                     <th class="col-md-1">Slett</th>
                 </tr>
             </thead>
+
+            <!-- Table body -->
             <tbody class="tg-tbody shadow-below">
+
+                <!-- List of all target groups in the system -->
                 <tr ng-repeat="group in targetGroups | orderBy:sortType:sortReverse | filter: searchText">
+
+                    <!-- Target group info -->
                     <td class="tg">{{group.name}}</td>
                     <td class="tg">{{group.description}}</td>
                     <td class="tg">{{group.abbreviation}}</td>
                     <td class="tg">{{TGDictionary[group.parentId].name}}</td>
+
+                    <!-- Edit target group -->
                     <td class="tg"><span ng-click="showEditTGModal(group)" data-keyboard="true" class="fa fa-pencil-square-o fa-2x clickable"></span></td>
+
+                    <!-- Delete target group -->
                     <td class="tg"><span ng-click="openConfirmationTGModal('Er du sikker på at du vil slette målgruppe?',group.id)" class="fa fa-remove clickable remove-user"></span></td>
                 </tr>
             </tbody>

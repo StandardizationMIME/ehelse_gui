@@ -2,31 +2,49 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <form ng-controller="DocumentFieldModalController" name="newDocumentFieldForm" role="form" method="post">
+
+                <!-- Modal title -->
                 <div class="modal-header">
                     <h3>Nytt felt</h3>
                 </div>
+
+                <!-- Document field input values -->
                 <div class="modal-body">
+
+                    <!-- Title -->
                     <div class="form-group">
                         <label for="fieldTitle">Tittel: </label>
                         <input focus-me="shouldBeOpen" type="text" name="fieldTitle" id="fieldTitle" ng-model="newDocumentField.name" class="form-control" required/>
                     </div>
+
+                    <!-- Description -->
                     <div class="form-group">
                         <label for="newDocumentFieldDescription">Beskrivelse: </label>
                         <textarea id="newDocumentFieldDescription" ng-model="newDocumentField.description" class="form-control" rows="6" cols="50"></textarea>
                     </div>
+
+                    <!-- Order -->
                     <div>
                         <label for="newDocumentFieldSequence">Rekkefølge: </label>
                         <input id="newDocumentFieldSequence" type="number" min="1" string-to-number ng-model="newDocumentField.sequence" class="form-control" placeholder="1"/>
                     </div>
                     <br>
+
+                    <!-- Mandatory -->
                     <div class="form-inline">
                         <label for="newDocumentFieldMandatory">Obligatorisk: </label>
                         <input id="newDocumentFieldMandatory" type="checkbox" ng-model="newDocumentField.mandatory"/>
                     </div>
                 </div>
+
+                <!-- Modal footer -->
                 <div class="modal-footer">
                     <div class="form-actions">
+
+                        <!-- Create new document field and close modal -->
                         <button id="createFieldButton" ng-click="postNewDocumentField(newDocumentField)" data-dismiss="modal"  type="submit" ng-disabled="newDocumentFieldForm.$invalid" class="btn btn-primary">Opprett nytt felt</button>
+
+                        <!-- Cancel and close modal -->
                         <button type="button" data-dismiss="modal" class="btn btn-default pull-right">Avbryt</button>
                     </div>
                 </div>
