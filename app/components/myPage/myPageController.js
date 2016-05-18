@@ -1,6 +1,6 @@
 "use strict";
 
-angular.module("ehelseEditor").controller("MyPageController", ["$scope", "$rootScope", function ($scope, $rootScope) {
+angular.module("ehelseEditor").controller("MyPageController", ["$scope", "$rootScope", "$cookies", function ($scope, $rootScope, $cookies) {
 
     //hide all forms
     $("#nameForm").hide();
@@ -52,6 +52,8 @@ angular.module("ehelseEditor").controller("MyPageController", ["$scope", "$rootS
                     name: $scope.myPage.name,
                     email: $scope.myPage.email
                 };
+
+                $cookies.put("currentUser", angular.toJson($scope.myPage));
                 $rootScope.currentUser.name = $scope.myPage.name;
                 $("#emailRow").removeClass("active-row");
                 $("#nameRow").removeClass("active-row");
