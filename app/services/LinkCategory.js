@@ -61,7 +61,7 @@ angular.module("ehelseEditor").factory("LinkCategory", ["$rootScope", function($
                 function(data){
                     set(link_categories_dict[data.id], data);
                     generateLinkCategoryDict(link_categories);
-                    $rootScope.notifySuccess("Lenke-kategori ble oppdatert",3000);
+                    $rootScope.notifySuccess("Lenke-kategori ble oppdatert",1000);
 
                 },
                 function(data){
@@ -73,7 +73,7 @@ angular.module("ehelseEditor").factory("LinkCategory", ["$rootScope", function($
                 "link-categories/",
                 link_category,
                 function(data){
-                    $rootScope.notifySuccess("Ny målgruppe ble opprettet.",3000);
+                    $rootScope.notifySuccess("Ny målgruppe ble opprettet.",1000);
                     add(data);
                 },function(){
                     $rootScope.notifyError("Målgruppe ble ikke opprettet.",6000);
@@ -97,7 +97,7 @@ angular.module("ehelseEditor").factory("LinkCategory", ["$rootScope", function($
             function () {
                 removeLinkCategory(linkCategory);
                 generateLinkCategoryDict();
-                $rootScope.notifySuccess("Link-kategorien ble slettet!", 3000);
+                $rootScope.notifySuccess("Link-kategorien ble slettet!", 1000);
             },
             function () {
                 $rootScope.notifyError("Kunne ikke slette", 6000);

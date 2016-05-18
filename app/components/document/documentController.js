@@ -22,23 +22,23 @@ angular.module("ehelseEditor").controller("DocumentController", [ "$scope","$roo
         }
     };
 
-     $rootScope.setButtonState = function(state) {
-        $rootScope.buttonState = state;
+     $rootScope.setDocumentState = function(state) {
+        $rootScope.documentState = state;
     };
 
-    $scope.checkButtonState = function(document){
+    $scope.checkDocumentState = function(document){
         if(document){
             if(document.documentTypeId == 1){
-                $rootScope.setButtonState("editDocument");
+                $rootScope.setDocumentState("editDocument");
             }
             else if(document.documentTypeId == 2) {
-                $rootScope.setButtonState("editProfile");
+                $rootScope.setDocumentState("editProfile");
             }
             else {
-                $rootScope.setButtonState("newDocument");
+                $rootScope.setDocumentState("newDocument");
             }
         }else{
-            $rootScope.setButtonState("newDocument");
+            $rootScope.setDocumentState("newDocument");
         }
     };
 
@@ -48,7 +48,7 @@ angular.module("ehelseEditor").controller("DocumentController", [ "$scope","$roo
 
     $rootScope.openDocument = function(document){
         $rootScope.selected_document = document;
-        $scope.checkButtonState(document);
+        $scope.checkDocumentState(document);
 
         if(document == "newDocument"){
             document = null;

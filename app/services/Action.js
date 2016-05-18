@@ -68,7 +68,7 @@ angular.module("ehelseEditor").factory("Action", ["$rootScope", function($rootSc
                     set(actions_dict[data.id], data);
                     generateActionsDict(actions);
                     generateActionsOptionList(actions);
-                    $rootScope.notifySuccess("Handling ble oppdatert",3000);
+                    $rootScope.notifySuccess("Handling ble oppdatert",1000);
 
                 },
                 function(data){
@@ -80,7 +80,7 @@ angular.module("ehelseEditor").factory("Action", ["$rootScope", function($rootSc
                 "actions/",
                 action,
                 function(data){
-                    $rootScope.notifySuccess("Ny handling ble opprettet.",3000);
+                    $rootScope.notifySuccess("Ny handling ble opprettet.",1000);
                     add(data);
                 },function(){
                     $rootScope.notifyError("Handling ble ikke opprettet.",6000);
@@ -104,7 +104,7 @@ angular.module("ehelseEditor").factory("Action", ["$rootScope", function($rootSc
             "actions/" + action.id,
             function () {
                 removeAction(action);
-                $rootScope.notifySuccess("Handling ble slettet!", 3000);
+                $rootScope.notifySuccess("Handling ble slettet!", 1000);
 
             },
             function(){

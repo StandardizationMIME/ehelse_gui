@@ -66,7 +66,7 @@ angular.module("ehelseEditor").factory("TargetGroup", ["$rootScope", function($r
                 function(data){
                     setTargetGroup(target_groups_dict[data.id], data);
                     generateTargetGroupOptionsList(target_groups);
-                    $rootScope.notifySuccess("Målgruppe ble oppdatert",3000);
+                    $rootScope.notifySuccess("Målgruppe ble oppdatert",1000);
 
                 },
                 function(data){
@@ -78,7 +78,7 @@ angular.module("ehelseEditor").factory("TargetGroup", ["$rootScope", function($r
                 "target-groups/",
                 group,
                 function(data){
-                    $rootScope.notifySuccess("Ny målgruppe ble opprettet.",3000);
+                    $rootScope.notifySuccess("Ny målgruppe ble opprettet.",1000);
                     addTargetGroup(data);
                 },function(){
                     $rootScope.notifyError("Målgruppe ble ikke opprettet.",6000);
@@ -102,7 +102,7 @@ angular.module("ehelseEditor").factory("TargetGroup", ["$rootScope", function($r
                     removeById(id);
                     generateTargetGroupOptionsList(target_groups);
                     generateTargetGroupDict(target_groups);
-                    $rootScope.notifySuccess("Målgruppe ble fjernet",3000);
+                    $rootScope.notifySuccess("Målgruppe ble fjernet",1000);
 
                 },
                 function(data){

@@ -49,7 +49,7 @@ angular.module("ehelseEditor").controller("MyPageController", ["$scope", "$rootS
             "users/" + $rootScope.currentUser.id,
             $scope.myPage,
             function () {
-                $rootScope.notifySuccess("Kontoinformasjonen din ble oppdatert",3000);
+                $rootScope.notifySuccess("Kontoinformasjonen din ble oppdatert",1000);
                 $rootScope.currentUser = {
                     id: $rootScope.currentUser.id,
                     name: $scope.myPage.name,
@@ -77,7 +77,7 @@ angular.module("ehelseEditor").controller("MyPageController", ["$scope", "$rootS
                     "users/" + $rootScope.currentUser.id + "/password/",
                     {password: $scope.newPassword},
                     function () {
-                        $rootScope.notifySuccess("Passordet ditt er endret.",3000);
+                        $rootScope.notifySuccess("Passordet ditt er endret.",1000);
                         $rootScope.password = $scope.newPassword;
                         $("#passwordRow").removeClass("active-row");
                         $("#passwordForm").hide();
