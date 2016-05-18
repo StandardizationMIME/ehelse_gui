@@ -70,7 +70,7 @@ angular.module("ehelseEditor").factory("Status",["$rootScope",function($rootScop
                     set(status_dict[data.id], data);
                     generateStatusDict(status);
                     generateStatusOptionList(status);
-                    $rootScope.notifySuccess("Status ble oppdatert",3000);
+                    $rootScope.notifySuccess("Status ble oppdatert",1000);
 
                 },
                 function(data){
@@ -82,7 +82,7 @@ angular.module("ehelseEditor").factory("Status",["$rootScope",function($rootScop
                 "status/",
                 status,
                 function(data){
-                    $rootScope.notifySuccess("Ny status ble opprettet.",3000);
+                    $rootScope.notifySuccess("Ny status ble opprettet.",1000);
                     add(data);
                 },function(){
                     $rootScope.notifyError("Status ble ikke opprettet.",6000);
@@ -105,7 +105,7 @@ angular.module("ehelseEditor").factory("Status",["$rootScope",function($rootScop
                 removeStatus(status);
                 generateStatusOptionList(status);
                 generateStatusDict(status);
-                $rootScope.notifySuccess("Status ble slettet!", 3000);
+                $rootScope.notifySuccess("Status ble slettet!", 1000);
             },
             function (){
                 $rootScope.notifyError("Kunne ikke slette", 6000);

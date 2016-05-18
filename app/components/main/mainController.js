@@ -146,8 +146,8 @@
             $rootScope.childControllers[name] = scope;
         };
 
-        $rootScope.setButtonState = function(state) {
-            $rootScope.buttonState = state;
+        $rootScope.setDocumentState = function(state) {
+            $rootScope.documentState = state;
         };
 
         $rootScope.changeContentView = function(view){

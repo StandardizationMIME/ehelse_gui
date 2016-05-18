@@ -54,8 +54,8 @@ angular.module("ehelseEditor").controller("EditDocumentController",
 
             $scope.newVersion = function(document){
                 Document.setCurrentDocument(Document.newVersion(document));
-                $rootScope.notifySuccess("Ny versjon klargjort", 4000);
-                $rootScope.setButtonState('newDocument');
+                $rootScope.notifySuccess("Ny versjon klargjort", 3000);
+                $rootScope.setDocumentState('newDocument');
             }
 
 

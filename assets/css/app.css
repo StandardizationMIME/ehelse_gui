@@ -229,10 +229,6 @@ input[readonly], textarea[readonly]{
     background-color: #e4e4e4 !important;
 }
 /* -------------------------------------------- CH4 DOCUMENT ----------------------------------------- */
-#document-edit{
-    overflow-y: auto;
-    height: 553px;
-}
 .document-fields-field-name{
     width:25%;
     display: inline-block;
@@ -264,19 +260,19 @@ input[readonly], textarea[readonly]{
 }
 
 /* Profile specific */
-.edit-document {
+.editDocument {
     overflow-y: auto;
     height: 553px;
 }
-.new-document {
+.newDocument {
     overflow-y: auto;
     height: 640px;
 }
-.edit-profile {
+.editProfile {
     overflow-y: auto;
     height: 553px;
 }
-.new-profile {
+.newProfile {
     overflow-y: auto;
     height: 553px;
 }

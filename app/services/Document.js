@@ -10,7 +10,7 @@ angular.module("ehelseEditor").factory("Document", ["$rootScope", "DocumentField
             title: "",
             description: "",
             statusId: 1,
-            sequence: 0,
+            sequence: 1,
             topicId: Topic.getSelected().id,
             comment: "",
             documentTypeId: "1",
@@ -33,7 +33,7 @@ angular.module("ehelseEditor").factory("Document", ["$rootScope", "DocumentField
             title: "",
             description: "",
             statusId: 1,
-            sequence: 0,
+            sequence: 1,
             topicId: Topic.getSelected().id,
             comment: "",
             documentTypeId: "2",
@@ -114,7 +114,7 @@ angular.module("ehelseEditor").factory("Document", ["$rootScope", "DocumentField
                     data.populatedProfiles = [];
                     setCurrentDocument(current_document);
                     updateDocumentInDocumentsList(data);
-                    $rootScope.notifySuccess("Dokumentet ble oppdatert", 3000);
+                    $rootScope.notifySuccess("Dokumentet ble oppdatert", 1000);
                 }
                 ,
                 function (data) {
@@ -142,7 +142,7 @@ angular.module("ehelseEditor").factory("Document", ["$rootScope", "DocumentField
                     generateDocumentDict(documents);
                     generateTopicsDocumentsDict(documents);
                     setCurrentDocument(data);
-                    $rootScope.notifySuccess("Ny standard ble opprettet", 3000);
+                    $rootScope.notifySuccess("Ny standard ble opprettet", 1000);
                 }
                 ,
                 function (data) {
@@ -182,7 +182,7 @@ angular.module("ehelseEditor").factory("Document", ["$rootScope", "DocumentField
                     }
                 }
                 deleteCurrentDocumentFromDocumentsList();
-                $rootScope.notifySuccess("Dokumentet ble slettet", 3000);
+                $rootScope.notifySuccess("Dokumentet ble slettet", 1000);
                 $rootScope.changeContentView("");
             },
             function(){

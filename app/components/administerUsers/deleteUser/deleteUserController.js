@@ -12,7 +12,7 @@ angular.module("ehelseEditor").controller("DeleteUserController", ["$scope", "$h
                 if (arrayIndex > -1) {
                     $rootScope.userList.splice(arrayIndex, 1);
                 }
-                $rootScope.notifySuccess("Brukeren ble slettet.",3000);
+                $rootScope.notifySuccess("Brukeren ble slettet.",1000);
             }, function () {
                 $rootScope.notifyError("Brukeren ble ikke slettet.",6000);
             });

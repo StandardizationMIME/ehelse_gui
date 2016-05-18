@@ -67,11 +67,9 @@ angular.module("ehelseEditor").factory("DocumentField", ["$rootScope", function(
         }else{
             mandatoryString = "0";
         }
-        var sequenceInt = null;
+        var sequenceInt = 1;
         if(field.sequence){
             sequenceInt = field.sequence;
-        }else{
-            sequenceInt = "1";
         }
 
         var myField = {

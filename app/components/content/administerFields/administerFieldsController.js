@@ -15,7 +15,7 @@ angular.module("ehelseEditor").controller("AdministerFieldsController", ["$scope
             function(){
                 $rootScope.confirmationValue = false;
                 console.log("Successfully deleted field");
-                $rootScope.notifySuccess("Felt ble slettet!", 3000);
+                $rootScope.notifySuccess("Felt ble slettet!", 1000);
             },
             function(){
 

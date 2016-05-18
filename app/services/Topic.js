@@ -85,7 +85,7 @@ angular.module("ehelseEditor").factory("Topic", ["$rootScope", function($rootSco
                 function(data){
                     updateTopic(data);
                     generateTopicOptionsList(topics);
-                    $rootScope.notifySuccess("Tema ble oppdatert",3000);
+                    $rootScope.notifySuccess("Tema ble oppdatert",1000);
 
                 },
                 function(data){
@@ -97,7 +97,7 @@ angular.module("ehelseEditor").factory("Topic", ["$rootScope", function($rootSco
                 "topics/",
                 topic,
                 function(data){
-                    $rootScope.notifySuccess("Ny tema ble opprettet.",3000);
+                    $rootScope.notifySuccess("Ny tema ble opprettet.",1000);
                     addTopic(data);
                 },function(){
                     $rootScope.notifyError("Tema ble ikke opprettet.",6000);
@@ -167,7 +167,7 @@ angular.module("ehelseEditor").factory("Topic", ["$rootScope", function($rootSco
             $rootScope.delete("topics/"+id,
                 function(data){
                     removeById(id);
-                    $rootScope.notifySuccess("Topic ble fjernet",3000);
+                    $rootScope.notifySuccess("Topic ble fjernet",1000);
 
                 },
                 function(data){
