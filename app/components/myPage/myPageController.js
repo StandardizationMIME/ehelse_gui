@@ -1,64 +1,45 @@
-'use strict';
+"use strict";
 
-angular.module('ehelseEditor').controller('MyPageController', ['$scope', '$rootScope', function ($scope, $rootScope) {
+angular.module("ehelseEditor").controller("MyPageController", ["$scope", "$rootScope", function ($scope, $rootScope) {
 
     //hide all forms
     $("#nameForm").hide();
     $("#emailForm").hide();
     $("#passwordForm").hide();
-    $("#imageForm").hide();
 
     //toggle display functions
     $scope.toggleName = function () {
         $("#nameForm").slideToggle("fast");
         $("#emailForm").slideUp("fast");
         $("#passwordForm").slideUp("fast");
-        $("#imageForm").slideUp("fast");
 
         $("#nameRow").toggleClass("active-row");
         $("#emailRow").removeClass("active-row");
         $("#passwordRow").removeClass("active-row");
-        $("#imageRow").removeClass("active-row");
     };
     $scope.toggleEmail = function () {
         $("#emailForm").slideToggle("fast");
         $("#nameForm").slideUp("fast");
         $("#passwordForm").slideUp("fast");
-        $("#imageForm").slideUp("fast");
 
         $("#emailRow").toggleClass("active-row");
         $("#nameRow").removeClass("active-row");
         $("#passwordRow").removeClass("active-row");
-        $("#imageRow").removeClass("active-row");
     };
     $scope.togglePassword = function () {
         $("#passwordForm").slideToggle("fast");
         $("#nameForm").slideUp("fast");
         $("#emailForm").slideUp("fast");
-        $("#imageForm").slideUp("fast");
 
         $("#passwordRow").toggleClass("active-row");
         $("#nameRow").removeClass("active-row");
         $("#emailRow").removeClass("active-row");
-        $("#imageRow").removeClass("active-row");
-    };
-    $scope.toggleImage = function () {
-        $("#imageForm").slideToggle("fast");
-        $("#nameForm").slideUp("fast");
-        $("#passwordForm").slideUp("fast");
-        $("#emailForm").slideUp("fast");
-
-        $("#imageRow").toggleClass("active-row");
-        $("#nameRow").removeClass("active-row");
-        $("#emailRow").removeClass("active-row");
-        $("#passwordRow").removeClass("active-row");
     };
 
     $scope.myPage = {
         id: $rootScope.currentUser.id,
         name: $rootScope.currentUser.name,
-        email: $rootScope.currentUser.email,
-        profileImage: $rootScope.currentUser.profileImage
+        email: $rootScope.currentUser.email
     };
     $scope.submit = function () {
         $scope.put(
@@ -69,9 +50,13 @@ angular.module('ehelseEditor').controller('MyPageController', ['$scope', '$rootS
                 $rootScope.currentUser = {
                     id: $rootScope.currentUser.id,
                     name: $scope.myPage.name,
-                    email: $scope.myPage.email,
-                    profileImage: $scope.myPage.profileImage
+                    email: $scope.myPage.email
                 };
+                $rootScope.currentUser.name = $scope.myPage.name;
+                $("#emailRow").removeClass("active-row");
+                $("#nameRow").removeClass("active-row");
+                $("#nameForm").hide();
+                $("#emailForm").hide();
             },
             function () {
                 $rootScope.notifyError("Kontoinformasjonen din ble ikke oppdatert",6000);
@@ -89,6 +74,8 @@ angular.module('ehelseEditor').controller('MyPageController', ['$scope', '$rootS
                     function () {
                         $rootScope.notifySuccess("Passordet ditt er endret.",3000);
                         $rootScope.password = $scope.newPassword;
+                        $("#passwordRow").removeClass("active-row");
+                        $("#passwordForm").hide();
                     },
                     function () {
                         $rootScope.notifyError("Passordet ble ikke endret.",3000);

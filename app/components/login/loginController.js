@@ -24,6 +24,7 @@ angular.module("ehelseEditor").controller("LoginController", [ "$scope", "$rootS
             },
             function(){
                 $scope.feedback = "Passord og/eller brukernavn er feil";
+                $scope.password = null;
             }
         );
 
