@@ -2,10 +2,14 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <form name="newTopicForm" role="form" method="post">
+
+                <!-- Confirmation message -->
                 <div class="modal-header">
                     <h4 class="center-align-text">{{confirmationMessage}}</h4>
                 </div>
                 <div class="modal-footer">
+
+                    <!-- Return either true or false based on the answer -->
                     <button class="btn btn-primary" ng-click="returnTrue()" data-dismiss="modal">Ja</button>
                     <button class="btn btn-default" data-dismiss="modal">Nei</button>
                 </div>

@@ -2,6 +2,7 @@
 
 angular.module("ehelseEditor").controller("DocumentFieldModalController", [ "$scope", "$rootScope","DocumentField", function($scope, $rootScope, DocumentField) {
 
+    // Submit document field change
     $rootScope.submitDocumentFieldChange = function(field){
         DocumentField.edit(
             field,
@@ -19,7 +20,7 @@ angular.module("ehelseEditor").controller("DocumentFieldModalController", [ "$sc
     };
 
 
-
+    // Post new document field on creation
     $scope.postNewDocumentField = function(field){
         DocumentField.create(field,
             function(data){

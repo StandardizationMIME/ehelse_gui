@@ -1,55 +1,54 @@
 <div class="panel panel-border{{document.documentTypeId}}">
+
+    <!-- Title -->
     <div class="panel-heading panel{{document.documentTypeId}}">
         <h3 class="panel-title selected-heading"><span class="fa fa-share-alt"></span> Lenker</h3>
     </div>
-    <div class="panel-body">
 
+    <div class="panel-body">
         <div class="form-group" class="document-links-container">
 
+            <!-- Display the document's link categories -->
             <div ng-repeat="linkCategory in linkCategories" class="link-category-group">
-
-
                 <div class="panel panel-default link-group-panel">
 
+                    <!-- Link category name -->
                     <div class="panel-heading">
                         <h3 class="panel-title">{{linkCategoriesDict[linkCategory.id].name}}
                             <span class="fa fa-remove delete-topic-icon clickable" ng-click="removeLinkCategory(linkCategory.id)"></span>
                         </h3>
                     </div>
 
+                    <!-- Display the category's links -->
                     <ul class="list-group">
                         <li class="list-group-item" ng-repeat="link in linkCategory.links">
+
+                            <!-- Link text -->
                             <span class="document-fields-field-name"><input class="form-control" type="text" placeholder="Navn" ng-model="link.text"></span>
+
+                            <!-- URL -->
                             <span class="document-fields-field-value"><input class="form-control" type="text" placeholder="URL" ng-model="link.url"></span>
+
+                            <!-- Remove link -->
                             <span class="fa fa-remove delete-topic-icon clickable" ng-click="removeLink(link)"></span>
                         </li>
                     </ul>
-
-
                 </div>
 
+                <!-- Add link to document -->
                 <button type="button" class="btn btn-default" ng-click="addLinkToDocument(linkCategory.id);">
                     <span class="fa fa-plus-circle plus-icon"></span>
                     Legg til lenke
                 </button>
-
             </div>
 
-
-
-
-
-
+            <!-- Open modal for adding link categories to document -->
             <button type="button" class="btn btn-default"
                     ng-click="openModal('app/components/content/editDocument/links/addDocumentLinkCategoriesModal.html', 'AddDocumentLinkCategoriesController')">
                 <span class="fa fa-plus-circle plus-icon"></span>
                 Legg til lenke-kategori
             </button>
-
-
         </div>
-
-
     </div>
 </div>
 

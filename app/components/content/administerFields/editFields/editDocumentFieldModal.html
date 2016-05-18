@@ -2,30 +2,48 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <form ng-controller="DocumentFieldModalController" name="editDocumentFieldForm" role="form" method="post">
+
+                <!-- Modal header -->
                 <div class="modal-header">
                     <h3>Rediger felt</h3>
                 </div>
+
+                <!-- Document field input fields -->
                 <div class="modal-body">
+
+                    <!-- Title -->
                     <div class="form-group">
                         <label for="documentFieldTitle">Tittel: </label>
                         <input focus-me="shouldBeOpen" id="documentFieldTitle" ng-model="currentDocumentField.name" type="text" class="form-control" required/>
                     </div>
+
+                    <!-- Description -->
                     <div class="form-group">
                         <label for="documentFieldDescription">Beskrivelse: </label>
                         <textarea id="documentFieldDescription" ng-model="currentDocumentField.description" class="form-control"></textarea>
                     </div>
+
+                    <!-- Order -->
                     <div class="form-group">
                         <label for="documentFieldSequence">Rekkefølge: </label>
                         <input id="documentFieldSequence" ng-model="currentDocumentField.sequence" string-to-number type="number" min="1" class="form-control">
                     </div>
+
+                    <!-- Mandatory -->
                     <div class="form-inline">
                         <label for="documentFieldMandatory">Obligatorisk: </label>
                         <input id="documentFieldMandatory" type="checkbox" ng-model="currentDocumentField.mandatory"/>
                     </div>
                 </div>
+
+                <!-- Modal footer -->
                 <div class="modal-footer">
                     <div class="form-actions">
+
+                        <!-- Edit document field and close modal -->
                         <button ng-click="submitDocumentFieldChange(currentDocumentField)" data-dismiss="modal" type="submit" ng-disabled="editDocumentFieldForm.$invalid" class="btn btn-primary">Lagre endring</button>
+
+                        <!-- Cancel change and close modal -->
                         <button type="button" data-dismiss="modal" class="btn btn-default pull-right">Avbryt</button>
                     </div>
                 </div>
