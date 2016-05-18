@@ -2,13 +2,14 @@
 
 angular.module("ehelseEditor").controller("AddUserController", [ "$scope", "$http","$rootScope", function( $scope, $http, $rootScope) {
 
+    //init values
     $scope.newUser = {
         "name" : "",
         "email" : ""
     };
 
+    //check if fields are valid and create new user
     $scope.addUser = function(){
-        //Check if there is something in all input fields
         if($scope.newUser.name != "" && $scope.newUser.email != ""){
             $rootScope.post("users/",$scope.newUser,function(data){
                 $rootScope.userList.push(data);
