@@ -10,6 +10,7 @@
 /* ----- CH9 TOOLBAR ----- */
 /* ----- CH10 TOPIC ----- */
 /* ----- CH11 ADMINISTER_FIELDS ----- */
+/* ----- CH12 ADMINISTER ----- */
 /*------------------------------------------------------------------------------------------------------ */
 /* ----------------------------------------------- CH1 GENERIC ----------------------------------------- */
 html,body {
@@ -142,6 +143,12 @@ h1,h2,h3,h4{ font-weight: bold;}
 }
 .font-size-large {
     font-size: large;
+}
+.white-color {
+    color: white;
+}
+.white-background {
+    background-color: white;
 }
 /* ------------------------------------------------ CH2 ADMINISTER_USERS ----------------------------------------- */
 #user-list img{
@@ -761,6 +768,7 @@ textarea {
     overflow-y: auto;
 }
 
+/* ----------------------------------------------- CH12 ADMINISTER ----------------------------------------- */
 
 /*-----------Document Icon colors---------*/
 .d1{color: #337ab7; font-size: 1.3em;}
@@ -840,7 +848,6 @@ input.version-id {
     position: absolute;
     bottom: 0;
 }
-
 
 /* User dropdown start */
  div>div>.dropdown-toggle{

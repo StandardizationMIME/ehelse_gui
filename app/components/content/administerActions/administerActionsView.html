@@ -12,24 +12,26 @@
             </button>
         </p>
     </div>
-    <div class="administer-actions container administer-views">
-        <ul class="list-group col-lg-12">
-            <li class="list-group-item active">
-                <span class="col-lg-2">Tittel</span>
-                <span>Beskrivelse</span>
-                <div class="pull-right">
-                    <span>Rediger &nbsp; Slett &nbsp;</span>
-                </div>
-            </li>
-            <li class="list-group-item" ng-repeat="action in actions">
-                <span class="col-lg-2">{{action.name}}</span>
-                <span class="action-list-item">{{action.description}}</span>
-                <div class="pull-right">
-                    <span class="fa fa-pencil-square-o fa-2x vcenter clickable" ng-click="showEditActionModal(action.id)"></span>
-                    <span class="fa fa-remove fa-fw vcenter clickable remove-user" ng-click="openConfirmationModal('Er du sikker på at du vil slette?', action, deleteActionById)"></span>
-                </div>
-            </li>
-        </ul>
+
+    <div class="table-responsive administer-views shadow-below">
+        <table class="table table-striped" id="AdministerActionsTable">
+            <thead class="white-color blue-background">
+            <tr>
+                <th>Tittel</th>
+                <th>Beskrivelse</th>
+                <th>Rediger</th>
+                <th>Slett</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="action in actions">
+                <td>{{action.name}}</td>
+                <td>{{action.description}}</td>
+                <td><span class="fa fa-pencil-square-o fa-2x vcenter clickable" ng-click="showEditActionModal(action.id)"></span></td>
+                <td><span class="fa fa-remove fa-fw vcenter clickable remove-user" ng-click="openConfirmationModal('Er du sikker på at du vil slette?', action, deleteActionById)"></span></td>
+            </tr>
+            </tbody>
+        </table>
     </div>
 
 </div>
