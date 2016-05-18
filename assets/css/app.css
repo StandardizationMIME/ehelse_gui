@@ -429,6 +429,13 @@ input[readonly], textarea[readonly]{
 .data-edit-icon {
     font-size: 1.5em;
 }
+.active-row {
+    font-weight: bolder;
+    color: #337ab7;
+    background-color: #E6E6E6;
+    border-bottom: inset;
+    border-color: #ccc;
+}
 /* -------------------------------------------- CH9 TOOLBAR ----------------------------------------- */
 div>div>.dropdown-toggle{
     margin-bottom: 0.5em;
@@ -530,6 +537,11 @@ span.field-item{
     height: 540px;
     overflow-y: auto;
 }
+a.sortable-columns{
+    color: white;
+    text-decoration: none;
+    cursor: pointer;
+}
 /* -------- AdministerActions -------- */
 .administer-actions, .administer-status, .administer-link-categories, .administer-mandatory{
     width: 90%;
@@ -589,6 +601,7 @@ textarea {
     cursor: pointer;
     color: #337ab7;
 }
+.pointer{cursor: pointer;}
 .standard-list {
     margin-top: 10px;
     margin-bottom: 25px;
@@ -636,16 +649,6 @@ div>div>.dropdown-toggle:hover{
     border-radius: 5%;
 }
 /* User dropdown end */
-
-/* MyPage start */
-.active-row {
-    font-weight: bolder;
-    color: #337ab7;
-    background-color: #E6E6E6;
-    border-bottom: inset;
-    border-color: #ccc;
-}
-/* MyPage end */
 
 /*~~~~~~~~~~~~TARGET GROUP~~~~~~~~~~~*/
 .target-group-grid{
