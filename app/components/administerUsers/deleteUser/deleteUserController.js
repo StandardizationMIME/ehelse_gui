@@ -4,10 +4,12 @@ angular.module("ehelseEditor").controller("DeleteUserController", ["$scope", "$h
     var userId = $rootScope.userToDelete.id;
     var username = $rootScope.userToDelete.name;
 
+    //make the user verify with a full-text match the username of the user to delete
     $scope.deleteSpecificUser = function () {
         if ($scope.userInput.name === username) {
             $rootScope.delete("/users/" + userId, function () {
 
+                //find the index of the user in userList and remove it in real-time
                 var arrayIndex = $rootScope.userList.indexOf($rootScope.userToDelete);
                 if (arrayIndex > -1) {
                     $rootScope.userList.splice(arrayIndex, 1);
@@ -20,5 +22,4 @@ angular.module("ehelseEditor").controller("DeleteUserController", ["$scope", "$h
             $rootScope.notifyError("Brukeren ble ikke slettet; navnet du skrev inn var ikke riktig.",6000);
         }
     };
-
 }]);

@@ -10,13 +10,13 @@ angular.module("ehelseEditor").controller("AdministerUsersController", ["$scope"
 
     $scope.addUser = function () {
         $rootScope.shouldBeOpen = true;
-        $scope.openModal("app/components/administerUsers/addUser/addUserModalView.html", "AddUserModalController");
+        $scope.openModal("app/components/administerUsers/addUser/addUserModalView.html", "AddUserController");
     };
 
     $scope.deleteUser = function (user) {
         $rootScope.shouldBeOpen = true;
         $rootScope.userToDelete = user;
-        $scope.openModal("app/components/administerUsers/deleteUser/deleteUserModalView.html", "DeleteUserModalController");
+        $scope.openModal("app/components/administerUsers/deleteUser/deleteUserModalView.html", "DeleteUserController");
     };
 
 }]);
