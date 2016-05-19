@@ -37,6 +37,9 @@ angular.module("ehelseEditor").controller("DocumentController", [ "$scope","$roo
             else if(document.documentTypeId == 2) {
                 $rootScope.setDocumentState("editProfile");
             }
+            else if(document.documentTypeId == 3){
+                $rootScope.setDocumentState("editUtility");
+            }
             else {
                 $rootScope.setDocumentState("newDocument");
             }

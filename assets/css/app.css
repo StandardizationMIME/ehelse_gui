@@ -276,6 +276,10 @@ input[readonly], textarea[readonly]{
     overflow-y: auto;
     height: 553px;
 }
+.editUtility {
+    overflow-y: auto;
+    height: 640px;
+}
 .profile-bar {
     -ms-transform: translate(-28px,0); /* IE 9 */
     -webkit-transform: translate(-28px,0); /* Safari */
