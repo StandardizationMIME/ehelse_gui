@@ -17,7 +17,7 @@
 
 
         <!--return to document-->
-        <li class="new-profile-container"  ng-if="documentState == 'editProfile' || documentState == 'newProfile'">
+        <li class="new-profile-container" ng-if="documentState == ('editProfile' || documentState == 'newProfile') && document_dict[document.standardId]">
             <div ng-click="setDocumentState('editDocument'); openDocumentById(document.standardId)">
                 <div class="return-to-document-icon">
                     <span class="fa fa-arrow-circle-left"></span>
@@ -26,7 +26,7 @@
         </li>
 
         <!-- List of all profiles related to selected standard -->
-        <li ng-repeat="profile in document.populatedProfiles" class="profile-container profile{{profile.id}}" ng-class="profile.id == document.id ? 'selected-profile' : ''"ng-class="document.id == current_document.id ? 'selected-profile' : ''" ng-click="setDocumentState('editProfile');openDocument(profile)">
+        <li ng-repeat="profile in document.populatedProfiles" ng-if="profile" class="profile-container profile{{profile.id}}" ng-class="profile.id == document.id ? 'selected-profile' : ''"ng-class="document.id == current_document.id ? 'selected-profile' : ''" ng-click="setDocumentState('editProfile');openDocument(profile)">
             <div class="profile-icon profile-icon{{profile.id}}" ng-class="document.id == profile.id ? 'selected-profile-icon' : ''" data-toggle="tooltip" title="{{profile.title}}" data-placement="top">
                 <span class="fa fa-file-text"></span>
             </div>

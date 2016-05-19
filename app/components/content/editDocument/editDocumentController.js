@@ -21,6 +21,7 @@ angular.module("ehelseEditor").controller("EditDocumentController",
             $scope.linkCategoriesDict = LinkCategory.getAllAsDict();
             $scope.removeLinkCategory = Document.removeCurrentDocumentLinksByCategoryId;
             $scope.status_option_list = Status.getAllAsOptionsList();
+            $scope.document_dict = Document.getAllAsDict();
 
 
             // Submit function used both create new documents and save changes to existing ones

@@ -15,7 +15,6 @@ angular.module("ehelseEditor").controller("EditTopicController", [ "$scope","$ro
     // Delete selected topic
     $rootScope.deleteTopic = function(topic){
         Topic.deleteById(topic.id);
-        $rootScope.changeContentView("");
     };
 
 }]);

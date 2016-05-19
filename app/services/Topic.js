@@ -168,10 +168,15 @@ angular.module("ehelseEditor").factory("Topic", ["$rootScope", function($rootSco
                 function(data){
                     removeById(id);
                     $rootScope.notifySuccess("Topic ble fjernet",1000);
+                    $rootScope.changeContentView("");
 
                 },
                 function(data){
-                    $rootScope.notifyError("Topic ble ikke fjernet.",6000);
+                    if(data.message == "Element can't be deleted."){
+                        $rootScope.notifyError("Temaer med tilknyttetde undertemaer og/eller dokumenter kan ikke slettes!", 6000);
+                    }else{
+                        $rootScope.notifyError("Uventet feil: Topic ble ikke fjernet.",4000);
+                    }
                 });
         }
     }

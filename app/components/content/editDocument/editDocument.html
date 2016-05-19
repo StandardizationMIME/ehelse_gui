@@ -42,14 +42,16 @@
     <div class="{{documentState}} shadow-below">
 
         <!-- Buttons toggling between document versions -->
-        <button type="button" class="btn btn-default " ng-if="document.nextDocumentId" ng-click="openDocumentById(document.nextDocumentId)">
-            <span class="fa "></span>
-            Neste versjon
-        </button>
-        <button type="button" class="btn btn-default " ng-if="document.previousDocumentId" ng-click="openDocumentById(document.previousDocumentId)">
-            <span class="fa "></span>
-            Tidligere versjon
-        </button>
+        <div class="btn-group twelve-pix-vertical-padding" ng-if="document_dict[document.nextDocumentId] || document_dict[document.previousDocumentId]">
+            <button type="button" class="btn btn-default " ng-disabled="document.nextDocumentId && !document.previousDocumentId" ng-click="openDocumentById(document.previousDocumentId)">
+                <span class="fa fa-arrow-circle-left"></span>
+                Tidligere versjon
+            </button>
+            <button type="button" class="btn btn-default " ng-disabled="document.previousDocumentId && !document.nextDocumentId" ng-click="openDocumentById(document.nextDocumentId)">
+                Neste versjon
+                <span class="fa fa-arrow-circle-right"></span>
+            </button>
+        </div>
 
         <div class="panel panel-default">
             <div class="panel-body">
