@@ -10,7 +10,7 @@ angular.module("ehelseEditor").controller("ForgotPasswordController", ["$scope",
 
         var tempEmail = ""+email;
 
-        $rootScope.post("/users/reset-password/",{"email": tempEmail},function(data){
+        $rootScope.post("users/reset-password/",{"email": tempEmail},function(data){
             //$scope.feedback = "Nytt passord ble sendt til "+email+".";
             console.log("success");
             console.log(data);
