@@ -35,13 +35,13 @@
                 </span>
             </span>
             <span ng-messages="EditDocumentController.DocumentForm.standardTitle.$error" class="feedback-msg">
-                <span ng-message="required"> Tittel</span>
+                <span ng-message="required"> 'Tittel'</span>
             </span>
             <span ng-messages="EditDocumentController.DocumentForm.internalID.$error" class="feedback-msg">
-                <span ng-message="required"> Intern ID</span>
+                <span ng-message="required"> 'Intern ID'</span>
             </span>
             <span ng-messages="EditDocumentController.DocumentForm.f.$error" class="feedback-msg">
-                <span ng-message="required"> Å fylle ut felter</span>
+                <span ng-message="required"> 'Felter'</span>
             </span>
 
             <button type="button" class="btn btn-danger pull-right" ng-if="documentState == 'editProfile' || documentState == 'editDocument'" ng-click="openConfirmationModal('Er du sikker på at du vil slette dokumentet?', document, deleteDocument)">
