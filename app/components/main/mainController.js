@@ -77,7 +77,7 @@
         $rootScope.http = function(method, url, payload, success, error){
             var username = $rootScope.userName || $cookies.get("username");
             var password = $rootScope.password || $cookies.get("password");
-            if(username && password){
+            if($rootScope.$state.is("forgot-password") || username && password){
                 var credentials = btoa( username + ":" + password);
                 var authorization = {"Authorization": "Basic " + credentials};
                 var request = {
