@@ -10,11 +10,13 @@ angular.module("ehelseEditor").controller("ForgotPasswordController", ["$scope",
 
         var tempEmail = ""+email;
 
-        $rootScope.post("/users/reset-password/",{"email": tempEmail},function(){
+        $rootScope.post("/users/reset-password/",{"email": tempEmail},function(data){
             //$scope.feedback = "Nytt passord ble sendt til "+email+".";
             console.log("success");
-        },function(){
+            console.log(data);
+        },function(data){
             console.log("fail");
+            console.log(data);
             //$scope.feedback = "Det oppstod en feil.";
         });
 
