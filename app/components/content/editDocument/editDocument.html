@@ -23,11 +23,11 @@
                 <span class="fa fa-check-circle edit-topic-icon"></span>
                 Opprett profil
             </button>
-            <button type="button" class="btn btn-primary" ng-disabled="EditDocumentController.DocumentForm.$invalid || EditDocumentController.DocumentForm.$pristine" ng-click="submit(EditDocumentController.DocumentForm)" ng-if="documentState == 'editProfile' || documentState == 'editDocument'">
+            <button type="button" class="btn btn-primary" ng-disabled="EditDocumentController.DocumentForm.$invalid || EditDocumentController.DocumentForm.$pristine" ng-click="submit(EditDocumentController.DocumentForm)" ng-if="documentState == 'editProfile' || documentState == 'editDocument' || documentState == 'editUtility'">
                 <span class="fa fa-check-circle-o edit-topic-icon"></span>
                 Lagre dokument
             </button>
-            <button type="button" class="btn btn-danger pull-right" ng-if="documentState == 'editProfile' || documentState == 'editDocument'" ng-click="openConfirmationModal('Er du sikker på at du vil slette dokumentet?', document, deleteDocument)">
+            <button type="button" class="btn btn-danger pull-right" ng-if="documentState == 'editProfile' || documentState == editDocument || documentState == 'editUtility'" ng-click="openConfirmationModal('Er du sikker på at du vil slette dokumentet?', document, deleteDocument)">
                 <span class="fa fa-remove"></span>
                 Slett dokument
             </button>
