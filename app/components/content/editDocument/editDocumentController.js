@@ -59,6 +59,7 @@ angular.module("ehelseEditor").controller("EditDocumentController",
 
             // Create a new version (clone) of selected document
             $scope.newVersion = function(document){
+                $rootScope.selected_document = "";
                 Document.setCurrentDocument(Document.newVersion(document));
                 $rootScope.notifySuccess("Ny versjon klargjort", 3000);
                 $rootScope.setDocumentState('newDocument');
