@@ -1,5 +1,5 @@
 <div ng-show="error" class="alert alert-danger">{{error}}</div>
-<div class="login-page">
+<div class="logged-out-page">
 
     <!-- Title -->
     <h3>MIME</h3>
@@ -28,5 +28,6 @@
         <div class="has-error">
             <span ng-show="login.$error" class="help-block">{{feedback}}</span>
         </div>
+        <a ui-sref="forgot-password"> Glemt passord?</a>
     </form>
 </div>
