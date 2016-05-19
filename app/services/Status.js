@@ -103,8 +103,8 @@ angular.module("ehelseEditor").factory("Status",["$rootScope",function($rootScop
             "status/" + status.id,
             function (){
                 removeStatus(status);
-                generateStatusOptionList(status);
                 generateStatusDict(status);
+                generateStatusOptionList(status);
                 $rootScope.notifySuccess("Status ble slettet!", 1000);
             },
             function (){
