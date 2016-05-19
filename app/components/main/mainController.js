@@ -10,7 +10,7 @@
         if(user){
             $rootScope.currentUser = angular.fromJson(user);
         }
-        $rootScope.apiUrl = "https://refkat.eu/v1/";
+        $rootScope.apiUrl = "https://refkat.eu/api/v1/";
 
         // Generic function for opening modals
         $rootScope.openModal = function(url, controller){
