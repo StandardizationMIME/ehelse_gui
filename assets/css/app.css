@@ -506,6 +506,9 @@ div>div>.dropdown-toggle:hover{
     color: #0f0f0f;
     padding: 5px;
 }
+.feedback-msg {
+    color: darkred;
+}
 /* -------------------------------------------- CH11 ADMINISTER_FIELDS ----------------------------------------- */
 .administer-fields ul{
     margin: 0;

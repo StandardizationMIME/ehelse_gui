@@ -8,7 +8,7 @@ angular.module("ehelseEditor").controller("EditDocumentController",
            // Save document values to scope so they can be easily accessed in the html files
             $scope.document_types_option_list = DocumentType.document_types_option_list;
             $scope.target_groups_dict = TargetGroup.getAllAsDict();
-            $scope.mandatory_option_list = Mandatory.getAllAsOptionsList();
+            $scope.mandatory_list = Mandatory.getAll();
             $scope.actions_option_list = Action.getAllAsOptionsList();
             $scope.fields_dict = DocumentField.document_fields_dict;
             $scope.document = Document.getCurrentDocument();
@@ -20,8 +20,8 @@ angular.module("ehelseEditor").controller("EditDocumentController",
             $scope.removeLink = Document.removeCurrentDocumentLink;
             $scope.linkCategoriesDict = LinkCategory.getAllAsDict();
             $scope.removeLinkCategory = Document.removeCurrentDocumentLinksByCategoryId;
-            $scope.status_option_list = Status.getAllAsOptionsList();
             $scope.document_dict = Document.getAllAsDict();
+            $scope.status_list = Status.getAll();
 
 
             // Submit function used both create new documents and save changes to existing ones
@@ -64,10 +64,5 @@ angular.module("ehelseEditor").controller("EditDocumentController",
                 $rootScope.notifySuccess("Ny versjon klargjort", 3000);
                 $rootScope.setDocumentState('newDocument');
             }
-
-
         }
-
-
-
     ]);

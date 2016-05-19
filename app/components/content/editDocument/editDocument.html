@@ -27,14 +27,32 @@
                 <span class="fa fa-check-circle-o edit-topic-icon"></span>
                 Lagre dokument
             </button>
-            <button type="button" class="btn btn-default" ng-disabled="!((documentState == 'editProfile' || documentState == 'editDocument') && !document.nextDocumentId)" ng-click="newVersion(document)">
-                <span class="fa fa-clone"></span>
-                Ny versjon
-            </button>
+
+            <!-- FEEDBACK -->
+            <span ng-messages="EditDocumentController.DocumentForm.$error" class="feedback-msg">
+                <span ng-message="required">
+                    For å lagre dokument mangler du:
+                </span>
+            </span>
+            <span ng-messages="EditDocumentController.DocumentForm.standardTitle.$error" class="feedback-msg">
+                <span ng-message="required"> 'Tittel'</span>
+            </span>
+            <span ng-messages="EditDocumentController.DocumentForm.internalID.$error" class="feedback-msg">
+                <span ng-message="required"> 'Intern ID'</span>
+            </span>
+            <span ng-messages="EditDocumentController.DocumentForm.f.$error" class="feedback-msg">
+                <span ng-message="required"> 'Felter'</span>
+            </span>
+
             <button type="button" class="btn btn-danger pull-right" ng-if="documentState == 'editProfile' || documentState == 'editDocument' || documentState == 'editUtility'" ng-click="openConfirmationModal('Er du sikker på at du vil slette dokumentet?', document, deleteDocument)">
                 <span class="fa fa-remove"></span>
                 Slett dokument
             </button>
+            <button type="button" class="btn btn-default" ng-disabled="!((documentState == 'editProfile' || documentState == 'editDocument') && !document.nextDocumentId)" ng-click="newVersion(document)">
+                <span class="fa fa-clone"></span>
+                Ny versjon
+            </button>
+
         </p>
     </div>
 
@@ -89,7 +107,7 @@
                                                                                             title="Obligatorisk felt"
                                                                                             data-placement="top">*</span></label>
                     <div class="form-group col-sm-9">
-                        <input type="text" name="standardTitle" id="internalID" ng-model="document.internalId"
+                        <input type="text" name="internalID" id="internalID" ng-model="document.internalId"
                                class="form-control half-width" required/>
                     </div>
                 </div>
@@ -98,7 +116,7 @@
                 <div class="form-group">
                     <label class="col-sm-3 control-label" for="hisNumber">HIS nummer: </label>
                     <div class="form-group col-sm-9">
-                        <input type="text" name="standardTitle" id="hisNumber" ng-model="document.hisNumber"
+                        <input type="text" name="hisNumber" id="hisNumber" ng-model="document.hisNumber"
                                class="form-control half-width" />
                     </div>
                 </div>
@@ -109,7 +127,7 @@
                     <div class="form-group col-sm-9">
                         <select name="statusid" id="statusid"
                                 ng-model="document.statusId" class="form-control half-width">
-                            <option ng-repeat="status in status_option_list"
+                            <option ng-repeat="status in status_list"
                                     value="{{status.value}}">{{status.name}}
                             </option>
                         </select>
