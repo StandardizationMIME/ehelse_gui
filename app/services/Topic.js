@@ -96,6 +96,7 @@ angular.module("ehelseEditor").factory("Topic", ["$rootScope", function($rootSco
      */
     function updateTopic(data){
         var old_topic = topics_dict[data.id];
+        var children = old_topic.children;
         if(old_topic.parentId != data.parentId){
             removeById(old_topic.id);
             setTopic(topics_dict[data.id], data);
@@ -104,6 +105,7 @@ angular.module("ehelseEditor").factory("Topic", ["$rootScope", function($rootSco
         else{
             setTopic(topics_dict[data.id], data);
         }
+        topics_dict[data.id].children = children;
     }
 
     /**
