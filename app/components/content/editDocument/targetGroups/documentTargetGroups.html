@@ -26,7 +26,6 @@
 
                 <!-- Table body -->
                 <tbody>
-
                     <!-- For all target groups in the document display: -->
                     <tr ng-repeat="group in document.targetGroups">
 
@@ -47,7 +46,7 @@
 
                         <!-- ACTION -->
                         <td>
-                            <select class="form-control" name="" id="action" ng-model="group.action">
+                            <select class="form-control" name="" id="action" ng-model="group.actionId">
                                 <option ng-repeat="action in actions_option_list" value="{{action.value}}">{{action.name}}</option>
                             </select>
                         </td>
@@ -62,6 +61,7 @@
                             <span class="fa fa-remove delete-target-group-icon clickable" ng-click="removeTargetGroup(group)"></span>
                         </td>
                     </tr>
+
                 </tbody>
             </table>
 

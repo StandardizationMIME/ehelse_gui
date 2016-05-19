@@ -6,19 +6,25 @@ angular.module("ehelseEditor").factory("DocumentField", ["$rootScope", function(
     var document_types_fields_dict = {};
     var document_fields_dict = {};
 
-    function getDocumentTypes(){
-        $rootScope.get(
-            "document-fields",
-            function ( data ){
-                Array.prototype.push.apply(document_fields, data.documentFields);
-                generateDocumentFieldDict(document_fields);
-                generateDocumentFieldTypeDict(document_fields);
-            },
-            function (data) {
-                console.log("No document types found");
-            }
-        )
-    }
+    /**
+     * Function call retrieving document fields from the server.
+     */
+    $rootScope.get(
+        "document-fields",
+        function ( data ){
+            Array.prototype.push.apply(document_fields, data.documentFields);
+            generateDocumentFieldDict(document_fields);
+            generateDocumentFieldTypeDict(document_fields);
+        },
+        function (data) {
+            console.log("No document types found");
+        }
+    );
+
+    /**
+     * Function used to generate a dict with the document fields split into dicts per document type.
+     * @param document_fields
+     */
     function generateDocumentFieldTypeDict(document_fields){
         for(var i = 0; i < document_fields.length; i++){
             var document_field = document_fields[i];
@@ -29,16 +35,23 @@ angular.module("ehelseEditor").factory("DocumentField", ["$rootScope", function(
         }
     }
 
+    /**
+     * Function generating the document field dict.
+     *
+     * Document field dict is used to get the name of the document field when only the id is available.
+     * @param document_fields
+     */
     function generateDocumentFieldDict(document_fields){
         for(var i = 0; i < document_fields.length; i++){
             document_fields_dict[document_fields[i].id] = document_fields[i];
         }
     }
 
-
-
-    getDocumentTypes();
-
+    /**
+     * Function generating document type options list used to generate option lists in views.
+     * @param document_types
+     * @returns Array document types option list.
+     */
     function generateDocumentTypesOptionList(document_types){
         var tuples = [];
 
@@ -52,6 +65,11 @@ angular.module("ehelseEditor").factory("DocumentField", ["$rootScope", function(
         return tuples;
     }
 
+    /**
+     * Function returning the fields for the provided documentTypeId.
+     * @param documentTypeId
+     * @returns {*}
+     */
     function getFieldsByDocumentTypeId(documentTypeId){
         if(!document_types_fields_dict[documentTypeId]){
             return [];
@@ -59,6 +77,14 @@ angular.module("ehelseEditor").factory("DocumentField", ["$rootScope", function(
         return document_types_fields_dict[documentTypeId];
     }
 
+    /**
+     * Function creating a new document field.
+     *
+     * Updates document field dict and options list
+     * @param field
+     * @param success
+     * @param error
+     */
     function create(field, success, error){
 
         var mandatoryString = null;
@@ -94,6 +120,12 @@ angular.module("ehelseEditor").factory("DocumentField", ["$rootScope", function(
         );
     }
 
+    /**
+     * Function updating a document field.
+     * @param field
+     * @param success
+     * @param error
+     */
     function edit(field, success, error){
 
         var mandatoryString = null;
@@ -126,6 +158,10 @@ angular.module("ehelseEditor").factory("DocumentField", ["$rootScope", function(
         );
     }
 
+    /**
+     * Function removing a field from the document fields list.
+     * @param field
+     */
     function removeField(field){
         var index = document_fields.indexOf(field);
         if (index > -1) {
@@ -133,6 +169,14 @@ angular.module("ehelseEditor").factory("DocumentField", ["$rootScope", function(
         }
     }
 
+    /**
+     * Function deleting a document field.
+     *
+     * Updates document field dict and options list.
+     * @param field
+     * @param success
+     * @param error
+     */
     function remove(field, success, error){
         $rootScope.delete(
             "document-fields/" + field.id,
@@ -146,6 +190,11 @@ angular.module("ehelseEditor").factory("DocumentField", ["$rootScope", function(
         )
     }
 
+    /**
+     * Function cloning a DocumentField
+     * @param obj
+     * @returns DocumentField
+     */
     function clone(obj) {
         if (null == obj || "object" != typeof obj) return obj;
         var copy = obj.constructor();
@@ -155,6 +204,12 @@ angular.module("ehelseEditor").factory("DocumentField", ["$rootScope", function(
         return copy;
     }
 
+    /**
+     * Function returning a field from its id.
+     * @param id
+     * @param success
+     * @param error
+     */
     function getFieldById(id, success, error){
         $rootScope.get(
             "document-fields/" + id,
@@ -165,6 +220,11 @@ angular.module("ehelseEditor").factory("DocumentField", ["$rootScope", function(
         );
     }
 
+    /**
+     * Function returning the required fields from the document type id.
+     * @param documentTypeId
+     * @returns {Array}
+     */
     function getRequiredDocumentFieldIdsByDocumentTypeId(documentTypeId){
         var ids = [];
         for( var i = 0; i < document_fields.length; i++){
