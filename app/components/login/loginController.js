@@ -1,6 +1,6 @@
 "use strict";
 
-angular.module("ehelseEditor").controller("LoginController", [ "$scope", "$rootScope", "$location", "$cookies", "$state", "ModalService", function( $scope, $rootScope, $location, $cookies, $state, ModalService) {
+angular.module("ehelseEditor").controller("LoginController", [ "$scope", "$rootScope", "$location", "$cookies", "$state", function( $scope, $rootScope, $location, $cookies, $state) {
 
     $scope.feedback = "";
     $rootScope.password = null;
@@ -29,37 +29,6 @@ angular.module("ehelseEditor").controller("LoginController", [ "$scope", "$rootS
                 $scope.password = null;
             }
         );
+
     };
-
-    //reset password modal
-    $scope.openForgotPasswordModal = function () {
-        ModalService.showModal({
-            templateUrl: "app/components/login/forgotPassword/forgotPasswordModalView.html",
-            controller: "ForgotPasswordModalController"
-        }).then(function(modal) {
-            modal.element.modal();
-            modal.close.then(function(result) {
-                console.log(result);
-
-                /*
-                if(result != "cancel"){
-                    $rootScope.post("/users/reset-password/",{"email":result},function(){
-                        console.log("success");
-
-                    },function(){
-                        console.log("failed");
-
-                    });
-                }
-                */
-
-
-
-
-                console.log("Siste linje");
-            });
-        });
-    };
-
-
 }]);
