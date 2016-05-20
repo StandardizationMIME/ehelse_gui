@@ -392,10 +392,10 @@ input[readonly], textarea[readonly]{
     box-shadow: 1px 1px 2px 2px #b8b8b8;
 }
 /* -------------------------------------------- CH6 LOGIN ----------------------------------------- */
-.login-page button{
+.logged-out-page button{
     margin-bottom: 1em;
 }
-.login-page {
+.logged-out-page {
     width: 300px;
     height: 300px;
     position: absolute;
@@ -598,7 +598,7 @@ a.sortable-columns{
 .body_background {
     background-color: #f3f3f3;
 }
-.login-page {
+.logged-out-page {
     width: 300px;
     height: 300px;
     position: absolute;
