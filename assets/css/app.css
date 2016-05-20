@@ -104,15 +104,6 @@ h1,h2,h3,h4{ font-weight: bold;}
 .z-index-high {
     z-index: 1000000000;
 }
-.headline-box {
-    position: relative;
-    height: 50px;
-    overflow-x: auto;
-}
-.headline-box h4 {
-    position: absolute;
-    bottom: 0;
-}
 .red-color {
     color: #c13a47;
 }
@@ -650,13 +641,10 @@ textarea {
     border-color: #b8b8b8;
 }
 .headline-box {
-    position: relative;
     height: 50px;
-    overflow-x: auto;
 }
 .headline-box h4 {
-    position: absolute;
-    bottom: 0;
+    display: inline-block;
 }
 /* User dropdown start */
  div>div>.dropdown-toggle{

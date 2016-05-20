@@ -11,22 +11,6 @@
             <h4 class="selected" ng-if="documentState == 'editDocument'">Rediger dokument</h4>
             <h4 class="selected" ng-if="documentState == 'editProfile'">Rediger profil</h4>
             <h4 class="selected" ng-if="documentState == 'newProfile'">Ny profil</h4>
-        </div>
-
-        <!-- All buttons used in the various document states and types -->
-        <p class="twelve-pix-vertical-padding">
-            <button type="button" class="btn btn-primary" ng-click="submit(EditDocumentController.DocumentForm);setDocumentnState('editDocument');" ng-if="documentState == 'newDocument'" ng-disabled="EditDocumentController.DocumentForm.$invalid || EditDocumentController.DocumentForm.$pristine">
-                <span class="fa fa-check-circle edit-topic-icon"></span>
-                Opprett dokument
-            </button>
-            <button type="button" class="btn btn-primary" ng-click="submit(EditDocumentController.DocumentForm);setDocumentState('editProfile');" ng-if="documentState == 'newProfile'" ng-disabled="EditDocumentController.DocumentForm.$invalid || EditDocumentController.DocumentForm.$pristine">
-                <span class="fa fa-check-circle edit-topic-icon"></span>
-                Opprett profil
-            </button>
-            <button type="button" class="btn btn-primary" ng-disabled="EditDocumentController.DocumentForm.$invalid || EditDocumentController.DocumentForm.$pristine" ng-click="submit(EditDocumentController.DocumentForm)" ng-if="documentState == 'editProfile' || documentState == 'editDocument' || documentState == 'editUtility'">
-                <span class="fa fa-check-circle-o edit-topic-icon"></span>
-                Lagre dokument
-            </button>
 
             <!-- FEEDBACK -->
             <span ng-messages="EditDocumentController.DocumentForm.$error" class="feedback-msg">
@@ -43,6 +27,22 @@
             <span ng-messages="EditDocumentController.DocumentForm.f.$error" class="feedback-msg">
                 <span ng-message="required"> 'Felter'</span>
             </span>
+        </div>
+
+        <!-- All buttons used in the various document states and types -->
+        <p class="twelve-pix-vertical-padding">
+            <button type="button" class="btn btn-primary" ng-click="submit(EditDocumentController.DocumentForm);setDocumentnState('editDocument');" ng-if="documentState == 'newDocument'" ng-disabled="EditDocumentController.DocumentForm.$invalid || EditDocumentController.DocumentForm.$pristine">
+                <span class="fa fa-check-circle edit-topic-icon"></span>
+                Opprett dokument
+            </button>
+            <button type="button" class="btn btn-primary" ng-click="submit(EditDocumentController.DocumentForm);setDocumentState('editProfile');" ng-if="documentState == 'newProfile'" ng-disabled="EditDocumentController.DocumentForm.$invalid || EditDocumentController.DocumentForm.$pristine">
+                <span class="fa fa-check-circle edit-topic-icon"></span>
+                Opprett profil
+            </button>
+            <button type="button" class="btn btn-primary" ng-disabled="EditDocumentController.DocumentForm.$invalid || EditDocumentController.DocumentForm.$pristine" ng-click="submit(EditDocumentController.DocumentForm)" ng-if="documentState == 'editProfile' || documentState == 'editDocument' || documentState == 'editUtility'">
+                <span class="fa fa-check-circle-o edit-topic-icon"></span>
+                Lagre dokument
+            </button>
 
             <button type="button" class="btn btn-danger pull-right" ng-if="documentState == 'editProfile' || documentState == 'editDocument' || documentState == 'editUtility'" ng-click="openConfirmationModal('Er du sikker på at du vil slette dokumentet?', document, deleteDocument)">
                 <span class="fa fa-remove"></span>
