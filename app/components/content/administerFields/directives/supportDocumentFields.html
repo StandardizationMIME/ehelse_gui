@@ -1,28 +1,39 @@
 <form name="administerFieldForm" role="form" method="post">
     <div class="ten-pix-vertical-padding">
-        <button type="button" ng-click="showNewFieldModal();setTypeId('3')" class="btn btn-default">
+
+        <!-- Open modal for creating a new field -->
+        <button type="button" ng-click="showNewFieldModal();setTypeId(3)" class="btn btn-default">
             <span class="fa fa-plus-circle green-color font-size-large"></span>
             Opprett nytt felt
         </button>
     </div>
 
+    <!-- List headings -->
     <span class="field-item field-list-title panel3">
         <span class="field-item-field">Tittel</span>
         <span class="field-item-field">Beskrivelse</span>
         <span class="field-item-field">Obligatorisk</span>
         <span class="field-item-field pull-right">Rediger felt &nbsp; Slett &nbsp;&nbsp;&nbsp;</span>
     </span>
+
+    <!-- List of existing document fields -->
     <ul ng-model="documentFields" class="field-item list-group administer-fields-list shadow-below" style="margin-left: 5px">
         <li ng-repeat="field in documentFields | orderBy:getSequence" ng-if="field.documentTypeId == 3" class="list-group-item ">
+
+            <!-- Document field info -->
             <span class="field-item-field">{{field.name}}</span>
             <span class="field-item-field">{{field.description}}</span>
-            <span class="field-item-field" ng-if="field.mandatory == '1'">Ja</span>
-            <span class="field-item-field" ng-if="field.mandatory == '0'">Nei</span>
+            <span class="field-item-field" ng-if="field.mandatory == 1">Ja</span>
+            <span class="field-item-field" ng-if="field.mandatory == 0">Nei</span>
+
+            <!-- Delete field -->
             <div class="pull-right">
                 <span ng-click="openConfirmationModal('Er du sikker på at du vil slette feltet?', field, deleteFieldById)" id="deleteProfileField" class="fa fa-remove fa-fw vcenter clickable remove-user edit-field unsortable"></span>
             </div>
+
+            <!-- Edit field -->
             <div class="pull-right">
-                <span ng-click="editDocumentFieldModal(field.id);setTypeId('3')"  id="editProfileField" class="fa fa-pencil-square-o fa-2x vcenter clickable edit-field unsortable"></span>
+                <span ng-click="editDocumentFieldModal(field.id);setTypeId(3)"  id="editProfileField" class="fa fa-pencil-square-o fa-2x vcenter clickable edit-field unsortable"></span>
             </div>
         </li>
     </ul>

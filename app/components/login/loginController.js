@@ -1,29 +1,32 @@
-'use strict';
+"use strict";
 
-angular.module('ehelseEditor').controller('LoginController', [ '$scope', '$rootScope', '$location', '$cookies', '$state', function( $scope, $rootScope, $location, $cookies, $state) {
+angular.module("ehelseEditor").controller("LoginController", [ "$scope", "$rootScope", "$location", "$cookies", "$state", function( $scope, $rootScope, $location, $cookies, $state) {
 
     $scope.feedback = "";
     $rootScope.password = null;
     $scope.$state = $state;
+
+    // Submit login info and try to log in
     $scope.submit = function(){
         $rootScope.setUserName($scope.username);
         $rootScope.setPassword($scope.password);
-        $cookies.put('username', $scope.username);
-        $cookies.put('password', $scope.password);
+        $cookies.put("username", $scope.username);
+        $cookies.put("password", $scope.password);
         $scope.logIn();
     };
 
+    // Login
     $scope.logIn = function (username, authtoken) {
-
         $rootScope.get(
-            'users/login/',
+            "users/login/",
             function(data){
                 $rootScope.currentUser = data;
-                $cookies.put('currentUser', angular.toJson(data));
-                $scope.$state.go('main-view.editor-view');
+                $cookies.put("currentUser", angular.toJson(data));
+                $scope.$state.go("main-view.editor-view");
             },
             function(){
                 $scope.feedback = "Passord og/eller brukernavn er feil";
+                $scope.password = null;
             }
         );
 

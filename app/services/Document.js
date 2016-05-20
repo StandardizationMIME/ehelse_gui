@@ -1,8 +1,12 @@
-'use strict';
+"use strict";
 
-angular.module('ehelseEditor').factory('Document', ['$rootScope', 'DocumentField', 'Topic', function($rootScope, DocumentField, Topic) {
+angular.module("ehelseEditor").factory("Document", ["$rootScope", "DocumentField", "Topic", function($rootScope, DocumentField, Topic) {
 
 
+    /**
+     * Function creating a nw document
+     * @returns Document
+     */
     function newDocument() {
         return {
             id: null,
@@ -10,7 +14,7 @@ angular.module('ehelseEditor').factory('Document', ['$rootScope', 'DocumentField
             title: "",
             description: "",
             statusId: 1,
-            sequence: 0,
+            sequence: 1,
             topicId: Topic.getSelected().id,
             comment: "",
             documentTypeId: "1",
@@ -26,6 +30,11 @@ angular.module('ehelseEditor').factory('Document', ['$rootScope', 'DocumentField
         };
     }
 
+    /**
+     * Function creating a new profile
+     * @param standardId
+     * @returns Document
+     */
     function newProfile(standardId) {
         return {
             id: null,
@@ -33,7 +42,7 @@ angular.module('ehelseEditor').factory('Document', ['$rootScope', 'DocumentField
             title: "",
             description: "",
             statusId: 1,
-            sequence: 0,
+            sequence: 1,
             topicId: Topic.getSelected().id,
             comment: "",
             documentTypeId: "2",
@@ -57,6 +66,10 @@ angular.module('ehelseEditor').factory('Document', ['$rootScope', 'DocumentField
     var documents_dict = {};
     var topics_documents_dict = {};
 
+    /**
+     * Function adding target groups to current document
+     * @param target_groups_ids
+     */
     function extendCurrentDocumentTargetGroupsByTargetGroupIds(target_groups_ids) {
         for (var i = 0; i < target_groups_ids.length; i++) {
             current_document.targetGroups.push({
@@ -69,14 +82,20 @@ angular.module('ehelseEditor').factory('Document', ['$rootScope', 'DocumentField
         }
     }
 
-
+    /**
+     * Function adding a field to current document.
+     * @param field_ids
+     */
     function extendCurrentDocumentFieldsByFieldIds(field_ids) {
         for (var i = 0; i < field_ids.length; i++) {
             current_document.fields.push({fieldId: field_ids[i], value: ""});
         }
     }
 
-
+    /**
+     * Function removing a target group from current document.
+     * @param group
+     */
     function removeTargetGroup(group) {
 
         var index = current_document.targetGroups.indexOf(group);
@@ -85,6 +104,10 @@ angular.module('ehelseEditor').factory('Document', ['$rootScope', 'DocumentField
         }
     }
 
+    /**
+     * Function removing a field from current docuent.
+     * @param field
+     */
     function removeField(field) {
 
         var index = current_document.fields.indexOf(field);
@@ -93,6 +116,10 @@ angular.module('ehelseEditor').factory('Document', ['$rootScope', 'DocumentField
         }
     }
 
+    /**
+     * Function removing link from current document.
+     * @param link
+     */
     function removeCurrentDocumentLink(link) {
 
         var index = current_document.links.indexOf(link);
@@ -102,19 +129,21 @@ angular.module('ehelseEditor').factory('Document', ['$rootScope', 'DocumentField
         generateCurrentDocumentLinksAsLinkCategoryList();
     }
 
-
+    /**
+     * Function creating or updating current document based on if it has an id or not.
+     */
     function submitCurrentDocument() {
         current_document.populatedProfiles.length = 0;
         if (current_document.id) {
 
             $rootScope.put(
-                'documents/' + current_document.id,
+                "documents/" + current_document.id,
                 current_document,
                 function (data) {
                     data.populatedProfiles = [];
                     setCurrentDocument(current_document);
                     updateDocumentInDocumentsList(data);
-                    $rootScope.notifySuccess("Dokumentet ble oppdatert", 3000);
+                    $rootScope.notifySuccess("Dokumentet ble oppdatert", 1000);
                 }
                 ,
                 function (data) {
@@ -126,7 +155,7 @@ angular.module('ehelseEditor').factory('Document', ['$rootScope', 'DocumentField
         }
         else {
             $rootScope.post(
-                'documents/',
+                "documents/",
                 current_document,
                 function (data) {
                     data.populatedProfiles = [];
@@ -142,7 +171,7 @@ angular.module('ehelseEditor').factory('Document', ['$rootScope', 'DocumentField
                     generateDocumentDict(documents);
                     generateTopicsDocumentsDict(documents);
                     setCurrentDocument(data);
-                    $rootScope.notifySuccess("Ny standard ble opprettet", 3000);
+                    $rootScope.notifySuccess("Ny standard ble opprettet", 1000);
                 }
                 ,
                 function (data) {
@@ -154,6 +183,11 @@ angular.module('ehelseEditor').factory('Document', ['$rootScope', 'DocumentField
         }
     }
 
+    /**
+     * Function getting the error when updating / cerating a document fails.
+     * @param error
+     * @returns {string}
+     */
     function getErrorMessage(error){
         var error_message = "";
         var message = error.message;
@@ -169,9 +203,12 @@ angular.module('ehelseEditor').factory('Document', ['$rootScope', 'DocumentField
         return error_message;
     }
 
+    /**
+     * Function deleting current documet.
+     */
     function deleteCurrentDocument() {
         $rootScope.delete(
-            'documents/' + current_document.id,
+            "documents/" + current_document.id,
             function(){
                 if(current_document.standardId){
                     var sib = documents_dict[current_document.standardId].profiles;
@@ -182,8 +219,8 @@ angular.module('ehelseEditor').factory('Document', ['$rootScope', 'DocumentField
                     }
                 }
                 deleteCurrentDocumentFromDocumentsList();
-                $rootScope.notifySuccess("Dokumentet ble slettet", 3000);
-                $rootScope.changeContentView('');
+                $rootScope.notifySuccess("Dokumentet ble slettet", 1000);
+                $rootScope.changeContentView("");
             },
             function(){
                 console.log("Document could not be deleted");
@@ -197,7 +234,11 @@ angular.module('ehelseEditor').factory('Document', ['$rootScope', 'DocumentField
         return current_document;
     }
 
-
+    /**
+     * Function returning the target groups ids of te current document target groups.
+     * @param targetGroups
+     * @returns {Array}
+     */
     function getTargetGroupsIdsHelper(targetGroups) {
         var ids = [];
         for (var i = 0; i < targetGroups.length; i++) {
@@ -206,6 +247,10 @@ angular.module('ehelseEditor').factory('Document', ['$rootScope', 'DocumentField
         return ids;
     }
 
+    /**
+     * Returns ids of targe groups.
+     * @returns {Array}
+     */
     function getTargetGroupsIds() {
         return getTargetGroupsIdsHelper(current_document.targetGroups);
     }
@@ -361,7 +406,7 @@ angular.module('ehelseEditor').factory('Document', ['$rootScope', 'DocumentField
 
     function getAllDocuments() {
         $rootScope.get(
-            'documents/',
+            "documents/",
             function (data) {
                 documents.length = 0;
 

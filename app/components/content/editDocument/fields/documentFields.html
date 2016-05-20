@@ -1,23 +1,35 @@
 <div class="panel panel-border{{document.documentTypeId}}">
+
+    <!-- Title -->
     <div class="panel-heading panel{{document.documentTypeId}}">
         <h3 class="panel-title selected-heading"><span class="fa fa-check-circle-o"></span> Felter</h3>
     </div>
+
+
     <div class="panel-body">
         <div class="form-group" >
             <ul id="new-doc-fields" class="list-group">
+
+                <!-- List the document's fields -->
                 <li class="list-group-item" ng-repeat="field in document.fields">
+
+                    <!-- Field name -->
                     <span class="document-fields-field-name">{{fields_dict[field.fieldId].name}}
-                    <span ng-if="fields_dict[field.fieldId].mandatory === '1'" class="required-icon" data-toggle="tooltip" title="" data-placement="top" data-original-title="Obligatorisk felt">*</span>
+                    <span ng-if="fields_dict[field.fieldId].mandatory == 1" class="required-icon" data-toggle="tooltip" title="" data-placement="top" data-original-title="Obligatorisk felt">*</span>
                     </span>
+
+                    <!-- Field input -->
                     <span class="document-fields-field-value">
                         <input required type="text" name="f{{field.id}}" ng-model="field.value">
                     </span>
-                    <span ng-if="fields_dict[field.fieldId].mandatory === '0'" class="fa fa-remove pull-right delete-topic-icon clickable" ng-click="removeField(field)"></span>
+
+                    <!-- Delete field -->
+                    <span ng-if="fields_dict[field.fieldId].mandatory == 0" class="fa fa-remove pull-right delete-topic-icon clickable" ng-click="removeField(field)"></span>
                 </li>
             </ul>
 
+            <!-- Open modal for adding fields to the document -->
             <button type="button" class="btn btn-default" ng-click="openModal('app/components/content/editDocument/fields/addDocumentFieldsModal.html', 'AddDocumentFieldsController')"><span class="fa fa-plus-circle plus-icon"></span> Legg til felter</button>
-
         </div>
     </div>
 </div>

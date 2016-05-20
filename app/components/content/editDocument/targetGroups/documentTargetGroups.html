@@ -1,52 +1,71 @@
 <div class="panel panel-border{{document.documentTypeId}}">
+
+    <!-- Title -->
     <div class="panel-heading panel{{document.documentTypeId}}">
         <h3 class="panel-title selected-heading"><span class="fa fa-bullseye"></span> Målgrupper</h3>
     </div>
+
     <div class="panel-body">
 
         <div class="form-group">
+
+            <!-- Table displaying the target groups added to the document -->
             <table class="table table-condensed" id="target-group-table">
+
+                <!-- Table head -->
                 <thead>
-                <tr>
-                    <th>Navn</th>
-                    <th>Obligatorisk</th>
-                    <th>Frist</th>
-                    <th>Handling</th>
-                    <th>Beskrivelse</th>
-                    <th></th>
-                </tr>
+                    <tr>
+                        <th>Navn</th>
+                        <th>Obligatorisk</th>
+                        <th>Frist</th>
+                        <th>Handling</th>
+                        <th>Beskrivelse</th>
+                        <th></th>
+                    </tr>
                 </thead>
+
+                <!-- Table body -->
                 <tbody>
-                <tr ng-repeat="group in document.targetGroups">
-                    <!-- NAVN -->
-                    <td>{{target_groups_dict[group.targetGroupId].name}}</td>
-                    <!-- OBLIGATORISK -->
-                    <td>
-                        <select class="form-control" name="" id="mandatory" ng-model="group.mandatoryId">
-                            <option ng-repeat="mandatory in mandatory_option_list" value="{{mandatory.value}}">{{mandatory.name}}</option>
-                        </select>
-                    </td>
-                    <!-- FRIST -->
-                    <td>
-                        <input class="form-control" type="text" id="deadline" ng-model="group.deadline">
-                    </td>
-                    <!-- HANDLING -->
-                    <td>
-                        <select class="form-control" name="" id="action" ng-model="group.action">
-                            <option ng-repeat="action in actions_option_list" value="{{action.value}}">{{action.name}}</option>
-                        </select>
-                    </td>
-                    <!-- BESKRIVELSE -->
-                    <td>
-                        <input type="text" class="form-control" id="description"  ng-model="group.description"/>
-                    </td>
-                    <!-- Slett -->
-                    <td>
-                        <span class="fa fa-remove delete-target-group-icon clickable" ng-click="removeTargetGroup(group)"></span>
-                    </td>
-                </tr>
+                    <!-- For all target groups in the document display: -->
+                    <tr ng-repeat="group in document.targetGroups">
+
+                        <!-- NAME -->
+                        <td>{{target_groups_dict[group.targetGroupId].name}}</td>
+
+                        <!-- MANDATORY -->
+                        <td>
+                            <select class="form-control" name="" id="mandatory" ng-model="group.mandatoryId">
+                                <option ng-repeat="mandatory in mandatory_list" value="{{mandatory.value}}">{{mandatory.name}}</option>
+                            </select>
+                        </td>
+
+                        <!-- Deadline -->
+                        <td>
+                            <input class="form-control" type="text" id="deadline" ng-model="group.deadline">
+                        </td>
+
+                        <!-- ACTION -->
+                        <td>
+                            <select class="form-control" name="" id="action" ng-model="group.actionId">
+                                <option ng-repeat="action in actions_option_list" value="{{action.value}}">{{action.name}}</option>
+                            </select>
+                        </td>
+
+                        <!-- Description -->
+                        <td>
+                            <input type="text" class="form-control" id="description"  ng-model="group.description"/>
+                        </td>
+
+                        <!-- Delete target group from document -->
+                        <td>
+                            <span class="fa fa-remove delete-target-group-icon clickable" ng-click="removeTargetGroup(group)"></span>
+                        </td>
+                    </tr>
+
                 </tbody>
             </table>
+
+            <!-- Add new target group to document -->
             <button class="btn btn-default" type="button" ng-click="openModal('app/components/content/editDocument/targetGroups/addDocumentTargetGroupModal.html', 'AddDocumentTargetGroupModelController')"><span class="fa fa-plus-circle plus-icon"></span> Legg til ny</button>
         </div>
 

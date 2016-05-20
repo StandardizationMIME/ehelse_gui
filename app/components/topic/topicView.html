@@ -3,9 +3,13 @@
     <!-- Topic folder browser -->
     <!-- Iterates through the list of topics and display them as folders -->
     <div class="shadow-below">
+
+        <!-- Title -->
         <div class="headline-box">
             <h4 class="selected-heading">Temaer:</h4>
         </div>
+
+        <!-- Create new topic -->
         <p class="ten-pix-vertical-padding">
             <button type="button" ng-click="showNewTopicModal()" class="btn btn-default">
                 <span class="fa fa-plus-circle plus-icon"></span>
@@ -13,20 +17,34 @@
             </button>
         </p>
     </div>
+
+    <!-- Display of all topics as folders -->
     <div class="topic-list" >
+
+        <!-- First layer -->
         <div ng-repeat="topic in topics | orderBy:getSequence">
+
+            <!-- On click, get documents related to topic and open topic in content view -->
             <p data-target=#topic{{topic.id}} id={{topic.id}} data-toggle="collapse" class="item-text clickable" ng-click="getDocuments(topic.id); setSelectedTopic(topic.id)">
                 <span id=folder{{topic.id}} class="standard-icon glyphicon glyphicon-folder-close"> </span>
                 {{topic.title}}
             </p>
+
+            <!-- Second layer -->
             <div id=topic{{topic.id}} class="collapse">
                 <div class="sub-topic" ng-repeat="subTopic in topic.children | orderBy:getSequence">
+
+                    <!-- On click, get documents related to topic and open topic in content view -->
                     <p data-target=#topic{{subTopic.id}} id={{subTopic.id}} data-toggle="collapse" class="item-text clickable" ng-click="getDocuments(subTopic.id); setSelectedTopic(subTopic.id)">
                         <span id=folder{{subTopic.id}} class="standard-icon glyphicon glyphicon-folder-close"> </span>
                         {{subTopic.title}}
                     </p>
+
+                    <!-- Third layer -->
                     <div id=topic{{subTopic.id}} class="collapse">
                         <div ng-repeat="subsubTopic in subTopic.children | orderBy:getSequence" class="sub-topic">
+
+                            <!-- On click, get documents related to topic and open topic in content view -->
                             <p id={{subsubTopic.id}} class="item-text clickable" ng-click="getDocuments(subsubTopic.id); setSelectedTopic(subsubTopic.id)">
                                 <span id=folder{{subsubTopic.id}} class="standard-icon glyphicon glyphicon-folder-close"> </span>
                                 {{subsubTopic.title}}

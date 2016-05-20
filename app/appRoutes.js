@@ -1,6 +1,7 @@
 angular.module("ehelseEditor")
     .config(function($stateProvider, $urlRouterProvider) {
 
+        //redirect to "/" if nothing else matches
         $urlRouterProvider.otherwise("/");
 
         $stateProvider
@@ -8,6 +9,10 @@ angular.module("ehelseEditor")
                 controller: "LoginController",
                 url: "/",
                 templateUrl: "app/components/login/loginView.html"
+            }).state("forgot-password", {
+                controller: "ForgotPasswordController",
+                url: "/forgot-password",
+                templateUrl: "app/components/login/forgotPassword/forgotPasswordView.html"
             })
             .state("main-view", {
                 controller: "MainController",

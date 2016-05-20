@@ -1,77 +1,67 @@
-'use strict';
+"use strict";
 
-angular.module('ehelseEditor').controller('MyPageController', ['$scope', '$rootScope', function ($scope, $rootScope) {
+angular.module("ehelseEditor").controller("MyPageController", ["$scope", "$rootScope", "$cookies", function ($scope, $rootScope, $cookies) {
 
     //hide all forms
     $("#nameForm").hide();
     $("#emailForm").hide();
     $("#passwordForm").hide();
-    $("#imageForm").hide();
 
     //toggle display functions
     $scope.toggleName = function () {
         $("#nameForm").slideToggle("fast");
         $("#emailForm").slideUp("fast");
         $("#passwordForm").slideUp("fast");
-        $("#imageForm").slideUp("fast");
 
-        $("#nameRow").toggleClass("activeRow");
-        $("#emailRow").removeClass("activeRow");
-        $("#passwordRow").removeClass("activeRow");
-        $("#imageRow").removeClass("activeRow");
+        $("#nameRow").toggleClass("active-row");
+        $("#emailRow").removeClass("active-row");
+        $("#passwordRow").removeClass("active-row");
     };
     $scope.toggleEmail = function () {
         $("#emailForm").slideToggle("fast");
         $("#nameForm").slideUp("fast");
         $("#passwordForm").slideUp("fast");
-        $("#imageForm").slideUp("fast");
 
-        $("#emailRow").toggleClass("activeRow");
-        $("#nameRow").removeClass("activeRow");
-        $("#passwordRow").removeClass("activeRow");
-        $("#imageRow").removeClass("activeRow");
+        $("#emailRow").toggleClass("active-row");
+        $("#nameRow").removeClass("active-row");
+        $("#passwordRow").removeClass("active-row");
     };
     $scope.togglePassword = function () {
         $("#passwordForm").slideToggle("fast");
         $("#nameForm").slideUp("fast");
         $("#emailForm").slideUp("fast");
-        $("#imageForm").slideUp("fast");
 
-        $("#passwordRow").toggleClass("activeRow");
-        $("#nameRow").removeClass("activeRow");
-        $("#emailRow").removeClass("activeRow");
-        $("#imageRow").removeClass("activeRow");
-    };
-    $scope.toggleImage = function () {
-        $("#imageForm").slideToggle("fast");
-        $("#nameForm").slideUp("fast");
-        $("#passwordForm").slideUp("fast");
-        $("#emailForm").slideUp("fast");
-
-        $("#imageRow").toggleClass("activeRow");
-        $("#nameRow").removeClass("activeRow");
-        $("#emailRow").removeClass("activeRow");
-        $("#passwordRow").removeClass("activeRow");
+        $("#passwordRow").toggleClass("active-row");
+        $("#nameRow").removeClass("active-row");
+        $("#emailRow").removeClass("active-row");
     };
 
+    //temporary store values for avoiding live updates when writing in fields
     $scope.myPage = {
         id: $rootScope.currentUser.id,
         name: $rootScope.currentUser.name,
-        email: $rootScope.currentUser.email,
-        profileImage: $rootScope.currentUser.profileImage
+        email: $rootScope.currentUser.email
     };
+
+    //submit all data
     $scope.submit = function () {
         $scope.put(
             "users/" + $rootScope.currentUser.id,
             $scope.myPage,
             function () {
-                $rootScope.notifySuccess("Kontoinformasjonen din ble oppdatert",3000);
+                $rootScope.notifySuccess("Kontoinformasjonen din ble oppdatert",1000);
                 $rootScope.currentUser = {
                     id: $rootScope.currentUser.id,
                     name: $scope.myPage.name,
-                    email: $scope.myPage.email,
-                    profileImage: $scope.myPage.profileImage
+                    email: $scope.myPage.email
                 };
+
+                $cookies.put("currentUser", angular.toJson($scope.myPage));
+                $rootScope.currentUser.name = $scope.myPage.name;
+                $("#emailRow").removeClass("active-row");
+                $("#nameRow").removeClass("active-row");
+                $("#nameForm").hide();
+                $("#emailForm").hide();
             },
             function () {
                 $rootScope.notifyError("Kontoinformasjonen din ble ikke oppdatert",6000);
@@ -87,8 +77,10 @@ angular.module('ehelseEditor').controller('MyPageController', ['$scope', '$rootS
                     "users/" + $rootScope.currentUser.id + "/password/",
                     {password: $scope.newPassword},
                     function () {
-                        $rootScope.notifySuccess("Passordet ditt er endret.",3000);
+                        $rootScope.notifySuccess("Passordet ditt er endret.",1000);
                         $rootScope.password = $scope.newPassword;
+                        $("#passwordRow").removeClass("active-row");
+                        $("#passwordForm").hide();
                     },
                     function () {
                         $rootScope.notifyError("Passordet ble ikke endret.",3000);
@@ -100,13 +92,5 @@ angular.module('ehelseEditor').controller('MyPageController', ['$scope', '$rootS
         } else {
             $rootScope.notifyError('"Nytt passord" og "Gjenta nytt passord" er ikke like.',6000);
         }
-
-        //Clear fields after attempt
-        /* TODO implement clearing of password fields after attempt. ATM that breaks the form becayse of 2-way data binding.
-         $scope.oldPassword = "";
-         $scope.newPassword = "";
-         $scope.repeatNewPassword = "";
-         */
     };
-
 }]);

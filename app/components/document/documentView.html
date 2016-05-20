@@ -1,20 +1,30 @@
 <!-- Panel for displaying list of standards and profiles -->
 <div class="col-lg-3 col-mg-3 col-sm-3 col-xs-3 file-browser" ng-controller="DocumentController">
     <div>
+
+        <!-- Document actions -->
         <div class="shadow-below">
+
+            <!-- Topic title -->
             <div class="headline-box">
                 <h4 class="selected-heading">{{topic.title}}</h4>
             </div>
+
+            <!-- Open view for creating new document -->
             <p class="ten-pix-vertical-padding">
-                <button type="button" ng-click="setButtonState('newDocument');openDocument()" class="btn btn-default">
+                <button type="button" ng-click="setDocumentState('newDocument');openDocument()" class="btn btn-default">
                     <span class="fa fa-plus-circle plus-icon"></span>
                     Nytt dokument
                 </button>
             </p>
         </div>
+
+        <!-- List of documents in the selected topic -->
         <div class="standard-list">
             <div ng-repeat="document in documents | filter: search | orderBy:getSequence">
-                <p class="clickable" id=standard{{document.id}} ng-class="document.id == selected_document.id ? 'selected-item' : ''" ng-click="setButtonState('editDocument');openDocument(document);">
+
+                <!-- Opens the document in the content view on selection -->
+                <p class="clickable" id=standard{{document.id}} ng-class="document.id == selected_document.id ? 'selected-item' : ''" ng-click="setDocumentState('editDocument');openDocument(document);">
                     <span  class="fa fa-file-text d{{document.documentTypeId}}"> </span>
                     {{document.title}}
                 </p>

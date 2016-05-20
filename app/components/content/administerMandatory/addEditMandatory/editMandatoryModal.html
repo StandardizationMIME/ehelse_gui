@@ -2,22 +2,36 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <form ng-controller="AddEditMandatoryController" name="editMandatoryForm" role="form" method="post">
+
+                <!-- Modal title -->
                 <div class="modal-header">
                     <h3>Endre mandatory</h3>
                 </div>
+
+                <!-- Mandatory value input fields -->
                 <div class="modal-body">
+
+                    <!-- Title -->
                     <div class="form-group">
                         <label for="editMandatoryName">Tittel: </label>
                         <input id="editMandatoryName" focus-me="shouldBeOpen" ng-model="currentMandatory.name" type="text" class="form-control" required/>
                     </div>
+
+                    <!-- Description -->
                     <div class="form-group">
                         <label for="editMandatoryDescription">Beskrivelse: </label>
                         <textarea id="editMandatoryDescription" ng-model="currentMandatory.description" class="form-control"></textarea>
                     </div>
                 </div>
+
+                <!-- Modal footer -->
                 <div class="modal-footer">
                     <div class="form-actions">
+
+                        <!-- Save changes and close modal -->
                         <button ng-click="submitMandatoryChange(currentMandatory)" data-dismiss="modal" type="submit" ng-disabled="editMandatoryForm.$invalid" class="btn btn-primary">Lagre endring</button>
+
+                        <!-- Cancel changes and close modal -->
                         <button type="button" data-dismiss="modal" class="btn btn-default pull-right">Avbryt</button>
                     </div>
                 </div>

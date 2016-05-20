@@ -25,10 +25,6 @@ h1,h2,h3,h4{ font-weight: bold;}
 .relative{
     position: relative;
 }
-.absolute-bottom{
-    position: absolute;
-    bottom:0;
-}
 .vcenter {
     display: inline-block;
     vertical-align: middle;
@@ -46,10 +42,6 @@ h1,h2,h3,h4{ font-weight: bold;}
 .twelve-pix-vertical-padding {
     padding-top: 12px;
     padding-bottom: 12px;
-}
-.ten-pix-horizontal-padding {
-    padding-right: 10px;
-    padding-left: 10px;
 }
 .ten-pix-vertical-padding {
     padding-top: 10px;
@@ -100,7 +92,6 @@ h1,h2,h3,h4{ font-weight: bold;}
     color: #ffffff;
     font-weight: bolder;
 }
-
 #notification-container{
     position: absolute;
     width: 100%;
@@ -113,36 +104,34 @@ h1,h2,h3,h4{ font-weight: bold;}
 .z-index-high {
     z-index: 1000000000;
 }
-.headline-box {
-    position: relative;
-    height: 50px;
-    overflow-x: auto;
-}
-.headline-box h4 {
-    position: absolute;
-    bottom: 0;
-}
 .red-color {
     color: #c13a47;
-}
-.red-background {
-    background-color: #c13a47;
 }
 .blue-color {
     color: #337AB7;
 }
-.blue-background {
-    background-color: #337AB7;
-}
 .green-color {
     color: #58a739;
+}
+.white-color {
+    color: white;
+}
+.red-background {
+    background-color: #c13a47;
+}
+.blue-background {
+    background-color: #337AB7;
 }
 .green-background {
     background-color: #58a739;
 }
+.white-background {
+    background-color: white;
+}
 .font-size-large {
     font-size: large;
 }
+
 /* ------------------------------------------------ CH2 ADMINISTER_USERS ----------------------------------------- */
 #user-list img{
     width: 50px;
@@ -188,14 +177,11 @@ h1,h2,h3,h4{ font-weight: bold;}
 textarea {
     resize: none;
 }
-
 .administer-views {
     height: 650px;
     overflow-y: auto;
     overflow-x: hidden;
 }
-
-
 /* -------------------------------------------- CH3 CONTENT ----------------------------------------- */
 .document-fields {
     overflow-y: hidden;
@@ -220,7 +206,6 @@ textarea {
     position:relative;
     font-size: 13px;
 }
-
 .tg:nth-child(1) { width: 25.4%; }
 .tg:nth-child(2) { width: 34% }
 .tg:nth-child(3) { width: 8.6% }
@@ -246,14 +231,6 @@ input[readonly], textarea[readonly]{
 .document-fields-field-value input{
     width:100%;
 }
-
-
-.document-fields-field-remove{
-    width:10%;
-    display: inline-block;
-}
-
-
 .link-group-panel{
     margin-bottom: 2px;
 }
@@ -273,34 +250,32 @@ input[readonly], textarea[readonly]{
     box-shadow: 1px 1px 2px 1px #b8b8b8;
 }
 
-/* Profile stuff(stian) */
-
+/* Profile specific */
 .editDocument {
     overflow-y: auto;
     height: 553px;
 }
-
 .newDocument {
     overflow-y: auto;
     height: 640px;
 }
-
 .editProfile {
     overflow-y: auto;
     height: 553px;
 }
-
 .newProfile {
     overflow-y: auto;
     height: 553px;
 }
-
+.editUtility {
+    overflow-y: auto;
+    height: 640px;
+}
 .profile-bar {
     -ms-transform: translate(-28px,0); /* IE 9 */
     -webkit-transform: translate(-28px,0); /* Safari */
     transform: translate(-28px,0);
 }
-
 .profiles-container {
     box-shadow: -3px -3px 2px -2px #b8b8b8;
     height: 112px;
@@ -311,7 +286,6 @@ input[readonly], textarea[readonly]{
     overflow-y: hidden;
     padding-left: 12px;
 }
-
 .profile-container {
     padding-top: 20px;
     margin-left: 6px;
@@ -321,14 +295,11 @@ input[readonly], textarea[readonly]{
     display: inline-block;
     cursor: pointer;
 }
-
-
 .profile-icon {
     color: #c13a47;
     font-size: 2.3em;
     text-align: center;
 }
-
 .profile-text {
     text-align: center;
     font-size: 11px;
@@ -338,21 +309,17 @@ input[readonly], textarea[readonly]{
     white-space: nowrap;
     width: 85px;
 }
-
 .new-profile-text{
     text-align: center;
     font-size: 11px;
     width: 100px;
 }
-
-
 .new-profile-icon {
     margin-top: 10px;
     color: #c13a47;
     font-size: 1.5em;
     text-align: center;
 }
-
 .return-to-document-icon {
     padding-top: 10px;
     color: #337ab7;
@@ -361,7 +328,6 @@ input[readonly], textarea[readonly]{
     width: 100px;
     cursor: pointer;
 }
-
 .new-profile-container {
     padding-top: 10px;
     padding-bottom: 10px;
@@ -369,20 +335,17 @@ input[readonly], textarea[readonly]{
     margin-right: 5px;
     display: inline-block;
 }
-
 .new-profile-button {
     height: 85px;
     border: 1px dashed #d5d5d5;
     border-radius: 15px;
     background-color: white;
 }
-
 .new-profile-button:hover {
     background-color: #ffe1e1;
     cursor: pointer;
     padding-bottom: 20px;
 }
-
 .selected-profile {
     font-weight: bolder;
     color: #e7e7e7;
@@ -391,11 +354,9 @@ input[readonly], textarea[readonly]{
     padding-bottom: 20px;
     border-radius: 2px;
 }
-
 .selected-profile-icon {
     color: white;
 }
-
 .panel1 {
     color: white;
     background-color: #337ab7;
@@ -407,16 +368,6 @@ input[readonly], textarea[readonly]{
 .panel3 {
     color: white;
     background-color: #58a739;
-}
-
-.panel-border1 {
-    border-color: #337ab7;
-}
-.panel-border2 {
-    border-color: #c13a47;
-}
-.panel-border3 {
-    border-color: #58a739;
 }
 .edit-document-modal {
     max-height: 650px;
@@ -432,10 +383,10 @@ input[readonly], textarea[readonly]{
     box-shadow: 1px 1px 2px 2px #b8b8b8;
 }
 /* -------------------------------------------- CH6 LOGIN ----------------------------------------- */
-.login-page button{
+.logged-out-page button{
     margin-bottom: 1em;
 }
-.login-page {
+.logged-out-page {
     width: 300px;
     height: 300px;
     position: absolute;
@@ -455,7 +406,6 @@ input[readonly], textarea[readonly]{
     width: 300px;
     height: auto;
 }
-
 /* -------------------------------------------- CH8 MY_PAGE ----------------------------------------- */
 #account-info {
     margin-top: 5%;
@@ -465,7 +415,6 @@ input[readonly], textarea[readonly]{
     font-weight: bold;
 }
 .data-row:hover{background-color: #E6E6E6;}
-
 .data-row {
     width: 75%;
     margin-left: 5%;
@@ -484,15 +433,15 @@ input[readonly], textarea[readonly]{
 .sub-form >*{
     padding-left: 5%;
 }
+.data-edit-icon {
+    font-size: 1.5em;
+}
 .active-row {
     font-weight: bolder;
     color: #337ab7;
     background-color: #E6E6E6;
     border-bottom: inset;
     border-color: #ccc;
-}
-.data-edit-icon {
-    font-size: 1.5em;
 }
 /* -------------------------------------------- CH9 TOOLBAR ----------------------------------------- */
 div>div>.dropdown-toggle{
@@ -503,7 +452,7 @@ div>div>.dropdown-toggle{
 div>div>.dropdown-toggle:hover{
     border-radius: 5%;
 }
-.navElementMargin{
+.nav-element-margin {
     margin-right: 0.5em;
 }
 #editor-nav {
@@ -513,7 +462,7 @@ div>div>.dropdown-toggle:hover{
     display: inline-block;
     width:75%;
 }
-#searchbar {
+#search-bar {
     width: 365px;
 }
 /* -------------------------------------------- CH10 TOPIC ----------------------------------------- */
@@ -548,8 +497,8 @@ div>div>.dropdown-toggle:hover{
     color: #0f0f0f;
     padding: 5px;
 }
-.new-topic {
-    width: 400px;
+.feedback-msg {
+    color: darkred;
 }
 /* -------------------------------------------- CH11 ADMINISTER_FIELDS ----------------------------------------- */
 .administer-fields ul{
@@ -585,59 +534,30 @@ span.field-item{
     margin-top: 0.5%;
     padding:10px;
     width: 99%;
-
 }
 .administer-fields .field-item .field-item-field:nth-child(1), .administer-fields .field-item input:nth-child(2){
     width:150px;
     display: inline-block;
 }
-
 .administer-fields .field-item .field-item-field:nth-child(2), .administer-fields .field-item input:nth-child(3){
     width:400px;
     display: inline-block;
 }
-.draggable:hover {
-    background-color: #f9f9f9;
-}
-.add-field {
-    border-radius: 10px;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    padding-left: 10px;
-    text-align: center;
-    margin-top: 20px;
-    margin-left: 0;
-    margin-right: 79%;
-    background-color: #337ab7;
-    color: white;
-    box-shadow: 1px 1px 1px 1px #b8b8b8;
-}
-.add-field:hover{
-    background-color: #0099f9;
-    cursor: pointer;
-    -webkit-transition: all 0.2s ease;
-    -moz-transition: all 0.2s ease;
-    -o-transition: all 0.2s ease;
-    transition: all 0.2s ease;
-}
-
 .field-list {
     height: 540px;
     overflow-y: auto;
 }
-
-
+a.sortable-columns{
+    color: white;
+    text-decoration: none;
+    cursor: pointer;
+}
 /* -------- AdministerActions -------- */
 .administer-actions, .administer-status, .administer-link-categories, .administer-mandatory{
     width: 90%;
 }
-
 .action-list-item {
     display: inline-block;
-}
-.navigation-bar {
-    max-width: 1800px;
-    margin: auto;
 }
 .editor-display {
     max-width: 1800px;
@@ -647,14 +567,8 @@ span.field-item{
     border-radius: 10px;
     box-shadow: 1px 1px 2px 2px #b8b8b8;
 }
-
 .sub-topic {
     padding-left: 10px;
-
-}
-.horizontal-align-div {
-    width: 50%;
-    margin: 0 auto;
 }
 .file-browser {
     padding: 20px 15px 20px 15px;
@@ -662,18 +576,9 @@ span.field-item{
     background-color: #f3f3f3;
     box-shadow: 1px 1px 2px 1px #b8b8b8;
 }
-
 .content-view {
     padding-top: 16px;
 }
-
-/*.btn-primary {*/
-    /*-webkit-border-radius: 0 !important;*/
-    /*-moz-border-radius: 0 !important;*/
-    /*border-radius: 0 !important;*/
-    /*background-color: #0068e7;*/
-/*}*/
-
 .standard-icon {
     color: #337ab7;
 }
@@ -681,36 +586,10 @@ span.field-item{
     color: #0f0f0f;
     padding: 5px;
 }
-.plus-icon-standard {
-    font-size: large;
-    color: #337ab7;
-}
-
-.delete-icon-standard {
-    font-size: medium;
-    color: darkgrey;
-}
-
-.plus-icon-profile {
-    font-size: large;
-    color: #c13a47;
-}
-
-.plus-icon-utilityDocument{
-    font-size: large;
-    color: #1ae700;
-}
-
-#createNewDocument{
-    font-size: medium;
-    padding-bottom: 10px;
-}
-
 .body_background {
     background-color: #f3f3f3;
 }
-
-.login-page {
+.logged-out-page {
     width: 300px;
     height: 300px;
     position: absolute;
@@ -720,36 +599,19 @@ span.field-item{
     right: 0;
     margin: auto;
 }
-
-.new-topic {
-    width: 400px;
-}
-
 textarea {
     resize: none;
 }
-
-.tenPixHorizontalPadding {
-    padding-right: 10px;
-    padding-left: 10px;
-}
-
-.tenPixVerticalPadding {
-    padding-top: 10px;
-    padding-bottom: 10px;
-}
-
 .center-align-text {
     text-align: center;
     display: table-cell;
     vertical-align: middle;
 }
-
 .clickable:hover {
     cursor: pointer;
     color: #337ab7;
 }
-
+.pointer{cursor: pointer;}
 .standard-list {
     margin-top: 10px;
     margin-bottom: 25px;
@@ -760,88 +622,30 @@ textarea {
     height: 550px;
     overflow-y: auto;
 }
-
-
 /*-----------Document Icon colors---------*/
 .d1{color: #337ab7; font-size: 1.3em;}
 .d2{color: #c13a47; font-size: 1.3em;}
 .d3{color: #58a739; font-size: 1.3em;}
-
-.nopadding {
-    padding: 0 !important;
-    margin: 0 !important;
-}
-
-.topic-padding {
-    padding: 20px;
-}
-
-.selectedHeading {
-    font-weight: bold;
-}
-.selectedTopic {
+.selected-topic {
     font-weight: bold;
     border-radius: 5px;
     background-color: #e7e7e7;
 }
-.selectedDocument {
-    font-weight: bold;
-    border-radius: 5px;
-    background-color: #e7e7e7;
-}
-
 .scrollable {
     overflow-y: auto;
 }
-
 .shadow-below {
     box-shadow: 0 1px #b8b8b8;
-}
-
-#notificationMessage {
-    position: absolute;
-    width: 75%;
-    margin-left: 18.5%;
 }
 .nav-tabs {
     border-color: #b8b8b8;
 }
-.zIndexHigh {
-    z-index: 1000000000;
-}
-.document-content {
-    width: 45%;
-    min-width: 200px;
-}
-.version-content {
-    width: 30%;
-    min-width: 200px;
-}
-input.version-id {
-    max-width: 70px;
-    float: right;
-    clear: both;
-}
-
-.document-version {
-    width: 100%;
-    margin-top: 20px;
-    margin-left: 10px;
-    margin-right: 10px;
-}
-
 .headline-box {
-    position: relative;
     height: 50px;
-    overflow-x: auto;
 }
-
 .headline-box h4 {
-    position: absolute;
-    bottom: 0;
+    display: inline-block;
 }
-
-
 /* User dropdown start */
  div>div>.dropdown-toggle{
      margin-bottom: 0.5em;
@@ -853,61 +657,16 @@ div>div>.dropdown-toggle:hover{
 }
 /* User dropdown end */
 
-/* MyPage start */
-#accountInfo{
-    margin-top: 5%;
-}
-.dataField{
-    display: inline;
-}
-.dataRow:hover{background-color: #E6E6E6;}
-
-.dataRow{
-    width: 75%;
-    margin-left: 5%;
-}
-.dataRow>*{
-    padding: 10px;
-    margin: 0;
-}
-.subForm{
-    width: 75%;
-    margin-left: 5%;
-    padding: 2% 7% 5% 0;
-    background-color: #E6E6E6;
-}
-.subForm>*{
-    padding-left: 5%;
-}
-.activeRow{
-    font-weight: bolder;
-    color: #337ab7;
-    background-color: #E6E6E6;
-    border-bottom: inset;
-    border-color: #ccc;
-}
-/* MyPage end */
-
 /*~~~~~~~~~~~~TARGET GROUP~~~~~~~~~~~*/
-
 .target-group-grid{
     height: 750px;
 }
-
-
-.tg-table {
-    overflow-y: auto;
-    overflow-x: hidden;
-    height: 600px;
-}
-
 .tg-tbody {
     display: block;
     overflow-y: auto;
     overflow-x: hidden;
     height: 600px;
 }
-
 .tg-thead {
     background-color: #337ab7;
     color: white;
@@ -915,41 +674,27 @@ div>div>.dropdown-toggle:hover{
     position:relative;
     font-size: 14px;
 }
-
 .tg:nth-child(1) { width: 25% }
 .tg:nth-child(2) { width: 32.3% }
 .tg:nth-child(3) { width: 8.6% }
 .tg:nth-child(4) { width: 18% }
 .tg:nth-child(5) { width: 7.5% }
 .tg:nth-child(6) { width: 5% }
-
-
-
 .table-hover tbody tr:hover td, .table-hover tbody tr:hover th {
     background-color: #c7c7c7;
 }
-
-
 input[readonly], textarea[readonly]{
     background-color: #e4e4e4 !important;
 }
-
 /* Administer Users start */
-#userList img{
+#user-list img{
     width: 50px;
     height: 50px;
     border-radius: 50%;
     margin-top: 0.5em;
     margin-bottom: 0.5em;
 }
-.userRow{
-    border-radius: 50px;
-    background-color: #fff;
-    border: solid #ccc thin;
-    width: 70%;
-    margin: 0.5em;
-}
-#addUser{
+#add-user {
     color: #337AB7;
     border-radius: 50px;
     background-color: #fff;
@@ -958,7 +703,7 @@ input[readonly], textarea[readonly]{
     margin: 0.5em;
     padding: 1em;
 }
-#addUser:hover{
+#add-user:hover{
     background-color: #adadad;
     -webkit-transition: all 0.2s ease;
     -moz-transition: all 0.2s ease;
@@ -970,35 +715,18 @@ input[readonly], textarea[readonly]{
     vertical-align: middle;
     float: none;
 }
-.removeUser{
-    color: #c13a47;
-    font-size: 2em;
-    padding-right: 1em;
-}
-.userRowName {
-    margin-left: 1em;
-}
-#administerUsersNotifications{
-    margin-bottom: 5%;
-}
 /* Administer Users end */
 
 /* Document */
-
-
-/* BIGGER CHECKBOX */
 input[type=checkbox] {
     transform: scale(1.5);
     -ms-transform: scale(1.5);
     -webkit-transform: scale(1.5);
     padding: 100px;
 }
-
-
 .ehese-navbar {
     margin: 3px;
 }
-
 input.ng-invalid-requi#c13a47{
     background-color: rgba(255,0,0,0.3);
 }
