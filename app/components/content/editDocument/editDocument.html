@@ -31,7 +31,7 @@
 
         <!-- All buttons used in the various document states and types -->
         <p class="twelve-pix-vertical-padding">
-            <button type="button" class="btn btn-primary" ng-click="submit(EditDocumentController.DocumentForm);setDocumentnState('editDocument');" ng-if="documentState == 'newDocument'" ng-disabled="EditDocumentController.DocumentForm.$invalid || EditDocumentController.DocumentForm.$pristine">
+            <button type="button" class="btn btn-primary" ng-click="submit(EditDocumentController.DocumentForm);setDocumentState('editDocument');" ng-if="documentState == 'newDocument'" ng-disabled="EditDocumentController.DocumentForm.$invalid || EditDocumentController.DocumentForm.$pristine">
                 <span class="fa fa-check-circle edit-topic-icon"></span>
                 Opprett dokument
             </button>

@@ -171,7 +171,8 @@ angular.module("ehelseEditor").factory("Document", ["$rootScope", "DocumentField
                     generateDocumentDict(documents);
                     generateTopicsDocumentsDict(documents);
                     setCurrentDocument(data);
-                    $rootScope.notifySuccess("Ny standard ble opprettet", 1000);
+                    $rootScope.selected_document = data;
+                    $rootScope.notifySuccess("Ny standard ble opprettet!", 1000);
                 }
                 ,
                 function (data) {
@@ -207,6 +208,42 @@ angular.module("ehelseEditor").factory("Document", ["$rootScope", "DocumentField
      * Function deleting current documet.
      */
     function deleteCurrentDocument() {
+
+        // ************* Fikses etter Andreas har ordnet på serverside ************* //
+
+        //if(current_document.previousDocumentId){
+        //    getDocumentById(current_document.previousDocumentId).nextDocumentId = "";
+        //    $rootScope.put(
+        //        "documents/" + current_document.previousDocumentId,
+        //        getDocumentById(current_document.previousDocumentId),
+        //        function(data){
+        //            data.populatedProfiles = [];
+        //            updateDocumentInDocumentsList(data);
+        //            console.log(data);
+        //            console.log("Data update kjører");
+        //        },
+        //        function(){
+        //
+        //        }
+        //    )
+        //}
+        //if(current_document.nextDocumentId){
+        //    getDocumentById(current_document.nextDocumentId).previousDocumentId = "";
+        //    $rootScope.put(
+        //        "documents/" + current_document.nextDocumentId,
+        //        getDocumentById(current_document.nextDocumentId),
+        //        function(data){
+        //            data.populatedProfiles = [];
+        //            updateDocumentInDocumentsList(data);
+        //            console.log(data);
+        //            console.log("Data update kjører");
+        //        },
+        //        function(){
+        //
+        //        }
+        //    )
+        //}
+
         $rootScope.delete(
             "documents/" + current_document.id,
             function(){
@@ -273,6 +310,10 @@ angular.module("ehelseEditor").factory("Document", ["$rootScope", "DocumentField
         generateTopicsDocumentsDict(documents);
     }
 
+    function getDocumentById(documentId){
+        return documents_dict[documentId];
+    }
+
 
     function getDocumentFieldIdsHelper(documentFields) {
         var ids = [];
@@ -321,6 +362,7 @@ angular.module("ehelseEditor").factory("Document", ["$rootScope", "DocumentField
         }
         else {
             setDocument(current_document, document);
+            setCurrentDocumentFieldsByDocumentDocumentTypeId();
         }
         generateCurrentDocumentLinksAsLinkCategoryList();
 
