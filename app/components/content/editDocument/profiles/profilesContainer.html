@@ -17,7 +17,7 @@
 
 
         <!--return to document-->
-        <li class="new-profile-container" ng-if="documentState == ('editProfile' || documentState == 'newProfile') && document_dict[document.standardId]">
+        <li class="new-profile-container" ng-if="(documentState == 'editProfile' || documentState == 'newProfile') && document_dict[document.standardId]">
             <div ng-click="setDocumentState('editDocument'); openDocumentById(document.standardId)">
                 <div class="return-to-document-icon">
                     <span class="fa fa-arrow-circle-left"></span>
