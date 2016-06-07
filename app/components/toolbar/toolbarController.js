@@ -40,6 +40,12 @@ angular.module("ehelseEditor").controller("ToolbarController", ["$state", "$root
         $rootScope.changeContentView("administermandatory");
     };
 
+    // Open import_csv modal
+    $scope.openCSVImportModal = function (){
+        $scope.deselectTopicAndDocument();
+        $rootScope.openModal("app/components/csvImport/csvImportModal.html","CSVImportController");
+    };
+
     // Initialize state
     $scope.$state = $state;
 }]);
