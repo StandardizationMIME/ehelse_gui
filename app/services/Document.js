@@ -20,6 +20,7 @@ angular.module("ehelseEditor").factory("Document", ["$rootScope", "DocumentField
             documentTypeId: "1",
             standardId: null,
             previousDocumentId: null,
+            nextDocumentId: null,
             internalId: null,
             hisNumber: null,
             profiles: [],
@@ -48,6 +49,7 @@ angular.module("ehelseEditor").factory("Document", ["$rootScope", "DocumentField
             documentTypeId: "2",
             standardId: standardId,
             previousDocumentId: null,
+            nextDocumentId: null,
             internalId: null,
             hisNumber: null,
             profiles: [],
@@ -205,48 +207,55 @@ angular.module("ehelseEditor").factory("Document", ["$rootScope", "DocumentField
     }
 
     /**
-     * Function deleting current documet.
+     * Sets next and previous documentID of the next and previous documents to null
+     */
+    function updatePreviousAndNextDocumentIdValues(){
+        if(documents_dict[current_document.previousDocumentId]){
+            documents_dict[current_document.previousDocumentId].nextDocumentId = null;
+            $rootScope.put(
+                "documents/" + current_document.previousDocumentId,
+                documents_dict[current_document.previousDocumentId],
+                function(data){
+                    data.populatedProfiles = [];
+                    updateDocumentInDocumentsList(data);
+                    console.log(data);
+                    console.log("Data update kjører");
+                },
+                function(){
+                    console.log("Put went wrong: ");
+                }
+            )
+        }
+        if(documents_dict[current_document.nextDocumentId]){
+            documents_dict[current_document.nextDocumentId].previousDocumentId = null;
+            $rootScope.put(
+                "documents/" + current_document.nextDocumentId,
+                documents_dict[current_document.nextDocumentId],
+                function(data){
+                    data.populatedProfiles = [];
+                    updateDocumentInDocumentsList(data);
+                    console.log(data);
+                    console.log("Data update kjører");
+                },
+                function(){
+                    console.log("Put went wrong: ");
+                }
+            )
+        }
+    }
+
+    /**
+     * Function deleting current document.
      */
     function deleteCurrentDocument() {
 
-        // ************* Fikses etter Andreas har ordnet på serverside ************* //
+        updatePreviousAndNextDocumentIdValues();
 
-        //if(current_document.previousDocumentId){
-        //    getDocumentById(current_document.previousDocumentId).nextDocumentId = "";
-        //    $rootScope.put(
-        //        "documents/" + current_document.previousDocumentId,
-        //        getDocumentById(current_document.previousDocumentId),
-        //        function(data){
-        //            data.populatedProfiles = [];
-        //            updateDocumentInDocumentsList(data);
-        //            console.log(data);
-        //            console.log("Data update kjører");
-        //        },
-        //        function(){
-        //
-        //        }
-        //    )
-        //}
-        //if(current_document.nextDocumentId){
-        //    getDocumentById(current_document.nextDocumentId).previousDocumentId = "";
-        //    $rootScope.put(
-        //        "documents/" + current_document.nextDocumentId,
-        //        getDocumentById(current_document.nextDocumentId),
-        //        function(data){
-        //            data.populatedProfiles = [];
-        //            updateDocumentInDocumentsList(data);
-        //            console.log(data);
-        //            console.log("Data update kjører");
-        //        },
-        //        function(){
-        //
-        //        }
-        //    )
-        //}
-
+        var current_id = current_document.id;
         $rootScope.delete(
             "documents/" + current_document.id,
             function(){
+                delete documents_dict[current_id];
                 if(current_document.standardId){
                     var sib = documents_dict[current_document.standardId].profiles;
                     for(var i = 0; i < sib.length; i++){
@@ -263,7 +272,7 @@ angular.module("ehelseEditor").factory("Document", ["$rootScope", "DocumentField
                 console.log("Document could not be deleted");
                 $rootScope.notifyError("Dokument kunne ikke bli slettet", 6000);
             }
-        )
+        );
     }
 
 
@@ -298,9 +307,9 @@ angular.module("ehelseEditor").factory("Document", ["$rootScope", "DocumentField
     }
 
     function deleteCurrentDocumentFromDocumentsList() {
-        if(documents_dict[current_document.nextDocumentId]){
+        /*if(documents_dict[current_document.nextDocumentId]){
             documents_dict[current_document.nextDocumentId].previousDocumentId = null;
-        }
+        }*/
         for (var i = 0; i < documents.length; i++) {
             if (documents[i].id == current_document.id) {
                 documents.splice(i,1);
@@ -308,10 +317,6 @@ angular.module("ehelseEditor").factory("Document", ["$rootScope", "DocumentField
             }
         }
         generateTopicsDocumentsDict(documents);
-    }
-
-    function getDocumentById(documentId){
-        return documents_dict[documentId];
     }
 
 
