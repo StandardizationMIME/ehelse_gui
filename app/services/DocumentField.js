@@ -6,9 +6,14 @@ angular.module("ehelseEditor").factory("DocumentField", ["$rootScope", function(
     var document_types_fields_dict = {};
     var document_fields_dict = {};
 
+    Array.prototype.push.apply(document_fields, $rootScope.getDocumentFields().documentFields);
+    generateDocumentFieldDict(document_fields);
+    generateDocumentFieldTypeDict(document_fields);
+
     /**
      * Function call retrieving document fields from the server.
      */
+    /******************************************************************************************
     $rootScope.get(
         "document-fields",
         function ( data ){
@@ -19,7 +24,7 @@ angular.module("ehelseEditor").factory("DocumentField", ["$rootScope", function(
         function (data) {
             console.log("No document types found");
         }
-    );
+    );*******************************************************************************************/
 
     /**
      * Function used to generate a dict with the document fields split into dicts per document type.
@@ -107,6 +112,12 @@ angular.module("ehelseEditor").factory("DocumentField", ["$rootScope", function(
             "documentTypeId": $rootScope.typeId
         };
 
+        document_fields.push(myField);
+        generateDocumentFieldDict(document_fields);
+        generateDocumentFieldTypeDict(document_fields);
+        success(myField);
+
+        /***************************************************************************
         $rootScope.post(
             "document-fields/",
             myField,
@@ -117,7 +128,8 @@ angular.module("ehelseEditor").factory("DocumentField", ["$rootScope", function(
                 success(data);
             },
             error
-        );
+        );****************************************************************************/
+
     }
 
     /**
@@ -143,6 +155,15 @@ angular.module("ehelseEditor").factory("DocumentField", ["$rootScope", function(
             "mandatory": mandatoryString,
             "documentTypeId": $rootScope.typeId
         };
+
+        var document_field = document_fields_dict[myField.id];
+        document_field.name = myField.name;
+        document_field.description = myField.description;
+        document_field.mandatory = myField.mandatory;
+        document_field.sequence = myField.sequence;
+        success(myField);
+
+        /****************************************************************************
         $rootScope.put(
             "document-fields/" + field.id,
             myField,
@@ -155,7 +176,7 @@ angular.module("ehelseEditor").factory("DocumentField", ["$rootScope", function(
                 success(data)
             },
             error
-        );
+        );*****************************************************************************/
     }
 
     /**
@@ -178,6 +199,13 @@ angular.module("ehelseEditor").factory("DocumentField", ["$rootScope", function(
      * @param error
      */
     function remove(field, success, error){
+
+        removeField(field);
+        generateDocumentFieldDict(document_fields);
+        generateDocumentFieldTypeDict(document_fields);
+        success();
+
+        /******************************************************************************
         $rootScope.delete(
             "document-fields/" + field.id,
             function(){
@@ -187,7 +215,7 @@ angular.module("ehelseEditor").factory("DocumentField", ["$rootScope", function(
                 success();
             },
             error
-        )
+        )******************************************************************************/
     }
 
     /**
@@ -211,13 +239,21 @@ angular.module("ehelseEditor").factory("DocumentField", ["$rootScope", function(
      * @param error
      */
     function getFieldById(id, success, error){
+
+        if(id){
+            success(document_fields_dict[id]);
+        }else{
+            console.log("Id not found");
+        }
+
+        /******************************************************************
         $rootScope.get(
             "document-fields/" + id,
             function (data) {
                 success(data);
             },
             error
-        );
+        );*******************************************************************/
     }
 
     /**

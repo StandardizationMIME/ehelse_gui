@@ -138,6 +138,12 @@ angular.module("ehelseEditor").factory("Document", ["$rootScope", "DocumentField
         current_document.populatedProfiles.length = 0;
         if (current_document.id) {
 
+            current_document.populatedProfiles = [];
+            setCurrentDocument(current_document);
+            updateDocumentInDocumentsList(current_document);
+            $rootScope.notifySuccess("Dokumentet ble oppdatert", 1000);
+
+            /*****************************************************************************
             $rootScope.put(
                 "documents/" + current_document.id,
                 current_document,
@@ -153,9 +159,27 @@ angular.module("ehelseEditor").factory("Document", ["$rootScope", "DocumentField
                     setCurrentDocument(current_document);
                     $rootScope.notifyError("Dokumentet kunne ikke opprettes: " + error, 6000);
                 }
-            );
+            );******************************************************************************/
         }
         else {
+
+            current_document.populatedProfiles = [];
+            //push profile id to standard
+            if(current_document.standardId){
+                documents_dict[current_document.standardId].profiles.push({id:current_document.id});
+                console.log(documents_dict[current_document.standardId].profiles);
+            }
+            if( current_document.previousDocumentId){
+                documents_dict[current_document.previousDocumentId].nextDocumentId = current_document.id;
+            }
+            documents.push(current_document);
+            generateDocumentDict(documents);
+            generateTopicsDocumentsDict(documents);
+            setCurrentDocument(current_document);
+            $rootScope.selected_document = current_document;
+            $rootScope.notifySuccess("Ny standard ble opprettet!", 1000);
+
+            /***********************************************************************************
             $rootScope.post(
                 "documents/",
                 current_document,
@@ -182,7 +206,8 @@ angular.module("ehelseEditor").factory("Document", ["$rootScope", "DocumentField
                     setCurrentDocument(current_document);
                     $rootScope.notifyError("Dokumentet kunne ikke opprettes: " + error, 6000);
                 }
-            );
+            );************************************************************************************/
+
         }
     }
 
@@ -212,6 +237,13 @@ angular.module("ehelseEditor").factory("Document", ["$rootScope", "DocumentField
     function updatePreviousAndNextDocumentIdValues(){
         if(documents_dict[current_document.previousDocumentId]){
             documents_dict[current_document.previousDocumentId].nextDocumentId = null;
+
+            documents_dict[current_document.previousDocumentId].populatedProfiles = [];
+            updateDocumentInDocumentsList(documents_dict[current_document.previousDocumentId]);
+            console.log(documents_dict[current_document.previousDocumentId]);
+            console.log("Data update kjører");
+
+            /*************************************************************************************
             $rootScope.put(
                 "documents/" + current_document.previousDocumentId,
                 documents_dict[current_document.previousDocumentId],
@@ -224,10 +256,19 @@ angular.module("ehelseEditor").factory("Document", ["$rootScope", "DocumentField
                 function(){
                     console.log("Put went wrong: ");
                 }
-            )
+            )**************************************************************************************/
         }
+
+
         if(documents_dict[current_document.nextDocumentId]){
             documents_dict[current_document.nextDocumentId].previousDocumentId = null;
+
+            documents_dict[current_document.nextDocumentId].populatedProfiles = [];
+            updateDocumentInDocumentsList(documents_dict[current_document.nextDocumentId]);
+            console.log(documents_dict[current_document.nextDocumentId]);
+            console.log("Data update kjører");
+
+            /***********************************************************
             $rootScope.put(
                 "documents/" + current_document.nextDocumentId,
                 documents_dict[current_document.nextDocumentId],
@@ -240,7 +281,7 @@ angular.module("ehelseEditor").factory("Document", ["$rootScope", "DocumentField
                 function(){
                     console.log("Put went wrong: ");
                 }
-            )
+            )****************************************************************/
         }
     }
 
@@ -252,6 +293,21 @@ angular.module("ehelseEditor").factory("Document", ["$rootScope", "DocumentField
         updatePreviousAndNextDocumentIdValues();
 
         var current_id = current_document.id;
+
+        delete documents_dict[current_id];
+        if(current_document.standardId){
+            var sib = documents_dict[current_document.standardId].profiles;
+            for(var i = 0; i < sib.length; i++){
+                if(current_document.id == sib[i].id){
+                    sib.splice(i,1);
+                }
+            }
+        }
+        deleteCurrentDocumentFromDocumentsList();
+        $rootScope.notifySuccess("Dokumentet ble slettet", 1000);
+        $rootScope.changeContentView("");
+
+        /*************************************************************
         $rootScope.delete(
             "documents/" + current_document.id,
             function(){
@@ -272,7 +328,7 @@ angular.module("ehelseEditor").factory("Document", ["$rootScope", "DocumentField
                 console.log("Document could not be deleted");
                 $rootScope.notifyError("Dokument kunne ikke bli slettet", 6000);
             }
-        );
+        );**************************************************************/
     }
 
 
@@ -452,6 +508,20 @@ angular.module("ehelseEditor").factory("Document", ["$rootScope", "DocumentField
     }
 
     function getAllDocuments() {
+        var allDocuments = $rootScope.getDocuments();
+
+        documents.length = 0;
+
+        for(var i = 0; i < allDocuments.documents.length; i++){
+            var document = allDocuments.documents[i];
+            document.populatedProfiles = [];
+            documents.push(document);
+        }
+
+        generateDocumentDict(documents);
+        generateTopicsDocumentsDict(documents);
+
+        /******************************************************************************************
         $rootScope.get(
             "documents/",
             function (data) {
@@ -469,7 +539,7 @@ angular.module("ehelseEditor").factory("Document", ["$rootScope", "DocumentField
             function () {
                 console.log("Could not load documents");
             }
-        );
+        );*******************************************************************************************/
     }
 
     function newVersion(document){

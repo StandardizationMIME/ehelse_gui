@@ -6,10 +6,15 @@ angular.module("ehelseEditor").factory("TargetGroup", ["$rootScope", function($r
     var target_groups_dict = {};
     var target_groups_options_list= [];
 
+    Array.prototype.push.apply(target_groups, $rootScope.getTargetGroups.targetGroups);
+    generateTargetGroupDict(target_groups);
+    generateTargetGroupOptionsList(target_groups);
+
     /**
      * Function retrieving target groups from the server
      */
-    $rootScope.get(
+    /*****************************************************************************************
+     $rootScope.get(
         "target-groups/",
         function ( data ){
             Array.prototype.push.apply(target_groups, data.targetGroups);
@@ -20,7 +25,7 @@ angular.module("ehelseEditor").factory("TargetGroup", ["$rootScope", function($r
         function (data) {
             console.log("No document types found");
         }
-    );
+    );******************************************************************************************/
 
     /**
      * Function generating target_group_dict
@@ -92,6 +97,11 @@ angular.module("ehelseEditor").factory("TargetGroup", ["$rootScope", function($r
             group.parentId = null;
         }
         if(group.id){
+            setTargetGroup(target_groups_dict[group.id], group);
+            generateTargetGroupDict(target_groups);
+            $rootScope.notifySuccess("Mulgruppe ble oppdatert", 1000);
+
+            /******************************************************************************************
             $rootScope.put("target-groups/"+group.id,
                 group,
                 function(data){
@@ -102,9 +112,14 @@ angular.module("ehelseEditor").factory("TargetGroup", ["$rootScope", function($r
                 },
                 function(data){
                     $rootScope.notifyError("Målgruppe ble ikke oppdatert.",6000);
-                });
+                }
+            );******************************************************************************************/
         }
         else{
+            addTargetGroup(group);
+            $rootScope.notifySuccess("Ny målgruppe ble opprettet", 1000);
+
+            /******************************************************************************************
             $rootScope.post(
                 "target-groups/",
                 group,
@@ -114,7 +129,7 @@ angular.module("ehelseEditor").factory("TargetGroup", ["$rootScope", function($r
                 },function(){
                     $rootScope.notifyError("Målgruppe ble ikke opprettet.",6000);
                 }
-            );
+            );******************************************************************************************/
         }
     }
 
@@ -135,6 +150,12 @@ angular.module("ehelseEditor").factory("TargetGroup", ["$rootScope", function($r
      */
     function deleteById(id){
         if(id){
+            removeById(id);
+            generateTargetGroupOptionsList(target_groups);
+            generateTargetGroupDict(target_groups);
+            $rootScope.notifySuccess("Målgruppe ble fjernet",1000);
+
+            /*************************************************************************************************
             $rootScope.delete("target-groups/"+id,
                 function(data){
                     removeById(id);
@@ -145,7 +166,8 @@ angular.module("ehelseEditor").factory("TargetGroup", ["$rootScope", function($r
                 },
                 function(data){
                     $rootScope.notifyError("Målgruppe ble ikke fjernet.",6000);
-                });
+                }
+            );**************************************************************************************************/
         }
     }
 

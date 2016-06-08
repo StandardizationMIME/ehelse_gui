@@ -6,9 +6,14 @@ angular.module("ehelseEditor").factory("DocumentType", ["$rootScope", function($
     var document_types_dict = {};
     var document_types_option_list = [];
 
+    Array.prototype.push.apply(document_types, $rootScope.getDocumentTypes().documentTypes);
+    Array.prototype.push.apply(document_types_option_list, generateDocumentTypesOptionList(document_types));
+    generateDocumentTypeDict(document_types);
+
     /**
      * Function call retrieving document types from the server.
      */
+    /*************************************************************************************
     $rootScope.get(
         "document-types",
         function ( data ){
@@ -19,7 +24,7 @@ angular.module("ehelseEditor").factory("DocumentType", ["$rootScope", function($
         function (data) {
             console.log("No document types found");
         }
-    );
+    );***************************************************************************************/
 
     /**
      * Function that generates DocumentType dict

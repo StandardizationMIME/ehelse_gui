@@ -6,9 +6,14 @@ angular.module("ehelseEditor").factory("Action", ["$rootScope", function($rootSc
     var actions_dict = {};
     var actions_option_list = [];
 
+    Array.prototype.push.apply(actions, $rootScope.getActions.actions);
+    generateActionsOptionList(actions);
+    generateActionsDict(actions);
+
     /**
      * Function call retrieving the actions from the database
      */
+/*    **********************************************************************************
     $rootScope.get(
         "actions/",
         function ( data ){
@@ -19,7 +24,7 @@ angular.module("ehelseEditor").factory("Action", ["$rootScope", function($rootSc
         function (data) {
             console.log("No document types found");
         }
-    );
+    );***********************************************************************************/
 
     /**
      * Function creating a new action
@@ -103,6 +108,12 @@ angular.module("ehelseEditor").factory("Action", ["$rootScope", function($rootSc
     function submit(action){
         //Having an id indicates the action is stored in the database and only needs to be updated
         if(action.id){
+            set(actions_dict[action.id], action);
+            generateActionsDict(actions);
+            generateActionsOptionList(actions);
+            $rootScope.notifySuccess("Handling ble oppdatert", 1000);
+
+            /***********************************************************************************
             $rootScope.put("actions/"+action.id,
                 action,
                 function(data){
@@ -114,9 +125,14 @@ angular.module("ehelseEditor").factory("Action", ["$rootScope", function($rootSc
                 },
                 function(data){
                     $rootScope.notifyError("Handling ble ikke oppdatert.",6000);
-                });
+                }
+            );***********************************************************************************/
         }
         else{
+            add(action);
+            $rootScope.notifySuccess("Ny handling ble opprettet", 1000);
+
+            /***********************************************************************************
             $rootScope.post(
                 "actions/",
                 action,
@@ -126,7 +142,7 @@ angular.module("ehelseEditor").factory("Action", ["$rootScope", function($rootSc
                 },function(){
                     $rootScope.notifyError("Handling ble ikke opprettet.",6000);
                 }
-            );
+            );***********************************************************************************/
         }
     }
 
@@ -148,6 +164,10 @@ angular.module("ehelseEditor").factory("Action", ["$rootScope", function($rootSc
      * @param action
      */
     function deleteAction(action) {
+        removeAction(action);
+        $rootScope.notifySuccess("Handling ble slettet!", 1000);
+
+        /***********************************************************************************
         $rootScope.delete(
             "actions/" + action.id,
             function () {
@@ -159,7 +179,7 @@ angular.module("ehelseEditor").factory("Action", ["$rootScope", function($rootSc
                 $rootScope.notifyError("Kunne ikke slette", 6000);
             }
 
-        );
+        );***********************************************************************************/
     }
 
     function getAllAsDict(){
