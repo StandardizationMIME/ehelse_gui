@@ -2,10 +2,14 @@
 
 angular.module("ehelseEditor").factory("Topic", ["$rootScope", function($rootScope) {
 
-    var topics = getTopics();
-    var topics_dict = generateTopicDict(topics);
-    var topics_options_list = generateTopicOptionsList(topics);
+    var topics = [];
+    var topics_dict = {};
+    var topics_options_list = [];
     var selected_topic = {};
+
+    Array.prototype.push.apply(topics, $rootScope.getTopics().topics);
+    generateTopicDict(topics);
+    generateTopicOptionsList(topics);
 
     /*********************************************************************************************************************
      * function retrieving topics from the server
@@ -30,13 +34,11 @@ angular.module("ehelseEditor").factory("Topic", ["$rootScope", function($rootSco
      * @param topics
      */
     function generateTopicDict(topics){
-        var dict = {};
         for(var i = 0; i < topics.length; i++){
-            dict[topics[i].id] = topics[i];
+            topics_dict[topics[i].id] = topics[i];
             $.extend(dict,
                 generateTopicDict(topics[i].children));
         }
-        return dict;
     }
 
     /**
@@ -47,9 +49,8 @@ angular.module("ehelseEditor").factory("Topic", ["$rootScope", function($rootSco
      * @param topics
      */
     function generateTopicOptionsList(topics){
-        var topics_options = [];
-        Array.prototype.push.apply(topics_options, generateTopicOptionsListHelper(0, "", topics));
-        return topics_options;
+        topics_options_list.length = 0;
+        Array.prototype.push.apply(topics_options_list, generateTopicOptionsListHelper(0, "", topics));
     }
 
     /**

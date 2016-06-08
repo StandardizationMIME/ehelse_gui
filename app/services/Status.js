@@ -6,20 +6,24 @@ angular.module("ehelseEditor").factory("Status",["$rootScope",function($rootScop
     var status_dict = {};
     var status_option_list = [];
 
-    /**
+    Array.prototype.push.apply(status, $rootScope.getStatuses().status);
+    generateStatusOptionList(status);
+    generateStatusDict(status);
+
+    /**************************************************************************************
      * Function retrieving statuses from the server
      */
-    $rootScope. get(
-        "status/",
-        function (data){
-            Array.prototype.push.apply(status, data.status);
-            generateStatusOptionList(status);
-            generateStatusDict(status);
-        },
-        function (data){
-
-        }
-    );
+    //$rootScope. get(
+    //    "status/",
+    //    function (data){
+    //        Array.prototype.push.apply(status, data.status);
+    //        generateStatusOptionList(status);
+    //        generateStatusDict(status);
+    //    },
+    //    function (data){
+    //
+    //    }
+    //);************************************************************************************
 
     /**
      * Function generating the status_dict. Used to get the name of the status from the status id.
@@ -87,7 +91,6 @@ angular.module("ehelseEditor").factory("Status",["$rootScope",function($rootScop
      */
     function generateStatusOptionList(status){
         status_option_list.length = 0;
-
         for (var i = 0; i < status.length; i++){
             status_option_list.push({
                 value: status[i].id,
@@ -102,20 +105,34 @@ angular.module("ehelseEditor").factory("Status",["$rootScope",function($rootScop
      */
     function submit(status){
         if(status.id){
-            $rootScope.put("status/"+status.id,
-                status,
-                function(data){
-                    set(status_dict[data.id], data);
-                    generateStatusDict(status);
-                    generateStatusOptionList(status);
-                    $rootScope.notifySuccess("Status ble oppdatert",1000);
 
-                },
-                function(data){
-                    $rootScope.notifyError("Status ble ikke oppdatert.",6000);
-                });
+            set(status_dict[status.id], status);
+            generateStatusDict(status);
+            generateStatusOptionList(status);
+            $rootScope.notifySuccess("Status ble oppdatert", 1000);
+
+            //************************************************************************************
+            //$rootScope.put("status/"+status.id,
+            //    status,
+            //    function(data){
+            //        set(status_dict[data.id], data);
+            //        generateStatusDict(status);
+            //        generateStatusOptionList(status);
+            //        $rootScope.notifySuccess("Status ble oppdatert",1000);
+            //
+            //    },
+            //    function(data){
+            //        $rootScope.notifyError("Status ble ikke oppdatert.",6000);
+            //    }
+            //);
+            //************************************************************************************
         }
         else{
+
+            add(status);
+            $rootScope.notifySuccess("Ny status ble opprettet", 1000);
+
+            /*************************************************************************************
             $rootScope.post(
                 "status/",
                 status,
@@ -126,6 +143,7 @@ angular.module("ehelseEditor").factory("Status",["$rootScope",function($rootScop
                     $rootScope.notifyError("Status ble ikke opprettet.",6000);
                 }
             );
+            *************************************************************************************/
         }
     }
 
@@ -145,6 +163,13 @@ angular.module("ehelseEditor").factory("Status",["$rootScope",function($rootScop
      * @param status
      */
     function deleteStatus(status) {
+
+        removeStatus(status);
+        generateStatusDict(status);
+        generateStatusOptionList(status);
+        $rootScope.notifySuccess("Status ble slettet!", 1000);
+
+        /********************************************************************************************
         $rootScope.delete(
             "status/" + status.id,
             function (){
@@ -156,7 +181,7 @@ angular.module("ehelseEditor").factory("Status",["$rootScope",function($rootScop
             function (){
                 $rootScope.notifyError("Kunne ikke slette", 6000);
             }
-        );
+        );*********************************************************************************************/
     }
 
     function getById(id){
