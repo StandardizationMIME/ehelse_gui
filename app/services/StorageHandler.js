@@ -7,6 +7,20 @@ function getActions(){
 }
 
 /**
+ * Returns document types
+ */
+function getDocumentTypes(){
+    return list.documentTypes;
+}
+
+/**
+ * Returns link categories
+ */
+function getLinkCategories(){
+    return list.linkCategories;
+}
+
+/**
  * Returns status list
  * @returns {Array}
  */
@@ -20,6 +34,16 @@ function getStatus(){
 function getTopics(){
     return getTopicTree();
 }
+
+/**
+ * Returns target groups
+ */
+function getTargetGroups(){
+    return list.targetGroups;
+}
+
+
+
 
 function getTopicTree(){
 
