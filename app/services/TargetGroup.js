@@ -1,12 +1,33 @@
 "use strict";
 
-angular.module("ehelseEditor").factory("TargetGroup", ["$rootScope", "StorageHandler", function($rootScope, StorageHandler) {
+angular.module("ehelseEditor").factory("TargetGroup", ["$rootScope", function($rootScope) {
 
     var target_groups = [];
     var target_groups_dict = {};
     var target_groups_options_list= [];
 
-    Array.prototype.push.apply(target_groups, StorageHandler.getTargetGroups().targetGroups);
+    var getTargetGroups =
+    {
+        targetGroups:
+            [
+                {
+                    abbreviation: "AMB",
+                    description: "asd",
+                    id: 10,
+                    name: "Ambulanse",
+                    parentId: null
+                },
+                {
+                    abbreviation: "SHT",
+                    description: "asd",
+                    id: 11,
+                    name: "Spesialisthelsetjenesten",
+                    parentId: null
+                }
+            ]
+    };
+
+    Array.prototype.push.apply(target_groups, getTargetGroups.targetGroups);
     generateTargetGroupDict(target_groups);
     generateTargetGroupOptionsList(target_groups);
 

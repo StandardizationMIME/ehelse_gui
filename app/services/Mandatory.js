@@ -1,12 +1,34 @@
 "use strict";
 
-angular.module("ehelseEditor").factory("Mandatory", ["$rootScope", "StorageHandler", function($rootScope, StorageHandler) {
+angular.module("ehelseEditor").factory("Mandatory", ["$rootScope", function($rootScope) {
 
     var mandatory = [];
     var mandatory_dict = {};
     var mandatory_option_list = [];
 
-    Array.prototype.push.apply(mandatory, StorageHandler.getMandatory().mandatory);
+    var getMandatory =
+    {
+        mandatory:
+            [
+                {
+                    description: "asdasd",
+                    id: 1,
+                    name: "Obligatorisk"
+                },
+                {
+                    description: "asdasd",
+                    id: 3,
+                    name: "Anbefalt"
+                },
+                {
+                    description: "asdasd",
+                    id: 12,
+                    name: "Frivillig"
+                }
+            ]
+    };
+
+    Array.prototype.push.apply(mandatory, getMandatory.mandatory);
     generateMandatoryDict(mandatory);
     generateMandatoryOptionList(mandatory);
 

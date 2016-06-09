@@ -2,95 +2,95 @@
 
 angular.module("ehelseEditor").factory("StorageHandler", ["$rootScope", function ($rootScope) {
 
-    var input_list; // TODO: Must be set from input file.
+/*    var input_list; // TODO: Must be set from input file.
     var SORT_ON_SEQUENCE = function (a, b) { // Constant for sequence sort (ascending)
         return a.sequence - b.sequence;
     };
 
-    /**
+    /!**
      * Returns a clone of a multidimensional array
      * @param list
-     */
+     *!/
     function cloneObjectList(list) {
         return (JSON.parse(JSON.stringify(list)));
     }
 
-    /**
+    /!**
      * Returns action list
      * @returns {Array}
-     */
+     *!/
     function getActions() {
         return {"actions": input_list.actions.sort()};
     }
 
-    /**
+    /!**
      * Return document list
      * @returns {{documents: Array}}
-     */
+     *!/
     function getDocuments() {
         return {"documents": getDocumentWithProfilesList()};
     }
 
-    /**
+    /!**
      * Returns document field list
      * @returns {{documentFields: Array}}
-     */
+     *!/
     function getDocumentFields() {
         var sorted_document_list = input_list.documentFields.sort(SORT_ON_SEQUENCE);
         return {"documentFields": sorted_document_list};
     }
 
-    /**
+    /!**
      * Returns document types
-     */
+     *!/
     function getDocumentTypes() {
         return {"documentTypes": input_list.documentTypes};
     }
 
-    /**
+    /!**
      * Returns link categories
-     */
+     *!/
     function getLinkCategories() {
         return {"linkCategories": input_list.linkCategories};
     }
 
-    /**
+    /!**
      * Returns status list
      * @returns {Array}
-     */
+     *!/
     function getStatus() {
         return {"status": input_list.status};
     }
 
-    /**
+    /!**
      * Returns mandatory list
      * @returns {{mandatory: Array}}
-     */
+     *!/
     function getMandatory() {
         return {"mandatory": input_list.mandatory};
     }
 
-    /**
+    /!**
      * Returns topic tree
-     */
+     *!/
     function getTopics() {
         return {"topics": getTopicTree()};
     }
 
-    /**
+    /!**
      * Returns target groups
-     */
+     *!/
     function getTargetGroups() {
         return {"targetGroups": input_list.targetGroups};
     }
 
 
-    /**
+    /!**
      * Returns tree structure of topics
      *
      * The tree structure consists of
      * @returns {Array}
-     */
+     *!/
     function getTopicTree() {
 
         var topic_tree = [];    // Tree to return
@@ -127,10 +127,10 @@ angular.module("ehelseEditor").factory("StorageHandler", ["$rootScope", function
         return topic_tree;
     }
 
-    /**
+    /!**
      * Returns document tree
      * @returns {Array}
-     */
+     *!/
     function getDocumentWithProfilesList() {
         var document_list = [];
         var document_dict = [];
@@ -180,5 +180,5 @@ angular.module("ehelseEditor").factory("StorageHandler", ["$rootScope", function
         getMandatory: getMandatory,
         getTopics: getTopics,
         getTargetGroups: getTargetGroups
-    };
+    };*/
 }]);

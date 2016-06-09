@@ -1,12 +1,31 @@
 "use strict";
 
-angular.module("ehelseEditor").factory("DocumentType", ["$rootScope", "StorageHandler", function($rootScope, StorageHandler) {
+angular.module("ehelseEditor").factory("DocumentType", ["$rootScope", function($rootScope) {
 
     var document_types = [];
     var document_types_dict = {};
     var document_types_option_list = [];
 
-    Array.prototype.push.apply(document_types, StorageHandler.getDocumentTypes().documentTypes);
+    var getDocumentTypes =
+    {
+        documentTypes:
+            [
+                {
+                    id: 1,
+                    name: "Standard"
+                },
+                {
+                    id: 2,
+                    name: "Profil"
+                },
+                {
+                    id: 3,
+                    name: "Støttedokument"
+                }
+            ]
+    };
+
+    Array.prototype.push.apply(document_types, getDocumentTypes.documentTypes);
     Array.prototype.push.apply(document_types_option_list, generateDocumentTypesOptionList(document_types));
     generateDocumentTypeDict(document_types);
 
