@@ -46,6 +46,12 @@ angular.module("ehelseEditor").controller("ToolbarController", ["$state", "$root
         $rootScope.openModal("app/components/csvImport/csvImportModal.html","CSVImportController");
     };
 
+    // Open uploadFile modal
+    $scope.openUploadFileModal = function () {
+        $scope.deselectTopicAndDocument();
+        $rootScope.openModal("app/components/uploadFile/uploadFIleModal.html", "UploadFileController");
+    }
+
     // Initialize state
     $scope.$state = $state;
 }]);
