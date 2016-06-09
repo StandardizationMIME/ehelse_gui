@@ -6,7 +6,29 @@ angular.module("ehelseEditor").factory("Status",["$rootScope",function($rootScop
     var status_dict = {};
     var status_option_list = [];
 
-    Array.prototype.push.apply(status, $rootScope.getStatuses().status);
+    var getStatuses =
+    {
+        status:
+            [
+                {
+                    description: "asd",
+                    id: 1,
+                    name: "Aktiv"
+                },
+                {
+                    description: "asd",
+                    id: 2,
+                    name: "Ikke i refkat"
+                },
+                {
+                    description: "asd",
+                    id: 81,
+                    name: "Under innfasing"
+                }
+            ]
+    };
+
+    Array.prototype.push.apply(status, getStatuses.status);
     generateStatusOptionList(status);
     generateStatusDict(status);
 
