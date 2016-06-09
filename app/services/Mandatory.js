@@ -1,6 +1,6 @@
 "use strict";
 
-angular.module("ehelseEditor").factory("Mandatory", ["$rootScope", function($rootScope) {
+angular.module("ehelseEditor").factory("Mandatory", ["$rootScope", "StorageHandler", function($rootScope, StorageHandler) {
 
     var mandatory = [];
     var mandatory_dict = {};
