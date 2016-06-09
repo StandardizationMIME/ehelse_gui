@@ -209,6 +209,7 @@ angular.module("ehelseEditor").factory("Topic", ["$rootScope", function($rootSco
      * @param topics
      */
     function generateTopicDict(topics){
+        console.log(topics);
         for(var i = 0; i < topics.length; i++){
             topics_dict[topics[i].id] = topics[i];
             $.extend(topics_dict,
@@ -263,6 +264,8 @@ angular.module("ehelseEditor").factory("Topic", ["$rootScope", function($rootSco
         else{
             topics.push(topic);
         }
+        console.log("topics i addtopic");
+        console.log(topics);
         generateTopicDict(topics);
         generateTopicOptionsList(topics);
     }
@@ -285,6 +288,10 @@ angular.module("ehelseEditor").factory("Topic", ["$rootScope", function($rootSco
             setTopic(topics_dict[data.id], data);
         }
         topics_dict[data.id].children = children;
+    }
+
+    function generateNewId(){
+        return (topics[topics.length-1].id + 1);
     }
 
     /**
@@ -318,6 +325,11 @@ angular.module("ehelseEditor").factory("Topic", ["$rootScope", function($rootSco
             //********************************************************************************
         }
         else{
+            topic.id = generateNewId();
+            topic.children = [];
+
+            /******************* FIKS ORDENTLIG TIMESTAMP *************************************/
+            topic.timestamp = "...";
 
             addTopic(topic);
             $rootScope.notifySuccess("Nytt tema ble opprettet!", 1000);

@@ -153,6 +153,10 @@ angular.module("ehelseEditor").factory("DocumentField", ["$rootScope", function(
         return document_types_fields_dict[documentTypeId];
     }
 
+    function generateNewId(){
+        return (document_fields[document_fields.length-1].id + 1);
+    }
+
     /**
      * Function creating a new document field.
      *
@@ -175,7 +179,7 @@ angular.module("ehelseEditor").factory("DocumentField", ["$rootScope", function(
         }
 
         var myField = {
-            "id": "",
+            "id": generateNewId(),
             "name": field.name,
             "description": field.description,
             "sequence": sequenceInt,

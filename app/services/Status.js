@@ -121,6 +121,10 @@ angular.module("ehelseEditor").factory("Status",["$rootScope",function($rootScop
         }
     }
 
+    function generateNewId(){
+        return (status[status.length-1].id + 1);
+    }
+
     /**
      * Function creating or updating statuses based on if they have an id or not.
      * @param status
@@ -150,7 +154,7 @@ angular.module("ehelseEditor").factory("Status",["$rootScope",function($rootScop
             //************************************************************************************
         }
         else{
-
+            status.id = generateNewId();
             add(status);
             $rootScope.notifySuccess("Ny status ble opprettet", 1000);
 
