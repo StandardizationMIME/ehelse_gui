@@ -211,7 +211,7 @@ angular.module("ehelseEditor").factory("Topic", ["$rootScope", function($rootSco
     function generateTopicDict(topics){
         for(var i = 0; i < topics.length; i++){
             topics_dict[topics[i].id] = topics[i];
-            $.extend(dict,
+            $.extend(topics_dict,
                 generateTopicDict(topics[i].children));
         }
     }
