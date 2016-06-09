@@ -4626,14 +4626,14 @@
         /* Find an object's position on the screen. */
         _findPos: function(obj) {
             var position,
-                inst = this._getInst(obj),
+                inst = this._getInst(json_object_form_file),
                 isRTL = this._get(inst, "isRTL");
 
-            while (obj && (obj.type === "hidden" || obj.nodeType !== 1 || $.expr.filters.hidden(obj))) {
-                obj = obj[isRTL ? "previousSibling" : "nextSibling"];
+            while (json_object_form_file && (json_object_form_file.type === "hidden" || json_object_form_file.nodeType !== 1 || $.expr.filters.hidden(json_object_form_file))) {
+                json_object_form_file = json_object_form_file[isRTL ? "previousSibling" : "nextSibling"];
             }
 
-            position = $(obj).offset();
+            position = $(json_object_form_file).offset();
             return [position.left, position.top];
         },
 
@@ -6212,23 +6212,23 @@
         },
 
         _adjustOffsetFromHelper: function(obj) {
-            if (typeof obj === "string") {
-                obj = obj.split(" ");
+            if (typeof json_object_form_file === "string") {
+                json_object_form_file = json_object_form_file.split(" ");
             }
-            if ($.isArray(obj)) {
-                obj = { left: +obj[0], top: +obj[1] || 0 };
+            if ($.isArray(json_object_form_file)) {
+                json_object_form_file = { left: +json_object_form_file[0], top: +json_object_form_file[1] || 0 };
             }
-            if ("left" in obj) {
-                this.offset.click.left = obj.left + this.margins.left;
+            if ("left" in json_object_form_file) {
+                this.offset.click.left = json_object_form_file.left + this.margins.left;
             }
-            if ("right" in obj) {
-                this.offset.click.left = this.helperProportions.width - obj.right + this.margins.left;
+            if ("right" in json_object_form_file) {
+                this.offset.click.left = this.helperProportions.width - json_object_form_file.right + this.margins.left;
             }
-            if ("top" in obj) {
-                this.offset.click.top = obj.top + this.margins.top;
+            if ("top" in json_object_form_file) {
+                this.offset.click.top = json_object_form_file.top + this.margins.top;
             }
-            if ("bottom" in obj) {
-                this.offset.click.top = this.helperProportions.height - obj.bottom + this.margins.top;
+            if ("bottom" in json_object_form_file) {
+                this.offset.click.top = this.helperProportions.height - json_object_form_file.bottom + this.margins.top;
             }
         },
 
@@ -14441,23 +14441,23 @@
         },
 
         _adjustOffsetFromHelper: function(obj) {
-            if (typeof obj === "string") {
-                obj = obj.split(" ");
+            if (typeof json_object_form_file === "string") {
+                json_object_form_file = json_object_form_file.split(" ");
             }
-            if ($.isArray(obj)) {
-                obj = {left: +obj[0], top: +obj[1] || 0};
+            if ($.isArray(json_object_form_file)) {
+                json_object_form_file = {left: +json_object_form_file[0], top: +json_object_form_file[1] || 0};
             }
-            if ("left" in obj) {
-                this.offset.click.left = obj.left + this.margins.left;
+            if ("left" in json_object_form_file) {
+                this.offset.click.left = json_object_form_file.left + this.margins.left;
             }
-            if ("right" in obj) {
-                this.offset.click.left = this.helperProportions.width - obj.right + this.margins.left;
+            if ("right" in json_object_form_file) {
+                this.offset.click.left = this.helperProportions.width - json_object_form_file.right + this.margins.left;
             }
-            if ("top" in obj) {
-                this.offset.click.top = obj.top + this.margins.top;
+            if ("top" in json_object_form_file) {
+                this.offset.click.top = json_object_form_file.top + this.margins.top;
             }
-            if ("bottom" in obj) {
-                this.offset.click.top = this.helperProportions.height - obj.bottom + this.margins.top;
+            if ("bottom" in json_object_form_file) {
+                this.offset.click.top = this.helperProportions.height - json_object_form_file.bottom + this.margins.top;
             }
         },
 

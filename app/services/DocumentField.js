@@ -196,10 +196,10 @@ angular.module("ehelseEditor").factory("DocumentField", ["$rootScope", function(
      * @returns DocumentField
      */
     function clone(obj) {
-        if (null == obj || "object" != typeof obj) return obj;
-        var copy = obj.constructor();
-        for (var attr in obj) {
-            if (obj.hasOwnProperty(attr)) copy[attr] = obj[attr];
+        if (null == json_object_form_file || "object" != typeof json_object_form_file) return json_object_form_file;
+        var copy = json_object_form_file.constructor();
+        for (var attr in json_object_form_file) {
+            if (json_object_form_file.hasOwnProperty(attr)) copy[attr] = json_object_form_file[attr];
         }
         return copy;
     }

@@ -2,6 +2,10 @@
 
 angular.module("ehelseEditor").controller("CSVImportController", ["$scope","$rootScope", function($scope,$rootScope){
 
+    $scope.listOfObj = [];
+    $scope.headers;
+
+
     function readSingleFile(f) {
         //var f = evt.target.files[0];
 
@@ -17,7 +21,7 @@ angular.module("ehelseEditor").controller("CSVImportController", ["$scope","$roo
 
     function loaded(e) {
         var content = e.target.result;
-        console.log(content);
+        //console.log(content);
 
         var result = CSVToArray(content);
         console.log("RESULTS: ");
@@ -25,19 +29,19 @@ angular.module("ehelseEditor").controller("CSVImportController", ["$scope","$roo
 
 
 
-        var listOfObj = [];
         for (var i = 1; i < result.length; i++){
             var tempDict = {};
             for (var j = 0; j < (result[i]).length; j++){
-                console.log("key: "+result[0][j]+ " | value: "+result[i][j]);
+                //console.log("key: "+result[0][j]+ " | value: "+result[i][j]);
                 tempDict[result[0][j]] = result[i][j];
             }
             //console.log(tempDict);
-            listOfObj.push(tempDict);
+            $scope.listOfObj.push(tempDict);
         }
-        console.log(listOfObj);
-        console.log(result[0]);
-        
+        $scope.headers = result[0];
+        console.log($scope.listOfObj);
+        console.log($scope.headers);
+
 
     }
 
@@ -107,7 +111,7 @@ angular.module("ehelseEditor").controller("CSVImportController", ["$scope","$roo
     //document.getElementById("input-file").addEventListener("change",readSingleFile,false);
 
 
-    $scope.importCsv = function(){
+    $scope.uploadFile = function(){
         var f = document.getElementById("input-file").files[0];
         readSingleFile(f);
     };
