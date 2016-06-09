@@ -162,20 +162,25 @@ angular.module("ehelseEditor").factory("Document", ["$rootScope", "DocumentField
             );******************************************************************************/
         }
         else {
+            console.log("current document");
+            console.log(current_document);
 
-            current_document.populatedProfiles = [];
+            var new_document = clone(current_document);
+            new_document.id = generateNewId();
+            new_document.populatedProfiles = [];
+
             //push profile id to standard
-            if(current_document.standardId){
-                documents_dict[current_document.standardId].profiles.push({id:current_document.id});
-                console.log(documents_dict[current_document.standardId].profiles);
+            if(new_document.standardId){
+                documents_dict[new_document.standardId].profiles.push({id:new_document.id});
+                console.log(documents_dict[new_document.standardId].profiles);
             }
-            if( current_document.previousDocumentId){
-                documents_dict[current_document.previousDocumentId].nextDocumentId = current_document.id;
+            if(new_document.previousDocumentId){
+                documents_dict[new_document.previousDocumentId].nextDocumentId = new_document.id;
             }
-            documents.push(current_document);
+            documents.push(new_document);
             generateDocumentDict(documents);
             generateTopicsDocumentsDict(documents);
-            setCurrentDocument(current_document);
+            setCurrentDocument(new_document);
             $rootScope.selected_document = current_document;
             $rootScope.notifySuccess("Ny standard ble opprettet!", 1000);
 
@@ -415,6 +420,10 @@ angular.module("ehelseEditor").factory("Document", ["$rootScope", "DocumentField
         return d;
     }
 
+    function generateNewId(){
+        return (documents[documents.length-1].id + 1);
+    }
+
     function setCurrentDocument(document) {
         if (!document) {
             document = newDocument();
@@ -508,7 +517,7 @@ angular.module("ehelseEditor").factory("Document", ["$rootScope", "DocumentField
     }
 
     function getAllDocuments() {
-        var allDocuments = $rootScope.getDocuments();
+        var allDocuments = StorageHandler.getDocuments();
 
         documents.length = 0;
 

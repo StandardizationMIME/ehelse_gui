@@ -6,7 +6,7 @@ angular.module("ehelseEditor").factory("Action", ["$rootScope", function($rootSc
     var actions_dict = {};
     var actions_option_list = [];
 
-    Array.prototype.push.apply(actions, $rootScope.getActions.actions);
+    Array.prototype.push.apply(actions, StorageHandler.getActions().actions);
     generateActionsOptionList(actions);
     generateActionsDict(actions);
 

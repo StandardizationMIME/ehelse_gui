@@ -5,7 +5,7 @@ angular.module("ehelseEditor").factory("LinkCategory", ["$rootScope", function($
     var link_categories_dict = {};
 
     link_categories.length = 0;
-    Array.prototype.push.apply(link_categories, $rootScope.getLinkCategories().link_categories);
+    Array.prototype.push.apply(link_categories, StorageHandler.getLinkCategories().linkCategories);
     generateLinkCategoryDict();
 
 

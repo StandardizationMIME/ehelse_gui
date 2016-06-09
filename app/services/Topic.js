@@ -7,7 +7,7 @@ angular.module("ehelseEditor").factory("Topic", ["$rootScope", function($rootSco
     var topics_options_list = [];
     var selected_topic = {};
 
-    Array.prototype.push.apply(topics, $rootScope.getTopics().topics);
+    Array.prototype.push.apply(topics, StorageHandler.getTopics().topics);
     generateTopicDict(topics);
     generateTopicOptionsList(topics);
 
@@ -36,7 +36,7 @@ angular.module("ehelseEditor").factory("Topic", ["$rootScope", function($rootSco
     function generateTopicDict(topics){
         for(var i = 0; i < topics.length; i++){
             topics_dict[topics[i].id] = topics[i];
-            $.extend(dict,
+            $.extend(topics_dict,
                 generateTopicDict(topics[i].children));
         }
     }

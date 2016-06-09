@@ -6,7 +6,7 @@ angular.module("ehelseEditor").factory("TargetGroup", ["$rootScope", function($r
     var target_groups_dict = {};
     var target_groups_options_list= [];
 
-    Array.prototype.push.apply(target_groups, $rootScope.getTargetGroups.targetGroups);
+    Array.prototype.push.apply(target_groups, StorageHandler.getTargetGroups().targetGroups);
     generateTargetGroupDict(target_groups);
     generateTargetGroupOptionsList(target_groups);
 
