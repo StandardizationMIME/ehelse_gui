@@ -6,29 +6,7 @@ angular.module("ehelseEditor").factory("Action", ["$rootScope", function($rootSc
     var actions_dict = {};
     var actions_option_list = [];
 
-    var getActions =
-    {
-        actions:
-            [
-                {
-                    description: "Denne standarden kan brukes for mottakelse",
-                    id: 2,
-                    name: "Motta"
-                },
-                {
-                    description: "Denne standarden kan brukes både for sending og mottakelse",
-                    id: 3,
-                    name: "Sende/Motta"
-                },
-                {
-                    description: "Denne standarden kan brukes ved sending",
-                    id: 52,
-                    name: "Send"
-                }
-            ]
-    };
-
-    Array.prototype.push.apply(actions, getActions.actions);
+    Array.prototype.push.apply(actions, StorageHandler.getActions().actions);
     generateActionsOptionList(actions);
     generateActionsDict(actions);
 

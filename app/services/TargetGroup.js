@@ -6,28 +6,7 @@ angular.module("ehelseEditor").factory("TargetGroup", ["$rootScope", function($r
     var target_groups_dict = {};
     var target_groups_options_list= [];
 
-    var getTargetGroups =
-    {
-        targetGroups:
-            [
-                {
-                    abbreviation: "AMB",
-                    description: "asd",
-                    id: 10,
-                    name: "Ambulanse",
-                    parentId: null
-                },
-                {
-                    abbreviation: "SHT",
-                    description: "asd",
-                    id: 11,
-                    name: "Spesialisthelsetjenesten",
-                    parentId: null
-                }
-            ]
-    };
-
-    Array.prototype.push.apply(target_groups, getTargetGroups.targetGroups);
+    Array.prototype.push.apply(target_groups, StorageHandler.getTargetGroups().targetGroups);
     generateTargetGroupDict(target_groups);
     generateTargetGroupOptionsList(target_groups);
 

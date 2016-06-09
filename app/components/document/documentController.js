@@ -8,10 +8,11 @@ angular.module("ehelseEditor").controller("DocumentController", [ "$scope","$roo
     $scope.current_document = Document.getCurrentDocument();
 
     // Get documents of the selected topic
-    $rootScope.getDocuments = function(id) {
+    $rootScope.getDocuments = function(topic) {
+        console.log(topic);
         $rootScope.selected_document = "";
-        $scope.documents = Document.getDocumentsByTopicId(id);
-        $rootScope.toggleSelectedTopic(id);
+        $scope.documents = Document.getDocumentsByTopicId(topic.id);
+        $rootScope.toggleSelectedTopic(topic.id);
     };
 
     // Makes selected folder bold and toggles folder icon between opened and closed
@@ -55,12 +56,11 @@ angular.module("ehelseEditor").controller("DocumentController", [ "$scope","$roo
 
     // Open selected document
     $rootScope.openDocument = function(document){
+        console.log(document);
+
         $rootScope.selected_document = document;
         $scope.checkDocumentState(document);
 
-        if(document == "newDocument"){
-            document = null;
-        }
         Document.setCurrentDocument(document);
         $rootScope.changeContentView("document");
     };

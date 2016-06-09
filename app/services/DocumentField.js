@@ -6,78 +6,7 @@ angular.module("ehelseEditor").factory("DocumentField", ["$rootScope", function(
     var document_types_fields_dict = {};
     var document_fields_dict = {};
 
-    var getDocumentFields =
-    {
-        documentFields:
-            [
-                {
-                    description: "Versjonsnummer",
-                    documentTypeId: 1,
-                    id: 154,
-                    mandatory: 0,
-                    name: "Versjon",
-                    sequence: 1
-                },
-                {
-                    description: null,
-                    documentTypeId: 3,
-                    id: 155,
-                    mandatory: 1,
-                    name: "asd",
-                    sequence: 1
-                },
-                {
-                    description: null,
-                    documentTypeId: 2,
-                    id: 156,
-                    mandatory: 1,
-                    name: "asd",
-                    sequence: 1
-                },
-                {
-                    description: "Her skriver vi merknader",
-                    documentTypeId: 1,
-                    id: 164,
-                    mandatory: 0,
-                    name: "Merknad",
-                    sequence: 1
-                },
-                {
-                    description: null,
-                    documentTypeId: 1,
-                    id: 165,
-                    mandatory: 0,
-                    name: "Alternativ ID",
-                    sequence: 1
-                },
-                {
-                    description: null,
-                    documentTypeId: 2,
-                    id: 162,
-                    mandatory: 1,
-                    name: "Test",
-                    sequence: 1
-                },
-                {
-                    description: "Refkat id",
-                    documentTypeId: 1,
-                    id: 76,
-                    mandatory: 0,
-                    name: "Refkat id",
-                    sequence: 1
-                },
-                {
-                    description: null,
-                    documentTypeId: 1,
-                    id: 78,
-                    mandatory: 0,
-                    name: "Utgivers ID",
-                    sequence: 6
-                }
-            ]
-    };
-
-    Array.prototype.push.apply(document_fields, getDocumentFields.documentFields);
+    Array.prototype.push.apply(document_fields, StorageHandler.getDocumentFields().documentFields);
     generateDocumentFieldDict(document_fields);
     generateDocumentFieldTypeDict(document_fields);
 
