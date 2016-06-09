@@ -1,6 +1,6 @@
 "use strict";
 
-angular.module("ehelseEditor").factory("LinkCategory", ["$rootScope", function($rootScope) {
+angular.module("ehelseEditor").factory("LinkCategory", ["$rootScope", "StorageHandler", function($rootScope, StorageHandler) {
     var link_categories= [];
     var link_categories_dict = {};
 

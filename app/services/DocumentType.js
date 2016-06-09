@@ -1,6 +1,6 @@
 "use strict";
 
-angular.module("ehelseEditor").factory("DocumentType", ["$rootScope", function($rootScope) {
+angular.module("ehelseEditor").factory("DocumentType", ["$rootScope", "StorageHandler", function($rootScope, StorageHandler) {
 
     var document_types = [];
     var document_types_dict = {};

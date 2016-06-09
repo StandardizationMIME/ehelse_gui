@@ -1,6 +1,6 @@
 "use strict";
 
-angular.module("ehelseEditor").factory("TargetGroup", ["$rootScope", function($rootScope) {
+angular.module("ehelseEditor").factory("TargetGroup", ["$rootScope", "StorageHandler", function($rootScope, StorageHandler) {
 
     var target_groups = [];
     var target_groups_dict = {};

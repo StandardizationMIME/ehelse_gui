@@ -1,6 +1,6 @@
 "use strict";
 
-angular.module("ehelseEditor").factory("Action", ["$rootScope", function($rootScope) {
+angular.module("ehelseEditor").factory("Action", ["$rootScope", "StorageHandler", function($rootScope, StorageHandler) {
 
     var actions = [];
     var actions_dict = {};

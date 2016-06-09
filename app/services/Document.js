@@ -1,6 +1,6 @@
 "use strict";
 
-angular.module("ehelseEditor").factory("Document", ["$rootScope", "DocumentField", "Topic", function($rootScope, DocumentField, Topic) {
+angular.module("ehelseEditor").factory("Document", ["$rootScope", "DocumentField", "Topic", "StorageHandler", function($rootScope, DocumentField, Topic, StorageHandler) {
 
 
     /**
