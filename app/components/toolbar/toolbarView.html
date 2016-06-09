@@ -37,8 +37,11 @@
                         <li><a href="" ng-click="openAdministerMandatory()">Obligatoriskhet</a></li>
                         <li role="separator" class="divider"></li>
                         <li><a href="" ng-click="openCSVImportModal()">Importer fra .csv</a></li>
+                        <li><a href="" ng-click="openUploadFileModal()">Last opp fra fil</a></li>
                     </ul>
                 </div>
+                    <button type="button" class="btn btn-primary navbar-btn" ng-click="getJsonFile()">getJsonFile</button>
+                    <button type="button" class="btn btn-primary navbar-btn" ng-click="saveTest()">saveToFile</button>
             </li>
         </ul>
 

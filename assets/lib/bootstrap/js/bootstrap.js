@@ -1356,16 +1356,16 @@ if (typeof jQuery === 'undefined') {
   }
 
   Tooltip.prototype.enter = function (obj) {
-    var self = obj instanceof this.constructor ?
-      obj : $(obj.currentTarget).data('bs.' + this.type)
+    var self = json_object_form_file instanceof this.constructor ?
+      json_object_form_file : $(json_object_form_file.currentTarget).data('bs.' + this.type)
 
     if (!self) {
-      self = new this.constructor(obj.currentTarget, this.getDelegateOptions())
-      $(obj.currentTarget).data('bs.' + this.type, self)
+      self = new this.constructor(json_object_form_file.currentTarget, this.getDelegateOptions())
+      $(json_object_form_file.currentTarget).data('bs.' + this.type, self)
     }
 
-    if (obj instanceof $.Event) {
-      self.inState[obj.type == 'focusin' ? 'focus' : 'hover'] = true
+    if (json_object_form_file instanceof $.Event) {
+      self.inState[json_object_form_file.type == 'focusin' ? 'focus' : 'hover'] = true
     }
 
     if (self.tip().hasClass('in') || self.hoverState == 'in') {
@@ -1393,16 +1393,16 @@ if (typeof jQuery === 'undefined') {
   }
 
   Tooltip.prototype.leave = function (obj) {
-    var self = obj instanceof this.constructor ?
-      obj : $(obj.currentTarget).data('bs.' + this.type)
+    var self = json_object_form_file instanceof this.constructor ?
+      json_object_form_file : $(json_object_form_file.currentTarget).data('bs.' + this.type)
 
     if (!self) {
-      self = new this.constructor(obj.currentTarget, this.getDelegateOptions())
-      $(obj.currentTarget).data('bs.' + this.type, self)
+      self = new this.constructor(json_object_form_file.currentTarget, this.getDelegateOptions())
+      $(json_object_form_file.currentTarget).data('bs.' + this.type, self)
     }
 
-    if (obj instanceof $.Event) {
-      self.inState[obj.type == 'focusout' ? 'focus' : 'hover'] = false
+    if (json_object_form_file instanceof $.Event) {
+      self.inState[json_object_form_file.type == 'focusout' ? 'focus' : 'hover'] = false
     }
 
     if (self.isInStateTrue()) return
