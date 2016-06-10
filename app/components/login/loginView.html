@@ -22,7 +22,11 @@
         <!-- Log in -->
         <div class="form-actions">
             <button type="submit" ng-disabled="login.$invalid" class="btn btn-primary btn-group-justified font-size-large">Logg inn</button>
+
         </div>
+
+        <!-- File upload input -->
+        <input type="file" on-read-file="readFileContent($fileContent)">
 
         <!-- Feedback -->
         <div class="has-error">

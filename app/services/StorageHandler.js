@@ -1,8 +1,8 @@
 "use strict";
 
-angular.module("ehelseEditor").factory("StorageHandler", ["$rootScope", function ($rootScope) {
+angular.module("ehelseEditor").factory("StorageHandler", ["$rootScope", "FileUpload", function ($rootScope, FileUpload) {
 
-    var input_list; // TODO: Must be set from input file.
+    var input_list = FileUpload.getJsonFile();
 
     var SORT_ON_SEQUENCE = function (a, b) { // Constant for sequence sort (ascending)
         return a.sequence - b.sequence;

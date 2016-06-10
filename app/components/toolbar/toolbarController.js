@@ -1,4 +1,4 @@
-angular.module("ehelseEditor").controller("ToolbarController", ["$state", "$rootScope", "$scope", function ($state, $rootScope, $scope) {
+angular.module("ehelseEditor").controller("ToolbarController", ["$state", "$rootScope", "$scope", "FileUpload", "StorageHandler",  function ($state, $rootScope, $scope, FileUpload, StorageHandler) {
 
     $scope.$parent.registerChildController("ToolbarController", $scope);
 
@@ -50,6 +50,24 @@ angular.module("ehelseEditor").controller("ToolbarController", ["$state", "$root
     $scope.openUploadFileModal = function () {
         $scope.deselectTopicAndDocument();
         $rootScope.openModal("app/components/uploadFile/uploadFIleModal.html", "UploadFileController");
+    }
+
+    $scope.getTest = function () {
+        console.log(FileUpload.getJsonFile());
+    }
+    $scope.splitTest = function () {
+        console.log(StorageHandler.getActions());
+        console.log(StorageHandler.getDocumentFields());
+        console.log(StorageHandler.getDocuments());
+        console.log(StorageHandler.getDocumentTypes());
+        console.log(StorageHandler.getLinkCategories());
+        console.log(StorageHandler.getMandatory());
+        console.log(StorageHandler.getStatus());
+        console.log(StorageHandler.getTargetGroups());
+        console.log(StorageHandler.getTopics());
+    }
+    $scope.saveTest = function () {
+        FileUpload.saveToFile(FileUpload.getJsonFile());
     }
 
     // Initialize state

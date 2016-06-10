@@ -1,6 +1,6 @@
 "use strict";
 
-angular.module("ehelseEditor").controller("LoginController", [ "$scope", "$rootScope", "$location", "$cookies", "$state", function( $scope, $rootScope, $location, $cookies, $state) {
+angular.module("ehelseEditor").controller("LoginController", [ "$scope", "$rootScope", "$location", "$cookies", "$state", "FileUpload", function( $scope, $rootScope, $location, $cookies, $state, FileUpload) {
 
     $scope.feedback = "";
     $rootScope.password = null;
@@ -31,4 +31,10 @@ angular.module("ehelseEditor").controller("LoginController", [ "$scope", "$rootS
         );
 
     };
+
+    // Read file in file upload input
+    $scope.readFileContent = function ($fileContent) {
+        FileUpload.readContent($fileContent);
+    };
+
 }]);
