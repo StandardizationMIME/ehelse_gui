@@ -1,5 +1,349 @@
-something
-aaa
-bbb
-ccc
-bbb
+{
+    "status": [
+        {
+            "id": "1",
+            "name": "Aktiv",
+            "description": "Aktive dokumenter"
+        },
+        {
+            "id": "2",
+            "name": "Ikke i refkat",
+            "description": "Dokumenter som er ikke med i referansekatalogen"
+        },
+        {
+            "id": "81",
+            "name": "Under innfasing",
+            "description": "Dokumenter som er under innfasing"
+        }
+    ],
+    "topics": [
+        {
+            "id": "1",
+            "timestamp": "2016-05-19 03:55:34",
+            "title": "I. Informasjonssikkerhet",
+            "description": null,
+            "sequence": "2",
+            "parentId": null,
+            "comment": null,
+            "documents": []
+        },
+        {
+            "id": "2",
+            "timestamp": "2016-05-19 03:55:57",
+            "title": "III. Informasjonsinnhold og strukturert f\u00f8ring av journal",
+            "description": null,
+            "sequence": "3",
+            "parentId": 1,
+            "comment": null,
+            "documents": []
+        },
+        {
+            "id": "3",
+            "timestamp": "2016-05-19 03:55:57",
+            "title": "III. Informasjonsinnhold og strukturert f\u00f8ring av journal",
+            "description": null,
+            "sequence": "1",
+            "parentId": 2,
+            "comment": null,
+            "documents": []
+        },
+        {
+            "id": "4",
+            "timestamp": "2016-05-19 03:55:57",
+            "title": "test",
+            "description": null,
+            "sequence": 2,
+            "parentId": null,
+            "comment": null,
+            "documents": []
+        },
+        {
+            "id": "5",
+            "timestamp": "2016-05-19 03:55:57",
+            "title": "te2223st",
+            "description": null,
+            "sequence": 2,
+            "parentId": 1,
+            "comment": null,
+            "documents": []
+        }
+
+    ],
+    "documents": [
+        {
+            "id": "1",
+            "timestamp": "2016-06-08 03:08:23",
+            "title": "test",
+            "description": "s",
+            "statusId": "1",
+            "sequence": "10",
+            "topicId": "161",
+            "comment": null,
+            "documentTypeId": "1",
+            "standardId": null,
+            "previousDocumentId": null,
+            "nextDocumentId": "387",
+            "internalId": "1",
+            "hisNumber": null,
+            "isArchived": 0,
+            "fields": [
+                {
+                    "fieldId": "156",
+                    "value": "as"
+                }
+            ],
+            "links": [
+                {
+                    "id": "7",
+                    "text": "google",
+                    "description": null,
+                    "url": "google.com",
+                    "linkCategoryId": "28",
+                    "documentId": "1"
+                },
+                {
+                    "id": "9",
+                    "text": "bing",
+                    "description": null,
+                    "url": "bing.com",
+                    "linkCategoryId": "3",
+                    "documentId": "1"
+                }
+            ],
+            "targetGroups": [
+                {
+                    "documentId": "1",
+                    "description": "w",
+                    "actionId": "2",
+                    "deadline": "w",
+                    "mandatoryId": "1",
+                    "targetGroupId": "10"
+                },
+                {
+                    "documentId": "1",
+                    "description": "w",
+                    "actionId": "2",
+                    "deadline": "w",
+                    "mandatoryId": "1",
+                    "targetGroupId": "11"
+                }
+            ]
+
+        },
+        {
+            "id": "1",
+            "timestamp": "2016-06-03 03:08:23",
+            "title": "test",
+            "description": "s",
+            "statusId": "1",
+            "sequence": "1",
+            "topicId": "161",
+            "comment": null,
+            "documentTypeId": "1",
+            "standardId": null,
+            "previousDocumentId": null,
+            "nextDocumentId": "387",
+            "internalId": "1",
+            "hisNumber": null,
+            "isArchived": 1
+        },
+        {
+            "id": "2",
+            "timestamp": "2016-06-03 03:08:23",
+            "title": "test",
+            "description": "s",
+            "statusId": "1",
+            "sequence": "11",
+            "topicId": "161",
+            "comment": null,
+            "documentTypeId": "1",
+            "standardId": null,
+            "previousDocumentId": null,
+            "nextDocumentId": "387",
+            "internalId": "1",
+            "hisNumber": null,
+            "isArchived": 0
+        },
+        {
+            "id": "3",
+            "timestamp": "2016-06-03 03:08:23",
+            "title": "test",
+            "description": "s",
+            "statusId": "1",
+            "sequence": "1",
+            "topicId": "161",
+            "comment": null,
+            "documentTypeId": "1",
+            "standardId": 2,
+            "previousDocumentId": null,
+            "nextDocumentId": "387",
+            "internalId": "1",
+            "hisNumber": null,
+            "isArchived": 0
+        },
+        {
+            "id": "4",
+            "timestamp": "2016-06-03 03:08:23",
+            "title": "test2",
+            "description": "s",
+            "statusId": "1",
+            "sequence": "1",
+            "topicId": "161",
+            "comment": null,
+            "documentTypeId": "1",
+            "standardId": 2,
+            "previousDocumentId": null,
+            "nextDocumentId": "387",
+            "internalId": "1",
+            "hisNumber": null,
+            "isArchived": 0
+        }
+    ],
+    "targetGroups": [
+        {
+            "id": "10",
+            "name": "Ambulanse",
+            "description": "Ambulansetjenesten",
+            "parentId": null,
+            "abbreviation": "AMB"
+        },
+        {
+            "id": "11",
+            "name": "Spesialisthelsetjenesten",
+            "description": null,
+            "parentId": null,
+            "abbreviation": null
+        }
+    ],
+    "mandatory": [
+        {
+            "id": "1",
+            "name": "Obligatorisk",
+            "description": "M\u00e5 brukes av alle relevante m\u00e5lgrupper"
+        },
+        {
+            "id": "3",
+            "name": "Anbefalt",
+            "description": "Anbefalt for alle relevante m\u00e5lgrupper"
+        },
+        {
+            "id": "12",
+            "name": "Frivillig",
+            "description": "Kan brukes fritt"
+        }
+    ],
+    "actions": [
+        {
+            "id": "2",
+            "name": "Motta",
+            "description": "Denne standarden kan brukes for mottakelse"
+        },
+        {
+            "id": "3",
+            "name": "Sende\/motta",
+            "description": "Denne standarden kan brukes b\u00e5de for sending og mottakelse"
+        },
+        {
+            "id": "52",
+            "name": "Send",
+            "description": "Denne standarden skal brukes ved sending"
+        }
+    ],
+    "documentTypes": [
+        {
+            "id": "1",
+            "name": "Standard"
+        },
+        {
+            "id": "2",
+            "name": "Profil"
+        },
+        {
+            "id": "3",
+            "name": "St\u00f8ttedokument"
+        }
+    ],
+    "linkCategories": [
+        {
+            "id": "2",
+            "name": "Kravdokument",
+            "description": null
+        },
+        {
+            "id": "3",
+            "name": "Relaterte dokument",
+            "description": null
+        },
+        {
+            "id": "23",
+            "name": "Bibliografi",
+            "description": null
+        }
+    ],
+    "documentFields": [
+        {
+            "id": "154",
+            "name": "Versjon",
+            "description": "Versjonnummer",
+            "sequence": "1",
+            "mandatory": "0",
+            "documentTypeId": "1"
+        },
+        {
+            "id": "155",
+            "name": "asd",
+            "description": null,
+            "sequence": "1",
+            "mandatory": "1",
+            "documentTypeId": "3"
+        },
+        {
+            "id": "156",
+            "name": "asd",
+            "description": null,
+            "sequence": "1",
+            "mandatory": "1",
+            "documentTypeId": "2"
+        },
+        {
+            "id": "164",
+            "name": "Merknad",
+            "description": "Her skriver du merknader",
+            "sequence": "1",
+            "mandatory": "0",
+            "documentTypeId": "1"
+        },
+        {
+            "id": "165",
+            "name": "Alternativ ID",
+            "description": null,
+            "sequence": "1",
+            "mandatory": "0",
+            "documentTypeId": "1"
+        },
+        {
+            "id": "162",
+            "name": "Test",
+            "description": null,
+            "sequence": "2",
+            "mandatory": "1",
+            "documentTypeId": "2"
+        },
+        {
+            "id": "76",
+            "name": "Refkat id",
+            "description": "Refkat id",
+            "sequence": "5",
+            "mandatory": "0",
+            "documentTypeId": "1"
+        },
+        {
+            "id": "78",
+            "name": "Utgivers ID",
+            "description": null,
+            "sequence": "6",
+            "mandatory": "0",
+            "documentTypeId": "1"
+        }
+    ]
+}
