@@ -1,4 +1,7 @@
-angular.module("ehelseEditor").controller("ToolbarController", ["$state", "$rootScope", "$scope", "FileUpload", "StorageHandler",  function ($state, $rootScope, $scope, FileUpload, StorageHandler) {
+angular.module("ehelseEditor").controller("ToolbarController",
+    ["$state", "$rootScope", "$scope", "FileUpload", "StorageHandler", "Test", // remove Test and
+    function ($state, $rootScope, $scope, FileUpload, StorageHandler, Test) {   // Test to resolve
+        // This might load before Test?
 
     $scope.$parent.registerChildController("ToolbarController", $scope);
 
