@@ -331,19 +331,19 @@
         },
         {
             "id": "76",
-            "name": "Refkat id",
-            "description": "Refkat id",
-            "sequence": "5",
-            "mandatory": "0",
-            "documentTypeId": "1"
+            "name": "Refkat-id",
+            "description": "Refkat-id",
+            "sequence": "4",
+            "mandatory": "1",
+            "documentTypeId": "3"
         },
         {
             "id": "78",
-            "name": "Utgivers ID",
-            "description": null,
-            "sequence": "6",
-            "mandatory": "0",
-            "documentTypeId": "1"
+            "name": "Utgiver-ID",
+            "description": "something"
+            "sequence": "4",
+            "mandatory": "1",
+            "documentTypeId": "2"
         }
     ]
 }
