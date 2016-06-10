@@ -12,7 +12,7 @@ angular.module("ehelseEditor").factory("FileUpload", ["$rootScope", function ($r
 
     function saveToFile(JSON_object) {
         var blob = new Blob([JSON.stringify(JSON_object, null, '\t')], {type: "application/json"});
-        saveAs(blob, "your_shitty_json.json");
+        saveAs(blob, "output.json");
     }
 
 
