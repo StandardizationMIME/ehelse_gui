@@ -1,6 +1,6 @@
 "use strict";
 
-angular.module("ehelseEditor").factory("DocumentField", "StorageHandler", ["$rootScope", function($rootScope, StorageHandler) {
+angular.module("ehelseEditor").factory("DocumentField", ["$rootScope", "StorageHandler", function($rootScope, StorageHandler) {
 
     var document_fields = [];
     var document_types_fields_dict = {};

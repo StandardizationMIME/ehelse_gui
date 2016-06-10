@@ -1,6 +1,6 @@
 "use strict";
 
-angular.module("ehelseEditor").factory("Status", "StorageHandler",["$rootScope",function($rootScope, StorageHandler){
+angular.module("ehelseEditor").factory("Status", ["$rootScope", "StorageHandler", function($rootScope, StorageHandler){
 
     var status = [];
     var status_dict = {};
