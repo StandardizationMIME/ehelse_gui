@@ -55,7 +55,7 @@ angular.module("ehelseEditor").controller("DocumentController", [ "$scope","$roo
 
     // Open selected document
     $rootScope.openDocument = function(document){
-        
+
         $rootScope.selected_document = document;
         $scope.checkDocumentState(document);
 
