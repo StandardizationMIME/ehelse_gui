@@ -33,8 +33,17 @@ angular.module("ehelseEditor").factory("ServiceFunction", ["$rootScope", functio
         return (number > 9 ? number : "0" + number);
     }
 
+    function generateNewId(list){
+        if(list.length){
+            return (list[list.length-1].id + 1);
+        }else{
+            return 1;
+        }
+    }
+
     return {
-        getTimestamp: getTimestamp
+        getTimestamp: getTimestamp,
+        generateNewId: generateNewId
     }
 
 

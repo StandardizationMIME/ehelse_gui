@@ -1,6 +1,6 @@
 "use strict";
 
-angular.module("ehelseEditor").factory("Topic", ["$rootScope", "StorageHandler", function($rootScope, StorageHandler) {
+angular.module("ehelseEditor").factory("Topic", ["$rootScope", "StorageHandler", "ServiceFunction", function($rootScope, StorageHandler, ServiceFunction) {
 
     var topics = [];
     var topics_dict = {};
@@ -8,8 +8,6 @@ angular.module("ehelseEditor").factory("Topic", ["$rootScope", "StorageHandler",
     var selected_topic = {};
 
     Array.prototype.push.apply(topics, StorageHandler.getTopics().topics);
-    console.log("asdasd");
-    console.log(topics);
     generateTopicDict(topics);
     generateTopicOptionsList(topics);
 
@@ -36,8 +34,6 @@ angular.module("ehelseEditor").factory("Topic", ["$rootScope", "StorageHandler",
      * @param topics
      */
     function generateTopicDict(topics){
-        console.log("topics in generateTopicDict");
-        console.log(topics);
         for(var i = 0; i < topics.length; i++){
             topics_dict[topics[i].id] = topics[i];
             $.extend(topics_dict, generateTopicDict(topics[i].children));
@@ -91,8 +87,6 @@ angular.module("ehelseEditor").factory("Topic", ["$rootScope", "StorageHandler",
         else{
             topics.push(topic);
         }
-        console.log("topics i addtopic");
-        console.log(topics);
         generateTopicDict(topics);
         generateTopicOptionsList(topics);
     }
@@ -115,10 +109,6 @@ angular.module("ehelseEditor").factory("Topic", ["$rootScope", "StorageHandler",
             setTopic(topics_dict[data.id], data);
         }
         topics_dict[data.id].children = children;
-    }
-
-    function generateNewId(){
-        return (topics[topics.length-1].id + 1);
     }
 
     /**
@@ -152,7 +142,7 @@ angular.module("ehelseEditor").factory("Topic", ["$rootScope", "StorageHandler",
             //********************************************************************************
         }
         else{
-            topic.id = generateNewId();
+            topic.id = ServiceFunction.generateNewId(topics);
             topic.children = [];
 
             /******************* FIKS ORDENTLIG TIMESTAMP *************************************/

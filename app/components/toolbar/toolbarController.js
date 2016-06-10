@@ -50,11 +50,11 @@ angular.module("ehelseEditor").controller("ToolbarController", ["$state", "$root
     $scope.openUploadFileModal = function () {
         $scope.deselectTopicAndDocument();
         $rootScope.openModal("app/components/uploadFile/uploadFIleModal.html", "UploadFileController");
-    }
+    };
 
     $scope.getTest = function () {
         console.log(FileUpload.getJsonFile());
-    }
+    };
     $scope.splitTest = function () {
         console.log(StorageHandler.getActions());
         console.log(StorageHandler.getDocumentFields());
@@ -65,10 +65,10 @@ angular.module("ehelseEditor").controller("ToolbarController", ["$state", "$root
         console.log(StorageHandler.getStatus());
         console.log(StorageHandler.getTargetGroups());
         console.log(StorageHandler.getTopics());
-    }
+    };
     $scope.saveTest = function () {
         FileUpload.saveToFile(FileUpload.getJsonFile());
-    }
+    };
 
     // Initialize state
     $scope.$state = $state;

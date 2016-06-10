@@ -1,6 +1,6 @@
 "use strict";
 
-angular.module("ehelseEditor").factory("DocumentField", ["$rootScope", "StorageHandler", function($rootScope, StorageHandler) {
+angular.module("ehelseEditor").factory("DocumentField", ["$rootScope", "StorageHandler", "ServiceFunction", function($rootScope, StorageHandler, ServiceFunction) {
 
     var document_fields = [];
     var document_types_fields_dict = {};
@@ -82,10 +82,6 @@ angular.module("ehelseEditor").factory("DocumentField", ["$rootScope", "StorageH
         return document_types_fields_dict[documentTypeId];
     }
 
-    function generateNewId(){
-        return (document_fields[document_fields.length-1].id + 1);
-    }
-
     /**
      * Function creating a new document field.
      *
@@ -108,7 +104,7 @@ angular.module("ehelseEditor").factory("DocumentField", ["$rootScope", "StorageH
         }
 
         var myField = {
-            "id": generateNewId(),
+            "id": ServiceFunction.generateNewId(document_fields),
             "name": field.name,
             "description": field.description,
             "sequence": sequenceInt,

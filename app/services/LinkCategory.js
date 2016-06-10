@@ -1,6 +1,6 @@
 "use strict";
 
-angular.module("ehelseEditor").factory("LinkCategory", ["$rootScope", "StorageHandler", function($rootScope, StorageHandler) {
+angular.module("ehelseEditor").factory("LinkCategory", ["$rootScope", "StorageHandler", "ServiceFunction", function($rootScope, StorageHandler, ServiceFunction) {
     var link_categories= [];
     var link_categories_dict = {};
 
@@ -84,10 +84,6 @@ angular.module("ehelseEditor").factory("LinkCategory", ["$rootScope", "StorageHa
         }
     }
 
-    function generateNewId(){
-        return (link_categories[link_categories.length-1].id + 1);
-    }
-
     /**
      * Function creating or updating the link category based on if it got an id.
      *
@@ -115,7 +111,7 @@ angular.module("ehelseEditor").factory("LinkCategory", ["$rootScope", "StorageHa
             );*******************************************************************************/
         }
         else{
-            link_category.id = generateNewId();
+            link_category.id = ServiceFunction.generateNewId(link_category);
             $rootScope.notifySuccess("Ny målgruppe ble opprettet.",1000);
             add(link_category);
 
