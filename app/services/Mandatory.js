@@ -141,6 +141,10 @@ angular.module("ehelseEditor").factory("Mandatory", ["$rootScope", "StorageHandl
         );*********************************************************************************************/
     }
 
+    function generateNewId(){
+        return (mandatory[mandatory.length-1].id + 1);
+    }
+
     /**
      * Function creating or updating a mandatory based on if it has an id.
      *
@@ -170,6 +174,7 @@ angular.module("ehelseEditor").factory("Mandatory", ["$rootScope", "StorageHandl
             );*********************************************************************************************/
         }
         else{
+            man.id = generateNewId();
             $rootScope.notifySuccess("Ny obligatoriskhet ble opprettet", 1000);
             add(man);
 

@@ -101,6 +101,10 @@ angular.module("ehelseEditor").factory("Action", ["$rootScope", "StorageHandler"
         }
     }
 
+    function generateNewId(){
+        return (actions[actions.length-1].id + 1);
+    }
+
     /**
      * Function posting or updating an action based on if the action has an id or not.
      * @param action
@@ -129,6 +133,7 @@ angular.module("ehelseEditor").factory("Action", ["$rootScope", "StorageHandler"
             );***********************************************************************************/
         }
         else{
+            action.id = generateNewId();
             add(action);
             $rootScope.notifySuccess("Ny handling ble opprettet", 1000);
 

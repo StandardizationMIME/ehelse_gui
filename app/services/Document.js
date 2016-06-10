@@ -168,6 +168,7 @@ angular.module("ehelseEditor").factory("Document", ["$rootScope", "DocumentField
             var new_document = clone(current_document);
             new_document.id = generateNewId();
             new_document.populatedProfiles = [];
+            new_document.profiles = [];
 
             //push profile id to standard
             if(new_document.standardId){

@@ -84,6 +84,10 @@ angular.module("ehelseEditor").factory("LinkCategory", ["$rootScope", "StorageHa
         }
     }
 
+    function generateNewId(){
+        return (link_categories[link_categories.length-1].id + 1);
+    }
+
     /**
      * Function creating or updating the link category based on if it got an id.
      *
@@ -111,6 +115,7 @@ angular.module("ehelseEditor").factory("LinkCategory", ["$rootScope", "StorageHa
             );*******************************************************************************/
         }
         else{
+            link_category.id = generateNewId();
             $rootScope.notifySuccess("Ny målgruppe ble opprettet.",1000);
             add(link_category);
 

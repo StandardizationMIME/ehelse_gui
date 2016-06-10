@@ -2,8 +2,7 @@
 
 angular.module("ehelseEditor").factory("StorageHandler", ["$rootScope", "FileUpload", function ($rootScope, FileUpload) {
 
-    var input_list = FileUpload.getJsonFile();;
-    console.log(input_list);
+    var input_list = FileUpload.getJsonFile();
 
     var SORT_ON_SEQUENCE = function (a, b) { // Constant for sequence sort (ascending)
         return a.sequence - b.sequence;
@@ -106,11 +105,13 @@ angular.module("ehelseEditor").factory("StorageHandler", ["$rootScope", "FileUpl
             // If topic does not have a parent, push to list (level 0 of topic_tree)
             if (parent_id == null) {
                 topic_tree.push(topic);
+                topic.children = [];
             } else {
                 // If topic_children[parent_id] does not exist, add it
                 if (!(parent_id in topic_children)) {
                     topic_children[parent_id] = [];
                 }
+                topic.children = [];
                 topic_children[parent_id].push(topic);
             }
             topic_dict[topic.id] = topic;
@@ -163,6 +164,7 @@ angular.module("ehelseEditor").factory("StorageHandler", ["$rootScope", "FileUpl
             }
         }
         // Add profiles list to the documents with profiles
+        console.log(profiles);
         for (var index in profiles) {
             document_dict[index].profiles = profiles[index];
         }

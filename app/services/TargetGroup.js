@@ -88,6 +88,10 @@ angular.module("ehelseEditor").factory("TargetGroup", ["$rootScope", "StorageHan
         addTargetGroupToTargetGroupOptionList(group);
     }
 
+    function generateNewId(){
+        return (target_groups[target_groups.length-1].id + 1);
+    }
+
     /**
      * Function creating or updating a target group based on if it got an id or not.
      * @param group
@@ -116,6 +120,7 @@ angular.module("ehelseEditor").factory("TargetGroup", ["$rootScope", "StorageHan
             );******************************************************************************************/
         }
         else{
+            group.id = generateNewId();
             addTargetGroup(group);
             $rootScope.notifySuccess("Ny målgruppe ble opprettet", 1000);
 
