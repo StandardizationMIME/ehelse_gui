@@ -1,6 +1,6 @@
 "use strict";
 
-angular.module("ehelseEditor").factory("Document", ["$rootScope", "DocumentField", "Topic", "StorageHandler", function($rootScope, DocumentField, Topic, StorageHandler) {
+angular.module("ehelseEditor").factory("Document", ["$rootScope", "DocumentField", "Topic", "StorageHandler","ServiceFunction", function($rootScope, DocumentField, Topic, StorageHandler, ServiceFunction) {
 
 
     /**
@@ -166,7 +166,7 @@ angular.module("ehelseEditor").factory("Document", ["$rootScope", "DocumentField
             console.log(current_document);
 
             var new_document = clone(current_document);
-            new_document.id = generateNewId();
+            new_document.id = ServiceFunction.generateNewId(documents);
             new_document.populatedProfiles = [];
             new_document.profiles = [];
 
@@ -419,10 +419,6 @@ angular.module("ehelseEditor").factory("Document", ["$rootScope", "DocumentField
         var d = {};
         setDocument(d, document);
         return d;
-    }
-
-    function generateNewId(){
-        return (documents[documents.length-1].id + 1);
     }
 
     function setCurrentDocument(document) {

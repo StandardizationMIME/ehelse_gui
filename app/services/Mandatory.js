@@ -1,6 +1,6 @@
 "use strict";
 
-angular.module("ehelseEditor").factory("Mandatory", ["$rootScope", "StorageHandler", function($rootScope, StorageHandler) {
+angular.module("ehelseEditor").factory("Mandatory", ["$rootScope", "StorageHandler", "ServiceFunction", function($rootScope, StorageHandler, ServiceFunction) {
 
     var mandatory = [];
     var mandatory_dict = {};
@@ -141,10 +141,6 @@ angular.module("ehelseEditor").factory("Mandatory", ["$rootScope", "StorageHandl
         );*********************************************************************************************/
     }
 
-    function generateNewId(){
-        return (mandatory[mandatory.length-1].id + 1);
-    }
-
     /**
      * Function creating or updating a mandatory based on if it has an id.
      *
@@ -174,7 +170,7 @@ angular.module("ehelseEditor").factory("Mandatory", ["$rootScope", "StorageHandl
             );*********************************************************************************************/
         }
         else{
-            man.id = generateNewId();
+            man.id = ServiceFunction.generateNewId(mandatory);
             $rootScope.notifySuccess("Ny obligatoriskhet ble opprettet", 1000);
             add(man);
 

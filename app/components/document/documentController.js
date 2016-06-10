@@ -9,7 +9,6 @@ angular.module("ehelseEditor").controller("DocumentController", [ "$scope","$roo
 
     // Get documents of the selected topic
     $rootScope.getDocuments = function(topic) {
-        console.log(topic);
         $rootScope.selected_document = "";
         $scope.documents = Document.getDocumentsByTopicId(topic.id);
         $rootScope.toggleSelectedTopic(topic.id);
@@ -56,8 +55,7 @@ angular.module("ehelseEditor").controller("DocumentController", [ "$scope","$roo
 
     // Open selected document
     $rootScope.openDocument = function(document){
-        console.log(document);
-
+        
         $rootScope.selected_document = document;
         $scope.checkDocumentState(document);
 

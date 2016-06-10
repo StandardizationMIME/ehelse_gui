@@ -1,6 +1,6 @@
 "use strict";
 
-angular.module("ehelseEditor").factory("TargetGroup", ["$rootScope", "StorageHandler", function($rootScope, StorageHandler) {
+angular.module("ehelseEditor").factory("TargetGroup", ["$rootScope", "StorageHandler", "ServiceFunction", function($rootScope, StorageHandler, ServiceFunction) {
 
     var target_groups = [];
     var target_groups_dict = {};
@@ -82,14 +82,10 @@ angular.module("ehelseEditor").factory("TargetGroup", ["$rootScope", "StorageHan
      * Function adding a target group to the list of target groups and updating the dict and options list.
      * @param group
      */
-    function addTargetGroup(group){
+    function addTargetGroup(group) {
         target_groups.push(group);
         addTargetGroupToTargetGroupDict(group);
         addTargetGroupToTargetGroupOptionList(group);
-    }
-
-    function generateNewId(){
-        return (target_groups[target_groups.length-1].id + 1);
     }
 
     /**
@@ -120,7 +116,7 @@ angular.module("ehelseEditor").factory("TargetGroup", ["$rootScope", "StorageHan
             );******************************************************************************************/
         }
         else{
-            group.id = generateNewId();
+            group.id = ServiceFunction.generateNewId(target_groups);
             addTargetGroup(group);
             $rootScope.notifySuccess("Ny målgruppe ble opprettet", 1000);
 
