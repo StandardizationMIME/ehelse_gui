@@ -1,53 +1,11 @@
 "use strict";
 
-angular.module("ehelseEditor").factory("LinkCategory", ["$rootScope", function($rootScope) {
+angular.module("ehelseEditor").factory("LinkCategory", ["$rootScope", "StorageHandler", function($rootScope, StorageHandler) {
     var link_categories= [];
     var link_categories_dict = {};
 
-    var getLinkCategories =
-    {
-        linkCategories:
-            [
-                {
-                    description: null,
-                    id: 2,
-                    name: "Kravdokument"
-                },
-                {
-                    description: null,
-                    id: 3,
-                    name: "Relaterte dokumenter"
-                },
-                {
-                    description: null,
-                    id: 23,
-                    name: "Bibliografi"
-                },
-                {
-                    description: null,
-                    id: 24,
-                    name: "Brukertest-kategori"
-                },
-                {
-                    description: null,
-                    id: 25,
-                    name: "Bibliografi 2"
-                },
-                {
-                    description: null,
-                    id: 26,
-                    name: "Bibliografi 3"
-                },
-                {
-                    description: null,
-                    id: 28,
-                    name: "test"
-                }
-            ]
-    };
-
     link_categories.length = 0;
-    Array.prototype.push.apply(link_categories, getLinkCategories.linkCategories);
+    Array.prototype.push.apply(link_categories, StorageHandler.getLinkCategories().linkCategories);
     generateLinkCategoryDict();
 
 

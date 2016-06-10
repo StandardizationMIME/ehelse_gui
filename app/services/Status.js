@@ -1,34 +1,12 @@
 "use strict";
 
-angular.module("ehelseEditor").factory("Status",["$rootScope",function($rootScope){
+angular.module("ehelseEditor").factory("Status", "StorageHandler",["$rootScope",function($rootScope, StorageHandler){
 
     var status = [];
     var status_dict = {};
     var status_option_list = [];
 
-    var getStatus =
-    {
-        status:
-            [
-                {
-                    description: "asd",
-                    id: 1,
-                    name: "Aktiv"
-                },
-                {
-                    description: "asd",
-                    id: 2,
-                    name: "Ikke i refkat"
-                },
-                {
-                    description: "asd",
-                    id: 81,
-                    name: "Under innfasing"
-                }
-            ]
-    };
-
-    Array.prototype.push.apply(status, getStatus.status);
+    Array.prototype.push.apply(status, StorageHandler.getStatus().status);
     generateStatusOptionList(status);
     generateStatusDict(status);
 
