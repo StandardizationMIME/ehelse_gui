@@ -17,7 +17,7 @@ angular.module("ehelseEditor").factory("StorageHandler", ["$rootScope", function
                 "description": "Dokumenter som er ikke med i referansekatalogen"
             },
             {
-                "id": "81",
+                "id": "3",
                 "name": "Under innfasing",
                 "description": "Dokumenter som er under innfasing"
             }
@@ -83,36 +83,28 @@ angular.module("ehelseEditor").factory("StorageHandler", ["$rootScope", function
                 "description": "s",
                 "statusId": "1",
                 "sequence": "10",
-                "topicId": "161",
+                "topicId": "1",
                 "comment": null,
                 "documentTypeId": "1",
                 "standardId": null,
                 "previousDocumentId": null,
-                "nextDocumentId": "387",
+                "nextDocumentId": null,
                 "internalId": "1",
                 "hisNumber": null,
                 "isArchived": 0,
                 "fields": [
                     {
-                        "fieldId": "156",
+                        "fieldId": "1",
                         "value": "as"
                     }
                 ],
                 "links": [
                     {
-                        "id": "7",
+                        "id": "1",
                         "text": "google",
                         "description": null,
                         "url": "google.com",
-                        "linkCategoryId": "28",
-                        "documentId": "1"
-                    },
-                    {
-                        "id": "9",
-                        "text": "bing",
-                        "description": null,
-                        "url": "bing.com",
-                        "linkCategoryId": "3",
+                        "linkCategoryId": "1",
                         "documentId": "1"
                     }
                 ],
@@ -120,38 +112,21 @@ angular.module("ehelseEditor").factory("StorageHandler", ["$rootScope", function
                     {
                         "documentId": "1",
                         "description": "w",
-                        "actionId": "2",
+                        "actionId": "1",
                         "deadline": "w",
                         "mandatoryId": "1",
-                        "targetGroupId": "10"
+                        "targetGroupId": "1"
                     },
                     {
                         "documentId": "1",
                         "description": "w",
-                        "actionId": "2",
+                        "actionId": "1",
                         "deadline": "w",
                         "mandatoryId": "1",
-                        "targetGroupId": "11"
+                        "targetGroupId": "2"
                     }
                 ]
 
-            },
-            {
-                "id": "1",
-                "timestamp": "2016-06-03 03:08:23",
-                "title": "test",
-                "description": "s",
-                "statusId": "1",
-                "sequence": "1",
-                "topicId": "161",
-                "comment": null,
-                "documentTypeId": "1",
-                "standardId": null,
-                "previousDocumentId": null,
-                "nextDocumentId": "387",
-                "internalId": "1",
-                "hisNumber": null,
-                "isArchived": 1
             },
             {
                 "id": "2",
@@ -159,14 +134,31 @@ angular.module("ehelseEditor").factory("StorageHandler", ["$rootScope", function
                 "title": "test",
                 "description": "s",
                 "statusId": "1",
-                "sequence": "11",
-                "topicId": "161",
+                "sequence": "1",
+                "topicId": "1",
                 "comment": null,
                 "documentTypeId": "1",
                 "standardId": null,
                 "previousDocumentId": null,
-                "nextDocumentId": "387",
-                "internalId": "1",
+                "nextDocumentId": null,
+                "internalId": "2",
+                "hisNumber": null,
+                "isArchived": 1
+            },
+            {
+                "id": "3",
+                "timestamp": "2016-06-03 03:08:23",
+                "title": "test",
+                "description": "s",
+                "statusId": "1",
+                "sequence": "11",
+                "topicId": "1",
+                "comment": null,
+                "documentTypeId": "1",
+                "standardId": null,
+                "previousDocumentId": null,
+                "nextDocumentId": null,
+                "internalId": "3",
                 "hisNumber": null,
                 "isArchived": 0
             },
@@ -177,44 +169,27 @@ angular.module("ehelseEditor").factory("StorageHandler", ["$rootScope", function
                 "description": "s",
                 "statusId": "1",
                 "sequence": "1",
-                "topicId": "161",
+                "topicId": "2",
                 "comment": null,
                 "documentTypeId": "1",
                 "standardId": 2,
                 "previousDocumentId": null,
-                "nextDocumentId": "387",
-                "internalId": "1",
-                "hisNumber": null,
-                "isArchived": 0
-            },
-            {
-                "id": "4",
-                "timestamp": "2016-06-03 03:08:23",
-                "title": "test2",
-                "description": "s",
-                "statusId": "1",
-                "sequence": "1",
-                "topicId": "161",
-                "comment": null,
-                "documentTypeId": "1",
-                "standardId": 2,
-                "previousDocumentId": null,
-                "nextDocumentId": "387",
-                "internalId": "1",
+                "nextDocumentId": null,
+                "internalId": "4",
                 "hisNumber": null,
                 "isArchived": 0
             }
         ],
         "targetGroups": [
             {
-                "id": "10",
+                "id": "1",
                 "name": "Ambulanse",
                 "description": "Ambulansetjenesten",
                 "parentId": null,
                 "abbreviation": "AMB"
             },
             {
-                "id": "11",
+                "id": "2",
                 "name": "Spesialisthelsetjenesten",
                 "description": null,
                 "parentId": null,
@@ -223,17 +198,17 @@ angular.module("ehelseEditor").factory("StorageHandler", ["$rootScope", function
         ],
         "actions": [
             {
-                "id": "2",
+                "id": "1",
                 "name": "Motta",
                 "description": "Denne standarden kan brukes for mottakelse"
             },
             {
-                "id": "3",
+                "id": "2",
                 "name": "Sende\/motta",
                 "description": "Denne standarden kan brukes b\u00e5de for sending og mottakelse"
             },
             {
-                "id": "52",
+                "id": "3",
                 "name": "Send",
                 "description": "Denne standarden skal brukes ved sending"
             }
@@ -254,17 +229,17 @@ angular.module("ehelseEditor").factory("StorageHandler", ["$rootScope", function
         ],
         "linkCategories": [
             {
-                "id": "2",
+                "id": "1",
                 "name": "Kravdokument",
                 "description": null
             },
             {
-                "id": "3",
+                "id": "2",
                 "name": "Relaterte dokument",
                 "description": null
             },
             {
-                "id": "23",
+                "id": "3",
                 "name": "Bibliografi",
                 "description": null
             }
@@ -276,19 +251,19 @@ angular.module("ehelseEditor").factory("StorageHandler", ["$rootScope", function
                 "description": "M\u00e5 brukes av alle relevante m\u00e5lgrupper"
             },
             {
-                "id": "3",
+                "id": "2",
                 "name": "Anbefalt",
                 "description": "Anbefalt for alle relevante m\u00e5lgrupper"
             },
             {
-                "id": "12",
+                "id": "3",
                 "name": "Frivillig",
                 "description": "Kan brukes fritt"
             }
         ],
         "documentFields": [
             {
-                "id": "154",
+                "id": "1",
                 "name": "Versjon",
                 "description": "Versjonnummer",
                 "sequence": "1",
@@ -296,60 +271,20 @@ angular.module("ehelseEditor").factory("StorageHandler", ["$rootScope", function
                 "documentTypeId": "1"
             },
             {
-                "id": "155",
+                "id": "2",
                 "name": "asd",
                 "description": null,
                 "sequence": "1",
                 "mandatory": "1",
-                "documentTypeId": "3"
+                "documentTypeId": "1"
             },
             {
-                "id": "156",
+                "id": "3",
                 "name": "asd",
                 "description": null,
                 "sequence": "1",
                 "mandatory": "1",
                 "documentTypeId": "2"
-            },
-            {
-                "id": "164",
-                "name": "Merknad",
-                "description": "Her skriver du merknader",
-                "sequence": "1",
-                "mandatory": "0",
-                "documentTypeId": "1"
-            },
-            {
-                "id": "165",
-                "name": "Alternativ ID",
-                "description": null,
-                "sequence": "1",
-                "mandatory": "0",
-                "documentTypeId": "1"
-            },
-            {
-                "id": "162",
-                "name": "Test",
-                "description": null,
-                "sequence": "2",
-                "mandatory": "1",
-                "documentTypeId": "2"
-            },
-            {
-                "id": "76",
-                "name": "Refkat id",
-                "description": "Refkat id",
-                "sequence": "5",
-                "mandatory": "0",
-                "documentTypeId": "1"
-            },
-            {
-                "id": "78",
-                "name": "Utgivers ID",
-                "description": null,
-                "sequence": "6",
-                "mandatory": "0",
-                "documentTypeId": "1"
             }
         ]
     };
