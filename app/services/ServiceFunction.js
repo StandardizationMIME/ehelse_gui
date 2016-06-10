@@ -34,7 +34,11 @@ angular.module("ehelseEditor").factory("ServiceFunction", ["$rootScope", functio
     }
 
     function generateNewId(list){
-        return (list[list.length-1].id + 1);
+        if(list.length){
+            return (list[list.length-1].id + 1);
+        }else{
+            return 1;
+        }
     }
 
     return {
