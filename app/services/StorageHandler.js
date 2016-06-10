@@ -462,6 +462,7 @@ angular.module("ehelseEditor").factory("StorageHandler", ["$rootScope", function
                 if (!(parent_id in topic_children)) {
                     topic_children[parent_id] = [];
                 }
+                topic.children = [];
                 topic_children[parent_id].push(topic);
             }
             topic_dict[topic.id] = topic;
