@@ -87,8 +87,6 @@ angular.module("ehelseEditor").factory("Topic", ["$rootScope", "StorageHandler",
         else{
             topics.push(topic);
         }
-        console.log("topics i addtopic");
-        console.log(topics);
         generateTopicDict(topics);
         generateTopicOptionsList(topics);
     }
