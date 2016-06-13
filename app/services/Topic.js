@@ -7,9 +7,9 @@ angular.module("ehelseEditor").factory("Topic", ["$rootScope", "StorageHandler",
     var topics_options_list = [];
     var selected_topic = {};
 
-    initTopic();
+    init();
 
-    function initTopic(){
+    function init(){
         Array.prototype.push.apply(topics, StorageHandler.getTopics().topics);
         generateTopicDict(topics);
         generateTopicOptionsList(topics);
@@ -317,6 +317,7 @@ angular.module("ehelseEditor").factory("Topic", ["$rootScope", "StorageHandler",
     }
 
     return {
+        init: init,
         new: newTopic,
         clone: clone,
         submit: submit,

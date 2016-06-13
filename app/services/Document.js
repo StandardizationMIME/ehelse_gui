@@ -67,9 +67,9 @@ angular.module("ehelseEditor").factory("Document", ["$rootScope", "DocumentField
     var topics_documents_dict = {};
 
 
-    initDocuments();
+    init();
 
-    function initDocuments(){
+    function init(){
         var allDocuments = StorageHandler.getDocuments();
 
         documents.length = 0;
@@ -621,6 +621,7 @@ angular.module("ehelseEditor").factory("Document", ["$rootScope", "DocumentField
     }
 
     return {
+        init: init,
         getCurrentDocumentTargetGroupsIds: getTargetGroupsIds,
         getCurrentDocument: getCurrentDocument,
         extendCurrentDocumentTargetGroupsByTargetGroupIds: extendCurrentDocumentTargetGroupsByTargetGroupIds,
