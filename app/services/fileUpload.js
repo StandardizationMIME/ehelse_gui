@@ -11,7 +11,8 @@ angular.module("ehelseEditor").factory("FileUpload", ["$rootScope", function ($r
 
 
     function saveToFile(JSON_object) {
-        var blob = new Blob([JSON.stringify(JSON_object, null, '\t')], {type: "application/json"});
+        var json = angular.toJson(JSON_object);     // removed Angular elements from array
+        var blob = new Blob([JSON.stringify(JSON.parse(json), null, '\t')], {type: "application/json"});
         saveAs(blob, "output.json");
     }
 
