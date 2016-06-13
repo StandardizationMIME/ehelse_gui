@@ -51,13 +51,13 @@ angular.module("ehelseEditor").controller("ToolbarController",
     // Open uploadFile modal
     $scope.openUploadFileModal = function () {
         $scope.deselectTopicAndDocument();
-        $rootScope.openModal("app/components/uploadFile/uploadFIleModal.html", "UploadFileController");
+        $rootScope.openModal("app/components/uploadFile/uploadFileModal.html", "UploadFileController");
     };
 
     // Download save file
     $scope.save = function () {
         FileUpload.saveToFile(DownloadList.getStorageList());
-    }
+    };
 
     // Initialize state
     $scope.$state = $state;

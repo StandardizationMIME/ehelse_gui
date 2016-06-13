@@ -6,9 +6,9 @@ angular.module("ehelseEditor").factory("Status", ["$rootScope", "StorageHandler"
     var status_dict = {};
     var status_option_list = [];
 
-    initStatus();
+    init();
 
-    function initStatus(){
+    function init(){
         Array.prototype.push.apply(status, StorageHandler.getStatus().status);
         generateStatusOptionList(status);
         generateStatusDict(status);
@@ -205,6 +205,7 @@ angular.module("ehelseEditor").factory("Status", ["$rootScope", "StorageHandler"
     }
 
     return {
+        init: init,
         new: newStatus,
         clone: clone,
 
