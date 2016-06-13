@@ -3,12 +3,6 @@
 angular.module("ehelseEditor").factory("StorageHandler", ["$rootScope", "FileUpload",
     function ($rootScope, FileUpload) {
 
-    /*
-     angular.module("ehelseEditor").factory("StorageHandler",
-     ["$rootScope", "FileUpload", "Action", "Document", "DocumentField", "DocumentType", "LinkCategory", "Mandatory", "Status", "TargetGroup", "Topic",
-     function ($rootScope, FileUpload) {
-     */
-
     var input_list = FileUpload.getJsonFile();
 
     var SORT_ON_SEQUENCE = function (a, b) { // Constant for sequence sort (ascending)

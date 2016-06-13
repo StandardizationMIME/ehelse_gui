@@ -1,17 +1,11 @@
 "use strict";
 
 angular.module("ehelseEditor").factory("DownloadList",
-         ["$rootScope", "FileUpload", "Action", "Document", "DocumentField", "DocumentType", "LinkCategory", "Mandatory", "Status", "TargetGroup", "Topic",
-         function ($rootScope, FileUpload) {
-
-        var input_list = FileUpload.getJsonFile();
-
-        var SORT_ON_SEQUENCE = function (a, b) { // Constant for sequence sort (ascending)
-            return a.sequence - b.sequence;
-        };
+    ["$rootScope", "FileUpload", "Action", "Document", "DocumentField", "DocumentType", "LinkCategory", "Mandatory", "Status", "TargetGroup", "Topic",
+    function ($rootScope, FileUpload, Action, Document, DocumentField, DocumentType, LinkCategory, Mandatory, Status, TargetGroup, Topic) {
 
         function constructOutputTopics(topics) {
-            return(getFlatTopics(topics));
+            return (getFlatTopics(topics));
         }
 
         /**
@@ -54,14 +48,26 @@ angular.module("ehelseEditor").factory("DownloadList",
             return output_documents;
         }
 
+        /**
+         * Returns storage list
+         * @returns {Array}
+         */
         function getStorageList() {
-            var output_list = {"result": []};
-            //console.log("something");
-            //console.log(Document.getAll());
+            var output_list = [];
+            output_list.push({"actions": Action.getAll()});
+            output_list.push({"documentFields": DocumentField.document_fields}); // TODO: implement DocumentField.getAll()
+            output_list.push({"documentTypes": DocumentType.document_types}); // TODO: implement DocumentType.getAll()
+            output_list.push({"linkCategories": LinkCategory.getAll()});
+            output_list.push({"mandatory": Mandatory.getAll()});
+            output_list.push({"status": Status.getAll()});
+            output_list.push({"topics": constructOutputTopics(Topic.getAll())});
+            output_list.push({"documents": constructOutputDocuments(Document.getAll())});
+            output_list.push({"archivedDocuments": []});    // TODO: implement archived documents list.
             return output_list;
         }
 
         return {
             getStorageList: getStorageList
         };
-    }]);
+}]);
+
