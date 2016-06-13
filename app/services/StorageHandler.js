@@ -223,21 +223,19 @@ angular.module("ehelseEditor").factory("StorageHandler", ["$rootScope", "FileUpl
         /**
          * Adds document to archivedDocuments by id
          *
-         * @param id
+         * @param document
          * @returns {boolean}
          */
-        function addArchivedDocumentsById(id) {
+        function addArchivedDocumentsById(document) {
             var archived_documents = input_list.archivedDocuments;
-            var documents = input_list.documents;
-            for (var i = 0; i < documents.length; i++) {
-                if (documents[i].id == id) {
-                    if (id in archived_documents)
-                        archived_documents[id].push(documents[i]);
-                    else
-                        archived_documents[id] = [documents[i]];
-                }
+            if (document.id in archived_documents){
+                archived_documents[document.id].push(document);
+            }
+            else{
+                archived_documents[document.id] = [document];
             }
         }
+
 
 
         return {

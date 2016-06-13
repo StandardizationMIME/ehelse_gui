@@ -167,12 +167,11 @@ angular.module("ehelseEditor").factory("Document", ["$rootScope", "DocumentField
         current_document.populatedProfiles.length = 0;
         if (current_document.id) {
             try{
-                console.log(current_document);
+                StorageHandler.addArchivedDocumentsById(current_document);
                 updateDocumentValues(current_document);
                 setCurrentDocument(current_document);
                 updateDocumentInDocumentsList(current_document);
                 $rootScope.notifySuccess("Dokumentet ble oppdatert", 1000);
-                console.log(current_document);
             }
             catch(error){
                 console.log(error);
@@ -304,6 +303,7 @@ angular.module("ehelseEditor").factory("Document", ["$rootScope", "DocumentField
                 }
             }
         }
+        StorageHandler.addArchivedDocumentsById(current_document);
         deleteCurrentDocumentFromDocumentsList();
         $rootScope.notifySuccess("Dokumentet ble slettet", 1000);
         $rootScope.changeContentView("");
