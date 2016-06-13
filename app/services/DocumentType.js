@@ -6,9 +6,13 @@ angular.module("ehelseEditor").factory("DocumentType", ["$rootScope", "StorageHa
     var document_types_dict = {};
     var document_types_option_list = [];
 
-    Array.prototype.push.apply(document_types, StorageHandler.getDocumentTypes().documentTypes);
-    Array.prototype.push.apply(document_types_option_list, generateDocumentTypesOptionList(document_types));
-    generateDocumentTypeDict(document_types);
+    initDocumentTypes();
+
+    function initDocumentTypes(){
+        Array.prototype.push.apply(document_types, StorageHandler.getDocumentTypes().documentTypes);
+        Array.prototype.push.apply(document_types_option_list, generateDocumentTypesOptionList(document_types));
+        generateDocumentTypeDict(document_types);
+    }
 
     /**
      * Function call retrieving document types from the server.

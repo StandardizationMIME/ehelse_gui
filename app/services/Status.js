@@ -6,9 +6,13 @@ angular.module("ehelseEditor").factory("Status", ["$rootScope", "StorageHandler"
     var status_dict = {};
     var status_option_list = [];
 
-    Array.prototype.push.apply(status, StorageHandler.getStatus().status);
-    generateStatusOptionList(status);
-    generateStatusDict(status);
+    initStatus();
+
+    function initStatus(){
+        Array.prototype.push.apply(status, StorageHandler.getStatus().status);
+        generateStatusOptionList(status);
+        generateStatusDict(status);
+    }
 
     /**************************************************************************************
      * Function retrieving statuses from the server

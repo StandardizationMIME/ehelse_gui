@@ -68,6 +68,24 @@ angular.module("ehelseEditor").factory("Document", ["$rootScope", "DocumentField
     var documents_dict = {};
     var topics_documents_dict = {};
 
+
+    initDocuments();
+
+    function initDocuments(){
+        var allDocuments = StorageHandler.getDocuments();
+
+        documents.length = 0;
+
+        for(var i = 0; i < allDocuments.documents.length; i++){
+            var document = allDocuments.documents[i];
+            document.populatedProfiles = [];
+            documents.push(document);
+        }
+
+        generateDocumentDict(documents);
+        generateTopicsDocumentsDict(documents);
+    }
+
     /**
      * Function adding target groups to current document
      * @param target_groups_ids
@@ -131,14 +149,25 @@ angular.module("ehelseEditor").factory("Document", ["$rootScope", "DocumentField
         generateCurrentDocumentLinksAsLinkCategoryList();
     }
 
+    function initNewDocument(document){
+        document.id = ServiceFunction.generateNewId(documents);
+        document.populatedProfiles = [];
+        document.profiles = [];
+        document.createdTimestamp = ServiceFunction.getTimestamp();
+    }
+
+    function updateDocument(document){
+        document.lastEditTimestamp = ServiceFunction.getTimestamp();
+        document.populatedProfiles = [];
+    }
+
     /**
      * Function creating or updating current document based on if it has an id or not.
      */
     function submitCurrentDocument() {
         current_document.populatedProfiles.length = 0;
         if (current_document.id) {
-
-            current_document.populatedProfiles = [];
+            updateDocument(current_document);
             setCurrentDocument(current_document);
             updateDocumentInDocumentsList(current_document);
             $rootScope.notifySuccess("Dokumentet ble oppdatert", 1000);
@@ -513,6 +542,7 @@ angular.module("ehelseEditor").factory("Document", ["$rootScope", "DocumentField
         return newProfile(standardId);
     }
 
+    /******************************************************************************************
     function getAllDocuments() {
         var allDocuments = StorageHandler.getDocuments();
 
@@ -527,7 +557,6 @@ angular.module("ehelseEditor").factory("Document", ["$rootScope", "DocumentField
         generateDocumentDict(documents);
         generateTopicsDocumentsDict(documents);
 
-        /******************************************************************************************
         $rootScope.get(
             "documents/",
             function (data) {
@@ -545,8 +574,8 @@ angular.module("ehelseEditor").factory("Document", ["$rootScope", "DocumentField
             function () {
                 console.log("Could not load documents");
             }
-        );*******************************************************************************************/
-    }
+        );
+    } *******************************************************************************************/
 
     function newVersion(document){
         var new_version = clone(document);
@@ -617,8 +646,6 @@ angular.module("ehelseEditor").factory("Document", ["$rootScope", "DocumentField
             }
         }
     }
-
-    getAllDocuments();
 
     function getAllAsDict(){
         return documents_dict;

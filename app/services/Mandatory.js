@@ -6,9 +6,13 @@ angular.module("ehelseEditor").factory("Mandatory", ["$rootScope", "StorageHandl
     var mandatory_dict = {};
     var mandatory_option_list = [];
 
-    Array.prototype.push.apply(mandatory, StorageHandler.getMandatory().mandatory);
-    generateMandatoryDict(mandatory);
-    generateMandatoryOptionList(mandatory);
+    initMandatory();
+
+    function initMandatory(){
+        Array.prototype.push.apply(mandatory, StorageHandler.getMandatory().mandatory);
+        generateMandatoryDict(mandatory);
+        generateMandatoryOptionList(mandatory);
+    }
 
     /**********************************************************************************************
      * Function retrieving mandatory from the server
