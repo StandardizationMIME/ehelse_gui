@@ -1,7 +1,6 @@
 angular.module("ehelseEditor").controller("ToolbarController",
-    ["$state", "$rootScope", "$scope", "FileUpload", "StorageHandler", "Test", // remove Test and
-    function ($state, $rootScope, $scope, FileUpload, StorageHandler, Test) {   // Test to resolve
-        // This might load before Test?
+    ["$state", "$rootScope", "$scope", "FileUpload", "StorageHandler", "DownloadList",
+    function ($state, $rootScope, $scope, FileUpload, StorageHandler, DownloadList) {
 
     $scope.$parent.registerChildController("ToolbarController", $scope);
 
@@ -70,7 +69,7 @@ angular.module("ehelseEditor").controller("ToolbarController",
         console.log(StorageHandler.getTopics());
     }
     $scope.saveTest = function () {
-        FileUpload.saveToFile(FileUpload.getJsonFile());
+        FileUpload.saveToFile(DownloadList.getStorageList());
     }
 
     // Initialize state

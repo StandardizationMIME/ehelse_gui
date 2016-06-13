@@ -1,13 +1,8 @@
 "use strict";
 
-angular.module("ehelseEditor").factory("DownloadList", ["$rootScope", "Document",
-    function ($rootScope, Document) {
-
-        /*
-         angular.module("ehelseEditor").factory("StorageHandler",
+angular.module("ehelseEditor").factory("DownloadList",
          ["$rootScope", "FileUpload", "Action", "Document", "DocumentField", "DocumentType", "LinkCategory", "Mandatory", "Status", "TargetGroup", "Topic",
          function ($rootScope, FileUpload) {
-         */
 
         var input_list = FileUpload.getJsonFile();
 
@@ -60,9 +55,9 @@ angular.module("ehelseEditor").factory("DownloadList", ["$rootScope", "Document"
         }
 
         function getStorageList() {
-            var output_list = [];
-            console.log("something");
-            console.log(Document.getAll());
+            var output_list = {"result": []};
+            //console.log("something");
+            //console.log(Document.getAll());
             return output_list;
         }
 
