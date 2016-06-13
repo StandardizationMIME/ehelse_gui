@@ -62,9 +62,14 @@ angular.module("ehelseEditor").factory("DocumentType", ["$rootScope", "StorageHa
         return tuples;
     }
 
+    function getAll(){
+        return document_types;
+    }
+
     return {
-        document_types : document_types,
+        getAll: getAll,
+        document_types: document_types,
         document_types_dict: document_types_dict,
-        document_types_option_list : document_types_option_list
+        document_types_option_list: document_types_option_list
     };
 }]);

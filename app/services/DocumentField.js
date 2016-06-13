@@ -275,6 +275,10 @@ angular.module("ehelseEditor").factory("DocumentField", ["$rootScope", "StorageH
         return ids;
     }
 
+    function getAll(){
+        return document_fields;
+    }
+
     return {
         document_fields : document_fields,
         getFieldsByDocumentTypeId: getFieldsByDocumentTypeId,
@@ -283,6 +287,7 @@ angular.module("ehelseEditor").factory("DocumentField", ["$rootScope", "StorageH
         edit: edit,
         delete: remove,
         getFieldById: getFieldById,
-        getRequiredDocumentFieldIdsByDocumentTypeId: getRequiredDocumentFieldIdsByDocumentTypeId
+        getRequiredDocumentFieldIdsByDocumentTypeId: getRequiredDocumentFieldIdsByDocumentTypeId,
+        getAll: getAll
     };
 }]);
