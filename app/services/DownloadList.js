@@ -59,22 +59,12 @@ angular.module("ehelseEditor").factory("DownloadList",
             output_list["documentTypes"] = DocumentType.document_types; // TODO: implement DocumentType.getAll()
             output_list["linkCategories"] = LinkCategory.getAll();
             output_list["mandatory"] = Mandatory.getAll();
+            output_list["targetGroups"] = TargetGroup.getAll();
             output_list["status"] = Status.getAll();
             output_list["topics"] = constructOutputTopics(Topic.getAll());
             output_list["documents"] = constructOutputDocuments(Document.getAll());
             output_list["archivedDocuments"] = StorageHandler.getArchivedDocuments();
 
-            /*
-            output_list.push({"actions": Action.getAll()});
-            output_list.push({"documentFields": DocumentField.document_fields}); // TODO: implement DocumentField.getAll()
-            output_list.push({"documentTypes": DocumentType.document_types}); // TODO: implement DocumentType.getAll()
-            output_list.push({"linkCategories": LinkCategory.getAll()});
-            output_list.push({"mandatory": Mandatory.getAll()});
-            output_list.push({"status": Status.getAll()});
-            output_list.push({"topics": constructOutputTopics(Topic.getAll())});
-            output_list.push({"documents": constructOutputDocuments(Document.getAll())});
-            output_list.push({"archivedDocuments": StorageHandler.getArchivedDocuments()});    // TODO: implement archived documents list.
-            */
             return output_list;
         }
 
