@@ -102,7 +102,6 @@ angular.module("ehelseEditor").factory("Topic", ["$rootScope", "StorageHandler",
      * @param topic
      */
     function updateTopic(topic){
-        updateTopicValues(topic);
         var old_topic = topics_dict[topic.id];
         var children = old_topic.children;
         if(old_topic.parentId != topic.parentId){
@@ -119,14 +118,9 @@ angular.module("ehelseEditor").factory("Topic", ["$rootScope", "StorageHandler",
     function initNewTopicValues(topic){
         topic.id = ServiceFunction.generateNewId(topics);
         topic.children = [];
-        topic.createdTimestamp = ServiceFunction.getTimestamp();
-        topic.lastEditTimestamp = null;
         topic.comment = null;
     }
 
-    function updateTopicValues(topic){
-        topic.lastEditTimestamp = ServiceFunction.getTimestamp();
-    }
 
     /**
      * function creating or updating a topic based on if it has an id
@@ -221,7 +215,6 @@ angular.module("ehelseEditor").factory("Topic", ["$rootScope", "StorageHandler",
     function newTopic(){
         return {
             id: null,
-            timestamp: null,
             title: "",
             description: "",
             sequence: null,
@@ -241,7 +234,6 @@ angular.module("ehelseEditor").factory("Topic", ["$rootScope", "StorageHandler",
      */
     function setTopic(a,b){
         a.id = b.id;
-        a.timestamp = b.timestamp;
         a.title = b.title;
         a.description = b.description;
         a.sequence = b.sequence;

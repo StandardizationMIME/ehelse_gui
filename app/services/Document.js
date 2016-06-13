@@ -10,13 +10,13 @@ angular.module("ehelseEditor").factory("Document", ["$rootScope", "DocumentField
     function newDocument() {
         return {
             id: null,
-            timestamp: null,
+            createdTimestamp: null,
+            editedTimestamp: null,
             title: "",
             description: "",
             statusId: 1,
             sequence: 1,
             topicId: Topic.getSelected().id,
-            comment: "",
             documentTypeId: "1",
             standardId: null,
             previousDocumentId: null,
@@ -26,8 +26,7 @@ angular.module("ehelseEditor").factory("Document", ["$rootScope", "DocumentField
             profiles: [],
             links: [],
             fields: [],
-            targetGroups: [],
-            populatedProfiles: []
+            targetGroups: []
         };
     }
 
@@ -39,13 +38,13 @@ angular.module("ehelseEditor").factory("Document", ["$rootScope", "DocumentField
     function newProfile(standardId) {
         return {
             id: null,
-            timestamp: null,
+            createdTimestamp: null,
+            editedTimestamp: null,
             title: "",
             description: "",
             statusId: 1,
             sequence: 1,
             topicId: Topic.getSelected().id,
-            comment: "",
             documentTypeId: "2",
             standardId: standardId,
             previousDocumentId: null,
@@ -55,8 +54,7 @@ angular.module("ehelseEditor").factory("Document", ["$rootScope", "DocumentField
             profiles: [],
             links: [],
             fields: [],
-            targetGroups: [],
-            populatedProfiles: []
+            targetGroups: []
         }
     }
 
@@ -154,11 +152,11 @@ angular.module("ehelseEditor").factory("Document", ["$rootScope", "DocumentField
         document.populatedProfiles = [];
         document.profiles = [];
         document.createdTimestamp = ServiceFunction.getTimestamp();
-        document.lastEditTimestamp = null;
+        document.editedTimestamp = null;
     }
 
     function updateDocumentValues(document){
-        document.lastEditTimestamp = ServiceFunction.getTimestamp();
+        document.editedTimestamp = ServiceFunction.getTimestamp();
         document.populatedProfiles = [];
     }
 
@@ -169,10 +167,12 @@ angular.module("ehelseEditor").factory("Document", ["$rootScope", "DocumentField
         current_document.populatedProfiles.length = 0;
         if (current_document.id) {
             try{
+                console.log(current_document);
                 updateDocumentValues(current_document);
                 setCurrentDocument(current_document);
                 updateDocumentInDocumentsList(current_document);
                 $rootScope.notifySuccess("Dokumentet ble oppdatert", 1000);
+                console.log(current_document);
             }
             catch(error){
                 console.log(error);
@@ -183,7 +183,9 @@ angular.module("ehelseEditor").factory("Document", ["$rootScope", "DocumentField
             try{
                 //Clones current document and initialize it's values
                 var new_document = clone(current_document);
+                console.log(new_document);
                 initNewDocument(new_document);
+                console.log(new_document);
 
                 //push profile id to standard
                 if(new_document.standardId){
@@ -399,7 +401,6 @@ angular.module("ehelseEditor").factory("Document", ["$rootScope", "DocumentField
         a.previousDocumentId = b.previousDocumentId;
         a.description = b.description;
         a.sequence = b.sequence;
-        a.comment = b.comment;
         a.targetGroups = b.targetGroups;
         a.fields = b.fields;
         a.links = b.links;
