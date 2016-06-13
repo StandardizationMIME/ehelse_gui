@@ -148,7 +148,6 @@ angular.module("ehelseEditor").factory("StorageHandler", ["$rootScope", "FileUpl
                 document_dict[id] = document;
                 // add profiles list to document, if it does not exist
                 if (!("profiles" in document)) {
-                    //console.log("Add profile list")
                     document["profiles"] = [];
                 }
                 // If the document has a standards_id, it is a profile of another document.
@@ -167,6 +166,14 @@ angular.module("ehelseEditor").factory("StorageHandler", ["$rootScope", "FileUpl
             // Sort documents on sequence
             document_list.sort(SORT_ON_SEQUENCE);
             return document_list;
+        }
+
+        /**
+         * Returns archived documents
+         * @returns {*}
+         */
+        function getArchivedDocuments() {
+            return input_list.archivedDocuments;
         }
 
         /**
@@ -207,6 +214,7 @@ angular.module("ehelseEditor").factory("StorageHandler", ["$rootScope", "FileUpl
             getMandatory: getMandatory,
             getTopics: getTopics,
             getTargetGroups: getTargetGroups,
+            getArchivedDocuments: getArchivedDocuments,
             getArchivedDocumentsById: getArchivedDocumentsById,
             addArchivedDocumentsById: addArchivedDocumentsById
         };

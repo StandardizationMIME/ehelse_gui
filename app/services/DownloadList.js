@@ -1,8 +1,8 @@
 "use strict";
 
 angular.module("ehelseEditor").factory("DownloadList",
-    ["$rootScope", "FileUpload", "Action", "Document", "DocumentField", "DocumentType", "LinkCategory", "Mandatory", "Status", "TargetGroup", "Topic",
-    function ($rootScope, FileUpload, Action, Document, DocumentField, DocumentType, LinkCategory, Mandatory, Status, TargetGroup, Topic) {
+    ["$rootScope", "FileUpload", "StorageHandler", "Action", "Document", "DocumentField", "DocumentType", "LinkCategory", "Mandatory", "Status", "TargetGroup", "Topic",
+    function ($rootScope, FileUpload, StorageHandler, Action, Document, DocumentField, DocumentType, LinkCategory, Mandatory, Status, TargetGroup, Topic) {
 
         function constructOutputTopics(topics) {
             return (getFlatTopics(topics));
@@ -53,7 +53,18 @@ angular.module("ehelseEditor").factory("DownloadList",
          * @returns {Array}
          */
         function getStorageList() {
-            var output_list = [];
+            var output_list = {};
+            output_list["actions"] = Action.getAll();
+            output_list["documentFields"] = DocumentField.document_fields; // TODO: implement DocumentField.getAll()
+            output_list["documentTypes"] = DocumentType.document_types; // TODO: implement DocumentType.getAll()
+            output_list["linkCategories"] = LinkCategory.getAll();
+            output_list["mandatory"] = Mandatory.getAll();
+            output_list["status"] = Status.getAll();
+            output_list["topics"] = constructOutputTopics(Topic.getAll());
+            output_list["documents"] = constructOutputDocuments(Document.getAll());
+            output_list["archivedDocuments"] = StorageHandler.getArchivedDocuments();
+
+            /*
             output_list.push({"actions": Action.getAll()});
             output_list.push({"documentFields": DocumentField.document_fields}); // TODO: implement DocumentField.getAll()
             output_list.push({"documentTypes": DocumentType.document_types}); // TODO: implement DocumentType.getAll()
@@ -62,7 +73,8 @@ angular.module("ehelseEditor").factory("DownloadList",
             output_list.push({"status": Status.getAll()});
             output_list.push({"topics": constructOutputTopics(Topic.getAll())});
             output_list.push({"documents": constructOutputDocuments(Document.getAll())});
-            output_list.push({"archivedDocuments": []});    // TODO: implement archived documents list.
+            output_list.push({"archivedDocuments": StorageHandler.getArchivedDocuments()});    // TODO: implement archived documents list.
+            */
             return output_list;
         }
 
