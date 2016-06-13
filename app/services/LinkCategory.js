@@ -4,10 +4,13 @@ angular.module("ehelseEditor").factory("LinkCategory", ["$rootScope", "StorageHa
     var link_categories= [];
     var link_categories_dict = {};
 
-    link_categories.length = 0;
-    Array.prototype.push.apply(link_categories, StorageHandler.getLinkCategories().linkCategories);
-    generateLinkCategoryDict();
+    initLinkCategories();
 
+    function initLinkCategories(){
+        link_categories.length = 0;
+        Array.prototype.push.apply(link_categories, StorageHandler.getLinkCategories().linkCategories);
+        generateLinkCategoryDict();
+    }
 
     /**
      * Function call used to retrieve link categories from the server

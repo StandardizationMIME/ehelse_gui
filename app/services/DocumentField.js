@@ -6,9 +6,13 @@ angular.module("ehelseEditor").factory("DocumentField", ["$rootScope", "StorageH
     var document_types_fields_dict = {};
     var document_fields_dict = {};
 
-    Array.prototype.push.apply(document_fields, StorageHandler.getDocumentFields().documentFields);
-    generateDocumentFieldDict(document_fields);
-    generateDocumentFieldTypeDict(document_fields);
+    initDocumentFields();
+
+    function initDocumentFields(){
+        Array.prototype.push.apply(document_fields, StorageHandler.getDocumentFields().documentFields);
+        generateDocumentFieldDict(document_fields);
+        generateDocumentFieldTypeDict(document_fields);
+    }
 
     /**
      * Function call retrieving document fields from the server.
@@ -271,6 +275,10 @@ angular.module("ehelseEditor").factory("DocumentField", ["$rootScope", "StorageH
         return ids;
     }
 
+    function getAll(){
+        return document_fields;
+    }
+
     return {
         document_fields : document_fields,
         getFieldsByDocumentTypeId: getFieldsByDocumentTypeId,
@@ -279,6 +287,7 @@ angular.module("ehelseEditor").factory("DocumentField", ["$rootScope", "StorageH
         edit: edit,
         delete: remove,
         getFieldById: getFieldById,
-        getRequiredDocumentFieldIdsByDocumentTypeId: getRequiredDocumentFieldIdsByDocumentTypeId
+        getRequiredDocumentFieldIdsByDocumentTypeId: getRequiredDocumentFieldIdsByDocumentTypeId,
+        getAll: getAll
     };
 }]);

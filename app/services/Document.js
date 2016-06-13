@@ -10,13 +10,13 @@ angular.module("ehelseEditor").factory("Document", ["$rootScope", "DocumentField
     function newDocument() {
         return {
             id: null,
-            timestamp: null,
+            createdTimestamp: null,
+            editedTimestamp: null,
             title: "",
             description: "",
             statusId: 1,
             sequence: 1,
             topicId: Topic.getSelected().id,
-            comment: "",
             documentTypeId: "1",
             standardId: null,
             previousDocumentId: null,
@@ -26,8 +26,7 @@ angular.module("ehelseEditor").factory("Document", ["$rootScope", "DocumentField
             profiles: [],
             links: [],
             fields: [],
-            targetGroups: [],
-            populatedProfiles: []
+            targetGroups: []
         };
     }
 
@@ -39,13 +38,13 @@ angular.module("ehelseEditor").factory("Document", ["$rootScope", "DocumentField
     function newProfile(standardId) {
         return {
             id: null,
-            timestamp: null,
+            createdTimestamp: null,
+            editedTimestamp: null,
             title: "",
             description: "",
             statusId: 1,
             sequence: 1,
             topicId: Topic.getSelected().id,
-            comment: "",
             documentTypeId: "2",
             standardId: standardId,
             previousDocumentId: null,
@@ -55,8 +54,7 @@ angular.module("ehelseEditor").factory("Document", ["$rootScope", "DocumentField
             profiles: [],
             links: [],
             fields: [],
-            targetGroups: [],
-            populatedProfiles: []
+            targetGroups: []
         }
     }
 
@@ -67,6 +65,24 @@ angular.module("ehelseEditor").factory("Document", ["$rootScope", "DocumentField
     var documents = [];
     var documents_dict = {};
     var topics_documents_dict = {};
+
+
+    initDocuments();
+
+    function initDocuments(){
+        var allDocuments = StorageHandler.getDocuments();
+
+        documents.length = 0;
+
+        for(var i = 0; i < allDocuments.documents.length; i++){
+            var document = allDocuments.documents[i];
+            document.populatedProfiles = [];
+            documents.push(document);
+        }
+
+        generateDocumentDict(documents);
+        generateTopicsDocumentsDict(documents);
+    }
 
     /**
      * Function adding target groups to current document
@@ -131,94 +147,73 @@ angular.module("ehelseEditor").factory("Document", ["$rootScope", "DocumentField
         generateCurrentDocumentLinksAsLinkCategoryList();
     }
 
+    function initNewDocument(document){
+        document.id = ServiceFunction.generateNewId(documents);
+        document.populatedProfiles = [];
+        document.profiles = [];
+        document.createdTimestamp = ServiceFunction.getTimestamp();
+        document.editedTimestamp = null;
+    }
+
+    function updateDocumentValues(document){
+        document.editedTimestamp = ServiceFunction.getTimestamp();
+        document.populatedProfiles = [];
+    }
+
     /**
      * Function creating or updating current document based on if it has an id or not.
      */
     function submitCurrentDocument() {
         current_document.populatedProfiles.length = 0;
         if (current_document.id) {
-
-            current_document.populatedProfiles = [];
-            setCurrentDocument(current_document);
-            updateDocumentInDocumentsList(current_document);
-            $rootScope.notifySuccess("Dokumentet ble oppdatert", 1000);
-
-            /*****************************************************************************
-            $rootScope.put(
-                "documents/" + current_document.id,
-                current_document,
-                function (data) {
-                    data.populatedProfiles = [];
-                    setCurrentDocument(current_document);
-                    updateDocumentInDocumentsList(data);
-                    $rootScope.notifySuccess("Dokumentet ble oppdatert", 1000);
-                }
-                ,
-                function (data) {
-                    var error = getErrorMessage(data);
-                    setCurrentDocument(current_document);
-                    $rootScope.notifyError("Dokumentet kunne ikke opprettes: " + error, 6000);
-                }
-            );******************************************************************************/
+            try{
+                console.log(current_document);
+                updateDocumentValues(current_document);
+                setCurrentDocument(current_document);
+                updateDocumentInDocumentsList(current_document);
+                $rootScope.notifySuccess("Dokumentet ble oppdatert", 1000);
+                console.log(current_document);
+            }
+            catch(error){
+                console.log(error);
+                $rootScope.notifyError("Dokument ble ikke oppdater: " + error, 6000);
+            }
         }
         else {
-            console.log("current document");
-            console.log(current_document);
+            try{
+                //Clones current document and initialize it's values
+                var new_document = clone(current_document);
+                console.log(new_document);
+                initNewDocument(new_document);
+                console.log(new_document);
 
-            var new_document = clone(current_document);
-            new_document.id = ServiceFunction.generateNewId(documents);
-            new_document.populatedProfiles = [];
-            new_document.profiles = [];
-
-            //push profile id to standard
-            if(new_document.standardId){
-                documents_dict[new_document.standardId].profiles.push({id:new_document.id});
-                console.log(documents_dict[new_document.standardId].profiles);
-            }
-            if(new_document.previousDocumentId){
-                documents_dict[new_document.previousDocumentId].nextDocumentId = new_document.id;
-            }
-            documents.push(new_document);
-            generateDocumentDict(documents);
-            generateTopicsDocumentsDict(documents);
-            setCurrentDocument(new_document);
-            $rootScope.selected_document = current_document;
-            $rootScope.notifySuccess("Ny standard ble opprettet!", 1000);
-
-            /***********************************************************************************
-            $rootScope.post(
-                "documents/",
-                current_document,
-                function (data) {
-                    data.populatedProfiles = [];
-                    //push profile id to standard
-                    if(data.standardId){
-                        documents_dict[data.standardId].profiles.push({id:data.id});
-                        console.log(documents_dict[data.standardId].profiles);
-                    }
-                    if( data.previousDocumentId){
-                        documents_dict[data.previousDocumentId].nextDocumentId = data.id;
-                    }
-                    documents.push(data);
-                    generateDocumentDict(documents);
-                    generateTopicsDocumentsDict(documents);
-                    setCurrentDocument(data);
-                    $rootScope.selected_document = data;
-                    $rootScope.notifySuccess("Ny standard ble opprettet!", 1000);
+                //push profile id to standard
+                if(new_document.standardId){
+                    documents_dict[new_document.standardId].profiles.push({id:new_document.id});
+                    console.log(documents_dict[new_document.standardId].profiles);
                 }
-                ,
-                function (data) {
-                    var error = getErrorMessage(data);
-                    setCurrentDocument(current_document);
-                    $rootScope.notifyError("Dokumentet kunne ikke opprettes: " + error, 6000);
+                if(new_document.previousDocumentId){
+                    documents_dict[new_document.previousDocumentId].nextDocumentId = new_document.id;
                 }
-            );************************************************************************************/
 
+                //Adds newly created document to documents list and generates dictionaries based on the new list.
+                documents.push(new_document);
+                generateDocumentDict(documents);
+                generateTopicsDocumentsDict(documents);
+                setCurrentDocument(new_document);
+                $rootScope.selected_document = current_document;
+                $rootScope.notifySuccess("Nytt dokument ble opprettet!", 1000);
+            }
+            catch(error){
+                console.log(error);
+                setCurrentDocument(current_document);
+                $rootScope.notifyError("Nytt dokument kunne ikke opprettes: " + error, 6000);
+            }
         }
     }
 
     /**
-     * Function getting the error when updating / cerating a document fails.
+     * Function getting the error when updating / creating a document fails.
      * @param error
      * @returns {string}
      */
@@ -406,7 +401,6 @@ angular.module("ehelseEditor").factory("Document", ["$rootScope", "DocumentField
         a.previousDocumentId = b.previousDocumentId;
         a.description = b.description;
         a.sequence = b.sequence;
-        a.comment = b.comment;
         a.targetGroups = b.targetGroups;
         a.fields = b.fields;
         a.links = b.links;
@@ -513,6 +507,7 @@ angular.module("ehelseEditor").factory("Document", ["$rootScope", "DocumentField
         return newProfile(standardId);
     }
 
+    /******************************************************************************************
     function getAllDocuments() {
         var allDocuments = StorageHandler.getDocuments();
 
@@ -527,7 +522,6 @@ angular.module("ehelseEditor").factory("Document", ["$rootScope", "DocumentField
         generateDocumentDict(documents);
         generateTopicsDocumentsDict(documents);
 
-        /******************************************************************************************
         $rootScope.get(
             "documents/",
             function (data) {
@@ -545,8 +539,8 @@ angular.module("ehelseEditor").factory("Document", ["$rootScope", "DocumentField
             function () {
                 console.log("Could not load documents");
             }
-        );*******************************************************************************************/
-    }
+        );
+    } *******************************************************************************************/
 
     function newVersion(document){
         var new_version = clone(document);
@@ -617,8 +611,6 @@ angular.module("ehelseEditor").factory("Document", ["$rootScope", "DocumentField
             }
         }
     }
-
-    getAllDocuments();
 
     function getAllAsDict(){
         return documents_dict;
