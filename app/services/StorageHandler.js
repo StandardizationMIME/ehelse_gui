@@ -1,6 +1,7 @@
 "use strict";
 
-angular.module("ehelseEditor").factory("StorageHandler", ["$rootScope", "FileUpload", function ($rootScope, FileUpload) {
+angular.module("ehelseEditor").factory("StorageHandler", ["$rootScope", "FileUpload",
+    function ($rootScope, FileUpload) {
 
     var input_list = FileUpload.getJsonFile();
 
