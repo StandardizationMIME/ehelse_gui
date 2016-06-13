@@ -165,7 +165,6 @@ angular.module("ehelseEditor").factory("StorageHandler", ["$rootScope", "FileUpl
             }
         }
         // Add profiles list to the documents with profiles
-        console.log(profiles);
         for (var index in profiles) {
             document_dict[index].profiles = profiles[index];
         }

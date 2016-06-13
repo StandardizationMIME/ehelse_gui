@@ -29,4 +29,4 @@ angular.module("ehelseEditor").directive('onReadFile', function ($parse) {
             });
         }
     };
-})
+});

@@ -52,8 +52,9 @@ angular.module("ehelseEditor").controller("ToolbarController",
     $scope.openUploadFileModal = function () {
         $scope.deselectTopicAndDocument();
         $rootScope.openModal("app/components/uploadFile/uploadFIleModal.html", "UploadFileController");
-    }
+    };
 
+    // Download save file
     $scope.save = function () {
         FileUpload.saveToFile(DownloadList.getStorageList());
     }
