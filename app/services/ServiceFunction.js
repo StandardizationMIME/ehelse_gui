@@ -1,6 +1,6 @@
 "use strict";
 
-angular.module("ehelseEditor").factory("ServiceFunction", ["$rootScope", function($rootScope) {
+angular.module("ehelseEditor").factory("ServiceFunction", [function() {
 
     /**
      * Returns timestamp on database format

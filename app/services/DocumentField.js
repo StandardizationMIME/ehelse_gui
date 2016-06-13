@@ -6,9 +6,9 @@ angular.module("ehelseEditor").factory("DocumentField", ["$rootScope", "StorageH
     var document_types_fields_dict = {};
     var document_fields_dict = {};
 
-    initDocumentFields();
+    init();
 
-    function initDocumentFields(){
+    function init(){
         Array.prototype.push.apply(document_fields, StorageHandler.getDocumentFields().documentFields);
         generateDocumentFieldDict(document_fields);
         generateDocumentFieldTypeDict(document_fields);
@@ -280,6 +280,7 @@ angular.module("ehelseEditor").factory("DocumentField", ["$rootScope", "StorageH
     }
 
     return {
+        init: init,
         document_fields : document_fields,
         getFieldsByDocumentTypeId: getFieldsByDocumentTypeId,
         document_fields_dict: document_fields_dict,

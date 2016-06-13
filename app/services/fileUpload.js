@@ -1,6 +1,8 @@
 "use strict";
 
-angular.module("ehelseEditor").factory("FileUpload", ["$rootScope", function ($rootScope) {
+angular.module("ehelseEditor").factory("FileUpload",
+    ["$rootScope",
+    function ($rootScope) {
 
     var json_object_from_file = {};
 
@@ -23,6 +25,7 @@ angular.module("ehelseEditor").factory("FileUpload", ["$rootScope", function ($r
     function readContent($fileContent) {
         // var json_content = $fileContent;
         json_object_from_file = JSON.parse($fileContent);
+
     }
 
 

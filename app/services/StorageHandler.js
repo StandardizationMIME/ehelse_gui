@@ -3,7 +3,40 @@
 angular.module("ehelseEditor").factory("StorageHandler", ["$rootScope", "FileUpload",
     function ($rootScope, FileUpload) {
 
-    var input_list = FileUpload.getJsonFile();
+    var input_list = [];
+
+    init();
+
+    function init(){
+        input_list = FileUpload.getJsonFile();
+        if(!input_list.documents){
+            input_list.documents = [];
+        }
+        if(!input_list.status){
+            input_list.status = [];
+        }
+        if(!input_list.mandatory){
+            input_list.mandatory = [];
+        }
+        if(!input_list.actions){
+            input_list.actions = [];
+        }
+        if(!input_list.documentTypes){
+            input_list.documentTypes = [];
+        }
+        if(!input_list.linkCategories){
+            input_list.linkCategories = [];
+        }
+        if(!input_list.documentFields){
+            input_list.documentFields = [];
+        }
+        if(!input_list.topics){
+            input_list.topics = [];
+        }
+        if(!input_list.archivedDocuments){
+            input_list.archivedDocuments = [];
+        }
+    }
 
     var SORT_ON_SEQUENCE = function (a, b) { // Constant for sequence sort (ascending)
         return a.sequence - b.sequence;
@@ -175,6 +208,7 @@ angular.module("ehelseEditor").factory("StorageHandler", ["$rootScope", "FileUpl
     }
 
     return {
+        init: init,
         getActions: getActions,
         getDocuments: getDocuments,
         getDocumentFields: getDocumentFields,
