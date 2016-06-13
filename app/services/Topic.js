@@ -99,20 +99,33 @@ angular.module("ehelseEditor").factory("Topic", ["$rootScope", "StorageHandler",
      * Function updating the content of an existing topic.
      *
      * Moves the topic to the correct topic list if the parent_id is changed
-     * @param data
+     * @param topic
      */
-    function updateTopic(data){
-        var old_topic = topics_dict[data.id];
+    function updateTopic(topic){
+        updateTopicValues(topic);
+        var old_topic = topics_dict[topic.id];
         var children = old_topic.children;
-        if(old_topic.parentId != data.parentId){
+        if(old_topic.parentId != topic.parentId){
             removeById(old_topic.id);
-            setTopic(topics_dict[data.id], data);
+            setTopic(topics_dict[topic.id], topic);
             addTopic(old_topic);
         }
         else{
-            setTopic(topics_dict[data.id], data);
+            setTopic(topics_dict[topic.id], topic);
         }
-        topics_dict[data.id].children = children;
+        topics_dict[topic.id].children = children;
+    }
+
+    function initNewTopicValues(topic){
+        topic.id = ServiceFunction.generateNewId(topics);
+        topic.children = [];
+        topic.createdTimestamp = ServiceFunction.getTimestamp();
+        topic.lastEditTimestamp = null;
+        topic.comment = null;
+    }
+
+    function updateTopicValues(topic){
+        topic.lastEditTimestamp = ServiceFunction.getTimestamp();
     }
 
     /**
@@ -126,8 +139,8 @@ angular.module("ehelseEditor").factory("Topic", ["$rootScope", "StorageHandler",
         }
 
         if(topic.id){
-
             updateTopic(topic);
+            console.log(topic);
             generateTopicOptionsList(topics);
             $rootScope.notifySuccess("Tema ble oppdatert",1000);
 
@@ -146,12 +159,8 @@ angular.module("ehelseEditor").factory("Topic", ["$rootScope", "StorageHandler",
             //********************************************************************************
         }
         else{
-            topic.id = ServiceFunction.generateNewId(topics);
-            topic.children = [];
-
-            /******************* FIKS ORDENTLIG TIMESTAMP *************************************/
-            topic.timestamp = "...";
-
+            initNewTopicValues(topic);
+            console.log(topic);
             addTopic(topic);
             $rootScope.notifySuccess("Nytt tema ble opprettet!", 1000);
             console.log("Tema ble opprettet");

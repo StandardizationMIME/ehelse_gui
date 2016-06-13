@@ -154,9 +154,10 @@ angular.module("ehelseEditor").factory("Document", ["$rootScope", "DocumentField
         document.populatedProfiles = [];
         document.profiles = [];
         document.createdTimestamp = ServiceFunction.getTimestamp();
+        document.lastEditTimestamp = null;
     }
 
-    function updateDocument(document){
+    function updateDocumentValues(document){
         document.lastEditTimestamp = ServiceFunction.getTimestamp();
         document.populatedProfiles = [];
     }
@@ -167,87 +168,50 @@ angular.module("ehelseEditor").factory("Document", ["$rootScope", "DocumentField
     function submitCurrentDocument() {
         current_document.populatedProfiles.length = 0;
         if (current_document.id) {
-            updateDocument(current_document);
-            setCurrentDocument(current_document);
-            updateDocumentInDocumentsList(current_document);
-            $rootScope.notifySuccess("Dokumentet ble oppdatert", 1000);
-
-            /*****************************************************************************
-            $rootScope.put(
-                "documents/" + current_document.id,
-                current_document,
-                function (data) {
-                    data.populatedProfiles = [];
-                    setCurrentDocument(current_document);
-                    updateDocumentInDocumentsList(data);
-                    $rootScope.notifySuccess("Dokumentet ble oppdatert", 1000);
-                }
-                ,
-                function (data) {
-                    var error = getErrorMessage(data);
-                    setCurrentDocument(current_document);
-                    $rootScope.notifyError("Dokumentet kunne ikke opprettes: " + error, 6000);
-                }
-            );******************************************************************************/
+            try{
+                updateDocumentValues(current_document);
+                setCurrentDocument(current_document);
+                updateDocumentInDocumentsList(current_document);
+                $rootScope.notifySuccess("Dokumentet ble oppdatert", 1000);
+            }
+            catch(error){
+                console.log(error);
+                $rootScope.notifyError("Dokument ble ikke oppdater: " + error, 6000);
+            }
         }
         else {
-            console.log("current document");
-            console.log(current_document);
+            try{
+                //Clones current document and initialize it's values
+                var new_document = clone(current_document);
+                initNewDocument(new_document);
 
-            var new_document = clone(current_document);
-            new_document.id = ServiceFunction.generateNewId(documents);
-            new_document.populatedProfiles = [];
-            new_document.profiles = [];
-
-            //push profile id to standard
-            if(new_document.standardId){
-                documents_dict[new_document.standardId].profiles.push({id:new_document.id});
-                console.log(documents_dict[new_document.standardId].profiles);
-            }
-            if(new_document.previousDocumentId){
-                documents_dict[new_document.previousDocumentId].nextDocumentId = new_document.id;
-            }
-            documents.push(new_document);
-            generateDocumentDict(documents);
-            generateTopicsDocumentsDict(documents);
-            setCurrentDocument(new_document);
-            $rootScope.selected_document = current_document;
-            $rootScope.notifySuccess("Ny standard ble opprettet!", 1000);
-
-            /***********************************************************************************
-            $rootScope.post(
-                "documents/",
-                current_document,
-                function (data) {
-                    data.populatedProfiles = [];
-                    //push profile id to standard
-                    if(data.standardId){
-                        documents_dict[data.standardId].profiles.push({id:data.id});
-                        console.log(documents_dict[data.standardId].profiles);
-                    }
-                    if( data.previousDocumentId){
-                        documents_dict[data.previousDocumentId].nextDocumentId = data.id;
-                    }
-                    documents.push(data);
-                    generateDocumentDict(documents);
-                    generateTopicsDocumentsDict(documents);
-                    setCurrentDocument(data);
-                    $rootScope.selected_document = data;
-                    $rootScope.notifySuccess("Ny standard ble opprettet!", 1000);
+                //push profile id to standard
+                if(new_document.standardId){
+                    documents_dict[new_document.standardId].profiles.push({id:new_document.id});
+                    console.log(documents_dict[new_document.standardId].profiles);
                 }
-                ,
-                function (data) {
-                    var error = getErrorMessage(data);
-                    setCurrentDocument(current_document);
-                    $rootScope.notifyError("Dokumentet kunne ikke opprettes: " + error, 6000);
+                if(new_document.previousDocumentId){
+                    documents_dict[new_document.previousDocumentId].nextDocumentId = new_document.id;
                 }
-            );************************************************************************************/
 
+                //Adds newly created document to documents list and generates dictionaries based on the new list.
+                documents.push(new_document);
+                generateDocumentDict(documents);
+                generateTopicsDocumentsDict(documents);
+                setCurrentDocument(new_document);
+                $rootScope.selected_document = current_document;
+                $rootScope.notifySuccess("Nytt dokument ble opprettet!", 1000);
+            }
+            catch(error){
+                console.log(error);
+                setCurrentDocument(current_document);
+                $rootScope.notifyError("Nytt dokument kunne ikke opprettes: " + error, 6000);
+            }
         }
     }
 
     /**
-     * Function getting the error when updating / cerating a document fails.
+     * Function getting the error when updating / creating a document fails.
      * @param error
      * @returns {string}
      */
