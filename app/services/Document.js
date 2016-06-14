@@ -52,6 +52,7 @@ angular.module("ehelseEditor").factory("Document", ["$rootScope", "DocumentField
             internalId: null,
             hisNumber: null,
             profiles: [],
+            populatedProfiles: [],
             links: [],
             fields: [],
             targetGroups: []
@@ -71,6 +72,7 @@ angular.module("ehelseEditor").factory("Document", ["$rootScope", "DocumentField
     function init(){
         try{
             var allDocuments = StorageHandler.getDocuments();
+            console.log(allDocuments);
             documents.length = 0;
 
             for(var i = 0; i < allDocuments.documents.length; i++){
@@ -283,6 +285,9 @@ angular.module("ehelseEditor").factory("Document", ["$rootScope", "DocumentField
      */
     function deleteCurrentDocument() {
         try{
+            var archived_document = clone(documents_dict[current_document.id]);
+            StorageHandler.addArchivedDocumentsById(archived_document);
+
             nullifyPreviousAndNextDocumentIdValues();
             var current_id = current_document.id;
 
@@ -297,8 +302,6 @@ angular.module("ehelseEditor").factory("Document", ["$rootScope", "DocumentField
                     }
                 }
             }
-            var archived_document = clone(documents_dict[current_document.id]);
-            StorageHandler.addArchivedDocumentsById(archived_document);
             deleteCurrentDocumentFromDocumentsList();
             $rootScope.notifySuccess("Dokumentet ble slettet", 1000);
             $rootScope.changeContentView("");
