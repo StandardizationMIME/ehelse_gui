@@ -240,8 +240,6 @@ angular.module("ehelseEditor").factory("Document", ["$rootScope", "DocumentField
 
             documents_dict[current_document.previousDocumentId].populatedProfiles = [];
             updateDocumentInDocumentsList(documents_dict[current_document.previousDocumentId]);
-            console.log(documents_dict[current_document.previousDocumentId]);
-            console.log("Data update kjører");
 
             /*************************************************************************************
             $rootScope.put(
@@ -265,8 +263,6 @@ angular.module("ehelseEditor").factory("Document", ["$rootScope", "DocumentField
 
             documents_dict[current_document.nextDocumentId].populatedProfiles = [];
             updateDocumentInDocumentsList(documents_dict[current_document.nextDocumentId]);
-            console.log(documents_dict[current_document.nextDocumentId]);
-            console.log("Data update kjører");
 
             /***********************************************************
             $rootScope.put(
