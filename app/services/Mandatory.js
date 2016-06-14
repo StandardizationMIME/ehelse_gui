@@ -9,25 +9,16 @@ angular.module("ehelseEditor").factory("Mandatory", ["$rootScope", "StorageHandl
     init();
 
     function init(){
-        Array.prototype.push.apply(mandatory, StorageHandler.getMandatory().mandatory);
-        generateMandatoryDict(mandatory);
-        generateMandatoryOptionList(mandatory);
-    }
-
-    /**********************************************************************************************
-     * Function retrieving mandatory from the server
-     */
-    /*$rootScope.get(
-        "mandatory/",
-        function ( data ){
-            Array.prototype.push.apply(mandatory, data.mandatory);
+        try{
+            Array.prototype.push.apply(mandatory, StorageHandler.getMandatory().mandatory);
             generateMandatoryDict(mandatory);
             generateMandatoryOptionList(mandatory);
-        },
-        function (data) {
-            console.log("No document types found");
         }
-    );*********************************************************************************************/
+        catch(error){
+            console.log("Mandatories could not be loaded: " + error);
+            $rootScope.notifyError("Obligatoriskheter kunne ikke lastes: " + error, 6000);
+        }
+    }
 
     /**
      * Function creating a new mandatory
@@ -127,22 +118,15 @@ angular.module("ehelseEditor").factory("Mandatory", ["$rootScope", "StorageHandl
      * @param mandatory
      */
     function deleteMandatory(mandatory) {
-        removeMandatory(mandatory);
-        generateMandatoryOptionList(mandatory);
-        $rootScope.notifySuccess("Obligatoriskhet ble slettet!", 1000);
-
-        /*********************************************************************************************
-        $rootScope.delete(
-            "mandatory/" + mandatory.id,
-            function () {
-                removeMandatory(mandatory);
-                generateMandatoryOptionList(mandatory);
-                $rootScope.notifySuccess("Obligatoriskhet ble slettet!", 1000);
-            },
-            function () {
-                $rootScope.notifyError("Kunne ikke slette obligatoriskhet", 6000);
-            }
-        );*********************************************************************************************/
+        try{
+            removeMandatory(mandatory);
+            generateMandatoryOptionList(mandatory);
+            $rootScope.notifySuccess("Obligatoriskhet ble slettet!", 1000);
+        }
+        catch(error){
+            console.log("Mandatory-value could not be deleted: " + error);
+            $rootScope.notifyError("Obligatoriskhet ble ikke slettet: " + error, 6000);
+        }
     }
 
     /**
@@ -153,42 +137,27 @@ angular.module("ehelseEditor").factory("Mandatory", ["$rootScope", "StorageHandl
      */
     function submit(man){
         if(man.id){
-            set(mandatory_dict[man.id], man);
-            generateMandatoryDict(mandatory);
-            generateMandatoryOptionList(mandatory);
-            $rootScope.notifySuccess("Obligatoriskhet ble oppdatert", 1000);
-
-            /*********************************************************************************************
-            $rootScope.put("mandatory/"+man.id,
-                man,
-                function(data){
-                    set(mandatory_dict[data.id], data);
-                    generateMandatoryDict(mandatory);
-                    generateMandatoryOptionList(mandatory);
-                    $rootScope.notifySuccess("Obligatoriskhet ble oppdatert",1000);
-
-                },
-                function(data){
-                    $rootScope.notifyError("Obligatoriskhet ble ikke oppdatert.",6000);
-                }
-            );*********************************************************************************************/
+            try{
+                set(mandatory_dict[man.id], man);
+                generateMandatoryDict(mandatory);
+                generateMandatoryOptionList(mandatory);
+                $rootScope.notifySuccess("Obligatoriskhet ble oppdatert", 1000);
+            }
+            catch(error){
+                console.log("Mandatory-value could not be updated: " + error);
+                $rootScope.notifyError("Obligatoriskhet ble ikke oppdatert: " + error, 6000);
+            }
         }
         else{
-            man.id = ServiceFunction.generateNewId(mandatory);
-            $rootScope.notifySuccess("Ny obligatoriskhet ble opprettet", 1000);
-            add(man);
-
-            /*********************************************************************************************
-            $rootScope.post(
-                "mandatory/",
-                man,
-                function(data){
-                    $rootScope.notifySuccess("Ny obligatoriskhet ble opprettet.",1000);
-                    add(data);
-                },function(){
-                    $rootScope.notifyError("Obligatoriskhet ble ikke opprettet.",6000);
-                }
-            );*********************************************************************************************/
+            try{
+                man.id = ServiceFunction.generateNewId(mandatory);
+                $rootScope.notifySuccess("Ny obligatoriskhet ble opprettet", 1000);
+                add(man);
+            }
+            catch(error){
+                console.log("Mandatory-value could not be created: " + error);
+                $rootScope.notifyError("Obligatoriskhet ble ikke opprettet: " + error, 6000);
+            }
         }
     }
 

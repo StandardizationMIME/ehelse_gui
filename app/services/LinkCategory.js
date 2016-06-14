@@ -7,27 +7,16 @@ angular.module("ehelseEditor").factory("LinkCategory", ["$rootScope", "StorageHa
     init();
 
     function init(){
-        link_categories.length = 0;
-        Array.prototype.push.apply(link_categories, StorageHandler.getLinkCategories().linkCategories);
-        generateLinkCategoryDict();
-    }
-
-    /**
-     * Function call used to retrieve link categories from the server
-     */
-    /************************************************************************************
-    $rootScope.get(
-        "link-categories",
-        function ( data ){
+        try{
             link_categories.length = 0;
-            Array.prototype.push.apply(link_categories, data.link_categories);
+            Array.prototype.push.apply(link_categories, StorageHandler.getLinkCategories().linkCategories);
             generateLinkCategoryDict();
-
-        },
-        function (data) {
-            console.log("No Link Categories found");
         }
-    );*************************************************************************************/
+        catch(error){
+            console.log("Link categories could not be loaded: " + error);
+            $rootScope.notifyError("Linkkategorier kunne ikke lastes: " + error, 6000);
+        }
+    }
 
     /**
      * Function used to create new LinkCategory objects.
@@ -95,40 +84,26 @@ angular.module("ehelseEditor").factory("LinkCategory", ["$rootScope", "StorageHa
      */
     function submit(link_category){
         if(link_category.id){
-            set(link_categories_dict[link_category.id], link_category);
-            generateLinkCategoryDict(link_categories);
-            $rootScope.notifySuccess("Lenke-kategori ble oppdatert",1000);
-
-            /******************************************************************************
-            $rootScope.put(
-                "link-categories/"+link_category.id,
-                link_category,
-                function(data){
-                    set(link_categories_dict[data.id], data);
-                    generateLinkCategoryDict(link_categories);
-                    $rootScope.notifySuccess("Lenke-kategori ble oppdatert",1000);
-                },
-                function(data){
-                    $rootScope.notifyError("Lenke-kategori ble ikke oppdatert.",6000);
-                }
-            );*******************************************************************************/
+            try{
+                set(link_categories_dict[link_category.id], link_category);
+                generateLinkCategoryDict(link_categories);
+                $rootScope.notifySuccess("Lenke-kategori ble oppdatert",1000);
+            }
+            catch(error){
+                console.log("Link category could not be updated: " + error);
+                $rootScope.notifyError("Linkkategori ble ikke oppdatert: " + error, 6000);
+            }
         }
         else{
-            link_category.id = ServiceFunction.generateNewId(link_category);
-            $rootScope.notifySuccess("Ny målgruppe ble opprettet.",1000);
-            add(link_category);
-
-            /********************************************************************************
-            $rootScope.post(
-                "link-categories/",
-                link_category,
-                function(data){
-                    $rootScope.notifySuccess("Ny målgruppe ble opprettet.",1000);
-                    add(data);
-                },function(){
-                    $rootScope.notifyError("Målgruppe ble ikke opprettet.",6000);
-                }
-            );********************************************************************************/
+            try{
+                link_category.id = ServiceFunction.generateNewId(link_category);
+                $rootScope.notifySuccess("Ny målgruppe ble opprettet.",1000);
+                add(link_category);
+            }
+            catch(error){
+                console.log("Link category could not be created: " + error);
+                $rootScope.notifyError("Linkkategori ble ikke opprettet: " + error, 6000);
+            }
         }
     }
 
@@ -150,23 +125,15 @@ angular.module("ehelseEditor").factory("LinkCategory", ["$rootScope", "StorageHa
      * @param linkCategory
      */
     function deleteLinkCategory(linkCategory){
-
-        removeLinkCategory(linkCategory);
-        generateLinkCategoryDict();
-        $rootScope.notifySuccess("Link-kategorien ble slettet!", 1000);
-
-        /*********************************************************************************************
-        $rootScope.delete(
-            "link-categories/"+ linkCategory.id,
-            function () {
-                removeLinkCategory(linkCategory);
-                generateLinkCategoryDict();
-                $rootScope.notifySuccess("Link-kategorien ble slettet!", 1000);
-            },
-            function () {
-                $rootScope.notifyError("Kunne ikke slette", 6000);
-            }
-        );**********************************************************************************************/
+        try{
+            removeLinkCategory(linkCategory);
+            generateLinkCategoryDict();
+            $rootScope.notifySuccess("Link-kategorien ble slettet!", 1000);
+        }
+        catch(error){
+            console.log("Link category could not be deleted: " + error);
+            $rootScope.notifyError("Linkkategori ble ikke slettet: " + error, 6000);
+        }
     }
 
     function getAllAsDict(){
