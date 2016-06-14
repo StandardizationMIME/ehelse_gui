@@ -41,10 +41,17 @@ angular.module("ehelseEditor").factory("ServiceFunction", [function() {
         }
     }
 
-    return {
-        getTimestamp: getTimestamp,
-        generateNewId: generateNewId
+    /**
+     * Returns a clone of a multidimensional array
+     * @param list
+     */
+    function cloneObject(list) {
+        return (JSON.parse(JSON.stringify(list)));
     }
 
-
+    return {
+        getTimestamp: getTimestamp,
+        generateNewId: generateNewId,
+        cloneObject: cloneObject
+    }
 }]);

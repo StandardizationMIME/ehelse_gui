@@ -1,9 +1,14 @@
 "use strict";
 
 angular.module("ehelseEditor").factory("DownloadList",
-    ["$rootScope", "FileUpload", "StorageHandler", "Action", "Document", "DocumentField", "DocumentType", "LinkCategory", "Mandatory", "Status", "TargetGroup", "Topic",
-    function ($rootScope, FileUpload, StorageHandler, Action, Document, DocumentField, DocumentType, LinkCategory, Mandatory, Status, TargetGroup, Topic) {
+    ["$rootScope", "FileUpload", "ServiceFunction", "StorageHandler", "Action", "Document", "DocumentField", "DocumentType", "LinkCategory", "Mandatory", "Status", "TargetGroup", "Topic",
+    function ($rootScope, FileUpload, ServiceFunction, StorageHandler, Action, Document, DocumentField, DocumentType, LinkCategory, Mandatory, Status, TargetGroup, Topic) {
 
+        /**
+         * Returns list of topics ready for storage
+         * @param topics
+         * @returns {Array}
+         */
         function constructOutputTopics(topics) {
             return (getFlatTopics(topics));
         }
@@ -17,8 +22,9 @@ angular.module("ehelseEditor").factory("DownloadList",
             var result = [];
             for (var i = 0; i < list.length; i++) {
                 var topic = list[i];
+                console.log(topic);
                 // Topic has children, add children to the result list
-                if (topic.children.length > 0) {
+                if (topic.children) {
                     var children = getFlatTopics(topic.children);
                     // Add each children to the result list
                     for (var j = 0; j < children.length; j++) {
@@ -41,11 +47,30 @@ angular.module("ehelseEditor").factory("DownloadList",
             var output_documents = [];
             for (var i = 0; i < documents.length; i++) {
                 var document = documents[i];
-                document["isArchived"] = 0;
                 delete document["profiles"];
+
                 output_documents.push(document);
             }
             return output_documents;
+        }
+
+        /**
+         * Returns deep copy of documents
+         *
+         * Removes the list populatedProfiles to avoid circular dependencies.
+         * @param list
+         * @returns {Array}
+         */
+        function cloneDocuments(list) {
+            var clone = [];
+            for (var element in list) {
+                var element_clone = ServiceFunction.cloneObject(element);
+                if (element_clone.populatedProfiles) {
+                    delete element_clone["populatedProfiles"];
+                }
+                clone.push(element_clone);
+            }
+            return clone;
         }
 
         /**
@@ -60,21 +85,10 @@ angular.module("ehelseEditor").factory("DownloadList",
             output_list["linkCategories"] = LinkCategory.getAll();
             output_list["mandatory"] = Mandatory.getAll();
             output_list["status"] = Status.getAll();
-            output_list["topics"] = constructOutputTopics(Topic.getAll());
-            output_list["documents"] = constructOutputDocuments(Document.getAll());
-            output_list["archivedDocuments"] = StorageHandler.getArchivedDocuments();
+            output_list["topics"] = constructOutputTopics(ServiceFunction.cloneObject(Topic.getAll()));
+            output_list["documents"] = constructOutputDocuments(cloneDocuments(Document.getAll()));
+            output_list["archivedDocuments"] = cloneDocuments(StorageHandler.getArchivedDocuments());
 
-            /*
-            output_list.push({"actions": Action.getAll()});
-            output_list.push({"documentFields": DocumentField.document_fields}); // TODO: implement DocumentField.getAll()
-            output_list.push({"documentTypes": DocumentType.document_types}); // TODO: implement DocumentType.getAll()
-            output_list.push({"linkCategories": LinkCategory.getAll()});
-            output_list.push({"mandatory": Mandatory.getAll()});
-            output_list.push({"status": Status.getAll()});
-            output_list.push({"topics": constructOutputTopics(Topic.getAll())});
-            output_list.push({"documents": constructOutputDocuments(Document.getAll())});
-            output_list.push({"archivedDocuments": StorageHandler.getArchivedDocuments()});    // TODO: implement archived documents list.
-            */
             return output_list;
         }
 
