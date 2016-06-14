@@ -97,6 +97,7 @@ angular.module("ehelseEditor").factory("ServiceFunction", [function() {
         getTimestamp: getTimestamp,
         generateNewId: generateNewId,
         cloneObject: cloneObject,
-        cloneDocuments: cloneDocuments
+        cloneDocuments: cloneDocuments,
+        cloneDocument: cloneDocument
     }
 }]);
