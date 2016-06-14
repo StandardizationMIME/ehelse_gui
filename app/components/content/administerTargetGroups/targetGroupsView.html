@@ -49,7 +49,7 @@
             <tbody class="tg-tbody shadow-below">
 
                 <!-- List of all target groups in the system -->
-                <tr ng-repeat="group in targetGroups | orderBy:sortType:sortReverse | filter: searchText">
+                <tr ng-repeat="group in targetGroups | orderBy:sortType:sortReverse | filter: searchText" ng-hide="group.isArchived">
 
                     <!-- Target group info -->
                     <td class="tg">{{group.name}}</td>

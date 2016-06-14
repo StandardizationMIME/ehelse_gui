@@ -26,7 +26,8 @@ angular.module("ehelseEditor").factory("LinkCategory", ["$rootScope", "StorageHa
         return {
             id: null,
             name: "",
-            description: ""
+            description: "",
+            isArchived: 0
         }
     }
 
@@ -52,6 +53,7 @@ angular.module("ehelseEditor").factory("LinkCategory", ["$rootScope", "StorageHa
         a.id = b.id;
         a.name = b.name;
         a.description = b.description;
+        a.isArchived = b.isArchived;
     }
 
     /**
@@ -76,6 +78,11 @@ angular.module("ehelseEditor").factory("LinkCategory", ["$rootScope", "StorageHa
         }
     }
 
+    function initNewLinkCategoryValues(link_category){
+        link_category.id = ServiceFunction.generateNewId(link_category);
+        link_category.isArchived = 0;
+    }
+
     /**
      * Function creating or updating the link category based on if it got an id.
      *
@@ -96,7 +103,7 @@ angular.module("ehelseEditor").factory("LinkCategory", ["$rootScope", "StorageHa
         }
         else{
             try{
-                link_category.id = ServiceFunction.generateNewId(link_category);
+                initNewLinkCategoryValues(link_category);
                 $rootScope.notifySuccess("Ny målgruppe ble opprettet.",1000);
                 add(link_category);
             }
@@ -111,11 +118,8 @@ angular.module("ehelseEditor").factory("LinkCategory", ["$rootScope", "StorageHa
      * Function removing a link category from the link category list.
      * @param linkCategory
      */
-    function removeLinkCategory(linkCategory){
-        var index = link_categories.indexOf(linkCategory);
-        if (index > -1) {
-            link_categories.splice(index, 1);
-        }
+    function archiveLinkCategory(linkCategory){
+        linkCategory.isArchived = 1;
     }
 
     /**
@@ -126,13 +130,13 @@ angular.module("ehelseEditor").factory("LinkCategory", ["$rootScope", "StorageHa
      */
     function deleteLinkCategory(linkCategory){
         try{
-            removeLinkCategory(linkCategory);
+            archiveLinkCategory(linkCategory);
             generateLinkCategoryDict();
-            $rootScope.notifySuccess("Link-kategorien ble slettet!", 1000);
+            $rootScope.notifySuccess("Link-kategorien ble arkivert!", 1000);
         }
         catch(error){
-            console.log("Link category could not be deleted: " + error);
-            $rootScope.notifyError("Linkkategori ble ikke slettet: " + error, 6000);
+            console.log("Link category could not be archived: " + error);
+            $rootScope.notifyError("Linkkategori ble ikke arkivert: " + error, 6000);
         }
     }
 

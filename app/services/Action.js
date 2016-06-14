@@ -28,7 +28,8 @@ angular.module("ehelseEditor").factory("Action", ["$rootScope", "StorageHandler"
         return {
             id: null,
             name: "",
-            description: ""
+            description: "",
+            isArchived: 0
         };
     }
 
@@ -44,6 +45,7 @@ angular.module("ehelseEditor").factory("Action", ["$rootScope", "StorageHandler"
         a.id = b.id;
         a.name = b.name;
         a.description = b.description;
+        a.isArchived = b.isArchived;
     }
 
     /**
@@ -95,6 +97,11 @@ angular.module("ehelseEditor").factory("Action", ["$rootScope", "StorageHandler"
         }
     }
 
+    function initNewActionValues(action){
+        action.id = ServiceFunction.generateNewId(actions);
+        action.isArchived = 0;
+    }
+
     /**
      * Function posting or updating an action based on if the action has an id or not.
      * @param action
@@ -115,7 +122,7 @@ angular.module("ehelseEditor").factory("Action", ["$rootScope", "StorageHandler"
         }
         else{
             try{
-                action.id = ServiceFunction.generateNewId(actions);
+                initNewActionValues(action);
                 add(action);
                 $rootScope.notifySuccess("Ny handling ble opprettet", 1000);
             }
@@ -130,11 +137,8 @@ angular.module("ehelseEditor").factory("Action", ["$rootScope", "StorageHandler"
      * Function removing an action from the action list and regeneration action_dict and action_option_list
      * @param action
      */
-    function removeAction(action) {
-        var index = actions.indexOf(action);
-        if (index > -1) {
-            actions.splice(index,1);
-        }
+    function archiveAction(action) {
+        action.isArchived = 1;
         generateActionsDict(actions);
         generateActionsOptionList(actions)
     }
@@ -145,12 +149,12 @@ angular.module("ehelseEditor").factory("Action", ["$rootScope", "StorageHandler"
      */
     function deleteAction(action) {
         try{
-            removeAction(action);
-            $rootScope.notifySuccess("Handling ble slettet!", 1000);
+            archiveAction(action);
+            $rootScope.notifySuccess("Handling ble arkivert!", 1000);
         }
         catch(error){
-            $rootScope.notifyError("Handling ble ikke slettet: " + error, 6000);
-            console.log("Action could not be deleted" + error);
+            $rootScope.notifyError("Handling ble ikke arkivert: " + error, 6000);
+            console.log("Action could not be archived" + error);
         }
     }
 

@@ -81,6 +81,11 @@ angular.module("ehelseEditor").factory("TargetGroup", ["$rootScope", "StorageHan
         addTargetGroupToTargetGroupOptionList(group);
     }
 
+    function initNewTargetGroupValues(targetGroup){
+        targetGroup.id = ServiceFunction.generateNewId(target_groups);
+        targetGroup.isArchived = 0;
+    }
+
     /**
      * Function creating or updating a target group based on if it got an id or not.
      * @param group
@@ -102,7 +107,7 @@ angular.module("ehelseEditor").factory("TargetGroup", ["$rootScope", "StorageHan
         }
         else{
             try{
-                group.id = ServiceFunction.generateNewId(target_groups);
+                initNewTargetGroupValues(group);
                 addTargetGroup(group);
                 $rootScope.notifySuccess("Ny målgruppe ble opprettet", 1000);
             }
@@ -117,11 +122,8 @@ angular.module("ehelseEditor").factory("TargetGroup", ["$rootScope", "StorageHan
      * Function removing a target group from the list of target groups.
      * @param id
      */
-    function removeById(id){
-        var index = target_groups.indexOf(target_groups_dict[id]);
-        if (index > -1) {
-            target_groups.splice(index, 1);
-        }
+    function archiveById(id){
+        target_groups[target_groups.indexOf(target_groups_dict[id])].isArchived = 1;
     }
 
     /**
@@ -131,7 +133,7 @@ angular.module("ehelseEditor").factory("TargetGroup", ["$rootScope", "StorageHan
     function deleteById(id){
         if(id){
             try{
-                removeById(id);
+                archiveById(id);
                 generateTargetGroupOptionsList(target_groups);
                 generateTargetGroupDict(target_groups);
                 $rootScope.notifySuccess("Målgruppe ble fjernet",1000);
@@ -153,7 +155,8 @@ angular.module("ehelseEditor").factory("TargetGroup", ["$rootScope", "StorageHan
             name: "",
             description: "",
             parentId:null,
-            abbreviation: ""
+            abbreviation: "",
+            isArchived: 0
         };
     }
 
@@ -170,6 +173,7 @@ angular.module("ehelseEditor").factory("TargetGroup", ["$rootScope", "StorageHan
         a.description = b.description;
         a.parentId = b.parentId;
         a.abbreviation = b.abbreviation;
+        a.isArchived = b.isArchived;
     }
 
     /**

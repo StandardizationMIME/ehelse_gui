@@ -28,7 +28,8 @@ angular.module("ehelseEditor").factory("Mandatory", ["$rootScope", "StorageHandl
         return {
             id: null,
             name: "",
-            description: ""
+            description: "",
+            isArchived: 0
         }
     }
 
@@ -55,6 +56,7 @@ angular.module("ehelseEditor").factory("Mandatory", ["$rootScope", "StorageHandl
         a.id = b.id;
         a.name = b.name;
         a.description = b.description;
+        a.isArchived = b.isArchived;
     }
 
     /**
@@ -102,11 +104,8 @@ angular.module("ehelseEditor").factory("Mandatory", ["$rootScope", "StorageHandl
      * Updates the mandatory dict and options list.
      * @param m
      */
-    function removeMandatory(m) {
-        var index = mandatory.indexOf(m);
-        if (index > -1) {
-            mandatory.splice(index,1);
-        }
+    function archiveMandatory(m) {
+        m.isArchived = 1;
         generateMandatoryDict(mandatory);
         generateMandatoryOptionList(mandatory);
     }
@@ -119,14 +118,19 @@ angular.module("ehelseEditor").factory("Mandatory", ["$rootScope", "StorageHandl
      */
     function deleteMandatory(mandatory) {
         try{
-            removeMandatory(mandatory);
+            archiveMandatory(mandatory);
             generateMandatoryOptionList(mandatory);
-            $rootScope.notifySuccess("Obligatoriskhet ble slettet!", 1000);
+            $rootScope.notifySuccess("Obligatoriskhet ble arkivert!", 1000);
         }
         catch(error){
-            console.log("Mandatory-value could not be deleted: " + error);
-            $rootScope.notifyError("Obligatoriskhet ble ikke slettet: " + error, 6000);
+            console.log("Mandatory-value could not be archived: " + error);
+            $rootScope.notifyError("Obligatoriskhet ble ikke arkivert: " + error, 6000);
         }
+    }
+
+    function initNewMandatoryValues(man){
+        man.id = ServiceFunction.generateNewId(mandatory);
+        man.isArchived = 0;
     }
 
     /**
@@ -150,7 +154,7 @@ angular.module("ehelseEditor").factory("Mandatory", ["$rootScope", "StorageHandl
         }
         else{
             try{
-                man.id = ServiceFunction.generateNewId(mandatory);
+                initNewMandatoryValues(man);
                 $rootScope.notifySuccess("Ny obligatoriskhet ble opprettet", 1000);
                 add(man);
             }
