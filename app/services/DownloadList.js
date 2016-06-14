@@ -22,7 +22,6 @@ angular.module("ehelseEditor").factory("DownloadList",
             var result = [];
             for (var i = 0; i < list.length; i++) {
                 var topic = list[i];
-                console.log(topic);
                 // Topic has children, add children to the result list
                 if (topic.children) {
                     var children = getFlatTopics(topic.children);
@@ -55,26 +54,6 @@ angular.module("ehelseEditor").factory("DownloadList",
         }
 
         /**
-         * Returns deep copy of documents
-         *
-         * Removes the list populatedProfiles to avoid circular dependencies.
-         * @param list
-         * @returns {Array}
-         */
-        function cloneDocuments(list) {
-            var clone = [];
-            for (var i = 0; i < list.length; i++) {
-                var element = list[i];
-                var element_clone = ServiceFunction.cloneObject(element);
-                if (element_clone.populatedProfiles) {
-                    delete element_clone["populatedProfiles"];
-                }
-                clone.push(element_clone);
-            }
-            return clone;
-        }
-
-        /**
          * Returns storage list
          * @returns {Array}
          */
@@ -88,8 +67,8 @@ angular.module("ehelseEditor").factory("DownloadList",
             output_list["targetGroups"] = TargetGroup.getAll();
             output_list["status"] = Status.getAll();
             output_list["topics"] = constructOutputTopics(ServiceFunction.cloneObject(Topic.getAll()));
-            output_list["documents"] = constructOutputDocuments(cloneDocuments(Document.getAll()));
-            output_list["archivedDocuments"] = cloneDocuments(StorageHandler.getArchivedDocuments());
+            output_list["documents"] = constructOutputDocuments(ServiceFunction.cloneDocuments(Document.getAll()));
+            output_list["archivedDocuments"] = ServiceFunction.cloneDocuments(StorageHandler.getArchivedDocuments());
 
             return output_list;
         }

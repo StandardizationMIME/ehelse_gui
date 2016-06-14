@@ -197,7 +197,7 @@ angular.module("ehelseEditor").factory("Document", ["$rootScope", "DocumentField
         current_document.populatedProfiles.length = 0;
         if (current_document.id) {
             try{
-                var archived_document = clone(current_document);
+                var archived_document = clone(documents_dict[current_document.id]);
                 StorageHandler.addArchivedDocumentsById(archived_document);
                 updateDocumentValues(current_document);
                 setCurrentDocument(current_document);
@@ -297,7 +297,7 @@ angular.module("ehelseEditor").factory("Document", ["$rootScope", "DocumentField
                     }
                 }
             }
-            var archived_document = clone(current_document);
+            var archived_document = clone(documents_dict[current_document.id]);
             StorageHandler.addArchivedDocumentsById(archived_document);
             deleteCurrentDocumentFromDocumentsList();
             $rootScope.notifySuccess("Dokumentet ble slettet", 1000);

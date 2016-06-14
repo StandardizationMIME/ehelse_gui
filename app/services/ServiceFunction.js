@@ -49,9 +49,55 @@ angular.module("ehelseEditor").factory("ServiceFunction", [function() {
         return (JSON.parse(JSON.stringify(list)));
     }
 
+    /**
+     * Returns deep copy of documents
+     *
+     * Removes the list populatedProfiles to avoid circular dependencies.
+     * @param list
+     * @returns {Array}
+     */
+    function cloneDocuments(list) {
+        var clone;
+        if (list instanceof Array) {
+            clone = [];
+            for (var i = 0; i < list.length; i++) {
+                var document_clone = cloneDocument(list[i]);
+                clone.push(document_clone);
+            }
+        } else {
+            clone = {};
+            for (var key in list) {
+                var document_list = [];
+                for (var i = 0; i < list[key].length; i++) {
+                    document_list.push(cloneDocument(list[key][i]));
+                }
+                clone[key] = document_list;
+            }
+        }
+        return clone;
+    }
+
+    /**
+     * Returns deep copy of document
+     * @param document
+     * @returns {{}}
+     */
+    function cloneDocument(document) {
+        var invalid_elements = ["populatedProfiles", "$$hashKey"];
+        var document_clone = {};
+        for (var element in document) {
+            if (invalid_elements.indexOf(element) < 0) {
+                document_clone[element] = document[element];
+            }
+        }
+        return document_clone;
+    }
+
     return {
         getTimestamp: getTimestamp,
         generateNewId: generateNewId,
-        cloneObject: cloneObject
+        cloneObject: cloneObject,
+        cloneDocuments: cloneDocuments,
+        cloneDocument: cloneDocument
     }
 }]);
