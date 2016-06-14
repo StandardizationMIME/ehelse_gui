@@ -22,7 +22,6 @@ angular.module("ehelseEditor").factory("DownloadList",
             var result = [];
             for (var i = 0; i < list.length; i++) {
                 var topic = list[i];
-                console.log(topic);
                 // Topic has children, add children to the result list
                 if (topic.children) {
                     var children = getFlatTopics(topic.children);
@@ -62,23 +61,16 @@ angular.module("ehelseEditor").factory("DownloadList",
          * @returns {Array}
          */
         function cloneDocuments(list) {
-
-            console.log("LIST: "); console.log(list);
             var clone;
-
             if (list instanceof Array) {
                 clone = [];
-                console.log("isArray");
                 for (var i = 0; i < list.length; i++) {
                     var document_clone = cloneDocument(list[i]);
                     clone.push(document_clone);
                 }
-
             } else {
                 clone = {};
-                console.log("isNOTArray");
                 for (var key in list) {
-                    console.log("kEYYYYYY"); console.log(key);
                     var document_list = [];
                     for (var i = 0; i < list[key].length; i++) {
                         document_list.push(cloneDocument(list[key][i]));
@@ -86,9 +78,6 @@ angular.module("ehelseEditor").factory("DownloadList",
                     clone[key] = document_list;
                 }
             }
-
-            console.log("CLONE: "); console.log(clone);
-            console.log(list);
             return clone;
         }
 
