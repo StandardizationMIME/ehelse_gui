@@ -10,26 +10,16 @@ angular.module("ehelseEditor").factory("Topic", ["$rootScope", "StorageHandler",
     init();
 
     function init(){
-        Array.prototype.push.apply(topics, StorageHandler.getTopics().topics);
-        generateTopicDict(topics);
-        generateTopicOptionsList(topics);
+        try{
+            Array.prototype.push.apply(topics, StorageHandler.getTopics().topics);
+            generateTopicDict(topics);
+            generateTopicOptionsList(topics);
+        }
+        catch(error){
+            console.log("Topics could not be loaded: " + error);
+            $rootScope.notifyError("Temaer kunne ikke lastes: " + error, 6000);
+        }
     }
-
-    /*********************************************************************************************************************
-     * function retrieving topics from the server
-     */
-    //$rootScope.get(
-    //    "topics/",
-    //    function ( data ){
-    //        Array.prototype.push.apply(topics, data.topics);
-    //        generateTopicDict(topics);
-    //        generateTopicOptionsList(topics);
-    //
-    //    },
-    //    function (data) {
-    //        console.log("No document types found");
-    //    }
-    //);*********************************************************************************************************************
 
     /**
      * Function generation topic option list with the topics id as key.
@@ -133,44 +123,29 @@ angular.module("ehelseEditor").factory("Topic", ["$rootScope", "StorageHandler",
         }
 
         if(topic.id){
-            updateTopic(topic);
-            console.log(topic);
-            generateTopicOptionsList(topics);
-            $rootScope.notifySuccess("Tema ble oppdatert",1000);
-
-            //********************************************************************************
-            //$rootScope.put("topics/"+topic.id,
-            //    topic,
-            //    function(data){
-            //        updateTopic(data);
-            //        generateTopicOptionsList(topics);
-            //        $rootScope.notifySuccess("Tema ble oppdatert",1000);
-            //
-            //    },
-            //    function(data){
-            //        $rootScope.notifyError("Tema ble ikke oppdatert.",6000);
-            //    });
-            //********************************************************************************
+            try{
+                updateTopic(topic);
+                console.log(topic);
+                generateTopicOptionsList(topics);
+                $rootScope.notifySuccess("Tema ble oppdatert",1000);
+            }
+            catch(error){
+                console.log("Topic could not be updated: " + error);
+                $rootScope.notifyError("Tema ble ikke oppdatert: " + error, 6000);
+            }
         }
         else{
-            initNewTopicValues(topic);
-            console.log(topic);
-            addTopic(topic);
-            $rootScope.notifySuccess("Nytt tema ble opprettet!", 1000);
-            console.log("Tema ble opprettet");
-
-            //********************************************************************************
-            //$rootScope.post(
-            //    "topics/",
-            //    topic,
-            //    function(data){
-            //        $rootScope.notifySuccess("Ny tema ble opprettet.",1000);
-            //        addTopic(data);
-            //    },function(){
-            //        $rootScope.notifyError("Tema ble ikke opprettet.",6000);
-            //    }
-            //);
-            //********************************************************************************
+            try{
+                initNewTopicValues(topic);
+                console.log(topic);
+                addTopic(topic);
+                $rootScope.notifySuccess("Nytt tema ble opprettet!", 1000);
+                console.log("Tema ble opprettet");
+            }
+            catch(error){
+                console.log("Topic could not be created: " + error);
+                $rootScope.notifyError("Tema ble ikke opprettet: " + error, 6000);
+            }
         }
     }
 
@@ -270,28 +245,15 @@ angular.module("ehelseEditor").factory("Topic", ["$rootScope", "StorageHandler",
      */
     function deleteById(id){
         if(id){
-
-            removeById(id);
-            $rootScope.notifySuccess("Topic ble fjernet",1000);
-            $rootScope.changeContentView("");
-
-            //************************************************************************************
-            //$rootScope.delete("topics/"+id,
-            //    function(data){
-            //        removeById(id);
-            //        $rootScope.notifySuccess("Topic ble fjernet",1000);
-            //        $rootScope.changeContentView("");
-            //
-            //    },
-            //    function(data){
-            //        if(data.message == "Element can't be deleted."){
-            //            $rootScope.notifyError("Temaer med tilknyttetde undertemaer og/eller dokumenter kan ikke slettes!", 6000);
-            //        }else{
-            //            $rootScope.notifyError("Uventet feil: Topic ble ikke fjernet.",4000);
-            //        }
-            //    }
-            //);
-            //************************************************************************************
+            try{
+                removeById(id);
+                $rootScope.notifySuccess("Topic ble fjernet",1000);
+                $rootScope.changeContentView("");
+            }
+            catch(error){
+                console.log("Topic could not be deleted: " + error);
+                $rootScope.notifyError("Tema ble ikke slettes: " + error, 6000);
+            }
         }
     }
 
