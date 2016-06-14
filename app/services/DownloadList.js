@@ -62,16 +62,45 @@ angular.module("ehelseEditor").factory("DownloadList",
          * @returns {Array}
          */
         function cloneDocuments(list) {
-            var clone = [];
-            for (var i = 0; i < list.length; i++) {
-                var element = list[i];
-                var element_clone = ServiceFunction.cloneObject(element);
-                if (element_clone.populatedProfiles) {
-                    delete element_clone["populatedProfiles"];
+
+            console.log("LIST: "); console.log(list);
+            var clone;
+
+            if (list instanceof Array) {
+                clone = [];
+                console.log("isArray");
+                for (var i = 0; i < list.length; i++) {
+                    var document_clone = cloneDocument(list[i]);
+                    clone.push(document_clone);
                 }
-                clone.push(element_clone);
+
+            } else {
+                clone = {};
+                console.log("isNOTArray");
+                for (var key in list) {
+                    console.log("kEYYYYYY"); console.log(key);
+                    var document_list = [];
+                    for (var i = 0; i < list[key].length; i++) {
+                        document_list.push(cloneDocument(list[key][i]));
+                    }
+                    clone[key] = document_list;
+                }
             }
+
+            console.log("CLONE: "); console.log(clone);
+            console.log(list);
             return clone;
+        }
+
+        function cloneDocument(document) {
+            var invalid_elements = ["populatedProfiles", "$$hashKey"];
+            var document_clone = {};
+            for (var element in document) {
+                if (invalid_elements.indexOf(element) < 0) {
+                    document_clone[element] = document[element];
+                }
+            }
+            return document_clone;
         }
 
         /**
