@@ -9,6 +9,7 @@ angular.module("ehelseEditor").factory("Status", ["$rootScope", "StorageHandler"
     init();
 
     function init(){
+        console.log(StorageHandler.getStatus().status);
         Array.prototype.push.apply(status, StorageHandler.getStatus().status);
         generateStatusOptionList(status);
         generateStatusDict(status);

@@ -9,6 +9,7 @@ angular.module("ehelseEditor").factory("Mandatory", ["$rootScope", "StorageHandl
     init();
 
     function init(){
+        console.log(StorageHandler.getMandatory().mandatory);
         Array.prototype.push.apply(mandatory, StorageHandler.getMandatory().mandatory);
         generateMandatoryDict(mandatory);
         generateMandatoryOptionList(mandatory);

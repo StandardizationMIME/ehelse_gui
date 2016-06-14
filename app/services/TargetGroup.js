@@ -9,6 +9,7 @@ angular.module("ehelseEditor").factory("TargetGroup", ["$rootScope", "StorageHan
     init();
 
     function init(){
+        console.log(StorageHandler.getTargetGroups().targetGroups);
         Array.prototype.push.apply(target_groups, StorageHandler.getTargetGroups().targetGroups);
         generateTargetGroupDict(target_groups);
         generateTargetGroupOptionsList(target_groups);
