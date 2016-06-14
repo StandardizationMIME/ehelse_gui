@@ -108,7 +108,6 @@ angular.module("ehelseEditor").factory("Topic", ["$rootScope", "StorageHandler",
     function initNewTopicValues(topic){
         topic.id = ServiceFunction.generateNewId(topics);
         topic.children = [];
-        topic.comment = null;
     }
 
 
@@ -136,9 +135,10 @@ angular.module("ehelseEditor").factory("Topic", ["$rootScope", "StorageHandler",
         }
         else{
             try{
-                initNewTopicValues(topic);
-                console.log(topic);
-                addTopic(topic);
+                var new_topic = clone(topic);
+                initNewTopicValues(new_topic);
+                console.log(new_topic);
+                addTopic(new_topic);
                 $rootScope.notifySuccess("Nytt tema ble opprettet!", 1000);
                 console.log("Tema ble opprettet");
             }
