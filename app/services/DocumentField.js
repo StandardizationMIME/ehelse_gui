@@ -9,26 +9,16 @@ angular.module("ehelseEditor").factory("DocumentField", ["$rootScope", "StorageH
     init();
 
     function init(){
-        Array.prototype.push.apply(document_fields, StorageHandler.getDocumentFields().documentFields);
-        generateDocumentFieldDict(document_fields);
-        generateDocumentFieldTypeDict(document_fields);
-    }
-
-    /**
-     * Function call retrieving document fields from the server.
-     */
-    /******************************************************************************************
-    $rootScope.get(
-        "document-fields",
-        function ( data ){
-            Array.prototype.push.apply(document_fields, data.documentFields);
+        try{
+            Array.prototype.push.apply(document_fields, StorageHandler.getDocumentFields().documentFields);
             generateDocumentFieldDict(document_fields);
             generateDocumentFieldTypeDict(document_fields);
-        },
-        function (data) {
-            console.log("No document types found");
         }
-    );*******************************************************************************************/
+        catch(error){
+            $rootScope.notifyError("Dokumentfelter kunne ikke lastes: " + error, 6000);
+            console.log("Document fields could not be loaded" + error);
+        }
+    }
 
     /**
      * Function used to generate a dict with the document fields split into dicts per document type.
@@ -96,44 +86,36 @@ angular.module("ehelseEditor").factory("DocumentField", ["$rootScope", "StorageH
      */
     function create(field, success, error){
 
-        var mandatoryString = null;
-        if(field.mandatory){
-            mandatoryString = "1";
-        }else{
-            mandatoryString = "0";
+        try{
+            var mandatoryString = null;
+            if(field.mandatory){
+                mandatoryString = "1";
+            }else{
+                mandatoryString = "0";
+            }
+            var sequenceInt = 1;
+            if(field.sequence){
+                sequenceInt = field.sequence;
+            }
+
+            var myField = {
+                "id": ServiceFunction.generateNewId(document_fields),
+                "name": field.name,
+                "description": field.description,
+                "sequence": sequenceInt,
+                "mandatory": mandatoryString,
+                "documentTypeId": $rootScope.typeId
+            };
+
+            document_fields.push(myField);
+            generateDocumentFieldDict(document_fields);
+            generateDocumentFieldTypeDict(document_fields);
+            success(myField);
         }
-        var sequenceInt = 1;
-        if(field.sequence){
-            sequenceInt = field.sequence;
+        catch(err){
+            console.log("Field could not be created: " + err);
+            error();
         }
-
-        var myField = {
-            "id": ServiceFunction.generateNewId(document_fields),
-            "name": field.name,
-            "description": field.description,
-            "sequence": sequenceInt,
-            "mandatory": mandatoryString,
-            "documentTypeId": $rootScope.typeId
-        };
-
-        document_fields.push(myField);
-        generateDocumentFieldDict(document_fields);
-        generateDocumentFieldTypeDict(document_fields);
-        success(myField);
-
-        /***************************************************************************
-        $rootScope.post(
-            "document-fields/",
-            myField,
-            function(data){
-                document_fields.push(data);
-                generateDocumentFieldDict(document_fields);
-                generateDocumentFieldTypeDict(document_fields);
-                success(data);
-            },
-            error
-        );****************************************************************************/
-
     }
 
     /**
@@ -143,44 +125,34 @@ angular.module("ehelseEditor").factory("DocumentField", ["$rootScope", "StorageH
      * @param error
      */
     function edit(field, success, error){
+        try{
+            var mandatoryString = null;
+            if(field.mandatory){
+                mandatoryString = "1";
+            }else{
+                mandatoryString = "0";
+            }
 
-        var mandatoryString = null;
-        if(field.mandatory){
-            mandatoryString = "1";
-        }else{
-            mandatoryString = "0";
+            var myField = {
+                "id": field.id,
+                "name": field.name,
+                "description": field.description,
+                "sequence": field.sequence,
+                "mandatory": mandatoryString,
+                "documentTypeId": $rootScope.typeId
+            };
+
+            var document_field = document_fields_dict[myField.id];
+            document_field.name = myField.name;
+            document_field.description = myField.description;
+            document_field.mandatory = myField.mandatory;
+            document_field.sequence = myField.sequence;
+            success(myField);
         }
-
-        var myField = {
-            "id": field.id,
-            "name": field.name,
-            "description": field.description,
-            "sequence": field.sequence,
-            "mandatory": mandatoryString,
-            "documentTypeId": $rootScope.typeId
-        };
-
-        var document_field = document_fields_dict[myField.id];
-        document_field.name = myField.name;
-        document_field.description = myField.description;
-        document_field.mandatory = myField.mandatory;
-        document_field.sequence = myField.sequence;
-        success(myField);
-
-        /****************************************************************************
-        $rootScope.put(
-            "document-fields/" + field.id,
-            myField,
-            function(data){
-                var document_field = document_fields_dict[data.id];
-                document_field.name = data.name;
-                document_field.description = data.description;
-                document_field.mandatory = data.mandatory;
-                document_field.sequence = data.sequence;
-                success(data)
-            },
-            error
-        );*****************************************************************************/
+        catch(err){
+            console.log("Field could not be edited: " + err);
+            error();
+        }
     }
 
     /**
@@ -203,23 +175,16 @@ angular.module("ehelseEditor").factory("DocumentField", ["$rootScope", "StorageH
      * @param error
      */
     function remove(field, success, error){
-
-        removeField(field);
-        generateDocumentFieldDict(document_fields);
-        generateDocumentFieldTypeDict(document_fields);
-        success();
-
-        /******************************************************************************
-        $rootScope.delete(
-            "document-fields/" + field.id,
-            function(){
-                removeField(field);
-                generateDocumentFieldDict(document_fields);
-                generateDocumentFieldTypeDict(document_fields);
-                success();
-            },
-            error
-        )******************************************************************************/
+        try{
+            removeField(field);
+            generateDocumentFieldDict(document_fields);
+            generateDocumentFieldTypeDict(document_fields);
+            success();
+        }
+        catch(err){
+            console.log("Field could not be deleted: " + err);
+            error();
+        }
     }
 
     /**
@@ -243,21 +208,13 @@ angular.module("ehelseEditor").factory("DocumentField", ["$rootScope", "StorageH
      * @param error
      */
     function getFieldById(id, success, error){
-
-        if(id){
+        try{
             success(document_fields_dict[id]);
-        }else{
-            console.log("Id not found");
         }
-
-        /******************************************************************
-        $rootScope.get(
-            "document-fields/" + id,
-            function (data) {
-                success(data);
-            },
-            error
-        );*******************************************************************/
+        catch(err){
+            console.log("Field could not be retrieved by id: " + err);
+            error();
+        }
     }
 
     /**
