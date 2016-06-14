@@ -208,7 +208,7 @@ angular.module("ehelseEditor").factory("StorageHandler", ["$rootScope", "FileUpl
          * @returns {*}
          */
         function getArchivedDocuments() {
-            return input_list.archivedDocuments;
+            return cloneObjectList(input_list.archivedDocuments);
         }
 
         /**
