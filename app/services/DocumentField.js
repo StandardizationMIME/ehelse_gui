@@ -9,6 +9,7 @@ angular.module("ehelseEditor").factory("DocumentField", ["$rootScope", "StorageH
     init();
 
     function init(){
+        console.log(StorageHandler.getDocumentFields().documentFields);
         Array.prototype.push.apply(document_fields, StorageHandler.getDocumentFields().documentFields);
         generateDocumentFieldDict(document_fields);
         generateDocumentFieldTypeDict(document_fields);

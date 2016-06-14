@@ -60,7 +60,6 @@ angular.module("ehelseEditor").factory("Document", ["$rootScope", "DocumentField
 
 
     var current_document = newDocument();
-    var topic_documents = [];
     var link_category_list = [];
     var documents = [];
     var documents_dict = {};
@@ -71,7 +70,7 @@ angular.module("ehelseEditor").factory("Document", ["$rootScope", "DocumentField
 
     function init(){
         var allDocuments = StorageHandler.getDocuments();
-
+        console.log(allDocuments.documents);
         documents.length = 0;
 
         for(var i = 0; i < allDocuments.documents.length; i++){
@@ -82,6 +81,7 @@ angular.module("ehelseEditor").factory("Document", ["$rootScope", "DocumentField
 
         generateDocumentDict(documents);
         generateTopicsDocumentsDict(documents);
+        console.log(documents);
     }
 
     /**
@@ -294,7 +294,10 @@ angular.module("ehelseEditor").factory("Document", ["$rootScope", "DocumentField
 
         var current_id = current_document.id;
 
+
+        /* DENNE LINJA ER JEG USIKKER PÅ, må sees over senere. */
         delete documents_dict[current_id];
+
         if(current_document.standardId){
             var sib = documents_dict[current_document.standardId].profiles;
             for(var i = 0; i < sib.length; i++){
@@ -303,6 +306,7 @@ angular.module("ehelseEditor").factory("Document", ["$rootScope", "DocumentField
                 }
             }
         }
+
         StorageHandler.addArchivedDocumentsById(current_document);
         deleteCurrentDocumentFromDocumentsList();
         $rootScope.notifySuccess("Dokumentet ble slettet", 1000);
