@@ -54,45 +54,6 @@ angular.module("ehelseEditor").factory("DownloadList",
         }
 
         /**
-         * Returns deep copy of documents
-         *
-         * Removes the list populatedProfiles to avoid circular dependencies.
-         * @param list
-         * @returns {Array}
-         */
-        function cloneDocuments(list) {
-            var clone;
-            if (list instanceof Array) {
-                clone = [];
-                for (var i = 0; i < list.length; i++) {
-                    var document_clone = cloneDocument(list[i]);
-                    clone.push(document_clone);
-                }
-            } else {
-                clone = {};
-                for (var key in list) {
-                    var document_list = [];
-                    for (var i = 0; i < list[key].length; i++) {
-                        document_list.push(cloneDocument(list[key][i]));
-                    }
-                    clone[key] = document_list;
-                }
-            }
-            return clone;
-        }
-
-        function cloneDocument(document) {
-            var invalid_elements = ["populatedProfiles", "$$hashKey"];
-            var document_clone = {};
-            for (var element in document) {
-                if (invalid_elements.indexOf(element) < 0) {
-                    document_clone[element] = document[element];
-                }
-            }
-            return document_clone;
-        }
-
-        /**
          * Returns storage list
          * @returns {Array}
          */
@@ -106,8 +67,8 @@ angular.module("ehelseEditor").factory("DownloadList",
             output_list["targetGroups"] = TargetGroup.getAll();
             output_list["status"] = Status.getAll();
             output_list["topics"] = constructOutputTopics(ServiceFunction.cloneObject(Topic.getAll()));
-            output_list["documents"] = constructOutputDocuments(cloneDocuments(Document.getAll()));
-            output_list["archivedDocuments"] = cloneDocuments(StorageHandler.getArchivedDocuments());
+            output_list["documents"] = constructOutputDocuments(ServiceFunction.cloneDocuments(Document.getAll()));
+            output_list["archivedDocuments"] = ServiceFunction.cloneDocuments(StorageHandler.getArchivedDocuments());
 
             return output_list;
         }
