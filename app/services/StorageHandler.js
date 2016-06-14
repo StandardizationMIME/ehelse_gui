@@ -1,7 +1,7 @@
 "use strict";
 
-angular.module("ehelseEditor").factory("StorageHandler", ["$rootScope", "FileUpload",
-    function ($rootScope, FileUpload) {
+angular.module("ehelseEditor").factory("StorageHandler", ["$rootScope", "FileUpload", "ServiceFunction",
+    function ($rootScope, FileUpload, ServiceFunction) {
 
 
         var input_list = [];
@@ -226,13 +226,15 @@ angular.module("ehelseEditor").factory("StorageHandler", ["$rootScope", "FileUpl
          * @param document
          * @returns {boolean}
          */
-        function addArchivedDocumentsById(document) {
+        function addArchivedDocumentsById(document) {       // TODO: change name - remove "ById", since input is document
+            var document_clone = ServiceFunction.cloneDocument(document);   // TODO: is it more logical to clone argument to this function?
+            var id = document_clone.id;
             var archived_documents = input_list.archivedDocuments;
-            if (document.id in archived_documents){
-                archived_documents[document.id].push(document);
+            if (document_clone.id in archived_documents){
+                archived_documents[id].push(document_clone);
             }
             else{
-                archived_documents[document.id] = [document];
+                archived_documents[id] = [document_clone];
             }
         }
 
