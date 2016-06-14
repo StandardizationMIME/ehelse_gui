@@ -1,6 +1,6 @@
 "use strict";
 
-angular.module("ehelseEditor").factory("ServiceFunction", [function() {
+angular.module("ehelseEditor").factory("ServiceFunction", [function () {
 
     /**
      * Returns timestamp on database format
@@ -9,7 +9,7 @@ angular.module("ehelseEditor").factory("ServiceFunction", [function() {
     function getTimestamp() {
         var time = new Date();
         var year = time.getFullYear();
-        var month =  time.getMonth()+1; // Months are zero-based
+        var month = time.getMonth() + 1; // Months are zero-based
         var day = time.getDate();
         var hours = time.getHours();
         var minutes = time.getMinutes();
@@ -33,10 +33,10 @@ angular.module("ehelseEditor").factory("ServiceFunction", [function() {
         return (number > 9 ? number : "0" + number);
     }
 
-    function generateNewId(list){
-        if(list.length){
-            return (list[list.length-1].id + 1);
-        }else{
+    function generateNewId(list) {
+        if (list.length) {
+            return (list[list.length - 1].id + 1);
+        } else {
             return 1;
         }
     }
@@ -96,6 +96,7 @@ angular.module("ehelseEditor").factory("ServiceFunction", [function() {
     return {
         getTimestamp: getTimestamp,
         generateNewId: generateNewId,
+        getMax: getMax,
         cloneObject: cloneObject,
         cloneDocuments: cloneDocuments,
         cloneDocument: cloneDocument
