@@ -34,7 +34,7 @@
 
             <!-- Table body -->
             <tbody>
-                <tr ng-repeat="linkCategory in linkCategory">
+                <tr ng-repeat="linkCategory in linkCategory" ng-hide="linkCategory.isArchived">
 
                     <!-- Link category info -->
                     <td>{{linkCategory.name}}</td>

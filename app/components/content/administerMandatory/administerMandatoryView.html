@@ -34,7 +34,7 @@
 
             <!-- Table body -->
             <tbody>
-                <tr ng-repeat="mandatory in mandatories">
+                <tr ng-repeat="mandatory in mandatories" ng-hide="mandatory.isArchived">
 
                     <!-- Mandatory value info -->
                     <td>{{mandatory.name}}</td>

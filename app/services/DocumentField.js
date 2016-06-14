@@ -104,7 +104,8 @@ angular.module("ehelseEditor").factory("DocumentField", ["$rootScope", "StorageH
                 "description": field.description,
                 "sequence": sequenceInt,
                 "mandatory": mandatoryString,
-                "documentTypeId": $rootScope.typeId
+                "documentTypeId": $rootScope.typeId,
+                "isArchived": 0
             };
 
             document_fields.push(myField);
@@ -139,7 +140,8 @@ angular.module("ehelseEditor").factory("DocumentField", ["$rootScope", "StorageH
                 "description": field.description,
                 "sequence": field.sequence,
                 "mandatory": mandatoryString,
-                "documentTypeId": $rootScope.typeId
+                "documentTypeId": $rootScope.typeId,
+                "isArchived": 0
             };
 
             var document_field = document_fields_dict[myField.id];
@@ -156,17 +158,6 @@ angular.module("ehelseEditor").factory("DocumentField", ["$rootScope", "StorageH
     }
 
     /**
-     * Function removing a field from the document fields list.
-     * @param field
-     */
-    function removeField(field){
-        var index = document_fields.indexOf(field);
-        if (index > -1) {
-            document_fields.splice(index, 1);
-        }
-    }
-
-    /**
      * Function deleting a document field.
      *
      * Updates document field dict and options list.
@@ -176,13 +167,13 @@ angular.module("ehelseEditor").factory("DocumentField", ["$rootScope", "StorageH
      */
     function remove(field, success, error){
         try{
-            removeField(field);
+            field.isArchived = 1;
             generateDocumentFieldDict(document_fields);
             generateDocumentFieldTypeDict(document_fields);
             success();
         }
         catch(err){
-            console.log("Field could not be deleted: " + err);
+            console.log("Field could not be archived: " + err);
             error();
         }
     }
