@@ -171,7 +171,7 @@ angular.module("ehelseEditor").factory("Document", ["$rootScope", "DocumentField
 
     function initNewDocument(document){
         if(document){
-            document.id = ServiceFunction.generateNewId(documents);
+            document.id = generateNewDocumentId(documents);
             document.populatedProfiles = [];
             document.profiles = [];
             document.createdTimestamp = ServiceFunction.getTimestamp();
@@ -595,6 +595,30 @@ angular.module("ehelseEditor").factory("Document", ["$rootScope", "DocumentField
 
     function getById(id){
         return documents_dict[id];
+    }
+
+    /**
+     * Returns new unique document id
+     *
+     * Checks all document currently in the system, and all archived document
+     *  find max id. Increments max by 1.
+     * @param documents
+     * @returns {number}
+     */
+    function generateNewDocumentId(documents) {
+        var max = -Infinity;
+        var archived_documents = StorageHandler.getArchivedDocuments();
+        for (var i = 0; i < documents.length; i++) {
+            var id = parseInt(documents[i]["id"]);
+            if (id > max)
+                max = id;
+        }
+        for (var id in archived_documents) {
+            id = parseInt(id);
+            if (id > max)
+                max = id;
+        }
+        return (max+1);
     }
 
     return {
