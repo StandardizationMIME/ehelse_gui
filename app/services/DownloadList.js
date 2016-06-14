@@ -63,7 +63,8 @@ angular.module("ehelseEditor").factory("DownloadList",
          */
         function cloneDocuments(list) {
             var clone = [];
-            for (var element in list) {
+            for (var i = 0; i < list.length; i++) {
+                var element = list[i];
                 var element_clone = ServiceFunction.cloneObject(element);
                 if (element_clone.populatedProfiles) {
                     delete element_clone["populatedProfiles"];
