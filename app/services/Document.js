@@ -72,7 +72,6 @@ angular.module("ehelseEditor").factory("Document", ["$rootScope", "DocumentField
     function init(){
         try{
             var allDocuments = StorageHandler.getDocuments();
-            console.log(allDocuments);
             documents.length = 0;
 
             for(var i = 0; i < allDocuments.documents.length; i++){
@@ -183,13 +182,8 @@ angular.module("ehelseEditor").factory("Document", ["$rootScope", "DocumentField
     }
 
     function updateDocumentValues(document){
-        if(document){
-            document.editedTimestamp = ServiceFunction.getTimestamp();
-            document.populatedProfiles = [];
-        }
-        else{
-            console.log("Input = " + document + " and is invalid");
-        }
+        document.editedTimestamp = ServiceFunction.getTimestamp();
+        document.populatedProfiles = [];
     }
 
     /**
@@ -401,6 +395,8 @@ angular.module("ehelseEditor").factory("Document", ["$rootScope", "DocumentField
             a.links = b.links;
             a.standardId = b.standardId;
             a.populatedProfiles = b.populatedProfiles || [];
+            a.editedTimestamp = b.editedTimestamp;
+            a.createdTimestamp = b.createdTimestamp;
         }else{
             console.log("Invalid input");
             console.log("Input a = " + a);
