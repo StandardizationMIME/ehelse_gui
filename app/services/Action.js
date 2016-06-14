@@ -9,7 +9,6 @@ angular.module("ehelseEditor").factory("Action", ["$rootScope", "StorageHandler"
     init();
 
     function init(){
-        console.log(StorageHandler.getActions().actions);
         Array.prototype.push.apply(actions, StorageHandler.getActions().actions);
         generateActionsOptionList(actions);
         generateActionsDict(actions);

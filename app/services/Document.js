@@ -70,7 +70,6 @@ angular.module("ehelseEditor").factory("Document", ["$rootScope", "DocumentField
 
     function init(){
         var allDocuments = StorageHandler.getDocuments();
-        console.log(allDocuments.documents);
         documents.length = 0;
 
         for(var i = 0; i < allDocuments.documents.length; i++){
@@ -81,7 +80,6 @@ angular.module("ehelseEditor").factory("Document", ["$rootScope", "DocumentField
 
         generateDocumentDict(documents);
         generateTopicsDocumentsDict(documents);
-        console.log(documents);
     }
 
     /**
