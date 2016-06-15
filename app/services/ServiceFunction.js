@@ -1,6 +1,6 @@
 "use strict";
 
-angular.module("ehelseEditor").factory("ServiceFunction", [function() {
+angular.module("ehelseEditor").factory("ServiceFunction", [function () {
 
     /**
      * Returns timestamp on database format
@@ -9,7 +9,7 @@ angular.module("ehelseEditor").factory("ServiceFunction", [function() {
     function getTimestamp() {
         var time = new Date();
         var year = time.getFullYear();
-        var month =  time.getMonth()+1; // Months are zero-based
+        var month = time.getMonth() + 1; // Months are zero-based
         var day = time.getDate();
         var hours = time.getHours();
         var minutes = time.getMinutes();
@@ -33,10 +33,31 @@ angular.module("ehelseEditor").factory("ServiceFunction", [function() {
         return (number > 9 ? number : "0" + number);
     }
 
-    function generateNewId(list){
-        if(list.length){
-            return (list[list.length-1].id + 1);
-        }else{
+    /**
+     * Returns new unique document id
+     *
+     * Checks all elements in list and returns -1 if undefined
+     *  and a new valid id if the list is defined.
+     * @param list
+     * @returns {number}
+     */
+    function generateNewId(list) {
+        var length = list.length;
+        // If list is undefined
+        if (list == null){
+            return -1
+        }
+        // if the list is defined
+        if (length) {
+            var max = -Infinity;
+            for (var i = 0; i < length; i++) {
+                var id = parseInt(list[i].id);
+                if (id > max) {
+                    max = id;
+                }
+            }
+            return (max + 1);
+        } else {
             return 1;
         }
     }
