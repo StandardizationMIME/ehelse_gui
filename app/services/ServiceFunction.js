@@ -114,11 +114,35 @@ angular.module("ehelseEditor").factory("ServiceFunction", [function () {
         return document_clone;
     }
 
+    /**
+     * Returns whether or not a value is unique
+     *
+     * Takes in a list of objects, checks how many times a value for a property
+     *  occurs, and returns true if there are no occurrences of this value.
+     * @param list
+     * @param property
+     * @param value
+     * @returns {boolean}
+     */
+    function isUnique(list, property, value) {
+        var occurrences = 0;
+        for (var i = 0; i < list.length; i++) {
+            if (!(property in list[0])) {
+                throw "Invalid property " + property + ".";
+            }
+            if (value == list[i][property]) {
+                occurrences++;
+            }
+        }
+        return occurrences < 1;
+    }
+
     return {
         getTimestamp: getTimestamp,
         generateNewId: generateNewId,
         cloneObject: cloneObject,
         cloneDocuments: cloneDocuments,
-        cloneDocument: cloneDocument
+        cloneDocument: cloneDocument,
+        isUnique: isUnique
     }
 }]);
