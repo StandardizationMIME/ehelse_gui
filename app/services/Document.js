@@ -80,6 +80,7 @@ angular.module("ehelseEditor").factory("Document", ["$rootScope", "DocumentField
                 documents.push(document);
             }
 
+            Topic.setDocuments(documents);  // Adds reference to the document list int Topic
             generateDocumentDict(documents);
             generateTopicsDocumentsDict(documents);
         }
