@@ -47,6 +47,10 @@ h1,h2,h3,h4{ font-weight: bold;}
     padding-top: 10px;
     padding-bottom: 10px;
 }
+.ten-pix-horizontal-padding{
+    padding-left: 10px;
+    padding-right: 10px;
+}
 .clickable:hover {
     cursor: pointer;
     color: #337ab7;
