@@ -23,11 +23,16 @@ angular.module("ehelseEditor").controller("EditDocumentController",
             $scope.document_dict = Document.getAllAsDict();
             $scope.status_list = Status.getAll();
 
-
             // Submit function used both create new documents and save changes to existing ones
             $scope.submit = function(form){
                 Document.submitCurrentDocument();
                 form.$setPristine();
+            };
+
+            $scope.getFormattedTimestamp = function(timestamp){
+                if(timestamp){
+                    return {date: timestamp.substring(8,10) + "." + timestamp.substring(5,7) + "." + timestamp.substring(0,4), time: timestamp.substring(11,16)};
+                }
             };
 
             // Delete selected document
