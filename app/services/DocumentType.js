@@ -6,25 +6,19 @@ angular.module("ehelseEditor").factory("DocumentType", ["$rootScope", "StorageHa
     var document_types_dict = {};
     var document_types_option_list = [];
 
-    Array.prototype.push.apply(document_types, StorageHandler.getDocumentTypes().documentTypes);
-    Array.prototype.push.apply(document_types_option_list, generateDocumentTypesOptionList(document_types));
-    generateDocumentTypeDict(document_types);
+    init();
 
-    /**
-     * Function call retrieving document types from the server.
-     */
-    /*************************************************************************************
-    $rootScope.get(
-        "document-types",
-        function ( data ){
-            Array.prototype.push.apply(document_types, data.documentTypes);
+    function init(){
+        try{
+            Array.prototype.push.apply(document_types, StorageHandler.getDocumentTypes().documentTypes);
             Array.prototype.push.apply(document_types_option_list, generateDocumentTypesOptionList(document_types));
             generateDocumentTypeDict(document_types);
-        },
-        function (data) {
-            console.log("No document types found");
         }
-    );***************************************************************************************/
+        catch(error){
+            console.log("Document types could not be loaded: " + error);
+            $rootScope.notifyError("Dokumenttyper kunne ikke lastes: " + error, 6000);
+        }
+    }
 
     /**
      * Function that generates DocumentType dict
@@ -58,9 +52,15 @@ angular.module("ehelseEditor").factory("DocumentType", ["$rootScope", "StorageHa
         return tuples;
     }
 
+    function getAll(){
+        return document_types;
+    }
+
     return {
-        document_types : document_types,
+        init: init,
+        getAll: getAll,
+        document_types: document_types,
         document_types_dict: document_types_dict,
-        document_types_option_list : document_types_option_list
+        document_types_option_list: document_types_option_list
     };
 }]);

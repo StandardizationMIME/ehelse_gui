@@ -34,7 +34,7 @@
 
             <!-- Table body -->
             <tbody>
-                <tr ng-repeat="status in statuses">
+                <tr ng-repeat="status in statuses" ng-hide="status.isArchived">
 
                     <!-- Status info -->
                     <td>{{status.name}}</td>

@@ -6,25 +6,19 @@ angular.module("ehelseEditor").factory("Action", ["$rootScope", "StorageHandler"
     var actions_dict = {};
     var actions_option_list = [];
 
-    Array.prototype.push.apply(actions, StorageHandler.getActions().actions);
-    generateActionsOptionList(actions);
-    generateActionsDict(actions);
+    init();
 
-    /**
-     * Function call retrieving the actions from the database
-     */
-/*    **********************************************************************************
-    $rootScope.get(
-        "actions/",
-        function ( data ){
-            Array.prototype.push.apply(actions, data.actions);
+    function init(){
+        try{
+            Array.prototype.push.apply(actions, StorageHandler.getActions().actions);
             generateActionsOptionList(actions);
             generateActionsDict(actions);
-        },
-        function (data) {
-            console.log("No document types found");
         }
-    );***********************************************************************************/
+        catch(error){
+            $rootScope.notifyError("Handlinger kunne ikke lastes: " + error, 6000);
+            console.log("Actions did not load " + error);
+        }
+    }
 
     /**
      * Function creating a new action
@@ -34,7 +28,8 @@ angular.module("ehelseEditor").factory("Action", ["$rootScope", "StorageHandler"
         return {
             id: null,
             name: "",
-            description: ""
+            description: "",
+            isArchived: 0
         };
     }
 
@@ -50,6 +45,7 @@ angular.module("ehelseEditor").factory("Action", ["$rootScope", "StorageHandler"
         a.id = b.id;
         a.name = b.name;
         a.description = b.description;
+        a.isArchived = b.isArchived;
     }
 
     /**
@@ -101,6 +97,11 @@ angular.module("ehelseEditor").factory("Action", ["$rootScope", "StorageHandler"
         }
     }
 
+    function initNewActionValues(action){
+        action.id = ServiceFunction.generateNewId(actions);
+        action.isArchived = 0;
+    }
+
     /**
      * Function posting or updating an action based on if the action has an id or not.
      * @param action
@@ -108,42 +109,27 @@ angular.module("ehelseEditor").factory("Action", ["$rootScope", "StorageHandler"
     function submit(action){
         //Having an id indicates the action is stored in the database and only needs to be updated
         if(action.id){
-            set(actions_dict[action.id], action);
-            generateActionsDict(actions);
-            generateActionsOptionList(actions);
-            $rootScope.notifySuccess("Handling ble oppdatert", 1000);
-
-            /***********************************************************************************
-            $rootScope.put("actions/"+action.id,
-                action,
-                function(data){
-                    set(actions_dict[data.id], data);
-                    generateActionsDict(actions);
-                    generateActionsOptionList(actions);
-                    $rootScope.notifySuccess("Handling ble oppdatert",1000);
-
-                },
-                function(data){
-                    $rootScope.notifyError("Handling ble ikke oppdatert.",6000);
-                }
-            );***********************************************************************************/
+            try{
+                set(actions_dict[action.id], action);
+                generateActionsDict(actions);
+                generateActionsOptionList(actions);
+                $rootScope.notifySuccess("Handling ble oppdatert", 1000);
+            }
+            catch(error){
+                $rootScope.notifyError("Handling ble ikke oppdatert: " + error, 6000);
+                console.log("Action could not be updated" + error);
+            }
         }
         else{
-            action.id = ServiceFunction.generateNewId(actions);
-            add(action);
-            $rootScope.notifySuccess("Ny handling ble opprettet", 1000);
-
-            /***********************************************************************************
-            $rootScope.post(
-                "actions/",
-                action,
-                function(data){
-                    $rootScope.notifySuccess("Ny handling ble opprettet.",1000);
-                    add(data);
-                },function(){
-                    $rootScope.notifyError("Handling ble ikke opprettet.",6000);
-                }
-            );***********************************************************************************/
+            try{
+                initNewActionValues(action);
+                add(action);
+                $rootScope.notifySuccess("Ny handling ble opprettet", 1000);
+            }
+            catch(error){
+                $rootScope.notifyError("Handling kunne ikke opprettes: " + error, 6000);
+                console.log("Action could not be created" + error);
+            }
         }
     }
 
@@ -151,11 +137,8 @@ angular.module("ehelseEditor").factory("Action", ["$rootScope", "StorageHandler"
      * Function removing an action from the action list and regeneration action_dict and action_option_list
      * @param action
      */
-    function removeAction(action) {
-        var index = actions.indexOf(action);
-        if (index > -1) {
-            actions.splice(index,1);
-        }
+    function archiveAction(action) {
+        action.isArchived = 1;
         generateActionsDict(actions);
         generateActionsOptionList(actions)
     }
@@ -165,22 +148,14 @@ angular.module("ehelseEditor").factory("Action", ["$rootScope", "StorageHandler"
      * @param action
      */
     function deleteAction(action) {
-        removeAction(action);
-        $rootScope.notifySuccess("Handling ble slettet!", 1000);
-
-        /***********************************************************************************
-        $rootScope.delete(
-            "actions/" + action.id,
-            function () {
-                removeAction(action);
-                $rootScope.notifySuccess("Handling ble slettet!", 1000);
-
-            },
-            function(){
-                $rootScope.notifyError("Kunne ikke slette", 6000);
-            }
-
-        );***********************************************************************************/
+        try{
+            archiveAction(action);
+            $rootScope.notifySuccess("Handling ble arkivert!", 1000);
+        }
+        catch(error){
+            $rootScope.notifyError("Handling ble ikke arkivert: " + error, 6000);
+            console.log("Action could not be archived" + error);
+        }
     }
 
     function getAllAsDict(){
@@ -200,6 +175,7 @@ angular.module("ehelseEditor").factory("Action", ["$rootScope", "StorageHandler"
     }
 
     return {
+        init: init,
         new: newAction,
         clone: clone,
 

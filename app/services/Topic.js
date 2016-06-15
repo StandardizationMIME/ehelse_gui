@@ -7,25 +7,19 @@ angular.module("ehelseEditor").factory("Topic", ["$rootScope", "StorageHandler",
     var topics_options_list = [];
     var selected_topic = {};
 
-    Array.prototype.push.apply(topics, StorageHandler.getTopics().topics);
-    generateTopicDict(topics);
-    generateTopicOptionsList(topics);
+    init();
 
-    /*********************************************************************************************************************
-     * function retrieving topics from the server
-     */
-    //$rootScope.get(
-    //    "topics/",
-    //    function ( data ){
-    //        Array.prototype.push.apply(topics, data.topics);
-    //        generateTopicDict(topics);
-    //        generateTopicOptionsList(topics);
-    //
-    //    },
-    //    function (data) {
-    //        console.log("No document types found");
-    //    }
-    //);*********************************************************************************************************************
+    function init(){
+        try{
+            Array.prototype.push.apply(topics, StorageHandler.getTopics().topics);
+            generateTopicDict(topics);
+            generateTopicOptionsList(topics);
+        }
+        catch(error){
+            console.log("Topics could not be loaded: " + error);
+            $rootScope.notifyError("Temaer kunne ikke lastes: " + error, 6000);
+        }
+    }
 
     /**
      * Function generation topic option list with the topics id as key.
@@ -95,21 +89,27 @@ angular.module("ehelseEditor").factory("Topic", ["$rootScope", "StorageHandler",
      * Function updating the content of an existing topic.
      *
      * Moves the topic to the correct topic list if the parent_id is changed
-     * @param data
+     * @param topic
      */
-    function updateTopic(data){
-        var old_topic = topics_dict[data.id];
+    function updateTopic(topic){
+        var old_topic = topics_dict[topic.id];
         var children = old_topic.children;
-        if(old_topic.parentId != data.parentId){
+        if(old_topic.parentId != topic.parentId){
             removeById(old_topic.id);
-            setTopic(topics_dict[data.id], data);
+            setTopic(topics_dict[topic.id], topic);
             addTopic(old_topic);
         }
         else{
-            setTopic(topics_dict[data.id], data);
+            setTopic(topics_dict[topic.id], topic);
         }
-        topics_dict[data.id].children = children;
+        topics_dict[topic.id].children = children;
     }
+
+    function initNewTopicValues(topic){
+        topic.id = ServiceFunction.generateNewId(topics);
+        topic.children = [];
+    }
+
 
     /**
      * function creating or updating a topic based on if it has an id
@@ -122,48 +122,30 @@ angular.module("ehelseEditor").factory("Topic", ["$rootScope", "StorageHandler",
         }
 
         if(topic.id){
-
-            updateTopic(topic);
-            generateTopicOptionsList(topics);
-            $rootScope.notifySuccess("Tema ble oppdatert",1000);
-
-            //********************************************************************************
-            //$rootScope.put("topics/"+topic.id,
-            //    topic,
-            //    function(data){
-            //        updateTopic(data);
-            //        generateTopicOptionsList(topics);
-            //        $rootScope.notifySuccess("Tema ble oppdatert",1000);
-            //
-            //    },
-            //    function(data){
-            //        $rootScope.notifyError("Tema ble ikke oppdatert.",6000);
-            //    });
-            //********************************************************************************
+            try{
+                updateTopic(topic);
+                console.log(topic);
+                generateTopicOptionsList(topics);
+                $rootScope.notifySuccess("Tema ble oppdatert",1000);
+            }
+            catch(error){
+                console.log("Topic could not be updated: " + error);
+                $rootScope.notifyError("Tema ble ikke oppdatert: " + error, 6000);
+            }
         }
         else{
-            topic.id = ServiceFunction.generateNewId(topics);
-            topic.children = [];
-
-            /******************* FIKS ORDENTLIG TIMESTAMP *************************************/
-            topic.timestamp = "...";
-
-            addTopic(topic);
-            $rootScope.notifySuccess("Nytt tema ble opprettet!", 1000);
-            console.log("Tema ble opprettet");
-
-            //********************************************************************************
-            //$rootScope.post(
-            //    "topics/",
-            //    topic,
-            //    function(data){
-            //        $rootScope.notifySuccess("Ny tema ble opprettet.",1000);
-            //        addTopic(data);
-            //    },function(){
-            //        $rootScope.notifyError("Tema ble ikke opprettet.",6000);
-            //    }
-            //);
-            //********************************************************************************
+            try{
+                var new_topic = clone(topic);
+                initNewTopicValues(new_topic);
+                console.log(new_topic);
+                addTopic(new_topic);
+                $rootScope.notifySuccess("Nytt tema ble opprettet!", 1000);
+                console.log("Tema ble opprettet");
+            }
+            catch(error){
+                console.log("Topic could not be created: " + error);
+                $rootScope.notifyError("Tema ble ikke opprettet: " + error, 6000);
+            }
         }
     }
 
@@ -208,7 +190,6 @@ angular.module("ehelseEditor").factory("Topic", ["$rootScope", "StorageHandler",
     function newTopic(){
         return {
             id: null,
-            timestamp: null,
             title: "",
             description: "",
             sequence: null,
@@ -228,7 +209,6 @@ angular.module("ehelseEditor").factory("Topic", ["$rootScope", "StorageHandler",
      */
     function setTopic(a,b){
         a.id = b.id;
-        a.timestamp = b.timestamp;
         a.title = b.title;
         a.description = b.description;
         a.sequence = b.sequence;
@@ -265,28 +245,15 @@ angular.module("ehelseEditor").factory("Topic", ["$rootScope", "StorageHandler",
      */
     function deleteById(id){
         if(id){
-
-            removeById(id);
-            $rootScope.notifySuccess("Topic ble fjernet",1000);
-            $rootScope.changeContentView("");
-
-            //************************************************************************************
-            //$rootScope.delete("topics/"+id,
-            //    function(data){
-            //        removeById(id);
-            //        $rootScope.notifySuccess("Topic ble fjernet",1000);
-            //        $rootScope.changeContentView("");
-            //
-            //    },
-            //    function(data){
-            //        if(data.message == "Element can't be deleted."){
-            //            $rootScope.notifyError("Temaer med tilknyttetde undertemaer og/eller dokumenter kan ikke slettes!", 6000);
-            //        }else{
-            //            $rootScope.notifyError("Uventet feil: Topic ble ikke fjernet.",4000);
-            //        }
-            //    }
-            //);
-            //************************************************************************************
+            try{
+                removeById(id);
+                $rootScope.notifySuccess("Topic ble fjernet",1000);
+                $rootScope.changeContentView("");
+            }
+            catch(error){
+                console.log("Topic could not be deleted: " + error);
+                $rootScope.notifyError("Tema ble ikke slettes: " + error, 6000);
+            }
         }
     }
 
@@ -312,6 +279,7 @@ angular.module("ehelseEditor").factory("Topic", ["$rootScope", "StorageHandler",
     }
 
     return {
+        init: init,
         new: newTopic,
         clone: clone,
         submit: submit,

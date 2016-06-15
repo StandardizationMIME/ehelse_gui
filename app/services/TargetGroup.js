@@ -6,26 +6,19 @@ angular.module("ehelseEditor").factory("TargetGroup", ["$rootScope", "StorageHan
     var target_groups_dict = {};
     var target_groups_options_list= [];
 
-    Array.prototype.push.apply(target_groups, StorageHandler.getTargetGroups().targetGroups);
-    generateTargetGroupDict(target_groups);
-    generateTargetGroupOptionsList(target_groups);
+    init();
 
-    /**
-     * Function retrieving target groups from the server
-     */
-    /*****************************************************************************************
-     $rootScope.get(
-        "target-groups/",
-        function ( data ){
-            Array.prototype.push.apply(target_groups, data.targetGroups);
+    function init(){
+        try{
+            Array.prototype.push.apply(target_groups, StorageHandler.getTargetGroups().targetGroups);
             generateTargetGroupDict(target_groups);
             generateTargetGroupOptionsList(target_groups);
-
-        },
-        function (data) {
-            console.log("No document types found");
         }
-    );******************************************************************************************/
+        catch(error){
+            console.log("Target groups could not be loaded: " + error);
+            $rootScope.notifyError("Målgrupper kunne ikke lastes: " + error, 6000);
+        }
+    }
 
     /**
      * Function generating target_group_dict
@@ -88,6 +81,11 @@ angular.module("ehelseEditor").factory("TargetGroup", ["$rootScope", "StorageHan
         addTargetGroupToTargetGroupOptionList(group);
     }
 
+    function initNewTargetGroupValues(targetGroup){
+        targetGroup.id = ServiceFunction.generateNewId(target_groups);
+        targetGroup.isArchived = 0;
+    }
+
     /**
      * Function creating or updating a target group based on if it got an id or not.
      * @param group
@@ -97,40 +95,26 @@ angular.module("ehelseEditor").factory("TargetGroup", ["$rootScope", "StorageHan
             group.parentId = null;
         }
         if(group.id){
-            setTargetGroup(target_groups_dict[group.id], group);
-            generateTargetGroupDict(target_groups);
-            $rootScope.notifySuccess("Mulgruppe ble oppdatert", 1000);
-
-            /******************************************************************************************
-            $rootScope.put("target-groups/"+group.id,
-                group,
-                function(data){
-                    setTargetGroup(target_groups_dict[data.id], data);
-                    generateTargetGroupOptionsList(target_groups);
-                    $rootScope.notifySuccess("Målgruppe ble oppdatert",1000);
-
-                },
-                function(data){
-                    $rootScope.notifyError("Målgruppe ble ikke oppdatert.",6000);
-                }
-            );******************************************************************************************/
+            try{
+                setTargetGroup(target_groups_dict[group.id], group);
+                generateTargetGroupDict(target_groups);
+                $rootScope.notifySuccess("Mulgruppe ble oppdatert", 1000);
+            }
+            catch(error){
+                console.log("Target group could not be updated: " + error);
+                $rootScope.notifyError("Målgruppe ble ikke oppdatert: " + error, 6000);
+            }
         }
         else{
-            group.id = ServiceFunction.generateNewId(target_groups);
-            addTargetGroup(group);
-            $rootScope.notifySuccess("Ny målgruppe ble opprettet", 1000);
-
-            /******************************************************************************************
-            $rootScope.post(
-                "target-groups/",
-                group,
-                function(data){
-                    $rootScope.notifySuccess("Ny målgruppe ble opprettet.",1000);
-                    addTargetGroup(data);
-                },function(){
-                    $rootScope.notifyError("Målgruppe ble ikke opprettet.",6000);
-                }
-            );******************************************************************************************/
+            try{
+                initNewTargetGroupValues(group);
+                addTargetGroup(group);
+                $rootScope.notifySuccess("Ny målgruppe ble opprettet", 1000);
+            }
+            catch(error){
+                console.log("Target group could not be created: " + error);
+                $rootScope.notifyError("Målgruppe ble ikke opprettet: " + error, 6000);
+            }
         }
     }
 
@@ -138,11 +122,8 @@ angular.module("ehelseEditor").factory("TargetGroup", ["$rootScope", "StorageHan
      * Function removing a target group from the list of target groups.
      * @param id
      */
-    function removeById(id){
-        var index = target_groups.indexOf(target_groups_dict[id]);
-        if (index > -1) {
-            target_groups.splice(index, 1);
-        }
+    function archiveById(id){
+        target_groups[target_groups.indexOf(target_groups_dict[id])].isArchived = 1;
     }
 
     /**
@@ -151,24 +132,16 @@ angular.module("ehelseEditor").factory("TargetGroup", ["$rootScope", "StorageHan
      */
     function deleteById(id){
         if(id){
-            removeById(id);
-            generateTargetGroupOptionsList(target_groups);
-            generateTargetGroupDict(target_groups);
-            $rootScope.notifySuccess("Målgruppe ble fjernet",1000);
-
-            /*************************************************************************************************
-            $rootScope.delete("target-groups/"+id,
-                function(data){
-                    removeById(id);
-                    generateTargetGroupOptionsList(target_groups);
-                    generateTargetGroupDict(target_groups);
-                    $rootScope.notifySuccess("Målgruppe ble fjernet",1000);
-
-                },
-                function(data){
-                    $rootScope.notifyError("Målgruppe ble ikke fjernet.",6000);
-                }
-            );**************************************************************************************************/
+            try{
+                archiveById(id);
+                generateTargetGroupOptionsList(target_groups);
+                generateTargetGroupDict(target_groups);
+                $rootScope.notifySuccess("Målgruppe ble fjernet",1000);
+            }
+            catch(error){
+                console.log("Target group could not be deleted: " + error);
+                $rootScope.notifyError("Målgruppe ble ikke slettet: " + error, 6000);
+            }
         }
     }
 
@@ -182,7 +155,8 @@ angular.module("ehelseEditor").factory("TargetGroup", ["$rootScope", "StorageHan
             name: "",
             description: "",
             parentId:null,
-            abbreviation: ""
+            abbreviation: "",
+            isArchived: 0
         };
     }
 
@@ -199,6 +173,7 @@ angular.module("ehelseEditor").factory("TargetGroup", ["$rootScope", "StorageHan
         a.description = b.description;
         a.parentId = b.parentId;
         a.abbreviation = b.abbreviation;
+        a.isArchived = b.isArchived;
     }
 
     /**
@@ -241,6 +216,7 @@ angular.module("ehelseEditor").factory("TargetGroup", ["$rootScope", "StorageHan
     }
 
     return {
+        init: init,
         new: newTargetGroup,
         getAll : getAll,
         getById : getById,
