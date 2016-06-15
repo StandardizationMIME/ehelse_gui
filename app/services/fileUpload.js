@@ -25,12 +25,17 @@ angular.module("ehelseEditor").factory("FileUpload", ["$rootScope", function ($r
         json_object_from_file = JSON.parse($fileContent);
     }
 
+    function readContentAsPlaneText($fileContent) {
+        return $fileContent;
+    }
+
 
 
     return {
         getJsonFile: getJsonFile,
         saveToFile: saveToFile,
         saveTest: saveTest,
-        readContent: readContent
+        readContent: readContent,
+        readAsText: readContentAsPlaneText
     };
 }]);
