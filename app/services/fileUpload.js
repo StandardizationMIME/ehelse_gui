@@ -29,12 +29,17 @@ angular.module("ehelseEditor").factory("FileUpload",
 
     }
 
+    function readContentAsPlaneText($fileContent) {
+        return $fileContent;
+    }
+
 
 
     return {
         getJsonFile: getJsonFile,
         saveToFile: saveToFile,
         saveTest: saveTest,
-        readContent: readContent
+        readContent: readContent,
+        readAsText: readContentAsPlaneText
     };
 }]);
