@@ -438,7 +438,7 @@ angular.module("ehelseEditor").factory("Document", ["$rootScope", "DocumentField
     }
 
     function setCurrentDocumentFieldsByDocumentDocumentTypeId() {
-        current_document.fields.length = 0;
+        //current_document.fields.length = 0;
         extendCurrentDocumentFieldsByFieldIds(DocumentField.getRequiredDocumentFieldIdsByDocumentTypeId(current_document.documentTypeId))
     }
 
