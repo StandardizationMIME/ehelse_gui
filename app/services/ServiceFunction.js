@@ -33,9 +33,30 @@ angular.module("ehelseEditor").factory("ServiceFunction", [function () {
         return (number > 9 ? number : "0" + number);
     }
 
+    /**
+     * Returns new unique document id
+     *
+     * Checks all elements in list and returns -1 if undefined
+     *  and a new valid id if the list is defined.
+     * @param list
+     * @returns {number}
+     */
     function generateNewId(list) {
-        if (list.length) {
-            return (list[list.length - 1].id + 1);
+        var length = list.length;
+        // If list is undefined
+        if (list == null){
+            return -1
+        }
+        // if the list is defined
+        if (length) {
+            var max = -Infinity;
+            for (var i = 0; i < length; i++) {
+                var id = parseInt(list[i].id);
+                if (id > max) {
+                    max = id;
+                }
+            }
+            return (max + 1);
         } else {
             return 1;
         }
@@ -96,7 +117,6 @@ angular.module("ehelseEditor").factory("ServiceFunction", [function () {
     return {
         getTimestamp: getTimestamp,
         generateNewId: generateNewId,
-        getMax: getMax,
         cloneObject: cloneObject,
         cloneDocuments: cloneDocuments,
         cloneDocument: cloneDocument

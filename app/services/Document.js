@@ -618,7 +618,7 @@ angular.module("ehelseEditor").factory("Document", ["$rootScope", "DocumentField
             if (id > max)
                 max = id;
         }
-        return (max+1);
+        return (max + 1);
     }
 
     return {
