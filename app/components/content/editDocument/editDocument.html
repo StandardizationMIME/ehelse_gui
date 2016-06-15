@@ -48,7 +48,7 @@
                 Ny versjon
             </button>
             <span class="ten-pix-horizontal-padding" ng-if="document.editedTimestamp">
-                Sist redigert: <b >{{getFormattedTimestamp(document.editedTimestamp).date}}</b>
+                Sist endret: <b >{{getFormattedTimestamp(document.editedTimestamp).date}}</b>
                 Klokken: <b >{{getFormattedTimestamp(document.editedTimestamp).time}}</b>
             </span>
             <button type="button" class="btn btn-danger pull-right" ng-if="documentState == 'editProfile' || documentState == 'editDocument' || documentState == 'editUtility'" ng-click="openConfirmationModal('Er du sikker på at du vil slette dokumentet?', document, deleteDocument)">
