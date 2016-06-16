@@ -24,27 +24,10 @@ angular.module("ehelseEditor").controller("AdministerFieldsController", ["$scope
         );
     };
 
-    // Get document field
-    $scope.getDocumentFieldById = function (id) {
-        DocumentField.getFieldById(
-            id,
-            function(data){
-                if(data.mandatory == "0"){
-                    data.mandatory = false;
-                }else if(data.mandatory == "1"){
-                    data.mandatory = true;
-                }
-                $rootScope.currentDocumentField = data;
-            },
-            function(){
-                console.log("error");
-            }
-        );
-    };
 
     // Open modal for editing document field
     $scope.editDocumentFieldModal = function(fieldId) {
-        $scope.getDocumentFieldById(fieldId);
+        $rootScope.currentDocumentField = DocumentField.clone(DocumentField.getById(fieldId));
         $rootScope.shouldBeOpen = true;
         $scope.openModal("app/components/content/administerFields/editFields/editDocumentFieldModal.html", "DocumentFieldModalController");
     };
