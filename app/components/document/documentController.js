@@ -1,6 +1,6 @@
 "use strict";
 
-angular.module("ehelseEditor").controller("DocumentController", [ "$scope","$rootScope", "DocumentType", "Document", function( $scope, $rootScope, DocumentType, Document) {
+angular.module("ehelseEditor").controller("DocumentController", [ "$scope","$rootScope", "DocumentType", "Document", "Topic", function( $scope, $rootScope, DocumentType, Document, Topic) {
 
     // Save document values to scope to easier access it in the html files
     $scope.document_types_dict = DocumentType.document_types_dict;
@@ -55,11 +55,18 @@ angular.module("ehelseEditor").controller("DocumentController", [ "$scope","$roo
 
     // Open selected document
     $rootScope.openDocument = function(document){
+        // Check that document is not defined (when a new os being created) and that to topic is selected.
+        if(!document && !Object.keys(Topic.getSelected()).length) {
+            $rootScope.notifyError("Kan ikke opprette et dokument uten å ha velgt et tema.", 6000);
+        } else {
+            $rootScope.selected_document = document;
+            $scope.checkDocumentState(document);
 
-        $rootScope.selected_document = document;
-        $scope.checkDocumentState(document);
+            $rootScope.selected_document = document;
+            $scope.checkDocumentState(document);
 
-        Document.setCurrentDocument(document);
-        $rootScope.changeContentView("document");
+            Document.setCurrentDocument(document);
+            $rootScope.changeContentView("document");
+        }
     };
 }]);

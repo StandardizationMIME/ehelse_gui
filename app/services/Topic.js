@@ -111,10 +111,9 @@ angular.module("ehelseEditor").factory("Topic", ["$rootScope", "StorageHandler",
     }
 
     function initNewTopicValues(topic){
-        topic.id = ServiceFunction.generateNewId(topics);
+        topic.id = ServiceFunction.generateNewIdFromDict(topics_dict);
         topic.children = [];
     }
-
 
     /**
      * function creating or updating a topic based on if it has an id
