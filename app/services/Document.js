@@ -261,7 +261,7 @@ angular.module("ehelseEditor").factory("Document", ["$rootScope", "DocumentField
     /**
      * Sets next and previous documentID of the next and previous documents to null
      */
-    function nullifyPreviousAndNextDocumentIdValues(){
+    function updatePreviousAndNextDocumentIdValues(){
         if(documents_dict[current_document.previousDocumentId] && documents_dict[current_document.nextDocumentId]){
             documents_dict[current_document.previousDocumentId].nextDocumentId = documents_dict[current_document.nextDocumentId].id;
             documents_dict[current_document.nextDocumentId].previousDocumentId = documents_dict[current_document.previousDocumentId].id;
@@ -289,7 +289,7 @@ angular.module("ehelseEditor").factory("Document", ["$rootScope", "DocumentField
             var archived_document = clone(documents_dict[current_document.id]);
             StorageHandler.addArchivedDocumentsById(archived_document);
 
-            nullifyPreviousAndNextDocumentIdValues();
+            updatePreviousAndNextDocumentIdValues();
             var current_id = current_document.id;
 
             /* DENNE LINJA ER JEG USIKKER PÅ, må sees over senere. */
@@ -427,7 +427,6 @@ angular.module("ehelseEditor").factory("Document", ["$rootScope", "DocumentField
         }
         else {
             setDocument(current_document, document);
-            //setCurrentDocumentFieldsByDocumentDocumentTypeId();
         }
         generateCurrentDocumentLinksAsLinkCategoryList();
 
@@ -446,7 +445,7 @@ angular.module("ehelseEditor").factory("Document", ["$rootScope", "DocumentField
     }
 
     function setCurrentDocumentFieldsByDocumentDocumentTypeId() {
-        //current_document.fields.length = 0;
+        current_document.fields.length = 0;
         extendCurrentDocumentFieldsByFieldIds(DocumentField.getRequiredDocumentFieldIdsByDocumentTypeId(current_document.documentTypeId))
     }
 
