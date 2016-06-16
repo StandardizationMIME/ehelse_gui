@@ -35,39 +35,12 @@
                         <li><a href="" ng-click="openAdministerStatus()">Statuser</a></li>
                         <li><a href="" ng-click="openAdministerLinkCategories()">Link-kategorier</a></li>
                         <li><a href="" ng-click="openAdministerMandatory()">Obligatoriskhet</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a href="" ng-click="openCSVImportModal()">Importer fra .csv</a></li>
+                        <li><a href="" ng-click="openUploadFileModal()">Last opp fra fil</a></li>
                     </ul>
                 </div>
-            </li>
-        </ul>
-
-        <!-- Right part of toolbar -->
-        <ul class="nav navbar-nav navbar-right">
-
-            <!-- Name of logged in user -->
-            <li class="navbar-form"><output class="">{{currentUser.name}}</output></li>
-
-            <!-- My page -->
-            <li class="nav-element-margin">
-                <button ui-sref="main-view.min-side" type="button"
-                        class="btn btn-primary navbar-btn" data-toggle="tooltip" title="Min side"
-                        data-placement="bottom"><span
-                        class="fa fa-user"></span></button>
-            </li>
-
-            <!-- Administer users -->
-            <li class="nav-element-margin">
-                <button ui-sref="main-view.administrer-brukere" type="button"
-                        class="btn btn-primary navbar-btn" data-toggle="tooltip" title="Administrer brukere"
-                        data-placement="bottom"><span
-                        class="fa fa-users"></span></button>
-            </li>
-
-            <!-- Log out -->
-            <li class="nav-element-margin">
-                <button ng-click="logout()" type="button"
-                        class="btn btn-primary navbar-btn" data-toggle="tooltip" title="Logg av"
-                        data-placement="bottom"><span
-                        class="fa fa-sign-out"></span></button>
+                    <button type="button" class="btn btn-primary navbar-btn" ng-click="save()">Last ned fil</button>
             </li>
         </ul>
     </nav>

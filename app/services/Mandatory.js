@@ -1,25 +1,24 @@
 "use strict";
 
-angular.module("ehelseEditor").factory("Mandatory", ["$rootScope", function($rootScope) {
+angular.module("ehelseEditor").factory("Mandatory", ["$rootScope", "StorageHandler", "ServiceFunction", function($rootScope, StorageHandler, ServiceFunction) {
 
     var mandatory = [];
     var mandatory_dict = {};
     var mandatory_option_list = [];
 
-    /**
-     * Function retrieving mandatory from the server
-     */
-    $rootScope.get(
-        "mandatory/",
-        function ( data ){
-            Array.prototype.push.apply(mandatory, data.mandatory);
+    init();
+
+    function init(){
+        try{
+            Array.prototype.push.apply(mandatory, StorageHandler.getMandatory().mandatory);
             generateMandatoryDict(mandatory);
             generateMandatoryOptionList(mandatory);
-        },
-        function (data) {
-            console.log("No document types found");
         }
-    );
+        catch(error){
+            console.log("Mandatories could not be loaded: " + error);
+            $rootScope.notifyError("Obligatoriskheter kunne ikke lastes: " + error, 6000);
+        }
+    }
 
     /**
      * Function creating a new mandatory
@@ -29,7 +28,8 @@ angular.module("ehelseEditor").factory("Mandatory", ["$rootScope", function($roo
         return {
             id: null,
             name: "",
-            description: ""
+            description: "",
+            isArchived: 0
         }
     }
 
@@ -56,6 +56,7 @@ angular.module("ehelseEditor").factory("Mandatory", ["$rootScope", function($roo
         a.id = b.id;
         a.name = b.name;
         a.description = b.description;
+        a.isArchived = b.isArchived;
     }
 
     /**
@@ -103,11 +104,8 @@ angular.module("ehelseEditor").factory("Mandatory", ["$rootScope", function($roo
      * Updates the mandatory dict and options list.
      * @param m
      */
-    function removeMandatory(m) {
-        var index = mandatory.indexOf(m);
-        if (index > -1) {
-            mandatory.splice(index,1);
-        }
+    function archiveMandatory(m) {
+        m.isArchived = 1;
         generateMandatoryDict(mandatory);
         generateMandatoryOptionList(mandatory);
     }
@@ -119,17 +117,20 @@ angular.module("ehelseEditor").factory("Mandatory", ["$rootScope", function($roo
      * @param mandatory
      */
     function deleteMandatory(mandatory) {
-        $rootScope.delete(
-            "mandatory/" + mandatory.id,
-            function () {
-                removeMandatory(mandatory);
-                generateMandatoryOptionList(mandatory);
-                $rootScope.notifySuccess("Obligatoriskhet ble slettet!", 1000);
-            },
-            function () {
-                $rootScope.notifyError("Kunne ikke slette obligatoriskhet", 6000);
-            }
-        );
+        try{
+            archiveMandatory(mandatory);
+            generateMandatoryOptionList(mandatory);
+            $rootScope.notifySuccess("Obligatoriskhet ble arkivert!", 1000);
+        }
+        catch(error){
+            console.log("Mandatory-value could not be archived: " + error);
+            $rootScope.notifyError("Obligatoriskhet ble ikke arkivert: " + error, 6000);
+        }
+    }
+
+    function initNewMandatoryValues(man){
+        man.id = ServiceFunction.generateNewId(mandatory);
+        man.isArchived = 0;
     }
 
     /**
@@ -140,30 +141,27 @@ angular.module("ehelseEditor").factory("Mandatory", ["$rootScope", function($roo
      */
     function submit(man){
         if(man.id){
-            $rootScope.put("mandatory/"+man.id,
-                man,
-                function(data){
-                    set(mandatory_dict[data.id], data);
-                    generateMandatoryDict(mandatory);
-                    generateMandatoryOptionList(mandatory);
-                    $rootScope.notifySuccess("Obligatoriskhet ble oppdatert",1000);
-
-                },
-                function(data){
-                    $rootScope.notifyError("Obligatoriskhet ble ikke oppdatert.",6000);
-                });
+            try{
+                set(mandatory_dict[man.id], man);
+                generateMandatoryDict(mandatory);
+                generateMandatoryOptionList(mandatory);
+                $rootScope.notifySuccess("Obligatoriskhet ble oppdatert", 1000);
+            }
+            catch(error){
+                console.log("Mandatory-value could not be updated: " + error);
+                $rootScope.notifyError("Obligatoriskhet ble ikke oppdatert: " + error, 6000);
+            }
         }
         else{
-            $rootScope.post(
-                "mandatory/",
-                man,
-                function(data){
-                    $rootScope.notifySuccess("Ny obligatoriskhet ble opprettet.",1000);
-                    add(data);
-                },function(){
-                    $rootScope.notifyError("Obligatoriskhet ble ikke opprettet.",6000);
-                }
-            );
+            try{
+                initNewMandatoryValues(man);
+                $rootScope.notifySuccess("Ny obligatoriskhet ble opprettet", 1000);
+                add(man);
+            }
+            catch(error){
+                console.log("Mandatory-value could not be created: " + error);
+                $rootScope.notifyError("Obligatoriskhet ble ikke opprettet: " + error, 6000);
+            }
         }
     }
 
@@ -184,6 +182,7 @@ angular.module("ehelseEditor").factory("Mandatory", ["$rootScope", function($roo
     }
 
     return {
+        init: init,
         new: newMandatory,
         clone: clone,
         submit: submit,

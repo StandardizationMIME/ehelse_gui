@@ -1,26 +1,24 @@
 "use strict";
 
-angular.module("ehelseEditor").factory("TargetGroup", ["$rootScope", function($rootScope) {
+angular.module("ehelseEditor").factory("TargetGroup", ["$rootScope", "StorageHandler", "ServiceFunction", function($rootScope, StorageHandler, ServiceFunction) {
 
     var target_groups = [];
     var target_groups_dict = {};
     var target_groups_options_list= [];
 
-    /**
-     * Function retrieving target groups from the server
-     */
-    $rootScope.get(
-        "target-groups/",
-        function ( data ){
-            Array.prototype.push.apply(target_groups, data.targetGroups);
+    init();
+
+    function init(){
+        try{
+            Array.prototype.push.apply(target_groups, StorageHandler.getTargetGroups().targetGroups);
             generateTargetGroupDict(target_groups);
             generateTargetGroupOptionsList(target_groups);
-
-        },
-        function (data) {
-            console.log("No document types found");
         }
-    );
+        catch(error){
+            console.log("Target groups could not be loaded: " + error);
+            $rootScope.notifyError("Målgrupper kunne ikke lastes: " + error, 6000);
+        }
+    }
 
     /**
      * Function generating target_group_dict
@@ -77,10 +75,15 @@ angular.module("ehelseEditor").factory("TargetGroup", ["$rootScope", function($r
      * Function adding a target group to the list of target groups and updating the dict and options list.
      * @param group
      */
-    function addTargetGroup(group){
+    function addTargetGroup(group) {
         target_groups.push(group);
         addTargetGroupToTargetGroupDict(group);
         addTargetGroupToTargetGroupOptionList(group);
+    }
+
+    function initNewTargetGroupValues(targetGroup){
+        targetGroup.id = ServiceFunction.generateNewId(target_groups);
+        targetGroup.isArchived = 0;
     }
 
     /**
@@ -92,29 +95,26 @@ angular.module("ehelseEditor").factory("TargetGroup", ["$rootScope", function($r
             group.parentId = null;
         }
         if(group.id){
-            $rootScope.put("target-groups/"+group.id,
-                group,
-                function(data){
-                    setTargetGroup(target_groups_dict[data.id], data);
-                    generateTargetGroupOptionsList(target_groups);
-                    $rootScope.notifySuccess("Målgruppe ble oppdatert",1000);
-
-                },
-                function(data){
-                    $rootScope.notifyError("Målgruppe ble ikke oppdatert.",6000);
-                });
+            try{
+                setTargetGroup(target_groups_dict[group.id], group);
+                generateTargetGroupDict(target_groups);
+                $rootScope.notifySuccess("Mulgruppe ble oppdatert", 1000);
+            }
+            catch(error){
+                console.log("Target group could not be updated: " + error);
+                $rootScope.notifyError("Målgruppe ble ikke oppdatert: " + error, 6000);
+            }
         }
         else{
-            $rootScope.post(
-                "target-groups/",
-                group,
-                function(data){
-                    $rootScope.notifySuccess("Ny målgruppe ble opprettet.",1000);
-                    addTargetGroup(data);
-                },function(){
-                    $rootScope.notifyError("Målgruppe ble ikke opprettet.",6000);
-                }
-            );
+            try{
+                initNewTargetGroupValues(group);
+                addTargetGroup(group);
+                $rootScope.notifySuccess("Ny målgruppe ble opprettet", 1000);
+            }
+            catch(error){
+                console.log("Target group could not be created: " + error);
+                $rootScope.notifyError("Målgruppe ble ikke opprettet: " + error, 6000);
+            }
         }
     }
 
@@ -122,11 +122,8 @@ angular.module("ehelseEditor").factory("TargetGroup", ["$rootScope", function($r
      * Function removing a target group from the list of target groups.
      * @param id
      */
-    function removeById(id){
-        var index = target_groups.indexOf(target_groups_dict[id]);
-        if (index > -1) {
-            target_groups.splice(index, 1);
-        }
+    function archiveById(id){
+        target_groups[target_groups.indexOf(target_groups_dict[id])].isArchived = 1;
     }
 
     /**
@@ -135,17 +132,16 @@ angular.module("ehelseEditor").factory("TargetGroup", ["$rootScope", function($r
      */
     function deleteById(id){
         if(id){
-            $rootScope.delete("target-groups/"+id,
-                function(data){
-                    removeById(id);
-                    generateTargetGroupOptionsList(target_groups);
-                    generateTargetGroupDict(target_groups);
-                    $rootScope.notifySuccess("Målgruppe ble fjernet",1000);
-
-                },
-                function(data){
-                    $rootScope.notifyError("Målgruppe ble ikke fjernet.",6000);
-                });
+            try{
+                archiveById(id);
+                generateTargetGroupOptionsList(target_groups);
+                generateTargetGroupDict(target_groups);
+                $rootScope.notifySuccess("Målgruppe ble fjernet",1000);
+            }
+            catch(error){
+                console.log("Target group could not be deleted: " + error);
+                $rootScope.notifyError("Målgruppe ble ikke slettet: " + error, 6000);
+            }
         }
     }
 
@@ -159,7 +155,8 @@ angular.module("ehelseEditor").factory("TargetGroup", ["$rootScope", function($r
             name: "",
             description: "",
             parentId:null,
-            abbreviation: ""
+            abbreviation: "",
+            isArchived: 0
         };
     }
 
@@ -176,6 +173,7 @@ angular.module("ehelseEditor").factory("TargetGroup", ["$rootScope", function($r
         a.description = b.description;
         a.parentId = b.parentId;
         a.abbreviation = b.abbreviation;
+        a.isArchived = b.isArchived;
     }
 
     /**
@@ -218,6 +216,7 @@ angular.module("ehelseEditor").factory("TargetGroup", ["$rootScope", function($r
     }
 
     return {
+        init: init,
         new: newTargetGroup,
         getAll : getAll,
         getById : getById,

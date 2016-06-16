@@ -8,7 +8,7 @@
         <div class="headline-box">
             <h4 class="selected" ng-if="documentState == 'editTopic'">Rediger tema</h4>
             <h4 class="selected" ng-if="documentState == 'newDocument'">Nytt dokument</h4>
-            <h4 class="selected" ng-if="documentState == 'editDocument'">Rediger dokument</h4>
+            <h4 class="selected" ng-if="documentState == 'editDocument' || documentState == 'editUtility'">Rediger dokument</h4>
             <h4 class="selected" ng-if="documentState == 'editProfile'">Rediger profil</h4>
             <h4 class="selected" ng-if="documentState == 'newProfile'">Ny profil</h4>
 
@@ -31,7 +31,7 @@
 
         <!-- All buttons used in the various document states and types -->
         <p class="twelve-pix-vertical-padding">
-            <button type="button" class="btn btn-primary" ng-click="submit(EditDocumentController.DocumentForm);setDocumentnState('editDocument');" ng-if="documentState == 'newDocument'" ng-disabled="EditDocumentController.DocumentForm.$invalid || EditDocumentController.DocumentForm.$pristine">
+            <button type="button" class="btn btn-primary" ng-click="submit(EditDocumentController.DocumentForm);setDocumentState('editDocument');" ng-if="documentState == 'newDocument'" ng-disabled="EditDocumentController.DocumentForm.$invalid || EditDocumentController.DocumentForm.$pristine">
                 <span class="fa fa-check-circle edit-topic-icon"></span>
                 Opprett dokument
             </button>
@@ -43,14 +43,21 @@
                 <span class="fa fa-check-circle-o edit-topic-icon"></span>
                 Lagre dokument
             </button>
-
+            <button type="button" class="btn btn-default" ng-disabled="!((documentState == 'editProfile' || documentState == 'editDocument' || documentState == 'editUtility') && !document.nextDocumentId)" ng-click="newVersion(document)">
+                <span class="fa fa-clone"></span>
+                Ny versjon
+            </button>
+            <span class="ten-pix-horizontal-padding" ng-if="document.editedTimestamp">
+                Opprettet: <b >{{getFormattedTimestamp(document.createdTimestamp).date}}</b>
+                Kl: <b >{{getFormattedTimestamp(document.createdTimestamp).time}}</b>
+            </span>
+            <span class="ten-pix-horizontal-padding" ng-if="document.editedTimestamp">
+                Sist endret: <b >{{getFormattedTimestamp(document.editedTimestamp).date}}</b>
+                Kl: <b >{{getFormattedTimestamp(document.editedTimestamp).time}}</b>
+            </span>
             <button type="button" class="btn btn-danger pull-right" ng-if="documentState == 'editProfile' || documentState == 'editDocument' || documentState == 'editUtility'" ng-click="openConfirmationModal('Er du sikker på at du vil slette dokumentet?', document, deleteDocument)">
                 <span class="fa fa-remove"></span>
                 Slett dokument
-            </button>
-            <button type="button" class="btn btn-default" ng-disabled="!((documentState == 'editProfile' || documentState == 'editDocument') && !document.nextDocumentId)" ng-click="newVersion(document)">
-                <span class="fa fa-clone"></span>
-                Ny versjon
             </button>
 
         </p>
@@ -80,7 +87,7 @@
                     <div class="form-group col-sm-9">
                         <select name="documentType" id="documentType"
                                 ng-change="setCurrentDocumentFieldsByDocumentDocumentTypeId();"
-                                ng-model="document.documentTypeId" class="form-control half-width" ng-disabled="documentState == 'editDocument' || documentState == 'newProfile' || documentState == 'editProfile'">
+                                ng-model="document.documentTypeId" class="form-control half-width" ng-disabled="documentState == 'editDocument' || documentState == 'newProfile' || documentState == 'editProfile' || documentState == 'editUtility'">
                             <option ng-repeat="document_type in document_types_option_list" ng-if="document_type.value == '1' && !document.standardId || document_type.value == '2' && document.standardId || document_type.value == '3'  && !document.standardId"
                                     value="{{document_type.value}}">{{document_type.name}}
                             </option>

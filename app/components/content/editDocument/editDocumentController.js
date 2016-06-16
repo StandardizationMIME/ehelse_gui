@@ -23,11 +23,16 @@ angular.module("ehelseEditor").controller("EditDocumentController",
             $scope.document_dict = Document.getAllAsDict();
             $scope.status_list = Status.getAll();
 
-
             // Submit function used both create new documents and save changes to existing ones
             $scope.submit = function(form){
                 Document.submitCurrentDocument();
                 form.$setPristine();
+            };
+
+            $scope.getFormattedTimestamp = function(timestamp){
+                if(timestamp){
+                    return {date: timestamp.substring(8,10) + "." + timestamp.substring(5,7) + "." + timestamp.substring(0,4), time: timestamp.substring(11,16)};
+                }
             };
 
             // Delete selected document
@@ -63,6 +68,66 @@ angular.module("ehelseEditor").controller("EditDocumentController",
                 Document.setCurrentDocument(Document.newVersion(document));
                 $rootScope.notifySuccess("Ny versjon klargjort", 3000);
                 $rootScope.setDocumentState('newDocument');
+            };
+
+            /*
+            // XML GENERATOR
+            function generateXMLString(name, content){
+                var resultXML;
+                if (!content){
+                    resultXML = '<' + name + '/>' + '\n';
+                }else{
+                    resultXML = '<' + name + '>' + content + '</' + name + '>' + '\n';
+                }
+                return resultXML;
             }
+
+            var xmlNavn,
+                xmlVersjon,
+                xmlIdentifikator,
+                xmlErstatter,
+                xmlErsattetAv;
+
+            xmlNavn = generateXMLString('Navn',Topic.getById($scope.document.topicId).title);
+            xmlVersjon = generateXMLString('Versjon', ''); // TO DO: where version can be found
+            xmlIdentifikator = generateXMLString('Identifikator', $scope.document.hisNumber);
+            if ($scope.document.previousDocumentId){
+                xmlErstatter = generateXMLString('Erstatter', Document.getById($scope.document.previousDocumentId).hisNumber);
+                console.log(xmlErstatter);
+            }
+            if ($scope.document.nextDocumentId){
+                xmlErsattetAv = generateXMLString('ErstattetAv', Document.getById($scope.document.nextDocumentId).hisNumber);
+                console.log(xmlErsattetAv);
+            }
+
+
+            console.log(xmlNavn + xmlIdentifikator);
+            */
+
+            // OLD comment
+            /*function convertDocumentFieldsToXML(){
+                var document_to_convert = $scope.document;
+                console.log("document to convert: ")
+                console.log(document_to_convert);
+
+                var fields_to_convert = document_to_convert.fields;
+                console.log("fields to convert");
+                console.log(fields_to_convert);
+
+                for(var i = 0; i < fields_to_convert.length; i++){
+                    var current_field_to_convert = fields_to_convert[i];
+                    console.log("element " + i + " in fields to convert");
+                    console.log(current_field_to_convert);
+
+                    for (var key in current_field_to_convert){
+                        console.log(current_field_to_convert[key]);
+                    }
+
+                }
+            }
+
+
+
+            convertDocumentFieldsToXML();*/
         }
     ]);

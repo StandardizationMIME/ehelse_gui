@@ -1,24 +1,22 @@
 "use strict";
 
-angular.module("ehelseEditor").factory("LinkCategory", ["$rootScope", function($rootScope) {
+angular.module("ehelseEditor").factory("LinkCategory", ["$rootScope", "StorageHandler", "ServiceFunction", function($rootScope, StorageHandler, ServiceFunction) {
     var link_categories= [];
     var link_categories_dict = {};
 
-    /**
-     * Function call used to retrieve link categories from the server
-     */
-    $rootScope.get(
-        "link-categories",
-        function ( data ){
-            link_categories.length = 0;
-            Array.prototype.push.apply(link_categories, data.link_categories);
-            generateLinkCategoryDict();
+    init();
 
-        },
-        function (data) {
-            console.log("No Link Categories found");
+    function init(){
+        try{
+            link_categories.length = 0;
+            Array.prototype.push.apply(link_categories, StorageHandler.getLinkCategories().linkCategories);
+            generateLinkCategoryDict();
         }
-    );
+        catch(error){
+            console.log("Link categories could not be loaded: " + error);
+            $rootScope.notifyError("Linkkategorier kunne ikke lastes: " + error, 6000);
+        }
+    }
 
     /**
      * Function used to create new LinkCategory objects.
@@ -28,7 +26,8 @@ angular.module("ehelseEditor").factory("LinkCategory", ["$rootScope", function($
         return {
             id: null,
             name: "",
-            description: ""
+            description: "",
+            isArchived: 0
         }
     }
 
@@ -54,6 +53,7 @@ angular.module("ehelseEditor").factory("LinkCategory", ["$rootScope", function($
         a.id = b.id;
         a.name = b.name;
         a.description = b.description;
+        a.isArchived = b.isArchived;
     }
 
     /**
@@ -78,6 +78,11 @@ angular.module("ehelseEditor").factory("LinkCategory", ["$rootScope", function($
         }
     }
 
+    function initNewLinkCategoryValues(link_category){
+        link_category.id = ServiceFunction.generateNewId(link_category);
+        link_category.isArchived = 0;
+    }
+
     /**
      * Function creating or updating the link category based on if it got an id.
      *
@@ -86,29 +91,26 @@ angular.module("ehelseEditor").factory("LinkCategory", ["$rootScope", function($
      */
     function submit(link_category){
         if(link_category.id){
-            $rootScope.put(
-                "link-categories/"+link_category.id,
-                link_category,
-                function(data){
-                    set(link_categories_dict[data.id], data);
-                    generateLinkCategoryDict(link_categories);
-                    $rootScope.notifySuccess("Lenke-kategori ble oppdatert",1000);
-                },
-                function(data){
-                    $rootScope.notifyError("Lenke-kategori ble ikke oppdatert.",6000);
-                });
+            try{
+                set(link_categories_dict[link_category.id], link_category);
+                generateLinkCategoryDict(link_categories);
+                $rootScope.notifySuccess("Lenke-kategori ble oppdatert",1000);
+            }
+            catch(error){
+                console.log("Link category could not be updated: " + error);
+                $rootScope.notifyError("Linkkategori ble ikke oppdatert: " + error, 6000);
+            }
         }
         else{
-            $rootScope.post(
-                "link-categories/",
-                link_category,
-                function(data){
-                    $rootScope.notifySuccess("Ny målgruppe ble opprettet.",1000);
-                    add(data);
-                },function(){
-                    $rootScope.notifyError("Målgruppe ble ikke opprettet.",6000);
-                }
-            );
+            try{
+                initNewLinkCategoryValues(link_category);
+                $rootScope.notifySuccess("Ny målgruppe ble opprettet.",1000);
+                add(link_category);
+            }
+            catch(error){
+                console.log("Link category could not be created: " + error);
+                $rootScope.notifyError("Linkkategori ble ikke opprettet: " + error, 6000);
+            }
         }
     }
 
@@ -116,11 +118,8 @@ angular.module("ehelseEditor").factory("LinkCategory", ["$rootScope", function($
      * Function removing a link category from the link category list.
      * @param linkCategory
      */
-    function removeLinkCategory(linkCategory){
-        var index = link_categories.indexOf(linkCategory);
-        if (index > -1) {
-            link_categories.splice(index, 1);
-        }
+    function archiveLinkCategory(linkCategory){
+        linkCategory.isArchived = 1;
     }
 
     /**
@@ -130,17 +129,15 @@ angular.module("ehelseEditor").factory("LinkCategory", ["$rootScope", function($
      * @param linkCategory
      */
     function deleteLinkCategory(linkCategory){
-        $rootScope.delete(
-            "link-categories/"+ linkCategory.id,
-            function () {
-                removeLinkCategory(linkCategory);
-                generateLinkCategoryDict();
-                $rootScope.notifySuccess("Link-kategorien ble slettet!", 1000);
-            },
-            function () {
-                $rootScope.notifyError("Kunne ikke slette", 6000);
-            }
-        );
+        try{
+            archiveLinkCategory(linkCategory);
+            generateLinkCategoryDict();
+            $rootScope.notifySuccess("Link-kategorien ble arkivert!", 1000);
+        }
+        catch(error){
+            console.log("Link category could not be archived: " + error);
+            $rootScope.notifyError("Linkkategori ble ikke arkivert: " + error, 6000);
+        }
     }
 
     function getAllAsDict(){
@@ -158,6 +155,7 @@ angular.module("ehelseEditor").factory("LinkCategory", ["$rootScope", function($
     }
 
     return {
+        init: init,
         new: newLinkCategory,
         clone: clone,
         submit: submit,

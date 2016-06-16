@@ -9,10 +9,8 @@ angular.module("ehelseEditor").controller("NewTopicModalController", [ "$scope",
     $scope.newTopic = {
         "title" : "",
         "description" : "",
-        "isInCatalog": false,
         "parentId": Topic.getSelected().id,
-        "sequence": 1,
-        "comment": ""
+        "sequence": 1
     };
 
     // Create and post topic

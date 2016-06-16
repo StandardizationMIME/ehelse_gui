@@ -5,29 +5,24 @@
     <h3>MIME</h3>
 
     <!-- Login input fields -->
-    <form name="login" ng-submit="submit()" role="form">
+    <form name="login" role="form">
 
-        <!-- Username -->
-        <div class="form-group input-group">
-            <span class="input-group-addon" id="user"><i class="fa fa-user fa-lg fa-fw"></i></span>
-            <input type="text" name="username" id="username" aria-describedby="user" class="form-control" ng-model="username" placeholder="Brukernavn" required />
-        </div>
-
-        <!-- Password -->
-        <div class="form-group input-group">
-            <span class="input-group-addon" id="pw"><i class="fa fa-unlock fa-lg fa-fw"></i></span>
-            <input type="password" name="password" id="password" aria-describedby="pw" class="form-control" ng-model="password" placeholder="Passord" required />
-        </div>
-
-        <!-- Log in -->
-        <div class="form-actions">
-            <button type="submit" ng-disabled="login.$invalid" class="btn btn-primary btn-group-justified font-size-large">Logg inn</button>
-        </div>
+        <!-- File upload input -->
+        <input type="file" on-read-file="readFileContent($fileContent)">
 
         <!-- Feedback -->
         <div class="has-error">
             <span ng-show="login.$error" class="help-block">{{feedback}}</span>
         </div>
-        <a ui-sref="forgot-password"> Glemt passord?</a>
+
+        <div>
+            <button type="button"
+                    class="btn btn-primary font-size-large"
+                    ng-click="goToSite()"
+                    ng-disabled="invalid($fileContent)"
+            >
+                Gå til editor
+            </button>
+        </div>
     </form>
 </div>

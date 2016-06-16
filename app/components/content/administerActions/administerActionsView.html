@@ -34,7 +34,7 @@
 
             <!-- Table body -->
             <tbody>
-                <tr ng-repeat="action in actions">
+                <tr ng-repeat="action in actions" ng-hide="action.isArchived">
 
                     <!-- Action info -->
                     <td>{{action.name}}</td>

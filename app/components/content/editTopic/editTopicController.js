@@ -1,6 +1,6 @@
 "use strict";
 
-angular.module("ehelseEditor").controller("EditTopicController", [ "$scope","$rootScope", "Topic", function( $scope, $rootScope, Topic) {
+angular.module("ehelseEditor").controller("EditTopicController", [ "$scope","$rootScope", "Topic", "Document", function( $scope, $rootScope, Topic, Document) {
 
     // // Save topic values to scope so they can be easily accessed in the html files
     $scope.topicTupleList = Topic.getAllAsOptionsList();

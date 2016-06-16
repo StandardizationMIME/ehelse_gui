@@ -1,4 +1,6 @@
-angular.module("ehelseEditor").controller("ToolbarController", ["$state", "$rootScope", "$scope", function ($state, $rootScope, $scope) {
+angular.module("ehelseEditor").controller("ToolbarController",
+    ["$state", "$rootScope", "$scope", "FileUpload", "StorageHandler", "DownloadList",
+    function ($state, $rootScope, $scope, FileUpload, StorageHandler, DownloadList) {
 
     $scope.$parent.registerChildController("ToolbarController", $scope);
 
@@ -38,6 +40,23 @@ angular.module("ehelseEditor").controller("ToolbarController", ["$state", "$root
     $scope.openAdministerMandatory = function () {
         $scope.deselectTopicAndDocument();
         $rootScope.changeContentView("administermandatory");
+    };
+
+    // Open import_csv modal
+    $scope.openCSVImportModal = function (){
+        $scope.deselectTopicAndDocument();
+        $rootScope.openModal("app/components/csvImport/csvImportModal.html","CSVImportController");
+    };
+
+    // Open uploadFile modal
+    $scope.openUploadFileModal = function () {
+        $scope.deselectTopicAndDocument();
+        $rootScope.openModal("app/components/uploadFile/uploadFileModal.html", "UploadFileController");
+    };
+
+    // Download save file
+    $scope.save = function () {
+        FileUpload.saveToFile(DownloadList.getStorageList());
     };
 
     // Initialize state
