@@ -195,17 +195,30 @@ angular.module("ehelseEditor").factory("DocumentField", ["$rootScope", "StorageH
     /**
      * Function returning a field from its id.
      * @param id
-     * @param success
-     * @param error
      */
-    function getFieldById(id, success, error){
-        try{
-            success(document_fields_dict[id]);
+    function getById(id) {
+        if(document_fields_dict[id].mandatory == "0"){
+            document_fields_dict[id].mandatory = false;
+        } else if (document_fields_dict[id].mandatory = "1"){
+            document_fields_dict[id].mandatory = true;
         }
-        catch(err){
-            console.log("Field could not be retrieved by id: " + err);
-            error();
-        }
+        return document_fields_dict[id];
+    }
+
+
+    function setDocumentField(to, from){
+        to.id = from.id;
+        to.name = from.name;
+        to.description = from.description;
+        to.sequence = from.sequence;
+        to.mandatory = from.mandatory;
+        to.documentTypeId = from.documentTypeId;
+        to.isArchived = from.isArchived;
+    }
+    function clone(field){
+        var clone = {};
+        setDocumentField(clone,field);
+        return clone;
     }
 
     /**
@@ -235,8 +248,9 @@ angular.module("ehelseEditor").factory("DocumentField", ["$rootScope", "StorageH
         create: create,
         edit: edit,
         delete: remove,
-        getFieldById: getFieldById,
         getRequiredDocumentFieldIdsByDocumentTypeId: getRequiredDocumentFieldIdsByDocumentTypeId,
-        getAll: getAll
+        getAll: getAll,
+        getById: getById,
+        clone: clone
     };
 }]);

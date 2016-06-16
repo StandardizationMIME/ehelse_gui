@@ -17,10 +17,6 @@ angular.module("ehelseEditor").controller("AdministerLinkCategoriesController",[
         $rootScope.currentLinkCategory = LinkCategory.clone(LinkCategory.getById(linkCategoryId));
         $rootScope.shouldBeOpen = true;
         $rootScope.openModal("app/components/content/administerLinkCategories/addEditLinkCategories/editLinkCategoryModal.html", "AddEditLinkCategoriesController");
-
-
     };
-
-
 
 }]);
