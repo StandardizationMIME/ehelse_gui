@@ -284,31 +284,35 @@ angular.module("ehelseEditor").factory("Document", ["$rootScope", "DocumentField
      * Function deleting current document.
      */
     function deleteCurrentDocument() {
-        try{
-            var archived_document = clone(documents_dict[current_document.id]);
-            StorageHandler.addArchivedDocumentsById(archived_document);
+        if(documents_dict[current_document.id].populatedProfiles.length < 1 || documents_dict[current_document.id].standardId){
+            try{
+                var archived_document = clone(documents_dict[current_document.id]);
+                StorageHandler.addArchivedDocumentsById(archived_document);
 
-            updatePreviousAndNextDocumentIdValues();
-            var current_id = current_document.id;
+                updatePreviousAndNextDocumentIdValues();
+                var current_id = current_document.id;
 
-            /* DENNE LINJA ER JEG USIKKER PÅ, må sees over senere. */
-            delete documents_dict[current_id];
+                /* DENNE LINJA ER JEG USIKKER PÅ, må sees over senere. */
+                delete documents_dict[current_id];
 
-            if(current_document.standardId){
-                var sib = documents_dict[current_document.standardId].profiles;
-                for(var i = 0; i < sib.length; i++){
-                    if(current_document.id == sib[i].id){
-                        sib.splice(i,1);
+                if(current_document.standardId){
+                    var sib = documents_dict[current_document.standardId].profiles;
+                    for(var i = 0; i < sib.length; i++){
+                        if(current_document.id == sib[i].id){
+                            sib.splice(i,1);
+                        }
                     }
                 }
+                deleteCurrentDocumentFromDocumentsList();
+                $rootScope.notifySuccess("Dokumentet ble slettet", 1000);
+                $rootScope.changeContentView("");
             }
-            deleteCurrentDocumentFromDocumentsList();
-            $rootScope.notifySuccess("Dokumentet ble slettet", 1000);
-            $rootScope.changeContentView("");
-        }
-        catch(error){
-            $rootScope.notifyError("Dokumentet kunne ikke slettes: " + error, 6000);
-            console.log("Dokumentet kunne ikke slettes: " + error);
+            catch(error){
+                $rootScope.notifyError("Dokumentet kunne ikke slettes: " + error, 6000);
+                console.log("Dokumentet kunne ikke slettes: " + error);
+            }
+        }else{
+            $rootScope.notifyError("Standarder med en eller flere tilknyttede profiler kan ikke slettes!", 6000);
         }
     }
 
