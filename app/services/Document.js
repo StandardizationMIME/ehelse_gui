@@ -80,6 +80,7 @@ angular.module("ehelseEditor").factory("Document", ["$rootScope", "DocumentField
                 documents.push(document);
             }
 
+            Topic.setDocuments(documents);  // Adds reference to the document list int Topic
             generateDocumentDict(documents);
             generateTopicsDocumentsDict(documents);
             console.log(documents);
@@ -176,7 +177,7 @@ angular.module("ehelseEditor").factory("Document", ["$rootScope", "DocumentField
             document.populatedProfiles = [];
             document.profiles = [];
             document.createdTimestamp = ServiceFunction.getTimestamp();
-            document.editedTimestamp = null;
+            document.editedTimestamp = ServiceFunction.getTimestamp();
         }else{
             console.log("Input = " + document + " and is invalid");
         }
@@ -210,9 +211,7 @@ angular.module("ehelseEditor").factory("Document", ["$rootScope", "DocumentField
             try{
                 //Clones current document and initialize it's values
                 var new_document = clone(current_document);
-                console.log(new_document);
                 initNewDocument(new_document);
-                console.log(new_document);
 
                 //push profile id to standard
                 if(new_document.standardId){
@@ -263,15 +262,22 @@ angular.module("ehelseEditor").factory("Document", ["$rootScope", "DocumentField
      * Sets next and previous documentID of the next and previous documents to null
      */
     function nullifyPreviousAndNextDocumentIdValues(){
-        if(documents_dict[current_document.previousDocumentId]){
-            documents_dict[current_document.previousDocumentId].nextDocumentId = null;
+        if(documents_dict[current_document.previousDocumentId] && documents_dict[current_document.nextDocumentId]){
+            documents_dict[current_document.previousDocumentId].nextDocumentId = documents_dict[current_document.nextDocumentId].id;
+            documents_dict[current_document.nextDocumentId].previousDocumentId = documents_dict[current_document.previousDocumentId].id;
             documents_dict[current_document.previousDocumentId].populatedProfiles = [];
-            updateDocumentInDocumentsList(documents_dict[current_document.previousDocumentId]);
-        }
-        if(documents_dict[current_document.nextDocumentId]){
-            documents_dict[current_document.nextDocumentId].previousDocumentId = null;
             documents_dict[current_document.nextDocumentId].populatedProfiles = [];
-            updateDocumentInDocumentsList(documents_dict[current_document.nextDocumentId]);
+        }else{
+            if(documents_dict[current_document.previousDocumentId]){
+                documents_dict[current_document.previousDocumentId].nextDocumentId = null;
+                documents_dict[current_document.previousDocumentId].populatedProfiles = [];
+                updateDocumentInDocumentsList(documents_dict[current_document.previousDocumentId]);
+            }
+            if(documents_dict[current_document.nextDocumentId]){
+                documents_dict[current_document.nextDocumentId].previousDocumentId = null;
+                documents_dict[current_document.nextDocumentId].populatedProfiles = [];
+                updateDocumentInDocumentsList(documents_dict[current_document.nextDocumentId]);
+            }
         }
     }
 
@@ -440,7 +446,7 @@ angular.module("ehelseEditor").factory("Document", ["$rootScope", "DocumentField
     }
 
     function setCurrentDocumentFieldsByDocumentDocumentTypeId() {
-        current_document.fields.length = 0;
+        //current_document.fields.length = 0;
         extendCurrentDocumentFieldsByFieldIds(DocumentField.getRequiredDocumentFieldIdsByDocumentTypeId(current_document.documentTypeId))
     }
 

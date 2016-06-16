@@ -6,6 +6,7 @@ angular.module("ehelseEditor").factory("Topic", ["$rootScope", "StorageHandler",
     var topics_dict = {};
     var topics_options_list = [];
     var selected_topic = {};
+    var documents = [];
 
     init();
 
@@ -19,6 +20,10 @@ angular.module("ehelseEditor").factory("Topic", ["$rootScope", "StorageHandler",
             console.log("Topics could not be loaded: " + error);
             $rootScope.notifyError("Temaer kunne ikke lastes: " + error, 6000);
         }
+    }
+
+    function setDocuments(input_documents) {
+        documents = input_documents;
     }
 
     /**
@@ -245,16 +250,36 @@ angular.module("ehelseEditor").factory("Topic", ["$rootScope", "StorageHandler",
      */
     function deleteById(id){
         if(id){
-            try{
-                removeById(id);
-                $rootScope.notifySuccess("Topic ble fjernet",1000);
-                $rootScope.changeContentView("");
-            }
-            catch(error){
-                console.log("Topic could not be deleted: " + error);
-                $rootScope.notifyError("Tema ble ikke slettes: " + error, 6000);
+            if (topics_dict[id].children.length || hasDocuments(id)) {
+                console.log("Error: could not delete topic because it is not empty");
+                $rootScope.notifyError("Error: Kan ikke slette temaer som ikke er tomme!", 6000);
+            } else {
+                try {
+                    removeById(id);
+                    $rootScope.notifySuccess("Topic ble fjernet", 1000);
+                    $rootScope.changeContentView("");
+                }
+                catch (error) {
+                    console.log("Topic could not be deleted: " + error);
+                    $rootScope.notifyError("Tema ble ikke slettes: " + error, 6000);
+                }
             }
         }
+    }
+
+    /**
+     * Returns if a topic has any documents
+     * @param topic_id
+     * @returns {boolean}
+     */
+    function hasDocuments(topic_id) {
+        for (var i = 0; i < documents.length; i++) {
+            var document = documents[i];
+            if (document["topicId"] == topic_id) {
+                return true;
+            }
+        }
+        return false;
     }
 
     function getAll(){
@@ -280,6 +305,7 @@ angular.module("ehelseEditor").factory("Topic", ["$rootScope", "StorageHandler",
 
     return {
         init: init,
+        setDocuments: setDocuments,
         new: newTopic,
         clone: clone,
         submit: submit,
