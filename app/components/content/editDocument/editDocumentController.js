@@ -34,7 +34,7 @@ angular.module("ehelseEditor").controller("EditDocumentController",
                     return {date: timestamp.substring(8,10) + "." + timestamp.substring(5,7) + "." + timestamp.substring(0,4), time: timestamp.substring(11,16)};
                 }
             };
-
+            
             // Delete selected document
             $scope.deleteDocument = function(){
                 Document.deleteCurrentDocument();
@@ -68,7 +68,7 @@ angular.module("ehelseEditor").controller("EditDocumentController",
                 Document.setCurrentDocument(Document.newVersion(document));
                 $rootScope.notifySuccess("Ny versjon klargjort", 3000);
                 $rootScope.setDocumentState('newDocument');
-            }
+            };
 
             function generateXMLString(name, content){
                 var resultXML;
