@@ -59,7 +59,9 @@ angular.module("ehelseEditor").controller("DocumentController", [ "$scope","$roo
         $rootScope.selected_document = document;
         $scope.checkDocumentState(document);
 
+        console.log('document' + document);
         Document.setCurrentDocument(document);
+        console.log($scope.current_document);
         $rootScope.changeContentView("document");
     };
 }]);

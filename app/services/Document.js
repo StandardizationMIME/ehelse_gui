@@ -82,6 +82,7 @@ angular.module("ehelseEditor").factory("Document", ["$rootScope", "DocumentField
 
             generateDocumentDict(documents);
             generateTopicsDocumentsDict(documents);
+            console.log(documents);
         }
         catch(error){
             $rootScope.notifyError("Dokumenter kunne ikke lastes inn: " + error, 6000);
@@ -412,6 +413,7 @@ angular.module("ehelseEditor").factory("Document", ["$rootScope", "DocumentField
     }
 
     function setCurrentDocument(document) {
+        console.log(document);
         if (!document) {
             document = newDocument();
             setDocument(current_document, document);
@@ -419,7 +421,7 @@ angular.module("ehelseEditor").factory("Document", ["$rootScope", "DocumentField
         }
         else {
             setDocument(current_document, document);
-            setCurrentDocumentFieldsByDocumentDocumentTypeId();
+            //setCurrentDocumentFieldsByDocumentDocumentTypeId();
         }
         generateCurrentDocumentLinksAsLinkCategoryList();
 

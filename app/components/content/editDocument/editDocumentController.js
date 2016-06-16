@@ -63,8 +63,10 @@ angular.module("ehelseEditor").controller("EditDocumentController",
                 Document.setCurrentDocument(Document.newVersion(document));
                 $rootScope.notifySuccess("Ny versjon klargjort", 3000);
                 $rootScope.setDocumentState('newDocument');
-            }
+            };
 
+            /*
+            // XML GENERATOR
             function generateXMLString(name, content){
                 var resultXML;
                 if (!content){
@@ -95,7 +97,9 @@ angular.module("ehelseEditor").controller("EditDocumentController",
 
 
             console.log(xmlNavn + xmlIdentifikator);
+            */
 
+            // OLD comment
             /*function convertDocumentFieldsToXML(){
                 var document_to_convert = $scope.document;
                 console.log("document to convert: ")
