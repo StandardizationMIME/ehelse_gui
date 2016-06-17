@@ -19,4 +19,23 @@ angular.module("ehelseEditor").controller("AdministerMandatoryController",["$sco
         $rootScope.openModal("app/components/content/administerMandatory/addEditMandatory/editMandatoryModal.html", "AddEditMandatoryController");
     };
 
+    $scope.archivedMandatoryButton = true;
+    $scope.mandatoryHeadingClass = "white-color blue-background";
+    $scope.archivedMandatoryButtonClass = "btn btn-default pull-right";
+    $scope.changeMandatoryClass = function () {
+        if ($scope.archivedMandatoryButton == true){
+            $scope.mandatoryHeadingClass = "white-color darkgray-background";
+            $scope.archivedMandatoryButtonClass = "btn btn-primary pull-right";
+            $scope.archivedMandatoryButton = false;
+        } else {
+            $scope.mandatoryHeadingClass = "white-color blue-background";
+            $scope.archivedMandatoryButtonClass = "btn btn-default pull-right";
+            $scope.archivedMandatoryButton = true;
+        }
+    };
+    $scope.recoverMandatory = function (mandatory) {
+        mandatory.isArchived = 0;
+        $rootScope.notifySuccess("Obligatoriskhet ble gjenopprettet!", 1000);
+    };
+
 }]);
