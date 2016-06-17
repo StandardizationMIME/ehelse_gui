@@ -30,11 +30,11 @@
             <!-- Table headers -->
             <thead ng-class="actionsHeadingsClass">
                 <tr>
-                    <th>Tittel</th>
-                    <th>Beskrivelse</th>
-                    <th><span ng-show="!archivedActionsButton"></span><span ng-show="archivedActionsButton">Rediger</span></th>
-                    <th></th>
-                    <th>Slett</th>
+                    <th class="col-md-2">Tittel</th>
+                    <th class="col-md-8">Beskrivelse</th>
+                    <th class="col-md-1"><span ng-show="archivedActionsButton">Rediger</span></th>
+                    <th class="col-md-1"><span ng-show="archivedActionsButton">Arkiver</span>
+                                         <span ng-show="!archivedActionsButton">Gjenopprett</span></th>
                 </tr>
             </thead>
 
@@ -66,7 +66,7 @@
                 <td></td>
 
                 <!-- Recover action -->
-                <td><span class="fa fa-undo fa-fw vcenter clickable " ng-click="openConfirmationModal('Er du sikker på at du vil slette?', action, recoverArchivedActions)"></span></td>
+                <td><span class="fa fa-undo fa-2x vcenter clickable " ng-click="openConfirmationModal('Er du sikker på at du vil slette?', action, recoverArchivedActions)"></span></td>
             </tr>
             </tbody>
         </table>

@@ -14,6 +14,10 @@
                 <span class="fa fa-plus-circle plus-icon"></span>
                 Ny status
             </button>
+            <button type="button" ng-class="archivedStatusButtonClass" ng-click="changeStatusClass();" style="width: 100px">
+                <span ng-show="archivedStatusButton"> Vis arkiverte </span>
+                <span ng-show="!archivedStatusButton"><span class="fa fa-chevron-left"></span> Vis aktive </span>
+            </button>
         </p>
     </div>
 
@@ -23,17 +27,18 @@
         <table class="table table-striped" id="AdministerStatusesTable">
 
             <!-- Table headers -->
-            <thead class="white-color blue-background">
+            <thead ng-class="statusHeadingClass">
                 <tr>
-                    <th>Tittel</th>
-                    <th>Beskrivelse</th>
-                    <th>Rediger</th>
-                    <th>Slett</th>
+                    <th class="col-md-2">Tittel</th>
+                    <th class="col-md-8">Beskrivelse</th>
+                    <th class="col-md-1"><span ng-show="archivedStatusButton">Rediger</span></th>
+                    <th class="col-md-1"><span ng-show="archivedStatusButton">Arkiver</span>
+                                         <span ng-show="!archivedStatusButton">Gjenopprett</span></th>
                 </tr>
             </thead>
 
-            <!-- Table body -->
-            <tbody>
+            <!-- Active Status Table body -->
+            <tbody ng-show="archivedStatusButton">
                 <tr ng-repeat="status in statuses" ng-hide="status.isArchived">
 
                     <!-- Status info -->
@@ -43,9 +48,25 @@
                     <!-- Edit status -->
                     <td><span class="fa fa-pencil-square-o fa-2x vcenter clickable" ng-click="showEditStatusModal(status.id)"></span></td>
 
-                    <!-- Delete status -->
-                    <td><span class="fa fa-remove fa-fw vcenter clickable remove-user" ng-click="openConfirmationModal('Er du sikker på at du vil slette?', status, deleteStatus)"></span></td>
+                    <!-- Archive status -->
+                    <td><span class="fa fa-archive fa-2x vcenter clickable " ng-click="openConfirmationModal('Er du sikker på at du vil arkivere?', status, deleteStatus)"></span></td>
                 </tr>
+            </tbody>
+
+            <!-- Archived Status Table body -->
+            <tbody ng-show="!archivedStatusButton">
+            <tr ng-repeat="status in statuses" ng-hide="!status.isArchived">
+
+                <!-- Status info -->
+                <td>{{status.name}}</td>
+                <td>{{status.description}}</td>
+
+                <!-- Edit status -->
+                <td></td>
+
+                <!-- Recover status -->
+                <td><span class="fa fa-undo fa-2x vcenter clickable " ng-click="openConfirmationModal('Er du sikker på at du vil gjenopprette?', status, recoverArchivedStatus)"></span></td>
+            </tr>
             </tbody>
         </table>
     </div>
