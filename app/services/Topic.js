@@ -145,6 +145,7 @@ angular.module("ehelseEditor").factory("Topic", ["$rootScope", "StorageHandler",
                 console.log(new_topic);
                 addTopic(new_topic);
                 $rootScope.notifySuccess("Nytt tema ble opprettet!", 1000);
+                $rootScope.getDocuments(new_topic.id);
                 console.log("Tema ble opprettet");
             }
             catch(error){
@@ -309,12 +310,14 @@ angular.module("ehelseEditor").factory("Topic", ["$rootScope", "StorageHandler",
      * @returns {number}
      */
     function getTopicLevel(topic){
-        var count = 0;
-        while (topic.parentId != null){
-            topic = topics_dict[topic.parentId];
-            count ++
+        if(topic.parentId){
+            var count = 0;
+            while (topic.parentId != null){
+                topic = topics_dict[topic.parentId];
+                count ++
+            }
+            return count+1;
         }
-        return count+1;
     }
 
     return {
