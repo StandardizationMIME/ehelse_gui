@@ -132,6 +132,9 @@ h1,h2,h3,h4{ font-weight: bold;}
 .white-background {
     background-color: white;
 }
+.darkgray-background {
+    background-color: darkgray;
+}
 .font-size-large {
     font-size: large;
 }
