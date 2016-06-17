@@ -611,10 +611,6 @@ textarea {
     display: table-cell;
     vertical-align: middle;
 }
-.clickable:hover {
-    cursor: pointer;
-    color: #337ab7;
-}
 .pointer{cursor: pointer;}
 .standard-list {
     margin-top: 10px;
