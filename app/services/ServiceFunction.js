@@ -42,11 +42,10 @@ angular.module("ehelseEditor").factory("ServiceFunction", [function () {
      * @returns {number}
      */
     function generateNewId(list) {
-        console.log("generateNewID List"); console.log(list);
         var length = list.length;
         // If list is undefined
         if (list == null){
-            return -1
+            return "-1"
         }
         // if the list is defined
         if (length) {
@@ -58,9 +57,9 @@ angular.module("ehelseEditor").factory("ServiceFunction", [function () {
                 }
             }
             console.log(max + 1);
-            return (max + 1);
+            return "(max + 1)";
         } else {
-            return 1;
+            return "1";
         }
     }
 
@@ -71,6 +70,7 @@ angular.module("ehelseEditor").factory("ServiceFunction", [function () {
             return "-1";
         }
         // if the dictionary is defined
+        console.log("length: "); console.log(list.length);
         if (length) {
             var max = -Infinity;
             for (var key in dict)   {
@@ -153,6 +153,7 @@ angular.module("ehelseEditor").factory("ServiceFunction", [function () {
             if (!(property in list[0])) {
                 throw "Invalid property " + property + ".";
             }
+            //console.log(" IF " + value + " == " + list[i][property]);
             if (value == list[i][property]) {
                 occurrences++;
             }

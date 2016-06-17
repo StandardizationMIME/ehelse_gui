@@ -265,6 +265,65 @@ angular.module("ehelseEditor").factory("Document", ["$rootScope", "DocumentField
      * Function creating or updating current document based on if it has an id or not.
      */
     function submitCurrentDocument() {
+        var error = getErrorIfInvalidInternalIdOrHisNumber();
+        if (error.length) {
+            $rootScope.notifyError(error, 6000);
+        } else {
+            saveDocument();
+            $rootScope.checkDocumentState(current_document);
+        }
+    }
+
+    /**
+     * Checks if internal ID and HIS numbers are unique
+     *
+     * If internal ID and HIS numbers are not unique, a error message is returned,
+     *  if they are unique, a empty string is returned.
+     * @returns {string}
+     */
+    function getErrorIfInvalidInternalIdOrHisNumber() {
+        var id = current_document.id;
+        var internal_id = current_document.internalId;
+        var his_number = current_document.hisNumber;
+        var errors = [];
+
+        if (!id) {
+            if (!ServiceFunction.isUnique(documents, "internalId", internal_id)) {
+                console.log("Error, internal id not unqiue");
+                errors.push("Intern ID er ikke unikt");
+            }
+            if (his_number && !ServiceFunction.isUnique(documents, "hisNumber", his_number)) {
+                console.log("Error, his not unique");
+                errors.push("HIS-nummer er ikke unikt");
+            }
+        } else {
+            if ((documents_dict[id].internalId != current_document.internalId) &&
+                (!ServiceFunction.isUnique(documents, "internalId", internal_id))) {
+                console.log("Error internal id changed to not unique");
+                errors.push("Intern ID er ikke unik")
+            }
+            if ((documents_dict[id].hisNumber != current_document.hisNumber) &&
+                (his_number && !ServiceFunction.isUnique(documents, "hisNumber", his_number))) {
+                console.log("Error his changed to not unique");
+                errors.push("HIS-nummer er ikke unikt");
+            }
+        }
+
+        var error_message = "";
+        var message_separation = ", og ";
+        for (var i = 0; i < errors.length; i++) {
+            if (!i) {
+
+            }
+            error_message += errors[i] + message_separation;
+        }
+        return error_message.substring(0, error_message.length - message_separation.length);
+    }
+
+    /**
+     * Saves document
+     */
+    function saveDocument() {
         current_document.populatedProfiles.length = 0;
         if (current_document.id) {
             try{
@@ -705,19 +764,28 @@ angular.module("ehelseEditor").factory("Document", ["$rootScope", "DocumentField
      * @returns {number}
      */
     function generateNewDocumentId(documents) {
-        var max = -Infinity;
-        var archived_documents = StorageHandler.getArchivedDocuments();
-        for (var i = 0; i < documents.length; i++) {
-            var id = parseInt(documents[i]["id"]);
-            if (id > max)
-                max = id;
+        var length = documents.length;
+        // If list is undefined
+        if (documents == null){
+            return "-1"
         }
-        for (var id in archived_documents) {
-            id = parseInt(id);
-            if (id > max)
-                max = id;
+        if (length) {
+            var max = -Infinity;
+            var archived_documents = StorageHandler.getArchivedDocuments();
+            for (var i = 0; i < documents.length; i++) {
+                var id = parseInt(documents[i]["id"]);
+                if (id > max)
+                    max = id;
+            }
+            for (var id in archived_documents) {
+                id = parseInt(id);
+                if (id > max)
+                    max = id;
+            }
+            return ""+(max + 1);
+        } else {
+            return "1";
         }
-        return (max + 1);
     }
 
     return {
