@@ -29,21 +29,46 @@ angular.module("ehelseEditor").controller("AdministerFieldsController", ["$scope
     };
 
     $scope.archivedStandardButton = true;
-    $scope.archivedProfileButton = true;
-    $scope.archivedSupportButton = true;
-    $scope.standardListHeadingsClass = "field-item field-list-title panel1";
-    $scope.showArchivedActiveClass = "btn btn-default pull-right";
-    $scope.changeClass = function () {
+    $scope.standardHeadingsClass = "field-item field-list-title panel1";
+    $scope.archivedStandardButtonClass = "btn btn-default pull-right";
+    $scope.changeStandardClass = function () {
         if ($scope.archivedStandardButton == true){
-            $scope.standardListHeadingsClass = "field-item field-list-title panel4";
-            $scope.showArchivedActiveClass = "btn btn-primary pull-right";
+            $scope.standardHeadingsClass = "field-item field-list-title panel4";
+            $scope.archivedStandardButtonClass = "btn btn-primary pull-right";
             $scope.archivedStandardButton = false;
         } else {
-            $scope.standardListHeadingsClass = "field-item field-list-title panel1";
-            $scope.showArchivedActiveClass = "btn btn-default pull-right";
+            $scope.standardHeadingsClass = "field-item field-list-title panel1";
+            $scope.archivedStandardButtonClass = "btn btn-default pull-right";
             $scope.archivedStandardButton = true;
         }
-
+    };
+    $scope.archivedProfileButton = true;
+    $scope.profileHeadingsClass = "field-item field-list-title panel2";
+    $scope.archivedProfileButtonClass = "btn btn-default pull-right";
+    $scope.changeProfileClass = function () {
+        if ($scope.archivedProfileButton == true) {
+            $scope.profileHeadingsClass = "field-item field-list-title panel4";
+            $scope.archivedProfileButtonClass = "btn btn-primary pull-right";
+            $scope.archivedProfileButton = false;
+        } else {
+            $scope.profileHeadingsClass = "field-item field-list-title panel2";
+            $scope.archivedProfileButtonClass = "btn btn-default pull-right";
+            $scope.archivedProfileButton = true;
+        }
+    };
+    $scope.archivedSupportButton = true;
+    $scope.supportHeadingsClass = "field-item field-list-title panel3";
+    $scope.archivedSupportButtonClass = "btn btn-default pull-right";
+    $scope.changeSupportClass = function () {
+        if ($scope.archivedSupportButton == true) {
+            $scope.supportHeadingsClass = "field-item field-list-title panel4";
+            $scope.archivedSupportButtonClass = "btn btn-primary pull-right";
+            $scope.archivedSupportButton = false;
+        } else {
+            $scope.supportHeadingsClass = "field-item field-list-title panel3";
+            $scope.archivedSupportButtonClass = "btn btn-default pull-right";
+            $scope.archivedSupportButton = true;
+        }
     };
 
 
@@ -60,5 +85,5 @@ angular.module("ehelseEditor").controller("AdministerFieldsController", ["$scope
         $rootScope.openModal("app/components/content/administerFields/addFields/newDocumentFieldModal.html", "DocumentFieldModalController");
         console.log("showNewFieldModal?");
     };
-    
+
 }]);
