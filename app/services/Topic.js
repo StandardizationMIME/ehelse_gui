@@ -11,6 +11,7 @@ angular.module("ehelseEditor").factory("Topic", ["$rootScope", "StorageHandler",
     init();
 
     function init(){
+        $rootScope.max_topic_levels = 3;
         try{
             Array.prototype.push.apply(topics, StorageHandler.getTopics().topics);
             generateTopicDict(topics);
@@ -302,6 +303,20 @@ angular.module("ehelseEditor").factory("Topic", ["$rootScope", "StorageHandler",
         return selected_topic;
     }
 
+    /**
+     * Returns the level in the topic list of a topic
+     * @param topic
+     * @returns {number}
+     */
+    function getTopicLevel(topic){
+        var count = 0;
+        while (topic.parentId != null){
+            topic = topics_dict[topic.parentId];
+            count ++
+        }
+        return count+1;
+    }
+
     return {
         init: init,
         setDocuments: setDocuments,
@@ -315,6 +330,7 @@ angular.module("ehelseEditor").factory("Topic", ["$rootScope", "StorageHandler",
         getAllAsDict: getAllAsDict,
         getAllAsOptionsList: getAllAsOptionsList,
         setSelectedById: setSelectedById,
-        getSelected: getSelected
+        getSelected: getSelected,
+        getTopicLevel: getTopicLevel
     };
 }]);
