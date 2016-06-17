@@ -61,10 +61,6 @@ angular.module("ehelseEditor").controller("DocumentController", [ "$scope","$roo
         } else {
             $rootScope.selected_document = document;
             $scope.checkDocumentState(document);
-
-            $rootScope.selected_document = document;
-            $scope.checkDocumentState(document);
-
             Document.setCurrentDocument(document);
             $rootScope.changeContentView("document");
         }
