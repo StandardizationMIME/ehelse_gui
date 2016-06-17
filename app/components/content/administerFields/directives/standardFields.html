@@ -2,22 +2,26 @@
     <div class="ten-pix-vertical-padding">
 
         <!-- Open modal for creating a new field -->
-        <button type="button" ng-click="showNewFieldModal();setTypeId(1)" class="btn btn-default ">
+        <button type="button" ng-click="showNewFieldModal();setTypeId(1)" class="btn btn-default" ng-disabled="!archivedStandardButton">
             <span class="fa fa-plus-circle blue-color font-size-large"></span>
             Nytt felt
+        </button>
+        <button type="button" ng-class="showArchivedActiveClass" ng-click="changeClass();" style="width: 100px">
+            <span ng-show="archivedStandardButton"> Vis arkiverte </span>
+            <span ng-show="!archivedStandardButton"><span class="fa fa-chevron-left"></span> Vis aktive </span>
         </button>
     </div>
 
     <!-- List headings -->
-    <span class="field-item field-list-title panel1">
+    <span ng-class="standardListHeadingsClass">
         <span class="field-item-field">Tittel</span>
         <span class="field-item-field">Beskrivelse</span>
         <span class="field-item-field">Obligatorisk</span>
-        <span class="field-item-field pull-right">Rediger felt &nbsp; Slett &nbsp;&nbsp;&nbsp;</span>
+        <span class="field-item-field pull-right">Rediger felt &nbsp; <span ng-show="archivedStandardButton">&nbsp;&nbsp;&nbsp;Arkiver &nbsp;&nbsp;&nbsp;&nbsp;</span><span ng-show="!archivedStandardButton">Gjenopprett</span></span>
     </span>
 
     <!-- List of existing document fields -->
-    <ul ng-model="documentFields" class="field-item list-group administer-fields-list shadow-below" style="margin-left: 5px">
+    <ul ng-model="documentFields" class="field-item list-group administer-fields-list shadow-below" style="margin-left: 5px" ng-hide="!archivedStandardButton">
         <li ng-repeat="field in documentFields | orderBy:getSequence" ng-if="field.documentTypeId == 1" ng-hide="field.isArchived" class="list-group-item">
 
             <!-- Document field info -->
@@ -27,13 +31,35 @@
             <span class="field-item-field" ng-if="field.mandatory == 0">Nei</span>
 
             <!-- Delete field -->
-            <div class="pull-right">
-                <span ng-click="openConfirmationModal('Er du sikker på at du vil slette feltet?', field, deleteFieldById)" id="editProfileField" class="fa fa-remove fa-fw vcenter clickable remove-user edit-field"></span>
+            <div class="pull-right" style="margin-right: 12px;">
+                <span ng-click="openConfirmationModal('Er du sikker på at du vil arkivere feltet?', field, deleteFieldById)" id="editProfileField" class="fa fa-archive fa-fw vcenter clickable edit-field"></span>
             </div>
 
             <!-- Edit field -->
-            <div class="pull-right">
+            <div class="pull-right" style="margin-right: 28px;">
                 <span ng-click="editDocumentFieldModal(field.id);setTypeId(1)" id="deleteProfileField" class="fa fa-pencil-square-o fa-2x vcenter clickable edit-field"></span>
+            </div>
+        </li>
+    </ul>
+
+    <!-- List of archived document fields -->
+    <ul ng-model="documentFields" class="field-item list-group administer-fields-list shadow-below" style="margin-left: 5px" ng-hide="archivedStandardButton">
+        <li ng-repeat="field in documentFields | orderBy:getSequence" ng-if="field.documentTypeId == 1" ng-hide="!field.isArchived" class="list-group-item">
+
+            <!-- Document field info -->
+            <span class="field-item-field">{{field.name}}</span>
+            <span class="field-item-field">{{field.description}}</span>
+            <span class="field-item-field" ng-if="field.mandatory == 1">Ja</span>
+            <span class="field-item-field" ng-if="field.mandatory == 0">Nei</span>
+
+            <!-- Recover field -->
+            <div class="pull-right" style="margin-right: 12px;">
+                <span ng-click="openConfirmationModal('Er du sikker på at du vil gjenopprette feltet?', field, recoverArchivedField)" id="editArchivedStandardField" class="fa fa-undo fa-fw vcenter clickable edit-field"></span>
+            </div>
+
+            <!-- Edit field -->
+            <div class="pull-right" style="margin-right: 28px;">
+                <span ng-click="editDocumentFieldModal(field.id);setTypeId(1)" id="deleteArchivedStandardField" class="fa fa-pencil-square-o fa-2x vcenter clickable edit-field"></span>
             </div>
         </li>
     </ul>

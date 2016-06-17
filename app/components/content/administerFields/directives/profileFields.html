@@ -6,6 +6,10 @@
             <span class="fa fa-plus-circle red-color font-size-large"></span>
             Nytt felt
         </button>
+        <button type="button" ng-class="showArchivedActiveClass" ng-click="changeClass(); showHide = !showHide" style="width: 100px">
+            <span ng-show="!showHide"> Vis arkiverte </span>
+            <span ng-show="showHide"><span class="fa fa-chevron-left"></span> Vis aktive </span>
+        </button>
     </div>
 
     <!-- List headings -->

@@ -373,6 +373,10 @@ input[readonly], textarea[readonly]{
     color: white;
     background-color: #58a739;
 }
+.panel4 {
+    color: white;
+    background-color: darkgray;
+}
 .edit-document-modal {
     max-height: 650px;
     overflow-y: auto;

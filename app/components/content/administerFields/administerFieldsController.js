@@ -23,6 +23,28 @@ angular.module("ehelseEditor").controller("AdministerFieldsController", ["$scope
             }
         );
     };
+    $rootScope.recoverArchivedField = function (field) {
+        field.isArchived = 0;
+        $rootScope.notifySuccess("Felt ble gjenopprettet!", 1000);
+    };
+
+    $scope.archivedStandardButton = true;
+    $scope.archivedProfileButton = true;
+    $scope.archivedSupportButton = true;
+    $scope.standardListHeadingsClass = "field-item field-list-title panel1";
+    $scope.showArchivedActiveClass = "btn btn-default pull-right";
+    $scope.changeClass = function () {
+        if ($scope.archivedStandardButton == true){
+            $scope.standardListHeadingsClass = "field-item field-list-title panel4";
+            $scope.showArchivedActiveClass = "btn btn-primary pull-right";
+            $scope.archivedStandardButton = false;
+        } else {
+            $scope.standardListHeadingsClass = "field-item field-list-title panel1";
+            $scope.showArchivedActiveClass = "btn btn-default pull-right";
+            $scope.archivedStandardButton = true;
+        }
+
+    };
 
 
     // Open modal for editing document field
