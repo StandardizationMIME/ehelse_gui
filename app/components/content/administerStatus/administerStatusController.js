@@ -19,6 +19,4 @@ angular.module("ehelseEditor").controller("AdministerStatusController",["$scope"
         $rootScope.openModal("app/components/content/administerStatus/addEditStatus/editStatusModal.html", "AddEditStatusController");
     };
 
-
-
 }]);

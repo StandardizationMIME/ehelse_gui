@@ -321,10 +321,10 @@ angular.module("ehelseEditor").factory("CSVConverter",
                     };
                     documentFieldsList.push(documentStandardTypeObj);
                 }
-                var currentLength = documentFieldsList.length;
+                var nextStartId = documentFieldsList.length + 1;
                 for (var p = 0; p < removeDuplicates(profileFieldsTitles).length; p++){
                     var documentProfileTypeObj = {
-                        "id": p+currentLength,
+                        "id": p+nextStartId,
                         "name": removeDuplicates(profileFieldsTitles)[p],
                         "description": "",
                         "sequence": "",
@@ -333,10 +333,10 @@ angular.module("ehelseEditor").factory("CSVConverter",
                     };
                     documentFieldsList.push(documentProfileTypeObj);
                 }
-                currentLength = documentFieldsList.length;
+                nextStartId = documentFieldsList.length + 1;
                 for (var sp = 0; sp < removeDuplicates(supportFieldsTitles).length; sp++){
                     var documentSupportTypeObj = {
-                        "id": sp+currentLength,
+                        "id": sp+nextStartId,
                         "name": removeDuplicates(supportFieldsTitles)[sp],
                         "description": "",
                         "sequence": "",
