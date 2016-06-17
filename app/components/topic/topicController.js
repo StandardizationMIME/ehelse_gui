@@ -15,10 +15,14 @@ angular.module("ehelseEditor").controller("TopicController",["$rootScope", "$sco
     };
 
     // Set selected topic
-    $rootScope.setSelectedTopic = function (topicId) {
-        $rootScope.topic.title = Topic.getById(topicId).title;
-        Topic.setSelectedById(topicId);
-        $rootScope.changeContentView("editTopic");
+    $rootScope.setSelectedTopic = function (topicId, doc) {
+        if(topicId){
+            $rootScope.topic.title = Topic.getById(topicId).title;
+            Topic.setSelectedById(topicId);
+            if(!doc){
+                $rootScope.changeContentView("editTopic");
+            }
+        }
     };
 
 

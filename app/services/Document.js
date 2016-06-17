@@ -280,6 +280,7 @@ angular.module("ehelseEditor").factory("Document", ["$rootScope", "DocumentField
                 generateDocumentDict(documents);
                 generateTopicsDocumentsDict(documents);
 
+                $rootScope.getDocuments(current_document.topicId, current_document);
                 $rootScope.notifySuccess("Dokumentet ble oppdatert", 1000);
             }
             catch(error){

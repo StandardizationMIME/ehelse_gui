@@ -8,20 +8,25 @@ angular.module("ehelseEditor").controller("DocumentController", [ "$scope","$roo
     $scope.current_document = Document.getCurrentDocument();
 
     // Get documents of the selected topic
-    $rootScope.getDocuments = function(topic) {
-        $rootScope.selected_document = "";
-        $scope.documents = Document.getDocumentsByTopicId(topic.id);
-        $rootScope.toggleSelectedTopic(topic.id);
+    $rootScope.getDocuments = function(id, document) {
+        $scope.documents = Document.getDocumentsByTopicId(id);
+        $rootScope.selected_topic_id = id;
+        $rootScope.setSelectedTopic(id, document);
+        if(document){
+            $rootScope.selected_document = document;
+        }else{
+            $rootScope.selected_document = "";
+        }
     };
 
     // Makes selected folder bold and toggles folder icon between opened and closed
-    $rootScope.toggleSelectedTopic = function(id) {
+    /*$rootScope.toggleSelectedTopic = function(id) {
         $(".clickable").removeClass("selected-item");
         if(id){
             $("#" + id).addClass("selected-item");
             $("#folder" + id).toggleClass("glyphicon-folder-open","glyphicon-folder-close");
         }
-    };
+    };*/
 
     // Set the document state to toggle different aspects of the view
      $rootScope.setDocumentState = function(state) {
