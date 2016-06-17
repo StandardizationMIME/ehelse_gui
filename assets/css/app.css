@@ -193,36 +193,7 @@ textarea {
 .content-view {
     padding-top: 16px;
 }
-/*~~~~~~~~~~~~TARGET GROUP~~~~~~~~~~~*/
-.target-group-grid{
-    height: 750px;
-}
-.tg-tbody {
-    display: block;
-    overflow-y: auto;
-    overflow-x: hidden;
-    height: 600px;
-}
-.tg-thead {
-    background-color: #337ab7;
-    color: white;
-    display: block;
-    position:relative;
-    font-size: 13px;
-}
-.tg:nth-child(1) { width: 25.4%; }
-.tg:nth-child(2) { width: 34% }
-.tg:nth-child(3) { width: 8.6% }
-.tg:nth-child(4) { width: 18% }
-.tg:nth-child(5) { width: 7.5% }
-.tg:nth-child(6) { width: 5% }
 
-.table-hover tbody tr:hover td, .table-hover tbody tr:hover th {
-    background-color: #c7c7c7;
-}
-input[readonly], textarea[readonly]{
-    background-color: #e4e4e4 !important;
-}
 /* -------------------------------------------- CH4 DOCUMENT ----------------------------------------- */
 .document-fields-field-name{
     width:25%;
@@ -682,8 +653,15 @@ div>div>.dropdown-toggle:hover{
     position:relative;
     font-size: 14px;
 }
-.tg:nth-child(1) { width: 25% }
-.tg:nth-child(2) { width: 32.3% }
+.tg-thead-archive {
+    background-color: darkgray;
+    color: white;
+    display: block;
+    position:relative;
+    font-size: 14px;
+}
+.tg:nth-child(1) { width: 25.4%; }
+.tg:nth-child(2) { width: 34% }
 .tg:nth-child(3) { width: 8.6% }
 .tg:nth-child(4) { width: 18% }
 .tg:nth-child(5) { width: 7.5% }
