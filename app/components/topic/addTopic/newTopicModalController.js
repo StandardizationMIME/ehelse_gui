@@ -15,6 +15,10 @@ angular.module("ehelseEditor").controller("NewTopicModalController", [ "$scope",
 
     // Create and post topic
     $rootScope.postNewTopic = function(topic){
-        Topic.submit(topic);
+        if (Topic.getTopicLevel(topic) > $rootScope.max_topic_levels) {
+            $rootScope.notifyError("Kan ikke opprette mer enn " + $rootScope.max_topic_levels + " nivåer for tema.", 6000);
+        } else {
+            Topic.submit(topic);
+        }
     };
 }]);
