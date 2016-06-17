@@ -68,7 +68,7 @@ angular.module("ehelseEditor").factory("ServiceFunction", [function () {
         var length = Object.keys(dict).length;
         // If dictionary is undefined
         if (dict == null){
-            return -1
+            return "-1";
         }
         // if the dictionary is defined
         if (length) {
@@ -79,9 +79,9 @@ angular.module("ehelseEditor").factory("ServiceFunction", [function () {
                     max = id;
                 }
             }
-            return (max + 1);
+            return ""+(max + 1);
         } else {
-            return 1;
+            return "1";
         }
     }
 
