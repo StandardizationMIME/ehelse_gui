@@ -11,7 +11,7 @@ angular.module("ehelseEditor").factory("Topic", ["$rootScope", "StorageHandler",
     init();
 
     function init(){
-        $rootScope.max_topic_levels = 3;
+        $rootScope.max_topic_levels = 5;
         try{
             Array.prototype.push.apply(topics, StorageHandler.getTopics().topics);
             generateTopicDict(topics);
@@ -49,14 +49,14 @@ angular.module("ehelseEditor").factory("Topic", ["$rootScope", "StorageHandler",
      */
     function generateTopicOptionsList(topics){
         topics_options_list.length = 0;
-        Array.prototype.push.apply(topics_options_list, generateTopicOptionsListHelper(0, "", topics));
+        Array.prototype.push.apply(topics_options_list, generateTopicOptionsListHelper(-1, "", topics));
     }
 
     /**
      * Function used to generate topic option list.
      *
      * Recursive.
-     * @param level, 0-3 used to prevent the user from creating too many levels of topics
+     * @param level, 0-4 used to prevent the user from creating too many levels of topics
      * @param parent, the parent folder path
      * @param topics, subtopics of the topic
      * @returns {Array}
