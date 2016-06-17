@@ -10,7 +10,6 @@ angular.module("ehelseEditor").controller("DocumentController", [ "$scope","$roo
     // Get documents of the selected topic
     $rootScope.getDocuments = function(id, document) {
         $scope.documents = Document.getDocumentsByTopicId(id);
-        $rootScope.selected_topic_id = id;
         $rootScope.setSelectedTopic(id, document);
         if(document){
             $rootScope.selected_document = document;

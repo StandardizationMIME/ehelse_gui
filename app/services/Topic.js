@@ -11,7 +11,7 @@ angular.module("ehelseEditor").factory("Topic", ["$rootScope", "StorageHandler",
     init();
 
     function init(){
-        $rootScope.max_topic_levels = 3;
+        $rootScope.max_topic_levels = 5;
         try{
             Array.prototype.push.apply(topics, StorageHandler.getTopics().topics);
             generateTopicDict(topics);
@@ -49,14 +49,14 @@ angular.module("ehelseEditor").factory("Topic", ["$rootScope", "StorageHandler",
      */
     function generateTopicOptionsList(topics){
         topics_options_list.length = 0;
-        Array.prototype.push.apply(topics_options_list, generateTopicOptionsListHelper(0, "", topics));
+        Array.prototype.push.apply(topics_options_list, generateTopicOptionsListHelper(-1, "", topics));
     }
 
     /**
      * Function used to generate topic option list.
      *
      * Recursive.
-     * @param level, 0-3 used to prevent the user from creating too many levels of topics
+     * @param level, 0-4 used to prevent the user from creating too many levels of topics
      * @param parent, the parent folder path
      * @param topics, subtopics of the topic
      * @returns {Array}
@@ -145,6 +145,7 @@ angular.module("ehelseEditor").factory("Topic", ["$rootScope", "StorageHandler",
                 console.log(new_topic);
                 addTopic(new_topic);
                 $rootScope.notifySuccess("Nytt tema ble opprettet!", 1000);
+                $rootScope.getDocuments(new_topic.id);
                 console.log("Tema ble opprettet");
             }
             catch(error){
@@ -309,12 +310,14 @@ angular.module("ehelseEditor").factory("Topic", ["$rootScope", "StorageHandler",
      * @returns {number}
      */
     function getTopicLevel(topic){
-        var count = 0;
-        while (topic.parentId != null){
-            topic = topics_dict[topic.parentId];
-            count ++
+        if(topic.parentId){
+            var count = 0;
+            while (topic.parentId != null){
+                topic = topics_dict[topic.parentId];
+                count ++
+            }
+            return count+1;
         }
-        return count+1;
     }
 
     return {
