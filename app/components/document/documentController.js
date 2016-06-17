@@ -34,7 +34,7 @@ angular.module("ehelseEditor").controller("DocumentController", [ "$scope","$roo
     };
 
     // Check and update the value of documentState
-    $scope.checkDocumentState = function(document){
+    $rootScope.checkDocumentState = function(document){
         if(document){
             if(document.documentTypeId == 1){
                 $rootScope.setDocumentState("editDocument");
@@ -65,7 +65,7 @@ angular.module("ehelseEditor").controller("DocumentController", [ "$scope","$roo
             $rootScope.notifyError("Kan ikke opprette et dokument uten å ha velgt et tema.", 6000);
         } else {
             $rootScope.selected_document = document;
-            $scope.checkDocumentState(document);
+            $rootScope.checkDocumentState(document);
             Document.setCurrentDocument(document);
             $rootScope.changeContentView("document");
         }
