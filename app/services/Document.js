@@ -562,9 +562,9 @@ angular.module("ehelseEditor").factory("Document", ["$rootScope", "DocumentField
             a.previousDocumentId = b.previousDocumentId;
             a.description = b.description;
             a.sequence = b.sequence;
-            a.targetGroups = b.targetGroups;
-            a.fields = b.fields;
-            a.links = b.links;
+            a.targetGroups = ServiceFunction.deepCopy(b.targetGroups);
+            a.fields = ServiceFunction.deepCopy(b.fields);
+            a.links = ServiceFunction.deepCopy(b.links);
             a.standardId = b.standardId;
             a.populatedProfiles = b.populatedProfiles || [];
             a.editedTimestamp = b.editedTimestamp;
