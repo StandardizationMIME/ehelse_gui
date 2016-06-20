@@ -14,6 +14,18 @@ angular.module("ehelseEditor").controller("TopicController",["$rootScope", "$sco
         title: "Referansekatalogen"
     };
 
+    $rootScope.toggleTopicIcons = function(topicId){
+        var isExpanded = $("#topic" + topicId).attr("aria-expanded");
+        var topic = $("#folder" + topicId);
+        if(isExpanded == "true"){
+            topic.removeClass("glyphicon-folder-open");
+            topic.addClass("glyphicon-folder-close");
+        }else{
+            topic.removeClass("glyphicon-folder-close");
+            topic.addClass("glyphicon-folder-open");
+        }
+    };
+
     // Set selected topic
     $rootScope.setSelectedTopic = function (topicId, doc) {
         if(topicId){
