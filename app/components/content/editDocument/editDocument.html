@@ -161,7 +161,8 @@
 
                 <!-- Choose which topic to create document under -->
                 <div class="form-group">
-                    <label class="col-sm-3 control-label" for="standardParent">Opprettes i: </label>
+                    <label class="col-sm-3 control-label" for="standardParent" ng-hide="documentState == 'editDocument' || documentState == 'editProfile' || documentState == 'editUtility';">Opprettes i: </label>
+                    <label class="col-sm-3 control-label" for="standardParent" ng-hide="documentState == 'newDocument' || documentState == 'newProfile' || documentState == 'newUtility';">Ligger under: </label>
                     <div class="form-group col-sm-9">
                         <select name="standardParent" id="standardParent" ng-model="document.topicId"
                                 class="form-control half-width">
