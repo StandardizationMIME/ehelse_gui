@@ -222,6 +222,7 @@ angular.module("ehelseEditor").factory("ServiceFunction", [function () {
         cloneObject: cloneObject,
         cloneDocuments: cloneDocuments,
         cloneDocument: cloneDocument,
+        deepCopy: deepCopy,
         isUnique: isUnique
     }
 }]);
