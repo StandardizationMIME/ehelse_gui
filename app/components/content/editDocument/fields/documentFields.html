@@ -24,7 +24,7 @@
                     </span>
 
                     <!-- Delete field -->
-                    <span ng-if="fields_dict[field.fieldId].mandatory == 0" class="fa fa-remove pull-right delete-topic-icon clickable" ng-click="removeField(field); editDocForm.DocumentForm.$setDirty()"></span>
+                    <span ng-if="fields_dict[field.fieldId].mandatory == 0" class="fa fa-remove pull-right delete-topic-icon clickable" ng-click="removeField(field); EditDocumentController.DocumentForm.$setDirty()"></span>
                 </li>
             </ul>
 
