@@ -80,7 +80,8 @@ angular.module("ehelseEditor").factory("Action", ["$rootScope", "StorageHandler"
         for (var i = 0; i < actions.length; i++) {
             actions_option_list.push({
                 name: actions[i].name,
-                value: actions[i].id
+                value: actions[i].id,
+                isArchived: actions[i].isArchived
             });
         }
     }
