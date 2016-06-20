@@ -70,7 +70,6 @@ angular.module("ehelseEditor").factory("ServiceFunction", [function () {
             return "-1";
         }
         // if the dictionary is defined
-        console.log("length: "); console.log(list.length);
         if (length) {
             var max = -Infinity;
             for (var key in dict)   {
