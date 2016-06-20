@@ -45,7 +45,7 @@ angular.module("ehelseEditor").factory("ServiceFunction", [function () {
         var length = list.length;
         // If list is undefined
         if (list == null){
-            return -1
+            return "-1"
         }
         // if the list is defined
         if (length) {
@@ -56,9 +56,31 @@ angular.module("ehelseEditor").factory("ServiceFunction", [function () {
                     max = id;
                 }
             }
-            return (max + 1);
+            console.log(max + 1);
+            return "(max + 1)";
         } else {
-            return 1;
+            return "1";
+        }
+    }
+
+    function generateNewIdFromDict(dict) {
+        var length = Object.keys(dict).length;
+        // If dictionary is undefined
+        if (dict == null){
+            return "-1";
+        }
+        // if the dictionary is defined
+        if (length) {
+            var max = -Infinity;
+            for (var key in dict)   {
+                var id = parseInt(key);
+                if (id > max){
+                    max = id;
+                }
+            }
+            return ""+(max + 1);
+        } else {
+            return "1";
         }
     }
 
@@ -130,6 +152,7 @@ angular.module("ehelseEditor").factory("ServiceFunction", [function () {
             if (!(property in list[0])) {
                 throw "Invalid property " + property + ".";
             }
+            //console.log(" IF " + value + " == " + list[i][property]);
             if (value == list[i][property]) {
                 occurrences++;
             }
@@ -140,6 +163,7 @@ angular.module("ehelseEditor").factory("ServiceFunction", [function () {
     return {
         getTimestamp: getTimestamp,
         generateNewId: generateNewId,
+        generateNewIdFromDict: generateNewIdFromDict,
         cloneObject: cloneObject,
         cloneDocuments: cloneDocuments,
         cloneDocument: cloneDocument,

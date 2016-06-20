@@ -83,7 +83,6 @@ angular.module("ehelseEditor").factory("Document", ["$rootScope", "DocumentField
             Topic.setDocuments(documents);  // Adds reference to the document list int Topic
             generateDocumentDict(documents);
             generateTopicsDocumentsDict(documents);
-            console.log(documents);
         }
         catch(error){
             $rootScope.notifyError("Dokumenter kunne ikke lastes inn: " + error, 6000);
@@ -188,18 +187,172 @@ angular.module("ehelseEditor").factory("Document", ["$rootScope", "DocumentField
         document.populatedProfiles = [];
     }
 
+    function changeTopicIdOfRelatedProfiles(document){
+        if(document.profiles.length > 0 && !document.standardId){
+            for(var i = 0; i < document.profiles.length; i++){
+                var related_profile = getDocumentById(document.profiles[i].id);
+                if(related_profile.topicId != document.topicId){
+                    related_profile.topicId = document.topicId;
+                    changeTopicIdOfNextDocumentVersions(related_profile);
+                    changeTopicIdOfPreviousDocumentVersions(related_profile);
+                }
+            }
+        }
+        if(document.populatedProfiles.length > 0 && !document.standardId){
+            for(var x = 0; x < document.populatedProfiles.length; x++){
+                var related_populated_profile = getDocumentById(document.populatedProfiles[x].id);
+                if(related_populated_profile.topicId != document.topicId){
+                    related_populated_profile.topicId = document.topicId;
+                    changeTopicIdOfNextDocumentVersions(related_populated_profile);
+                    changeTopicIdOfPreviousDocumentVersions(related_populated_profile);
+                }
+            }
+        }
+    }
+
+    function changeTopicIdOfRelatedStandard(document){
+        if(document.standardId){
+            var standard = getDocumentById(document.standardId);
+            standard.topicId = document.topicId;
+            changeTopicIdOfRelatedProfiles(standard);
+            changeTopicIdOfNextDocumentVersions(standard);
+            changeTopicIdOfPreviousDocumentVersions(standard);
+        }
+    }
+
+    function changeTopicIdOfNextDocumentVersions(document){
+        var nextId = document.nextDocumentId;
+        while(nextId){
+            var next_document = getDocumentById(nextId);
+            next_document.topicId = document.topicId;
+            changeTopicIdOfRelatedProfiles(next_document);
+            changeTopicIdOfRelatedStandard(next_document);
+            if(next_document.nextDocumentId){
+                nextId = next_document.nextDocumentId;
+            }else{
+                nextId = null;
+            }
+        }
+    }
+
+    function changeTopicIdOfPreviousDocumentVersions(document){
+        var previousId = document.previousDocumentId;
+        while(previousId){
+            var previous_document = getDocumentById(previousId);
+            previous_document.topicId = document.topicId;
+            changeTopicIdOfRelatedProfiles(documents_dict[previous_document.id]);
+            changeTopicIdOfRelatedStandard(documents_dict[previous_document.id]);
+            if(previous_document.previousDocumentId){
+                previousId = previous_document.previousDocumentId;
+            }else{
+                previousId = null;
+            }
+        }
+    }
+
+    function changeTopicIdOfRelatedDocuments(document){
+
+        changeTopicIdOfRelatedProfiles(document);
+
+        changeTopicIdOfRelatedStandard(document);
+
+        changeTopicIdOfNextDocumentVersions(document);
+
+        changeTopicIdOfPreviousDocumentVersions(document);
+    }
+
     /**
      * Function creating or updating current document based on if it has an id or not.
      */
     function submitCurrentDocument() {
+        var error = getErrorIfInvalidInternalIdOrHisNumber();
+        if (error.length) {
+            $rootScope.notifyError(error, 6000);
+        } else {
+            saveDocument();
+            $rootScope.checkDocumentState(current_document);
+        }
+    }
+
+    /**
+     * Checks if internal ID and HIS numbers are unique
+     *
+     * If internal ID and HIS numbers are not unique, a error message is returned,
+     *  if they are unique, a empty string is returned.
+     * @returns {string}
+     */
+    function getErrorIfInvalidInternalIdOrHisNumber() {
+        var id = current_document.id;
+        var internal_id = current_document.internalId;
+        var his_number = current_document.hisNumber;
+        var errors = [];
+
+        if (!id) {
+            if (!ServiceFunction.isUnique(documents, "internalId", internal_id)) {
+                console.log("Error, internal id not unqiue");
+                errors.push("Intern ID er ikke unikt");
+            }
+            if (his_number && !ServiceFunction.isUnique(documents, "hisNumber", his_number)) {
+                console.log("Error, his not unique");
+                errors.push("HIS-nummer er ikke unikt");
+            }
+        } else {
+            if ((documents_dict[id].internalId != current_document.internalId) &&
+                (!ServiceFunction.isUnique(documents, "internalId", internal_id))) {
+                console.log("Error internal id changed to not unique");
+                errors.push("Intern ID er ikke unik")
+            }
+            if ((documents_dict[id].hisNumber != current_document.hisNumber) &&
+                (his_number && !ServiceFunction.isUnique(documents, "hisNumber", his_number))) {
+                console.log("Error his changed to not unique");
+                errors.push("HIS-nummer er ikke unikt");
+            }
+        }
+
+        var error_message = "";
+        var message_separation = ", og ";
+        for (var i = 0; i < errors.length; i++) {
+            if (!i) {
+
+            }
+            error_message += errors[i] + message_separation;
+        }
+        return error_message.substring(0, error_message.length - message_separation.length);
+    }
+
+
+    function toggleTopicSelection(){
+        $rootScope.getDocuments(current_document.topicId, current_document);
+
+        var topic = Topic.getById(current_document.topicId);
+        var parent = Topic.getById(topic.parentId);
+        while(parent){
+            console.log("asd");
+            $("#topic" + parent.id).collapse('show');
+            parent = Topic.getById(parent.parentId);
+        }
+    }
+
+    /**
+     * Saves document
+     */
+    function saveDocument() {
         current_document.populatedProfiles.length = 0;
         if (current_document.id) {
             try{
                 var archived_document = clone(documents_dict[current_document.id]);
                 StorageHandler.addArchivedDocumentsById(archived_document);
+
                 updateDocumentValues(current_document);
                 setCurrentDocument(current_document);
+
                 updateDocumentInDocumentsList(current_document);
+                changeTopicIdOfRelatedDocuments(current_document);
+
+                generateDocumentDict(documents);
+                generateTopicsDocumentsDict(documents);
+
+                toggleTopicSelection();
                 $rootScope.notifySuccess("Dokumentet ble oppdatert", 1000);
             }
             catch(error){
@@ -216,7 +369,6 @@ angular.module("ehelseEditor").factory("Document", ["$rootScope", "DocumentField
                 //push profile id to standard
                 if(new_document.standardId){
                     documents_dict[new_document.standardId].profiles.push({id:new_document.id});
-                    console.log(documents_dict[new_document.standardId].profiles);
                 }
                 if(new_document.previousDocumentId){
                     documents_dict[new_document.previousDocumentId].nextDocumentId = new_document.id;
@@ -285,31 +437,35 @@ angular.module("ehelseEditor").factory("Document", ["$rootScope", "DocumentField
      * Function deleting current document.
      */
     function deleteCurrentDocument() {
-        try{
-            var archived_document = clone(documents_dict[current_document.id]);
-            StorageHandler.addArchivedDocumentsById(archived_document);
+        if(documents_dict[current_document.id].populatedProfiles.length < 1 || documents_dict[current_document.id].standardId){
+            try{
+                var archived_document = clone(documents_dict[current_document.id]);
+                StorageHandler.addArchivedDocumentsById(archived_document);
 
-            updatePreviousAndNextDocumentIdValues();
-            var current_id = current_document.id;
+                updatePreviousAndNextDocumentIdValues();
+                var current_id = current_document.id;
 
-            /* DENNE LINJA ER JEG USIKKER PÅ, må sees over senere. */
-            delete documents_dict[current_id];
+                /* DENNE LINJA ER JEG USIKKER PÅ, må sees over senere. */
+                delete documents_dict[current_id];
 
-            if(current_document.standardId){
-                var sib = documents_dict[current_document.standardId].profiles;
-                for(var i = 0; i < sib.length; i++){
-                    if(current_document.id == sib[i].id){
-                        sib.splice(i,1);
+                if(current_document.standardId){
+                    var sib = documents_dict[current_document.standardId].profiles;
+                    for(var i = 0; i < sib.length; i++){
+                        if(current_document.id == sib[i].id){
+                            sib.splice(i,1);
+                        }
                     }
                 }
+                deleteCurrentDocumentFromDocumentsList();
+                $rootScope.notifySuccess("Dokumentet ble slettet", 1000);
+                $rootScope.changeContentView("");
             }
-            deleteCurrentDocumentFromDocumentsList();
-            $rootScope.notifySuccess("Dokumentet ble slettet", 1000);
-            $rootScope.changeContentView("");
-        }
-        catch(error){
-            $rootScope.notifyError("Dokumentet kunne ikke slettes: " + error, 6000);
-            console.log("Dokumentet kunne ikke slettes: " + error);
+            catch(error){
+                $rootScope.notifyError("Dokumentet kunne ikke slettes: " + error, 6000);
+                console.log("Dokumentet kunne ikke slettes: " + error);
+            }
+        }else{
+            $rootScope.notifyError("Standarder med en eller flere tilknyttede profiler kan ikke slettes!", 6000);
         }
     }
 
@@ -380,6 +536,15 @@ angular.module("ehelseEditor").factory("Document", ["$rootScope", "DocumentField
         return ids;
     }
 
+    function getDocumentById(id){
+        for (var i = 0; i < documents.length; i++){
+            if(documents[i].id == id){
+                return documents[i];
+            }
+        }
+    }
+
+
     function getCurrentDocumentFieldIds() {
         return getDocumentFieldIdsHelper(current_document.fields);
     }
@@ -419,7 +584,6 @@ angular.module("ehelseEditor").factory("Document", ["$rootScope", "DocumentField
     }
 
     function setCurrentDocument(document) {
-        console.log(document);
         if (!document) {
             document = newDocument();
             setDocument(current_document, document);
@@ -613,19 +777,28 @@ angular.module("ehelseEditor").factory("Document", ["$rootScope", "DocumentField
      * @returns {number}
      */
     function generateNewDocumentId(documents) {
-        var max = -Infinity;
-        var archived_documents = StorageHandler.getArchivedDocuments();
-        for (var i = 0; i < documents.length; i++) {
-            var id = parseInt(documents[i]["id"]);
-            if (id > max)
-                max = id;
+        var length = documents.length;
+        // If list is undefined
+        if (documents == null){
+            return "-1"
         }
-        for (var id in archived_documents) {
-            id = parseInt(id);
-            if (id > max)
-                max = id;
+        if (length) {
+            var max = -Infinity;
+            var archived_documents = StorageHandler.getArchivedDocuments();
+            for (var i = 0; i < documents.length; i++) {
+                var id = parseInt(documents[i]["id"]);
+                if (id > max)
+                    max = id;
+            }
+            for (var id in archived_documents) {
+                id = parseInt(id);
+                if (id > max)
+                    max = id;
+            }
+            return ""+(max + 1);
+        } else {
+            return "1";
         }
-        return (max + 1);
     }
 
     return {

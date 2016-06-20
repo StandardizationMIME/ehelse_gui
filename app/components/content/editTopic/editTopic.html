@@ -58,7 +58,7 @@
                 <div class="form-group col-sm-9">
                     <select name="editTopicParent" id="editTopicParent" class="form-control half-width" ng-model="selectedTopic.parentId">
                         <option value="">Ingen</option>
-                        <option ng-repeat="topic in topicTupleList" ng-if="topic.level <= 2" value={{topic.id}}>{{topic.path}}</option>
+                        <option ng-repeat="topic in topicTupleList" ng-if="topic.level <= 2 && topic.id != selectedTopic.id" value={{topic.id}}>{{topic.path}}</option>
                     </select>
                 </div>
             </div>

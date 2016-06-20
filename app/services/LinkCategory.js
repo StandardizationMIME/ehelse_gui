@@ -104,7 +104,7 @@ angular.module("ehelseEditor").factory("LinkCategory", ["$rootScope", "StorageHa
         else{
             try{
                 initNewLinkCategoryValues(link_category);
-                $rootScope.notifySuccess("Ny målgruppe ble opprettet.",1000);
+                $rootScope.notifySuccess("Ny Linkkategori ble opprettet.",1000);
                 add(link_category);
             }
             catch(error){

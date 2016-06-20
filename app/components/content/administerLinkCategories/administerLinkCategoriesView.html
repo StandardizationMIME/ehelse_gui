@@ -10,9 +10,15 @@
         <p class="twelve-pix-vertical-padding">
             <button type="button" class="btn btn-default"
                     ng-click="showNewLinkCategoryModal()"
+                    ng-disabled = "!archivedLinkCategoriesButton"
                     data-keyboard="true" id="triggerFocus">
                 <span class="fa fa-plus-circle plus-icon"></span>
                 Ny link-kategori
+            </button>
+            <!-- Show archived -->
+            <button type="button" ng-class="archivedLinkCategoriesButtonClass" ng-click="changeLinkCategoriesClass();" style="width: 100px">
+                <span ng-show="archivedLinkCategoriesButton"> Vis arkiverte </span>
+                <span ng-show="!archivedLinkCategoriesButton"><span class="fa fa-chevron-left"></span> Vis aktive </span>
             </button>
         </p>
     </div>
@@ -23,17 +29,18 @@
         <table class="table table-striped" id="AdministerLinkCategoriesTable">
 
             <!-- Table headers -->
-            <thead class="white-color blue-background">
+            <thead ng-class="linkCategoriesHeadingClass">
                 <tr>
-                    <th>Tittel</th>
-                    <th>Beskrivelse</th>
-                    <th>Rediger</th>
-                    <th>Slett</th>
+                    <th class="col-md-2">Tittel</th>
+                    <th class="col-md-8">Beskrivelse</th>
+                    <th class="col-md-1"><span ng-show="archivedLinkCategoriesButton">Rediger</span></th>
+                    <th class="col-md-1"><span ng-show="archivedLinkCategoriesButton">Arkiver</span>
+                                         <span ng-show="!archivedLinkCategoriesButton">Gjenopprett</span></th>
                 </tr>
             </thead>
 
-            <!-- Table body -->
-            <tbody>
+            <!-- Active Table body -->
+            <tbody ng-show="archivedLinkCategoriesButton">
                 <tr ng-repeat="linkCategory in linkCategory" ng-hide="linkCategory.isArchived">
 
                     <!-- Link category info -->
@@ -43,9 +50,25 @@
                     <!-- Edit link category -->
                     <td><span class="fa fa-pencil-square-o fa-2x vcenter clickable" ng-click="showEditLinkCategoryModal(linkCategory.id)"></span></td>
 
-                    <!-- Delete link category -->
-                    <td><span class="fa fa-remove fa-fw vcenter clickable remove-user" ng-click="openConfirmationModal('Er du sikker på at du vil slette?', linkCategory, deleteLinkCategoryById)"></span></td>
+                    <!-- Archive link category -->
+                    <td><span class="fa fa-archive fa-2x vcenter clickable" ng-click="openConfirmationModal('Er du sikker på at du vil arkivere?', linkCategory, deleteLinkCategoryById)"></span></td>
                 </tr>
+            </tbody>
+
+            <!-- Archived Table body -->
+            <tbody ng-show="!archivedLinkCategoriesButton">
+            <tr ng-repeat="linkCategory in linkCategory" ng-hide="!linkCategory.isArchived">
+
+                <!-- Link category info -->
+                <td>{{linkCategory.name}}</td>
+                <td>{{linkCategory.description}}</td>
+
+                <!-- Empty tableData -->
+                <td></td>
+
+                <!-- Archive link category -->
+                <td><span class="fa fa-undo fa-2x vcenter clickable" ng-click="openConfirmationModal('Er du sikker på at du vil gjenopprette?', linkCategory, recoverLinkCategory)"></span></td>
+            </tr>
             </tbody>
         </table>
     </div>

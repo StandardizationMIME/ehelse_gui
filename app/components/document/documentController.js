@@ -1,6 +1,6 @@
 "use strict";
 
-angular.module("ehelseEditor").controller("DocumentController", [ "$scope","$rootScope", "DocumentType", "Document", function( $scope, $rootScope, DocumentType, Document) {
+angular.module("ehelseEditor").controller("DocumentController", [ "$scope","$rootScope", "DocumentType", "Document", "Topic", function( $scope, $rootScope, DocumentType, Document, Topic) {
 
     // Save document values to scope to easier access it in the html files
     $scope.document_types_dict = DocumentType.document_types_dict;
@@ -8,20 +8,24 @@ angular.module("ehelseEditor").controller("DocumentController", [ "$scope","$roo
     $scope.current_document = Document.getCurrentDocument();
 
     // Get documents of the selected topic
-    $rootScope.getDocuments = function(topic) {
-        $rootScope.selected_document = "";
-        $scope.documents = Document.getDocumentsByTopicId(topic.id);
-        $rootScope.toggleSelectedTopic(topic.id);
+    $rootScope.getDocuments = function(id, document) {
+        $scope.documents = Document.getDocumentsByTopicId(id);
+        $rootScope.setSelectedTopic(id, document);
+        if(document){
+            $rootScope.selected_document = document;
+        }else{
+            $rootScope.selected_document = "";
+        }
     };
 
     // Makes selected folder bold and toggles folder icon between opened and closed
-    $rootScope.toggleSelectedTopic = function(id) {
+    /*$rootScope.toggleSelectedTopic = function(id) {
         $(".clickable").removeClass("selected-item");
         if(id){
             $("#" + id).addClass("selected-item");
             $("#folder" + id).toggleClass("glyphicon-folder-open","glyphicon-folder-close");
         }
-    };
+    };*/
 
     // Set the document state to toggle different aspects of the view
      $rootScope.setDocumentState = function(state) {
@@ -29,7 +33,7 @@ angular.module("ehelseEditor").controller("DocumentController", [ "$scope","$roo
     };
 
     // Check and update the value of documentState
-    $scope.checkDocumentState = function(document){
+    $rootScope.checkDocumentState = function(document){
         if(document){
             if(document.documentTypeId == 1){
                 $rootScope.setDocumentState("editDocument");
@@ -55,13 +59,14 @@ angular.module("ehelseEditor").controller("DocumentController", [ "$scope","$roo
 
     // Open selected document
     $rootScope.openDocument = function(document){
-
-        $rootScope.selected_document = document;
-        $scope.checkDocumentState(document);
-
-        console.log('document' + document);
-        Document.setCurrentDocument(document);
-        console.log($scope.current_document);
-        $rootScope.changeContentView("document");
+        // Check that document is not defined (when a new os being created) and that to topic is selected.
+        if(!document && !Object.keys(Topic.getSelected()).length) {
+            $rootScope.notifyError("Kan ikke opprette et dokument uten å ha velgt et tema.", 6000);
+        } else {
+            $rootScope.selected_document = document;
+            $rootScope.checkDocumentState(document);
+            Document.setCurrentDocument(document);
+            $rootScope.changeContentView("document");
+        }
     };
 }]);

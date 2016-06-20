@@ -31,11 +31,11 @@
 
         <!-- All buttons used in the various document states and types -->
         <p class="twelve-pix-vertical-padding">
-            <button type="button" class="btn btn-primary" ng-click="submit(EditDocumentController.DocumentForm);setDocumentState('editDocument');" ng-if="documentState == 'newDocument'" ng-disabled="EditDocumentController.DocumentForm.$invalid || EditDocumentController.DocumentForm.$pristine">
+            <button type="button" class="btn btn-primary" ng-click="submit(EditDocumentController.DocumentForm)" ng-if="documentState == 'newDocument'" ng-disabled="EditDocumentController.DocumentForm.$invalid || EditDocumentController.DocumentForm.$pristine">
                 <span class="fa fa-check-circle edit-topic-icon"></span>
                 Opprett dokument
             </button>
-            <button type="button" class="btn btn-primary" ng-click="submit(EditDocumentController.DocumentForm);setDocumentState('editProfile');" ng-if="documentState == 'newProfile'" ng-disabled="EditDocumentController.DocumentForm.$invalid || EditDocumentController.DocumentForm.$pristine">
+            <button type="button" class="btn btn-primary" ng-click="submit(EditDocumentController.DocumentForm)" ng-if="documentState == 'newProfile'" ng-disabled="EditDocumentController.DocumentForm.$invalid || EditDocumentController.DocumentForm.$pristine">
                 <span class="fa fa-check-circle edit-topic-icon"></span>
                 Opprett profil
             </button>
@@ -135,7 +135,7 @@
                         <select name="statusid" id="statusid"
                                 ng-model="document.statusId" class="form-control half-width">
                             <option ng-repeat="status in status_list"
-                                    value="{{status.value}}">{{status.name}}
+                                    value="{{status.id}}">{{status.name}}
                             </option>
                         </select>
                     </div>
