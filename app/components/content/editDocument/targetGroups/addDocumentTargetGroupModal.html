@@ -14,7 +14,7 @@
                 <form role="form">
 
                     <!-- List all target groups in the system, with a checkbox -->
-                    <div class="form-group" ng-if="document_target_groups_ids.indexOf(group.id) == -1"  ng-repeat="group in target_groups | orderBy: 'name' | filter: searchText">
+                    <div class="form-group" ng-if="document_target_groups_ids.indexOf(group.id) == -1" ng-repeat="group in target_groups | orderBy: 'name' | filter: searchText" ng-hide="group.isArchived" >
                         <input type="checkbox" data-checklist-model="selected_target_groups_ids" data-checklist-value="group.id"> {{group.name}}
                     </div>
                 </form>
