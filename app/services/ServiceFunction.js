@@ -216,6 +216,7 @@ angular.module("ehelseEditor").factory("ServiceFunction", [function () {
     }
 
     return {
+        deepCopy: deepCopy,
         getTimestamp: getTimestamp,
         generateNewId: generateNewId,
         generateNewIdFromDict: generateNewIdFromDict,
