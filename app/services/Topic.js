@@ -128,6 +128,20 @@ angular.module("ehelseEditor").factory("Topic", ["$rootScope", "StorageHandler",
         topic.children = [];
     }
 
+    function toggleTopicSelection(){
+        var parent = getById(selected_topic.parentId);
+        while(parent){
+
+            $("#topic" + parent.id).collapse('show');
+
+            var topicIcon = $("#folder" + parent.id);
+            topicIcon.removeClass("glyphicon-folder-close");
+            topicIcon.addClass("glyphicon-folder-open");
+
+            parent = getById(parent.parentId);
+        }
+    }
+
     /**
      * function creating or updating a topic based on if it has an id
      * @param topic
@@ -141,8 +155,9 @@ angular.module("ehelseEditor").factory("Topic", ["$rootScope", "StorageHandler",
         if(topic.id){
             try{
                 updateTopic(topic);
-                console.log(topic);
+                generateTopicDict(topics);
                 generateTopicOptionsList(topics);
+                toggleTopicSelection();
                 $rootScope.notifySuccess("Tema ble oppdatert",1000);
             }
             catch(error){
@@ -212,9 +227,7 @@ angular.module("ehelseEditor").factory("Topic", ["$rootScope", "StorageHandler",
             description: "",
             sequence: null,
             parentId: null,
-            comment: "",
-            children: [],
-            documents: []
+            children: []
         }
     }
 
@@ -231,9 +244,7 @@ angular.module("ehelseEditor").factory("Topic", ["$rootScope", "StorageHandler",
         a.description = b.description;
         a.sequence = b.sequence;
         a.parentId = b.parentId;
-        a.comment = b.comment;
         a.children = b.children;
-        a.documents = b.documents;
     }
 
     /**
