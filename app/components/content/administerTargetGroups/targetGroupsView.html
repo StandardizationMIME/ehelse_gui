@@ -29,8 +29,9 @@
     </div>
 
     <!-- Table for displaying all target groups in the system -->
-    <div class="table-responsive">
-        <table class="table table-striped" id="targetGroupsTable" ng-init="sortType = 'name'; sortReverse = sortReverse">
+    <div class="table-responsive administer-views">
+
+        <table class="table table-hover" id="targetGroupsTable" ng-init="sortType = 'name'; sortReverse = sortReverse">
 
             <!-- Table headers with code allowing sorting -->
             <thead ng-class="targetGroupsHeadingsClass">
@@ -49,50 +50,46 @@
                         <span ng-show="sortType == 'parentId' &&  sortReverse" class="fa fa-caret-up pointer"></span></th>
                     <th class="col-md-1">
                         <span ng-show="archivedTargetGroupsButton">Rediger</span></th>
-                    <th class="col-md-1">Slett</th>
+                    <th class="col-md-1"><span ng-show="archivedTargetGroupsButton">Arkiver</span><span ng-show="!archivedTargetGroupsButton">Gjenopprett</span></th>
                 </tr>
             </thead>
 
             <!-- Table body active target groups -->
-            <tbody class="tg-tbody shadow-below" ng-hide="!archivedTargetGroupsButton">
+            <tbody class="" ng-hide="!archivedTargetGroupsButton">
 
                 <!-- List of existing target groups in the system -->
                 <tr ng-repeat="group in targetGroups | orderBy:sortType:sortReverse | filter: searchText" ng-hide="group.isArchived">
 
                     <!-- Target group info -->
-                    <td class="tg">{{group.name}}</td>
-                    <td class="tg">{{group.description}}</td>
-                    <td class="tg">{{group.abbreviation}}</td>
-                    <td class="tg">{{TGDictionary[group.parentId].name}}</td>
+                    <td class="col-md-2">{{group.name}}</td>
+                    <td class="col-md-4">{{group.description}}</td>
+                    <td class="col-md-2">{{group.abbreviation}}</td>
+                    <td class="col-md-2">{{TGDictionary[group.parentId].name}}</td>
 
                     <!-- Edit target group -->
-                    <td class="tg"><span ng-click="showEditTGModal(group)" data-keyboard="true" class="fa fa-pencil-square-o fa-2x clickable"></span></td>
+                    <td class="col-md-1" style="margin-right: 12px;"><span ng-click="showEditTGModal(group)" data-keyboard="true" class="fa fa-pencil-square-o fa-2x clickable"></span></td>
 
                     <!-- Delete target group -->
-                    <td class="tg"><span ng-click="openConfirmationTGModal('Er du sikker på at du vil slette målgruppe?', group, deleteById)" class="fa fa-archive fa-2x clickable"></span></td>
+                    <td class="col-md-1"><span ng-click="openConfirmationTGModal('Er du sikker på at du vil slette målgruppe?', group, deleteById)" class="fa fa-archive fa-2x clickable"></span></td>
                 </tr>
-
-
             </tbody>
 
             <!-- Table body archived target groups -->
-            <tbody class="tg-tbody shadow-below" ng-hide="archivedTargetGroupsButton">
+            <tbody class="" ng-hide="archivedTargetGroupsButton">
             <!-- List of existing target groups in the system -->
             <tr ng-repeat="group in targetGroups | orderBy:sortType:sortReverse | filter: searchText" ng-hide="!group.isArchived">
 
                 <!-- Target group info -->
-                <td class="tg">{{group.name}}</td>
-                <td class="tg">{{group.description}}</td>
-                <td class="tg">{{group.abbreviation}}</td>
-                <td class="tg">{{TGDictionary[group.parentId].name}}</td>
+                <td class="col-md-2">{{group.name}}</td>
+                <td class="col-md-4">{{group.description}}</td>
+                <td class="col-md-2">{{group.abbreviation}}</td>
+                <td class="col-md-2">{{TGDictionary[group.parentId].name}}</td>
 
-                <!-- Edit target group -->
-                <td class="tg"></td>
+                <!-- Empty table data -->
+                <td class="col-md-1"></td>
                 <!-- Recover target group -->
-                <td class="tg"><span ng-click="openConfirmationModal('Er du sikker på at du vil slette målgruppe?', group, recoverArchivedTargetGroup)" class="fa fa-undo clickable"></span></td>
+                <td class="col-md-1"><span ng-click="openConfirmationModal('Er du sikker på at du vil slette målgruppe?', group, recoverArchivedTargetGroup)" class="fa fa-undo fa-2x clickable"></span></td>
             </tr>
-
-
             </tbody>
         </table>
     </div>

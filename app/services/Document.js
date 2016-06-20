@@ -83,7 +83,6 @@ angular.module("ehelseEditor").factory("Document", ["$rootScope", "DocumentField
             Topic.setDocuments(documents);  // Adds reference to the document list int Topic
             generateDocumentDict(documents);
             generateTopicsDocumentsDict(documents);
-            console.log(documents);
         }
         catch(error){
             $rootScope.notifyError("Dokumenter kunne ikke lastes inn: " + error, 6000);

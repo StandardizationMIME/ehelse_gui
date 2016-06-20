@@ -611,9 +611,6 @@ textarea {
 .scrollable {
     overflow-y: auto;
 }
-.shadow-below {
-    box-shadow: 0 1px #b8b8b8;
-}
 .nav-tabs {
     border-color: #b8b8b8;
 }
@@ -647,23 +644,17 @@ div>div>.dropdown-toggle:hover{
 .tg-thead {
     background-color: #337ab7;
     color: white;
-    display: block;
+    /*display: block;*/
     position:relative;
     font-size: 14px;
 }
 .tg-thead-archive {
     background-color: darkgray;
     color: white;
-    display: block;
+    /*display: block;*/
     position:relative;
     font-size: 14px;
 }
-.tg:nth-child(1) { width: 25.4%; }
-.tg:nth-child(2) { width: 34% }
-.tg:nth-child(3) { width: 8.6% }
-.tg:nth-child(4) { width: 18% }
-.tg:nth-child(5) { width: 7.5% }
-.tg:nth-child(6) { width: 5% }
 .table-hover tbody tr:hover td, .table-hover tbody tr:hover th {
     background-color: #c7c7c7;
 }
