@@ -320,6 +320,19 @@ angular.module("ehelseEditor").factory("Document", ["$rootScope", "DocumentField
         return error_message.substring(0, error_message.length - message_separation.length);
     }
 
+
+    function toggleTopicSelection(){
+        $rootScope.getDocuments(current_document.topicId, current_document);
+
+        var topic = Topic.getById(current_document.topicId);
+        var parent = Topic.getById(topic.parentId);
+        while(parent){
+            console.log("asd");
+            $("#topic" + parent.id).collapse('show');
+            parent = Topic.getById(parent.parentId);
+        }
+    }
+
     /**
      * Saves document
      */
@@ -339,7 +352,7 @@ angular.module("ehelseEditor").factory("Document", ["$rootScope", "DocumentField
                 generateDocumentDict(documents);
                 generateTopicsDocumentsDict(documents);
 
-                $rootScope.getDocuments(current_document.topicId, current_document);
+                toggleTopicSelection();
                 $rootScope.notifySuccess("Dokumentet ble oppdatert", 1000);
             }
             catch(error){
