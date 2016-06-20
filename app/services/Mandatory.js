@@ -21,6 +21,15 @@ angular.module("ehelseEditor").factory("Mandatory", ["$rootScope", "StorageHandl
     }
 
     /**
+     * Function used to clear all Mandatory lists and dicts.
+     */
+    function clear(){
+        mandatory.length = 0;
+        mandatory_dict = {};
+        mandatory_option_list.length = 0;
+    }
+
+    /**
      * Function creating a new mandatory
      * @returns {{id: null, name: string, description: string}}
      */
@@ -182,6 +191,7 @@ angular.module("ehelseEditor").factory("Mandatory", ["$rootScope", "StorageHandl
     }
 
     return {
+        clear: clear,
         init: init,
         new: newMandatory,
         clone: clone,

@@ -1,6 +1,7 @@
 "use strict";
 
 angular.module("ehelseEditor").factory("LinkCategory", ["$rootScope", "StorageHandler", "ServiceFunction", function($rootScope, StorageHandler, ServiceFunction) {
+
     var link_categories= [];
     var link_categories_dict = {};
 
@@ -8,7 +9,6 @@ angular.module("ehelseEditor").factory("LinkCategory", ["$rootScope", "StorageHa
 
     function init(){
         try{
-            link_categories.length = 0;
             Array.prototype.push.apply(link_categories, StorageHandler.getLinkCategories().linkCategories);
             generateLinkCategoryDict();
         }
@@ -16,6 +16,14 @@ angular.module("ehelseEditor").factory("LinkCategory", ["$rootScope", "StorageHa
             console.log("Link categories could not be loaded: " + error);
             $rootScope.notifyError("Linkkategorier kunne ikke lastes: " + error, 6000);
         }
+    }
+
+    /**
+     * Function used to clear all link category lists and dicts.
+     */
+    function clear(){
+        link_categories.length = 0;
+        link_categories_dict = {};
     }
 
     /**
@@ -155,6 +163,7 @@ angular.module("ehelseEditor").factory("LinkCategory", ["$rootScope", "StorageHa
     }
 
     return {
+        clear: clear,
         init: init,
         new: newLinkCategory,
         clone: clone,

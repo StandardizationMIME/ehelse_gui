@@ -14,6 +14,20 @@ angular.module("ehelseEditor").controller("UploadFileController",
         $scope.$state.go("main-view.editor-view");
     };
 
+    $scope.clearEverything = function(){
+        Action.clear();
+        Document.clear();
+        DocumentField.clear();
+        DocumentType.clear();
+        LinkCategory.clear();
+        Mandatory.clear();
+        Status.clear();
+        TargetGroup.clear();
+        Topic.clear();
+        $rootScope.deselectTopicAndDocument();
+        $rootScope.changeContentView("");
+    };
+
     $scope.initEverything = function(){
         StorageHandler.init();
         Action.init();

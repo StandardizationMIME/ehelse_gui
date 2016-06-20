@@ -21,6 +21,15 @@ angular.module("ehelseEditor").factory("TargetGroup", ["$rootScope", "StorageHan
     }
 
     /**
+     * Function used to clear all target group lists and dicts.
+     */
+    function clear(){
+        target_groups.length = 0;
+        target_groups_dict = {};
+        target_groups_options_list.length = 0;
+    }
+
+    /**
      * Function generating target_group_dict
      *
      * Used where only target_group_id is available to acces all of the target_groups properties
@@ -216,6 +225,7 @@ angular.module("ehelseEditor").factory("TargetGroup", ["$rootScope", "StorageHan
     }
 
     return {
+        clear: clear,
         init: init,
         new: newTargetGroup,
         getAll : getAll,

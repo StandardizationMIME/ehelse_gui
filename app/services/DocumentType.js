@@ -21,6 +21,15 @@ angular.module("ehelseEditor").factory("DocumentType", ["$rootScope", "StorageHa
     }
 
     /**
+     * Function used to clear document type lists and dicts.
+     */
+    function clear(){
+        document_types.length = 0;
+        document_types_dict = {};
+        document_types_option_list.length = 0;
+    }
+
+    /**
      * Function that generates DocumentType dict
      *
      * The document ype dict is used were only the id is available.
@@ -57,6 +66,7 @@ angular.module("ehelseEditor").factory("DocumentType", ["$rootScope", "StorageHa
     }
 
     return {
+        clear: clear,
         init: init,
         getAll: getAll,
         document_types: document_types,

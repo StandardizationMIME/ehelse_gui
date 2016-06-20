@@ -23,6 +23,17 @@ angular.module("ehelseEditor").factory("Topic", ["$rootScope", "StorageHandler",
         }
     }
 
+    /**
+     * Function used to clear all Topic lists and dicts.
+     */
+    function clear(){
+        topics.length = 0;
+        topics_dict = {};
+        topics_options_list.length = 0;
+        selected_topic = {};
+        documents.length = 0;
+    }
+
     function setDocuments(input_documents) {
         documents = input_documents;
     }
@@ -321,6 +332,7 @@ angular.module("ehelseEditor").factory("Topic", ["$rootScope", "StorageHandler",
     }
 
     return {
+        clear: clear,
         init: init,
         setDocuments: setDocuments,
         new: newTopic,
