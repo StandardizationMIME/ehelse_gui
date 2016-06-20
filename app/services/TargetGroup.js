@@ -133,6 +133,8 @@ angular.module("ehelseEditor").factory("TargetGroup", ["$rootScope", "StorageHan
      */
     function archiveById(id){
         target_groups[target_groups.indexOf(target_groups_dict[id])].isArchived = 1;
+        generateTargetGroupOptionsList(target_groups);
+        generateTargetGroupDict(target_groups);
     }
 
     /**
@@ -143,8 +145,6 @@ angular.module("ehelseEditor").factory("TargetGroup", ["$rootScope", "StorageHan
         if(id){
             try{
                 archiveById(id);
-                generateTargetGroupOptionsList(target_groups);
-                generateTargetGroupDict(target_groups);
                 $rootScope.notifySuccess("Målgruppe ble fjernet",1000);
             }
             catch(error){

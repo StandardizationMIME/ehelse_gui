@@ -128,6 +128,7 @@ angular.module("ehelseEditor").factory("LinkCategory", ["$rootScope", "StorageHa
      */
     function archiveLinkCategory(linkCategory){
         linkCategory.isArchived = 1;
+        generateLinkCategoryDict();
     }
 
     /**
@@ -139,7 +140,6 @@ angular.module("ehelseEditor").factory("LinkCategory", ["$rootScope", "StorageHa
     function deleteLinkCategory(linkCategory){
         try{
             archiveLinkCategory(linkCategory);
-            generateLinkCategoryDict();
             $rootScope.notifySuccess("Link-kategorien ble arkivert!", 1000);
         }
         catch(error){

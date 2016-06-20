@@ -128,7 +128,6 @@ angular.module("ehelseEditor").factory("Mandatory", ["$rootScope", "StorageHandl
     function deleteMandatory(mandatory) {
         try{
             archiveMandatory(mandatory);
-            generateMandatoryOptionList(mandatory);
             $rootScope.notifySuccess("Obligatoriskhet ble arkivert!", 1000);
         }
         catch(error){
