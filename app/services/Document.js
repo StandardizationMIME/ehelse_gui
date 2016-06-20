@@ -337,8 +337,13 @@ angular.module("ehelseEditor").factory("Document", ["$rootScope", "DocumentField
         var topic = Topic.getById(current_document.topicId);
         var parent = Topic.getById(topic.parentId);
         while(parent){
-            console.log("asd");
+
             $("#topic" + parent.id).collapse('show');
+
+            var topicIcon = $("#folder" + parent.id);
+            topicIcon.removeClass("glyphicon-folder-close");
+            topicIcon.addClass("glyphicon-folder-open");
+
             parent = Topic.getById(parent.parentId);
         }
     }
