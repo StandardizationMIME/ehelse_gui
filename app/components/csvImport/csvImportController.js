@@ -1,6 +1,7 @@
 "use strict";
 
-angular.module("ehelseEditor").controller("CSVImportController", ["$scope","$rootScope","CSVConverter", "FileUpload", "StorageHandler", "$state", "Action", "Document", "DocumentField", "DocumentType", "LinkCategory", "Mandatory", "Status", "TargetGroup", "Topic",
+angular.module("ehelseEditor").controller("CSVImportController",
+    ["$scope","$rootScope","CSVConverter", "FileUpload", "StorageHandler", "$state", "Action", "Document", "DocumentField", "DocumentType", "LinkCategory", "Mandatory", "Status", "TargetGroup", "Topic",
     function($scope,$rootScope, CSVConverter, FileUpload, StorageHandler, $state, Action, Document, DocumentField, DocumentType, LinkCategory, Mandatory, Status, TargetGroup, Topic){
 
     $scope.showCSVContent = function ($fileContentCsv) {

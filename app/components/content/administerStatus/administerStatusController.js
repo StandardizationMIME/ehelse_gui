@@ -19,4 +19,22 @@ angular.module("ehelseEditor").controller("AdministerStatusController",["$scope"
         $rootScope.openModal("app/components/content/administerStatus/addEditStatus/editStatusModal.html", "AddEditStatusController");
     };
 
+    $scope.archivedStatusButton = true;
+    $scope.statusHeadingClass = "white-color blue-background";
+    $scope.archivedStatusButtonClass = "btn btn-default pull-right";
+    $scope.changeStatusClass = function () {
+        if ($scope.archivedStatusButton == true){
+            $scope.statusHeadingClass = "white-color darkgray-background";
+            $scope.archivedStatusButtonClass = "btn btn-primary pull-right";
+            $scope.archivedStatusButton = false;
+        } else {
+            $scope.statusHeadingClass = "white-color blue-background";
+            $scope.archivedStatusButtonClass = "btn btn-default pull-right";
+            $scope.archivedStatusButton = true;
+        }
+    };
+    $scope.recoverArchivedStatus = function (status) {
+        status.isArchived = 0;
+        $rootScope.notifySuccess("Status ble gjenopprettet!", 1000);
+    };
 }]);

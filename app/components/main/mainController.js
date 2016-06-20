@@ -17,9 +17,12 @@
         };
 
         // Modal checking if you are sure you want to delete a target group
-        $rootScope.openConfirmationTGModal = function(message,id){
+        $rootScope.openConfirmationTGModal = function(message,obj, method){
             $rootScope.confirmMsg = message;
-            $rootScope.deleteTGId = id;
+            $rootScope.deleteTGId = obj.id;
+            $rootScope.confirmationFunction = function () {
+                method($rootScope.deleteTGId);
+            };
             $rootScope.openModal("app/components/main/confirmation/confirmationTgModal.html", "ConfirmationTGModalController");
         };
 

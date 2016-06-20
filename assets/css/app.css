@@ -25,11 +25,6 @@ h1,h2,h3,h4{ font-weight: bold;}
 .relative{
     position: relative;
 }
-.vcenter {
-    display: inline-block;
-    vertical-align: middle;
-    float: none;
-}
 .btn-primary {
     background-color: #337ab7;
 }
@@ -132,6 +127,9 @@ h1,h2,h3,h4{ font-weight: bold;}
 .white-background {
     background-color: white;
 }
+.darkgray-background {
+    background-color: darkgray;
+}
 .font-size-large {
     font-size: large;
 }
@@ -193,36 +191,7 @@ textarea {
 .content-view {
     padding-top: 16px;
 }
-/*~~~~~~~~~~~~TARGET GROUP~~~~~~~~~~~*/
-.target-group-grid{
-    height: 750px;
-}
-.tg-tbody {
-    display: block;
-    overflow-y: auto;
-    overflow-x: hidden;
-    height: 600px;
-}
-.tg-thead {
-    background-color: #337ab7;
-    color: white;
-    display: block;
-    position:relative;
-    font-size: 13px;
-}
-.tg:nth-child(1) { width: 25.4%; }
-.tg:nth-child(2) { width: 34% }
-.tg:nth-child(3) { width: 8.6% }
-.tg:nth-child(4) { width: 18% }
-.tg:nth-child(5) { width: 7.5% }
-.tg:nth-child(6) { width: 5% }
 
-.table-hover tbody tr:hover td, .table-hover tbody tr:hover th {
-    background-color: #c7c7c7;
-}
-input[readonly], textarea[readonly]{
-    background-color: #e4e4e4 !important;
-}
 /* -------------------------------------------- CH4 DOCUMENT ----------------------------------------- */
 .document-fields-field-name{
     width:25%;
@@ -372,6 +341,10 @@ input[readonly], textarea[readonly]{
 .panel3 {
     color: white;
     background-color: #58a739;
+}
+.panel4 {
+    color: white;
+    background-color: darkgray;
 }
 .edit-document-modal {
     max-height: 650px;
@@ -634,9 +607,6 @@ textarea {
 .scrollable {
     overflow-y: auto;
 }
-.shadow-below {
-    box-shadow: 0 1px #b8b8b8;
-}
 .nav-tabs {
     border-color: #b8b8b8;
 }
@@ -670,16 +640,17 @@ div>div>.dropdown-toggle:hover{
 .tg-thead {
     background-color: #337ab7;
     color: white;
-    display: block;
+    /*display: block;*/
     position:relative;
     font-size: 14px;
 }
-.tg:nth-child(1) { width: 25% }
-.tg:nth-child(2) { width: 32.3% }
-.tg:nth-child(3) { width: 8.6% }
-.tg:nth-child(4) { width: 18% }
-.tg:nth-child(5) { width: 7.5% }
-.tg:nth-child(6) { width: 5% }
+.tg-thead-archive {
+    background-color: darkgray;
+    color: white;
+    /*display: block;*/
+    position:relative;
+    font-size: 14px;
+}
 .table-hover tbody tr:hover td, .table-hover tbody tr:hover th {
     background-color: #c7c7c7;
 }

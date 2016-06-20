@@ -19,4 +19,28 @@ angular.module("ehelseEditor").controller("TargetGroupsController",["$scope","Mo
         $rootScope.openModal("app/components/content/administerTargetGroups/addTargetGroups/newTargetGroupModal.html", "NewTargetGroupController");
     };
 
+    $scope.recoverArchivedTargetGroup = function (targetGroup) {
+        targetGroup.isArchived = 0;
+        $rootScope.notifySuccess("Målgruppe ble gjenopprettet!", 1000);
+    };
+
+    $scope.deleteById = function (id) {
+        TargetGroup.deleteById(id);
+    };
+
+    $scope.archivedTargetGroupsButton = true;
+    $scope.targetGroupsHeadingsClass = "tg-thead";
+    $scope.archivedTargetGroupsButtonClass = "btn btn-default pull-right";
+    $scope.changeTGClass = function () {
+        if ($scope.archivedTargetGroupsButton == true){
+            $scope.archivedTargetGroupsButton = false;
+            $scope.targetGroupsHeadingsClass = "tg-thead-archive";
+            $scope.archivedTargetGroupsButtonClass = "btn btn-primary pull-right";
+        } else {
+            $scope.archivedTargetGroupsButton = true;
+            $scope.targetGroupsHeadingsClass = "tg-thead";
+            $scope.archivedTargetGroupsButtonClass = "btn btn-default pull-right";
+        }
+    };
+
 }]);

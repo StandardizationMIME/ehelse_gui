@@ -46,7 +46,7 @@ angular.module("ehelseEditor").factory("CSVConverter",
                         "description": csvObject.Ingress,
                         "statusId": getStatusIdFromCsvDocument(csvObject.Status),
                         "sequence": "",
-                        "topicId": getTopicIdByTitleCsvDocument(csvObject['Emne (Referansekatalog kapittel)']),
+                        "topicId": (getTopicIdByTitleCsvDocument(csvObject['Emne (Referansekatalog kapittel)'])).toString(),
                         "documentTypeId": getDocumentTypeIdFromCsvDocument(csvObject),
                         "skalErstattesAv": csvObject['Skal erstattes av'],
                         "previousDocumentId": "",
@@ -204,13 +204,6 @@ angular.module("ehelseEditor").factory("CSVConverter",
                         "name": "Støttedokument"
                     }
                 ];
-                /*for (var i = 0; i < documentTypesTitles.length; i++){
-                    var documentTypesObj = {
-                        "id": i+1,
-                        "name": documentTypesTitles[i]
-                    }
-                    documentTypesList.push(documentTypesObj);
-                }*/
                 documentTypesFromCsv = documentTypesList;
                 return documentTypesList;
 
