@@ -215,6 +215,21 @@ angular.module("ehelseEditor").factory("ServiceFunction", [function () {
         return occurrences < 1;
     }
 
+    /**
+     * Sort element on sequence
+     * @param elements
+     * @returns {*}
+     */
+    function sortArrayOnSequence(elements) {
+        var sorted_elements = deepCopy(elements);
+        sorted_elements.sort(
+            function (a, b) {
+                return a["sequence"] - b["sequence"];
+            }
+        );
+        return sorted_elements;
+    }
+
     return {
         deepCopy: deepCopy,
         getTimestamp: getTimestamp,
@@ -223,6 +238,7 @@ angular.module("ehelseEditor").factory("ServiceFunction", [function () {
         cloneObject: cloneObject,
         cloneDocuments: cloneDocuments,
         cloneDocument: cloneDocument,
-        isUnique: isUnique
+        isUnique: isUnique,
+        sortArrayOnSequence: sortArrayOnSequence
     }
 }]);

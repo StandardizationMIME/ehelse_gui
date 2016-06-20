@@ -74,6 +74,7 @@ angular.module("ehelseEditor").factory("Topic", ["$rootScope", "StorageHandler",
      */
     function generateTopicOptionsListHelper(level, parent, topics){
         var paths = [];
+        topics = ServiceFunction.sortArrayOnSequence(topics);    // Sort topics on sequence
         for (var i = 0; i < topics.length; i++) {
             paths.push({
                 id: topics[i].id,
@@ -82,7 +83,7 @@ angular.module("ehelseEditor").factory("Topic", ["$rootScope", "StorageHandler",
             });
             Array.prototype.push.apply(paths, generateTopicOptionsListHelper(level+1, parent + "/" + topics[i].title, topics[i].children))
         }
-        return paths;
+        return (paths);
     }
 
     /**
