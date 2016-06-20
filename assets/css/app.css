@@ -503,9 +503,6 @@ span.field-item{
     font-weight: 700;
 }
 .field-item{
-    border: 1px none;
-    box-shadow: 1px 1px 1px 1px #b8b8b8;
-    border-radius: 10px;
     margin-bottom: 8px;
     margin-left: 0.5%;
     margin-top: 0.5%;
