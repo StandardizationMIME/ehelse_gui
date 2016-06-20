@@ -57,8 +57,15 @@ angular.module("ehelseEditor").controller("DocumentController", [ "$scope","$roo
         $rootScope.openDocument(Document.getById(id));
     };
 
+    $rootScope.resetDocumentScroll = function(){
+        $("#editDocument").scrollTop(0);
+    };
+
     // Open selected document
     $rootScope.openDocument = function(document){
+
+
+
         // Check that document is not defined (when a new os being created) and that to topic is selected.
         if(!document && !Object.keys(Topic.getSelected()).length) {
             $rootScope.notifyError("Kan ikke opprette et dokument uten å ha velgt et tema.", 6000);
