@@ -21,6 +21,16 @@ angular.module("ehelseEditor").factory("DocumentField", ["$rootScope", "StorageH
     }
 
     /**
+     * Function used to clear all lists and dicts used in document fields.
+     */
+    function clear(){
+        document_fields.length = 0;
+        document_types_fields_dict = {};
+        document_fields_dict = {};
+
+    }
+
+    /**
      * Function used to generate a dict with the document fields split into dicts per document type.
      * @param document_fields
      */
@@ -241,6 +251,7 @@ angular.module("ehelseEditor").factory("DocumentField", ["$rootScope", "StorageH
     }
 
     return {
+        clear: clear,
         init: init,
         document_fields : document_fields,
         getFieldsByDocumentTypeId: getFieldsByDocumentTypeId,

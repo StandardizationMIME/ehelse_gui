@@ -21,6 +21,15 @@ angular.module("ehelseEditor").factory("Status", ["$rootScope", "StorageHandler"
     }
 
     /**
+     * Function used to clear all status lists and dicts.
+     */
+    function clear(){
+        status.length = 0;
+        status_dict = {};
+        status_option_list.length = 0;
+    }
+
+    /**
      * Function generating the status_dict. Used to get the name of the status from the status id.
      * @param status
      */
@@ -174,6 +183,7 @@ angular.module("ehelseEditor").factory("Status", ["$rootScope", "StorageHandler"
     }
 
     return {
+        clear: clear,
         init: init,
         new: newStatus,
         clone: clone,
