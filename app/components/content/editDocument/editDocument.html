@@ -13,6 +13,7 @@
             <h4 class="selected" ng-if="documentState == 'newProfile'">Ny profil</h4>
 
             <!-- FEEDBACK -->
+            <!--
             <span ng-messages="EditDocumentController.DocumentForm.$error" class="feedback-msg">
                 <span ng-message="required">
                     For å lagre dokument mangler du:
@@ -26,6 +27,18 @@
             </span>
             <span ng-messages="EditDocumentController.DocumentForm.f.$error" class="feedback-msg">
                 <span ng-message="required"> 'Felter'</span>
+            </span>
+            -->
+            <span ng-repeat="(key, errors) in EditDocumentController.DocumentForm.$error track by $index" class="feedback-msg">
+                <span>For å lagre dokument mangler du : </span>
+                <span ng-repeat="e in errors | unique: '$name'">
+                    <span ng-if="e.$name == 'f'" class="feedback-msg">'Felter' </span>
+                    <span ng-if="e.$name == 'standardTitle'" class="feedback-msg">'Tittel' </span>
+                    <span ng-if="e.$name == 'internalID'" class="feedback-msg">'Intern ID' </span>
+                    <span ng-if="e.$name == 'linkCategoryUrl'" class="feedback-msg">'Lenke-kategori' </span>
+                    <span ng-if="e.$name == 'targetGroups'" class="feedback-msg">'Målgrupper' </span>
+                    <!--{{ e.$name }} has an error: <strong>{{ key }}</strong>.-->
+                </span>
             </span>
         </div>
 
