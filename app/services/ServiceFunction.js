@@ -165,6 +165,9 @@ angular.module("ehelseEditor").factory("ServiceFunction", [function () {
             if (object[element] instanceof Array) {
                 clone[element] = cloneArray(object[element]);
             } else if (typeof(object[element]) == "object") {
+                if (object[element] === null)   // typeof(null) === "object" >> true, must be handled
+                    clone[element] = null;
+                else
                 clone[element] = cloneObject(object[element]);
             } else  {
                 clone[element] = object[element];
@@ -185,7 +188,12 @@ angular.module("ehelseEditor").factory("ServiceFunction", [function () {
             if (array[i] instanceof Array) {
                 clone[i] = cloneArray(array[i]);
             } else if (typeof(array[i]) == "object") {
-                clone[i] = cloneObject(array[i]);
+                if (array[i] === null) {    // typeof(null) === "object" >> true, must be handled
+                    clone[i]=null;
+                }
+                else {
+                    clone[i] = cloneObject(array[i]);
+                }
             } else {
                 clone[i] = array[i];
             }
