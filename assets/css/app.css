@@ -13,10 +13,9 @@
 /*------------------------------------------------------------------------------------------------------ */
 /* ----------------------------------------------- CH1 GENERIC ----------------------------------------- */
 html,body {
-    max-width: 100%;
     overflow-x: hidden;
     height: 100%;
-    overflow-y: hidden;
+    /*overflow-y: hidden;*/
 }
 h1,h2,h3,h4{ font-weight: bold;}
 .requi#c13a47-icon {
@@ -182,7 +181,7 @@ textarea {
     resize: none;
 }
 .administer-views {
-    height: calc(100% - 106px);
+    height: calc(100% - 120px);
     overflow-y: auto;
     overflow-x: hidden;
 }
@@ -630,16 +629,14 @@ div>div>.dropdown-toggle:hover{
     height: 750px;
 }
 .tg-tbody {
-    display: block;
     overflow-y: auto;
     overflow-x: hidden;
-    height: 600px;
 }
 .tg-thead {
     background-color: #337ab7;
     color: white;
     /*display: block;*/
-    position:relative;
+    /*position:relative;*/
     font-size: 14px;
 }
 .tg-thead-archive {
