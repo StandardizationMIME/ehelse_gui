@@ -17,4 +17,20 @@ angular.module("ehelseEditor").controller("EditTopicController", [ "$scope","$ro
         Topic.deleteById(topic.id);
     };
 
+    /**
+     * Checks that topic tuple list element is valid
+     *
+     * Element is not valid if it is child of selected document or element is equal to selected document.
+     * @param element
+     * @returns {boolean}
+     */
+    $scope.isValidTopicTupleListElement = function (element) {
+        var selected_topic_id = Topic.getSelected().id;
+        var current_element_id = element.id;
+
+        if (current_element_id == selected_topic_id)    // current is not child of selected, but this is still invalid
+            return false;
+        return !Topic.isChildrenOfTopic(current_element_id, selected_topic_id);
+    }
+
 }]);

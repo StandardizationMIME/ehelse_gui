@@ -343,6 +343,47 @@ angular.module("ehelseEditor").factory("Topic", ["$rootScope", "StorageHandler",
         }
     }
 
+    /**
+     * Returns top level parent of topic by id
+     *
+     * If t1.parentId = null, t2.parentId = 1, t3.parentId = 2,
+     *  getTopLevelTopic(3) gives 1.
+     * @param id
+     * @returns {*}
+     */
+    function getTopLevelParentId(id) {
+        var topic = topics_dict[id];
+        if (topic.parentId) {
+            return getTopLevelParentId(topic.parentId);
+        } else {
+            return id;
+        }
+    }
+
+    /**
+     * Checks if a topic is another topics child by id
+     *
+     *  If t1.parentId = null, t2.parentId = 1, t3.parentId = 2,
+     *  isChildrenOfTopic(1,2) gives false,
+     *  isChildrenOfTopic(3,1) gives true.
+     * @param child_id
+     * @param parent_id
+     * @returns {*}
+     */
+    function isChildrenOfTopic(child_id, parent_id) {
+        var child = topics_dict[child_id];
+        if (child.parentId) {
+            if (child.parentId == parent_id) {
+                return true;
+            } else {
+                return isChildrenOfTopic(child.parentId, parent_id);
+            }
+        } else {
+            return false;
+        }
+    }
+
+
     return {
         clear: clear,
         init: init,
@@ -358,6 +399,8 @@ angular.module("ehelseEditor").factory("Topic", ["$rootScope", "StorageHandler",
         getAllAsOptionsList: getAllAsOptionsList,
         setSelectedById: setSelectedById,
         getSelected: getSelected,
-        getTopicLevel: getTopicLevel
+        getTopicLevel: getTopicLevel,
+        getTopLevelParentId: getTopLevelParentId,
+        isChildrenOfTopic: isChildrenOfTopic
     };
 }]);
