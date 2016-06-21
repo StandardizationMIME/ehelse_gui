@@ -1,4 +1,4 @@
-<form name="administerFieldForm" role="form" method="post">
+<form name="administerFieldForm" role="form" method="post" style="height: 100%;>
     <div class="ten-pix-vertical-padding">
 
         <!-- Open modal for creating a new field -->
@@ -26,7 +26,7 @@
     </span>
 
     <!-- List of existing document fields -->
-    <ul ng-model="documentFields" class="field-item list-group administer-fields-list shadow-below" style="margin-left: 5px" ng-hide="!archivedProfileButton">
+    <ul ng-model="documentFields" class="field-item list-group administer-fields-list shadow-below" style="margin-left: 5px; height: calc(100% - 106px);" ng-hide="!archivedProfileButton">
         <li ng-repeat="field in documentFields | orderBy:getSequence" ng-if="field.documentTypeId == 2" ng-hide="field.isArchived" class="list-group-item">
 
             <!-- Document field info -->
@@ -48,7 +48,7 @@
     </ul>
 
     <!-- List of archived document fields -->
-    <ul ng-model="documentFields" class="field-item list-group administer-fields-list shadow-below" style="margin-left: 5px" ng-hide="archivedProfileButton">
+    <ul ng-model="documentFields" class="field-item list-group administer-fields-list shadow-below" style="margin-left: 5px; height: calc(100% - 106px);" ng-hide="archivedProfileButton">
         <li ng-repeat="field in documentFields | orderBy:getSequence" ng-if="field.documentTypeId == 2" ng-hide="!field.isArchived" class="list-group-item">
 
             <!-- Document field info -->

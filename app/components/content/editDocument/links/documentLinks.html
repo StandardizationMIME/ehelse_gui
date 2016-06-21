@@ -27,7 +27,7 @@
                             <span class="document-fields-field-name"><input class="form-control" type="text" placeholder="Navn" ng-model="link.text"></span>
 
                             <!-- URL -->
-                            <span class="document-fields-field-value"><input class="form-control" type="text" placeholder="URL" ng-model="link.url"></span>
+                            <span class="document-fields-field-value"><input class="form-control" type="text" placeholder="URL" ng-model="link.url" name="linkCategoryUrl" required></span>
 
                             <!-- Remove link -->
                             <span class="fa fa-remove delete-topic-icon clickable" ng-click="removeLink(link); EditDocumentController.DocumentForm.$setDirty()"></span>

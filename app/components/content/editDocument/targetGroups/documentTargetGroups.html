@@ -34,7 +34,7 @@
 
                         <!-- MANDATORY -->
                         <td>
-                            <select class="form-control" name="" id="mandatory" ng-model="group.mandatoryId">
+                            <select class="form-control" name="targetGroups" id="mandatory" ng-model="group.mandatoryId" required>
                                 <option ng-repeat="mandatory in mandatory_list" value="{{mandatory.id}}">{{mandatory.name}}</option>
                             </select>
                         </td>
