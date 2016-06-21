@@ -1,6 +1,6 @@
 angular.module("ehelseEditor").controller("ToolbarController",
-    ["$state", "$rootScope", "$scope", "FileUpload", "StorageHandler", "DownloadList",
-    function ($state, $rootScope, $scope, FileUpload, StorageHandler, DownloadList) {
+    ["$state", "$rootScope", "$scope", "CSVConverter","FileUpload", "StorageHandler", "DownloadList","Action", "Document", "DocumentField", "DocumentType", "LinkCategory", "Mandatory", "Status", "TargetGroup", "Topic",
+    function ($state, $rootScope, $scope,CSVConverter ,FileUpload, StorageHandler, DownloadList, Action, Document, DocumentField, DocumentType, LinkCategory, Mandatory, Status, TargetGroup, Topic) {
 
     $scope.$parent.registerChildController("ToolbarController", $scope);
 
@@ -61,5 +61,22 @@ angular.module("ehelseEditor").controller("ToolbarController",
 
     // Initialize state
     $scope.$state = $state;
+        $scope.showCSVContent = function ($fileContentCsv) {
+            CSVConverter.uploadCSVContent($fileContentCsv);
+            StorageHandler.initCsv();
+            Action.init();
+            Document.init();
+            DocumentField.init();
+            DocumentType.init();
+            LinkCategory.init();
+            Mandatory.init();
+            Status.init();
+            TargetGroup.init();
+            Topic.init();
+        };
+
+    $scope.csvLinkClick = function () {
+        $("#upload").trigger('click');
+    }
 }]);
 
