@@ -250,7 +250,12 @@ angular.module("ehelseEditor").factory("DocumentField", ["$rootScope", "StorageH
         return document_fields;
     }
 
+    function getDocumentFieldsDict(){
+        return document_fields_dict;
+    }
+
     return {
+        getDocumentFieldsDict: getDocumentFieldsDict,
         clear: clear,
         init: init,
         document_fields : document_fields,

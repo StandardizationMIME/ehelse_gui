@@ -10,7 +10,7 @@ angular.module("ehelseEditor").controller("EditDocumentController",
             $scope.target_groups_dict = TargetGroup.getAllAsDict();
             $scope.mandatory_list = Mandatory.getAll();
             $scope.actions_option_list = Action.getAllAsOptionsList();
-            $scope.fields_dict = DocumentField.document_fields_dict;
+            $scope.fields_dict = DocumentField.getDocumentFieldsDict();
             $scope.document = Document.getCurrentDocument();
             $scope.setCurrentDocumentFieldsByDocumentDocumentTypeId = Document.setCurrentDocumentFieldsByDocumentDocumentTypeId;
             $scope.linkCategories = Document.getCurrentDocumentLinksAsLinkCategoryList();
