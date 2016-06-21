@@ -128,8 +128,8 @@ angular.module("ehelseEditor").factory("Topic", ["$rootScope", "StorageHandler",
         topic.children = [];
     }
 
-    function toggleTopicSelection(){
-        var parent = getById(selected_topic.parentId);
+    function toggleTopicSelection(topic){
+        var parent = getById(topic.parentId);
         while(parent){
 
             $("#topic" + parent.id).collapse('show');
@@ -157,7 +157,7 @@ angular.module("ehelseEditor").factory("Topic", ["$rootScope", "StorageHandler",
                 updateTopic(topic);
                 generateTopicDict(topics);
                 generateTopicOptionsList(topics);
-                toggleTopicSelection();
+                toggleTopicSelection(selected_topic);
                 $rootScope.notifySuccess("Tema ble oppdatert",1000);
             }
             catch(error){
@@ -171,6 +171,7 @@ angular.module("ehelseEditor").factory("Topic", ["$rootScope", "StorageHandler",
                 initNewTopicValues(new_topic);
                 console.log(new_topic);
                 addTopic(new_topic);
+                toggleTopicSelection(new_topic);
                 $rootScope.notifySuccess("Nytt tema ble opprettet!", 1000);
                 $rootScope.getDocuments(new_topic.id);
                 console.log("Tema ble opprettet");
