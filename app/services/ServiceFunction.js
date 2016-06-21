@@ -88,9 +88,11 @@ angular.module("ehelseEditor").factory("ServiceFunction", [function () {
      * Returns a clone of a multidimensional array
      * @param list
      */
+    /*
     function cloneObject(list) {
         return (JSON.parse(JSON.stringify(list)));
     }
+    */
 
     /**
      * Returns deep copy of documents

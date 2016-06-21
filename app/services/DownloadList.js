@@ -66,7 +66,7 @@ angular.module("ehelseEditor").factory("DownloadList",
             output_list["mandatory"] = Mandatory.getAll();
             output_list["targetGroups"] = TargetGroup.getAll();
             output_list["status"] = Status.getAll();
-            output_list["topics"] = constructOutputTopics(ServiceFunction.cloneObject(Topic.getAll()));
+            output_list["topics"] = constructOutputTopics(ServiceFunction.deepCopy(Topic.getAll()));
             output_list["documents"] = constructOutputDocuments(ServiceFunction.cloneDocuments(Document.getAll()));
             output_list["archivedDocuments"] = ServiceFunction.cloneDocuments(StorageHandler.getArchivedDocuments());
 
