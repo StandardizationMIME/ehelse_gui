@@ -13,12 +13,6 @@ angular.module("ehelseEditor")
             templateUrl: "app/components/editor/editorView.html"
         };
     })
-    .directive("notification",function(){
-        return{
-            restrict: "E",
-            templateUrl: "app/components/main/notification/notificationView.html"
-        };
-    })
     .directive("stringToNumber", function() {
         return {
             require: "ngModel",
