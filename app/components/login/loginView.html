@@ -8,7 +8,9 @@
     <form name="login" role="form">
 
         <!-- File upload input -->
-        <input type="file" on-read-file="readFileContent($fileContent)">
+        <label class="btn btn-default btn-file">
+            <i class="fa fa-upload" aria-hidden="true"></i> Last opp fil <input type="file" style="display: none;" on-read-file="readFileContent($fileContent)">
+        </label>
 
         <!-- Feedback -->
         <div class="has-error">

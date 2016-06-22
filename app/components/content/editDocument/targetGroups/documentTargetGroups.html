@@ -34,7 +34,7 @@
 
                         <!-- MANDATORY -->
                         <td>
-                            <select class="form-control" name="" id="mandatory" ng-model="group.mandatoryId">
+                            <select class="form-control" name="targetGroups" id="mandatory" ng-model="group.mandatoryId" required>
                                 <option value="" selected>Ingen</option>
                                 <option ng-repeat="mandatory in mandatory_list" ng-hide="mandatory.isArchived" value={{mandatory.id}}>{{mandatory.name}}</option>
                             </select>
@@ -60,7 +60,7 @@
 
                         <!-- Delete target group from document -->
                         <td>
-                            <span class="fa fa-remove delete-target-group-icon clickable" ng-click="removeTargetGroup(group)"></span>
+                            <span class="fa fa-remove delete-target-group-icon clickable" ng-click="removeTargetGroup(group); EditDocumentController.DocumentForm.$setDirty()"></span>
                         </td>
                     </tr>
 

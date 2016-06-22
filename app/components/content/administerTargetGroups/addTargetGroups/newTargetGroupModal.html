@@ -1,6 +1,7 @@
 <div class="modal fade">
     <div class="modal-dialog">
         <div class="modal-content">
+            <form name="addTargetGroupForm" role="form" method="post">
 
             <!-- Title -->
             <div class="modal-header">
@@ -10,7 +11,6 @@
 
             <!-- Target group input fields -->
             <div class="modal-body">
-                <form role="form">
 
                     <!-- Name -->
                     <div class="form-group">
@@ -32,7 +32,7 @@
 
                     <!-- Target group parent -->
                     <div class="form-group">
-                        <label>Overordnet målgrupper: </label>
+                        <label>Overordnet målgruppe: </label>
 
                         <!-- List of all target group parent options -->
                         <select ng-model="newTargetGroup.parentId" class="form-control" >
@@ -40,16 +40,16 @@
                             <option ng-repeat="tuple in TGTuples" value="{{tuple.id}}">{{tuple.name}}</option>
                         </select>
                     </div>
-                </form>
             </div>
             <div class="modal-footer">
 
                 <!-- Create new modal -->
-                <button type="button" ng-click="close('add')" class="btn btn-primary" data-dismiss="modal">Opprett</button>
+                <button type="submit" ng-click="close('add')" class="btn btn-primary" data-dismiss="modal">Opprett</button>
 
                 <!-- Cancel and close modal -->
                 <button type="button" ng-click="close()" class="btn btn-default" data-dismiss="modal">Avbryt</button>
             </div>
+            </form>
         </div>
     </div>
 </div>
