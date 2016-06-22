@@ -200,8 +200,8 @@ angular.module("ehelseEditor").factory("Document", ["$rootScope", "DocumentField
 
     /**
      * Keep this in case it's needed later.
-     */
-    /*function changeTopicIdOfRelatedProfiles(document){
+     *
+     function changeTopicIdOfRelatedProfiles(document){
         if(document.profiles.length > 0 && !document.standardId){
             for(var i = 0; i < document.profiles.length; i++){
                 var related_profile = getDocumentById(document.profiles[i].id);
@@ -362,6 +362,7 @@ angular.module("ehelseEditor").factory("Document", ["$rootScope", "DocumentField
                 StorageHandler.addArchivedDocumentsById(archived_document);
 
                 updateDocumentValues(current_document);
+                setCurrentDocument(current_document);
 
                 updateDocumentInDocumentsList(current_document);
                 changeTopicIdOfRelatedDocuments(current_document);
