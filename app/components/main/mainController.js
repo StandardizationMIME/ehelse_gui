@@ -23,6 +23,7 @@
             $rootScope.confirmationFunction = function () {
                 method($rootScope.deleteTGId);
             };
+            $rootScope.shouldBeOpen = true;
             $rootScope.openModal("app/components/main/confirmation/confirmationTgModal.html", "ConfirmationTGModalController");
         };
 
@@ -33,6 +34,7 @@
             $rootScope.confirmationFunction = function(){
                 method($rootScope.objectToDelete);
             };
+            $rootScope.shouldBeOpen = true;
             $rootScope.openModal("app/components/main/confirmation/confirmationModal.html", "ConfirmationModalController");
         };
 

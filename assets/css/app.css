@@ -13,8 +13,9 @@
 /*------------------------------------------------------------------------------------------------------ */
 /* ----------------------------------------------- CH1 GENERIC ----------------------------------------- */
 html,body {
-    max-width: 100%;
     overflow-x: hidden;
+    height: 100%;
+    overflow-y: hidden;
 }
 h1,h2,h3,h4{ font-weight: bold;}
 .requi#c13a47-icon {
@@ -29,7 +30,7 @@ h1,h2,h3,h4{ font-weight: bold;}
     background-color: #337ab7;
 }
 .height-800{
-    height: 800px;
+    height: 100%;
 }
 .half-width {
     width: 70%;
@@ -180,7 +181,7 @@ textarea {
     resize: none;
 }
 .administer-views {
-    height: 650px;
+    height: calc(100% - 120px);
     overflow-y: auto;
     overflow-x: hidden;
 }
@@ -188,10 +189,6 @@ textarea {
 .document-fields {
     overflow-y: hidden;
 }
-.content-view {
-    padding-top: 16px;
-}
-
 /* -------------------------------------------- CH4 DOCUMENT ----------------------------------------- */
 .document-fields-field-name{
     width:25%;
@@ -210,15 +207,15 @@ textarea {
 .link-category-group{
     margin-bottom: 30px;
 }
-.standard-list {
+/*.standard-list {
     margin-top: 10px;
     margin-bottom: 25px;
     height: 650px;
     overflow-y: auto;
-}
+}*/
 .file-browser {
     padding: 20px 15px 20px 15px;
-    height: 800px;
+    height: 100%;
     background-color: #f3f3f3;
     box-shadow: 1px 1px 2px 1px #b8b8b8;
 }
@@ -354,7 +351,8 @@ textarea {
 .editor-display {
     max-width: 1800px;
     margin: auto;
-    height: 800px;
+    margin-bottom: 0;
+    height: 100%;
     background-color: #f3f3f3;
     border-radius: 10px;
     box-shadow: 1px 1px 2px 2px #b8b8b8;
@@ -458,11 +456,12 @@ div>div>.dropdown-toggle:hover{
 }
 .topic-browser {
     padding: 20px 15px 15px 15px;
-    height: 800px;
+    height: 100%;
 }
 .topic-list{
     overflow-y: auto;
-    height: 650px;
+    height: calc(100% - 106px);
+    max-height: 100%;
 }
 .sub-topic {
     padding-left: 10px;
@@ -536,7 +535,7 @@ a.sortable-columns{
 .editor-display {
     max-width: 1800px;
     margin: auto;
-    height: 800px;
+    height: 100%;
     background-color: #f3f3f3;
     border-radius: 10px;
     box-shadow: 1px 1px 2px 2px #b8b8b8;
@@ -546,12 +545,13 @@ a.sortable-columns{
 }
 .file-browser {
     padding: 20px 15px 20px 15px;
-    height: 800px;
+    height: 100%;
     background-color: #f3f3f3;
     box-shadow: 1px 1px 2px 1px #b8b8b8;
 }
 .content-view {
     padding-top: 16px;
+    height: 100%;
 }
 .standard-icon {
     color: #337ab7;
@@ -584,9 +584,9 @@ textarea {
 .pointer{cursor: pointer;}
 .standard-list {
     margin-top: 10px;
-    margin-bottom: 25px;
-    height: 650px;
     overflow-y: auto;
+    height: calc(100% - 106px);
+    max-height: 100%;
 }
 .administer-fields-list {
     height: 550px;
@@ -629,16 +629,14 @@ div>div>.dropdown-toggle:hover{
     height: 750px;
 }
 .tg-tbody {
-    display: block;
     overflow-y: auto;
     overflow-x: hidden;
-    height: 600px;
 }
 .tg-thead {
     background-color: #337ab7;
     color: white;
     /*display: block;*/
-    position:relative;
+    /*position:relative;*/
     font-size: 14px;
 }
 .tg-thead-archive {

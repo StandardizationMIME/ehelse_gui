@@ -34,8 +34,9 @@
 
                         <!-- MANDATORY -->
                         <td>
-                            <select class="form-control" name="" id="mandatory" ng-model="group.mandatoryId">
-                                <option ng-repeat="mandatory in mandatory_list" value="{{mandatory.id}}">{{mandatory.name}}</option>
+                            <select class="form-control" name="targetGroups" id="mandatory" ng-model="group.mandatoryId" required>
+                                <option value="" selected>Ingen</option>
+                                <option ng-repeat="mandatory in mandatory_list" ng-hide="mandatory.isArchived" value={{mandatory.id}}>{{mandatory.name}}</option>
                             </select>
                         </td>
 
@@ -47,7 +48,8 @@
                         <!-- ACTION -->
                         <td>
                             <select class="form-control" name="" id="action" ng-model="group.actionId">
-                                <option ng-repeat="action in actions_option_list" value="{{action.value}}">{{action.name}}</option>
+                                <option value="" selected>Ingen</option>
+                                <option ng-repeat="action in actions_option_list" ng-hide="action.isArchived" value={{action.value}}>{{action.name}}</option>
                             </select>
                         </td>
 
@@ -58,7 +60,7 @@
 
                         <!-- Delete target group from document -->
                         <td>
-                            <span class="fa fa-remove delete-target-group-icon clickable" ng-click="removeTargetGroup(group)"></span>
+                            <span class="fa fa-remove delete-target-group-icon clickable" ng-click="removeTargetGroup(group); EditDocumentController.DocumentForm.$setDirty()"></span>
                         </td>
                     </tr>
 

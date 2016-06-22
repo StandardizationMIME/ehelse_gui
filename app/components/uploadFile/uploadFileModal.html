@@ -12,9 +12,9 @@
                 <div class="modal-body">
 
                     <!-- File upload input -->
-                    <div class="form-group">
-                        <input type="file" on-read-file="readFileContent($fileContent)">
-                    </div>
+                    <label class="btn btn-default btn-file">
+                        <i class="fa fa-upload" aria-hidden="true"></i> Last opp fil <input type="file" style="display: none;" on-read-file="readFileContent($fileContent)">
+                    </label>
 
                 </div>
 
@@ -23,7 +23,7 @@
                     <div class="form-actions">
 
                         <!-- Create new document field and close modal -->
-                        <button id="uploadFileButton" ng-click="initEverything()" data-dismiss="modal"  type="submit" ng-disabled="uploadFileForm.$invalid" class="btn btn-primary">Importer</button>
+                        <button id="uploadFileButton" ng-click="clearEverything();initEverything()" data-dismiss="modal"  type="submit" ng-disabled="uploadFileForm.$invalid" class="btn btn-primary">Importer</button>
 
                         <!-- Cancel and close modal -->
                         <button type="button" data-dismiss="modal" class="btn btn-default pull-right">Avbryt</button>

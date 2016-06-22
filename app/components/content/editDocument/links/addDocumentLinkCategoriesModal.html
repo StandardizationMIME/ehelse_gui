@@ -14,7 +14,7 @@
                 <form role="form">
 
                     <!-- List all link categories in the system, with a checkbox -->
-                    <div ng-if="document_link_categories_ids.indexOf(link_category.id) == -1" class="form-group" ng-repeat="link_category in link_categories">
+                    <div ng-if="document_link_categories_ids.indexOf(link_category.id) == -1" ng-hide="link_category.isArchived" class="form-group" ng-repeat="link_category in link_categories">
                         <input id={{link_category.id}} type="checkbox"  data-checklist-model="selected_document_link_categories_ids" data-checklist-value="link_category.id">
                         <label for={{link_category.id}}>{{link_category.name}}</label>
                     </div>

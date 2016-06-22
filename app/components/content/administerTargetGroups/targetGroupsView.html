@@ -1,4 +1,4 @@
-<div ng-controller="TargetGroupsController" class="target-group-grid">
+<div ng-controller="TargetGroupsController" class="target-group-grid" style="height: 100%;">
     <div class="shadow-below">
 
         <!-- Title -->
@@ -55,7 +55,7 @@
             </thead>
 
             <!-- Table body active target groups -->
-            <tbody class="" ng-hide="!archivedTargetGroupsButton">
+            <tbody class="tg-tbody" ng-hide="!archivedTargetGroupsButton">
 
                 <!-- List of existing target groups in the system -->
                 <tr ng-repeat="group in targetGroups | orderBy:sortType:sortReverse | filter: searchText" ng-hide="group.isArchived">

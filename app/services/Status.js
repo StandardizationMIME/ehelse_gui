@@ -21,6 +21,15 @@ angular.module("ehelseEditor").factory("Status", ["$rootScope", "StorageHandler"
     }
 
     /**
+     * Function used to clear all status lists and dicts.
+     */
+    function clear(){
+        status.length = 0;
+        status_dict = {};
+        status_option_list.length = 0;
+    }
+
+    /**
      * Function generating the status_dict. Used to get the name of the status from the status id.
      * @param status
      */
@@ -91,7 +100,8 @@ angular.module("ehelseEditor").factory("Status", ["$rootScope", "StorageHandler"
         for (var i = 0; i < status.length; i++){
             status_option_list.push({
                 value: status[i].id,
-                name: status[i].name
+                name: status[i].name,
+                isArchived: status[i].isArchived
             })
         }
     }
@@ -137,6 +147,8 @@ angular.module("ehelseEditor").factory("Status", ["$rootScope", "StorageHandler"
      */
     function archiveStatus(s){
         s.isArchived = 1;
+        generateStatusDict(status);
+        generateStatusOptionList(status);
     }
 
     /**
@@ -146,8 +158,6 @@ angular.module("ehelseEditor").factory("Status", ["$rootScope", "StorageHandler"
     function deleteStatus(status) {
         try{
             archiveStatus(status);
-            generateStatusDict(status);
-            generateStatusOptionList(status);
             $rootScope.notifySuccess("Status ble arkivert!", 1000);
         }
         catch(error){
@@ -173,6 +183,7 @@ angular.module("ehelseEditor").factory("Status", ["$rootScope", "StorageHandler"
     }
 
     return {
+        clear: clear,
         init: init,
         new: newStatus,
         clone: clone,

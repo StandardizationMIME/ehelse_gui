@@ -57,7 +57,7 @@ angular.module("ehelseEditor").factory("ServiceFunction", [function () {
                 }
             }
             console.log(max + 1);
-            return "(max + 1)";
+            return "" + (max + 1);
         } else {
             return "1";
         }
@@ -88,9 +88,11 @@ angular.module("ehelseEditor").factory("ServiceFunction", [function () {
      * Returns a clone of a multidimensional array
      * @param list
      */
+    /*
     function cloneObject(list) {
         return (JSON.parse(JSON.stringify(list)));
     }
+    */
 
     /**
      * Returns deep copy of documents
@@ -130,10 +132,73 @@ angular.module("ehelseEditor").factory("ServiceFunction", [function () {
         var document_clone = {};
         for (var element in document) {
             if (invalid_elements.indexOf(element) < 0) {
-                document_clone[element] = document[element];
+                document_clone[element] = deepCopy(document[element]);
             }
         }
         return document_clone;
+    }
+
+    /**
+     * Returns deep copy of element
+     * @param element
+     * @returns {*}
+     */
+    function deepCopy(element) {
+        if (element instanceof Array) {
+            return cloneArray(element);
+        } else if (element == "object") {
+            return cloneObject(element);
+        } else {
+            return element; // TODO: make sure this covers everything, so no deep copy of anything else is needed.
+        }
+    }
+
+    /**
+     * Returns clone of object
+     * @param object
+     * @returns {{}}
+     */
+    function cloneObject(object) {
+        var clone = {};
+
+        for (var element in object) {
+            if (object[element] instanceof Array) {
+                clone[element] = cloneArray(object[element]);
+            } else if (typeof(object[element]) == "object") {
+                if (object[element] === null)   // typeof(null) === "object" >> true, must be handled
+                    clone[element] = null;
+                else
+                clone[element] = cloneObject(object[element]);
+            } else  {
+                clone[element] = object[element];
+
+            }
+        }
+        return clone;
+    }
+
+    /**
+     * Returns clone of array
+     * @param array
+     * @returns {Array}
+     */
+    function cloneArray(array) {
+        var clone = [];
+        for (var i = 0; i < array.length; i++) {
+            if (array[i] instanceof Array) {
+                clone[i] = cloneArray(array[i]);
+            } else if (typeof(array[i]) == "object") {
+                if (array[i] === null) {    // typeof(null) === "object" >> true, must be handled
+                    clone[i]=null;
+                }
+                else {
+                    clone[i] = cloneObject(array[i]);
+                }
+            } else {
+                clone[i] = array[i];
+            }
+        }
+        return clone;
     }
 
     /**
@@ -160,13 +225,30 @@ angular.module("ehelseEditor").factory("ServiceFunction", [function () {
         return occurrences < 1;
     }
 
+    /**
+     * Sort element on sequence
+     * @param elements
+     * @returns {*}
+     */
+    function sortArrayOnSequence(elements) {
+        var sorted_elements = deepCopy(elements);
+        sorted_elements.sort(
+            function (a, b) {
+                return a["sequence"] - b["sequence"];
+            }
+        );
+        return sorted_elements;
+    }
+
     return {
+        deepCopy: deepCopy,
         getTimestamp: getTimestamp,
         generateNewId: generateNewId,
         generateNewIdFromDict: generateNewIdFromDict,
         cloneObject: cloneObject,
         cloneDocuments: cloneDocuments,
         cloneDocument: cloneDocument,
-        isUnique: isUnique
+        isUnique: isUnique,
+        sortArrayOnSequence: sortArrayOnSequence
     }
 }]);
