@@ -29,6 +29,12 @@ angular.module("ehelseEditor").controller("EditDocumentController",
                 form.$setPristine();
             };
 
+
+            $scope.getTextRows = function(string){
+                var div = Math.floor(string.length/70);
+                return div + string.split(/\r\n|\r|\n/).length
+            };
+
             $scope.getFormattedTimestamp = function(timestamp){
                 if(timestamp){
                     return {date: timestamp.substring(8,10) + "." + timestamp.substring(5,7) + "." + timestamp.substring(0,4), time: timestamp.substring(11,16)};
