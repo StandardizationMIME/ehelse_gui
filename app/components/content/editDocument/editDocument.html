@@ -1,4 +1,5 @@
-<form ng-controller="EditDocumentController" name="EditDocumentController.DocumentForm"  role="form" style="height: calc(100% - 240px);">
+
+<form ng-controller="EditDocumentController" name="EditDocumentController.DocumentForm"  role="form" ng-class="(documentState == 'newDocument' || documentState == 'editUtility') ? 'utility-height' : 'document-height'">
 
 
     <!-- This div contains the toolbar of the document with -->
@@ -75,7 +76,7 @@
 
         </p>
     </div>
-    <div id="editDocument" class="{{documentState}} shadow-below" style="height: 100%;">
+    <div id="editDocument" class="{{documentState}} shadow-below">
         <!-- Buttons toggling between document versions -->
         <div class=" twelve-pix-vertical-padding" ng-if="document_dict[document.nextDocumentId] || document_dict[document.previousDocumentId]">
             <button type="button" class="btn btn-default" ng-disabled="document.nextDocumentId && !document.previousDocumentId" ng-click="openDocumentById(document.previousDocumentId)">

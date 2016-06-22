@@ -20,7 +20,7 @@ angular.module("ehelseEditor").factory("FileUpload",
 
 
     function getJsonFile() {
-        return json_object_from_file;
+        //return json_object_from_file;
         return {
             "actions": [
                 {
