@@ -57,6 +57,10 @@ angular.module("ehelseEditor").controller("DocumentController", [ "$scope","$roo
         $rootScope.openDocument(Document.getById(id));
     };
 
+    $rootScope.toggleSelectedTopic = function(){
+        Document.toggleTopicSelection();
+    };
+
     $rootScope.resetDocumentScroll = function(){
         $("#editDocument").scrollTop(0);
     };

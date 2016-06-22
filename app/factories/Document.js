@@ -197,7 +197,11 @@ angular.module("ehelseEditor").factory("Document", ["$rootScope", "DocumentField
         document.populatedProfiles = [];
     }
 
-    function changeTopicIdOfRelatedProfiles(document){
+
+    /**
+     * Keep this in case it's needed later.
+     *
+     function changeTopicIdOfRelatedProfiles(document){
         if(document.profiles.length > 0 && !document.standardId){
             for(var i = 0; i < document.profiles.length; i++){
                 var related_profile = getDocumentById(document.profiles[i].id);
@@ -219,24 +223,23 @@ angular.module("ehelseEditor").factory("Document", ["$rootScope", "DocumentField
             }
         }
     }
-
     function changeTopicIdOfRelatedStandard(document){
         if(document.standardId){
             var standard = getDocumentById(document.standardId);
             standard.topicId = document.topicId;
-            changeTopicIdOfRelatedProfiles(standard);
+            //changeTopicIdOfRelatedProfiles(standard);
             changeTopicIdOfNextDocumentVersions(standard);
             changeTopicIdOfPreviousDocumentVersions(standard);
         }
-    }
+    }*/
 
     function changeTopicIdOfNextDocumentVersions(document){
         var nextId = document.nextDocumentId;
         while(nextId){
             var next_document = getDocumentById(nextId);
             next_document.topicId = document.topicId;
-            changeTopicIdOfRelatedProfiles(next_document);
-            changeTopicIdOfRelatedStandard(next_document);
+            //changeTopicIdOfRelatedProfiles(next_document);
+            //changeTopicIdOfRelatedStandard(next_document);
             if(next_document.nextDocumentId){
                 nextId = next_document.nextDocumentId;
             }else{
@@ -250,8 +253,8 @@ angular.module("ehelseEditor").factory("Document", ["$rootScope", "DocumentField
         while(previousId){
             var previous_document = getDocumentById(previousId);
             previous_document.topicId = document.topicId;
-            changeTopicIdOfRelatedProfiles(documents_dict[previous_document.id]);
-            changeTopicIdOfRelatedStandard(documents_dict[previous_document.id]);
+            //changeTopicIdOfRelatedProfiles(documents_dict[previous_document.id]);
+            //changeTopicIdOfRelatedStandard(documents_dict[previous_document.id]);
             if(previous_document.previousDocumentId){
                 previousId = previous_document.previousDocumentId;
             }else{
@@ -262,9 +265,9 @@ angular.module("ehelseEditor").factory("Document", ["$rootScope", "DocumentField
 
     function changeTopicIdOfRelatedDocuments(document){
 
-        changeTopicIdOfRelatedProfiles(document);
+        //changeTopicIdOfRelatedProfiles(document);
 
-        changeTopicIdOfRelatedStandard(document);
+        //changeTopicIdOfRelatedStandard(document);
 
         changeTopicIdOfNextDocumentVersions(document);
 
@@ -368,6 +371,7 @@ angular.module("ehelseEditor").factory("Document", ["$rootScope", "DocumentField
                 generateTopicsDocumentsDict(documents);
 
                 toggleTopicSelection();
+                console.log(current_document);
                 $rootScope.notifySuccess("Dokumentet ble oppdatert", 1000);
             }
             catch(error){
@@ -614,6 +618,7 @@ angular.module("ehelseEditor").factory("Document", ["$rootScope", "DocumentField
         }else{
             getProfiles(document)
         }
+        console.log(current_document);
     }
 
     function getDocumentsByTopicId(id) {
@@ -817,6 +822,7 @@ angular.module("ehelseEditor").factory("Document", ["$rootScope", "DocumentField
     }
 
     return {
+        toggleTopicSelection: toggleTopicSelection,
         clear: clear,
         init: init,
         getCurrentDocumentTargetGroupsIds: getTargetGroupsIds,
