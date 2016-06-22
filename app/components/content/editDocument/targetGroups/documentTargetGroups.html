@@ -35,7 +35,8 @@
                         <!-- MANDATORY -->
                         <td>
                             <select class="form-control" name="targetGroups" id="mandatory" ng-model="group.mandatoryId" required>
-                                <option ng-repeat="mandatory in mandatory_list" value="{{mandatory.id}}">{{mandatory.name}}</option>
+                                <option value="" selected>Ingen</option>
+                                <option ng-repeat="mandatory in mandatory_list" ng-hide="mandatory.isArchived" value={{mandatory.id}}>{{mandatory.name}}</option>
                             </select>
                         </td>
 
@@ -47,7 +48,8 @@
                         <!-- ACTION -->
                         <td>
                             <select class="form-control" name="" id="action" ng-model="group.actionId">
-                                <option ng-repeat="action in actions_option_list" value="{{action.value}}">{{action.name}}</option>
+                                <option value="" selected>Ingen</option>
+                                <option ng-repeat="action in actions_option_list" ng-hide="action.isArchived" value={{action.value}}>{{action.name}}</option>
                             </select>
                         </td>
 

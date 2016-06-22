@@ -21,6 +21,15 @@ angular.module("ehelseEditor").factory("Action", ["$rootScope", "StorageHandler"
     }
 
     /**
+     * Function used to clear all lists and dicts used in Action.
+     */
+    function clear(){
+        actions.length = 0;
+        actions_dict = {};
+        actions_option_list.length = 0;
+    }
+
+    /**
      * Function creating a new action
      * @returns Action
      */
@@ -80,7 +89,8 @@ angular.module("ehelseEditor").factory("Action", ["$rootScope", "StorageHandler"
         for (var i = 0; i < actions.length; i++) {
             actions_option_list.push({
                 name: actions[i].name,
-                value: actions[i].id
+                value: actions[i].id,
+                isArchived: actions[i].isArchived
             });
         }
     }
@@ -175,6 +185,7 @@ angular.module("ehelseEditor").factory("Action", ["$rootScope", "StorageHandler"
     }
 
     return {
+        clear: clear,
         init: init,
         new: newAction,
         clone: clone,

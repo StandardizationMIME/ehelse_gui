@@ -12,7 +12,7 @@
 
             <!-- Open view for creating new document -->
             <p class="ten-pix-vertical-padding">
-                <button type="button" ng-click="setDocumentState('newDocument');openDocument()" class="btn btn-default">
+                <button type="button" ng-click="setDocumentState('newDocument');openDocument();resetDocumentScroll()" class="btn btn-default">
                     <span class="fa fa-plus-circle plus-icon"></span>
                     Nytt dokument
                 </button>
@@ -24,7 +24,7 @@
             <div ng-repeat="document in documents | filter: search | orderBy:getSequence">
 
                 <!-- Opens the document in the content view on selection -->
-                <p class="clickable" id=standard{{document.id}} ng-class="document.id == selected_document.id ? 'selected-item' : ''" ng-click="setDocumentState('editDocument');openDocument(document);">
+                <p class="clickable" id=standard{{document.id}} ng-class="document.id == selected_document.id ? 'selected-item' : ''" ng-click="setDocumentState('editDocument');openDocument(document);resetDocumentScroll()">
                     <span  class="fa fa-file-text d{{document.documentTypeId}}"> </span>
                     {{document.title}}
                 </p>

@@ -72,7 +72,6 @@ angular.module("ehelseEditor").factory("Document", ["$rootScope", "DocumentField
     function init(){
         try{
             var allDocuments = StorageHandler.getDocuments();
-            documents.length = 0;
 
             for(var i = 0; i < allDocuments.documents.length; i++){
                 var document = allDocuments.documents[i];
@@ -88,6 +87,17 @@ angular.module("ehelseEditor").factory("Document", ["$rootScope", "DocumentField
             $rootScope.notifyError("Dokumenter kunne ikke lastes inn: " + error, 6000);
             console.log("Documents could not be loaded " + error);
         }
+    }
+
+    /**
+     * Function used to clear all lists and dicts used in Document.
+     */
+    function clear(){
+        current_document = newDocument();
+        link_category_list.length = 0;
+        documents.length = 0;
+        documents_dict = {};
+        topics_documents_dict = {};
     }
 
     /**
@@ -327,8 +337,13 @@ angular.module("ehelseEditor").factory("Document", ["$rootScope", "DocumentField
         var topic = Topic.getById(current_document.topicId);
         var parent = Topic.getById(topic.parentId);
         while(parent){
-            console.log("asd");
+
             $("#topic" + parent.id).collapse('show');
+
+            var topicIcon = $("#folder" + parent.id);
+            topicIcon.removeClass("glyphicon-folder-close");
+            topicIcon.addClass("glyphicon-folder-open");
+
             parent = Topic.getById(parent.parentId);
         }
     }
@@ -562,9 +577,9 @@ angular.module("ehelseEditor").factory("Document", ["$rootScope", "DocumentField
             a.previousDocumentId = b.previousDocumentId;
             a.description = b.description;
             a.sequence = b.sequence;
-            a.targetGroups = b.targetGroups;
-            a.fields = b.fields;
-            a.links = b.links;
+            a.targetGroups = ServiceFunction.deepCopy(b.targetGroups);
+            a.fields = ServiceFunction.deepCopy(b.fields);
+            a.links = ServiceFunction.deepCopy(b.links);
             a.standardId = b.standardId;
             a.populatedProfiles = b.populatedProfiles || [];
             a.editedTimestamp = b.editedTimestamp;
@@ -802,6 +817,7 @@ angular.module("ehelseEditor").factory("Document", ["$rootScope", "DocumentField
     }
 
     return {
+        clear: clear,
         init: init,
         getCurrentDocumentTargetGroupsIds: getTargetGroupsIds,
         getCurrentDocument: getCurrentDocument,

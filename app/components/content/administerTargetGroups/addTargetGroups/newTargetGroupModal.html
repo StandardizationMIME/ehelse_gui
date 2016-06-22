@@ -36,6 +36,7 @@
 
                         <!-- List of all target group parent options -->
                         <select ng-model="newTargetGroup.parentId" class="form-control" >
+                            <option value="" selected>Ingen</option>
                             <option ng-repeat="tuple in TGTuples" value="{{tuple.id}}">{{tuple.name}}</option>
                         </select>
                     </div>
