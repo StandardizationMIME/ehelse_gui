@@ -1,8 +1,8 @@
 "use strict";
 
 angular.module("ehelseEditor").controller("UploadFileController",
-    ["$scope", "$rootScope", "FileUpload", "StorageHandler", "$state", "Action", "Document", "DocumentField", "DocumentType", "LinkCategory", "Mandatory", "Status", "TargetGroup", "Topic",
-        function($scope, $rootScope, FileUpload, StorageHandler, $state, Action, Document, DocumentField, DocumentType, LinkCategory, Mandatory, Status, TargetGroup, Topic){
+    ["$state", "$scope", "$rootScope", "FileUpload", "StorageHandler", "Action", "Document", "DocumentField", "DocumentType", "LinkCategory", "Mandatory", "Status", "TargetGroup", "Topic",
+        function($state, $scope, $rootScope, FileUpload, StorageHandler, Action, Document, DocumentField, DocumentType, LinkCategory, Mandatory, Status, TargetGroup, Topic){
 
     $scope.$state = $state;
 
@@ -44,7 +44,7 @@ angular.module("ehelseEditor").controller("UploadFileController",
 }]);
 
 
-angular.module("ehelseEditor").directive('onReadFile', function ($parse) {
+angular.module("ehelseEditor").directive('onReadFile', ['$parse', '$rootScope', function ($parse, $rootScope) {
     return {
         restrict: 'A',
         scope: false,
@@ -53,14 +53,18 @@ angular.module("ehelseEditor").directive('onReadFile', function ($parse) {
 
             element.on('change', function (onChangeEvent) {
                 var reader = new FileReader();
-
-                reader.onload = function (onLoadEvent) {
-                    scope.$apply(function () {
-                        fn(scope, {$fileContent:onLoadEvent.target.result});
-                    });
-                };
-                reader.readAsText((onChangeEvent.srcElement || onChangeEvent.target).files[0]);
+                try{
+                    reader.onload = function (onLoadEvent) {
+                        scope.$apply(function () {
+                            fn(scope, {$fileContent:onLoadEvent.target.result});
+                        });
+                    };
+                    reader.readAsText((onChangeEvent.srcElement || onChangeEvent.target).files[0]);
+                }catch(error){
+                    $rootScope.notifyError("Filen du prøver å laste opp er ugyldig!", 6000);
+                    console.log("Upload failed: " + error);
+                }
             });
         }
     };
-});
+}]);
