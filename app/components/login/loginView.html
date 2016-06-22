@@ -1,4 +1,6 @@
-<div ng-show="error" class="alert alert-danger">{{error}}</div>
+<!-- notification informing user -->
+<notification></notification>
+
 <div class="logged-out-page">
 
     <!-- Title -->
@@ -21,8 +23,7 @@
             <button type="button"
                     class="btn btn-primary font-size-large"
                     ng-click="goToSite()"
-                    ng-disabled="invalid($fileContent)"
-            >
+                    ng-disabled="invalid($fileContent)">
                 Gå til editor
             </button>
         </div>
