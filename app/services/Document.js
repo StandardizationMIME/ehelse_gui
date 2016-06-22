@@ -370,6 +370,7 @@ angular.module("ehelseEditor").factory("Document", ["$rootScope", "DocumentField
                 generateTopicsDocumentsDict(documents);
 
                 toggleTopicSelection();
+                console.log(current_document);
                 $rootScope.notifySuccess("Dokumentet ble oppdatert", 1000);
             }
             catch(error){
@@ -616,6 +617,7 @@ angular.module("ehelseEditor").factory("Document", ["$rootScope", "DocumentField
         }else{
             getProfiles(document)
         }
+        console.log(current_document);
     }
 
     function getDocumentsByTopicId(id) {
