@@ -103,6 +103,12 @@ angular.module("ehelseEditor").factory("DocumentField", ["$rootScope", "StorageH
             }else{
                 mandatoryString = "0";
             }
+            var isRichText = null;
+            if(field.isRichText){
+                isRichText = 1;
+            }else{
+                isRichText = 0;
+            }
             var sequenceInt = 1;
             if(field.sequence){
                 sequenceInt = field.sequence;
@@ -116,7 +122,7 @@ angular.module("ehelseEditor").factory("DocumentField", ["$rootScope", "StorageH
                 "mandatory": mandatoryString,
                 "documentTypeId": $rootScope.typeId,
                 "isArchived": 0,
-                "isRichText": field.isRichText
+                "isRichText": isRichText
             };
 
             document_fields.push(myField);
@@ -144,6 +150,12 @@ angular.module("ehelseEditor").factory("DocumentField", ["$rootScope", "StorageH
             }else{
                 mandatoryString = "0";
             }
+            var isRichText = null;
+            if(field.isRichText){
+                isRichText = 1;
+            }else{
+                isRichText = 0;
+            }
 
             var myField = {
                 "id": field.id,
@@ -153,7 +165,7 @@ angular.module("ehelseEditor").factory("DocumentField", ["$rootScope", "StorageH
                 "mandatory": mandatoryString,
                 "documentTypeId": $rootScope.typeId,
                 "isArchived": 0,
-                "isRichText": field.isRichText
+                "isRichText": isRichText
             };
 
             var document_field = document_fields_dict[myField.id];
@@ -214,6 +226,11 @@ angular.module("ehelseEditor").factory("DocumentField", ["$rootScope", "StorageH
             document_fields_dict[id].mandatory = false;
         } else if (document_fields_dict[id].mandatory = "1"){
             document_fields_dict[id].mandatory = true;
+        }
+        if(document_fields_dict[id].isRichText){
+            document_fields_dict[id].isRichText = true;
+        } else{
+            document_fields_dict[id].isRichText = false;
         }
         return document_fields_dict[id];
     }
