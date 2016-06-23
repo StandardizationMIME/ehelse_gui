@@ -20,7 +20,7 @@
                     <!-- Description -->
                     <div class="form-group">
                         <label for="documentFieldDescription">Beskrivelse: </label>
-                        <textarea id="documentFieldDescription" ng-model="currentDocumentField.description" class="form-control"></textarea>
+                        <textarea id="documentFieldDescription" ng-model="currentDocumentField.description" class="form-control" rows="6" cols="50"></textarea>
                     </div>
 
                     <!-- Order -->
@@ -30,10 +30,17 @@
                     </div>
 
                     <!-- Mandatory -->
-                    <div class="form-inline">
-                        <label for="documentFieldMandatory">Obligatorisk: </label>
-                        <input id="documentFieldMandatory" type="checkbox" ng-model="currentDocumentField.mandatory"/>
+                    <div class="form-inline four-pix-horizontal-margin">
+                        <input class="four-pix-horizontal-margin" id="documentFieldMandatory" type="checkbox" ng-model="currentDocumentField.mandatory"/>
+                        <label for="documentFieldMandatory"> Obligatorisk</label>
                     </div>
+
+                    <!-- Rich text -->
+                    <div class="form-inline ten-pix-vertical-padding four-pix-horizontal-margin">
+                        <input class="four-pix-horizontal-margin" id="documentFieldIsRichText" type="checkbox" ng-model="currentDocumentField.isRichText"/>
+                        <label for="documentFieldIsRichText"> Rik tekst</label>
+                    </div>
+
                 </div>
 
                 <!-- Modal footer -->

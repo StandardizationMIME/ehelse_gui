@@ -14,28 +14,28 @@
 
                     <!-- Name -->
                     <div class="form-group">
-                        <label>Navn: </label>
-                        <input focus-me="shouldBeOpen" type="text" ng-model="newTargetGroup.name" class="form-control" required>
+                        <label for="targetGroupName">Navn: </label>
+                        <input id="targetGroupName" focus-me="shouldBeOpen" type="text" ng-model="newTargetGroup.name" class="form-control" required>
                     </div>
 
                     <!-- Description -->
                     <div class="form-group">
-                        <label>Beskrivelse: </label><span class="required-icon" data-toggle="tooltip" title="Obligatorisk felt" data-placement="top">*</span>
-                        <textarea ng-model="newTargetGroup.description" class="form-control" rows="5" cols="40" required></textarea>
+                        <label for="targetGroupDescription">Beskrivelse: </label><span class="required-icon" data-toggle="tooltip" title="Obligatorisk felt" data-placement="top">*</span>
+                        <textarea id="targetGroupDescription" ng-model="newTargetGroup.description" class="form-control" rows="5" cols="40" required></textarea>
                     </div>
 
                     <!-- Abbreviation -->
                     <div class="form-group">
-                        <label>Forkortelse: </label>
-                        <input type="text" ng-model="newTargetGroup.abbreviation" class="form-control">
+                        <label for="targetGroupAbbrev">Forkortelse: </label>
+                        <input id="targetGroupAbbrev" type="text" ng-model="newTargetGroup.abbreviation" class="form-control">
                     </div>
 
                     <!-- Target group parent -->
                     <div class="form-group">
-                        <label>Overordnet målgruppe: </label>
+                        <label for="targetGroupParent">Overordnet målgruppe: </label>
 
                         <!-- List of all target group parent options -->
-                        <select ng-model="newTargetGroup.parentId" class="form-control" >
+                        <select id="targetGroupParent" ng-model="newTargetGroup.parentId" class="form-control" >
                             <option value="" selected>Ingen</option>
                             <option ng-repeat="tuple in TGTuples" value="{{tuple.id}}">{{tuple.name}}</option>
                         </select>

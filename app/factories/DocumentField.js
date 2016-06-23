@@ -115,7 +115,8 @@ angular.module("ehelseEditor").factory("DocumentField", ["$rootScope", "StorageH
                 "sequence": sequenceInt,
                 "mandatory": mandatoryString,
                 "documentTypeId": $rootScope.typeId,
-                "isArchived": 0
+                "isArchived": 0,
+                "isRichText": field.isRichText
             };
 
             document_fields.push(myField);
@@ -151,7 +152,8 @@ angular.module("ehelseEditor").factory("DocumentField", ["$rootScope", "StorageH
                 "sequence": field.sequence,
                 "mandatory": mandatoryString,
                 "documentTypeId": $rootScope.typeId,
-                "isArchived": 0
+                "isArchived": 0,
+                "isRichText": field.isRichText
             };
 
             var document_field = document_fields_dict[myField.id];
@@ -159,6 +161,7 @@ angular.module("ehelseEditor").factory("DocumentField", ["$rootScope", "StorageH
             document_field.description = myField.description;
             document_field.mandatory = myField.mandatory;
             document_field.sequence = myField.sequence;
+            document_field.isRichText = myField.isRichText;
             success(myField);
         }
         catch(err){
@@ -224,6 +227,7 @@ angular.module("ehelseEditor").factory("DocumentField", ["$rootScope", "StorageH
         to.mandatory = from.mandatory;
         to.documentTypeId = from.documentTypeId;
         to.isArchived = from.isArchived;
+        to.isRichText = from.isRichText;
     }
     function clone(field){
         var clone = {};
