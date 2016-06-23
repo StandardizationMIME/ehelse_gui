@@ -30,10 +30,10 @@
                     <tr ng-repeat="group in document.targetGroups">
 
                         <!-- NAME -->
-                        <td>{{target_groups_dict[group.targetGroupId].name}}</td>
+                        <td class="target-group-info">{{target_groups_dict[group.targetGroupId].name}}</td>
 
                         <!-- MANDATORY -->
-                        <td>
+                        <td class="target-group-info">
                             <select class="form-control" name="targetGroups" id="mandatory" ng-model="group.mandatoryId" required>
                                 <option value="" selected>Ingen</option>
                                 <option ng-repeat="mandatory in mandatory_list" ng-hide="mandatory.isArchived" value={{mandatory.id}}>{{mandatory.name}}</option>
@@ -41,12 +41,12 @@
                         </td>
 
                         <!-- Deadline -->
-                        <td>
+                        <td class="target-group-info">
                             <input class="form-control" type="text" id="deadline" ng-model="group.deadline">
                         </td>
 
                         <!-- ACTION -->
-                        <td>
+                        <td class="target-group-info">
                             <select class="form-control" name="" id="action" ng-model="group.actionId">
                                 <option value="" selected>Ingen</option>
                                 <option ng-repeat="action in actions_option_list" ng-hide="action.isArchived" value={{action.value}}>{{action.name}}</option>
@@ -54,7 +54,7 @@
                         </td>
 
                         <!-- Description -->
-                        <td>
+                        <td class="target-group-info">
                             <input type="text" class="form-control" id="description"  ng-model="group.description"/>
                         </td>
 
