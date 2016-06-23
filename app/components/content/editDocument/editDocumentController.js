@@ -31,7 +31,7 @@ angular.module("ehelseEditor").controller("EditDocumentController",
 
 
             $scope.getTextRows = function(string){
-                var div = Math.floor(string.length/70);
+                var div = Math.floor(string.length/90);
                 return div + string.split(/\r\n|\r|\n/).length
             };
 
