@@ -25,6 +25,7 @@ angular.module("ehelseEditor").controller("EditDocumentController",
 
             // Submit function used both create new documents and save changes to existing ones
             $scope.submit = function(form){
+                $rootScope.clearSearchFilterText();
                 Document.submitCurrentDocument();
                 form.$setPristine();
             };

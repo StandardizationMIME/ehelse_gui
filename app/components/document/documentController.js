@@ -6,6 +6,7 @@ angular.module("ehelseEditor").controller("DocumentController", [ "$scope","$roo
     $scope.document_types_dict = DocumentType.document_types_dict;
     $scope.documents = [];
     $scope.current_document = Document.getCurrentDocument();
+    $scope.allDocuments = Document.getAll();
 
     // Get documents of the selected topic
     $rootScope.getDocuments = function(id, document) {
@@ -79,5 +80,11 @@ angular.module("ehelseEditor").controller("DocumentController", [ "$scope","$roo
             Document.setCurrentDocument(document);
             $rootScope.changeContentView("document");
         }
+    };
+
+    $scope.filterContainsSearchText = function(document) {
+        return document.title.toLowerCase().indexOf($rootScope.searchQuery) >= 0
+            || document.hisNumber.toLowerCase().indexOf($rootScope.searchQuery) >= 0
+            || document.internalId.toLowerCase().indexOf($rootScope.searchQuery) >= 0
     };
 }]);
