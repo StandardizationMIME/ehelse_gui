@@ -363,6 +363,12 @@ textarea {
     resize: none;
     box-sizing: content-box;
 }
+
+.target-group-info:nth-child(1) { width: 30%}
+.target-group-info:nth-child(2) { width: 15%}
+.target-group-info:nth-child(3) { width: 12%}
+.target-group-info:nth-child(4) { width: 16%}
+.target-group-info:nth-child(5) { width: 27%}
 /* -------------------------------------------- CH5 EDITOR ----------------------------------------- */
 .editor-display {
     max-width: 1800px;
