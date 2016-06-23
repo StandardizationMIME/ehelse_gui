@@ -195,6 +195,7 @@ angular.module("ehelseEditor").factory("Document", ["$rootScope", "DocumentField
     function updateDocumentValues(document){
         document.editedTimestamp = ServiceFunction.getTimestamp();
         document.populatedProfiles = [];
+        document.fields = removeLineBreakFromDocumentFields(document.fields);
     }
 
 
@@ -285,6 +286,17 @@ angular.module("ehelseEditor").factory("Document", ["$rootScope", "DocumentField
             saveDocument();
             $rootScope.checkDocumentState(current_document);
         }
+    }
+
+    function removeLineBreakFromDocumentFields(fields){
+        var document_fields = fields;
+        var document_fields_dict = DocumentField.getDocumentFieldsDict();
+        for(var i = 0; i < document_fields.length; i++){
+            if(!document_fields_dict[document_fields[i].fieldId].isRichText){
+                document_fields[i].value = document_fields[i].value.replace(/\r?\n|\r/g, " ");
+            }
+        }
+        return document_fields;
     }
 
     /**

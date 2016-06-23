@@ -14,12 +14,11 @@
                 <li class="list-group-item" ng-repeat="field in document.fields">
 
                     <!-- Field name -->
-                    <label for="documentField{{field.fieldId}}" class="document-fields-field-name pull-left">{{fields_dict[field.fieldId].name}}</label>
-                    <span ng-if="fields_dict[field.fieldId].mandatory == 1" class="required-icon" data-toggle="tooltip" title="" data-placement="top" data-original-title="Obligatorisk felt">*</span>
+                    <label for="documentField{{field.fieldId}}" class="document-fields-field-name pull-left">{{fields_dict[field.fieldId].name}} <span ng-if="fields_dict[field.fieldId].mandatory == 1" class="required-icon" data-toggle="tooltip" title="" data-placement="top" data-original-title="Obligatorisk felt">*</span></label>
 
                     <!-- Field input -->
                     <span class="document-fields-field-value">
-                        <textarea id="documentField{{field.fieldId}}" class="form-control" name="f{{field.id}}" ng-model="field.value" rows="{{getTextRows(field.value)}}" autogrow required></textarea>
+                        <textarea id="documentField{{field.fieldId}}" class="form-control content-box" name="f{{field.id}}" ng-model="field.value" rows="{{getTextRows(field.value)}}" autogrow required></textarea>
                     </span>
 
                     <!-- Delete field -->
