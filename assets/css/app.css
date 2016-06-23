@@ -144,6 +144,9 @@ h1,h2,h3,h4{ font-weight: bold;}
     margin-right: 4px;
     margin-left: 4px;
 }
+.content-box {
+    box-sizing: content-box;
+}
 /* ------------------------------------------------ CH2 ADMINISTER_USERS ----------------------------------------- */
 #user-list img{
     width: 50px;
@@ -189,6 +192,7 @@ h1,h2,h3,h4{ font-weight: bold;}
 textarea {
     resize: none;
 }
+
 .administer-views {
     height: calc(100% - 120px);
     overflow-y: auto;

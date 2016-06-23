@@ -31,8 +31,11 @@ angular.module("ehelseEditor").controller("EditDocumentController",
 
 
             $scope.getTextRows = function(string){
-                var div = Math.floor(string.length/90);
-                return div + string.split(/\r\n|\r|\n/).length
+                if(string.split(/\r\n|\r|\n/).length < 6){
+                    return Math.floor(string.length/70) + string.split(/\r\n|\r|\n/).length
+                }else{
+                    return Math.floor(string.length/100) + string.split(/\r\n|\r|\n/).length
+                }
             };
 
             $scope.getFormattedTimestamp = function(timestamp){
