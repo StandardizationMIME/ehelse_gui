@@ -6,8 +6,11 @@
         <div class="shadow-below">
 
             <!-- Topic title -->
-            <div class="headline-box">
+            <div class="headline-box" ng-hide="$root.searchQuery">
                 <h4 class="selected-heading">{{topic.title}}</h4>
+            </div>
+            <div class="headline-box" ng-hide="!$root.searchQuery">
+                <h4 class="selected-heading">Søkeresultat</h4>
             </div>
 
             <!-- Open view for creating new document -->
@@ -20,11 +23,22 @@
         </div>
 
         <!-- List of documents in the selected topic -->
-        <div class="standard-list">
-            <div ng-repeat="document in documents | filter: search | orderBy:getSequence">
+        <div class="standard-list" ng-if="!searchQuery">
+            <div ng-repeat="document in documents | orderBy:getSequence">
 
                 <!-- Opens the document in the content view on selection -->
                 <p class="clickable" id=standard{{document.id}} ng-class="document.id == selected_document.id ? 'selected-item' : ''" ng-click="setDocumentState('editDocument');openDocument(document);resetDocumentScroll()">
+                    <span  class="fa fa-file-text d{{document.documentTypeId}}"> </span>
+                    {{document.title}}
+                </p>
+            </div>
+        </div>
+
+        <!-- List of search results -->
+        <div class="standard-list" ng-if="searchQuery">
+            <div ng-repeat="document in allDocuments | filter:filterContainsSearchText:false | filter: {documentTypeId:searchOption} | orderBy:getSequence">
+                <!-- Opens the document in the content view on selection -->
+                <p class="clickable" id=search-standard{{document.id}} ng-class="document.id == selected_document.id ? 'selected-item' : ''" ng-click="setDocumentState('editDocument');openDocument(document);resetDocumentScroll()">
                     <span  class="fa fa-file-text d{{document.documentTypeId}}"> </span>
                     {{document.title}}
                 </p>

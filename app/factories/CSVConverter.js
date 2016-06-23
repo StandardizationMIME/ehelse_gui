@@ -1,8 +1,8 @@
 "use strict";
 
 angular.module("ehelseEditor").factory("CSVConverter",
-    [
-        function () {
+    [ "ServiceFunction",
+        function (ServiceFunction) {
 
             var documentsFromCsv = [];
             var statusListFromCsv = [];
@@ -40,7 +40,7 @@ angular.module("ehelseEditor").factory("CSVConverter",
                     csvObject = csvObjects[i];
                     var tempDocument = {
                         "id": i+1,
-                        "createdTimestamp": "",
+                        "createdTimestamp": ServiceFunction.getTimestamp(),
                         "editedTimestamp": csvObject.Endret,
                         "title": csvObject.Tittel,
                         "description": csvObject.Ingress,
@@ -368,7 +368,7 @@ angular.module("ehelseEditor").factory("CSVConverter",
                         if (keys == 'Publisert'|| keys == 'Sideinnhold' || keys == 'Merknad' || keys == 'Utgiver' || keys == 'Versjon'){
                             var tempDocumentFieldObj = {
                                 "fieldId": getDocumentFieldIdByDocumentTypeIdAndFieldName(tempDocTypeId, keys),
-                                "value": obj[keys]
+                                "value": obj[keys].replace(/(\r\n|\n|\r)/gm,"")
                             };
                             fieldsListForSingleDocument.push(tempDocumentFieldObj);
                         }

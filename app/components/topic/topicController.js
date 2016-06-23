@@ -37,6 +37,11 @@ angular.module("ehelseEditor").controller("TopicController",["$rootScope", "$sco
             }
         }
     };
+    $rootScope.clearSearchFilterText = function () {
+        $rootScope.searchQuery = "";
+    };
+
+    $rootScope.searchOption = "";
 
 
 }]);

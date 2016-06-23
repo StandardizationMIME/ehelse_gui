@@ -76,6 +76,18 @@ angular.module("ehelseEditor").controller("ToolbarController",
 
     $scope.csvLinkClick = function () {
         $("#upload").trigger('click');
-    }
+    };
+
+    $scope.searchFilter = function (row) {
+        return (angular.lowercase(row.title).indexOf(angular.lowercase($rootScope.searchQuery) || '') !== -1 ||
+        angular.lowercase(row.hisNumber).indexOf(angular.lowercase($rootScope.searchQuery) || '') !== -1);
+    };
+
+
+        $('#search-filter').keyup(function(){
+            if($(this).val().length ==0){
+                // Do stuff when input is empty
+            }
+        });
 }]);
 
