@@ -12,60 +12,64 @@
         </button>
     </div>
 
-    <!-- List headings -->
-    <span ng-class="profileHeadingsClass">
-        <span class="field-item-field">Tittel</span>
-        <span class="field-item-field">Beskrivelse</span>
-        <span class="field-item-field">Obligatorisk</span>
-        <span class="field-item-field pull-right" ng-show="archivedProfileButton">Rediger felt &nbsp;
-            <span>&nbsp;&nbsp;&nbsp;Arkiver &nbsp;&nbsp;&nbsp;&nbsp;</span>
-        </span>
-        <span class="field-item-field pull-right" ng-show="!archivedProfileButton">
-            <span>Gjenopprett</span>
-        </span>
-    </span>
+    <div class="table-responsive administer-views shadow-below">
 
-    <!-- List of existing document fields -->
-    <ul ng-model="documentFields" class="field-item list-group administer-fields-list shadow-below" style="margin-left: 5px; height: calc(100% - 106px);" ng-hide="!archivedProfileButton">
-        <li ng-repeat="field in documentFields | orderBy:getSequence" ng-if="field.documentTypeId == 2" ng-hide="field.isArchived" class="list-group-item">
+        <!-- Table listing all field values in the system -->
+        <table class="table table-striped" id="AdministerUtilityFieldsTable">
 
-            <!-- Document field info -->
-            <span class="field-item-field">{{field.name}}</span>
-            <span class="field-item-field">{{field.description}}</span>
-            <span class="field-item-field" ng-if="field.mandatory == 1">Ja</span>
-            <span class="field-item-field" ng-if="field.mandatory == 0">Nei</span>
+            <!-- Table headers -->
+            <thead ng-class="profileHeadingsClass">
+            <tr>
+                <th class="col-md-8">Tittel</th>
+                <th class="col-md-2 center-align-text">Obligatorisk</th>
+                <th class="col-md-1" ng-show="archivedProfileButton">Rediger</th>
+                <th class="col-md-1 center-align-text" ng-show="archivedProfileButton">Arkiver</th>
+                <th class="col-md-2 center-align-text" ng-show="!archivedProfileButton">Gjenopprett</th>
+            </tr>
+            </thead>
 
-            <!-- Delete field -->
-            <div class="pull-right" style="margin-right: 12px;">
-                <span ng-click="openConfirmationModal('Er du sikker på at du vil slette feltet?', field, deleteFieldById)" id="editProfileField" class="fa fa-archive fa-fw vcenter clickable edit-field"></span>
-            </div>
+            <!-- Active Table body -->
+            <tbody ng-show="archivedProfileButton">
+            <tr ng-repeat="field in documentFields" ng-if="field.documentTypeId == 2" ng-hide="field.isArchived">
 
-            <!-- Edit field -->
-            <div class="pull-right" style="margin-right: 28px;">
-                <span ng-click="editDocumentFieldModal(field.id);setTypeId(2)" id="deleteProfileField" class="fa fa-pencil-square-o fa-2x vcenter clickable edit-field unsortable"></span>
-            </div>
-        </li>
-    </ul>
+                <!-- Field value info -->
+                <td>{{field.name}}</td>
+                <td class="center-align-text" ng-if="field.mandatory == 1">Ja</td>
+                <td class="center-align-text" ng-if="field.mandatory == 0">Nei</td>
 
-    <!-- List of archived document fields -->
-    <ul ng-model="documentFields" class="field-item list-group administer-fields-list shadow-below" style="margin-left: 5px; height: calc(100% - 106px);" ng-hide="archivedProfileButton">
-        <li ng-repeat="field in documentFields | orderBy:getSequence" ng-if="field.documentTypeId == 2" ng-hide="!field.isArchived" class="list-group-item">
+                <!-- Edit field -->
+                <td class="center-align-text">
+                    <span ng-click="editDocumentFieldModal(field.id);setTypeId(2)" id="editProfileField" class="fa fa-pencil-square-o fa-2x clickable edit-field"></span>
+                </td>
 
-            <!-- Document field info -->
-            <span class="field-item-field">{{field.name}}</span>
-            <span class="field-item-field">{{field.description}}</span>
-            <span class="field-item-field" ng-if="field.mandatory == 1">Ja</span>
-            <span class="field-item-field" ng-if="field.mandatory == 0">Nei</span>
+                <!-- Archive field -->
+                <td class="center-align-text">
+                    <span ng-click="openConfirmationModal('Er du sikker på at du vil arkivere feltet?', field, deleteFieldById)"
+                          id="deleteProfileField" class="fa fa-archive fa-fw clickable edit-field">
+                    </span>
+                </td>
+            </tr>
+            </tbody>
 
-            <!-- Recover field -->
-            <div class="pull-right" style="margin-right: 12px;">
-                <span ng-click="openConfirmationModal('Er du sikker på at du vil gjenopprette feltet?', field, recoverArchivedField)" id="recoverArchivedProfileField" class="fa fa-undo fa-fw vcenter clickable edit-field"></span>
-            </div>
 
-            <!-- Edit field -->
-            <!--<div class="pull-right" style="margin-right: 28px;">
-                <span ng-click="editDocumentFieldModal(field.id);setTypeId(1)" id="editArchivedProfileField" class="fa fa-pencil-square-o fa-2x vcenter clickable edit-field"></span>
-            </div>-->
-        </li>
-    </ul>
+            <!-- Archived Table body -->
+            <tbody ng-hide="archivedProfileButton">
+            <tr ng-repeat="field in documentFields | orderBy:getSequence" ng-if="field.documentTypeId == 2" ng-hide="!field.isArchived">
+
+                <!-- Field value info -->
+                <td>{{field.name}}</td>
+                <td class="center-align-text" ng-if="field.mandatory == 1">Ja</td>
+                <td class="center-align-text" ng-if="field.mandatory == 0">Nei</td>
+
+
+                <!-- Recover Field -->
+                <td class="center-align-text">
+                    <span ng-click="openConfirmationModal('Er du sikker på at du vil gjenopprette feltet?', field, recoverArchivedField)"
+                          id="recoverArchivedProfileField" class="fa fa-undo fa-fw clickable edit-field">
+                    </span>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
 </form>
