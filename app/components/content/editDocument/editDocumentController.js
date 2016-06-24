@@ -139,6 +139,10 @@ angular.module("ehelseEditor").controller("EditDocumentController",
 
 
             convertDocumentFieldsToXML();*/
+         $rootScope.resetForm = function () {
+             $scope.EditDocumentController.DocumentForm.$setPristine();
+         }
+
         }
     ]);
 angular.module("ehelseEditor").filter('unique', function() {

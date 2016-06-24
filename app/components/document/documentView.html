@@ -27,7 +27,7 @@
             <div ng-repeat="document in documents | orderBy:getSequence">
 
                 <!-- Opens the document in the content view on selection -->
-                <p class="clickable" id=standard{{document.id}} ng-class="document.id == selected_document.id ? 'selected-item' : ''" ng-click="setDocumentState('editDocument');openDocument(document);resetDocumentScroll()">
+                <p class="clickable" id=standard{{document.id}} ng-class="document.id == selected_document.id ? 'selected-item' : ''" ng-click="setDocumentState('editDocument');openDocument(document);resetDocumentScroll(); resetForm()">
                     <span  class="fa fa-file-text d{{document.documentTypeId}}"> </span>
                     {{document.title}}
                 </p>
