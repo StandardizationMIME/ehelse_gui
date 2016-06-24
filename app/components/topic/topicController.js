@@ -38,6 +38,12 @@ angular.module("ehelseEditor").controller("TopicController",["$rootScope", "$sco
         }
     };
 
-
+    // Search filter
+    $rootScope.searchOption = "";
+    $rootScope.clearSearchFilterText = function () {
+        $rootScope.searchQuery = "";
+        $rootScope.searchOption = "";
+        $rootScope.searchIsFocused = false;
+    };
 }]);
 

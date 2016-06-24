@@ -13,26 +13,26 @@
 
                     <!-- Name -->
                     <div class="form-group">
-                        <label>Navn: </label>
-                        <input focus-me="shouldBeOpen" type="text" ng-model="editGroup.name" class="form-control" required>
+                        <label for="editTargetGroupName">Navn: </label><span class="required-icon" data-toggle="tooltip" title="Obligatorisk felt" data-placement="top">*</span>
+                        <input id="editTargetGroupName" focus-me="shouldBeOpen" type="text" ng-model="editGroup.name" class="form-control" required>
                     </div>
 
                     <!-- Description -->
                     <div class="form-group">
-                        <label>Beskrivelse: </label><span class="required-icon" data-toggle="tooltip" title="Obligatorisk felt" data-placement="top">*</span>
-                        <textarea ng-model="editGroup.description" class="form-control" rows="5" cols="40" required></textarea>
+                        <label for="editTargetGroupDescription">Beskrivelse: </label><span class="required-icon" data-toggle="tooltip" title="Obligatorisk felt" data-placement="top">*</span>
+                        <textarea id="editTargetGroupDescription" ng-model="editGroup.description" class="form-control" rows="5" cols="40"></textarea>
                     </div>
 
                     <!-- Abbreviation -->
                     <div class="form-group">
-                        <label>Forkortelse: </label>
-                        <input type="text" ng-model="editGroup.abbreviation" class="form-control">
+                        <label for="editTargetGroupAbbrev">Forkortelse: </label>
+                        <input id="editTargetGroupAbbrev" type="text" ng-model="editGroup.abbreviation" class="form-control">
                     </div>
 
                     <!-- Target group parent -->
                     <div class="form-group">
-                        <label>Overordnet målgruppe: </label>
-                        <select ng-model="editGroup.parentId" class="form-control" >
+                        <label for="editTargetGroupParent">Overordnet målgruppe: </label>
+                        <select id="editTargetGroupParent" ng-model="editGroup.parentId" class="form-control" >
 
                             <!-- List of possible target group parents -->
                             <option value="" selected>Ingen</option>
@@ -44,7 +44,7 @@
 
             <div class="modal-footer">
                 <!-- Save changes -->
-                <button type="submit" ng-click="close('edit')" class="btn btn-primary" data-dismiss="modal"ng-disabled="editTargetGroupForm.$invalid">Lagre</button>
+                <button type="submit" ng-click="close('edit')" class="btn btn-primary" data-dismiss="modal" ng-disabled="editTargetGroupForm.$invalid">Lagre</button>
 
                 <!-- Cancel changes -->
                 <button type="button" ng-click="close()" class="btn btn-default" data-dismiss="modal">Avbryt</button>

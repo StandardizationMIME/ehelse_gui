@@ -1,8 +1,8 @@
 "use strict";
 
 angular.module("ehelseEditor").factory("CSVConverter",
-    [
-        function () {
+    [ "ServiceFunction",
+        function (ServiceFunction) {
 
             var documentsFromCsv = [];
             var statusListFromCsv = [];
@@ -10,6 +10,21 @@ angular.module("ehelseEditor").factory("CSVConverter",
             var topicsFromCsv = [];
             var documentFieldsFromCsv = [];
             var convertedFileFromCsv = [];
+
+            function formatTimestamp(timestamp){
+                var values = timestamp.split("/");
+                if(values[0].length < 2){
+                    values[0] = "0" + values[0];
+                }
+                if(values[1].length < 2){
+                    values[1] = "0" + values[1];
+                }
+                if(values[2].length < 8){
+                    values[2] = values[2].substr(0,3) + "0" + values[2].substr(3);
+                }
+                return "20" + values[2].substr(0,2) + "-" + values[0] + "-" +
+                    values[1] + " " + values[2].substr(3) + ":00";
+            }
 
             function uploadCSVContent ($fileContentCsv){
                 var csvObjects = [];
@@ -38,10 +53,11 @@ angular.module("ehelseEditor").factory("CSVConverter",
                 var csvObject;
                 for (var i = 0; i < csvObjects.length; i++){
                     csvObject = csvObjects[i];
+
                     var tempDocument = {
                         "id": i+1,
                         "createdTimestamp": "",
-                        "editedTimestamp": csvObject.Endret,
+                        "editedTimestamp": formatTimestamp(csvObject.Endret),
                         "title": csvObject.Tittel,
                         "description": csvObject.Ingress,
                         "statusId": getStatusIdFromCsvDocument(csvObject.Status),
@@ -368,7 +384,7 @@ angular.module("ehelseEditor").factory("CSVConverter",
                         if (keys == 'Publisert'|| keys == 'Sideinnhold' || keys == 'Merknad' || keys == 'Utgiver' || keys == 'Versjon'){
                             var tempDocumentFieldObj = {
                                 "fieldId": getDocumentFieldIdByDocumentTypeIdAndFieldName(tempDocTypeId, keys),
-                                "value": obj[keys]
+                                "value": obj[keys].replace(/(\r\n|\n|\r)/gm,"")
                             };
                             fieldsListForSingleDocument.push(tempDocumentFieldObj);
                         }

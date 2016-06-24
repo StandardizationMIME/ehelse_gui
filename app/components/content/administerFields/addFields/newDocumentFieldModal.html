@@ -13,7 +13,7 @@
 
                     <!-- Title -->
                     <div class="form-group">
-                        <label for="fieldTitle">Tittel: </label>
+                        <label for="fieldTitle">Tittel: </label><span class="required-icon" data-toggle="tooltip" title="Obligatorisk felt" data-placement="top">*</span>
                         <input focus-me="shouldBeOpen" type="text" name="fieldTitle" id="fieldTitle" ng-model="newDocumentField.name" class="form-control" required/>
                     </div>
 
@@ -26,14 +26,20 @@
                     <!-- Order -->
                     <div>
                         <label for="newDocumentFieldSequence">Rekkefølge: </label>
-                        <input id="newDocumentFieldSequence" type="text" ng-model="newDocumentField.sequence" class="form-control" placeholder="1" numbers-only/>
+                        <input id="newDocumentFieldSequence" type="text" ng-model="newDocumentField.sequence" class="form-control" placeholder="1" numbers-only maxlength="15"/>
                     </div>
                     <br>
 
                     <!-- Mandatory -->
-                    <div class="form-inline">
-                        <label for="newDocumentFieldMandatory">Obligatorisk: </label>
-                        <input id="newDocumentFieldMandatory" type="checkbox" ng-model="newDocumentField.mandatory"/>
+                    <div class="form-inline four-pix-horizontal-margin">
+                        <input class="four-pix-horizontal-margin" id="newDocumentFieldMandatory" type="checkbox" ng-model="newDocumentField.mandatory"/>
+                        <label for="newDocumentFieldMandatory"> Obligatorisk</label>
+                    </div>
+
+                    <!-- Rich text -->
+                    <div class="form-inline ten-pix-vertical-padding four-pix-horizontal-margin">
+                        <input class="four-pix-horizontal-margin" id="newDocumentFieldIsRichText" type="checkbox" ng-model="newDocumentField.isRichText"/>
+                        <label for="newDocumentFieldIsRichText"> Rik tekst</label>
                     </div>
                 </div>
 

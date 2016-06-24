@@ -9,7 +9,7 @@
         <p class="twelve-pix-vertical-padding">
 
             <!-- Save change -->
-            <button ng-click="saveTopicChange(EditTopicController.editTopicForm)" type="button" class="btn btn-primary" ng-disabled="EditTopicController.editTopicForm.$pristine">
+            <button ng-click="saveTopicChange(EditTopicController.editTopicForm)" type="submit" class="btn btn-primary" ng-disabled="EditTopicController.editTopicForm.$pristine">
                 <span class="fa fa-check-circle-o edit-topic-icon"></span>
                  Lagre tema
             </button>
@@ -48,7 +48,7 @@
                 <label class="col-sm-3 control-label" for="editTopicSequence">Rekkefølge: </label>
                 <div class="form-group col-sm-9">
                     <input type="text" name="editTopicSequence" id="editTopicSequence" class="form-control half-width"
-                           ng-model="selectedTopic.sequence" numbers-only/>
+                           ng-model="selectedTopic.sequence" numbers-only maxlength="15"/>
                 </div>
             </div>
 

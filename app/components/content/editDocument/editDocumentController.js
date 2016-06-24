@@ -25,8 +25,18 @@ angular.module("ehelseEditor").controller("EditDocumentController",
 
             // Submit function used both create new documents and save changes to existing ones
             $scope.submit = function(form){
+                $rootScope.clearSearchFilterText();
                 Document.submitCurrentDocument();
                 form.$setPristine();
+            };
+
+
+            $scope.getTextRows = function(string){
+                if(string.split(/\r\n|\r|\n/).length < 6){
+                    return Math.floor(string.length/80) + string.split(/\r\n|\r|\n/).length
+                }else{
+                    return Math.floor(string.length/100) + string.split(/\r\n|\r|\n/).length
+                }
             };
 
             $scope.getFormattedTimestamp = function(timestamp){
@@ -129,6 +139,13 @@ angular.module("ehelseEditor").controller("EditDocumentController",
 
 
             convertDocumentFieldsToXML();*/
+         $rootScope.resetForm = function () {
+             $scope.$watch('EditDocumentController.DocumentForm', function(theForm) {
+                 if(theForm) {
+                     $scope.EditDocumentController.DocumentForm.$setPristine();
+                 }
+             });
+         };
         }
     ]);
 angular.module("ehelseEditor").filter('unique', function() {

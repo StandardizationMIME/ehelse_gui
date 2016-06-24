@@ -134,7 +134,19 @@ h1,h2,h3,h4{ font-weight: bold;}
 .font-size-large {
     font-size: large;
 }
-
+.height-100-percent {
+    height: 100%;
+}
+.display-none {
+    display: none;
+}
+.four-pix-horizontal-margin {
+    margin-right: 4px;
+    margin-left: 4px;
+}
+.content-box {
+    box-sizing: content-box;
+}
 /* ------------------------------------------------ CH2 ADMINISTER_USERS ----------------------------------------- */
 #user-list img{
     width: 50px;
@@ -180,8 +192,14 @@ h1,h2,h3,h4{ font-weight: bold;}
 textarea {
     resize: none;
 }
+
 .administer-views {
-    height: calc(100% - 120px);
+    height: calc(100% - 50px);
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+.administer-target-groups {
+    height: calc(100% - 33px);
     overflow-y: auto;
     overflow-x: hidden;
 }
@@ -223,23 +241,29 @@ textarea {
 /* Profile specific */
 .editDocument {
     overflow-y: auto;
-    height: 553px;
+    height: 100%;
 }
 .newDocument {
     overflow-y: auto;
-    height: 640px;
+    height: 100%;
 }
 .editProfile {
     overflow-y: auto;
-    height: 553px;
+    height: 100%;
 }
 .newProfile {
     overflow-y: auto;
-    height: 553px;
+    height: 100%;
 }
 .editUtility {
     overflow-y: auto;
-    height: 640px;
+    height: 100%;
+}
+.utility-height {
+    height: 85%;
+}
+.document-height {
+    height: calc(100% - 225px);
 }
 .profile-bar {
     -ms-transform: translate(-28px,0); /* IE 9 */
@@ -347,6 +371,17 @@ textarea {
     max-height: 650px;
     overflow-y: auto;
 }
+
+.target-group-info:nth-child(1) { width: 30%}
+.target-group-info:nth-child(2) { width: 15%}
+.target-group-info:nth-child(3) { width: 12%}
+.target-group-info:nth-child(4) { width: 16%}
+.target-group-info:nth-child(5) { width: 27%}
+
+.delete-document-field-icon {
+    color: #c13a47;
+    font-size: 1.7em;
+}
 /* -------------------------------------------- CH5 EDITOR ----------------------------------------- */
 .editor-display {
     max-width: 1800px;
@@ -380,6 +415,10 @@ textarea {
 .alternative-logo {
     width: 300px;
     height: auto;
+}
+.secondary-view {
+    height: 93%;
+    padding-bottom: 20px;
 }
 /* -------------------------------------------- CH8 MY_PAGE ----------------------------------------- */
 #account-info {
@@ -419,14 +458,16 @@ textarea {
     border-color: #ccc;
 }
 /* -------------------------------------------- CH9 TOOLBAR ----------------------------------------- */
-div>div>.dropdown-toggle{
+/* User dropdown start */
+/*div>div>.dropdown-toggle{
     margin-bottom: 0.5em;
     background-color: inherit;
     border: none;
 }
 div>div>.dropdown-toggle:hover{
     border-radius: 5%;
-}
+}*/
+/* User dropdown end */
 .nav-element-margin {
     margin-right: 0.5em;
 }
@@ -573,9 +614,6 @@ a.sortable-columns{
     right: 0;
     margin: auto;
 }
-textarea {
-    resize: none;
-}
 .center-align-text {
     text-align: center;
     display: table-cell;
@@ -613,17 +651,6 @@ textarea {
 .headline-box h4 {
     display: inline-block;
 }
-/* User dropdown start */
- div>div>.dropdown-toggle{
-     margin-bottom: 0.5em;
-     background-color: inherit;
-     border: none;
- }
-div>div>.dropdown-toggle:hover{
-    border-radius: 5%;
-}
-/* User dropdown end */
-
 /*~~~~~~~~~~~~TARGET GROUP~~~~~~~~~~~*/
 .target-group-grid{
     height: 750px;
@@ -695,4 +722,7 @@ input[type=checkbox] {
 }
 input.ng-invalid-requi#c13a47{
     background-color: rgba(255,0,0,0.3);
+}
+.search-options{
+    margin: auto 10pt auto 10pt;
 }

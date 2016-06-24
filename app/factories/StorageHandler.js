@@ -55,7 +55,7 @@ angular.module("ehelseEditor").factory("StorageHandler", ["$rootScope", "FileUpl
                 input_list.topics = [];
             }
             if (!input_list.archivedDocuments) {
-                input_list.archivedDocuments = [];
+                input_list.archivedDocuments = {};
             }
         }
 

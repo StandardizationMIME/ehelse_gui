@@ -1,5 +1,5 @@
-<section ng-controller="AdministerFieldsController" style="height: 100%;">
-    <div style="height: 100%">
+<section ng-controller="AdministerFieldsController" class="height-100-percent">
+    <div class="height-100-percent">
 
         <!-- Title -->
         <div class="headline-box">
@@ -10,31 +10,31 @@
         <ul class="nav nav-tabs">
             <li class="active clickable"><a data-toggle="tab" data-target="#standardFieldsTab"
                                             ng-click="archivedStandardButton = true;
-                                            standardHeadingsClass = 'field-item field-list-title panel1';
+                                            standardHeadingsClass = 'white-color blue-background';
                                             archivedStandardButtonClass = 'btn btn-default pull-right';">Standarder</a></li>
             <li class="clickable"><a data-toggle="tab" data-target="#profileFieldsTab"
                                      ng-click="archivedProfileButton = true;
-                                     profileHeadingsClass = 'field-item field-list-title panel2';
+                                     profileHeadingsClass = 'white-color red-background';
                                      archivedProfileButtonClass = 'btn btn-default pull-right';">Profiler</a></li>
             <li class="clickable"><a data-toggle="tab" data-target="#supportFieldsTab"
                                      ng-click="archivedSupportButton = true;
-                                     supportHeadingsClass = 'field-item field-list-title panel3';
+                                     supportHeadingsClass = 'white-color green-background';
                                      archivedSupportButtonClass = 'btn btn-default pull-right';">Støttedokumenter</a></li>
         </ul>
         <div class="tab-content" style="height: calc(100% - 106px);">
 
             <!-- Standard fields -->
-            <div id="standardFieldsTab" class="tab-pane fade in active administer-fields" style="height: 100%">
+            <div id="standardFieldsTab" class="tab-pane fade in active administer-fields height-100-percent">
                 <standardfields></standardfields>
             </div>
 
             <!-- Profile fields -->
-            <div id="profileFieldsTab" class="tab-pane fade administer-fields" style="height: 100%">
+            <div id="profileFieldsTab" class="tab-pane fade administer-fields height-100-percent" >
                 <profilefields></profilefields>
             </div>
 
             <!-- Utility document fields -->
-            <div id="supportFieldsTab" class="tab-pane fade administer-fields" style="height: 100%">
+            <div id="supportFieldsTab" class="tab-pane fade administer-fields height-100-percent">
                 <supportdocumentfields></supportdocumentfields>
             </div>
 

@@ -14,7 +14,7 @@ angular.module("ehelseEditor").controller("UploadFileController",
         $scope.$state.go("main-view.editor-view");
     };
 
-    $scope.clearEverything = function(){
+    $rootScope.clearEverything = function(){
         Action.clear();
         Document.clear();
         DocumentField.clear();

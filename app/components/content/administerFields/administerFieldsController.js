@@ -29,43 +29,43 @@ angular.module("ehelseEditor").controller("AdministerFieldsController", ["$scope
     };
 
     $scope.archivedStandardButton = true;
-    $scope.standardHeadingsClass = "field-item field-list-title panel1";
+    $scope.standardHeadingsClass = "white-color blue-background";
     $scope.archivedStandardButtonClass = "btn btn-default pull-right";
     $scope.changeStandardClass = function () {
         if ($scope.archivedStandardButton == true){
-            $scope.standardHeadingsClass = "field-item field-list-title panel4";
+            $scope.standardHeadingsClass = "white-color darkgray-background";
             $scope.archivedStandardButtonClass = "btn btn-primary pull-right";
             $scope.archivedStandardButton = false;
         } else {
-            $scope.standardHeadingsClass = "field-item field-list-title panel1";
+            $scope.standardHeadingsClass = "white-color blue-background";
             $scope.archivedStandardButtonClass = "btn btn-default pull-right";
             $scope.archivedStandardButton = true;
         }
     };
     $scope.archivedProfileButton = true;
-    $scope.profileHeadingsClass = "field-item field-list-title panel2";
+    $scope.profileHeadingsClass = "white-color red-background";
     $scope.archivedProfileButtonClass = "btn btn-default pull-right";
     $scope.changeProfileClass = function () {
         if ($scope.archivedProfileButton == true) {
-            $scope.profileHeadingsClass = "field-item field-list-title panel4";
+            $scope.profileHeadingsClass = "white-color darkgray-background";
             $scope.archivedProfileButtonClass = "btn btn-primary pull-right";
             $scope.archivedProfileButton = false;
         } else {
-            $scope.profileHeadingsClass = "field-item field-list-title panel2";
+            $scope.profileHeadingsClass = "white-color red-background";
             $scope.archivedProfileButtonClass = "btn btn-default pull-right";
             $scope.archivedProfileButton = true;
         }
     };
     $scope.archivedSupportButton = true;
-    $scope.supportHeadingsClass = "field-item field-list-title panel3";
+    $scope.supportHeadingsClass = "white-color green-background";
     $scope.archivedSupportButtonClass = "btn btn-default pull-right";
     $scope.changeSupportClass = function () {
         if ($scope.archivedSupportButton == true) {
-            $scope.supportHeadingsClass = "field-item field-list-title panel4";
+            $scope.supportHeadingsClass = "white-color darkgray-background";
             $scope.archivedSupportButtonClass = "btn btn-primary pull-right";
             $scope.archivedSupportButton = false;
         } else {
-            $scope.supportHeadingsClass = "field-item field-list-title panel3";
+            $scope.supportHeadingsClass = "white-color green-background";
             $scope.archivedSupportButtonClass = "btn btn-default pull-right";
             $scope.archivedSupportButton = true;
         }

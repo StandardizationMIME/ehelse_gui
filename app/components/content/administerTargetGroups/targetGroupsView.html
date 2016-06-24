@@ -1,4 +1,4 @@
-<div ng-controller="TargetGroupsController" class="target-group-grid" style="height: 100%;">
+<div ng-controller="TargetGroupsController" class="target-group-grid height-100-percent">
     <div class="shadow-below">
 
         <!-- Title -->
@@ -24,12 +24,12 @@
                 <span ng-show="!archivedTargetGroupsButton"><span class="fa fa-chevron-left"></span> Vis aktive </span>
             </button>
             <!-- Search bar for filtering target groups -->
-            <label class="pull-right"><input class="form-control" ng-model="searchText" placeholder="Søk..."></label>
+            <span class="pull-right"><input class="form-control" ng-model="searchText" placeholder="Søk..."></span>
         </p>
     </div>
 
     <!-- Table for displaying all target groups in the system -->
-    <div class="table-responsive administer-views">
+    <div class="table-responsive administer-target-groups shadow-below">
 
         <table class="table table-hover" id="targetGroupsTable" ng-init="sortType = 'name'; sortReverse = sortReverse">
 

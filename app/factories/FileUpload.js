@@ -2,7 +2,7 @@
 
 angular.module("ehelseEditor").factory("FileUpload",
     ["$rootScope",
-    function ($rootScope) {
+    function () {
 
     var json_object_from_file = {};
 
@@ -21,7 +21,7 @@ angular.module("ehelseEditor").factory("FileUpload",
 
     function getJsonFile() {
         return json_object_from_file;
-        return {
+        /*return {
             "actions": [
                 {
                     "id": "1",
@@ -549,7 +549,7 @@ angular.module("ehelseEditor").factory("FileUpload",
                     }
                 ]
             }
-        }
+        }*/
     }
 
     function readContent($fileContent) {
