@@ -6,16 +6,16 @@
         <div class="shadow-below">
 
             <!-- Topic title -->
-            <div class="headline-box" ng-hide="$root.searchQuery">
+            <div class="headline-box" ng-hide="searchIsFocused">
                 <h4 class="selected-heading">{{topic.title}}</h4>
             </div>
-            <div class="headline-box" ng-hide="!$root.searchQuery">
+            <div class="headline-box" ng-hide="!searchIsFocused">
                 <h4 class="selected-heading">Søkeresultat</h4>
             </div>
 
             <!-- Open view for creating new document -->
             <p class="ten-pix-vertical-padding">
-                <button type="button" ng-click="setDocumentState('newDocument');openDocument();resetDocumentScroll()" class="btn btn-default">
+                <button type="button" ng-click="setDocumentState('newDocument');openDocument();resetDocumentScroll(); clearSearchFilterText()" class="btn btn-default">
                     <span class="fa fa-plus-circle plus-icon"></span>
                     Nytt dokument
                 </button>
@@ -23,7 +23,7 @@
         </div>
 
         <!-- List of documents in the selected topic -->
-        <div class="standard-list" ng-if="!searchQuery">
+        <div class="standard-list" ng-if="!searchIsFocused">
             <div ng-repeat="document in documents | orderBy:getSequence">
 
                 <!-- Opens the document in the content view on selection -->
@@ -35,7 +35,7 @@
         </div>
 
         <!-- List of search results -->
-        <div class="standard-list" ng-if="searchQuery">
+        <div class="standard-list" ng-if="searchIsFocused">
             <div ng-repeat="document in allDocuments | filter:filterContainsSearchText:false | filter: {documentTypeId:searchOption} | orderBy:title">
                 <!-- Opens the document in the content view on selection -->
                 <p class="clickable" id=search-standard{{document.id}} ng-class="document.id == selected_document.id ? 'selected-item' : ''" ng-click="setDocumentState('editDocument');openDocument(document);resetDocumentScroll()">

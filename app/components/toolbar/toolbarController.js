@@ -90,6 +90,13 @@ angular.module("ehelseEditor").controller("ToolbarController",
                 }
             });
 
+            $scope.searchFocused = function () {
+                $rootScope.searchIsFocused = true;
+                $rootScope.selected_topic_id = "";
+                if (!$rootScope.searchQuery){
+                    $rootScope.changeContentView("");
+                }
+            };
             $rootScope.searchOption = DocumentType.getById;
             $scope.getSearchOptionButtonTitle = function () {
                 if ($scope.searchOption == "1") {
