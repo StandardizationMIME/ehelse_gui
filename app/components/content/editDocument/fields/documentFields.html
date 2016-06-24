@@ -8,26 +8,35 @@
 
     <div class="panel-body">
         <div class="form-group" >
-            <ul id="new-doc-fields" class="list-group">
+            <table id="new-doc-fields" class="table shadow-below">
 
                 <!-- List the document's fields -->
-                <li class="list-group-item" ng-repeat="field in document.fields">
+                <tr ng-repeat="field in document.fields">
 
                     <!-- Field name -->
-                    <label for="documentField{{field.fieldId}}" class="document-fields-field-name pull-left">{{fields_dict[field.fieldId].name}} <span ng-if="fields_dict[field.fieldId].mandatory == 1" class="required-icon" data-toggle="tooltip" title="" data-placement="top" data-original-title="Obligatorisk felt">*</span></label>
+                    <td class="col-md-4">
+                        <label for="documentField{{field.fieldId}}">{{fields_dict[field.fieldId].name}}
+                        <span ng-if="fields_dict[field.fieldId].mandatory == 1" class="required-icon" data-toggle="tooltip" title=""
+                              data-placement="top" data-original-title="Obligatorisk felt">*</span></label>
+                    </td>
 
                     <!-- Field input -->
-                    <span class="document-fields-field-value">
-                        <textarea id="documentField{{field.fieldId}}" class="form-control content-box" name="f{{field.id}}" ng-model="field.value" rows="{{getTextRows(field.value)}}" autogrow required></textarea>
-                    </span>
+                    <td class="col-md-7">
+                        <textarea id="documentField{{field.fieldId}}" class="form-control content-box" name="f{{field.id}}"
+                                  ng-model="field.value" rows="{{getTextRows(field.value)}}" autogrow required></textarea>
+                    </td>
 
                     <!-- Delete field -->
-                    <span ng-if="fields_dict[field.fieldId].mandatory == 0" class="fa fa-remove pull-right delete-topic-icon clickable" ng-click="removeField(field); EditDocumentController.DocumentForm.$setDirty()"></span>
-                </li>
-            </ul>
+                    <td class="col-md-1 center-align-text">
+                        <span ng-if="fields_dict[field.fieldId].mandatory == 0" class="fa fa-remove delete-document-field-icon clickable"
+                          ng-click="removeField(field); EditDocumentController.DocumentForm.$setDirty()"></span>
+                    </td>
+                </tr>
+            </table>
 
             <!-- Open modal for adding fields to the document -->
-            <button type="button" class="btn btn-default" ng-click="openModal('app/components/content/editDocument/fields/addDocumentFieldsModal.html', 'AddDocumentFieldsController')"><span class="fa fa-plus-circle plus-icon"></span> Legg til felter</button>
+            <button type="button" class="btn btn-default" ng-click="openModal('app/components/content/editDocument/fields/addDocumentFieldsModal.html', 'AddDocumentFieldsController')">
+                <span class="fa fa-plus-circle plus-icon"></span> Legg til felter</button>
         </div>
     </div>
 </div>
