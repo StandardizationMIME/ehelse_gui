@@ -11,6 +11,21 @@ angular.module("ehelseEditor").factory("CSVConverter",
             var documentFieldsFromCsv = [];
             var convertedFileFromCsv = [];
 
+            function formatTimestamp(timestamp){
+                var values = timestamp.split("/");
+                if(values[0].length < 2){
+                    values[0] = "0" + values[0];
+                }
+                if(values[1].length < 2){
+                    values[1] = "0" + values[1];
+                }
+                if(values[2].length < 8){
+                    values[2] = values[2].substr(0,3) + "0" + values[2].substr(3);
+                }
+                return "20" + values[2].substr(0,2) + "-" + values[0] + "-" +
+                    values[1] + " " + values[2].substr(3) + ":00";
+            }
+
             function uploadCSVContent ($fileContentCsv){
                 var csvObjects = [];
                 // convert file content to array
@@ -38,10 +53,11 @@ angular.module("ehelseEditor").factory("CSVConverter",
                 var csvObject;
                 for (var i = 0; i < csvObjects.length; i++){
                     csvObject = csvObjects[i];
+
                     var tempDocument = {
                         "id": i+1,
-                        "createdTimestamp": ServiceFunction.getTimestamp(),
-                        "editedTimestamp": csvObject.Endret,
+                        "createdTimestamp": "",
+                        "editedTimestamp": formatTimestamp(csvObject.Endret),
                         "title": csvObject.Tittel,
                         "description": csvObject.Ingress,
                         "statusId": getStatusIdFromCsvDocument(csvObject.Status),

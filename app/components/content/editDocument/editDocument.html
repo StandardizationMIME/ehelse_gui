@@ -7,11 +7,12 @@
 
         <!-- Headline displaying document type or state -->
         <div class="headline-box">
-            <h4 class="selected" ng-if="documentState == 'editTopic'">Rediger tema</h4>
+            <h4 class="selected">{{document.title}}</h4>
+            <!--<h4 class="selected" ng-if="documentState == 'editTopic'">Rediger tema</h4>
             <h4 class="selected" ng-if="documentState == 'newDocument'">Nytt dokument</h4>
             <h4 class="selected" ng-if="documentState == 'editDocument' || documentState == 'editUtility'">Rediger dokument</h4>
             <h4 class="selected" ng-if="documentState == 'editProfile'">Rediger profil</h4>
-            <h4 class="selected" ng-if="documentState == 'newProfile'">Ny profil</h4>
+            <h4 class="selected" ng-if="documentState == 'newProfile'">Ny profil</h4>-->
 
             <!-- FEEDBACK -->
             <!--
@@ -61,7 +62,7 @@
                 <span class="fa fa-clone"></span>
                 Ny versjon
             </button>
-            <span class="ten-pix-horizontal-padding" ng-if="document.editedTimestamp">
+            <span class="ten-pix-horizontal-padding" ng-if="document.createdTimestamp">
                 Opprettet: <b >{{getFormattedTimestamp(document.createdTimestamp).date}}</b>
                 Kl: <b >{{getFormattedTimestamp(document.createdTimestamp).time}}</b>
             </span>
