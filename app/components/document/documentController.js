@@ -83,8 +83,19 @@ angular.module("ehelseEditor").controller("DocumentController", [ "$scope","$roo
     };
 
     $scope.filterContainsSearchText = function(document) {
-        return document.title.toLowerCase().indexOf($rootScope.searchQuery) >= 0
-            || document.hisNumber.toLowerCase().indexOf($rootScope.searchQuery) >= 0
-            || document.internalId.toLowerCase().indexOf($rootScope.searchQuery) >= 0
+        if (document.hisNumber){
+            return document.title.toLowerCase().indexOf($rootScope.searchQuery) >= 0
+                || document.hisNumber.toLowerCase().indexOf($rootScope.searchQuery) >= 0
+                || document.internalId.toLowerCase().indexOf($rootScope.searchQuery) >= 0
+                || document.title.indexOf($rootScope.searchQuery) >= 0
+                || document.hisNumber.indexOf($rootScope.searchQuery) >= 0
+                || document.internalId.indexOf($rootScope.searchQuery) >= 0;
+        } else {
+            return document.title.toLowerCase().indexOf($rootScope.searchQuery) >= 0
+                || document.internalId.toLowerCase().indexOf($rootScope.searchQuery) >= 0
+                || document.title.indexOf($rootScope.searchQuery) >= 0
+                || document.internalId.indexOf($rootScope.searchQuery) >= 0;
+        }
+
     };
 }]);

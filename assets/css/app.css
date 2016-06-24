@@ -448,14 +448,16 @@ textarea {
     border-color: #ccc;
 }
 /* -------------------------------------------- CH9 TOOLBAR ----------------------------------------- */
-div>div>.dropdown-toggle{
+/* User dropdown start */
+/*div>div>.dropdown-toggle{
     margin-bottom: 0.5em;
     background-color: inherit;
     border: none;
 }
 div>div>.dropdown-toggle:hover{
     border-radius: 5%;
-}
+}*/
+/* User dropdown end */
 .nav-element-margin {
     margin-right: 0.5em;
 }
@@ -639,17 +641,6 @@ a.sortable-columns{
 .headline-box h4 {
     display: inline-block;
 }
-/* User dropdown start */
- div>div>.dropdown-toggle{
-     margin-bottom: 0.5em;
-     background-color: inherit;
-     border: none;
- }
-div>div>.dropdown-toggle:hover{
-    border-radius: 5%;
-}
-/* User dropdown end */
-
 /*~~~~~~~~~~~~TARGET GROUP~~~~~~~~~~~*/
 .target-group-grid{
     height: 750px;
@@ -721,4 +712,7 @@ input[type=checkbox] {
 }
 input.ng-invalid-requi#c13a47{
     background-color: rgba(255,0,0,0.3);
+}
+.search-options{
+    margin: auto 10pt auto 10pt;
 }

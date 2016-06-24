@@ -22,15 +22,21 @@
         </div>
 
         <!-- Search -->
-        <div class="nav navbar-form navbar-left">
-            <input type="text" id="search-filter" class="form-control" placeholder="Søk..." ng-model="$root.searchQuery" ng-click="">
-            <select id="search-filter-options" class="form-control" ng-model="$root.searchOption" ng-show="searchQuery">
-                <option value="">Alle</option>
-                <option value="1">Standard</option>
-                <option value="2">Profil</option>
-                <option value="3">Støttedokument</option>
-            </select>
-        </div>
+        <span class="nav navbar-form navbar-left ">
+             <div class="input-group" style="width: 180pt;">
+                 <input type="text" id="search-filter" class="form-control" placeholder="Søk..." ng-model="$root.searchQuery" ng-click="" aria-label=". . .">
+                 <div class="input-group-btn">
+                     <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-angle-down" aria-hidden="true"></i></button>
+                     <ul class="dropdown-menu dropdown-menu-center">
+                         <li><span class="search-options"><input name="search-option-name" value="1" ng-model="$root.searchOption" type="radio" aria-label="..."></span>Standarder</li>
+                         <li><span class="search-options"><input name="search-option-name" value="2" ng-model="$root.searchOption" type="radio" aria-label="..."></span>Profiler</li>
+                         <li><span class="search-options"><input name="search-option-name" value="3" ng-model="$root.searchOption" type="radio" aria-label="..."></span>Støttedokumenter</li>
+                         <li role="separator" class="divider"></li>
+                         <li><span class="search-options"><input name="search-option-name" value="" ng-model="$root.searchOption" type="radio" aria-label="..."></span>Alle</li>
+                     </ul>
+                 </div>
+             </div>
+        </span>
 
         <!-- Navigation bar with dropdown for selecting administer views -->
         <ul class="nav navbar-nav">
