@@ -194,7 +194,12 @@ textarea {
 }
 
 .administer-views {
-    height: calc(100% - 120px);
+    height: calc(100% - 50px);
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+.administer-target-groups {
+    height: calc(100% - 33px);
     overflow-y: auto;
     overflow-x: hidden;
 }
