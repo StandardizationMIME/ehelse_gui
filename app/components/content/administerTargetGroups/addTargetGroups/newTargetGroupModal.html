@@ -44,7 +44,7 @@
             <div class="modal-footer">
 
                 <!-- Create new modal -->
-                <button type="submit" ng-click="close('add')" class="btn btn-primary" data-dismiss="modal">Opprett</button>
+                <button type="submit" ng-click="close('add')" class="btn btn-primary" data-dismiss="modal" ng-disabled="addTargetGroupForm.$invalid">Opprett</button>
 
                 <!-- Cancel and close modal -->
                 <button type="button" ng-click="close()" class="btn btn-default" data-dismiss="modal">Avbryt</button>
