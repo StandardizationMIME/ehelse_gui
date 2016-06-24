@@ -377,6 +377,11 @@ textarea {
 .target-group-info:nth-child(3) { width: 12%}
 .target-group-info:nth-child(4) { width: 16%}
 .target-group-info:nth-child(5) { width: 27%}
+
+.delete-document-field-icon {
+    color: #c13a47;
+    font-size: 1.7em;
+}
 /* -------------------------------------------- CH5 EDITOR ----------------------------------------- */
 .editor-display {
     max-width: 1800px;

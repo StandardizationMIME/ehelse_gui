@@ -13,14 +13,14 @@
 
                     <!-- Name -->
                     <div class="form-group">
-                        <label for="editTargetGroupName">Navn: </label>
+                        <label for="editTargetGroupName">Navn: </label><span class="required-icon" data-toggle="tooltip" title="Obligatorisk felt" data-placement="top">*</span>
                         <input id="editTargetGroupName" focus-me="shouldBeOpen" type="text" ng-model="editGroup.name" class="form-control" required>
                     </div>
 
                     <!-- Description -->
                     <div class="form-group">
                         <label for="editTargetGroupDescription">Beskrivelse: </label><span class="required-icon" data-toggle="tooltip" title="Obligatorisk felt" data-placement="top">*</span>
-                        <textarea id="editTargetGroupDescription" ng-model="editGroup.description" class="form-control" rows="5" cols="40" required></textarea>
+                        <textarea id="editTargetGroupDescription" ng-model="editGroup.description" class="form-control" rows="5" cols="40"></textarea>
                     </div>
 
                     <!-- Abbreviation -->

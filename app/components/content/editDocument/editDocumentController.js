@@ -33,7 +33,7 @@ angular.module("ehelseEditor").controller("EditDocumentController",
 
             $scope.getTextRows = function(string){
                 if(string.split(/\r\n|\r|\n/).length < 6){
-                    return Math.floor(string.length/70) + string.split(/\r\n|\r|\n/).length
+                    return Math.floor(string.length/80) + string.split(/\r\n|\r|\n/).length
                 }else{
                     return Math.floor(string.length/100) + string.split(/\r\n|\r|\n/).length
                 }
