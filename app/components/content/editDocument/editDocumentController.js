@@ -34,9 +34,6 @@ angular.module("ehelseEditor").controller("EditDocumentController",
                 FileUpload.saveToFile(DocumentExtractor.getDocumentAsJSON(doc));
             };
 
-            $scope.downloadAllDocumentsAsJSON = function(){
-                FileUpload.saveToFile(DocumentExtractor.getAllDocumentsAsJSON());
-            };
 
             $scope.getTextRows = function(string){
                 if(string.split(/\r\n|\r|\n/).length < 6){

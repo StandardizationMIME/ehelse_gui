@@ -1,6 +1,6 @@
 angular.module("ehelseEditor").controller("ToolbarController",
-    ["$state", "$rootScope", "$scope", "CSVConverter", "FileUpload", "StorageHandler", "DownloadList", "Action", "Document", "DocumentField", "DocumentType", "LinkCategory", "Mandatory", "Status", "TargetGroup", "Topic",
-        function ($state, $rootScope, $scope, CSVConverter, FileUpload, StorageHandler, DownloadList, Action, Document, DocumentField, DocumentType, LinkCategory, Mandatory, Status, TargetGroup, Topic) {
+    ["$state", "$rootScope", "$scope", "CSVConverter", "FileUpload", "StorageHandler", "DownloadList", "Action", "Document", "DocumentField", "DocumentType", "LinkCategory", "Mandatory", "Status", "TargetGroup", "Topic", "DocumentExtractor",
+        function ($state, $rootScope, $scope, CSVConverter, FileUpload, StorageHandler, DownloadList, Action, Document, DocumentField, DocumentType, LinkCategory, Mandatory, Status, TargetGroup, Topic, DocumentExtractor) {
 
             $scope.$parent.registerChildController("ToolbarController", $scope);
 
@@ -56,6 +56,10 @@ angular.module("ehelseEditor").controller("ToolbarController",
             // Download save file
             $scope.save = function () {
                 FileUpload.saveToFile(DownloadList.getStorageList());
+            };
+
+            $scope.downloadAllDocumentsAsJSON = function(){
+                FileUpload.saveToFile(DocumentExtractor.getAllDocumentsAsJSON());
             };
 
             // Initialize state

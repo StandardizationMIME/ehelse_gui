@@ -570,7 +570,6 @@ angular.module("ehelseEditor").factory("Document", ["$rootScope", "DocumentField
         }else{
             getProfiles(document)
         }
-        console.log(current_document);
     }
 
     function getDocumentsByTopicId(id) {

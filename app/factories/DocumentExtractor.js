@@ -6,7 +6,6 @@ angular.module("ehelseEditor").factory("DocumentExtractor",
 
             function getDocumentAsJSON(doc) {
                 if(doc){
-                    console.log(doc.statusId);
                     var output_dict = {};
                     output_dict["Tittel"] = doc.title;
                     output_dict["Beskrivelse"] = doc.description;
