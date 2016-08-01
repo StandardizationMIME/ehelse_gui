@@ -1,15 +1,25 @@
 {
-  "manifest_version": 2,
   "name": "MIME",
-  "version": "1",
+  "version": "2.1",
+  "manifest_version": 2,
+  "minimum_chrome_version": "31",
   "icons": {
     "128": "Direktoratet_for_e-helse_horisontal_logo_RGB_sort.png"
   },
-  "permissions": [],
+  "permissions": [
+    {"fileSystem": ["write", "retainEntries", "directory"]},
+    "storage"
+  ],
   "app": {
     "background": {
       "scripts": ["background.js"]
     }
   },
-  "minimum_chrome_version": "28"
+  "file_handlers": {
+    "text": {
+      "types": [
+        "text/*"
+      ]
+    }
+  }
 }
