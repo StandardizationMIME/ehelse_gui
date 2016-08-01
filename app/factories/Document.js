@@ -198,42 +198,6 @@ angular.module("ehelseEditor").factory("Document", ["$rootScope", "DocumentField
         document.fields = removeLineBreakFromDocumentFields(document.fields);
     }
 
-
-    /**
-     * Keep this in case it's needed later.
-     *
-     function changeTopicIdOfRelatedProfiles(document){
-        if(document.profiles.length > 0 && !document.standardId){
-            for(var i = 0; i < document.profiles.length; i++){
-                var related_profile = getDocumentById(document.profiles[i].id);
-                if(related_profile.topicId != document.topicId){
-                    related_profile.topicId = document.topicId;
-                    changeTopicIdOfNextDocumentVersions(related_profile);
-                    changeTopicIdOfPreviousDocumentVersions(related_profile);
-                }
-            }
-        }
-        if(document.populatedProfiles.length > 0 && !document.standardId){
-            for(var x = 0; x < document.populatedProfiles.length; x++){
-                var related_populated_profile = getDocumentById(document.populatedProfiles[x].id);
-                if(related_populated_profile.topicId != document.topicId){
-                    related_populated_profile.topicId = document.topicId;
-                    changeTopicIdOfNextDocumentVersions(related_populated_profile);
-                    changeTopicIdOfPreviousDocumentVersions(related_populated_profile);
-                }
-            }
-        }
-    }
-    function changeTopicIdOfRelatedStandard(document){
-        if(document.standardId){
-            var standard = getDocumentById(document.standardId);
-            standard.topicId = document.topicId;
-            //changeTopicIdOfRelatedProfiles(standard);
-            changeTopicIdOfNextDocumentVersions(standard);
-            changeTopicIdOfPreviousDocumentVersions(standard);
-        }
-    }*/
-
     function changeTopicIdOfNextDocumentVersions(document){
         var nextId = document.nextDocumentId;
         while(nextId){
@@ -265,10 +229,6 @@ angular.module("ehelseEditor").factory("Document", ["$rootScope", "DocumentField
     }
 
     function changeTopicIdOfRelatedDocuments(document){
-
-        //changeTopicIdOfRelatedProfiles(document);
-
-        //changeTopicIdOfRelatedStandard(document);
 
         changeTopicIdOfNextDocumentVersions(document);
 
@@ -419,26 +379,6 @@ angular.module("ehelseEditor").factory("Document", ["$rootScope", "DocumentField
                 $rootScope.notifyError("Nytt dokument kunne ikke opprettes: " + error, 6000);
             }
         }
-    }
-
-    /**
-     * Function getting the error when updating / creating a document fails.
-     * @param error
-     * @returns {string}
-     */
-    function getErrorMessage(error){
-        var error_message = "";
-        var message = error.message;
-        var INTERNAL_ID = "Internal id";
-        var HIS = "HIS";
-
-        if(message.indexOf(INTERNAL_ID) > -1){
-            error_message = "Intern ID må være unik";
-        }
-        else if (message.indexOf(HIS) > -1){
-            error_message = "HIS nummer må være unik";
-        }
-        return error_message;
     }
 
     /**
