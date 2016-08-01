@@ -2,8 +2,8 @@
 "use strict";
 
 angular.module("ehelseEditor").controller("EditDocumentController",
-    [ "$scope", "$http","$rootScope", "ModalService", "DocumentType", "TargetGroup", "Mandatory", "Action","Document", "DocumentField","LinkCategory", "Topic","Status",
-        function( $scope, $http, $rootScope, ModalService, DocumentType, TargetGroup, Mandatory, Action, Document, DocumentField, LinkCategory, Topic, Status) {
+    [ "$scope", "$http","$rootScope", "ModalService", "DocumentType", "TargetGroup", "Mandatory", "Action","Document", "DocumentField","LinkCategory", "Topic","Status", "DocumentExtractor",
+        function( $scope, $http, $rootScope, ModalService, DocumentType, TargetGroup, Mandatory, Action, Document, DocumentField, LinkCategory, Topic, Status, DocumentExtractor) {
 
            // Save document values to scope so they can be easily accessed in the html files
             $scope.document_types_option_list = DocumentType.getDocumentTypesOptionList();
@@ -30,6 +30,13 @@ angular.module("ehelseEditor").controller("EditDocumentController",
                 form.$setPristine();
             };
 
+            $scope.printJSON = function(doc){
+                console.log(DocumentExtractor.getDocumentAsJSON(doc));
+            };
+
+            $scope.printJSONForAll = function(){
+                console.log(DocumentExtractor.getAllDocumentsAsJSON());
+            };
 
             $scope.getTextRows = function(string){
                 if(string.split(/\r\n|\r|\n/).length < 6){
