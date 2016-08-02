@@ -15,7 +15,9 @@ angular.module("ehelseEditor").factory("DocumentExtractor",
                     output_dict["Emne (Referansekatalog kapittel)"] = Topic.getById(doc.topicId).title;
                     output_dict["Intern ID"] = doc.internalId;
                     output_dict["HIS nummer"] = doc.hisNumber;
-                    output_dict["Felter"] = getFieldsRelatedToDocumentAsJSON(doc);
+                    for (var i = 0; i < doc.fields.length; i++) {
+                        output_dict[DocumentField.getById(doc.fields[i].fieldId).name] = doc.fields[i].value;
+                    }
                     output_dict["Målgrupper"] = getTargetGroupsRelatedToDocumentAsJSON(doc);
                     output_dict["Lenker"] = getLinksRelatedToDocumentAsJSON(doc);
 
@@ -32,7 +34,10 @@ angular.module("ehelseEditor").factory("DocumentExtractor",
                     target_group["Navn"] = TargetGroup.getById(target_groups_list[i].targetGroupId).name;
                     target_group["Beskrivelse"] = target_groups_list[i].description;
                     target_group["Obligatorisk-verdi"] = Mandatory.getById(target_groups_list[i].mandatoryId).name;
-                    target_group["Handling"] = Action.getById(target_groups_list[i].actionId).name;
+
+                    if(target_groups_list[i].actionId){
+                        target_group["Handling"] = Action.getById(target_groups_list[i].actionId).name;
+                    }
 
                     output_list.push(target_group);
                 }
@@ -40,19 +45,6 @@ angular.module("ehelseEditor").factory("DocumentExtractor",
                 return output_list;
             }
 
-            function getFieldsRelatedToDocumentAsJSON(doc){
-                var output_list = [];
-                var fields_list = doc.fields;
-                for (var i = 0; i < fields_list.length; i++) {
-                    var field = {};
-
-                    field[DocumentField.getById(fields_list[i].fieldId).name] = fields_list[i].value;
-
-                    output_list.push(field);
-                }
-
-                return output_list;
-            }
 
             function getLinksRelatedToDocumentAsJSON(doc){
                 var output_dict = {};
