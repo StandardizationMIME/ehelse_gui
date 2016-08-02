@@ -2,8 +2,8 @@
 "use strict";
 
 angular.module("ehelseEditor").controller("EditDocumentController",
-    [ "$scope", "$http","$rootScope", "ModalService", "DocumentType", "TargetGroup", "Mandatory", "Action","Document", "DocumentField","LinkCategory", "Topic","Status",
-        function( $scope, $http, $rootScope, ModalService, DocumentType, TargetGroup, Mandatory, Action, Document, DocumentField, LinkCategory, Topic, Status) {
+    [ "$scope", "$http","$rootScope", "ModalService", "DocumentType", "TargetGroup", "Mandatory", "Action","Document", "DocumentField","LinkCategory", "Topic","Status", "DocumentExtractor", "FileUpload",
+        function( $scope, $http, $rootScope, ModalService, DocumentType, TargetGroup, Mandatory, Action, Document, DocumentField, LinkCategory, Topic, Status, DocumentExtractor, FileUpload) {
 
            // Save document values to scope so they can be easily accessed in the html files
             $scope.document_types_option_list = DocumentType.getDocumentTypesOptionList();
@@ -28,6 +28,10 @@ angular.module("ehelseEditor").controller("EditDocumentController",
                 $rootScope.clearSearchFilterText();
                 Document.submitCurrentDocument();
                 form.$setPristine();
+            };
+
+            $scope.downloadDocumentAsJSON = function(doc){
+                FileUpload.saveToFile(DocumentExtractor.getDocumentAsJSON(doc));
             };
 
 
@@ -80,65 +84,6 @@ angular.module("ehelseEditor").controller("EditDocumentController",
                 $rootScope.setDocumentState('newDocument');
             };
 
-            /*
-            // XML GENERATOR
-            function generateXMLString(name, content){
-                var resultXML;
-                if (!content){
-                    resultXML = '<' + name + '/>' + '\n';
-                }else{
-                    resultXML = '<' + name + '>' + content + '</' + name + '>' + '\n';
-                }
-                return resultXML;
-            }
-
-            var xmlNavn,
-                xmlVersjon,
-                xmlIdentifikator,
-                xmlErstatter,
-                xmlErsattetAv;
-
-            xmlNavn = generateXMLString('Navn',Topic.getById($scope.document.topicId).title);
-            xmlVersjon = generateXMLString('Versjon', ''); // TO DO: where version can be found
-            xmlIdentifikator = generateXMLString('Identifikator', $scope.document.hisNumber);
-            if ($scope.document.previousDocumentId){
-                xmlErstatter = generateXMLString('Erstatter', Document.getById($scope.document.previousDocumentId).hisNumber);
-                console.log(xmlErstatter);
-            }
-            if ($scope.document.nextDocumentId){
-                xmlErsattetAv = generateXMLString('ErstattetAv', Document.getById($scope.document.nextDocumentId).hisNumber);
-                console.log(xmlErsattetAv);
-            }
-
-
-            console.log(xmlNavn + xmlIdentifikator);
-            */
-
-            // OLD comment
-            /*function convertDocumentFieldsToXML(){
-                var document_to_convert = $scope.document;
-                console.log("document to convert: ")
-                console.log(document_to_convert);
-
-                var fields_to_convert = document_to_convert.fields;
-                console.log("fields to convert");
-                console.log(fields_to_convert);
-
-                for(var i = 0; i < fields_to_convert.length; i++){
-                    var current_field_to_convert = fields_to_convert[i];
-                    console.log("element " + i + " in fields to convert");
-                    console.log(current_field_to_convert);
-
-                    for (var key in current_field_to_convert){
-                        console.log(current_field_to_convert[key]);
-                    }
-
-                }
-            }
-
-
-
-            convertDocumentFieldsToXML();*/
          $rootScope.resetForm = function () {
              $scope.$watch('EditDocumentController.DocumentForm', function(theForm) {
                  if(theForm) {
@@ -148,6 +93,7 @@ angular.module("ehelseEditor").controller("EditDocumentController",
          };
         }
     ]);
+
 angular.module("ehelseEditor").filter('unique', function() {
     return function(collection, keyname) {
         var output = [],
