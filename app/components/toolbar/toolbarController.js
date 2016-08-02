@@ -42,6 +42,16 @@ angular.module("ehelseEditor").controller("ToolbarController",
                 $rootScope.changeContentView("administermandatory");
             };
 
+            $scope.openAdministerHeadings = function () {
+                $rootScope.deselectTopicAndDocument();
+                $rootScope.changeContentView("administerheadings");
+            };
+
+            $scope.openAdministerContactAddresses = function () {
+                $rootScope.deselectTopicAndDocument();
+                $rootScope.changeContentView("administercontactaddresses");
+            };
+
             // Open import_csv modal
             $scope.openCSVImportModal = function () {
                 $rootScope.deselectTopicAndDocument();
