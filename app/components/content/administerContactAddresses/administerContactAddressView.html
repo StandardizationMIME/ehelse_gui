@@ -1,0 +1,74 @@
+<div ng-controller="AdministerContactAddressController" class="height-100-percent">
+    <div class="shadow-below">
+
+        <!-- Title -->
+        <div class="headline-box">
+            <h4 class="selected">Administrer kontakadresser</h4>
+        </div>
+
+        <!-- Add new contact address -->
+        <p class="twelve-pix-vertical-padding">
+            <button type="button" class="btn btn-default"
+                    ng-click="showNewContactAddressModal()"
+                    ng-disabled="!archivedContactAddressButton"
+                    data-keyboard="true" id="triggerFocus">
+                <span class="fa fa-plus-circle plus-icon"></span>
+                Ny kontaktaddresse
+            </button>
+            <button type="button" ng-class="archivedContactAddressButtonClass" ng-click="changeContactAddressClass();" style="width: 100px">
+                <span ng-show="archivedContactAddressButton"> Vis arkiverte </span>
+                <span ng-show="!archivedContactAddressButton"><span class="fa fa-chevron-left"></span> Vis aktive </span>
+            </button>
+        </p>
+    </div>
+
+    <div class="table-responsive administer-views shadow-below">
+
+        <!-- Table listing all contact addresseses in the system -->
+        <table class="table table-striped" id="AdministerContactAddressesTable">
+
+            <!-- Table headers -->
+            <thead ng-class="contactAddressHeadingClass">
+            <tr>
+                <th class="col-md-2">Tittel</th>
+                <th class="col-md-8">Beskrivelse</th>
+                <th class="col-md-1"><span ng-show="archivedContactAddressButton">Rediger</span></th>
+                <th class="col-md-1"><span ng-show="archivedContactAddressButton">Arkiver</span>
+                    <span ng-show="!archivedContactAddressButton">Gjenopprett</span></th>
+            </tr>
+            </thead>
+
+            <!-- Active ContactAddress Table body -->
+            <tbody ng-show="archivedContactAddressButton">
+            <tr ng-repeat="contactAddress in contactAddresses" ng-hide="contactAddress.isArchived">
+
+                <!-- ContactAddress info -->
+                <td>{{contactAddress.name}}</td>
+                <td>{{contactAddress.description}}</td>
+
+                <!-- Edit contactAddress -->
+                <td><span class="fa fa-pencil-square-o fa-2x vcenter clickable" ng-click="showEditContactAddressModal(contactAddress.id)"></span></td>
+
+                <!-- Archive contactAddress -->
+                <td><span class="fa fa-archive fa-2x vcenter clickable " ng-click="openConfirmationModal('Er du sikker på at du vil arkivere?', contactAddress, deleteContactAddress)"></span></td>
+            </tr>
+            </tbody>
+
+            <!-- Archived ContactAddress Table body -->
+            <tbody ng-show="!archivedContactAddressButton">
+            <tr ng-repeat="contactAddress in contactAddresses" ng-hide="!contactAddress.isArchived">
+
+                <!-- ContactAddress info -->
+                <td>{{contactAddress.name}}</td>
+                <td>{{contactAddress.description}}</td>
+
+                <!-- Edit contactAddress -->
+                <td></td>
+
+                <!-- Recover contactAddress -->
+                <td><span class="fa fa-undo fa-2x vcenter clickable " ng-click="openConfirmationModal('Er du sikker på at du vil gjenopprette?', contactAddress, recoverArchivedContactAddress)"></span></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
