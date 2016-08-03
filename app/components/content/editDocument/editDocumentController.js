@@ -23,8 +23,6 @@ angular.module("ehelseEditor").controller("EditDocumentController",
             $scope.document_dict = Document.getAllAsDict();
             $scope.status_list = Status.getAll();
             $scope.contact_address_list = ContactAddress.getAll();
-            $scope.headings = Document.getCurrentDocumentHeadingsAsHeadingList();
-            $scope.headings_dict = Heading.getAllAsDict();
 
 
             // Submit function used both create new documents and save changes to existing ones

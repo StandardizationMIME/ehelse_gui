@@ -8,26 +8,7 @@
     <div class="panel-body">
         <div class="form-group">
 
-            <!-- Display the document's link categories -->
-            <div ng-repeat="heading in headings" class="link-category-group">
-                <div class="panel panel-default link-group-panel">
 
-                    <!-- Heading name -->
-                    <div class="panel-heading">
-                        <h3 class="panel-title">{{headings_dict[heading.id].name}}
-                            <span class="fa fa-remove delete-topic-icon clickable" ng-click="removeLinkCategory(linkCategory.id); EditDocumentController.DocumentForm.$setDirty()"></span>
-                        </h3>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Open modal for adding link categories to document -->
-            <button type="button" class="btn btn-default"
-                    ng-click="openModal('app/components/content/editDocument/headings/addDocumentHeadingsModal.html', 'AddDocumentHeadingsController')">
-                <span class="fa fa-plus-circle plus-icon"></span>
-                Legg til overskrift
-            </button>
-        </div>
     </div>
 </div>
 

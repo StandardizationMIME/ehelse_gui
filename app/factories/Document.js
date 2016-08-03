@@ -19,10 +19,12 @@ angular.module("ehelseEditor").factory("Document", ["$rootScope", "DocumentField
             topicId: Topic.getSelected().id,
             documentTypeId: "1",
             standardId: null,
+            contactAddressId: null,
             previousDocumentId: null,
             nextDocumentId: null,
             internalId: null,
             hisNumber: null,
+            headingContent: [],
             profiles: [],
             links: [],
             fields: [],
@@ -43,6 +45,7 @@ angular.module("ehelseEditor").factory("Document", ["$rootScope", "DocumentField
             title: "",
             description: "",
             statusId: "1",
+            contactAddressId: null,
             sequence: 1,
             topicId: Topic.getSelected().id,
             documentTypeId: "2",
@@ -51,6 +54,7 @@ angular.module("ehelseEditor").factory("Document", ["$rootScope", "DocumentField
             nextDocumentId: null,
             internalId: null,
             hisNumber: null,
+            headingContent: [],
             profiles: [],
             populatedProfiles: [],
             links: [],
@@ -527,12 +531,14 @@ angular.module("ehelseEditor").factory("Document", ["$rootScope", "DocumentField
             a.title = b.title;
             a.documentTypeId = b.documentTypeId;
             a.statusId = b.statusId;
+            a.contactAddressId = b.contactAddressId;
             a.internalId = b.internalId;
             a.hisNumber = b.hisNumber;
             a.nextDocumentId = b.nextDocumentId;
             a.previousDocumentId = b.previousDocumentId;
             a.description = b.description;
             a.sequence = b.sequence;
+            a.contactAddressId = ServiceFunction.deepCopy(b.contactAddressId);
             a.targetGroups = ServiceFunction.deepCopy(b.targetGroups);
             a.fields = ServiceFunction.deepCopy(b.fields);
             a.links = ServiceFunction.deepCopy(b.links);
