@@ -55,10 +55,13 @@
                         <li role="separator" class="divider"></li>
                         <!--<li><a href="" ng-click="openCSVImportModal()">Importer fra .csv</a></li>-->
                         <li>
-                            <a href="" ng-click="clearEverything();csvLinkClick()">Importer fra .csv</a>
-                            <input id="upload" type="file" style="display: none" on-read-file="showCSVContent($fileContent)">
+                            <a href="" ng-click="csvLinkClick()">Importer fra .csv</a>
+                            <input id="upload_csv" type="file" style="display: none" on-read-file="showCSVContent($fileContent)">
                         </li>
-                        <li><a href="" ng-click="openUploadFileModal()">Last opp fra fil</a></li>
+                        <li>
+                            <a href="" ng-click="jsonLinkClick()">Last opp fra fil</a>
+                            <input id="upload_json" type="file" style="display: none" on-read-file="readFileContent($fileContent)">
+                        </li>
                     </ul>
                 </div>
                     <button type="button" class="btn btn-primary navbar-btn" ng-click="save()">Last ned fil</button>

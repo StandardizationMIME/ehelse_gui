@@ -48,19 +48,17 @@ angular.module("ehelseEditor").controller("ToolbarController",
                 $rootScope.openModal("app/components/csvImport/csvImportModal.html", "CSVImportController");
             };
 
-            // Open uploadFile modal
-            $scope.openUploadFileModal = function () {
-                $rootScope.openModal("app/components/uploadFile/uploadFileModal.html", "UploadFileController");
-            };
 
             // Download save file
             $scope.save = function () {
+                //FileUpload.saveToFileAs(DownloadList.getStorageList());
                 FileUpload.saveToFile(DownloadList.getStorageList());
             };
 
             // Initialize state
             $scope.$state = $state;
             $scope.showCSVContent = function ($fileContentCsv) {
+                $rootScope.clearEverything();
                 CSVConverter.uploadCSVContent($fileContentCsv);
                 StorageHandler.initCsv();
                 Action.init();
@@ -74,8 +72,45 @@ angular.module("ehelseEditor").controller("ToolbarController",
                 Topic.init();
             };
 
+            $rootScope.clearEverything = function(){
+                Action.clear();
+                Document.clear();
+                DocumentField.clear();
+                DocumentType.clear();
+                LinkCategory.clear();
+                Mandatory.clear();
+                Status.clear();
+                TargetGroup.clear();
+                Topic.clear();
+                $rootScope.deselectTopicAndDocument();
+                $rootScope.changeContentView("");
+            };
+
+            $scope.initEverything = function(){
+                StorageHandler.init();
+                Action.init();
+                Document.init();
+                DocumentField.init();
+                DocumentType.init();
+                LinkCategory.init();
+                Mandatory.init();
+                Status.init();
+                TargetGroup.init();
+                Topic.init();
+            };
+
+            $scope.readFileContent = function ($fileContent) {
+                FileUpload.readContent($fileContent);
+                $rootScope.clearEverything();
+                $scope.initEverything();
+            };
+
             $scope.csvLinkClick = function () {
-                $("#upload").trigger('click');
+                $("#upload_csv").trigger('click');
+            };
+
+            $scope.jsonLinkClick = function () {
+                $("#upload_json").trigger('click');
             };
 
             $scope.searchFilter = function (row) {
