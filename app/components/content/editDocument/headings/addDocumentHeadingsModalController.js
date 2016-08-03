@@ -3,8 +3,9 @@
 angular.module("ehelseEditor").controller("AddDocumentHeadingsController",["$rootScope","$scope", "Document", "Heading",
     function($rootScope, $scope, Document, Heading) {
 
-        $scope.document_heading_ids = Document.getCurrentDocumentHeadingContentIds();
+        // Save ...............
         $scope.all_headings = Heading.getAll();
+        $scope.document_heading_ids = Document.getCurrentDocumentHeadingContentIds();
         $scope.selected_headings_ids = [];
 
         $scope.headingAlreadyIsAdded = function(id){
@@ -18,7 +19,8 @@ angular.module("ehelseEditor").controller("AddDocumentHeadingsController",["$roo
 
         $scope.close = function (result){
             if (result == "add"){
-                //Document.extendCurrentDocumentLinkCategoriesByLinkCategoriesIds($scope.selected_document_link_categories_ids);
+                console.log($scope.selected_headings_ids);
+                Document.addHeadingsToDocumentByIds($scope.selected_headings_ids);
             }
         };
 

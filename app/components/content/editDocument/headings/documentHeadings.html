@@ -8,6 +8,21 @@
     <div class="panel-body">
         <div class="form-group">
 
+            <div ng-repeat="heading in headings" class="link-category-group">
+                <div class="panel panel-default link-group-panel">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">{{headings_dict[heading.id].name}}
+                            <span class="fa fa-remove delete-topic-icon clickable" ng-click="removeLinkCategory(linkCategory.id); EditDocumentController.DocumentForm.$setDirty()"></span>
+                        </h3>
+                    </div>
+                    <div class="panel-body">
+                        <textarea name="headingText" id="headingText" ng-model="heading.headingContent[0].text"
+                                  class="form-control" rows="6" cols="50">
+                        </textarea>
+                    </div>
+                </div>
+            </div>
+
             <!-- Display the document's link categories
             <div ng-repeat="linkCategory in linkCategories" class="link-category-group">
                 <div class="panel panel-default link-group-panel">

@@ -1,6 +1,8 @@
 "use strict";
 
-angular.module("ehelseEditor").factory("Document", ["$rootScope", "DocumentField", "Topic", "StorageHandler","ServiceFunction", function($rootScope, DocumentField, Topic, StorageHandler, ServiceFunction) {
+angular.module("ehelseEditor").factory("Document",
+    ["$rootScope", "DocumentField", "Topic", "StorageHandler","ServiceFunction",
+        function($rootScope, DocumentField, Topic, StorageHandler, ServiceFunction) {
 
 
     /**
@@ -66,6 +68,7 @@ angular.module("ehelseEditor").factory("Document", ["$rootScope", "DocumentField
 
     var current_document = newDocument();
     var link_category_list = [];
+    var heading_list = [];
     var documents = [];
     var documents_dict = {};
     var topics_documents_dict = {};
@@ -99,6 +102,7 @@ angular.module("ehelseEditor").factory("Document", ["$rootScope", "DocumentField
     function clear(){
         current_document = newDocument();
         link_category_list.length = 0;
+        heading_list.length = 0;
         documents.length = 0;
         documents_dict = {};
         topics_documents_dict = {};
@@ -114,6 +118,16 @@ angular.module("ehelseEditor").factory("Document", ["$rootScope", "DocumentField
             console.log("Document has no headings");
         }
         return ids;
+    }
+
+    function addHeadingsToDocumentByIds(ids){
+        if(ids){
+            for (var i = 0; i < ids.length; i++){
+                current_document.headingContent.push({headingId: ids[i], text: ""});
+                generateCurrentDocumentHeadingsAsHeadingList();
+            }
+        }
+        generateCurrentDocumentHeadingsAsHeadingList();
     }
 
     /**
@@ -550,7 +564,7 @@ angular.module("ehelseEditor").factory("Document", ["$rootScope", "DocumentField
             a.previousDocumentId = b.previousDocumentId;
             a.description = b.description;
             a.sequence = b.sequence;
-            a.contactAddressId = ServiceFunction.deepCopy(b.contactAddressId);
+            a.headingContent = ServiceFunction.deepCopy(b.headingContent);
             a.targetGroups = ServiceFunction.deepCopy(b.targetGroups);
             a.fields = ServiceFunction.deepCopy(b.fields);
             a.links = ServiceFunction.deepCopy(b.links);
@@ -582,6 +596,7 @@ angular.module("ehelseEditor").factory("Document", ["$rootScope", "DocumentField
             setDocument(current_document, document);
         }
         generateCurrentDocumentLinksAsLinkCategoryList();
+        generateCurrentDocumentHeadingsAsHeadingList();
 
         if(document.standardId){
             getRelatedProfiles(document);
@@ -626,8 +641,36 @@ angular.module("ehelseEditor").factory("Document", ["$rootScope", "DocumentField
         }
     }
 
+    function generateCurrentDocumentHeadingsAsHeadingList() {
+
+        var heading_dict = {};
+        if(current_document.headingContent){
+            for (var i = 0; i < current_document.headingContent.length; i++) {
+                var singleContent = current_document.headingContent[i];
+                if (!heading_dict[singleContent.headingId]) {
+                    heading_dict[singleContent.headingId] = {id: singleContent.headingId, headingContent: []};
+                }
+                heading_dict[singleContent.headingId].headingContent.push(singleContent);
+            }
+        }else{
+            console.log("Current document has no headings");
+        }
+        heading_list.length = 0;
+
+        for (var prop in heading_dict) {
+            // skip loop if the property is from prototype
+            if (!heading_dict.hasOwnProperty(prop)) continue;
+
+            heading_list.push(heading_dict[prop]);
+        }
+    }
+
     function getCurrentDocumentLinksAsLinkCategoryList() {
         return link_category_list;
+    }
+
+    function getCurrentDocumentHeadingsAsList() {
+        return heading_list;
     }
 
     function getCurrentDocumentLinkCategoriesIds() {
@@ -791,6 +834,8 @@ angular.module("ehelseEditor").factory("Document", ["$rootScope", "DocumentField
     }
 
     return {
+        getCurrentDocumentHeadingsAsList: getCurrentDocumentHeadingsAsList,
+        addHeadingsToDocumentByIds: addHeadingsToDocumentByIds,
         getCurrentDocumentHeadingContentIds: getCurrentDocumentHeadingContentIds,
         toggleTopicSelection: toggleTopicSelection,
         clear: clear,

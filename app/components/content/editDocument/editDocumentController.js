@@ -13,16 +13,18 @@ angular.module("ehelseEditor").controller("EditDocumentController",
             $scope.fields_dict = DocumentField.getDocumentFieldsDict();
             $scope.document = Document.getCurrentDocument();
             $scope.setCurrentDocumentFieldsByDocumentDocumentTypeId = Document.setCurrentDocumentFieldsByDocumentDocumentTypeId;
-            $scope.linkCategories = Document.getCurrentDocumentLinksAsLinkCategoryList();
             $scope.topicTupleList = Topic.getAllAsOptionsList();
             $scope.removeTargetGroup = Document.removeCurrentDocumentTargetGroup;
             $scope.removeField = Document.removeCurrentDocumentField;
             $scope.removeLink = Document.removeCurrentDocumentLink;
-            $scope.linkCategoriesDict = LinkCategory.getAllAsDict();
             $scope.removeLinkCategory = Document.removeCurrentDocumentLinksByCategoryId;
             $scope.document_dict = Document.getAllAsDict();
             $scope.status_list = Status.getAll();
             $scope.contact_address_list = ContactAddress.getAll();
+            $scope.headings = Document.getCurrentDocumentHeadingsAsList();
+            $scope.linkCategories = Document.getCurrentDocumentLinksAsLinkCategoryList();
+            $scope.headings_dict = Heading.getAllAsDict();
+            $scope.linkCategoriesDict = LinkCategory.getAllAsDict();
 
 
             // Submit function used both create new documents and save changes to existing ones

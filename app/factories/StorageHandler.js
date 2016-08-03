@@ -51,8 +51,8 @@ angular.module("ehelseEditor").factory("StorageHandler", ["$rootScope", "FileUpl
             if (!input_list.documentFields) {
                 input_list.documentFields = [];
             }
-            if (!input_list.headingContent) {
-                input_list.headingContent = [];
+            if (!input_list.headings) {
+                input_list.headings = [];
             }
             if (!input_list.contactAddresses) {
                 input_list.contactAddresses = [];
@@ -120,7 +120,7 @@ angular.module("ehelseEditor").factory("StorageHandler", ["$rootScope", "FileUpl
          * Returns headings
          */
         function getHeadings() {
-            return {"headingContent": input_list.headingContent};
+            return {"headings": input_list.headings};
         }
 
         /**

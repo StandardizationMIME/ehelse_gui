@@ -2,14 +2,14 @@
 
 angular.module("ehelseEditor").factory("Heading", ["$rootScope", "StorageHandler", "ServiceFunction", function($rootScope, StorageHandler, ServiceFunction) {
 
-    var headings= [];
+    var headings = [];
     var headings_dict = {};
 
     init();
 
     function init(){
         try{
-            Array.prototype.push.apply(headings, StorageHandler.getHeadings().headingContent);
+            Array.prototype.push.apply(headings, StorageHandler.getHeadings().headings);
             generateHeadingDict();
         }
         catch(error){
