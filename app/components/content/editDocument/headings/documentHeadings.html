@@ -8,6 +8,41 @@
     <div class="panel-body">
         <div class="form-group">
 
+            <!-- Display the document's link categories
+            <div ng-repeat="linkCategory in linkCategories" class="link-category-group">
+                <div class="panel panel-default link-group-panel">
+
+                    &lt;!&ndash; Link category name &ndash;&gt;
+                    <div class="panel-heading">
+                        <h3 class="panel-title">{{linkCategoriesDict[linkCategory.id].name}}
+                            <span class="fa fa-remove delete-topic-icon clickable" ng-click="removeLinkCategory(linkCategory.id); EditDocumentController.DocumentForm.$setDirty()"></span>
+                        </h3>
+                    </div>
+
+                    &lt;!&ndash; Display the category's links &ndash;&gt;
+                    <ul class="list-group">
+                        <li class="list-group-item" ng-repeat="link in linkCategory.links">
+
+                            &lt;!&ndash; Link text &ndash;&gt;
+                            <span class="document-fields-field-name"><input class="form-control" type="text" placeholder="Navn" ng-model="link.text"></span>
+
+                            &lt;!&ndash; URL &ndash;&gt;
+                            <span class="document-fields-field-value"><input class="form-control" type="text" placeholder="URL" ng-model="link.url" name="linkCategoryUrl" required></span>
+
+                            &lt;!&ndash; Remove link &ndash;&gt;
+                            <span class="fa fa-remove delete-topic-icon clickable" ng-click="removeLink(link); EditDocumentController.DocumentForm.$setDirty()"></span>
+                        </li>
+                    </ul>
+                </div>
+            </div>-->
+
+            <!-- Open modal for adding link categories to document -->
+            <button type="button" class="btn btn-default"
+                    ng-click="openModal('app/components/content/editDocument/headings/addDocumentHeadingsModal.html', 'AddDocumentHeadingsController')">
+                <span class="fa fa-plus-circle plus-icon"></span>
+                Legg til overskrift
+            </button>
+        </div>
 
     </div>
 </div>

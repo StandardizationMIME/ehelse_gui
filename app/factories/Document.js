@@ -104,6 +104,18 @@ angular.module("ehelseEditor").factory("Document", ["$rootScope", "DocumentField
         topics_documents_dict = {};
     }
 
+    function getCurrentDocumentHeadingContentIds(){
+        var ids = [];
+        if(current_document.headingContent){
+            for (var i = 0; i < current_document.headingContent.length; i++) {
+                ids.push(current_document.headingContent[i].headingId)
+            }
+        }else{
+            console.log("Document has no headings");
+        }
+        return ids;
+    }
+
     /**
      * Function adding target groups to current document
      * @param target_groups_ids
@@ -779,6 +791,7 @@ angular.module("ehelseEditor").factory("Document", ["$rootScope", "DocumentField
     }
 
     return {
+        getCurrentDocumentHeadingContentIds: getCurrentDocumentHeadingContentIds,
         toggleTopicSelection: toggleTopicSelection,
         clear: clear,
         init: init,
