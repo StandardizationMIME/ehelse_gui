@@ -20,3 +20,10 @@ angular.module("ehelseEditor").directive("documentLinkCategories",function () {
         templateUrl: "app/components/content/editDocument/links/documentLinks.html"
     };
 });
+
+angular.module("ehelseEditor").directive("documentHeadings",function () {
+    return{
+        restrict: "E",
+        templateUrl: "app/components/content/editDocument/headings/documentHeadings.html"
+    };
+});

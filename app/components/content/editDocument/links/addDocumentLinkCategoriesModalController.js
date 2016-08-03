@@ -1,3 +1,5 @@
+"use strict";
+
 angular.module("ehelseEditor").controller("AddDocumentLinkCategoriesController",["$rootScope","$scope", "Document", "LinkCategory",
     function($rootScope, $scope, Document, LinkCategory) {
 

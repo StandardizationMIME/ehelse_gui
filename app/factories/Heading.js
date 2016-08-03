@@ -9,7 +9,7 @@ angular.module("ehelseEditor").factory("Heading", ["$rootScope", "StorageHandler
 
     function init(){
         try{
-            Array.prototype.push.apply(headings, StorageHandler.getHeadings().headings);
+            Array.prototype.push.apply(headings, StorageHandler.getHeadings().headingContent);
             generateHeadingDict();
         }
         catch(error){

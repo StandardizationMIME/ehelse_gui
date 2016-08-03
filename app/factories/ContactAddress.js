@@ -2,7 +2,7 @@
 
 angular.module("ehelseEditor").factory("ContactAddress", ["$rootScope", "StorageHandler", "ServiceFunction", function($rootScope, StorageHandler, ServiceFunction){
 
-    var contact_address = [];
+    var contact_addresses = [];
     var contact_address_dict = {};
     var contact_address_option_list = [];
 
@@ -10,9 +10,9 @@ angular.module("ehelseEditor").factory("ContactAddress", ["$rootScope", "Storage
 
     function init(){
         try{
-            Array.prototype.push.apply(contact_address, StorageHandler.getContactAddresses().contact_address);
-            generateContactAddressOptionList(contact_address);
-            generateContactAddressDict(contact_address);
+            Array.prototype.push.apply(contact_addresses, StorageHandler.getContactAddresses().contactAddresses);
+            generateContactAddressOptionList(contact_addresses);
+            generateContactAddressDict(contact_addresses);
         }
         catch(error){
             console.log("ContactAddresses could not be loaded: " + error);
@@ -21,21 +21,21 @@ angular.module("ehelseEditor").factory("ContactAddress", ["$rootScope", "Storage
     }
 
     /**
-     * Function used to clear all contact_address lists and dicts.
+     * Function used to clear all contact_addresses lists and dicts.
      */
     function clear(){
-        contact_address.length = 0;
+        contact_addresses.length = 0;
         contact_address_dict = {};
         contact_address_option_list.length = 0;
     }
 
     /**
      * Function generating the contact_address_dict. Used to get the name of the contact_address from the contact_address id.
-     * @param contact_address
+     * @param contact_addresses
      */
-    function generateContactAddressDict(contact_address){
-        for(var i = 0; i < contact_address.length; i++){
-            contact_address_dict[contact_address[i].id] = contact_address[i];
+    function generateContactAddressDict(contact_addresses){
+        for(var i = 0; i < contact_addresses.length; i++){
+            contact_address_dict[contact_addresses[i].id] = contact_addresses[i];
         }
     }
 
@@ -84,24 +84,24 @@ angular.module("ehelseEditor").factory("ContactAddress", ["$rootScope", "Storage
      * @param s
      */
     function add(s){
-        contact_address.push(s);
-        generateContactAddressDict(contact_address);
-        generateContactAddressOptionList(contact_address);
+        contact_addresses.push(s);
+        generateContactAddressDict(contact_addresses);
+        generateContactAddressOptionList(contact_addresses);
     }
 
     /**
      * Function used to generate the contact_address options list.
      *
      * Used to generate options lists in the views.
-     * @param contact_address
+     * @param contact_addresses
      */
-    function generateContactAddressOptionList(contact_address){
+    function generateContactAddressOptionList(contact_addresses){
         contact_address_option_list.length = 0;
-        for (var i = 0; i < contact_address.length; i++){
+        for (var i = 0; i < contact_addresses.length; i++){
             contact_address_option_list.push({
-                value: contact_address[i].id,
-                name: contact_address[i].name,
-                isArchived: contact_address[i].isArchived
+                value: contact_addresses[i].id,
+                name: contact_addresses[i].name,
+                isArchived: contact_addresses[i].isArchived
             })
         }
     }
@@ -147,8 +147,8 @@ angular.module("ehelseEditor").factory("ContactAddress", ["$rootScope", "Storage
      */
     function archiveContactAddress(s){
         s.isArchived = 1;
-        generateContactAddressDict(contact_address);
-        generateContactAddressOptionList(contact_address);
+        generateContactAddressDict(contact_addresses);
+        generateContactAddressOptionList(contact_addresses);
     }
 
     /**
@@ -158,11 +158,11 @@ angular.module("ehelseEditor").factory("ContactAddress", ["$rootScope", "Storage
     function deleteContactAddress(contact_address) {
         try{
             archiveContactAddress(contact_address);
-            $rootScope.notifySuccess("Kontaktadresse ble arkivert!", 1000);
+            $rootScope.notifySuccess("Kontaktadressen ble arkivert!", 1000);
         }
         catch(error){
             console.log("ContactAddress could not be archived: " + error);
-            $rootScope.notifyError("Kontaktadresse ble ikke arkivert: " + error, 6000);
+            $rootScope.notifyError("Kontaktadressen ble ikke arkivert: " + error, 6000);
         }
     }
 
@@ -171,7 +171,7 @@ angular.module("ehelseEditor").factory("ContactAddress", ["$rootScope", "Storage
     }
 
     function getAll(){
-        return contact_address;
+        return contact_addresses;
     }
 
     function getAllAsOptionsList(){

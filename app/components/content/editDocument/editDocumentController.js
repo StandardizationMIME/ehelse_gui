@@ -2,8 +2,8 @@
 "use strict";
 
 angular.module("ehelseEditor").controller("EditDocumentController",
-    [ "$scope", "$http","$rootScope", "ModalService", "DocumentType", "TargetGroup", "Mandatory", "Action","Document", "DocumentField","LinkCategory", "Topic","Status", "DocumentExtractor", "FileUpload",
-        function( $scope, $http, $rootScope, ModalService, DocumentType, TargetGroup, Mandatory, Action, Document, DocumentField, LinkCategory, Topic, Status, DocumentExtractor, FileUpload) {
+    [ "$scope", "$http","$rootScope", "ModalService", "DocumentType", "TargetGroup", "Mandatory", "Action","Document", "DocumentField","LinkCategory", "Topic","Status", "DocumentExtractor", "FileUpload", "ContactAddress", "Heading",
+        function( $scope, $http, $rootScope, ModalService, DocumentType, TargetGroup, Mandatory, Action, Document, DocumentField, LinkCategory, Topic, Status, DocumentExtractor, FileUpload, ContactAddress, Heading) {
 
            // Save document values to scope so they can be easily accessed in the html files
             $scope.document_types_option_list = DocumentType.getDocumentTypesOptionList();
@@ -22,6 +22,10 @@ angular.module("ehelseEditor").controller("EditDocumentController",
             $scope.removeLinkCategory = Document.removeCurrentDocumentLinksByCategoryId;
             $scope.document_dict = Document.getAllAsDict();
             $scope.status_list = Status.getAll();
+            $scope.contact_address_list = ContactAddress.getAll();
+            $scope.headings = Document.getCurrentDocumentHeadingsAsHeadingList();
+            $scope.headings_dict = Heading.getAllAsDict();
+
 
             // Submit function used both create new documents and save changes to existing ones
             $scope.submit = function(form){
