@@ -59,6 +59,13 @@ angular.module("ehelseEditor").controller("EditDocumentController",
                 return tmp;
             }
 
+            function arrayObjectIndexOf(myArray, searchTerm, property) {
+                for(var i = 0, len = myArray.length; i < len; i++) {
+                    if (myArray[i][property] === searchTerm) return i;
+                }
+                return -1;
+            }
+
             $rootScope.updateMandatoryNotices = function () {
                 var documentTargetGroupsMandatoryIdList = [];
                 var documentMandatoryNoticesIdList = [];
@@ -71,14 +78,48 @@ angular.module("ehelseEditor").controller("EditDocumentController",
                     documentMandatoryNoticesIdList.push($scope.document.mandatoryNotices[j].mandatoryId);
                 }
 
-                console.log(removeDuplicates(documentTargetGroupsMandatoryIdList));
-                console.log(removeDuplicates(documentMandatoryNoticesIdList));
-                for (var q = 0; q < removeDuplicates(documentTargetGroupsMandatoryIdList).length; q++){
-                    if (removeDuplicates(documentTargetGroupsMandatoryIdList).indexOf(removeDuplicates(documentMandatoryNoticesIdList)[q]) < 0){
-                        console.log(removeDuplicates(documentTargetGroupsMandatoryIdList)[q]);
-                        $scope.document.mandatoryNotices.push({"mandatoryId": removeDuplicates(documentTargetGroupsMandatoryIdList)[q],
+                var uniqueDocumentTargetGroupsMandatoryIdList = removeDuplicates(documentTargetGroupsMandatoryIdList);
+                var uniqueDocumentMandatoryNoticesIdList = removeDuplicates(documentMandatoryNoticesIdList);
+
+                console.log(uniqueDocumentTargetGroupsMandatoryIdList);
+                console.log(uniqueDocumentMandatoryNoticesIdList);
+                for (var q = 0; q < uniqueDocumentTargetGroupsMandatoryIdList.length; q++){
+                    console.log(uniqueDocumentMandatoryNoticesIdList.indexOf(uniqueDocumentTargetGroupsMandatoryIdList[q]));
+                    if (!(uniqueDocumentMandatoryNoticesIdList.indexOf(uniqueDocumentTargetGroupsMandatoryIdList[q]) > -1)){
+                        console.log(uniqueDocumentTargetGroupsMandatoryIdList[q]);
+                        $scope.document.mandatoryNotices.push({"mandatoryId": uniqueDocumentTargetGroupsMandatoryIdList[q],
                                                                "notice": ""});
                     }
+                }
+
+                var updatedDocumentMandatoryNoticesIdList = [];
+                for(var j = 0; j < $scope.document.mandatoryNotices.length; j++){
+                    updatedDocumentMandatoryNoticesIdList.push($scope.document.mandatoryNotices[j].mandatoryId);
+                }
+                var uniqueUpdatedMandatoryNoticesIdList = removeDuplicates(updatedDocumentMandatoryNoticesIdList);
+                console.log(uniqueDocumentTargetGroupsMandatoryIdList);
+                console.log(uniqueUpdatedMandatoryNoticesIdList);
+
+                for(var p = 0; p < uniqueUpdatedMandatoryNoticesIdList.length; p++){
+                console.log(uniqueDocumentTargetGroupsMandatoryIdList.indexOf(uniqueUpdatedMandatoryNoticesIdList[p]));
+                    if (!(uniqueDocumentTargetGroupsMandatoryIdList.indexOf(uniqueUpdatedMandatoryNoticesIdList[p]) > -1)){
+                        console.log("! not in tgMList");
+                        var tempIndex = arrayObjectIndexOf($scope.document.mandatoryNotices,uniqueUpdatedMandatoryNoticesIdList[p],"mandatoryId");
+                        console.log("tempIndex: " + tempIndex);
+                        $scope.document.mandatoryNotices.splice(tempIndex, 1);
+                    }
+                    if (uniqueDocumentTargetGroupsMandatoryIdList.indexOf(uniqueUpdatedMandatoryNoticesIdList[p]) > -1){console.log("is in tgMList")};
+                    /*if (!uniqueDocumentTargetGroupsMandatoryIdList.indexOf(uniqueUpdatedMandatoryNoticesIdList[p]) > -1){
+                        var tempIndex = arrayObjectIndexOf($scope.document.mandatoryNotices,uniqueUpdatedMandatoryNoticesIdList[p],"mandatoryId");
+                        console.log(tempIndex);
+                        $scope.document.mandatoryNotices.splice(tempIndex, 1);
+                        /!*if(tempIndex > -1){
+                            console.log(uniqueUpdatedMandatoryNoticesIdList[p]);
+                            console.log(arrayObjectIndexOf($scope.document.mandatoryNotices,uniqueDocumentTargetGroupsMandatoryIdList[p],"mandatoryId"));
+                            $scope.document.mandatoryNotices.splice(tempIndex, 1);
+                        }*!/
+
+                    }*/
                 }
 
 
