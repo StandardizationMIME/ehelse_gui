@@ -59,7 +59,7 @@
 
         </p>
     </div>
-    <div id="editDocument" class="{{documentState}} shadow-below">
+    <div id="editDocument" class="{{documentState}}">
         <!-- Buttons toggling between document versions -->
         <div class=" twelve-pix-vertical-padding" ng-if="document_dict[document.nextDocumentId] || document_dict[document.previousDocumentId]">
             <button type="button" class="btn btn-default" ng-disabled="document.nextDocumentId && !document.previousDocumentId" ng-click="openDocumentById(document.previousDocumentId)">
