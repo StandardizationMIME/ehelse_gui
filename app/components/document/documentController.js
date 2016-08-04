@@ -78,6 +78,12 @@ angular.module("ehelseEditor").controller("DocumentController", [ "$scope","$roo
             $rootScope.selected_document = document;
             $rootScope.checkDocumentState(document);
             Document.setCurrentDocument(document);
+
+            if (document.decidedBy){
+                $rootScope.additionalFieldForMandatoryGroupsSelected = true;
+            } else {
+                $rootScope.additionalFieldForMandatoryGroupsSelected = false;
+            }
             $rootScope.changeContentView("document");
         }
     };

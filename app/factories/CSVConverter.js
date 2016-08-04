@@ -74,7 +74,9 @@ angular.module("ehelseEditor").factory("CSVConverter",
                         "links": [],
                         "targetGroups": [],
                         "tempProfiles": csvObject.Profil,
-                        "standardId": ""
+                        "standardId": "",
+                        "hjemmel": "",
+                        "decidedBy": ""
                     };
                     documentsFromCsv.push(tempDocument);
                 }

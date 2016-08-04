@@ -69,9 +69,45 @@
 
             <!-- Add new target group to document -->
             <button class="btn btn-default" type="button" ng-click="openModal('app/components/content/editDocument/targetGroups/addDocumentTargetGroupModal.html', 'AddDocumentTargetGroupModelController')"><span class="fa fa-plus-circle plus-icon"></span> Legg til ny</button>
+            
+            <!-- Additional fields -->
+                <div class="">
+                    <div class="form-group" ng-show="hasMandatoryTargetGroup()">
+
+                        <label for="targetGroupHjemmel" class="col-sm-2 control-label"> Hjemmel: </label>
+                        <div class="form-group col-sm-10">
+                            <input type="text" id="targetGroupHjemmel" class="form-control" ng-model="document.hjemmel" ng-click="disableTargetGroupDecidedBy()" ng-readonly="additionalFieldForMandatoryGroupsSelected">
+                        </div>
+
+
+                        <label for="targetGroupDecidedBy" class="col-sm-2 control-label"> Besluttet av: </label>
+                        <div class="form-group col-sm-10">
+                            <input type="text" id="targetGroupDecidedBy" class="form-control" ng-model="document.decidedBy" ng-click="disableTargetGroupHjemmel()" ng-readonly="!additionalFieldForMandatoryGroupsSelected">
+                        </div>
+                    </div>
+                </div>
         </div>
 
 
     </div>
 </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

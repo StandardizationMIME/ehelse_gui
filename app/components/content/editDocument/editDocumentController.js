@@ -23,9 +23,31 @@ angular.module("ehelseEditor").controller("EditDocumentController",
             $scope.document_dict = Document.getAllAsDict();
             $scope.status_list = Status.getAll();
 
+            $scope.hasMandatoryTargetGroup = function () {
+                for (var documentTargetGroupIndex = 0; documentTargetGroupIndex < $scope.document.targetGroups.length; documentTargetGroupIndex++){
+                    if ($scope.document.targetGroups[documentTargetGroupIndex].mandatoryId == 1){
+                        return true;
+                    }
+                }
+                return false;
+            };
+
+            $scope.disableTargetGroupDecidedBy = function () {
+                $rootScope.additionalFieldForMandatoryGroupsSelected = false;
+                $scope.document.decidedBy = null;
+            };
+            $scope.disableTargetGroupHjemmel = function () {
+                $rootScope.additionalFieldForMandatoryGroupsSelected = true;
+                $scope.document.hjemmel = null;
+            };
+
             // Submit function used both create new documents and save changes to existing ones
             $scope.submit = function(form){
                 $rootScope.clearSearchFilterText();
+                if(!$scope.hasMandatoryTargetGroup()){
+                    $scope.document.hjemmel = null;
+                    $scope.document.decidedBy = null;
+                }
                 Document.submitCurrentDocument();
                 form.$setPristine();
             };
