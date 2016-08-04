@@ -378,6 +378,7 @@ angular.module("ehelseEditor").factory("Document",
                         toggleTopicSelection();
                         console.log(current_document);
                         $rootScope.notifySuccess("Dokumentet ble oppdatert", 1000);
+                        $rootScope.title = ServiceFunction.deepCopy(current_document.title);
                     }
                     catch (error) {
                         console.log(error);
@@ -443,6 +444,7 @@ angular.module("ehelseEditor").factory("Document",
             function deleteCurrentDocument() {
                 if (documents_dict[current_document.id].populatedProfiles.length < 1 || documents_dict[current_document.id].standardId) {
                     try {
+                        var doc = documents_dict[current_document.id];
                         var archived_document = clone(documents_dict[current_document.id]);
                         StorageHandler.addArchivedDocumentsById(archived_document);
 
@@ -462,7 +464,11 @@ angular.module("ehelseEditor").factory("Document",
                         }
                         deleteCurrentDocumentFromDocumentsList();
                         $rootScope.notifySuccess("Dokumentet ble slettet", 1000);
-                        $rootScope.changeContentView("");
+                        if(doc.documentTypeId == "2"){
+                            $rootScope.openDocument(getDocumentById(doc.standardId));
+                        }else{
+                            $rootScope.changeContentView("");
+                        }
                     }
                     catch (error) {
                         $rootScope.notifyError("Dokumentet kunne ikke slettes: " + error, 6000);
