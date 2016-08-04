@@ -30,8 +30,7 @@
             <!-- Table headers -->
             <thead ng-class="headingHeadingClass">
             <tr>
-                <th class="col-md-2">Tittel</th>
-                <th class="col-md-8">Beskrivelse</th>
+                <th class="col-md-10">Tittel</th>
                 <th class="col-md-1"><span ng-show="archivedHeadingButton">Rediger</span></th>
                 <th class="col-md-1"><span ng-show="archivedHeadingButton">Arkiver</span>
                     <span ng-show="!archivedHeadingButton">Gjenopprett</span></th>
@@ -44,7 +43,6 @@
 
                 <!-- Heading info -->
                 <td>{{heading.name}}</td>
-                <td>{{heading.description}}</td>
 
                 <!-- Edit heading -->
                 <td><span class="fa fa-pencil-square-o fa-2x vcenter clickable" ng-click="showEditHeadingModal(heading.id)"></span></td>
@@ -60,7 +58,6 @@
 
                 <!-- Heading info -->
                 <td>{{heading.name}}</td>
-                <td>{{heading.description}}</td>
 
                 <!-- Edit heading -->
                 <td></td>
