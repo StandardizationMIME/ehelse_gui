@@ -378,6 +378,7 @@ angular.module("ehelseEditor").factory("Document",
                         toggleTopicSelection();
                         console.log(current_document);
                         $rootScope.notifySuccess("Dokumentet ble oppdatert", 1000);
+                        $rootScope.title = ServiceFunction.deepCopy(current_document.title);
                     }
                     catch (error) {
                         console.log(error);

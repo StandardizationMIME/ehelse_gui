@@ -78,6 +78,12 @@ h1,h2,h3,h4{ font-weight: bold;}
 .shadow-below {
     box-shadow: 0 1px #b8b8b8;
 }
+.shadow-right {
+    box-shadow: 1px 0 #b8b8b8;
+}
+.shadow-left {
+    box-shadow: -1px 0 #b8b8b8;
+}
 #notification-message {
     width: 75%;
     margin:0 auto;
@@ -269,7 +275,7 @@ textarea {
     height: calc(100% - 225px);
 }
 .profiles-container {
-    height: 108px;
+    height: 107px;
     width: 95.47%;
     display: inline-block;
     box-shadow: 0 -2px #b8b8b8;
@@ -302,6 +308,12 @@ textarea {
     padding-top: 25px;
     color: #c13a47;
 }
+.new-profile-container:hover {
+    background-color: #eeebec;
+}
+.back-to-standard:hover {
+    background-color: #eeebec;
+}
 .profile-text {
     text-align: center;
     font-size: 11px;
@@ -315,11 +327,11 @@ textarea {
     font-size: 3.5em;
 }
 .icon-size-medium {
-    font-size: 3em;
+    font-size: 2.5em;
 }
 .back-to-standard {
     height: 100%;
-    padding-top: 25px
+    padding-top: 30px
 }
 .profile-list {
     height: 100%;

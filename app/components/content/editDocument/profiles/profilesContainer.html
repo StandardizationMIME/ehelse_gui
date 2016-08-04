@@ -19,7 +19,7 @@
             </div>
         </div>
 
-        <div class="form-group col-sm-10 profile-list">
+        <div class="form-group col-sm-10 profile-list shadow-left shadow-right">
             <div class="profile-container" ng-repeat="profile in document.populatedProfiles" ng-if="profile"
                  ng-class="profile.id == document.id ? 'selected-profile' : ''"
                  ng-click="setDocumentState('editProfile');openDocument(profile);toggleSelectedTopic();resetDocumentScroll()">
