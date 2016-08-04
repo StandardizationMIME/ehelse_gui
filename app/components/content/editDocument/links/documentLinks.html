@@ -15,7 +15,7 @@
                     <!-- Link category name -->
                     <div class="panel-heading">
                         <h3 class="panel-title">{{linkCategoriesDict[linkCategory.id].name}}
-                            <span class="fa fa-remove delete-topic-icon clickable" ng-click="removeLinkCategory(linkCategory.id); EditDocumentController.DocumentForm.$setDirty()"></span>
+                            <span class="fa fa-remove delete-topic-icon clickable" ng-click="openConfirmationModal('Er du sikker på at du vil slette lenke-kategorien fra dokumentet?', linkCategory.id, removeLinkCategory); EditDocumentController.DocumentForm.$setDirty()"></span>
                         </h3>
                     </div>
 
@@ -30,7 +30,7 @@
                             <span class="document-fields-field-value"><input class="form-control" type="text" placeholder="URL" ng-model="link.url" name="linkCategoryUrl" required></span>
 
                             <!-- Remove link -->
-                            <span class="fa fa-remove delete-topic-icon clickable" ng-click="removeLink(link); EditDocumentController.DocumentForm.$setDirty()"></span>
+                            <span class="fa fa-remove delete-topic-icon clickable" ng-click="openConfirmationModal('Er du sikker på at du vil slette lenken fra dokumentet?', link, removeLink); EditDocumentController.DocumentForm.$setDirty()"></span>
                         </li>
                     </ul>
                 </div>
