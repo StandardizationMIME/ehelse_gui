@@ -26,6 +26,7 @@ angular.module("ehelseEditor").factory("Document", ["$rootScope", "DocumentField
             hjemmel: null,
             decidedBy: null,
             replacedBy: null,
+            mandatoryNotices: [],
             profiles: [],
             links: [],
             fields: [],
@@ -57,6 +58,7 @@ angular.module("ehelseEditor").factory("Document", ["$rootScope", "DocumentField
             hjemmel: null,
             decidedBy: null,
             replacedBy: null,
+            mandatoryNotices: [],
             profiles: [],
             populatedProfiles: [],
             links: [],
@@ -549,6 +551,7 @@ angular.module("ehelseEditor").factory("Document", ["$rootScope", "DocumentField
             a.hjemmel = b.hjemmel;
             a.decidedBy = b.decidedBy;
             a.replacedBy = b.replacedBy;
+            a.mandatoryNotices = ServiceFunction.deepCopy(b.mandatoryNotices);
         }else{
             console.log("Invalid input");
             console.log("Input a = " + a);

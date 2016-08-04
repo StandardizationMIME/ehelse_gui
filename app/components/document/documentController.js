@@ -79,7 +79,8 @@ angular.module("ehelseEditor").controller("DocumentController", [ "$scope","$roo
             $rootScope.checkDocumentState(document);
             Document.setCurrentDocument(document);
 
-            if (document.decidedBy){
+
+            if (document && document.decidedBy){
                 $rootScope.additionalFieldForMandatoryGroupsSelected = true;
             } else {
                 $rootScope.additionalFieldForMandatoryGroupsSelected = false;

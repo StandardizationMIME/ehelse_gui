@@ -41,6 +41,72 @@ angular.module("ehelseEditor").controller("EditDocumentController",
                 $scope.document.hjemmel = null;
             };
 
+            $scope.getMandatoryNameById = function (mandatoryId) {
+                for (var i = 0; i < $scope.mandatory_list.length; i++){
+                    if ($scope.mandatory_list[i].id == mandatoryId){
+                        return $scope.mandatory_list[i].name.toLowerCase();
+                    }
+                }
+            };
+
+            function removeDuplicates(arr) {
+                var tmp = [];
+                for(var i = 0; i < arr.length; i++){
+                    if(tmp.indexOf(arr[i]) == -1){
+                        tmp.push(arr[i]);
+                    }
+                }
+                return tmp;
+            }
+
+            $rootScope.updateMandatoryNotices = function () {
+                var documentTargetGroupsMandatoryIdList = [];
+                var documentMandatoryNoticesIdList = [];
+
+                for(var i = 0; i < $scope.document.targetGroups.length; i++){
+                    documentTargetGroupsMandatoryIdList.push($scope.document.targetGroups[i].mandatoryId);
+                }
+
+                for(var j = 0; j < $scope.document.mandatoryNotices.length; j++){
+                    documentMandatoryNoticesIdList.push($scope.document.mandatoryNotices[j].mandatoryId);
+                }
+
+                console.log(removeDuplicates(documentTargetGroupsMandatoryIdList));
+                console.log(removeDuplicates(documentMandatoryNoticesIdList));
+                for (var q = 0; q < removeDuplicates(documentTargetGroupsMandatoryIdList).length; q++){
+                    if (removeDuplicates(documentTargetGroupsMandatoryIdList).indexOf(removeDuplicates(documentMandatoryNoticesIdList)[q]) < 0){
+                        console.log(removeDuplicates(documentTargetGroupsMandatoryIdList)[q]);
+                        $scope.document.mandatoryNotices.push({"mandatoryId": removeDuplicates(documentTargetGroupsMandatoryIdList)[q],
+                                                               "notice": ""});
+                    }
+                }
+
+
+                /*for (var i = 0; i < $scope.document.targetGroups.length; i++){
+                    console.log($scope.document.targetGroups[i].mandatoryId);
+                    console.log($scope.document.mandatoryNotices);
+                    console.log(!$scope.document.targetGroups[i].mandatoryId in $scope.document.mandatoryNotices);
+                    for (var j = 0; j < $scope.document.mandatoryNotices.length; j++){
+                        if($scope.document.targetGroups[i].mandatoryId != $scope.document.mandatoryNotices[j].mandatoryId){
+                            var tempMandatoryNotice = {
+                                "mandatoryId": $scope.document.targetGroups[i].mandatoryId,
+                                "notice": ""
+                            };
+                            $scope.document.mandatoryNotices.push(tempMandatoryNotice);
+                            console.log(tempMandatoryNotice + " pushed");
+                        }
+                    }
+                    if(!$scope.document.targetGroups[i].mandatoryId in $scope.document.mandatoryNotices){
+                        var tempMandatoryNotice = {
+                            "mandatoryId": $scope.targetGroups[i].mandatoryId,
+                            "notice": ""
+                        };
+                        $scope.document.mandatoryNotices.push(tempMandatoryNotice);
+                        console.log(tempMandatoryNotice + " pushed");
+                    }
+                }*/
+            };
+
             // Submit function used both create new documents and save changes to existing ones
             $scope.submit = function(form){
                 $rootScope.clearSearchFilterText();

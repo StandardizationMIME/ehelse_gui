@@ -34,7 +34,7 @@
 
                         <!-- MANDATORY -->
                         <td class="target-group-info">
-                            <select class="form-control" name="targetGroups" id="mandatory" ng-model="group.mandatoryId" required>
+                            <select class="form-control" name="targetGroups" id="mandatory" ng-model="group.mandatoryId" ng-change="updateMandatoryNotices()" required>
                                 <option value="" selected>Ingen</option>
                                 <option ng-repeat="mandatory in mandatory_list" ng-hide="mandatory.isArchived" value={{mandatory.id}}>{{mandatory.name}}</option>
                             </select>
@@ -72,6 +72,7 @@
             
             <!-- Additional fields -->
                 <div class="">
+                    <!-- Additional fields for mandatory target groups -->
                     <div class="form-group" ng-show="hasMandatoryTargetGroup()">
 
                         <label for="targetGroupHjemmel" class="col-sm-2 control-label"> Hjemmel: </label>
@@ -89,6 +90,16 @@
                         <div class="form-group col-sm-10">
                             <input type="text" id="targetGroupReplacedBy" class="form-control" ng-model="document.replacedBy">
                         </div>
+                    </div>
+
+                    <!-- Additional fields for optional target groups -->
+                    <div class="form-group" ng-repeat="mandatoryNotice in document.mandatoryNotices">
+
+                        <label class="col-sm-2">Merknad til {{getMandatoryNameById(mandatoryNotice.mandatoryId)}} gruppe </label>
+                        <div class="form-group col-sm-10">
+                            <input type="text" class="form-control" ng-model="mandatoryNotice.notice">
+                        </div>
+
                     </div>
                 </div>
         </div>
