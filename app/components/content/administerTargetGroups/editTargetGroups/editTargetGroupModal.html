@@ -36,7 +36,7 @@
 
                             <!-- List of possible target group parents -->
                             <option value="" selected>Ingen</option>
-                            <option ng-repeat="tuple in TGTuples" value="{{tuple.id}}" ng-hide="editGroup.id == tuple.id">{{tuple.name}}</option>
+                            <option ng-repeat="tuple in TGTuples" value="{{tuple.id}}" ng-hide="editGroup.id == tuple.id">{{tuple.name}} {{tuple.abbreviation}}</option>
                         </select>
                     </div>
 
