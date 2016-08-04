@@ -135,6 +135,21 @@
                     </div>
                 </div>
 
+                <!-- choose contact address -->
+                <div class="form-group">
+                    <label class="col-sm-3 control-label" for="contactAddressId">
+                        Kontaktadresse:
+                    </label>
+                    <div class="form-group col-sm-9">
+                        <select name="contactAddressId" id="contactAddressId" ng-model="document.contactAddressId" class="form-control half-width">
+                            <option value="" selected>Ingen</option>
+                            <option ng-repeat="address in contact_address_list" ng-hide="address.isArchived" value={{address.id}}>
+                                {{address.name}}
+                            </option>
+                        </select>
+                    </div>
+                </div>
+
                 <!-- choose sequence-->
                 <div class="form-group">
                     <label class="col-sm-3 control-label" for="sequence">Rekkefølge: </label>
@@ -175,6 +190,9 @@
 
         <!-- Choose target groups -->
         <document-target-groups></document-target-groups>
+
+        <!-- Choose headings -->
+        <document-headings></document-headings>
 
         <!-- Choose document link categories + links -->
         <document-link-categories></document-link-categories>

@@ -1,0 +1,41 @@
+<div class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form ng-controller="AddEditContactAddressController" name="editContactAddressForm" role="form" method="post">
+
+                <!-- Modal title -->
+                <div class="modal-header">
+                    <h3>Endre kontaktadresse</h3>
+                </div>
+
+                <!-- ContactAddress input fields -->
+                <div class="modal-body">
+
+                    <!-- ContactAddress title -->
+                    <div class="form-group">
+                        <label for="editContactAddressName">E-postadresse: </label><span class="required-icon" data-toggle="tooltip" title="Obligatorisk felt" data-placement="top">*</span>
+                        <input id="editContactAddressName" focus-me="shouldBeOpen" ng-model="currentContactAddress.name" type="text" class="form-control" required/>
+                    </div>
+
+                    <!-- Description -->
+                    <div class="form-group">
+                        <label for="editContactAddressDescription">Beskrivelse: </label>
+                        <textarea id="editContactAddressDescription" ng-model="currentContactAddress.description" class="form-control"></textarea>
+                    </div>
+                </div>
+
+                <!-- Modal footer -->
+                <div class="modal-footer">
+                    <div class="form-actions">
+
+                        <!-- Save changes and close modal -->
+                        <button ng-click="submitContactAddressChange(currentContactAddress)" data-dismiss="modal" type="submit" ng-disabled="editContactAddressForm.$invalid" class="btn btn-primary">Lagre</button>
+
+                        <!-- Cancel changes and close modal -->
+                        <button type="button" data-dismiss="modal" class="btn btn-default pull-right">Avbryt</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

@@ -1,8 +1,8 @@
 "use strict";
 
 angular.module("ehelseEditor").controller("UploadFileController",
-    ["$state", "$scope", "$rootScope", "FileUpload", "StorageHandler", "Action", "Document", "DocumentField", "DocumentType", "LinkCategory", "Mandatory", "Status", "TargetGroup", "Topic",
-        function($state, $scope, $rootScope, FileUpload, StorageHandler, Action, Document, DocumentField, DocumentType, LinkCategory, Mandatory, Status, TargetGroup, Topic){
+    ["$state", "$scope", "$rootScope", "FileUpload", "StorageHandler", "Action", "Document", "DocumentField", "DocumentType", "LinkCategory", "Mandatory", "Status", "TargetGroup", "Topic", "ContactAddress", "Heading",
+        function($state, $scope, $rootScope, FileUpload, StorageHandler, Action, Document, DocumentField, DocumentType, LinkCategory, Mandatory, Status, TargetGroup, Topic, ContactAddress, Heading){
 
     $scope.$state = $state;
 
@@ -22,6 +22,8 @@ angular.module("ehelseEditor").controller("UploadFileController",
         LinkCategory.clear();
         Mandatory.clear();
         Status.clear();
+        ContactAddress.clear();
+        Heading.clear();
         TargetGroup.clear();
         Topic.clear();
         $rootScope.deselectTopicAndDocument();
@@ -37,6 +39,8 @@ angular.module("ehelseEditor").controller("UploadFileController",
         LinkCategory.init();
         Mandatory.init();
         Status.init();
+        ContactAddress.init();
+        Heading.init();
         TargetGroup.init();
         Topic.init();
     };
