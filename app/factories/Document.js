@@ -25,6 +25,7 @@ angular.module("ehelseEditor").factory("Document", ["$rootScope", "DocumentField
             hisNumber: null,
             hjemmel: null,
             decidedBy: null,
+            replacedBy: null,
             profiles: [],
             links: [],
             fields: [],
@@ -55,6 +56,7 @@ angular.module("ehelseEditor").factory("Document", ["$rootScope", "DocumentField
             hisNumber: null,
             hjemmel: null,
             decidedBy: null,
+            replacedBy: null,
             profiles: [],
             populatedProfiles: [],
             links: [],
@@ -546,6 +548,7 @@ angular.module("ehelseEditor").factory("Document", ["$rootScope", "DocumentField
             a.createdTimestamp = b.createdTimestamp;
             a.hjemmel = b.hjemmel;
             a.decidedBy = b.decidedBy;
+            a.replacedBy = b.replacedBy;
         }else{
             console.log("Invalid input");
             console.log("Input a = " + a);
