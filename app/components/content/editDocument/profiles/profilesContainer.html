@@ -1,42 +1,37 @@
-<div class="container-fluid profile-bar" ng-if="documentState == 'editDocument' || documentState == 'editProfile' || documentState == 'newProfile'">
+<div ng-if="documentState == 'editDocument' || documentState == 'editProfile' || documentState == 'newProfile'">
 
-    <!-- Container for displaying profiles related to selected standard -->
-    <ul class="profiles-container">
 
-        <!--new profile-->
-        <li class="new-profile-container" ng-if="documentState == 'editDocument'">
-            <div class="new-profile-button" ng-click="setDocumentState('newProfile');newProfile(document.id);resetDocumentScroll()">
-                <div class="new-profile-icon">
-                    <span class="fa fa-plus-circle fa-2x"> </span>
+
+    <div class="form-group profiles-container">
+        <div class="form-group col-sm-2 new-profile-container profile-clickable" ng-if="documentState == 'editDocument'"
+             ng-click="setDocumentState('newProfile');newProfile(document.id);resetDocumentScroll()">
+            <div class="text-align-center">
+                <i class="fa fa-2x fa-plus-circle icon-size-medium"></i>
+            </div>
+            <div class="text-align-center black-color">Opprett Ny profil</div>
+        </div>
+
+        <div class="form-group col-sm-2 back-to-standard profile-clickable"
+             ng-if="(documentState == 'editProfile' || documentState == 'newProfile') && document_dict[document.standardId]"
+             ng-click="setDocumentState('editDocument'); openDocumentById(document.standardId);toggleSelectedTopic();resetDocumentScroll()">
+            <div class="text-align-center">
+                <i class="fa fa-2x fa-arrow-circle-left blue-color icon-size-big"></i>
+            </div>
+        </div>
+
+        <div class="form-group col-sm-10 profile-list">
+            <div class="profile-container" ng-repeat="profile in document.populatedProfiles" ng-if="profile"
+                 ng-class="profile.id == document.id ? 'selected-profile' : ''"
+                 ng-click="setDocumentState('editProfile');openDocument(profile);toggleSelectedTopic();resetDocumentScroll()">
+
+                <div ng-class="document.id == profile.id ? 'selected-profile-icon' : ''"
+                     data-toggle="tooltip" title="{{profile.title}}" data-placement="top" class="text-align-center red-color profile-clickable">
+                    <i ng-class="profile.id == document.id ? 'selected-profile-icon' : ''" class="fa fa-2x fa-file-text"></i>
                 </div>
-                <div class="new-profile-text">
-                    Opprett ny profil
+                <div class="profile-text">
+                    {{profile.title}}
                 </div>
             </div>
-        </li>
-
-
-        <!--return to document-->
-        <li class="new-profile-container" ng-if="(documentState == 'editProfile' || documentState == 'newProfile') && document_dict[document.standardId]">
-            <div ng-click="setDocumentState('editDocument'); openDocumentById(document.standardId);toggleSelectedTopic();resetDocumentScroll()">
-                <div class="return-to-document-icon">
-                    <span class="fa fa-arrow-circle-left"></span>
-                </div>
-            </div>
-        </li>
-
-        <!-- List of all profiles related to selected standard -->
-        <li ng-repeat="profile in document.populatedProfiles" ng-if="profile" class="profile-container profile{{profile.id}}"
-            ng-class="profile.id == document.id ? 'selected-profile' : '' || document.id == current_document.id ? 'selected-profile' : ''"
-            ng-click="setDocumentState('editProfile');openDocument(profile);toggleSelectedTopic();resetDocumentScroll()">
-            <div class="profile-icon profile-icon{{profile.id}}" ng-class="document.id == profile.id ? 'selected-profile-icon' : ''"
-                 data-toggle="tooltip" title="{{profile.title}}" data-placement="top">
-                <span class="fa fa-file-text"></span>
-            </div>
-            <div class="profile-text">
-                {{profile.title}}
-            </div>
-        </li>
-    </ul>
-
+        </div>
+    </div>
 </div>
