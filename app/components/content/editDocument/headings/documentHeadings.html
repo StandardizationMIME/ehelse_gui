@@ -12,7 +12,7 @@
                 <div class="panel panel-default link-group-panel">
                     <div class="panel-heading">
                         <h3 class="panel-title">{{headings_dict[heading.id].name}}
-                            <span class="fa fa-remove delete-topic-icon clickable pull-right" ng-click="removeHeading(heading.id); EditDocumentController.DocumentForm.$setDirty()"></span>
+                            <span class="fa fa-remove delete-topic-icon clickable pull-right" ng-click="openConfirmationModal('Er du sikker på at du vil slette avsnittet fra dokumentet?', heading.id, removeHeading); EditDocumentController.DocumentForm.$setDirty()"></span>
                         </h3>
                     </div>
                     <div class="panel-body">
@@ -22,7 +22,8 @@
                     </div>
                 </div>
             </div>
-            <!-- Open modal for adding link categories to document -->
+            <!-- Open modal for adding headings
+             to document -->
             <button type="button" class="btn btn-default"
                     ng-click="openModal('app/components/content/editDocument/headings/addDocumentHeadingsModal.html', 'AddDocumentHeadingsController')">
                 <span class="fa fa-plus-circle plus-icon"></span>

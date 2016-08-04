@@ -60,7 +60,7 @@
 
                         <!-- Delete target group from document -->
                         <td>
-                            <span class="fa fa-remove delete-target-group-icon clickable" ng-click="removeTargetGroup(group); EditDocumentController.DocumentForm.$setDirty()"></span>
+                            <span class="fa fa-remove delete-target-group-icon clickable" ng-click="openConfirmationModal('Er du sikker på at du vil slette målgruppen fra dokumentet?', group, removeTargetGroup); EditDocumentController.DocumentForm.$setDirty()"></span>
                         </td>
                     </tr>
 
