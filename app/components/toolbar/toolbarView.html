@@ -28,15 +28,14 @@
                     </button>
                     <ul class="dropdown-menu">
                         <li><a href="" ng-click="openAdministerFields()">Felter</a></li>
-                        <li><a href="" ng-click="openTargetGroups()">Målgrupper</a></li>
                         <li><a href="" ng-click="openAdministerActions()">Handlinger</a></li>
-                        <li><a href="" ng-click="openAdministerStatus()">Statuser</a></li>
-                        <li><a href="" ng-click="openAdministerLinkCategories()">Link-kategorier</a></li>
+                        <li><a href="" ng-click="openAdministerContactAddresses()">Kontaktadresser</a></li>
+                        <li><a href="" ng-click="openAdministerLinkCategories()">Lenke-kategorier</a></li>
+                        <li><a href="" ng-click="openTargetGroups()">Målgrupper</a></li>
                         <li><a href="" ng-click="openAdministerMandatory()">Obligatoriskhetheter</a></li>
                         <li><a href="" ng-click="openAdministerHeadings()">Overskrifter</a></li>
-                        <li><a href="" ng-click="openAdministerContactAddresses()">Kontaktadresser</a></li>
+                        <li><a href="" ng-click="openAdministerStatus()">Statuser</a></li>
                         <li role="separator" class="divider"></li>
-                        <!--<li><a href="" ng-click="openCSVImportModal()">Importer fra .csv</a></li>-->
                         <li>
                             <a href="" ng-click="clearEverything();csvLinkClick()">Importer fra .csv</a>
                             <input id="upload" type="file" style="display: none" on-read-file="showCSVContent($fileContent)">
