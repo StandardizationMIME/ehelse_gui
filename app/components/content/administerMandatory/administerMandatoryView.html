@@ -40,32 +40,32 @@
 
             <!-- Active Table body -->
             <tbody ng-show="archivedMandatoryButton">
-                <tr ng-repeat="mandatory in mandatories" ng-hide="mandatory.isArchived">
+                <tr ng-repeat="mandatory in mandatories | orderBy:'id'" ng-hide="mandatory.isArchived">
 
                     <!-- Mandatory value info -->
                     <td>{{mandatory.name}}</td>
                     <td>{{mandatory.description}}</td>
 
-                    <!-- Edit status -->
+                    <!-- Edit mandatory -->
                     <td><span class="fa fa-pencil-square-o fa-2x vcenter clickable" ng-click="openEditMandatoryModal(mandatory.id)"></span></td>
 
-                    <!-- Archive status -->
-                    <td><span class="fa fa-archive fa-2x vcenter clickable" ng-click="openConfirmationModal('Er du sikker på at du vil arkivere?', mandatory, deleteMandatory)"></span></td>
+                    <!-- Archive mandatory -->
+                    <td><span class="fa fa-archive fa-2x vcenter clickable" ng-click="openConfirmationModal('Er du sikker på at du vil arkivere?', mandatory, deleteMandatory)" ng-if="mandatory.id != 1 && mandatory.id != 2"></span></td>
                 </tr>
             </tbody>
 
             <!-- Archived Table body -->
             <tbody ng-show="!archivedMandatoryButton">
-                <tr ng-repeat="mandatory in mandatories" ng-hide="!mandatory.isArchived">
+                <tr ng-repeat="mandatory in mandatories | orderBy:'id'" ng-hide="!mandatory.isArchived">
 
                     <!-- Mandatory value info -->
                     <td>{{mandatory.name}}</td>
                     <td>{{mandatory.description}}</td>
 
-                    <!-- Edit status -->
+                    <!-- Edit mandatory -->
                     <td></td>
 
-                    <!-- Recover status -->
+                    <!-- Recover mandatory -->
                     <td><span class="fa fa-undo fa-2x vcenter clickable" ng-click="openConfirmationModal('Er du sikker på at du vil gjenopprette?', mandatory, recoverMandatory)"></span></td>
                 </tr>
             </tbody>
