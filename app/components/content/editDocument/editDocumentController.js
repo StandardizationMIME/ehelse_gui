@@ -29,6 +29,7 @@ angular.module("ehelseEditor").controller("EditDocumentController",
 
 
             $scope.hasMandatoryTargetGroup = function () {
+                $rootScope.updateMandatoryNotices();
                 for (var documentTargetGroupIndex = 0; documentTargetGroupIndex < $scope.document.targetGroups.length; documentTargetGroupIndex++){
                     if ($scope.document.targetGroups[documentTargetGroupIndex].mandatoryId == 1){
                         return true;
@@ -79,6 +80,9 @@ angular.module("ehelseEditor").controller("EditDocumentController",
                     documentTargetGroupsMandatoryIdList.push($scope.document.targetGroups[i].mandatoryId);
                 }
 
+                if (!$scope.document.mandatoryNotices){
+                    $scope.document.mandatoryNotices = [];
+                }
                 for(var j = 0; j < $scope.document.mandatoryNotices.length; j++){
                     documentMandatoryNoticesIdList.push($scope.document.mandatoryNotices[j].mandatoryId);
                 }
@@ -86,12 +90,8 @@ angular.module("ehelseEditor").controller("EditDocumentController",
                 var uniqueDocumentTargetGroupsMandatoryIdList = removeDuplicates(documentTargetGroupsMandatoryIdList);
                 var uniqueDocumentMandatoryNoticesIdList = removeDuplicates(documentMandatoryNoticesIdList);
 
-                console.log(uniqueDocumentTargetGroupsMandatoryIdList);
-                console.log(uniqueDocumentMandatoryNoticesIdList);
                 for (var q = 0; q < uniqueDocumentTargetGroupsMandatoryIdList.length; q++){
-                    console.log(uniqueDocumentMandatoryNoticesIdList.indexOf(uniqueDocumentTargetGroupsMandatoryIdList[q]));
                     if (!(uniqueDocumentMandatoryNoticesIdList.indexOf(uniqueDocumentTargetGroupsMandatoryIdList[q]) > -1)){
-                        console.log(uniqueDocumentTargetGroupsMandatoryIdList[q]);
                         $scope.document.mandatoryNotices.push({"mandatoryId": uniqueDocumentTargetGroupsMandatoryIdList[q],
                                                                "notice": ""});
                     }
@@ -102,55 +102,13 @@ angular.module("ehelseEditor").controller("EditDocumentController",
                     updatedDocumentMandatoryNoticesIdList.push($scope.document.mandatoryNotices[j].mandatoryId);
                 }
                 var uniqueUpdatedMandatoryNoticesIdList = removeDuplicates(updatedDocumentMandatoryNoticesIdList);
-                console.log(uniqueDocumentTargetGroupsMandatoryIdList);
-                console.log(uniqueUpdatedMandatoryNoticesIdList);
 
                 for(var p = 0; p < uniqueUpdatedMandatoryNoticesIdList.length; p++){
-                console.log(uniqueDocumentTargetGroupsMandatoryIdList.indexOf(uniqueUpdatedMandatoryNoticesIdList[p]));
                     if (!(uniqueDocumentTargetGroupsMandatoryIdList.indexOf(uniqueUpdatedMandatoryNoticesIdList[p]) > -1)){
-                        console.log("! not in tgMList");
                         var tempIndex = arrayObjectIndexOf($scope.document.mandatoryNotices,uniqueUpdatedMandatoryNoticesIdList[p],"mandatoryId");
-                        console.log("tempIndex: " + tempIndex);
                         $scope.document.mandatoryNotices.splice(tempIndex, 1);
                     }
-                    if (uniqueDocumentTargetGroupsMandatoryIdList.indexOf(uniqueUpdatedMandatoryNoticesIdList[p]) > -1){console.log("is in tgMList")};
-                    /*if (!uniqueDocumentTargetGroupsMandatoryIdList.indexOf(uniqueUpdatedMandatoryNoticesIdList[p]) > -1){
-                        var tempIndex = arrayObjectIndexOf($scope.document.mandatoryNotices,uniqueUpdatedMandatoryNoticesIdList[p],"mandatoryId");
-                        console.log(tempIndex);
-                        $scope.document.mandatoryNotices.splice(tempIndex, 1);
-                        /!*if(tempIndex > -1){
-                            console.log(uniqueUpdatedMandatoryNoticesIdList[p]);
-                            console.log(arrayObjectIndexOf($scope.document.mandatoryNotices,uniqueDocumentTargetGroupsMandatoryIdList[p],"mandatoryId"));
-                            $scope.document.mandatoryNotices.splice(tempIndex, 1);
-                        }*!/
-
-                    }*/
                 }
-
-
-                /*for (var i = 0; i < $scope.document.targetGroups.length; i++){
-                    console.log($scope.document.targetGroups[i].mandatoryId);
-                    console.log($scope.document.mandatoryNotices);
-                    console.log(!$scope.document.targetGroups[i].mandatoryId in $scope.document.mandatoryNotices);
-                    for (var j = 0; j < $scope.document.mandatoryNotices.length; j++){
-                        if($scope.document.targetGroups[i].mandatoryId != $scope.document.mandatoryNotices[j].mandatoryId){
-                            var tempMandatoryNotice = {
-                                "mandatoryId": $scope.document.targetGroups[i].mandatoryId,
-                                "notice": ""
-                            };
-                            $scope.document.mandatoryNotices.push(tempMandatoryNotice);
-                            console.log(tempMandatoryNotice + " pushed");
-                        }
-                    }
-                    if(!$scope.document.targetGroups[i].mandatoryId in $scope.document.mandatoryNotices){
-                        var tempMandatoryNotice = {
-                            "mandatoryId": $scope.targetGroups[i].mandatoryId,
-                            "notice": ""
-                        };
-                        $scope.document.mandatoryNotices.push(tempMandatoryNotice);
-                        console.log(tempMandatoryNotice + " pushed");
-                    }
-                }*/
             };
 
             // Submit function used both create new documents and save changes to existing ones

@@ -40,7 +40,29 @@ angular.module("ehelseEditor").factory("StorageHandler", ["$rootScope", "FileUpl
                 input_list.status = [];
             }
             if (!input_list.mandatory) {
-                input_list.mandatory = [];
+                input_list.mandatory = [{
+                    "id": "1",
+                    "name": "Obligatorisk",
+                    "description": ""
+                },{
+                    "id": "2",
+                    "name": "Anbefalt",
+                    "description": ""
+                }];
+            }else{
+                if (!hasMandatoryId(input_list.mandatory, 1)){
+                    input_list.mandatory.push({
+                        "id": "1",
+                        "name": "Obligatorisk",
+                        "description": ""
+                    })
+                }else if (!hasMandatoryId(input_list.mandatory,2)){
+                    input_list.mandatory.push({
+                        "id": "2",
+                        "name": "Anbefalt",
+                        "description": ""
+                    })
+                }
             }
             if (!input_list.actions) {
                 input_list.actions = [];
@@ -63,6 +85,15 @@ angular.module("ehelseEditor").factory("StorageHandler", ["$rootScope", "FileUpl
             if (!input_list.archivedDocuments) {
                 input_list.archivedDocuments = {};
             }
+        }
+
+        function hasMandatoryId(mandatoryList, checkId){
+            for (var i = 0; i < mandatoryList.length; i++){
+                if (mandatoryList[i].id == checkId){
+                    return true;
+                }
+            }
+            return false;
         }
 
         var SORT_ON_SEQUENCE = function (a, b) { // Constant for sequence sort (ascending)
