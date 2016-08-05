@@ -14,7 +14,7 @@
                 <form role="form">
 
                     <!-- List all document fields for selected document type, with a checkbox -->
-                    <div ng-if="document_fields_ids.indexOf(field.id) == -1" ng-hide="field.isArchived" class="form-group" ng-repeat="field in fields | orderBy: getSequence">
+                    <div ng-if="document_fields_ids.indexOf(field.id) == -1" ng-hide="field.isArchived" class="form-group" ng-repeat="field in fieldsDictToArray(fields)">
                         <input id={{field.id}} type="checkbox"  data-checklist-model="selected_document_fields_ids" data-checklist-value="field.id">
                         <label for={{field.id}}>{{field.name}}</label>
                     </div>

@@ -14,4 +14,15 @@ angular.module("ehelseEditor").controller("AddDocumentFieldsController",["$rootS
                 $scope.selected_document_fields_ids = Document.getCurrentDocumentFieldIds();
             }
         };
+
+        $scope.fieldsDictToArray = function(dict){
+            var array = [];
+            for (var key in dict) {
+                // skip loop if the property is from prototype
+                if (!dict.hasOwnProperty(key)) continue;
+
+                array.push(dict[key]);
+            }
+            return array;
+        }
 }]);
