@@ -41,7 +41,7 @@
 
             <!-- Active Table body -->
             <tbody ng-show="archivedLinkCategoriesButton">
-                <tr ng-repeat="linkCategory in linkCategory" ng-hide="linkCategory.isArchived">
+                <tr ng-repeat="linkCategory in linkCategory | orderBy:getSequence" ng-hide="linkCategory.isArchived">
 
                     <!-- Link category info -->
                     <td>{{linkCategory.name}}</td>
@@ -57,7 +57,7 @@
 
             <!-- Archived Table body -->
             <tbody ng-show="!archivedLinkCategoriesButton">
-            <tr ng-repeat="linkCategory in linkCategory" ng-hide="!linkCategory.isArchived">
+            <tr ng-repeat="linkCategory in linkCategory | orderBy:getSequence" ng-hide="!linkCategory.isArchived">
 
                 <!-- Link category info -->
                 <td>{{linkCategory.name}}</td>

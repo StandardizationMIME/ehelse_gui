@@ -11,10 +11,11 @@
             <table id="new-doc-fields" class="table shadow-below">
 
                 <!-- List the document's fields -->
-                <tr ng-repeat="field in document.fields | orderBy:getSequence">
+                <tr ng-repeat="field in document.fields | orderBy: getSequence">
 
                     <!-- Field name -->
                     <td class="col-md-4">
+                        <label>asd{{field}}</label>
                         <label for="documentField{{field.fieldId}}">{{fields_dict[field.fieldId].name}}
                         <span ng-if="fields_dict[field.fieldId].mandatory == 1" class="required-icon" data-toggle="tooltip" title=""
                               data-placement="top" data-original-title="Obligatorisk felt">*</span></label>

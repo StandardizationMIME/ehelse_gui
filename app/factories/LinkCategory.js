@@ -35,7 +35,8 @@ angular.module("ehelseEditor").factory("LinkCategory", ["$rootScope", "StorageHa
             id: null,
             name: "",
             description: "",
-            isArchived: 0
+            isArchived: 0,
+            sequence: ""
         }
     }
 
@@ -62,6 +63,7 @@ angular.module("ehelseEditor").factory("LinkCategory", ["$rootScope", "StorageHa
         a.name = b.name;
         a.description = b.description;
         a.isArchived = b.isArchived;
+        a.sequence = b.sequence;
     }
 
     /**

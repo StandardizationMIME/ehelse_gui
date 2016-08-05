@@ -39,7 +39,7 @@
 
             <!-- Active Heading Table body -->
             <tbody ng-show="archivedHeadingButton">
-            <tr ng-repeat="heading in headings" ng-hide="heading.isArchived">
+            <tr ng-repeat="heading in headings | orderBy:getSequence" ng-hide="heading.isArchived">
 
                 <!-- Heading info -->
                 <td>{{heading.name}}</td>
@@ -54,7 +54,7 @@
 
             <!-- Archived Heading Table body -->
             <tbody ng-show="!archivedHeadingButton">
-            <tr ng-repeat="heading in headings" ng-hide="!heading.isArchived">
+            <tr ng-repeat="heading in headings  | orderBy:getSequence" ng-hide="!heading.isArchived">
 
                 <!-- Heading info -->
                 <td>{{heading.name}}</td>

@@ -168,7 +168,8 @@ angular.module("ehelseEditor").factory("Document",
             function extendCurrentDocumentFieldsByFieldIds(field_ids) {
                 if (field_ids) {
                     for (var i = 0; i < field_ids.length; i++) {
-                        current_document.fields.push({fieldId: field_ids[i], value: ""});
+                        current_document.fields.push({fieldId: field_ids[i], value: "", sequence: DocumentField.getById(field_ids[i]).sequence});
+                        console.log(current_document);
                     }
                 } else {
                     console.log("Input = " + fields_ids + " and is invalid");
