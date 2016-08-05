@@ -130,6 +130,9 @@ angular.module("ehelseEditor").factory("Document",
 
             function addHeadingsToDocumentByIds(ids) {
                 if (ids) {
+                    if(!current_document.headingContent){
+                        current_document.headingContent = [];
+                    }
                     for (var i = 0; i < ids.length; i++) {
                         current_document.headingContent.push({headingId: ids[i], text: ""});
                         generateCurrentDocumentHeadingsAsHeadingList();

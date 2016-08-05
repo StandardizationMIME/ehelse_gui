@@ -3,7 +3,7 @@
 angular.module("ehelseEditor").controller("AdministerFieldsController", ["$scope", "$rootScope", "DocumentField", function ($scope, $rootScope, DocumentField) {
 
     // Save document field values to scope for easier access in the html files
-    $scope.documentFields = DocumentField.document_fields;
+    $scope.documentFields = DocumentField.getAll();
 
     // Set document type id. Used to alter between which type to create.
     $rootScope.setTypeId = function(number){
