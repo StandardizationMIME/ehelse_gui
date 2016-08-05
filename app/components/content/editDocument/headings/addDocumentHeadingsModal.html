@@ -1,0 +1,36 @@
+<div class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <!-- Modal title -->
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Overskrifter</h4>
+                <span>Velg en eller flere overskrifter</span>
+            </div>
+
+            <!-- Modal body -->
+            <div class="modal-body edit-document-modal">
+                <form role="form">
+
+                    <div ng-repeat="heading in all_headings" ng-hide="heading.isArchived || headingAlreadyIsAdded(heading.id)">
+                        <input id={{heading.id}} type="checkbox"  data-checklist-model="selected_headings_ids" data-checklist-value="heading.id">
+                        <label for={{heading.id}}>{{heading.name}}</label>
+                    </div>
+
+                </form>
+            </div>
+
+            <!-- Modal footer -->
+            <div class="modal-footer">
+
+                <!-- Save changes -->
+                <button type="button" ng-click="close('add')" class="btn btn-primary" data-dismiss="modal">Lagre</button>
+
+                <!-- Cancel changes -->
+                <button type="button" ng-click="close('cancel')" class="btn btn-default" data-dismiss="modal">Avbryt</button>
+            </div>
+
+        </div>
+    </div>
+</div>

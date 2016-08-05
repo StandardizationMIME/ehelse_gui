@@ -51,6 +51,12 @@ angular.module("ehelseEditor").factory("StorageHandler", ["$rootScope", "FileUpl
             if (!input_list.documentFields) {
                 input_list.documentFields = [];
             }
+            if (!input_list.headings) {
+                input_list.headings = [];
+            }
+            if (!input_list.contactAddresses) {
+                input_list.contactAddresses = [];
+            }
             if (!input_list.topics) {
                 input_list.topics = [];
             }
@@ -111,6 +117,13 @@ angular.module("ehelseEditor").factory("StorageHandler", ["$rootScope", "FileUpl
         }
 
         /**
+         * Returns headings
+         */
+        function getHeadings() {
+            return {"headings": input_list.headings};
+        }
+
+        /**
          * Returns status list
          * @returns {Array}
          */
@@ -131,6 +144,13 @@ angular.module("ehelseEditor").factory("StorageHandler", ["$rootScope", "FileUpl
          */
         function getTopics() {
             return {"topics": getTopicTree()};
+        }
+
+        /**
+         * Returns contact addresses
+         */
+        function getContactAddresses() {
+            return {"contactAddresses": input_list.contactAddresses};
         }
 
         /**
@@ -263,6 +283,7 @@ angular.module("ehelseEditor").factory("StorageHandler", ["$rootScope", "FileUpl
         return {
             init: init,
             initCsv: initCsv,
+            getHeadings: getHeadings,
             getActions: getActions,
             getDocuments: getDocuments,
             getDocumentFields: getDocumentFields,
@@ -270,6 +291,7 @@ angular.module("ehelseEditor").factory("StorageHandler", ["$rootScope", "FileUpl
             getLinkCategories: getLinkCategories,
             getStatus: getStatus,
             getMandatory: getMandatory,
+            getContactAddresses: getContactAddresses,
             getTopics: getTopics,
             getTargetGroups: getTargetGroups,
             getArchivedDocuments: getArchivedDocuments,

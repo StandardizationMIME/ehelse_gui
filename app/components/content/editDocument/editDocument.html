@@ -8,8 +8,8 @@
         <!-- Headline displaying document type or state -->
         <div class="headline-box">
             <h4 class="selected">{{document.title}}</h4>
-            <span ng-repeat="(key, errors) in EditDocumentController.DocumentForm.$error track by $index" class="feedback-msg">
-                <span>For å lagre dokument mangler du : </span>
+            <div ng-repeat="(key, errors) in EditDocumentController.DocumentForm.$error track by $index" class="feedback-msg">
+                <span>For å lagre dokumentet mangler du : </span>
                 <span ng-repeat="e in errors | unique: '$name'">
                     <span ng-if="e.$name == 'f'" class="feedback-msg">'Felter' </span>
                     <span ng-if="e.$name == 'standardTitle'" class="feedback-msg">'Tittel' </span>
@@ -18,7 +18,7 @@
                     <span ng-if="e.$name == 'targetGroups'" class="feedback-msg">'Målgrupper' </span>
                     <!--{{ e.$name }} has an error: <strong>{{ key }}</strong>.-->
                 </span>
-            </span>
+            </div>
         </div>
 
         <!-- All buttons used in the various document states and types -->
@@ -59,7 +59,7 @@
 
         </p>
     </div>
-    <div id="editDocument" class="{{documentState}} shadow-below">
+    <div id="editDocument" class="{{documentState}}">
         <!-- Buttons toggling between document versions -->
         <div class=" twelve-pix-vertical-padding" ng-if="document_dict[document.nextDocumentId] || document_dict[document.previousDocumentId]">
             <button type="button" class="btn btn-default" ng-disabled="document.nextDocumentId && !document.previousDocumentId" ng-click="openDocumentById(document.previousDocumentId)">
@@ -135,6 +135,21 @@
                     </div>
                 </div>
 
+                <!-- choose contact address -->
+                <div class="form-group">
+                    <label class="col-sm-3 control-label" for="contactAddressId">
+                        Kontaktadresse:
+                    </label>
+                    <div class="form-group col-sm-9">
+                        <select name="contactAddressId" id="contactAddressId" ng-model="document.contactAddressId" class="form-control half-width">
+                            <option value="" selected>Ingen</option>
+                            <option ng-repeat="address in contact_address_list" ng-hide="address.isArchived" value={{address.id}}>
+                                {{address.name}}
+                            </option>
+                        </select>
+                    </div>
+                </div>
+
                 <!-- choose sequence-->
                 <div class="form-group">
                     <label class="col-sm-3 control-label" for="sequence">Rekkefølge: </label>
@@ -175,6 +190,9 @@
 
         <!-- Choose target groups -->
         <document-target-groups></document-target-groups>
+
+        <!-- Choose headings -->
+        <document-headings></document-headings>
 
         <!-- Choose document link categories + links -->
         <document-link-categories></document-link-categories>

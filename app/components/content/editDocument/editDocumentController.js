@@ -2,8 +2,8 @@
 "use strict";
 
 angular.module("ehelseEditor").controller("EditDocumentController",
-    [ "$scope", "$http","$rootScope", "ModalService", "DocumentType", "TargetGroup", "Mandatory", "Action","Document", "DocumentField","LinkCategory", "Topic","Status", "DocumentExtractor", "FileUpload",
-        function( $scope, $http, $rootScope, ModalService, DocumentType, TargetGroup, Mandatory, Action, Document, DocumentField, LinkCategory, Topic, Status, DocumentExtractor, FileUpload) {
+    [ "$scope", "$http","$rootScope", "ModalService", "DocumentType", "TargetGroup", "Mandatory", "Action","Document", "DocumentField","LinkCategory", "Topic","Status", "DocumentExtractor", "FileUpload", "ContactAddress", "Heading",
+        function( $scope, $http, $rootScope, ModalService, DocumentType, TargetGroup, Mandatory, Action, Document, DocumentField, LinkCategory, Topic, Status, DocumentExtractor, FileUpload, ContactAddress, Heading) {
 
            // Save document values to scope so they can be easily accessed in the html files
             $scope.document_types_option_list = DocumentType.getDocumentTypesOptionList();
@@ -13,15 +13,20 @@ angular.module("ehelseEditor").controller("EditDocumentController",
             $scope.fields_dict = DocumentField.getDocumentFieldsDict();
             $scope.document = Document.getCurrentDocument();
             $scope.setCurrentDocumentFieldsByDocumentDocumentTypeId = Document.setCurrentDocumentFieldsByDocumentDocumentTypeId;
-            $scope.linkCategories = Document.getCurrentDocumentLinksAsLinkCategoryList();
             $scope.topicTupleList = Topic.getAllAsOptionsList();
             $scope.removeTargetGroup = Document.removeCurrentDocumentTargetGroup;
             $scope.removeField = Document.removeCurrentDocumentField;
             $scope.removeLink = Document.removeCurrentDocumentLink;
-            $scope.linkCategoriesDict = LinkCategory.getAllAsDict();
             $scope.removeLinkCategory = Document.removeCurrentDocumentLinksByCategoryId;
+            $scope.removeHeading = Document.removeCurrentDocumentHeadingContentByHeadingId;
             $scope.document_dict = Document.getAllAsDict();
             $scope.status_list = Status.getAll();
+            $scope.contact_address_list = ContactAddress.getAll();
+            $scope.headings = Document.getCurrentDocumentHeadingsAsList();
+            $scope.linkCategories = Document.getCurrentDocumentLinksAsLinkCategoryList();
+            $scope.headings_dict = Heading.getAllAsDict();
+            $scope.linkCategoriesDict = LinkCategory.getAllAsDict();
+
 
             $scope.hasMandatoryTargetGroup = function () {
                 for (var documentTargetGroupIndex = 0; documentTargetGroupIndex < $scope.document.targetGroups.length; documentTargetGroupIndex++){

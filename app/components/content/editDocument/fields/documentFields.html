@@ -29,7 +29,7 @@
                     <!-- Delete field -->
                     <td class="col-md-1 center-align-text">
                         <span ng-if="fields_dict[field.fieldId].mandatory == 0" class="fa fa-remove delete-document-field-icon clickable"
-                          ng-click="removeField(field); EditDocumentController.DocumentForm.$setDirty()"></span>
+                          ng-click="openConfirmationModal('Er du sikker på at du vil slette feltet fra dokumentet?', field, removeField); EditDocumentController.DocumentForm.$setDirty()"></span>
                     </td>
                 </tr>
             </table>

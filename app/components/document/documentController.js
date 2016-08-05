@@ -36,13 +36,13 @@ angular.module("ehelseEditor").controller("DocumentController", [ "$scope","$roo
     // Check and update the value of documentState
     $rootScope.checkDocumentState = function(document){
         if(document){
-            if(document.documentTypeId == 1){
+            if(document.documentTypeId == "1"){
                 $rootScope.setDocumentState("editDocument");
             }
-            else if(document.documentTypeId == 2) {
+            else if(document.documentTypeId == "2") {
                 $rootScope.setDocumentState("editProfile");
             }
-            else if(document.documentTypeId == 3){
+            else if(document.documentTypeId == "3"){
                 $rootScope.setDocumentState("editUtility");
             }
             else {

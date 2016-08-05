@@ -1,3 +1,8 @@
+
+$(document).ready(function() {
+    $("body").tooltip({ selector: '[data-toggle=tooltip]' });
+});
+
 (function(){
 
     angular.module("ehelseEditor").run(["$state","$http", "$rootScope", "$cookies", "$location", "ModalService", function($state,$http, $rootScope, $cookies, $location, ModalService) {

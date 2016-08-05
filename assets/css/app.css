@@ -78,6 +78,12 @@ h1,h2,h3,h4{ font-weight: bold;}
 .shadow-below {
     box-shadow: 0 1px #b8b8b8;
 }
+.shadow-right {
+    box-shadow: 1px 0 #b8b8b8;
+}
+.shadow-left {
+    box-shadow: -1px 0 #b8b8b8;
+}
 #notification-message {
     width: 75%;
     margin:0 auto;
@@ -115,6 +121,9 @@ h1,h2,h3,h4{ font-weight: bold;}
 }
 .white-color {
     color: white;
+}
+.black-color {
+    color: #333;
 }
 .red-background {
     background-color: #c13a47;
@@ -265,34 +274,45 @@ textarea {
 .document-height {
     height: calc(100% - 225px);
 }
-.profile-bar {
-    -ms-transform: translate(-28px,0); /* IE 9 */
-    -webkit-transform: translate(-28px,0); /* Safari */
-    transform: translate(-28px,0);
-}
 .profiles-container {
-    box-shadow: -3px -3px 2px -2px #b8b8b8;
-    height: 112px;
-    width: 105%;
-    display: block;
-    white-space: nowrap;
-    overflow-x: auto;
-    overflow-y: hidden;
-    padding-left: 12px;
+    height: 107px;
+    width: 95.47%;
+    display: inline-block;
+    box-shadow: 0 -2px #b8b8b8;
+    position: absolute;
+    z-index: 1000;
+}
+.profile-clickable:hover {
+    cursor: pointer;
+    color: #e4525a;
+}
+
+.selected-profile {
+    font-weight: bolder;
+    color: #e7e7e7;
+    background-color: #c13a47;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    border-radius: 2px;
+}
+.selected-profile-icon:hover {
+    color: #dddadb;
 }
 .profile-container {
-    padding-top: 20px;
-    margin-left: 6px;
-    margin-right: 6px;
-    padding-bottom: 20px;
-    width: 85px;
-    display: inline-block;
-    cursor: pointer;
+    padding-top: 30px;
+    width: 83px;
+    display: inline-block
 }
-.profile-icon {
+.new-profile-container {
+    height: 100%;
+    padding-top: 25px;
     color: #c13a47;
-    font-size: 2.3em;
-    text-align: center;
+}
+.new-profile-container:hover {
+    background-color: #eeebec;
+}
+.back-to-standard:hover {
+    background-color: #eeebec;
 }
 .profile-text {
     text-align: center;
@@ -301,52 +321,25 @@ textarea {
     text-overflow: ellipsis;      /* IE, Safari (WebKit) */
     overflow: hidden;
     white-space: nowrap;
-    width: 85px;
+    width: 80px;
 }
-.new-profile-text{
-    text-align: center;
-    font-size: 11px;
-    width: 100px;
-}
-.new-profile-icon {
-    margin-top: 10px;
-    color: #c13a47;
-    font-size: 1.5em;
-    text-align: center;
-}
-.return-to-document-icon {
-    padding-top: 10px;
-    color: #337ab7;
+.icon-size-big {
     font-size: 3.5em;
-    text-align: center;
-    width: 100px;
-    cursor: pointer;
 }
-.new-profile-container {
-    padding-top: 10px;
-    padding-bottom: 10px;
-    margin-left: 5px;
-    margin-right: 5px;
-    display: inline-block;
+.icon-size-medium {
+    font-size: 2.5em;
 }
-.new-profile-button {
-    height: 85px;
-    border: 1px dashed #d5d5d5;
-    border-radius: 15px;
-    background-color: white;
+.back-to-standard {
+    height: 100%;
+    padding-top: 30px
 }
-.new-profile-button:hover {
-    background-color: #ffe1e1;
-    cursor: pointer;
-    padding-bottom: 20px;
-}
-.selected-profile {
-    font-weight: bolder;
-    color: #e7e7e7;
-    background-color: #c13a47;
-    padding-top: 20px;
-    padding-bottom: 20px;
-    border-radius: 2px;
+.profile-list {
+    height: 100%;
+    overflow-x: auto;
+    overflow-y: hidden;
+    white-space: nowrap;
+    padding-left: 0;
+    padding-right: 0
 }
 .selected-profile-icon {
     color: white;
@@ -618,6 +611,9 @@ a.sortable-columns{
     text-align: center;
     display: table-cell;
     vertical-align: middle;
+}
+.text-align-center{
+    text-align: center;
 }
 .pointer{cursor: pointer;}
 .standard-list {
