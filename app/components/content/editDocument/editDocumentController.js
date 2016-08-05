@@ -28,9 +28,138 @@ angular.module("ehelseEditor").controller("EditDocumentController",
             $scope.linkCategoriesDict = LinkCategory.getAllAsDict();
 
 
+            $scope.hasMandatoryTargetGroup = function () {
+                for (var documentTargetGroupIndex = 0; documentTargetGroupIndex < $scope.document.targetGroups.length; documentTargetGroupIndex++){
+                    if ($scope.document.targetGroups[documentTargetGroupIndex].mandatoryId == 1){
+                        return true;
+                    }
+                }
+                return false;
+            };
+
+            $scope.disableTargetGroupDecidedBy = function () {
+                $rootScope.additionalFieldForMandatoryGroupsSelected = false;
+                $scope.document.decidedBy = null;
+            };
+            $scope.disableTargetGroupHjemmel = function () {
+                $rootScope.additionalFieldForMandatoryGroupsSelected = true;
+                $scope.document.hjemmel = null;
+            };
+
+            $scope.getMandatoryNameById = function (mandatoryId) {
+                for (var i = 0; i < $scope.mandatory_list.length; i++){
+                    if ($scope.mandatory_list[i].id == mandatoryId){
+                        return $scope.mandatory_list[i].name.toLowerCase();
+                    }
+                }
+            };
+
+            function removeDuplicates(arr) {
+                var tmp = [];
+                for(var i = 0; i < arr.length; i++){
+                    if(tmp.indexOf(arr[i]) == -1){
+                        tmp.push(arr[i]);
+                    }
+                }
+                return tmp;
+            }
+
+            function arrayObjectIndexOf(myArray, searchTerm, property) {
+                for(var i = 0, len = myArray.length; i < len; i++) {
+                    if (myArray[i][property] === searchTerm) return i;
+                }
+                return -1;
+            }
+
+            $rootScope.updateMandatoryNotices = function () {
+                var documentTargetGroupsMandatoryIdList = [];
+                var documentMandatoryNoticesIdList = [];
+
+                for(var i = 0; i < $scope.document.targetGroups.length; i++){
+                    documentTargetGroupsMandatoryIdList.push($scope.document.targetGroups[i].mandatoryId);
+                }
+
+                for(var j = 0; j < $scope.document.mandatoryNotices.length; j++){
+                    documentMandatoryNoticesIdList.push($scope.document.mandatoryNotices[j].mandatoryId);
+                }
+
+                var uniqueDocumentTargetGroupsMandatoryIdList = removeDuplicates(documentTargetGroupsMandatoryIdList);
+                var uniqueDocumentMandatoryNoticesIdList = removeDuplicates(documentMandatoryNoticesIdList);
+
+                console.log(uniqueDocumentTargetGroupsMandatoryIdList);
+                console.log(uniqueDocumentMandatoryNoticesIdList);
+                for (var q = 0; q < uniqueDocumentTargetGroupsMandatoryIdList.length; q++){
+                    console.log(uniqueDocumentMandatoryNoticesIdList.indexOf(uniqueDocumentTargetGroupsMandatoryIdList[q]));
+                    if (!(uniqueDocumentMandatoryNoticesIdList.indexOf(uniqueDocumentTargetGroupsMandatoryIdList[q]) > -1)){
+                        console.log(uniqueDocumentTargetGroupsMandatoryIdList[q]);
+                        $scope.document.mandatoryNotices.push({"mandatoryId": uniqueDocumentTargetGroupsMandatoryIdList[q],
+                                                               "notice": ""});
+                    }
+                }
+
+                var updatedDocumentMandatoryNoticesIdList = [];
+                for(var j = 0; j < $scope.document.mandatoryNotices.length; j++){
+                    updatedDocumentMandatoryNoticesIdList.push($scope.document.mandatoryNotices[j].mandatoryId);
+                }
+                var uniqueUpdatedMandatoryNoticesIdList = removeDuplicates(updatedDocumentMandatoryNoticesIdList);
+                console.log(uniqueDocumentTargetGroupsMandatoryIdList);
+                console.log(uniqueUpdatedMandatoryNoticesIdList);
+
+                for(var p = 0; p < uniqueUpdatedMandatoryNoticesIdList.length; p++){
+                console.log(uniqueDocumentTargetGroupsMandatoryIdList.indexOf(uniqueUpdatedMandatoryNoticesIdList[p]));
+                    if (!(uniqueDocumentTargetGroupsMandatoryIdList.indexOf(uniqueUpdatedMandatoryNoticesIdList[p]) > -1)){
+                        console.log("! not in tgMList");
+                        var tempIndex = arrayObjectIndexOf($scope.document.mandatoryNotices,uniqueUpdatedMandatoryNoticesIdList[p],"mandatoryId");
+                        console.log("tempIndex: " + tempIndex);
+                        $scope.document.mandatoryNotices.splice(tempIndex, 1);
+                    }
+                    if (uniqueDocumentTargetGroupsMandatoryIdList.indexOf(uniqueUpdatedMandatoryNoticesIdList[p]) > -1){console.log("is in tgMList")};
+                    /*if (!uniqueDocumentTargetGroupsMandatoryIdList.indexOf(uniqueUpdatedMandatoryNoticesIdList[p]) > -1){
+                        var tempIndex = arrayObjectIndexOf($scope.document.mandatoryNotices,uniqueUpdatedMandatoryNoticesIdList[p],"mandatoryId");
+                        console.log(tempIndex);
+                        $scope.document.mandatoryNotices.splice(tempIndex, 1);
+                        /!*if(tempIndex > -1){
+                            console.log(uniqueUpdatedMandatoryNoticesIdList[p]);
+                            console.log(arrayObjectIndexOf($scope.document.mandatoryNotices,uniqueDocumentTargetGroupsMandatoryIdList[p],"mandatoryId"));
+                            $scope.document.mandatoryNotices.splice(tempIndex, 1);
+                        }*!/
+
+                    }*/
+                }
+
+
+                /*for (var i = 0; i < $scope.document.targetGroups.length; i++){
+                    console.log($scope.document.targetGroups[i].mandatoryId);
+                    console.log($scope.document.mandatoryNotices);
+                    console.log(!$scope.document.targetGroups[i].mandatoryId in $scope.document.mandatoryNotices);
+                    for (var j = 0; j < $scope.document.mandatoryNotices.length; j++){
+                        if($scope.document.targetGroups[i].mandatoryId != $scope.document.mandatoryNotices[j].mandatoryId){
+                            var tempMandatoryNotice = {
+                                "mandatoryId": $scope.document.targetGroups[i].mandatoryId,
+                                "notice": ""
+                            };
+                            $scope.document.mandatoryNotices.push(tempMandatoryNotice);
+                            console.log(tempMandatoryNotice + " pushed");
+                        }
+                    }
+                    if(!$scope.document.targetGroups[i].mandatoryId in $scope.document.mandatoryNotices){
+                        var tempMandatoryNotice = {
+                            "mandatoryId": $scope.targetGroups[i].mandatoryId,
+                            "notice": ""
+                        };
+                        $scope.document.mandatoryNotices.push(tempMandatoryNotice);
+                        console.log(tempMandatoryNotice + " pushed");
+                    }
+                }*/
+            };
+
             // Submit function used both create new documents and save changes to existing ones
             $scope.submit = function(form){
                 $rootScope.clearSearchFilterText();
+                if(!$scope.hasMandatoryTargetGroup()){
+                    $scope.document.hjemmel = null;
+                    $scope.document.decidedBy = null;
+                }
                 Document.submitCurrentDocument();
                 form.$setPristine();
             };

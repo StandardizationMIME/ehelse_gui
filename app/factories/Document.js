@@ -26,6 +26,10 @@ angular.module("ehelseEditor").factory("Document",
                     nextDocumentId: null,
                     internalId: null,
                     hisNumber: null,
+                    hjemmel: null,
+                    decidedBy: null,
+                    replacedBy: null,
+                    mandatoryNotices: [],
                     headingContent: [],
                     profiles: [],
                     links: [],
@@ -56,6 +60,10 @@ angular.module("ehelseEditor").factory("Document",
                     nextDocumentId: null,
                     internalId: null,
                     hisNumber: null,
+                    hjemmel: null,
+                    decidedBy: null,
+                    replacedBy: null,
+                    mandatoryNotices: [],
                     headingContent: [],
                     profiles: [],
                     populatedProfiles: [],
@@ -464,9 +472,9 @@ angular.module("ehelseEditor").factory("Document",
                         }
                         deleteCurrentDocumentFromDocumentsList();
                         $rootScope.notifySuccess("Dokumentet ble slettet", 1000);
-                        if(doc.documentTypeId == "2"){
+                        if (doc.documentTypeId == "2") {
                             $rootScope.openDocument(getDocumentById(doc.standardId));
-                        }else{
+                        } else {
                             $rootScope.changeContentView("");
                         }
                     }
@@ -581,6 +589,10 @@ angular.module("ehelseEditor").factory("Document",
                     a.populatedProfiles = b.populatedProfiles || [];
                     a.editedTimestamp = b.editedTimestamp;
                     a.createdTimestamp = b.createdTimestamp;
+                    a.hjemmel = b.hjemmel;
+                    a.decidedBy = b.decidedBy;
+                    a.replacedBy = b.replacedBy;
+                    a.mandatoryNotices = ServiceFunction.deepCopy(b.mandatoryNotices);
                 } else {
                     console.log("Invalid input");
                     console.log("Input a = " + a);
@@ -623,7 +635,8 @@ angular.module("ehelseEditor").factory("Document",
 
             function setCurrentDocumentFieldsByDocumentDocumentTypeId() {
                 current_document.fields.length = 0;
-                extendCurrentDocumentFieldsByFieldIds(DocumentField.getRequiredDocumentFieldIdsByDocumentTypeId(current_document.documentTypeId))
+                extendCurrentDocumentFieldsByFieldIds(
+                    DocumentField.getRequiredDocumentFieldIdsByDocumentTypeId(current_document.documentTypeId))
             }
 
             function generateCurrentDocumentLinksAsLinkCategoryList() {

@@ -34,7 +34,7 @@
 
                         <!-- MANDATORY -->
                         <td class="target-group-info">
-                            <select class="form-control" name="targetGroups" id="mandatory" ng-model="group.mandatoryId" required>
+                            <select class="form-control" name="targetGroups" id="mandatory" ng-model="group.mandatoryId" ng-change="updateMandatoryNotices()" required>
                                 <option value="" selected>Ingen</option>
                                 <option ng-repeat="mandatory in mandatory_list" ng-hide="mandatory.isArchived" value={{mandatory.id}}>{{mandatory.name}}</option>
                             </select>
@@ -69,9 +69,61 @@
 
             <!-- Add new target group to document -->
             <button class="btn btn-default" type="button" ng-click="openModal('app/components/content/editDocument/targetGroups/addDocumentTargetGroupModal.html', 'AddDocumentTargetGroupModelController')"><span class="fa fa-plus-circle plus-icon"></span> Legg til ny</button>
+            
+            <!-- Additional fields -->
+                <div class="">
+                    <!-- Additional fields for mandatory target groups -->
+                    <div class="form-group" ng-show="hasMandatoryTargetGroup()">
+
+                        <label for="targetGroupHjemmel" class="col-sm-3 control-label"> Hjemmel: </label>
+                        <div class="form-group col-sm-8">
+                            <input type="text" id="targetGroupHjemmel" class="form-control" ng-model="document.hjemmel" ng-click="disableTargetGroupDecidedBy()" ng-readonly="additionalFieldForMandatoryGroupsSelected">
+                        </div>
+
+
+                        <label for="targetGroupDecidedBy" class="col-sm-3 control-label"> Besluttet av: </label>
+                        <div class="form-group col-sm-8">
+                            <input type="text" id="targetGroupDecidedBy" class="form-control" ng-model="document.decidedBy" ng-click="disableTargetGroupHjemmel()" ng-readonly="!additionalFieldForMandatoryGroupsSelected">
+                        </div>
+
+                        <label for="targetGroupReplacedBy" class="col-sm-3 control-label"> Erstattes av: </label>
+                        <div class="form-group col-sm-8">
+                            <input type="text" id="targetGroupReplacedBy" class="form-control" ng-model="document.replacedBy">
+                        </div>
+                    </div>
+
+                    <!-- Additional fields for optional target groups -->
+                    <div class="form-group" ng-repeat="mandatoryNotice in document.mandatoryNotices">
+
+                        <label class="col-sm-3">Merknad til {{getMandatoryNameById(mandatoryNotice.mandatoryId)}} gruppe: </label>
+                        <div class="form-group col-sm-8">
+                            <input type="text" class="form-control" ng-model="mandatoryNotice.notice">
+                        </div>
+
+                    </div>
+                </div>
         </div>
 
 
     </div>
 </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

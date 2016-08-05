@@ -218,11 +218,11 @@ textarea {
 }
 /* -------------------------------------------- CH4 DOCUMENT ----------------------------------------- */
 .document-fields-field-name{
-    width:25%;
+    width:60%;
     display: inline-block;
 }
 .document-fields-field-value{
-    width:60%;
+    width:35%;
     display: inline-block;
 }
 .document-fields-field-value input{
