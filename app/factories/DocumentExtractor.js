@@ -87,7 +87,7 @@ angular.module("ehelseEditor").factory("DocumentExtractor",
                 for (var x = 0; x < doc.targetGroups.length; x++) {
                     if(doc.targetGroups[x].mandatoryId == id){
                         var targetGroup = {};
-                        targetGroup["name"] = TargetGroup.getById(doc.targetGroups[x].targetGroupId);
+                        targetGroup["name"] = TargetGroup.getById(doc.targetGroups[x].targetGroupId).name;
                         targetGroup["deadline"] = doc.targetGroups[x].deadline;
                         targetGroup["description"] = doc.targetGroups[x].description;
                         if(doc.targetGroups[x].actionId){
