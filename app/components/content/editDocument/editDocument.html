@@ -35,7 +35,7 @@
                 <span class="fa fa-check-circle-o edit-topic-icon"></span>
                 Lagre dokument
             </button>
-            <button type="button" class="btn btn-default" ng-disabled="!((documentState == 'editProfile' || documentState == 'editDocument' || documentState == 'editUtility') && !document.nextDocumentId)" ng-click="newVersion(document)">
+            <button type="button" class="btn btn-default" ng-disabled="!((documentState == 'editProfile' || documentState == 'editDocument' || documentState == 'editUtility') && !document.nextDocumentId)" ng-click="checkEditDocumentForm(document, newVersion)">
                 <span class="fa fa-clone"></span>
                 Ny versjon
             </button>
@@ -62,11 +62,11 @@
     <div id="editDocument" class="{{documentState}}">
         <!-- Buttons toggling between document versions -->
         <div class=" twelve-pix-vertical-padding" ng-if="document_dict[document.nextDocumentId] || document_dict[document.previousDocumentId]">
-            <button type="button" class="btn btn-default" ng-disabled="document.nextDocumentId && !document.previousDocumentId" ng-click="openDocumentById(document.previousDocumentId)">
+            <button type="button" class="btn btn-default" ng-disabled="document.nextDocumentId && !document.previousDocumentId" ng-click="checkEditDocumentForm(document.previousDocumentId, openDocumentById)">
                 <span class="fa fa-arrow-circle-left"></span>
                 Tidligere versjon
             </button>
-            <button type="button" class="btn btn-default pull-right" ng-disabled="document.previousDocumentId && !document.nextDocumentId" ng-click="openDocumentById(document.nextDocumentId)">
+            <button type="button" class="btn btn-default pull-right" ng-disabled="document.previousDocumentId && !document.nextDocumentId" ng-click="checkEditDocumentForm(document.nextDocumentId, openDocumentById)">
                 Neste versjon
                 <span class="fa fa-arrow-circle-right"></span>
             </button>

@@ -153,6 +153,9 @@ angular.module("ehelseEditor").controller("DocumentController", ["$scope", "$roo
                 $rootScope.additionalFieldForMandatoryGroupsSelected = false;
             }
             $rootScope.changeContentView("document");
+            if($rootScope.childControllers["EditDocumentController"]){
+                $rootScope.childControllers["EditorController"].resetForm();
+            }
         }
     };
 
