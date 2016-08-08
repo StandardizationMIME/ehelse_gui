@@ -167,6 +167,48 @@ angular.module("ehelseEditor").factory("ServiceFunction", [function () {
         return clone;
     }
 
+    function orderListBySequence(list, getByIdMethod,type){
+        var temp_list = [];
+        for (var i = 0; i < list.length; i++) {
+            var temp_field = {};
+            if(type == "field"){
+                temp_field = getByIdMethod(list[i].fieldId);
+                temp_field["value"] = list[i].value;
+                console.log(temp_field);
+            }else if(type == "heading"){
+                temp_field = getByIdMethod(list[i].headingId);
+                temp_field["text"] = list[i].text;
+            }else if(type == "link"){
+                temp_field = getByIdMethod(list[i].linkCategoryId);
+                temp_field["text"] = list[i].text;
+                temp_field["url"] = list[i].url;
+            }
+            temp_list.push(temp_field);
+        }
+        console.log(temp_list);
+        temp_list.sort(compareSequence);
+
+        var output = [];
+        for (var x = 0; x < temp_list.length; x++) {
+            if(type == "field"){
+                output.push({fieldId: temp_list[x].id, value: temp_list[x].value});
+            }else if(type == "heading"){
+                output.push({headingId: temp_list[x].id, text: temp_list[x].text});
+            }else if(type == "link"){
+                output.push({linkCategoryId: temp_list[x].id, text: temp_list[x].text, url: temp_list[x].url})
+            }
+        }
+        return output;
+    }
+
+    function compareSequence(a,b) {
+        if (parseInt(a.sequence) < parseInt(b.sequence))
+            return -1;
+        if (parseInt(a.sequence) > parseInt(b.sequence))
+            return 1;
+        return 0;
+    }
+
     /**
      * Returns clone of array
      * @param array
@@ -231,6 +273,8 @@ angular.module("ehelseEditor").factory("ServiceFunction", [function () {
     }
 
     return {
+        orderListBySequence: orderListBySequence,
+        compareSequence: compareSequence,
         deepCopy: deepCopy,
         getTimestamp: getTimestamp,
         generateNewId: generateNewId,
