@@ -178,6 +178,9 @@ angular.module("ehelseEditor").controller("EditDocumentController",
                 Document.setCurrentDocument(Document.newVersion(document));
                 $rootScope.notifySuccess("Ny versjon klargjort", 3000);
                 $rootScope.setDocumentState('newDocument');
+                if($rootScope.childControllers["EditDocumentController"]){
+                    $rootScope.childControllers["EditorController"].resetForm();
+                }
             };
 
          $rootScope.resetForm = function () {
