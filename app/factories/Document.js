@@ -243,6 +243,18 @@ angular.module("ehelseEditor").factory("Document",
                 document.fields = removeLineBreakFromDocumentFields(document.fields);
             }
 
+            function updateDocumentFieldSequenceInDocument(document){
+                var all_fields = DocumentField.getAll();
+                for (var i = 0; i < document.fields.length; i++) {
+                    for (var x = 0; x < all_fields.length; x++) {
+                        console.log("asd");
+                        if(document.fields[i].fieldId == all_fields[x].id){
+                            document.fields[i].sequence = all_fields[x].sequence
+                        }
+                    }
+                }
+            }
+
             function changeTopicIdOfNextDocumentVersions(document) {
                 var nextId = document.nextDocumentId;
                 while (nextId) {
@@ -876,6 +888,7 @@ angular.module("ehelseEditor").factory("Document",
             }
 
             return {
+                updateDocumentFieldSequenceInDocument: updateDocumentFieldSequenceInDocument,
                 removeCurrentDocumentHeadingContentByHeadingId: removeCurrentDocumentHeadingContentByHeadingId,
                 getCurrentDocumentHeadingsAsList: getCurrentDocumentHeadingsAsList,
                 addHeadingsToDocumentByIds: addHeadingsToDocumentByIds,
