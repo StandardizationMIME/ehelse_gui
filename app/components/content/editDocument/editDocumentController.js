@@ -18,11 +18,10 @@ angular.module("ehelseEditor").controller("EditDocumentController",
             $scope.removeField = Document.removeCurrentDocumentField;
             $scope.removeLink = Document.removeCurrentDocumentLink;
             $scope.removeLinkCategory = Document.removeCurrentDocumentLinksByCategoryId;
-            $scope.removeHeading = Document.removeCurrentDocumentHeadingContentByHeadingId;
+            $scope.removeHeading = Document.removeCurrentDocumentHeading;
             $scope.document_dict = Document.getAllAsDict();
             $scope.status_list = Status.getAll();
             $scope.contact_address_list = ContactAddress.getAll();
-            $scope.headings = Document.getCurrentDocumentHeadingsAsList();
             $scope.linkCategories = Document.getCurrentDocumentLinksAsLinkCategoryList();
             $scope.headings_dict = Heading.getAllAsDict();
             $scope.linkCategoriesDict = LinkCategory.getAllAsDict();

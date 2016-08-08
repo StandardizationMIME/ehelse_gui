@@ -22,6 +22,12 @@
                         <label for="newLinkCategoryDescription">Beskrivelse: </label>
                         <textarea id="newLinkCategoryDescription" ng-model="newLinkCategory.description" class="form-control"></textarea>
                     </div>
+
+                    <!-- Order -->
+                    <div>
+                        <label for="sequence">Rekkefølge: </label>
+                        <input id="sequence" type="text" ng-model="newLinkCategory.sequence" class="form-control" placeholder="1" numbers-only maxlength="15"/>
+                    </div>
                 </div>
 
                 <!-- Modal footer -->

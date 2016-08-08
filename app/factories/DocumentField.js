@@ -11,6 +11,7 @@ angular.module("ehelseEditor").factory("DocumentField", ["$rootScope", "StorageH
     function init(){
         try{
             Array.prototype.push.apply(document_fields, StorageHandler.getDocumentFields().documentFields);
+            document_fields.sort(ServiceFunction.compareSequence);
             generateDocumentFieldDict(document_fields);
             generateDocumentFieldTypeDict(document_fields);
         }
@@ -126,6 +127,7 @@ angular.module("ehelseEditor").factory("DocumentField", ["$rootScope", "StorageH
             };
 
             document_fields.push(myField);
+            document_fields.sort(ServiceFunction.compareSequence);
             generateDocumentFieldDict(document_fields);
             generateDocumentFieldTypeDict(document_fields);
             success(myField);
@@ -175,6 +177,7 @@ angular.module("ehelseEditor").factory("DocumentField", ["$rootScope", "StorageH
             document_field.sequence = myField.sequence;
             document_field.isRichText = myField.isRichText;
             success(myField);
+            document_fields.sort(ServiceFunction.compareSequence);
         }
         catch(err){
             console.log("Field could not be edited: " + err);

@@ -10,6 +10,7 @@ angular.module("ehelseEditor").factory("Heading", ["$rootScope", "StorageHandler
     function init(){
         try{
             Array.prototype.push.apply(headings, StorageHandler.getHeadings().headings);
+            headings.sort(ServiceFunction.compareSequence);
             generateHeadingDict();
         }
         catch(error){
@@ -35,7 +36,8 @@ angular.module("ehelseEditor").factory("Heading", ["$rootScope", "StorageHandler
             id: null,
             name: "",
             description: "",
-            isArchived: 0
+            isArchived: 0,
+            sequence: ""
         }
     }
 
@@ -62,6 +64,7 @@ angular.module("ehelseEditor").factory("Heading", ["$rootScope", "StorageHandler
         a.name = b.name;
         a.description = b.description;
         a.isArchived = b.isArchived;
+        a.sequence = b.sequence;
     }
 
     /**
@@ -89,6 +92,7 @@ angular.module("ehelseEditor").factory("Heading", ["$rootScope", "StorageHandler
     function initNewHeadingValues(heading){
         heading.id = ServiceFunction.generateNewId(headings);
         heading.isArchived = 0;
+        heading.sequence = "1";
     }
 
     /**
@@ -101,6 +105,7 @@ angular.module("ehelseEditor").factory("Heading", ["$rootScope", "StorageHandler
         if(heading.id){
             try{
                 set(headings_dict[heading.id], heading);
+                headings.sort(ServiceFunction.compareSequence);
                 generateHeadingDict(headings);
                 $rootScope.notifySuccess("Overskrift ble oppdatert",1000);
             }
@@ -114,6 +119,7 @@ angular.module("ehelseEditor").factory("Heading", ["$rootScope", "StorageHandler
                 initNewHeadingValues(heading);
                 $rootScope.notifySuccess("Ny Overskrift ble opprettet.",1000);
                 add(heading);
+                headings.sort(ServiceFunction.compareSequence);
             }
             catch(error){
                 console.log("Heading could not be created: " + error);

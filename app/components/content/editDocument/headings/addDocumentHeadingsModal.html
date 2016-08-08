@@ -13,7 +13,7 @@
             <div class="modal-body edit-document-modal">
                 <form role="form">
 
-                    <div ng-repeat="heading in all_headings" ng-hide="heading.isArchived || headingAlreadyIsAdded(heading.id)">
+                    <div ng-repeat="heading in all_headings | orderBy: getSequence" ng-hide="heading.isArchived || headingAlreadyIsAdded(heading.id)">
                         <input id={{heading.id}} type="checkbox"  data-checklist-model="selected_headings_ids" data-checklist-value="heading.id">
                         <label for={{heading.id}}>{{heading.name}}</label>
                     </div>

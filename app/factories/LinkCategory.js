@@ -10,6 +10,7 @@ angular.module("ehelseEditor").factory("LinkCategory", ["$rootScope", "StorageHa
     function init(){
         try{
             Array.prototype.push.apply(link_categories, StorageHandler.getLinkCategories().linkCategories);
+            link_categories.sort(ServiceFunction.compareSequence);
             generateLinkCategoryDict();
         }
         catch(error){
@@ -35,7 +36,8 @@ angular.module("ehelseEditor").factory("LinkCategory", ["$rootScope", "StorageHa
             id: null,
             name: "",
             description: "",
-            isArchived: 0
+            isArchived: 0,
+            sequence: "1"
         }
     }
 
@@ -62,6 +64,7 @@ angular.module("ehelseEditor").factory("LinkCategory", ["$rootScope", "StorageHa
         a.name = b.name;
         a.description = b.description;
         a.isArchived = b.isArchived;
+        a.sequence = b.sequence;
     }
 
     /**
@@ -89,6 +92,7 @@ angular.module("ehelseEditor").factory("LinkCategory", ["$rootScope", "StorageHa
     function initNewLinkCategoryValues(link_category){
         link_category.id = ServiceFunction.generateNewId(link_categories);
         link_category.isArchived = 0;
+        link_category.sequence = "1";
     }
 
     /**
@@ -101,6 +105,7 @@ angular.module("ehelseEditor").factory("LinkCategory", ["$rootScope", "StorageHa
         if(link_category.id){
             try{
                 set(link_categories_dict[link_category.id], link_category);
+                link_categories.sort(ServiceFunction.compareSequence);
                 generateLinkCategoryDict(link_categories);
                 $rootScope.notifySuccess("Lenke-kategori ble oppdatert",1000);
             }
@@ -114,6 +119,7 @@ angular.module("ehelseEditor").factory("LinkCategory", ["$rootScope", "StorageHa
                 initNewLinkCategoryValues(link_category);
                 $rootScope.notifySuccess("Ny Linkkategori ble opprettet.",1000);
                 add(link_category);
+                link_categories.sort(ServiceFunction.compareSequence);
             }
             catch(error){
                 console.log("Link category could not be created: " + error);
