@@ -174,7 +174,6 @@ angular.module("ehelseEditor").factory("ServiceFunction", [function () {
             if(type == "field"){
                 temp_field = getByIdMethod(list[i].fieldId);
                 temp_field["value"] = list[i].value;
-                console.log(temp_field);
             }else if(type == "heading"){
                 temp_field = getByIdMethod(list[i].headingId);
                 temp_field["text"] = list[i].text;
@@ -185,7 +184,6 @@ angular.module("ehelseEditor").factory("ServiceFunction", [function () {
             }
             temp_list.push(temp_field);
         }
-        console.log(temp_list);
         temp_list.sort(compareSequence);
 
         var output = [];
