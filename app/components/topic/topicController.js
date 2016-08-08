@@ -45,5 +45,22 @@ angular.module("ehelseEditor").controller("TopicController",["$rootScope", "$sco
         $rootScope.searchOption = "";
         $rootScope.searchIsFocused = false;
     };
+    $rootScope.selectTopicActions = function (topicId) {
+        $rootScope.toggleTopicIcons(topicId);
+        $rootScope.getDocuments(topicId);
+        $rootScope.setSelectedTopic(topicId);
+        $rootScope.clearSearchFilterText();
+    };
+    $rootScope.newTopicActions = function () {
+        $rootScope.showNewTopicModal();
+        $rootScope.clearSearchFilterText();
+    };
+    $rootScope.checkDocumentFormAndExecute = function (topicId) {
+        if (topicId){
+            $rootScope.checkEditDocumentForm(topicId, $rootScope.selectTopicActions);
+        } else {
+            $rootScope.checkEditDocumentForm("", $rootScope.newTopicActions);
+        }
+    };
 }]);
 

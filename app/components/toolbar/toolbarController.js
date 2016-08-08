@@ -13,43 +13,51 @@ angular.module("ehelseEditor").controller("ToolbarController",
 
             // Open the different administer views in the content window
             $scope.openAdministerFields = function () {
-                $rootScope.deselectTopicAndDocument();
-                $rootScope.changeContentView("administerfields");
+                if ($rootScope.checkEditDocumentForm("administerfields",$rootScope.changeContentView)) {
+                    $rootScope.deselectTopicAndDocument();
+                }
             };
 
             $scope.openTargetGroups = function () {
-                $rootScope.deselectTopicAndDocument();
-                $rootScope.changeContentView("targetgroups");
+                if ($rootScope.checkEditDocumentForm("targetgroups",$rootScope.changeContentView)) {
+                    $rootScope.deselectTopicAndDocument();
+                }
             };
 
             $scope.openAdministerActions = function () {
-                $rootScope.deselectTopicAndDocument();
-                $rootScope.changeContentView("administeractions");
+                if ($rootScope.checkEditDocumentForm("administeractions", $rootScope.changeContentView)) {
+                    $rootScope.deselectTopicAndDocument();
+                }
             };
 
             $scope.openAdministerStatus = function () {
-                $rootScope.deselectTopicAndDocument();
-                $rootScope.changeContentView("administerstatus");
+                if ($rootScope.checkEditDocumentForm("administeractions", $rootScope.changeContentView)) {
+                    $rootScope.deselectTopicAndDocument();
+                }
             };
 
             $scope.openAdministerLinkCategories = function () {
-                $rootScope.deselectTopicAndDocument();
-                $rootScope.changeContentView("administerlinkcategories");
+                if ($rootScope.checkEditDocumentForm("administerlinkcategories", $rootScope.changeContentView)) {
+                    $rootScope.deselectTopicAndDocument();
+                }
             };
 
             $scope.openAdministerMandatory = function () {
-                $rootScope.deselectTopicAndDocument();
-                $rootScope.changeContentView("administermandatory");
+                if ($rootScope.checkEditDocumentForm("administermandatory", $rootScope.changeContentView)) {
+                    $rootScope.deselectTopicAndDocument();
+                }
             };
 
             $scope.openAdministerHeadings = function () {
-                $rootScope.deselectTopicAndDocument();
-                $rootScope.changeContentView("administerheadings");
+                if ($rootScope.checkEditDocumentForm("administerheadings", $rootScope.changeContentView)) {
+                    $rootScope.deselectTopicAndDocument();
+                }
             };
 
             $scope.openAdministerContactAddresses = function () {
-                $rootScope.deselectTopicAndDocument();
-                $rootScope.changeContentView("administercontactaddresses");
+                if ($rootScope.checkEditDocumentForm("administercontactaddresses", $rootScope.changeContentView)) {
+                    $rootScope.deselectTopicAndDocument();
+                }
             };
 
             // Open import_csv modal
@@ -108,7 +116,7 @@ angular.module("ehelseEditor").controller("ToolbarController",
                 $rootScope.searchIsFocused = true;
                 $rootScope.selected_topic_id = "";
                 if (!$rootScope.searchQuery){
-                    $rootScope.changeContentView("");
+                    $rootScope.checkEditDocumentForm("", $rootScope.changeContentView);
                 }
             };
             $rootScope.searchOption = DocumentType.getById;

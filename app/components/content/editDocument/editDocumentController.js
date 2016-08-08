@@ -27,6 +27,11 @@ angular.module("ehelseEditor").controller("EditDocumentController",
             $scope.headings_dict = Heading.getAllAsDict();
             $scope.linkCategoriesDict = LinkCategory.getAllAsDict();
 
+            $scope.$parent.$parent.registerChildController("EditDocumentController", $scope);
+            $scope.$on('$destroy', function () {
+                $scope.$parent.$parent.removeChildController("EditDocumentController");
+                console.log("EditorDocumentController scope destroyed and removed from childControllers");
+            });
 
             $scope.hasMandatoryTargetGroup = function () {
                 $rootScope.updateMandatoryNotices();
@@ -140,7 +145,7 @@ angular.module("ehelseEditor").controller("EditDocumentController",
                     return {date: timestamp.substring(8,10) + "." + timestamp.substring(5,7) + "." + timestamp.substring(0,4), time: timestamp.substring(11,16)};
                 }
             };
-            
+
             // Delete selected document
             $scope.deleteDocument = function(){
                 Document.deleteCurrentDocument();

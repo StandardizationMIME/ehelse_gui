@@ -52,6 +52,34 @@ angular.module("ehelseEditor").controller("DocumentController", [ "$scope","$roo
             $rootScope.setDocumentState("newDocument");
         }
     };
+    $rootScope.documentChanges = function (document) {
+        $rootScope.setDocumentState('editDocument');
+        $rootScope.openDocument(document);
+        $rootScope.resetDocumentScroll();
+        if($rootScope.childControllers["EditDocumentController"]){
+            $rootScope.childControllers["EditorController"].resetForm();
+        }
+    };
+    $rootScope.searchChanges = function (document) {
+        $rootScope.setDocumentState('editDocument');
+        $rootScope.openDocument(document);
+        $rootScope.resetDocumentScroll();
+    };
+    $rootScope.newDocChanges = function () {
+        $rootScope.setDocumentState('newDocument');
+        $rootScope.openDocument();
+        $rootScope.resetDocumentScroll();
+        $rootScope.clearSearchFilterText();
+    };
+    $rootScope.checkIfNewDocFormIsDirtyAndNotificate = function () {
+        $rootScope.checkEditDocumentForm("", $rootScope.newDocChanges);
+    };
+    $rootScope.checkIfDocumentFormIsDirtyAndNotificate = function (document) {
+        $rootScope.checkEditDocumentForm(document, $rootScope.documentChanges);
+    };
+    $rootScope.checkIfSearchFormIsDirtyAndNotificate = function (document) {
+        $rootScope.checkEditDocumentForm(document, $rootScope.searchChanges);
+    };
 
     // Open document by id
     $rootScope.openDocumentById = function(id){
