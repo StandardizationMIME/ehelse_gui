@@ -4,7 +4,7 @@ angular.module("ehelseEditor").controller("TopicController",["$rootScope", "$sco
     $scope.topics = Topic.getAll();
 
     // Open modal for creating new topic
-    $scope.showNewTopicModal = function () {
+    $rootScope.showNewTopicModal = function () {
         $rootScope.shouldBeOpen = true;
         $rootScope.openModal("app/components/topic/addTopic/newTopicView.html", "NewTopicModalController");
     };
