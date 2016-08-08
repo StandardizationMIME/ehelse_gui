@@ -31,7 +31,7 @@ angular.module("ehelseEditor").controller("ToolbarController",
             };
 
             $scope.openAdministerStatus = function () {
-                if ($rootScope.checkEditDocumentForm("administeractions", $rootScope.changeContentView)) {
+                if ($rootScope.checkEditDocumentForm("administerstatus", $rootScope.changeContentView)) {
                     $rootScope.deselectTopicAndDocument();
                 }
             };
