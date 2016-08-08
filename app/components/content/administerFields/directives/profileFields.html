@@ -30,7 +30,7 @@
 
             <!-- Active Table body -->
             <tbody ng-show="archivedProfileButton">
-            <tr ng-repeat="field in documentFields | orderBy:getSequence" ng-if="field.documentTypeId == '2'" ng-hide="field.isArchived">
+            <tr ng-repeat="field in documentFields " ng-if="field.documentTypeId == '2'" ng-hide="field.isArchived">
 
                 <!-- Field value info -->
                 <td>{{field.name}}</td>
@@ -54,7 +54,7 @@
 
             <!-- Archived Table body -->
             <tbody ng-hide="archivedProfileButton">
-            <tr ng-repeat="field in documentFields | orderBy:getSequence" ng-if="field.documentTypeId == '2'" ng-hide="!field.isArchived">
+            <tr ng-repeat="field in documentFields " ng-if="field.documentTypeId == '2'" ng-hide="!field.isArchived">
 
                 <!-- Field value info -->
                 <td>{{field.name}}</td>
