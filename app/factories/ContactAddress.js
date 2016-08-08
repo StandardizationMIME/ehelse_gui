@@ -107,7 +107,7 @@ angular.module("ehelseEditor").factory("ContactAddress", ["$rootScope", "Storage
     }
 
     function initNewContactAddressValues(contact_address){
-        contact_address.id = ServiceFunction.generateNewId(contact_address);
+        contact_address.id = ServiceFunction.generateNewId(contact_addresses);
         contact_address.isArchived = 0;
     }
 
