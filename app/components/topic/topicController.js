@@ -50,10 +50,16 @@ angular.module("ehelseEditor").controller("TopicController",["$rootScope", "$sco
         $rootScope.getDocuments(topicId);
         $rootScope.setSelectedTopic(topicId);
         $rootScope.clearSearchFilterText();
+        if($rootScope.childControllers["EditDocumentController"]){
+            $rootScope.childControllers["EditorController"].resetForm();
+        }
     };
     $rootScope.newTopicActions = function () {
         $rootScope.showNewTopicModal();
         $rootScope.clearSearchFilterText();
+        if($rootScope.childControllers["EditDocumentController"]){
+            $rootScope.childControllers["EditorController"].resetForm();
+        }
     };
     $rootScope.checkDocumentFormAndExecute = function (topicId) {
         if (topicId){

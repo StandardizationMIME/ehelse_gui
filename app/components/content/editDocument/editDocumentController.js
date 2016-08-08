@@ -169,7 +169,7 @@ angular.module("ehelseEditor").controller("EditDocumentController",
             };
 
             // Create a new profile with a relation to selected document
-            $scope.newProfile = function(standardId){
+            $rootScope.newProfile = function(standardId){
                 Document.setCurrentDocument(Document.getNewProfile(standardId));
             };
 
