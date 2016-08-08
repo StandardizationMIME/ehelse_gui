@@ -9,9 +9,8 @@
         <div class="form-group document-links-container">
 
             <!-- Display the document's link categories -->
-            <div ng-repeat="linkCategory in linkCategories | orderBy:getSequence" class="link-category-group">
+            <div ng-repeat="linkCategory in linkCategories" class="link-category-group">
                 <div class="panel panel-default link-group-panel">
-
                     <!-- Link category name -->
                     <div class="panel-heading">
                         <h3 class="panel-title">{{linkCategoriesDict[linkCategory.id].name}}

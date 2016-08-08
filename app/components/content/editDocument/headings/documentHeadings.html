@@ -9,15 +9,15 @@
         <div class="form-group">
             {{headings}}
 
-            <div ng-repeat="heading in headings" class="link-category-group">
+            <div ng-repeat="heading in document.headingContent" class="link-category-group">
                 <div class="panel panel-default link-group-panel">
                     <div class="panel-heading">
-                        <h3 class="panel-title">{{headings_dict[heading.id].name}}
-                            <span class="fa fa-remove delete-topic-icon clickable pull-right" ng-click="openConfirmationModal('Er du sikker på at du vil slette avsnittet fra dokumentet?', heading.id, removeHeading); EditDocumentController.DocumentForm.$setDirty()"></span>
+                        <h3 class="panel-title">{{headings_dict[heading.headingId].name}}
+                            <span class="fa fa-remove delete-topic-icon clickable pull-right" ng-click="openConfirmationModal('Er du sikker på at du vil slette avsnittet fra dokumentet?', heading, removeHeading); EditDocumentController.DocumentForm.$setDirty()"></span>
                         </h3>
                     </div>
                     <div class="panel-body">
-                        <textarea name="headingText" id="headingText" ng-model="heading.headingContent[0].text"
+                        <textarea name="headingText" id="headingText" ng-model="heading.text"
                                   class="form-control" rows="6" cols="50">
                         </textarea>
                     </div>

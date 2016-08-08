@@ -1,8 +1,8 @@
 "use strict";
 
 angular.module("ehelseEditor").factory("Document",
-    ["$rootScope", "DocumentField", "Topic", "StorageHandler", "ServiceFunction",
-        function ($rootScope, DocumentField, Topic, StorageHandler, ServiceFunction) {
+    ["$rootScope", "DocumentField", "Topic", "StorageHandler", "ServiceFunction", "Heading", "LinkCategory",
+        function ($rootScope, DocumentField, Topic, StorageHandler, ServiceFunction, Heading, LinkCategory) {
 
 
             /**
@@ -135,10 +135,10 @@ angular.module("ehelseEditor").factory("Document",
                     }
                     for (var i = 0; i < ids.length; i++) {
                         current_document.headingContent.push({headingId: ids[i], text: ""});
-                        generateCurrentDocumentHeadingsAsHeadingList();
                     }
+                }else{
+                    console.log("Document has no headings");
                 }
-                generateCurrentDocumentHeadingsAsHeadingList();
             }
 
             /**
@@ -168,8 +168,7 @@ angular.module("ehelseEditor").factory("Document",
             function extendCurrentDocumentFieldsByFieldIds(field_ids) {
                 if (field_ids) {
                     for (var i = 0; i < field_ids.length; i++) {
-                        current_document.fields.push({fieldId: field_ids[i], value: "", sequence: DocumentField.getById(field_ids[i]).sequence});
-                        console.log(current_document);
+                        current_document.fields.push({fieldId: field_ids[i], value: ""});
                     }
                 } else {
                     console.log("Input = " + fields_ids + " and is invalid");
@@ -241,18 +240,6 @@ angular.module("ehelseEditor").factory("Document",
                 document.editedTimestamp = ServiceFunction.getTimestamp();
                 document.populatedProfiles = [];
                 document.fields = removeLineBreakFromDocumentFields(document.fields);
-            }
-
-            function updateDocumentFieldSequenceInDocument(document){
-                var all_fields = DocumentField.getAll();
-                for (var i = 0; i < document.fields.length; i++) {
-                    for (var x = 0; x < all_fields.length; x++) {
-                        console.log("asd");
-                        if(document.fields[i].fieldId == all_fields[x].id){
-                            document.fields[i].sequence = all_fields[x].sequence
-                        }
-                    }
-                }
             }
 
             function changeTopicIdOfNextDocumentVersions(document) {
@@ -400,7 +387,6 @@ angular.module("ehelseEditor").factory("Document",
                         generateTopicsDocumentsDict(documents);
 
                         toggleTopicSelection();
-                        console.log(current_document);
                         $rootScope.notifySuccess("Dokumentet ble oppdatert", 1000);
                         $rootScope.title = ServiceFunction.deepCopy(current_document.title);
                     }
@@ -475,7 +461,6 @@ angular.module("ehelseEditor").factory("Document",
                         updatePreviousAndNextDocumentIdValues();
                         var current_id = current_document.id;
 
-                        /* DENNE LINJA ER JEG USIKKER PÅ, må sees over senere. */
                         delete documents_dict[current_id];
 
                         if (current_document.standardId) {
@@ -630,10 +615,20 @@ angular.module("ehelseEditor").factory("Document",
                     setCurrentDocumentFieldsByDocumentDocumentTypeId();
                 }
                 else {
+
+                    if(document.fields){
+                        document.fields = ServiceFunction.orderListBySequence(document.fields, DocumentField.getById, "field");
+                    }
+                    if(document.headingContent){
+                        document.headingContent = ServiceFunction.orderListBySequence(document.headingContent, Heading.getById, "heading");
+                    }
+                    if(document.links){
+                        document.links = ServiceFunction.orderListBySequence(document.links, LinkCategory.getById, "link");
+                    }
+
                     setDocument(current_document, document);
                 }
                 generateCurrentDocumentLinksAsLinkCategoryList();
-                generateCurrentDocumentHeadingsAsHeadingList();
 
                 if (document.standardId) {
                     getRelatedProfiles(document);
@@ -679,31 +674,10 @@ angular.module("ehelseEditor").factory("Document",
                 }
             }
 
-            function generateCurrentDocumentHeadingsAsHeadingList() {
-
-                var heading_dict = {};
-                if (current_document.headingContent) {
-                    for (var i = 0; i < current_document.headingContent.length; i++) {
-                        var singleContent = current_document.headingContent[i];
-                        if (!heading_dict[singleContent.headingId]) {
-                            heading_dict[singleContent.headingId] = {id: singleContent.headingId, headingContent: []};
-                        }
-                        heading_dict[singleContent.headingId].headingContent.push(singleContent);
-                    }
-                } else {
-                    console.log("Current document has no headings");
-                }
-                heading_list.length = 0;
-
-                for (var prop in heading_dict) {
-                    // skip loop if the property is from prototype
-                    if (!heading_dict.hasOwnProperty(prop)) continue;
-
-                    heading_list.push(heading_dict[prop]);
-                }
-            }
-
             function getCurrentDocumentLinksAsLinkCategoryList() {
+                //GJØR DEN HER, MEN FORANDRE orderListBySequence til å passe med linkCategory
+                //console.log(link_category_list);
+                //erviceFunction.orderListBySequence(link_category_list, LinkCategory.getById, "link");
                 return link_category_list;
             }
 
@@ -756,20 +730,16 @@ angular.module("ehelseEditor").factory("Document",
                 generateCurrentDocumentLinksAsLinkCategoryList();
             }
 
-            function removeCurrentDocumentHeadingContentByHeadingId(id) {
-                var tmp_list = [];
-                if (current_document.headingContent) {
-                    for (var i = 0; i < current_document.headingContent.length; i++) {
-                        if (current_document.headingContent[i].headingId != id) {
-                            tmp_list.push(current_document.headingContent[i]);
-                        }
+            function removeCurrentDocumentHeading(heading) {
+                if (heading) {
+                    var index = current_document.headingContent.indexOf(heading);
+                    if (index > -1) {
+                        current_document.headingContent.splice(index, 1);
                     }
                 } else {
-                    console.log("Current document has no headings.")
+                    $rootScope.notifyError("Avsnitt kunne ikke fjernes", 6000);
+                    console.log("Input = " + heading + " and is invalid");
                 }
-                current_document.headingContent.length = 0;
-                Array.prototype.push.apply(current_document.headingContent, tmp_list);
-                generateCurrentDocumentHeadingsAsHeadingList();
             }
 
             function getNewProfile(standardId) {
@@ -888,8 +858,7 @@ angular.module("ehelseEditor").factory("Document",
             }
 
             return {
-                updateDocumentFieldSequenceInDocument: updateDocumentFieldSequenceInDocument,
-                removeCurrentDocumentHeadingContentByHeadingId: removeCurrentDocumentHeadingContentByHeadingId,
+                removeCurrentDocumentHeading: removeCurrentDocumentHeading,
                 getCurrentDocumentHeadingsAsList: getCurrentDocumentHeadingsAsList,
                 addHeadingsToDocumentByIds: addHeadingsToDocumentByIds,
                 getCurrentDocumentHeadingContentIds: getCurrentDocumentHeadingContentIds,
