@@ -31,7 +31,6 @@ $(document).ready(function() {
             $rootScope.shouldBeOpen = true;
             $rootScope.openModal("app/components/main/confirmation/confirmationTgModal.html", "ConfirmationTGModalController");
         };
-
         // Generic modal for confirming whether or not you want to do something
         $rootScope.openConfirmationModal = function(message, objectToDelete, method){
             $rootScope.confirmationMessage = message;
@@ -48,6 +47,14 @@ $(document).ready(function() {
         $rootScope.registerChildController = function(name, scope){
             $rootScope.childControllers[name] = scope;
         };
+        $rootScope.removeChildController = function (name) {
+            for (var i = 0; i < $rootScope.childControllers.length; i++){
+                if ($rootScope.childControllers[i].name === name){
+                    $rootScope.childControllers.splice(i,1);
+                    break;
+                }
+            }
+        };
 
         // Set state of document
         $rootScope.setDocumentState = function(state) {
@@ -57,6 +64,28 @@ $(document).ready(function() {
         // Change view displayed in content window
         $rootScope.changeContentView = function(view){
             $rootScope.childControllers["EditorController"].changeView(view);
+        };
+        $rootScope.checkEditDocumentForm = function (methodValue, method) {
+            if($rootScope.editDocumentFormIsDirty()){
+                $rootScope.openConfirmationModal("Du har endret dokumentet, dersom du fortsette vil du miste endringene som ble gjort. Vil du fortsette?",methodValue ,method);
+            }else{
+                method(methodValue);
+            }
+        };
+        $rootScope.editDocumentFormIsDirty = function () {
+            if ($rootScope.childControllers["EditDocumentController"]){
+                if ($rootScope.childControllers["EditDocumentController"].EditDocumentController.DocumentForm){
+                    if ($rootScope.childControllers["EditDocumentController"].EditDocumentController.DocumentForm.$dirty){
+                        return true;
+                    } else {
+                        return false;
+                    }
+                }else{
+                    return false;
+                }
+            } else {
+                return false;
+            }
         };
 
         // Initialize user page view

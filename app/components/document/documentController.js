@@ -52,6 +52,75 @@ angular.module("ehelseEditor").controller("DocumentController", ["$scope", "$roo
             $rootScope.setDocumentState("newDocument");
         }
     };
+    $rootScope.documentChanges = function (document) {
+        $rootScope.setDocumentState('editDocument');
+        $rootScope.openDocument(document);
+        $rootScope.resetDocumentScroll();
+        if($rootScope.childControllers["EditDocumentController"]){
+            $rootScope.childControllers["EditorController"].resetForm();
+        }
+    };
+    $rootScope.searchChanges = function (document) {
+        $rootScope.setDocumentState('editDocument');
+        $rootScope.openDocument(document);
+        $rootScope.resetDocumentScroll();
+        if($rootScope.childControllers["EditDocumentController"]){
+            $rootScope.childControllers["EditorController"].resetForm();
+        }
+    };
+    $rootScope.newDocChanges = function () {
+        $rootScope.setDocumentState('newDocument');
+        $rootScope.openDocument();
+        $rootScope.resetDocumentScroll();
+        $rootScope.clearSearchFilterText();
+        if($rootScope.childControllers["EditDocumentController"]){
+            $rootScope.childControllers["EditorController"].resetForm();
+        }
+    };
+    $rootScope.newProfileActions = function (documentId) {
+        $rootScope.setDocumentState('newProfile');
+        $rootScope.newProfile(documentId);
+        $rootScope.resetDocumentScroll();
+        if($rootScope.childControllers["EditDocumentController"]){
+            $rootScope.childControllers["EditorController"].resetForm();
+        }
+    };
+    $rootScope.backToDocumentActions = function(documentId){
+        $rootScope.setDocumentState('editDocument');
+        $rootScope.openDocumentById(documentId);
+        $rootScope.toggleSelectedTopic();
+        $rootScope.resetDocumentScroll();
+        if($rootScope.childControllers["EditDocumentController"]){
+            $rootScope.childControllers["EditorController"].resetForm();
+        }
+    };
+    $rootScope.selectProfileActions = function (profile) {
+        $rootScope.setDocumentState('editProfile');
+        $rootScope.openDocument(profile);
+        $rootScope.toggleSelectedTopic();
+        $rootScope.resetDocumentScroll();
+        if($rootScope.childControllers["EditDocumentController"]){
+            $rootScope.childControllers["EditorController"].resetForm();
+        }
+    };
+    $rootScope.checkIfNewDocFormIsDirtyAndNotificate = function () {
+        $rootScope.checkEditDocumentForm("", $rootScope.newDocChanges);
+    };
+    $rootScope.checkIfDocumentFormIsDirtyAndNotificate = function (document) {
+        $rootScope.checkEditDocumentForm(document, $rootScope.documentChanges);
+    };
+    $rootScope.checkIfSearchFormIsDirtyAndNotificate = function (document) {
+        $rootScope.checkEditDocumentForm(document, $rootScope.searchChanges);
+    };
+    $rootScope.checkIfNewProfileFormIsDirty = function (documentId) {
+        $rootScope.checkEditDocumentForm(documentId, $rootScope.newProfileActions);
+    };
+    $rootScope.checkIfBackToDocumentFormIsDirty = function (documentId) {
+        $rootScope.checkEditDocumentForm(documentId, $rootScope.backToDocumentActions);
+    };
+    $rootScope.checkIfSelectProfileFormIsDirty = function (profile) {
+        $rootScope.checkEditDocumentForm(profile, $rootScope.selectProfileActions);
+    };
 
     // Open document by id
     $rootScope.openDocumentById = function (id) {

@@ -11,7 +11,7 @@
 
         <!-- Create new topic -->
         <p class="ten-pix-vertical-padding">
-            <button type="button" ng-click="showNewTopicModal(); clearSearchFilterText()" class="btn btn-default">
+            <button type="button" ng-click="checkDocumentFormAndExecute()" class="btn btn-default">
                 <span class="fa fa-plus-circle plus-icon"></span>
                 Nytt tema
             </button>
@@ -26,7 +26,7 @@
 
             <!-- On click, get documents related to topic and open topic in content view -->
             <p data-target=#topic{{topic.id}} id={{topic.id}} data-toggle="collapse" ng-class="topic.id == selected_topic_id ? 'selected-item' : ''" class="item-text clickable"
-               ng-click="toggleTopicIcons(topic.id); getDocuments(topic.id); setSelectedTopic(topic.id); clearSearchFilterText()">
+               ng-click="checkDocumentFormAndExecute(topic.id)">
                 <span id=folder{{topic.id}} class="standard-icon glyphicon glyphicon-folder-close"> </span>
                 {{topic.title}}
             </p>
@@ -37,7 +37,7 @@
 
                     <!-- On click, get documents related to topic and open topic in content view -->
                     <p data-target=#topic{{subTopic.id}} id={{subTopic.id}} ng-class="subTopic.id == selected_topic_id ? 'selected-item' : ''" data-toggle="collapse"
-                       class="item-text clickable" ng-click="toggleTopicIcons(subTopic.id); getDocuments(subTopic.id); setSelectedTopic(subTopic.id); clearSearchFilterText()">
+                       class="item-text clickable" ng-click="checkDocumentFormAndExecute(subTopic.id)">
                         <span id=folder{{subTopic.id}} class="standard-icon glyphicon glyphicon-folder-close"> </span>
                         {{subTopic.title}}
                     </p>
@@ -48,7 +48,7 @@
 
                             <!-- On click, get documents related to topic and open topic in content view -->
                             <p data-target="#topic{{subsubTopic.id}}" id={{subsubTopic.id}} data-toggle="collapse" ng-class="subsubTopic.id == selected_topic_id ? 'selected-item' : ''" class="item-text clickable"
-                               ng-click="toggleTopicIcons(subsubTopic.id); getDocuments(subsubTopic.id); setSelectedTopic(subsubTopic.id); clearSearchFilterText()">
+                               ng-click="checkDocumentFormAndExecute(subsubTopic.id)">
                                 <span id=folder{{subsubTopic.id}}
                                       class="standard-icon glyphicon glyphicon-folder-close"> </span>
                                 {{subsubTopic.title}}
@@ -60,7 +60,7 @@
 
                                     <!-- On click, get documents related to topic and open topic in content view -->
                                     <p data-target="#topic{{subsubsubTopic.id}}" id={{subsubsubTopic.id}} data-toggle="collapse" ng-class="subsubsubTopic.id == selected_topic_id ? 'selected-item' : ''" class="item-text clickable"
-                                       ng-click="toggleTopicIcons(subsubsubTopic.id); getDocuments(subsubsubTopic.id); setSelectedTopic(subsubsubTopic.id); clearSearchFilterText()">
+                                       ng-click="checkDocumentFormAndExecute(subsubsubTopic.id)">
                                         <span id=folder{{subsubsubTopic.id}}
                                       class="standard-icon glyphicon glyphicon-folder-close"> </span>
                                         {{subsubsubTopic.title}}
@@ -72,7 +72,7 @@
 
                                             <!-- On click, get documents related to topic and open topic in content view -->
                                             <p id={{subsubsubsubTopic.id}} data-toggle="collapse" ng-class="subsubsubsubTopic.id == selected_topic_id ? 'selected-item' : ''" class="item-text clickable"
-                                               ng-click="toggleTopicIcons(subsubsubsubTopic.id); getDocuments(subsubsubsubTopic.id); setSelectedTopic(subsubsubsubTopic.id); clearSearchFilterText()">
+                                               ng-click="checkDocumentFormAndExecute(subsubsubsubTopic.id)">
                                                 <span id=folder{{subsubsubsubTopic.id}}
                                                 class="standard-icon glyphicon glyphicon-folder-close"> </span>
                                                 {{subsubsubsubTopic.title}}
