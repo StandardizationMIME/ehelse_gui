@@ -1,66 +1,140 @@
 "use strict";
 
 angular.module("ehelseEditor").factory("DocumentExtractor",
-    ["Document", "Status", "Topic", "TargetGroup", "Mandatory", "Action", "DocumentField", "LinkCategory",
-        function (Document, Status, Topic, TargetGroup, Mandatory, Action, DocumentField, LinkCategory) {
+    ["Document", "Status", "Topic", "TargetGroup", "Mandatory", "Action", "DocumentField", "LinkCategory", "ContactAddress", "Heading",
+        function (Document, Status, Topic, TargetGroup, Mandatory, Action, DocumentField, LinkCategory, ContactAddress, Heading) {
 
             function getDocumentAsJSON(doc) {
                 if(doc){
                     var output_dict = {};
-                    output_dict["Tittel"] = doc.title;
-                    output_dict["Beskrivelse"] = doc.description;
+                    output_dict["title"] = doc.title;
+                    output_dict["description"] = doc.description;
                     if(Status.getById(doc.statusId)){
-                        output_dict["Status"] = Status.getById(doc.statusId).name;
+                        output_dict["status"] = Status.getById(doc.statusId).name;
+                    }else{
+                        output_dict["status"] = null;
                     }
-                    output_dict["Emne (Referansekatalog kapittel)"] = Topic.getById(doc.topicId).title;
-                    output_dict["Intern ID"] = doc.internalId;
-                    output_dict["HIS nummer"] = doc.hisNumber;
-                    for (var i = 0; i < doc.fields.length; i++) {
-                        output_dict[DocumentField.getById(doc.fields[i].fieldId).name] = doc.fields[i].value;
-                    }
-                    output_dict["Målgrupper"] = getTargetGroupsRelatedToDocumentAsJSON(doc);
-                    output_dict["Lenker"] = getLinksRelatedToDocumentAsJSON(doc);
+                    output_dict["topic"] = Topic.getById(doc.topicId).title;
+                    output_dict["internalId"] = doc.internalId;
+                    output_dict["his"] = doc.hisNumber;
+                    output_dict["contactAddress"] = getContactAddressRelatedToDocumentAsJSON(doc);
+                    output_dict["fields"] = getDocumentFieldsRelatedToDocumentAsJSON(doc);
+                    output_dict["targetGroups"] = getTargetGroupsRelatedToDocumentAsJSON(doc);
+                    output_dict["linkCategories"] = getLinksRelatedToDocumentAsJSON(doc);
+                    output_dict["paragraphs"] = getParagraphsRelatedToDocumentAsJSON(doc);
 
                     return output_dict;
                 }
             }
 
-            function getTargetGroupsRelatedToDocumentAsJSON(doc) {
+            function getParagraphsRelatedToDocumentAsJSON(doc){
                 var output_list = [];
-                var target_groups_list = doc.targetGroups;
-                for (var i = 0; i < target_groups_list.length; i++) {
-                    var target_group = {};
+                var paras = doc.headingContent;
+                for (var i = 0; i < paras.length; i++) {
+                    var heading = {};
 
-                    target_group["Navn"] = TargetGroup.getById(target_groups_list[i].targetGroupId).name;
-                    target_group["Beskrivelse"] = target_groups_list[i].description;
-                    target_group["Obligatorisk-verdi"] = Mandatory.getById(target_groups_list[i].mandatoryId).name;
+                    heading["title"] = Heading.getById(paras[i].headingId).name;
+                    heading["text"] = paras[i].text;
 
-                    if(target_groups_list[i].actionId){
-                        target_group["Handling"] = Action.getById(target_groups_list[i].actionId).name;
-                    }
-
-                    output_list.push(target_group);
+                    output_list.push(heading);
                 }
-
                 return output_list;
+            }
+
+            function getContactAddressRelatedToDocumentAsJSON(doc){
+                var output = {};
+                output["title"] = "";
+                output["email"] = ContactAddress.getById(doc.contactAddressId).name;
+                return output;
+            }
+
+            function getDocumentFieldsRelatedToDocumentAsJSON(doc){
+                var output_list = [];
+                var fields = doc.fields;
+                for (var i = 0; i < fields.length; i++) {
+                    var field = {};
+
+                    field["name"] = DocumentField.getById(fields[i].fieldId).name;
+                    field["text"] = fields[i].value;
+
+                    output_list.push(field);
+                }
+                return output_list;
+            }
+
+            function getTargetGroupsRelatedToDocumentAsJSON(doc) {
+                var output_dict = {};
+
+                for (var i = 0; i < doc.targetGroups.length; i++){
+                    output_dict[Mandatory.getById(doc.targetGroups[i].mandatoryId).name] = getTargetGroupsByMandatoryId(doc, doc.targetGroups[i].targetGroupId);
+                }
+                return output_dict;
+            }
+
+            function getTargetGroupsByMandatoryId(doc, id){
+                var output_dict = {};
+                var targetGroupsList = [];
+                if(id == "1"){
+                    output_dict["hjemmel"] = doc.hjemmel;
+                    output_dict["decidedBy"] = doc.decidedBy;
+                    output_dict["replacedBy"] = doc.replacedBy;
+                }
+                for (var i = 0; i < doc.mandatoryNotices.length; i++) {
+                    if(doc.mandatoryNotices[i].mandatoryId == id){
+                        output_dict["notice"] = doc.mandatoryNotices[i].notice;
+                    }
+                }
+                for (var x = 0; x < doc.targetGroups.length; x++) {
+                    if(doc.targetGroups[x].mandatoryId == id){
+                        var targetGroup = {};
+                        targetGroup["name"] = TargetGroup.getById(doc.targetGroups[x].targetGroupId);
+                        targetGroup["deadline"] = doc.targetGroups[x].deadline;
+                        targetGroup["description"] = doc.targetGroups[x].description;
+                        if(doc.targetGroups[x].actionId){
+                            targetGroup["action"] = Action.getById(doc.targetGroups[x].actionId).name;
+                        }else{
+                            targetGroup["action"] = null;
+                        }
+                        targetGroup["abbreviation"] = TargetGroup.getById(doc.targetGroups[x].targetGroupId).abbreviation;
+                        if(TargetGroup.getById(doc.targetGroups[x].targetGroupId).parentId){
+                            targetGroup["parentTargetGroup"] = TargetGroup.getById(TargetGroup.getById(doc.targetGroups[x].targetGroupId).parentId).name;
+                        }else{
+                            targetGroup["parentTargetGroup"] = null;
+                        }
+                        targetGroupsList.push(targetGroup);
+                    }
+                }
+                output_dict["targetGroupsList"] = targetGroupsList;
+
+                return output_dict;
             }
 
 
             function getLinksRelatedToDocumentAsJSON(doc){
-                var output_dict = {};
-                var links_list = doc.links;
-                for (var i = 0; i < links_list.length; i++) {
-                    if(!output_dict[LinkCategory.getById(links_list[i].linkCategoryId).name]){
-                        output_dict[LinkCategory.getById(links_list[i].linkCategoryId).name] = [];
+                var temp_dict = {};
+                for (var i = 0; i < doc.links.length; i++) {
+                    if(!temp_dict[LinkCategory.getById(doc.links[i].linkCategoryId).name]){
+                        temp_dict[LinkCategory.getById(doc.links[i].linkCategoryId).name] = [];
                     }
                     var link = {};
-                    link["Tekst"] = links_list[i].text;
-                    link["url"] = links_list[i].url;
+                    link["Tekst"] = doc.links[i].text;
+                    link["url"] = doc.links[i].url;
 
-                    output_dict[LinkCategory.getById(links_list[i].linkCategoryId).name].push(link);
+                    temp_dict[LinkCategory.getById(doc.links[i].linkCategoryId).name].push(link);
                 }
 
-                return output_dict;
+                var output_list = [];
+                for(var item in temp_dict){
+                    if (!temp_dict.hasOwnProperty(item)) continue;
+                    var linkCat = {};
+                    linkCat["name"] = item;
+                    linkCat["links"] = temp_dict[item];
+                    output_list.push(linkCat);
+                }
+                return output_list;
+
+
+
             }
 
             function getAllDocumentsAsJSON(){
