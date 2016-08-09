@@ -29,22 +29,26 @@ angular.module("ehelseEditor").factory("DocumentExtractor",
 
             function getParagraphsRelatedToDocumentAsJSON(doc){
                 var output_list = [];
-                var paras = doc.headingContent;
-                for (var i = 0; i < paras.length; i++) {
-                    var heading = {};
+                var headingContent = doc.headingContent;
+                if(headingContent){
+                    for (var i = 0; i < headingContent.length; i++) {
+                        var heading = {};
 
-                    heading["title"] = Heading.getById(paras[i].headingId).name;
-                    heading["text"] = paras[i].text;
+                        heading["title"] = Heading.getById(headingContent[i].headingId).name;
+                        heading["text"] = headingContent[i].text;
 
-                    output_list.push(heading);
+                        output_list.push(heading);
+                    }
                 }
                 return output_list;
             }
 
             function getContactAddressRelatedToDocumentAsJSON(doc){
                 var output = {};
-                output["title"] = "";
-                output["email"] = ContactAddress.getById(doc.contactAddressId).name;
+                if(doc.contactAddressId){
+                    output["email"] = ContactAddress.getById(doc.contactAddressId).name;
+                    output["description"] = ContactAddress.getById(doc.contactAddressId).description;
+                }
                 return output;
             }
 
@@ -64,10 +68,19 @@ angular.module("ehelseEditor").factory("DocumentExtractor",
 
             function getTargetGroupsRelatedToDocumentAsJSON(doc) {
                 var output_dict = {};
-
-                for (var i = 0; i < doc.targetGroups.length; i++){
-                    output_dict[Mandatory.getById(doc.targetGroups[i].mandatoryId).name] = getTargetGroupsByMandatoryId(doc, doc.targetGroups[i].targetGroupId);
+                if(doc.targetGroups){
+                    var mandatoryIdList = [];
+                    for (var i = 0; i < doc.targetGroups.length; i++){
+                        if(!mandatoryIdList.includes(doc.targetGroups[i].targetGroupId)){
+                            console.log(doc.targetGroups[i].mandatoryId);
+                            mandatoryIdList.push(doc.targetGroups[i].mandatoryId);
+                        }
+                    }
+                    for (var x = 0; x < mandatoryIdList.length; x++){
+                        output_dict[Mandatory.getById(mandatoryIdList[x]).name] = getTargetGroupsByMandatoryId(doc, mandatoryIdList[x]);
+                    }
                 }
+
                 return output_dict;
             }
 
@@ -79,29 +92,33 @@ angular.module("ehelseEditor").factory("DocumentExtractor",
                     output_dict["decidedBy"] = doc.decidedBy;
                     output_dict["replacedBy"] = doc.replacedBy;
                 }
-                for (var i = 0; i < doc.mandatoryNotices.length; i++) {
-                    if(doc.mandatoryNotices[i].mandatoryId == id){
-                        output_dict["notice"] = doc.mandatoryNotices[i].notice;
+                if(doc.mandatoryNotices){
+                    for (var i = 0; i < doc.mandatoryNotices.length; i++) {
+                        if(doc.mandatoryNotices[i].mandatoryId == id){
+                            output_dict["notice"] = doc.mandatoryNotices[i].notice;
+                        }
                     }
                 }
-                for (var x = 0; x < doc.targetGroups.length; x++) {
-                    if(doc.targetGroups[x].mandatoryId == id){
-                        var targetGroup = {};
-                        targetGroup["name"] = TargetGroup.getById(doc.targetGroups[x].targetGroupId).name;
-                        targetGroup["deadline"] = doc.targetGroups[x].deadline;
-                        targetGroup["description"] = doc.targetGroups[x].description;
-                        if(doc.targetGroups[x].actionId){
-                            targetGroup["action"] = Action.getById(doc.targetGroups[x].actionId).name;
-                        }else{
-                            targetGroup["action"] = null;
+                if(doc.targetGroups){
+                    for (var x = 0; x < doc.targetGroups.length; x++) {
+                        if(doc.targetGroups[x].mandatoryId == id){
+                            var targetGroup = {};
+                            targetGroup["name"] = TargetGroup.getById(doc.targetGroups[x].targetGroupId).name;
+                            targetGroup["deadline"] = doc.targetGroups[x].deadline;
+                            targetGroup["description"] = doc.targetGroups[x].description;
+                            if(doc.targetGroups[x].actionId){
+                                targetGroup["action"] = Action.getById(doc.targetGroups[x].actionId).name;
+                            }else{
+                                targetGroup["action"] = null;
+                            }
+                            targetGroup["abbreviation"] = TargetGroup.getById(doc.targetGroups[x].targetGroupId).abbreviation;
+                            if(TargetGroup.getById(doc.targetGroups[x].targetGroupId).parentId){
+                                targetGroup["parentTargetGroup"] = TargetGroup.getById(TargetGroup.getById(doc.targetGroups[x].targetGroupId).parentId).name;
+                            }else{
+                                targetGroup["parentTargetGroup"] = null;
+                            }
+                            targetGroupsList.push(targetGroup);
                         }
-                        targetGroup["abbreviation"] = TargetGroup.getById(doc.targetGroups[x].targetGroupId).abbreviation;
-                        if(TargetGroup.getById(doc.targetGroups[x].targetGroupId).parentId){
-                            targetGroup["parentTargetGroup"] = TargetGroup.getById(TargetGroup.getById(doc.targetGroups[x].targetGroupId).parentId).name;
-                        }else{
-                            targetGroup["parentTargetGroup"] = null;
-                        }
-                        targetGroupsList.push(targetGroup);
                     }
                 }
                 output_dict["targetGroupsList"] = targetGroupsList;
