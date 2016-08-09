@@ -92,7 +92,9 @@ angular.module("ehelseEditor").factory("LinkCategory", ["$rootScope", "StorageHa
     function initNewLinkCategoryValues(link_category){
         link_category.id = ServiceFunction.generateNewId(link_categories);
         link_category.isArchived = 0;
-        link_category.sequence = 1;
+        if(!link_category.sequence){
+            link_category.sequence = 1;
+        }
     }
 
     /**
