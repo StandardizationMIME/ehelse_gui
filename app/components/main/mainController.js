@@ -64,6 +64,10 @@ $(document).ready(function() {
         // Change view displayed in content window
         $rootScope.changeContentView = function(view){
             $rootScope.childControllers["EditorController"].changeView(view);
+            if(view == "administerfields" || view == "targetgroups" || view == "administerstatus" || view == "administeractions" ||
+                view == "administerheadings" || view == "administercontactaddresses" || view == "administermandatory" || view == "administerlinkcategories"){
+                $rootScope.deselectTopicAndDocument();
+            }
         };
         $rootScope.checkEditDocumentForm = function (methodValue, method) {
             if($rootScope.editDocumentFormIsDirty()){
