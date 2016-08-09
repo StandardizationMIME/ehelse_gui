@@ -8,15 +8,27 @@ angular.module("ehelseEditor").factory("DocumentExtractor",
                 if(doc){
                     var output_dict = {};
                     output_dict["title"] = doc.title;
-                    output_dict["description"] = doc.description;
+                    if(doc.description){
+                        output_dict["description"] = doc.description;
+                    }else{
+                        output_dict["description"] = null;
+                    }
                     if(Status.getById(doc.statusId)){
                         output_dict["status"] = Status.getById(doc.statusId).name;
                     }else{
                         output_dict["status"] = null;
                     }
                     output_dict["topic"] = Topic.getById(doc.topicId).title;
-                    output_dict["internalId"] = doc.internalId;
-                    output_dict["his"] = doc.hisNumber;
+                    if(doc.internalId){
+                        output_dict["internalId"] = doc.internalId;
+                    }else{
+                        output_dict["internalId"] = null;
+                    }
+                    if(doc.hisNumber){
+                        output_dict["his"] = doc.hisNumber;
+                    }else{
+                        output_dict["his"] = null;
+                    }
                     output_dict["contactAddress"] = getContactAddressRelatedToDocumentAsJSON(doc);
                     output_dict["fields"] = getDocumentFieldsRelatedToDocumentAsJSON(doc);
                     output_dict["targetGroups"] = getTargetGroupsRelatedToDocumentAsJSON(doc);
@@ -35,7 +47,11 @@ angular.module("ehelseEditor").factory("DocumentExtractor",
                         var heading = {};
 
                         heading["title"] = Heading.getById(headingContent[i].headingId).name;
-                        heading["text"] = headingContent[i].text;
+                        if(headingContent[i].text){
+                            heading["text"] = headingContent[i].text;
+                        }else{
+                            heading["text"] = null;
+                        }
 
                         output_list.push(heading);
                     }
@@ -47,7 +63,11 @@ angular.module("ehelseEditor").factory("DocumentExtractor",
                 var output = {};
                 if(doc.contactAddressId){
                     output["email"] = ContactAddress.getById(doc.contactAddressId).name;
-                    output["description"] = ContactAddress.getById(doc.contactAddressId).description;
+                    if(ContactAddress.getById(doc.contactAddressId).description){
+                        output["description"] = ContactAddress.getById(doc.contactAddressId).description;
+                    }else{
+                        output["description"] = null;
+                    }
                 }
                 return output;
             }
@@ -72,7 +92,6 @@ angular.module("ehelseEditor").factory("DocumentExtractor",
                     var mandatoryIdList = [];
                     for (var i = 0; i < doc.targetGroups.length; i++){
                         if(!mandatoryIdList.includes(doc.targetGroups[i].targetGroupId)){
-                            console.log(doc.targetGroups[i].mandatoryId);
                             mandatoryIdList.push(doc.targetGroups[i].mandatoryId);
                         }
                     }
@@ -88,14 +107,32 @@ angular.module("ehelseEditor").factory("DocumentExtractor",
                 var output_dict = {};
                 var targetGroupsList = [];
                 if(id == "1"){
-                    output_dict["hjemmel"] = doc.hjemmel;
-                    output_dict["decidedBy"] = doc.decidedBy;
-                    output_dict["replacedBy"] = doc.replacedBy;
+                    if(doc.hjemmel){
+                        output_dict["hjemmel"] = doc.hjemmel;
+                    }else{
+                        output_dict["hjemmel"] = null;
+                    }
+
+                    if(doc.decidedBy){
+                        output_dict["decidedBy"] = doc.decidedBy;
+                    }else{
+                        output_dict["decidedBy"] = null;
+                    }
+
+                    if(doc.replacedBy){
+                        output_dict["replacedBy"] = doc.replacedBy;
+                    }else{
+                        output_dict["replacedBy"] = null;
+                    }
                 }
                 if(doc.mandatoryNotices){
                     for (var i = 0; i < doc.mandatoryNotices.length; i++) {
                         if(doc.mandatoryNotices[i].mandatoryId == id){
-                            output_dict["notice"] = doc.mandatoryNotices[i].notice;
+                            if(doc.mandatoryNotices[i].notice){
+                                output_dict["notice"] = doc.mandatoryNotices[i].notice;
+                            }else{
+                                output_dict["notice"] = null;
+                            }
                         }
                     }
                 }
@@ -104,14 +141,26 @@ angular.module("ehelseEditor").factory("DocumentExtractor",
                         if(doc.targetGroups[x].mandatoryId == id){
                             var targetGroup = {};
                             targetGroup["name"] = TargetGroup.getById(doc.targetGroups[x].targetGroupId).name;
-                            targetGroup["deadline"] = doc.targetGroups[x].deadline;
-                            targetGroup["description"] = doc.targetGroups[x].description;
+                            if(doc.targetGroups[x].deadline){
+                                targetGroup["deadline"] = doc.targetGroups[x].deadline;
+                            }else{
+                                targetGroup["deadline"] = null;
+                            }
+                            if(doc.targetGroups[x].description){
+                                targetGroup["description"] = doc.targetGroups[x].description;
+                            }else{
+                                targetGroup["description"] = null;
+                            }
                             if(doc.targetGroups[x].actionId){
                                 targetGroup["action"] = Action.getById(doc.targetGroups[x].actionId).name;
                             }else{
                                 targetGroup["action"] = null;
                             }
-                            targetGroup["abbreviation"] = TargetGroup.getById(doc.targetGroups[x].targetGroupId).abbreviation;
+                            if(TargetGroup.getById(doc.targetGroups[x].targetGroupId).abbreviation){
+                                targetGroup["abbreviation"] = TargetGroup.getById(doc.targetGroups[x].targetGroupId).abbreviation;
+                            }else{
+                                targetGroup["abbreviation"] = null;
+                            }
                             if(TargetGroup.getById(doc.targetGroups[x].targetGroupId).parentId){
                                 targetGroup["parentTargetGroup"] = TargetGroup.getById(TargetGroup.getById(doc.targetGroups[x].targetGroupId).parentId).name;
                             }else{
@@ -129,24 +178,28 @@ angular.module("ehelseEditor").factory("DocumentExtractor",
 
             function getLinksRelatedToDocumentAsJSON(doc){
                 var temp_dict = {};
-                for (var i = 0; i < doc.links.length; i++) {
-                    if(!temp_dict[LinkCategory.getById(doc.links[i].linkCategoryId).name]){
-                        temp_dict[LinkCategory.getById(doc.links[i].linkCategoryId).name] = [];
-                    }
-                    var link = {};
-                    link["Tekst"] = doc.links[i].text;
-                    link["url"] = doc.links[i].url;
+                if(doc.links){
+                    for (var i = 0; i < doc.links.length; i++) {
+                        if(!temp_dict[LinkCategory.getById(doc.links[i].linkCategoryId).name]){
+                            temp_dict[LinkCategory.getById(doc.links[i].linkCategoryId).name] = [];
+                        }
+                        var link = {};
+                        link["text"] = doc.links[i].text;
+                        link["url"] = doc.links[i].url;
 
-                    temp_dict[LinkCategory.getById(doc.links[i].linkCategoryId).name].push(link);
+                        temp_dict[LinkCategory.getById(doc.links[i].linkCategoryId).name].push(link);
+                    }
                 }
 
                 var output_list = [];
-                for(var item in temp_dict){
-                    if (!temp_dict.hasOwnProperty(item)) continue;
-                    var linkCat = {};
-                    linkCat["name"] = item;
-                    linkCat["links"] = temp_dict[item];
-                    output_list.push(linkCat);
+                if(temp_dict){
+                    for(var item in temp_dict){
+                        if (!temp_dict.hasOwnProperty(item)) continue;
+                        var linkCat = {};
+                        linkCat["name"] = item;
+                        linkCat["links"] = temp_dict[item];
+                        output_list.push(linkCat);
+                    }
                 }
                 return output_list;
 
