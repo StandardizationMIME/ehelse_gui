@@ -71,7 +71,8 @@ angular.module("ehelseEditor").factory("ServiceFunction", [function () {
         // if the dictionary is defined
         if (length) {
             var max = -Infinity;
-            for (var key in dict)   {
+            for (var key in dict) {
+                if (!dict.hasOwnProperty(key)) continue;
                 var id = parseInt(key);
                 if (id > max){
                     max = id;
@@ -101,6 +102,7 @@ angular.module("ehelseEditor").factory("ServiceFunction", [function () {
         } else {
             clone = {};
             for (var key in list) {
+                if (!list.hasOwnProperty(key)) continue;
                 var document_list = [];
                 for (var i = 0; i < list[key].length; i++) {
                     document_list.push(cloneDocument(list[key][i]));
@@ -120,6 +122,7 @@ angular.module("ehelseEditor").factory("ServiceFunction", [function () {
         var invalid_elements = ["populatedProfiles", "$$hashKey"];
         var document_clone = {};
         for (var element in document) {
+            if (!document.hasOwnProperty(element)) continue;
             if (invalid_elements.indexOf(element) < 0) {
                 document_clone[element] = deepCopy(document[element]);
             }
