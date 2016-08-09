@@ -13,51 +13,35 @@ angular.module("ehelseEditor").controller("ToolbarController",
 
             // Open the different administer views in the content window
             $scope.openAdministerFields = function () {
-                if ($rootScope.checkEditDocumentForm("administerfields",$rootScope.changeContentView)) {
-                    $rootScope.deselectTopicAndDocument();
-                }
+                $rootScope.checkEditDocumentForm("administerfields",$rootScope.changeContentView)
             };
 
             $scope.openTargetGroups = function () {
-                if ($rootScope.checkEditDocumentForm("targetgroups",$rootScope.changeContentView)) {
-                    $rootScope.deselectTopicAndDocument();
-                }
+                $rootScope.checkEditDocumentForm("targetgroups",$rootScope.changeContentView)
             };
 
             $scope.openAdministerActions = function () {
-                if ($rootScope.checkEditDocumentForm("administeractions", $rootScope.changeContentView)) {
-                    $rootScope.deselectTopicAndDocument();
-                }
+                $rootScope.checkEditDocumentForm("administeractions", $rootScope.changeContentView)
             };
 
             $scope.openAdministerStatus = function () {
-                if ($rootScope.checkEditDocumentForm("administerstatus", $rootScope.changeContentView)) {
-                    $rootScope.deselectTopicAndDocument();
-                }
+                $rootScope.checkEditDocumentForm("administerstatus", $rootScope.changeContentView)
             };
 
             $scope.openAdministerLinkCategories = function () {
-                if ($rootScope.checkEditDocumentForm("administerlinkcategories", $rootScope.changeContentView)) {
-                    $rootScope.deselectTopicAndDocument();
-                }
+                $rootScope.checkEditDocumentForm("administerlinkcategories", $rootScope.changeContentView)
             };
 
             $scope.openAdministerMandatory = function () {
-                if ($rootScope.checkEditDocumentForm("administermandatory", $rootScope.changeContentView)) {
-                    $rootScope.deselectTopicAndDocument();
-                }
+                $rootScope.checkEditDocumentForm("administermandatory", $rootScope.changeContentView)
             };
 
             $scope.openAdministerHeadings = function () {
-                if ($rootScope.checkEditDocumentForm("administerheadings", $rootScope.changeContentView)) {
-                    $rootScope.deselectTopicAndDocument();
-                }
+                $rootScope.checkEditDocumentForm("administerheadings", $rootScope.changeContentView)
             };
 
             $scope.openAdministerContactAddresses = function () {
-                if ($rootScope.checkEditDocumentForm("administercontactaddresses", $rootScope.changeContentView)) {
-                    $rootScope.deselectTopicAndDocument();
-                }
+                $rootScope.checkEditDocumentForm("administercontactaddresses", $rootScope.changeContentView)
             };
 
             // Open import_csv modal
