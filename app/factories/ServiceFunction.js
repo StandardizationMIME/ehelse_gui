@@ -178,13 +178,13 @@ angular.module("ehelseEditor").factory("ServiceFunction", [function () {
                 temp_field = getByIdMethod(list[i].headingId);
                 temp_field["text"] = list[i].text;
             }else if(type == "link"){
-                temp_field = getByIdMethod(list[i].linkCategoryId);
-                temp_field["text"] = list[i].text;
-                temp_field["url"] = list[i].url;
+                temp_field = getByIdMethod(list[i].id);
+                temp_field["links"] = list[i].links;
             }
             temp_list.push(temp_field);
         }
         temp_list.sort(compareSequence);
+
 
         var output = [];
         for (var x = 0; x < temp_list.length; x++) {
@@ -193,9 +193,12 @@ angular.module("ehelseEditor").factory("ServiceFunction", [function () {
             }else if(type == "heading"){
                 output.push({headingId: temp_list[x].id, text: temp_list[x].text});
             }else if(type == "link"){
-                output.push({linkCategoryId: temp_list[x].id, text: temp_list[x].text, url: temp_list[x].url})
+                if(temp_list[x]){
+                    output.push({id: temp_list[x].id, links: temp_list[x].links });
+                }
             }
         }
+        console.log(output);
         return output;
     }
 

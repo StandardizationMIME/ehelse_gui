@@ -622,9 +622,6 @@ angular.module("ehelseEditor").factory("Document",
                     if(document.headingContent){
                         document.headingContent = ServiceFunction.orderListBySequence(document.headingContent, Heading.getById, "heading");
                     }
-                    if(document.links){
-                        document.links = ServiceFunction.orderListBySequence(document.links, LinkCategory.getById, "link");
-                    }
 
                     setDocument(current_document, document);
                 }
@@ -675,9 +672,7 @@ angular.module("ehelseEditor").factory("Document",
             }
 
             function getCurrentDocumentLinksAsLinkCategoryList() {
-                //GJØR DEN HER, MEN FORANDRE orderListBySequence til å passe med linkCategory
-                //console.log(link_category_list);
-                //erviceFunction.orderListBySequence(link_category_list, LinkCategory.getById, "link");
+                link_category_list = ServiceFunction.orderListBySequence(link_category_list, LinkCategory.getById, "link");
                 return link_category_list;
             }
 
