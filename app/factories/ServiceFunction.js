@@ -152,6 +152,7 @@ angular.module("ehelseEditor").factory("ServiceFunction", [function () {
         var clone = {};
 
         for (var element in object) {
+            if (!object.hasOwnProperty(element)) continue;
             if (object[element] instanceof Array) {
                 clone[element] = cloneArray(object[element]);
             } else if (typeof(object[element]) == "object") {
