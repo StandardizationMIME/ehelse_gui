@@ -56,7 +56,6 @@ angular.module("ehelseEditor").factory("ServiceFunction", [function () {
                     max = id;
                 }
             }
-            console.log(max + 1);
             return "" + (max + 1);
         } else {
             return "1";
@@ -199,7 +198,6 @@ angular.module("ehelseEditor").factory("ServiceFunction", [function () {
                 }
             }
         }
-        console.log(output);
         return output;
     }
 
