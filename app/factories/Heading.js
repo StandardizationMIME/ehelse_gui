@@ -37,7 +37,7 @@ angular.module("ehelseEditor").factory("Heading", ["$rootScope", "StorageHandler
             name: "",
             description: "",
             isArchived: 0,
-            sequence: ""
+            sequence: 1
         }
     }
 
@@ -92,7 +92,9 @@ angular.module("ehelseEditor").factory("Heading", ["$rootScope", "StorageHandler
     function initNewHeadingValues(heading){
         heading.id = ServiceFunction.generateNewId(headings);
         heading.isArchived = 0;
-        heading.sequence = "1";
+        if(!heading.sequence){
+            heading.sequence = 1;
+        }
     }
 
     /**

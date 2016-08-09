@@ -23,12 +23,12 @@
                         <li class="list-group-item" ng-repeat="link in linkCategory.links">
 
                             <!-- Link text -->
-                            <span class="document-fields-field-name"><input class="form-control" type="text" placeholder="Navn" ng-model="link.text"
+                            <span class="document-fields-field-name"><input class="form-control" id="linkText" name="linkText" type="text" placeholder="Navn" ng-model="link.text"
                                                                             data-toggle="tooltip" title="{{link.text}}" data-placement="top" required></span>
 
                             <!-- URL -->
-                            <span class="document-fields-field-value"><input class="form-control" type="text" placeholder="URL" ng-model="link.url"
-                                                                             name="linkCategoryUrl" data-toggle="tooltip" title="{{link.url}}" data-placement="top" required></span>
+                            <span class="document-fields-field-value"><input class="form-control" id="linkUrl" name="linkUrl" type="text" placeholder="URL" ng-model="link.url"
+                                                                             data-toggle="tooltip" title="{{link.url}}" data-placement="top" required></span>
 
                             <!-- Remove link -->
                             <span class="fa fa-remove delete-topic-icon clickable" ng-click="openConfirmationModal('Er du sikker på at du vil slette lenken fra dokumentet?', link, removeLink); EditDocumentController.DocumentForm.$setDirty()"></span>

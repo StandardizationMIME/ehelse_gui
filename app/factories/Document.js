@@ -136,6 +136,7 @@ angular.module("ehelseEditor").factory("Document",
                     for (var i = 0; i < ids.length; i++) {
                         current_document.headingContent.push({headingId: ids[i], text: ""});
                     }
+                    current_document.headingContent = ServiceFunction.orderListBySequence(current_document.headingContent, Heading.getById, "heading");
                 }else{
                     console.log("Document has no headings");
                 }
@@ -170,6 +171,7 @@ angular.module("ehelseEditor").factory("Document",
                     for (var i = 0; i < field_ids.length; i++) {
                         current_document.fields.push({fieldId: field_ids[i], value: ""});
                     }
+                    current_document.fields = ServiceFunction.orderListBySequence(current_document.fields, DocumentField.getById, "field");
                 } else {
                     console.log("Input = " + fields_ids + " and is invalid");
                 }
@@ -622,9 +624,6 @@ angular.module("ehelseEditor").factory("Document",
                     if(document.headingContent){
                         document.headingContent = ServiceFunction.orderListBySequence(document.headingContent, Heading.getById, "heading");
                     }
-                    if(document.links){
-                        document.links = ServiceFunction.orderListBySequence(document.links, LinkCategory.getById, "link");
-                    }
 
                     setDocument(current_document, document);
                 }
@@ -675,9 +674,7 @@ angular.module("ehelseEditor").factory("Document",
             }
 
             function getCurrentDocumentLinksAsLinkCategoryList() {
-                //GJØR DEN HER, MEN FORANDRE orderListBySequence til å passe med linkCategory
-                //console.log(link_category_list);
-                //erviceFunction.orderListBySequence(link_category_list, LinkCategory.getById, "link");
+                link_category_list = ServiceFunction.orderListBySequence(link_category_list, LinkCategory.getById, "link");
                 return link_category_list;
             }
 
