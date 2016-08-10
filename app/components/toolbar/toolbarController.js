@@ -42,75 +42,25 @@ angular.module("ehelseEditor").controller("ToolbarController",
                 $rootScope.changeContentView("administermandatory");
             };
 
-            // Open import_csv modal
-            $scope.openCSVImportModal = function () {
-                $rootScope.deselectTopicAndDocument();
-                $rootScope.openModal("app/components/csvImport/csvImportModal.html", "CSVImportController");
-            };
-
 
             // Download save file
             $scope.save = function () {
-                //FileUpload.saveToFileAs(DownloadList.getStorageList());
-                FileUpload.saveToFile(DownloadList.getStorageList());
+                FileUpload.onSave(DownloadList.getStorageList());
             };
 
             // Initialize state
             $scope.$state = $state;
-            $scope.showCSVContent = function ($fileContentCsv) {
-                $rootScope.clearEverything();
-                CSVConverter.uploadCSVContent($fileContentCsv);
-                StorageHandler.initCsv();
-                Action.init();
-                Document.init();
-                DocumentField.init();
-                DocumentType.init();
-                LinkCategory.init();
-                Mandatory.init();
-                Status.init();
-                TargetGroup.init();
-                Topic.init();
-            };
 
-            $rootScope.clearEverything = function(){
-                Action.clear();
-                Document.clear();
-                DocumentField.clear();
-                DocumentType.clear();
-                LinkCategory.clear();
-                Mandatory.clear();
-                Status.clear();
-                TargetGroup.clear();
-                Topic.clear();
+            $scope.uploadCsvButton = function () {
+                FileUpload.onLoadCSV();
                 $rootScope.deselectTopicAndDocument();
                 $rootScope.changeContentView("");
             };
 
-            $scope.initEverything = function(){
-                StorageHandler.init();
-                Action.init();
-                Document.init();
-                DocumentField.init();
-                DocumentType.init();
-                LinkCategory.init();
-                Mandatory.init();
-                Status.init();
-                TargetGroup.init();
-                Topic.init();
-            };
-
-            $scope.readFileContent = function ($fileContent) {
-                FileUpload.readContent($fileContent);
-                $rootScope.clearEverything();
-                $scope.initEverything();
-            };
-
-            $scope.csvLinkClick = function () {
-                $("#upload_csv").trigger('click');
-            };
-
-            $scope.jsonLinkClick = function () {
-                $("#upload_json").trigger('click');
+            $scope.uploadJsonButton = function () {
+                FileUpload.onLoad();
+                $rootScope.deselectTopicAndDocument();
+                $rootScope.changeContentView("");
             };
 
             $scope.searchFilter = function (row) {

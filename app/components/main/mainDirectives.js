@@ -25,40 +25,6 @@ angular.module("ehelseEditor")
                 });
             }
         }
-    })
-    .directive('onReadFile', ['$parse', '$rootScope', function ($parse, $rootScope) {
-        return {
-            restrict: 'A',
-            scope: false,
-            link: function(scope, element, attrs){
-                var fn = $parse(attrs.onReadFile);
-
-                choosenFileEntry = null;
-                element.on('change', function (onChangeEvent) {
-                    try {
-                        if (chrome.fileSystem){
-                            console.log("chrome.system read defined");
-                            chrome.fileSystem.chooseEntry({type:'openWritableFile'}, function () {
-                                var reader = new FileReader();
-                                try{
-                                    reader.onload = function (onLoadEvent) {
-                                        scope.$apply(function () {
-                                            fn(scope, {$fileContent:onLoadEvent.target.result});
-                                        });
-                                    };
-                                    reader.readAsText((onChangeEvent.srcElement || onChangeEvent.target).files[0]);
-                                }catch(error){
-                                    $rootScope.notifyError("Filen du prøver å laste opp er ugyldig!", 6000);
-                                    console.log("Upload failed: " + error);
-                                }
-                            });
-
-                        }
-                    } catch(error){{console.log("error", error.message)}}
-
-                });
-            }
-        };
-    }]);
+    });
 
 

@@ -1,15 +1,15 @@
 "use strict";
 
-angular.module("ehelseEditor").factory("StorageHandler", ["$rootScope", "FileUpload", "ServiceFunction", "CSVConverter",
-    function ($rootScope, FileUpload, ServiceFunction, CSVConverter) {
+angular.module("ehelseEditor").factory("StorageHandler", ["$rootScope", "ServiceFunction", "CSVConverter",
+    function ($rootScope, ServiceFunction, CSVConverter) {
 
 
         var input_list = [];
 
-        init();
+        initValues();
 
-        function init() {
-            input_list = FileUpload.getJsonFile();
+        function initJSON(jsonFile){
+            input_list = jsonFile;
             initValues();
         }
 
@@ -261,7 +261,7 @@ angular.module("ehelseEditor").factory("StorageHandler", ["$rootScope", "FileUpl
 
 
         return {
-            init: init,
+            initJSON: initJSON,
             initCsv: initCsv,
             getActions: getActions,
             getDocuments: getDocuments,

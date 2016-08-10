@@ -7,7 +7,7 @@
     "128": "Direktoratet_for_e-helse_horisontal_logo_RGB_sort.png"
   },
   "permissions": [
-    {"fileSystem": ["write"]}
+    {"fileSystem": ["write", "retainEntries", "directory"]}
   ],
   "app": {
     "background": {
