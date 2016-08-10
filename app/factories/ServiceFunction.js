@@ -196,7 +196,6 @@ angular.module("ehelseEditor").factory("ServiceFunction", [function () {
         }
         temp_list.sort(compareSequence);
 
-
         var output = [];
         for (var x = 0; x < temp_list.length; x++) {
             if(type == "field"){

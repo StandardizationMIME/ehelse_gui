@@ -662,6 +662,7 @@ angular.module("ehelseEditor").factory("Document",
                             link_category_dict[link.linkCategoryId] = {id: link.linkCategoryId, links: []};
                         }
                         link_category_dict[link.linkCategoryId].links.push(link);
+
                     }
                 } else {
                     console.log("Current document has no links");
@@ -679,6 +680,7 @@ angular.module("ehelseEditor").factory("Document",
             }
 
             function getCurrentDocumentLinksAsLinkCategoryList() {
+                link_category_list = ServiceFunction.orderListBySequence(link_category_list, LinkCategory.getById, "link");
                 return link_category_list;
             }
 
