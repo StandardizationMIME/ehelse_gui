@@ -11,6 +11,9 @@ angular.module("ehelseEditor").factory("DocumentField", ["$rootScope", "StorageH
     function init(){
         try{
             Array.prototype.push.apply(document_fields, StorageHandler.getDocumentFields().documentFields);
+            for(var i = 0; i < document_fields.length; i++){
+                document_fields[i].sequence = Number(document_fields[i].sequence);
+            }
             document_fields.sort(ServiceFunction.compareSequence);
             generateDocumentFieldDict(document_fields);
             generateDocumentFieldTypeDict(document_fields);

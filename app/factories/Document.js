@@ -90,6 +90,7 @@ angular.module("ehelseEditor").factory("Document",
 
                     for (var i = 0; i < allDocuments.documents.length; i++) {
                         var document = allDocuments.documents[i];
+                        document.sequence = Number(document.sequence);
                         document.populatedProfiles = [];
                         documents.push(document);
                     }
@@ -242,6 +243,7 @@ angular.module("ehelseEditor").factory("Document",
                 document.editedTimestamp = ServiceFunction.getTimestamp();
                 document.populatedProfiles = [];
                 document.fields = removeLineBreakFromDocumentFields(document.fields);
+                document.sequence = Number(document.sequence);
             }
 
             function changeTopicIdOfNextDocumentVersions(document) {
