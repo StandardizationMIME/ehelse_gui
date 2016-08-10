@@ -1,7 +1,8 @@
 "use strict";
 
-angular.module("ehelseEditor").factory("FileUpload", ["StorageHandler", "Action", "Document", "DocumentField", "DocumentType" , "LinkCategory", "Mandatory", "Status", "TargetGroup", "Topic", "CSVConverter",
-    function (StorageHandler, Action, Document, DocumentField, DocumentType, LinkCategory, Mandatory, Status, TargetGroup, Topic, CSVConverter) {
+angular.module("ehelseEditor").factory("FileUpload",
+    ["StorageHandler", "Action", "Document", "DocumentField", "DocumentType" , "LinkCategory", "Mandatory", "Status", "TargetGroup", "Topic", "CSVConverter", "Heading", "ContactAddress",
+    function (StorageHandler, Action, Document, DocumentField, DocumentType, LinkCategory, Mandatory, Status, TargetGroup, Topic, CSVConverter, Heading, ContactAddress) {
 
         var chosenFileEntry = null;
         var isJsonFile = false;
@@ -126,6 +127,8 @@ angular.module("ehelseEditor").factory("FileUpload", ["StorageHandler", "Action"
             Status.init();
             TargetGroup.init();
             Topic.init();
+            Heading.init();
+            ContactAddress.init();
         }
 
         function clearEverything() {
