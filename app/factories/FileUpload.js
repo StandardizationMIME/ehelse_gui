@@ -141,6 +141,8 @@ angular.module("ehelseEditor").factory("FileUpload",
             Status.clear();
             TargetGroup.clear();
             Topic.clear();
+            Heading.init();
+            ContactAddress.init();
         }
 
         return {
