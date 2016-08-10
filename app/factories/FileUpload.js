@@ -13,7 +13,6 @@ angular.module("ehelseEditor").factory("FileUpload", ["StorageHandler", "Action"
                     console.warn(chrome.runtime.lastError.message);
                 } else {
                     chosenFileEntry = fileEntry;
-                    console.log(chosenFileEntry);
 
                     fileEntry.file(function (file) {
                         var reader = new FileReader();
@@ -118,7 +117,6 @@ angular.module("ehelseEditor").factory("FileUpload", ["StorageHandler", "Action"
         }
 
         function initEverything() {
-            console.log("FileUpload.initEverything");
             Action.init();
             Document.init();
             DocumentField.init();
