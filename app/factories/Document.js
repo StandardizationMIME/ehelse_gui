@@ -667,8 +667,6 @@ angular.module("ehelseEditor").factory("Document",
                     console.log("Current document has no links");
                 }
 
-
-
                 link_category_list.length = 0;
 
                 for (var prop in link_category_dict) {
@@ -677,7 +675,6 @@ angular.module("ehelseEditor").factory("Document",
 
                     link_category_list.push(link_category_dict[prop]);
                 }
-                link_category_list = ServiceFunction.orderListBySequence(link_category_list, LinkCategory.getById, "link");
 
             }
 
