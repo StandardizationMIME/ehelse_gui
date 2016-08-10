@@ -37,10 +37,11 @@
                         <li><a href="" ng-click="openAdministerStatus()">Statuser</a></li>
                         <li role="separator" class="divider"></li>
                         <li>
-                            <a href="" ng-click="clearEverything();csvLinkClick()">Importer fra .csv</a>
-                            <input id="upload" type="file" style="display: none" on-read-file="showCSVContent($fileContent)">
+                            <a href="" ng-click="uploadCsvButton()">Importer fra .csv</a>
                         </li>
-                        <li><a href="" ng-click="openUploadFileModal()">Last opp fra fil</a></li>
+                        <li>
+                            <a href="" ng-click="uploadJsonButton()">Last opp fra fil</a>
+                        </li>
                     </ul>
                 </div>
                     <button type="button" class="btn btn-primary navbar-btn" ng-click="save()">Last ned fil</button>

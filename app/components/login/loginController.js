@@ -6,9 +6,12 @@ angular.module("ehelseEditor").controller("LoginController", [ "$scope", "$rootS
     $scope.isLoaded = false;
 
     // Read file in file upload input
-    $scope.readFileContent = function ($fileContent) {
-
-        FileUpload.readContent($fileContent);
+    $scope.uploadJsonButton = function () {
+        FileUpload.onLoad();
+        $scope.isLoaded = true;
+    };
+    $scope.uploadCsvButton = function () {
+        FileUpload.onLoadCSV();
         $scope.isLoaded = true;
     };
 

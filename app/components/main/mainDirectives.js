@@ -24,6 +24,7 @@ angular.module("ehelseEditor")
                     return parseFloat(value, 10);
                 });
             }
-        }});
+        }
+    });
 
 

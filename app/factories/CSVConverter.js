@@ -26,10 +26,10 @@ angular.module("ehelseEditor").factory("CSVConverter",
                     values[1] + " " + values[2].substr(3) + ":00";
             }
 
-            function uploadCSVContent ($fileContentCsv){
+            function uploadCSVContent (fileContentCsv){
                 var csvObjects = [];
                 // convert file content to array
-                var result = CSVToArray($fileContentCsv);
+                var result = CSVToArray(fileContentCsv);
 
                 // generates array with key: "value" form
                 for (var i = 1; i < result.length; i++){
@@ -119,7 +119,7 @@ angular.module("ehelseEditor").factory("CSVConverter",
                         topicTitlesList.push(arr[i]['Emne (Referansekatalog kapittel)']);
                     }
                 }
-                topicTitlesList.push('Ingen Emne')
+                topicTitlesList.push('Ingen Emne');
                 return removeDuplicates(topicTitlesList);
             }
             function generateTopicListFromCsvDocument(topicTitles) {
@@ -526,7 +526,7 @@ angular.module("ehelseEditor").factory("CSVConverter",
                         returnString = returnString + ' ';
                     }
                 }
-                returnString = returnString.replace(/\s+$/, '')
+                returnString = returnString.replace(/\s+$/, '');
                 return returnString;
             }
 

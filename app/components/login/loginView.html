@@ -10,8 +10,11 @@
     <form name="login" role="form" class="text-align-center">
 
         <!-- File upload input -->
-        <label class="btn btn-default btn-file">
-            <i class="fa fa-upload" aria-hidden="true"></i> Last opp fil <input type="file" style="display: none" on-read-file="readFileContent($fileContent)">
+        <label class="btn btn-default btn-file" ng-click="uploadJsonButton()">
+            <i class="fa fa-upload" aria-hidden="true"></i> Last opp JSON
+        </label>
+        <label class="btn btn-default btn-file" ng-click="uploadCsvButton()">
+            <i class="fa fa-upload" aria-hidden="true"></i> Last opp CSV
         </label>
 
         <!-- Feedback -->
@@ -19,7 +22,7 @@
             <span ng-show="login.$error" class="help-block">{{feedback}}</span>
         </div>
 
-        <div>
+        <div class="text-center">
             <button type="button"
                     class="btn btn-primary font-size-large"
                     ng-click="goToSite()">
