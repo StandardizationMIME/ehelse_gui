@@ -85,7 +85,7 @@ angular.module("ehelseEditor").factory("FileUpload",
                                 chosenFileEntry = writableFileEntry;
                                 isJsonFile = true;
                             };
-                            writer.write(new Blob(['MIME_JSON'], {type: "application/json"}));
+                            writer.write(new Blob([JSON.stringify(JSON.parse(angular.toJson(modifiedJsonObject)), null, '\t')], {type: "application/json"}));
                         }, errorHandler);
                     }
                 });
