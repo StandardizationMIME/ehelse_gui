@@ -35,7 +35,7 @@
 
             <!-- Save document -->
             <span class="my-tooltip" data-toggle="tooltip" title="Lagre dokument" ng-hide="documentState == 'newDocument' || documentState == 'newProfile'">
-                <button class="fa fa-floppy-o document-buttons save-clone-buttons"
+                <button class="fa fa-floppy-o document-buttons save-clone-download-buttons"
                         ng-disabled="EditDocumentController.DocumentForm.$invalid || EditDocumentController.DocumentForm.$pristine"
                         ng-click="submit(EditDocumentController.DocumentForm)">
                 </button>
@@ -43,7 +43,7 @@
 
             <!-- Create new version of document -->
             <span class="my-tooltip" data-toggle="tooltip" title="Ny versjon" ng-hide="documentState == 'newDocument' || documentState == 'newProfile'">
-                <button class="fa fa-clone document-buttons save-clone-buttons"
+                <button class="fa fa-clone document-buttons save-clone-download-buttons"
                         ng-disabled="!((documentState == 'editProfile' || documentState == 'editDocument' || documentState == 'editUtility')
                          && !document.nextDocumentId)" ng-click="checkEditDocumentForm(document, newVersion)">
                 </button>
