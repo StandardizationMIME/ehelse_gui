@@ -3,7 +3,7 @@
 angular.module("ehelseEditor").factory("StorageHandler", ["$rootScope", "ServiceFunction", "CSVConverter",
     function ($rootScope, ServiceFunction, CSVConverter) {
 
-
+        var chosenFilePath = "";
         var input_list = [];
 
         initValues();
@@ -310,6 +310,12 @@ angular.module("ehelseEditor").factory("StorageHandler", ["$rootScope", "Service
             }
         }
 
+        function setChosenFilePath(path){
+            chosenFilePath = path;
+        }
+        function getChosenFilePath(){
+            return chosenFilePath;
+        }
 
 
         return {
@@ -328,6 +334,8 @@ angular.module("ehelseEditor").factory("StorageHandler", ["$rootScope", "Service
             getTargetGroups: getTargetGroups,
             getArchivedDocuments: getArchivedDocuments,
             getArchivedDocumentsById: getArchivedDocumentsById,
-            addArchivedDocumentsById: addArchivedDocumentsById
+            addArchivedDocumentsById: addArchivedDocumentsById,
+            setChosenFilePath: setChosenFilePath,
+            getChosenFilePath: getChosenFilePath
         };
     }]);

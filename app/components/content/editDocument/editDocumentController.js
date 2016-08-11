@@ -127,7 +127,11 @@ angular.module("ehelseEditor").controller("EditDocumentController",
             };
 
             $scope.downloadDocumentAsJSON = function(doc){
-                FileUpload.onSaveAs(DocumentExtractor.getDocumentAsJSON(doc));
+                FileUpload.onSaveAs(DocumentExtractor.getDocumentAsJSON(doc), function () {
+                    $rootScope.notifySuccess("Save succeed! To: " + $rootScope.chosenFilePath , 2000);
+                }, function () {
+                    $rootScope.notifyError("Save failed... :(", 1000);
+                });
             };
 
 

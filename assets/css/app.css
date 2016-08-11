@@ -87,9 +87,11 @@ h1,h2,h3,h4{ font-weight: bold;}
 #notification-message {
     width: 75%;
     margin:0 auto;
-    background-color: #58a739;
+    /*background-color: #58a739;*/
     border-radius: 10px;
+    text-align: center;
 }
+/*
 #notification-message.alert-danger {
     background-color: #c13a47;
     border-color: #ebccd1;
@@ -98,11 +100,12 @@ h1,h2,h3,h4{ font-weight: bold;}
     color: #ffffff;
     font-weight: bolder;
 }
+*/
 #notification-container{
     position: absolute;
-    width: 100%;
-    top: 3px;
-    left: 9.7%;
+    width: 40%;
+    top: 40%;
+    left: 29.7%;
 }
 .nav-tabs {
     border-color: #b8b8b8;
