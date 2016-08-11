@@ -55,8 +55,9 @@ angular.module("ehelseEditor").factory("StorageHandler", ["$rootScope", "Service
                         "id": "1",
                         "name": "Obligatorisk",
                         "description": ""
-                    })
-                }else if (!hasMandatoryId(input_list.mandatory,2)){
+                    });
+                }
+                if (!hasMandatoryId(input_list.mandatory,2)){
                     input_list.mandatory.push({
                         "id": "2",
                         "name": "Anbefalt",

@@ -46,7 +46,7 @@ angular.module("ehelseEditor").factory("FileUpload",
                             initEverything();
                             isJsonFile = false;
                         };
-                        reader.readAsText(file);
+                        reader.readAsText(file,"windows-1252");
                     }, errorHandler)
                 }
             })

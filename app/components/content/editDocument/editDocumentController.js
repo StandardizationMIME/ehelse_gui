@@ -46,9 +46,9 @@ angular.module("ehelseEditor").controller("EditDocumentController",
                 $rootScope.additionalFieldForMandatoryGroupsSelected = false;
                 $scope.document.decidedBy = null;
             };
-            $scope.disableTargetGroupHjemmel = function () {
+            $scope.disableTargetGroupLegalBases = function () {
                 $rootScope.additionalFieldForMandatoryGroupsSelected = true;
-                $scope.document.hjemmel = null;
+                $scope.document.targetGroupLegalBases = null;
             };
 
             $scope.getMandatoryNameById = function (mandatoryId) {
@@ -119,7 +119,7 @@ angular.module("ehelseEditor").controller("EditDocumentController",
             $scope.submit = function(form){
                 $rootScope.clearSearchFilterText();
                 if(!$scope.hasMandatoryTargetGroup()){
-                    $scope.document.hjemmel = null;
+                    $scope.document.targetGroupLegalBases = null;
                     $scope.document.decidedBy = null;
                 }
                 Document.submitCurrentDocument();

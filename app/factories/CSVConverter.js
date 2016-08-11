@@ -11,65 +11,60 @@ angular.module("ehelseEditor").factory("CSVConverter",
             var documentFieldsFromCsv = [];
             var convertedFileFromCsv = [];
 
-            function formatTimestamp(timestamp){
-                var values = timestamp.split("/");
-                if(values[0].length < 2){
-                    values[0] = "0" + values[0];
-                }
-                if(values[1].length < 2){
-                    values[1] = "0" + values[1];
-                }
-                if(values[2].length < 8){
-                    values[2] = values[2].substr(0,3) + "0" + values[2].substr(3);
-                }
-                return "20" + values[2].substr(0,2) + "-" + values[0] + "-" +
-                    values[1] + " " + values[2].substr(3) + ":00";
-            }
-
+            /**
+             * Uploads content of csv file to system and convert it to system format
+             * @param fileContentCsv
+             */
             function uploadCSVContent (fileContentCsv){
+                cleanCsvStorage();
                 var csvObjects = [];
-                // convert file content to array
-                var result = CSVToArray(fileContentCsv);
 
-                // generates array with key: "value" form
-                for (var i = 1; i < result.length; i++){
+                // Convert file content to array
+                // each line in from csv file will be presented as array element with column number as index
+                // first element contains titles
+                var result = ServiceFunction.CSVToArray(fileContentCsv);
+                var listOfFieldTitlesInCsvFile = result[0];
+
+                // Generates objects array with {"key": "value"} form
+                // Key is taken from title list (result[0]) and value from the rest of result array (result[1...n])
+                for (var i = 1; i < result.length -1; i++){
                     var tempDict = {};
                     for (var j = 0; j< (result[i]).length; j++){
                         tempDict[result[0][j]] = result[i][j];
                     }
                     csvObjects.push(tempDict);
                 }
-                console.log(csvObjects);
 
-                console.log('----------------------------------------|      topicList     |----------------------------------------');
-                console.log(generateTopicListFromCsvDocument(generateTopicTitlesFromCsvDocument(csvObjects)));
-                console.log('----------------------------------------|     statusList     |----------------------------------------');
-                console.log(generateStatusListFromCsvDocument(generateStatusTitlesFromCsvDocument(csvObjects)));
-                console.log('----------------------------------------|  documentTypesList |----------------------------------------');
-                console.log(generateDocumentTypesListFromCsvDocument(generateDocumentTypesTitlesFromCsvDocument(csvObjects)));
-                console.log('----------------------------------------| documentFieldsList |----------------------------------------');
-                console.log(generateDocumentFieldsList(csvObjects));
+                // Generating all necessary list
+                // DOCUMENT FIELDS
+                generateDocumentFieldsTitlesFromCsvDocument(listOfFieldTitlesInCsvFile);
+                // TOPICS
+                generateTopicListFromCsvDocument(generateTopicTitlesFromCsvDocument(csvObjects));
+                // STATUS
+                generateStatusListFromCsvDocument(generateStatusTitlesFromCsvDocument(csvObjects));
+                // DOCUMENT TYPES
+                generateDocumentTypesListFromCsvDocument();
+                // FIELDS
+                generateDocumentFieldsList(csvObjects);
 
                 var csvObject;
                 for (var i = 0; i < csvObjects.length; i++){
                     csvObject = csvObjects[i];
 
                     var tempDocument = {
-                        "id": i+1,
+                        "id": (i+1).toString(),
                         "createdTimestamp": "",
-                        "editedTimestamp": formatTimestamp(csvObject.Endret),
+                        "editedTimestamp": csvObject.Endret,
                         "title": csvObject.Tittel,
                         "description": csvObject.Ingress,
                         "statusId": getStatusIdFromCsvDocument(csvObject.Status),
-                        "sequence": "",
-                        "topicId": (getTopicIdByTitleCsvDocument(csvObject['Emne (Referansekatalog kapittel)'])).toString(),
-                        "documentTypeId": getDocumentTypeIdFromCsvDocument(csvObject),
-                        "skalErstattesAv": csvObject['Skal erstattes av'],
+                        "sequence": 1,
+                        "topicId": getTopicIdByTitleCsvDocument(csvObject['Emne (Referansekatalog kapittel)']),
+                        "documentTypeId": (getDocumentTypeIdFromCsvDocument(csvObject)).toString(),
                         "previousDocumentId": "",
-                        "erstatter": csvObject.Erstatter,
                         "nextDocumentId": "",
-                        "internalId": csvObject['Referansekatalog ID'],
-                        "hisNumber": csvObject['Utgivers ID'],
+                        "internalId": getInternalIdForCsv(csvObject),
+                        "hisNumber": getHisNumberForCsv(csvObject),
                         "fields": generateFieldsListForSingleCsvDocument(csvObject),
                         "contactAddressId": "",
                         "headingContent": [],
@@ -77,9 +72,11 @@ angular.module("ehelseEditor").factory("CSVConverter",
                         "targetGroups": [],
                         "tempProfiles": csvObject.Profil,
                         "standardId": "",
-                        "hjemmel": "",
+                        "targetGroupLegalBases": "",
                         "decidedBy": "",
                         "replacedBy": "",
+                        "erstatter": csvObject.Erstatter,
+                        "skalErstattesAv": csvObject['Skal erstattes av'],
                         "mandatoryNotices": []
                     };
                     documentsFromCsv.push(tempDocument);
@@ -92,26 +89,50 @@ angular.module("ehelseEditor").factory("CSVConverter",
                     delete documentsFromCsv[i].skalErstattesAv;
                     delete documentsFromCsv[i].erstatter;
                 }
-                console.log('----------------------------------------|      documents     |----------------------------------------');
-                console.log(documentsFromCsv);
             }
 
+            /**
+             * Returns json array of catalog used in the system
+             * @returns {{status: Array, mandatory: Array, actions: Array, documentTypes: Array, linkCategories: Array, documentFields: Array, topics: Array, documents: Array}}
+             */
             function getConvertedCsv(){
                 var convertedCsv ={
-                    "status": statusListFromCsv,
-                    "mandatory": [],
                     "actions": [],
+                    "documentFields": documentFieldsFromCsv,
                     "documentTypes": documentTypesFromCsv,
                     "linkCategories": [],
-                    "documentFields": documentFieldsFromCsv,
+                    "mandatory": [],
+                    "targetGroups": [],
+                    "status": statusListFromCsv,
+                    "headings": [],
+                    "contactAddresses": [],
                     "topics": topicsFromCsv,
-                    "documents": documentsFromCsv
+                    "documents": documentsFromCsv,
+                    "archivedDocuments": []
                 };
+                // unnecessary var ?
                 convertedFileFromCsv = convertedCsv;
                 return convertedCsv;
             }
+            function cleanCsvStorage(){
+                documentsFromCsv = [];
+                statusListFromCsv = [];
+                documentTypesFromCsv = [];
+                topicsFromCsv = [];
+                documentFieldsFromCsv = [];
+                convertedFileFromCsv = [];
+                globalFieldTitles = [];
+                standardFieldsTitles = [];
+                profileFieldsTitles = [];
+                supportFieldsTitles = [];
+            }
 
-// TOPICS
+// . . . . . . . . . . . . . . . . . . . . . . . . . . TOPICS . . . . . . . . . . . . . . . . . . . . . . . . . . . . //
+            /**
+             * Generates array with topic titles found in csv file
+             * @param arr
+             * @returns {Array}
+             */
             function generateTopicTitlesFromCsvDocument(arr) {
                 var topicTitlesList = [];
                 for (var i = 0; i < arr.length; i++){
@@ -120,16 +141,22 @@ angular.module("ehelseEditor").factory("CSVConverter",
                     }
                 }
                 topicTitlesList.push('Ingen Emne');
-                return removeDuplicates(topicTitlesList);
+                return ServiceFunction.removeDuplicates(topicTitlesList);
             }
+
+            /**
+             * Generates json array with all topics found in csv
+             * @param topicTitles - array with topic titles
+             * @returns {Array}
+             */
             function generateTopicListFromCsvDocument(topicTitles) {
                 var topicList = [];
                 for (var i = 0; i < topicTitles.length; i++){
                     var topicObj = {
-                        "id": i+1,
+                        "id": (i+1).toString(),
                         "title": topicTitles[i],
                         "description": "",
-                        "sequence": "",
+                        "sequence": 1,
                         "parentId": null
                     };
                     topicList.push(topicObj);
@@ -137,34 +164,32 @@ angular.module("ehelseEditor").factory("CSVConverter",
                 topicsFromCsv = topicList;
                 return topicList;
             }
+
+            /**
+             * Returns topic id based on title
+             * @param topicTitle
+             * @returns {*}
+             */
             function getTopicIdByTitleCsvDocument(topicTitle) {
                 var returnId;
                 for (var i = 0; i < topicsFromCsv.length; i++) {
                     if (topicTitle.toLowerCase() == topicsFromCsv[i].title.toLowerCase()) {
-                        returnId = topicsFromCsv[i].id;
+                        returnId = (topicsFromCsv[i].id).toString();
                         break;
                     } else if (topicTitle.toLowerCase() == ""){
-                        returnId = topicsFromCsv[topicsFromCsv.length-1].id;
+                        returnId = (topicsFromCsv[topicsFromCsv.length-1].id).toString();
                     } else {
                         returnId = null;
                     }
                 }
                 return returnId;
             }
-            function getTopicIdByHisNumberCsvDocument(hisNumber){
-                var returnId;
-                for (var i = 0; i < topicsFromCsv.length; i++){
-                    if (hisNumber == topicsFromCsv[i].hisNumber){
-                        returnId = topicsFromCsv[i].id;
-                        break;
-                    }else{
-                        returnId = null;
-                    }
-                }
-                return returnId;
-            }
-
-// STATUS
+// . . . . . . . . . . . . . . . . . . . . . . . . STATUS . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . //
+            /**
+             * Generates array with status titles found in csv file
+             * @param arr
+             * @returns {Array}
+             */
             function generateStatusTitlesFromCsvDocument(arr) {
                 var statusTitlesList = [];
                 for (var i = 0; i < arr.length; i++){
@@ -172,13 +197,19 @@ angular.module("ehelseEditor").factory("CSVConverter",
                         statusTitlesList.push(arr[i].Status);
                     }
                 }
-                return removeDuplicates(statusTitlesList);
+                return ServiceFunction.removeDuplicates(statusTitlesList);
             }
+
+            /**
+             * Generates json array with all statuses found in csv file
+             * @param statusTitles - array with status titles
+             * @returns {Array}
+             */
             function generateStatusListFromCsvDocument(statusTitles) {
                 var statusList = [];
                 for (var i = 0; i < statusTitles.length; i++){
                     var statusObj = {
-                        "id": i+1,
+                        "id": (i+1).toString(),
                         "name": statusTitles[i],
                         "description": ""
                     };
@@ -187,6 +218,12 @@ angular.module("ehelseEditor").factory("CSVConverter",
                 statusListFromCsv = statusList;
                 return statusList;
             }
+
+            /**
+             * Returns status id based on name
+             * @param statusName
+             * @returns {*}
+             */
             function getStatusIdFromCsvDocument(statusName) {
                 var statusId;
                 if (statusName){
@@ -201,18 +238,13 @@ angular.module("ehelseEditor").factory("CSVConverter",
                 }
                 return statusId;
             }
-// DOCUMENT TYPES
-            function generateDocumentTypesTitlesFromCsvDocument(arr) {
-                var documentTypesTitlesList = [];
-                for (var i = 0; i < arr.length; i++){
-                    if (arr[i].Dokumenttype){
-                        documentTypesTitlesList.push(arr[i].Dokumenttype);
-                    }
-                }
-                return removeDuplicates(documentTypesTitlesList);
-            }
+// . . . . . . . . . . . . . . . . . . . . . . DOCUMENT TYPES . . . . . . . . . . . . . . . . . . . . . . . . . . . . //
+            /**
+             * Generates default document types list
+             * @returns {Array}
+             */
             function generateDocumentTypesListFromCsvDocument() {
-                var documentTypesList = [
+                return [
                     {
                         "id": "1",
                         "name": "Standard"
@@ -226,184 +258,220 @@ angular.module("ehelseEditor").factory("CSVConverter",
                         "name": "Støttedokument"
                     }
                 ];
-                documentTypesFromCsv = documentTypesList;
-                return documentTypesList;
+            }
 
-            }
+            /**
+             * Takes a csv object and returns its document type id
+             * @param obj
+             * @returns {int}
+             */
             function getDocumentTypeIdFromCsvDocument(obj) {
-                var documentTypeId;
-                for (var i = 0; i < documentTypesFromCsv.length; i++){
-                    if (obj.Dokumenttype == documentTypesFromCsv[i].name){
-                        documentTypeId = documentTypesFromCsv[i].id;
-                        break;
-                    }else{
-                        documentTypeId = null;
-                    }
-                }
-                return documentTypeId;
+                return getDocumentTypeIdWithType(obj.Dokumenttype);
             }
+
+            /**
+             * Takes on of three possible document types and returns its id
+             * @param documentType
+             * @returns {int}
+             */
             function getDocumentTypeIdWithType(documentType) {
                 var documentTypeId;
-                for (var i = 0; i < documentTypesFromCsv.length; i++) {
-                    if (documentType == documentTypesFromCsv[i].name) {
-                        documentTypeId = documentTypesFromCsv[i].id;
-                        break;
-                    } else {
-                        documentTypeId = null;
-                    }
+                if (documentType === "Standard") {
+                    documentTypeId = 1
+                } else if (documentType === "Profil") {
+                    documentTypeId = 2;
+                } else {
+                    documentTypeId = 3;
                 }
                 return documentTypeId;
             }
-// FIELDS
-            function generateDocumentFieldsTitlesFromCsvDocument(firstElementFromCsvArray) {
-                var fieldNameKeyList = [];
-                for (var i = 0; i < firstElementFromCsvArray.length; i ++){
-                    if (firstElementFromCsvArray[i] == 'Publisert'  ||
-                        firstElementFromCsvArray[i] == 'Sideinnhold'||
-                        firstElementFromCsvArray[i] == 'Merknad'    ||
-                        firstElementFromCsvArray[i] == 'Utgiver'    ||
-                        firstElementFromCsvArray[i] == 'Versjon'){
-                        fieldNameKeyList.push(firstElementFromCsvArray[i]);
-                    }
-                }
+// . . . . . . . . . . . . . . . . . . . . . . . . FIELDS . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . //
+            /**
+             * Removes field titles that is used in document and generates list of titles used to make field list
+             * @param listOfTitlesFromCsvFile
+             * @returns {Array}
+             */
+            var globalFieldTitles = [];
+            function generateDocumentFieldsTitlesFromCsvDocument(listOfTitlesFromCsvFile) {
+                var fieldNameKeyList = listOfTitlesFromCsvFile;
+                fieldNameKeyList = ServiceFunction.removeFromArray(fieldNameKeyList, "Endret");
+                fieldNameKeyList = ServiceFunction.removeFromArray(fieldNameKeyList, "Tittel");
+                fieldNameKeyList = ServiceFunction.removeFromArray(fieldNameKeyList, "Ingress");
+                fieldNameKeyList = ServiceFunction.removeFromArray(fieldNameKeyList, "Status");
+                fieldNameKeyList = ServiceFunction.removeFromArray(fieldNameKeyList, "Emne (Referansekatalog kapittel)");
+                fieldNameKeyList = ServiceFunction.removeFromArray(fieldNameKeyList, "Dokumenttype");
+                fieldNameKeyList = ServiceFunction.removeFromArray(fieldNameKeyList, "Skal erstattes av");
+                fieldNameKeyList = ServiceFunction.removeFromArray(fieldNameKeyList, "Erstatter");
+                fieldNameKeyList = ServiceFunction.removeFromArray(fieldNameKeyList, "Utgivers ID");
+                fieldNameKeyList = ServiceFunction.removeFromArray(fieldNameKeyList, "Profil");
+                fieldNameKeyList = ServiceFunction.removeFromArray(fieldNameKeyList, "Referansekatalog ID");
+                globalFieldTitles = fieldNameKeyList;
                 return fieldNameKeyList;
             }
-            function generateDocumentFieldsList(allDocumentsFromCsv) {
-                var documentFieldsList = [];
-                var standardFieldsTitles = [];
-                var profileFieldsTitles = [];
-                var supportFieldsTitles = [];
-                for (var i = 0; i < allDocumentsFromCsv.length; i++){
-                    if (allDocumentsFromCsv[i].Dokumenttype == 'Standard'){
-                        if (allDocumentsFromCsv[i].Publisert){
-                            standardFieldsTitles.push('Publisert');
-                        }
-                        if (allDocumentsFromCsv[i].Sideinnhold){
-                            standardFieldsTitles.push('Sideinnhold');
-                        }
-                        if (allDocumentsFromCsv[i].Merknad){
-                            standardFieldsTitles.push('Merknad');
-                        }
-                        if (allDocumentsFromCsv[i].Utgiver){
-                            standardFieldsTitles.push('Utgiver');
-                        }
-                        if (allDocumentsFromCsv[i].Versjon){
-                            standardFieldsTitles.push('Versjon')
-                        }
-                    } else if (allDocumentsFromCsv[i].Dokumenttype == 'Profil'){
-                        if (allDocumentsFromCsv[i].Publisert){
-                            profileFieldsTitles.push('Publisert');
-                        }
-                        if (allDocumentsFromCsv[i].Sideinnhold){
-                            profileFieldsTitles.push('Sideinnhold');
-                        }
-                        if (allDocumentsFromCsv[i].Merknad){
-                            profileFieldsTitles.push('Merknad');
-                        }
-                        if (allDocumentsFromCsv[i].Utgiver){
-                            profileFieldsTitles.push('Utgiver');
-                        }
-                        if (allDocumentsFromCsv[i].Versjon){
-                            profileFieldsTitles.push('Versjon')
-                        }
-                    } else if (allDocumentsFromCsv[i].Dokumenttype == 'Støttedokument'){
-                        if (allDocumentsFromCsv[i].Publisert){
-                            supportFieldsTitles.push('Publisert');
-                        }
-                        if (allDocumentsFromCsv[i].Sideinnhold){
-                            supportFieldsTitles.push('Sideinnhold');
-                        }
-                        if (allDocumentsFromCsv[i].Merknad){
-                            supportFieldsTitles.push('Merknad');
-                        }
-                        if (allDocumentsFromCsv[i].Utgiver){
-                            supportFieldsTitles.push('Utgiver');
-                        }
-                        if (allDocumentsFromCsv[i].Versjon){
-                            supportFieldsTitles.push('Versjon')
+
+
+            var standardFieldsTitles = [];
+            var profileFieldsTitles = [];
+            var supportFieldsTitles = [];
+            /**
+             * Takes csv object and its document type and adds document type title in one of three lists above if
+             * title doesn't exist in there already
+             * @param csvDocument
+             * @param docType
+             */
+            function populateSpecificDocTypeFieldTitlesList(csvDocument, docType){
+                for (var i = 0; i < globalFieldTitles.length; i++) {
+                    if (csvDocument[globalFieldTitles[i]] != "") {
+                        if (docType === "Standard") {
+                            if (!(standardFieldsTitles.indexOf(globalFieldTitles[i]) > -1)) {
+                                standardFieldsTitles.push(globalFieldTitles[i]);
+                            }
+                        } else if (docType === "Profil") {
+                            if (!(profileFieldsTitles.indexOf(globalFieldTitles[i]) > -1)) {
+                                profileFieldsTitles.push(globalFieldTitles[i]);
+                            }
+                        } else if (docType === "Støttedokument") {
+                            if (!(supportFieldsTitles.indexOf(globalFieldTitles[i]) > -1)) {
+                                supportFieldsTitles.push(globalFieldTitles[i]);
+                            }
                         }
                     }
                 }
+            }
+            /**
+             * Takes all list of all csv objects and generates document
+             * @param allDocumentsFromCsv
+             * @returns {Array}
+             */
+            function generateDocumentFieldsList(allDocumentsFromCsv) {
+                var documentFieldsList = [];
 
-                for (var s = 0; s < removeDuplicates(standardFieldsTitles).length; s++){
+                for (var i = 0; i < allDocumentsFromCsv.length; i++){
+                    populateSpecificDocTypeFieldTitlesList(allDocumentsFromCsv[i], allDocumentsFromCsv[i].Dokumenttype);
+                }
+
+                for (var std = 0; std < standardFieldsTitles.length; std++){
                     var documentStandardTypeObj = {
-                        "id": s+1,
-                        "name": removeDuplicates(standardFieldsTitles)[s],
+                        "id": (std+1).toString(),
+                        "name": standardFieldsTitles[std],
                         "description": "",
-                        "sequence": "",
-                        "mandatory": "0",
-                        "documentTypeId": getDocumentTypeIdWithType('Standard')
+                        "sequence": 1,
+                        "mandatory": false,
+                        "documentTypeId": (getDocumentTypeIdWithType('Standard')).toString()
                     };
                     documentFieldsList.push(documentStandardTypeObj);
                 }
                 var nextStartId = documentFieldsList.length + 1;
-                for (var p = 0; p < removeDuplicates(profileFieldsTitles).length; p++){
+                for (var p = 0; p < profileFieldsTitles.length; p++){
                     var documentProfileTypeObj = {
-                        "id": p+nextStartId,
-                        "name": removeDuplicates(profileFieldsTitles)[p],
+                        "id": (p+nextStartId).toString(),
+                        "name": profileFieldsTitles[p],
                         "description": "",
-                        "sequence": "",
-                        "mandatory": "0",
-                        "documentTypeId": getDocumentTypeIdWithType('Profil')
+                        "sequence": 1,
+                        "mandatory": false,
+                        "documentTypeId": (getDocumentTypeIdWithType('Profil')).toString()
                     };
                     documentFieldsList.push(documentProfileTypeObj);
                 }
                 nextStartId = documentFieldsList.length + 1;
-                for (var sp = 0; sp < removeDuplicates(supportFieldsTitles).length; sp++){
+                for (var sp = 0; sp < supportFieldsTitles.length; sp++){
                     var documentSupportTypeObj = {
-                        "id": sp+nextStartId,
-                        "name": removeDuplicates(supportFieldsTitles)[sp],
+                        "id": (sp+nextStartId).toString(),
+                        "name": supportFieldsTitles[sp],
                         "description": "",
-                        "sequence": "",
-                        "mandatory": "0",
-                        "documentTypeId": getDocumentTypeIdWithType('Støttedokument')
+                        "sequence": 1,
+                        "mandatory": false,
+                        "documentTypeId": (getDocumentTypeIdWithType('Støttedokument')).toString()
                     };
                     documentFieldsList.push(documentSupportTypeObj);
                 }
                 documentFieldsFromCsv = documentFieldsList;
                 return documentFieldsList;
             }
+
+            /**
+             * Returns document field id based on its document type and field name
+             * @param documentTypeId
+             * @param fieldName
+             * @returns {*}
+             */
             function getDocumentFieldIdByDocumentTypeIdAndFieldName(documentTypeId, fieldName) {
-                var fieldIdToReturn = null;
                 var tempDocumentFieldList = [];
-                if(fieldName){
+                    // Generates temporary documentFields list with only specified document type objects
                     for (var i = 0; i < documentFieldsFromCsv.length; i++){
                         if (documentTypeId == documentFieldsFromCsv[i].documentTypeId){
                             tempDocumentFieldList.push(documentFieldsFromCsv[i]);
                         }
                     }
                     for (var j = 0; j < tempDocumentFieldList.length; j++){
+                        /*console.log(tempDocumentFieldList[j].name);*/
                         if (fieldName == tempDocumentFieldList[j].name){
-                            fieldIdToReturn = tempDocumentFieldList[j].id;
+                            return tempDocumentFieldList[j].id;
                         }
                     }
-                }
-                return fieldIdToReturn;
             }
 
+            /**
+             * Generates filed list for one single document
+             * @param obj
+             * @returns {Array}
+             */
             function generateFieldsListForSingleCsvDocument(obj) {
                 var fieldsListForSingleDocument = [];
                 var tempDocTypeId = getDocumentTypeIdWithType(obj.Dokumenttype);
 
-                for (var keys in obj){
-                    if (obj[keys]){
-                        if (keys == 'Publisert'|| keys == 'Sideinnhold' || keys == 'Merknad' || keys == 'Utgiver' || keys == 'Versjon'){
-                            var tempDocumentFieldObj = {
-                                "fieldId": getDocumentFieldIdByDocumentTypeIdAndFieldName(tempDocTypeId, keys),
-                                "value": obj[keys].replace(/(\r\n|\n|\r)/gm,"")
-                            };
-                            fieldsListForSingleDocument.push(tempDocumentFieldObj);
+                for (var i = 0; i < globalFieldTitles.length; i++) {
+                    if (obj[globalFieldTitles[i]]) {
+                        if (obj[globalFieldTitles[i]] != "") {
+                            fieldsListForSingleDocument.push(
+                                {
+                                    "fieldId": getDocumentFieldIdByDocumentTypeIdAndFieldName(tempDocTypeId, globalFieldTitles[i]),
+                                    "value": obj[globalFieldTitles[i]].replace(/(\r\n|\n|\r)/gm,"")
+                                }
+                            );
                         }
-
                     }
                 }
                 return fieldsListForSingleDocument;
             }
-// DOCUMENT ID
+// . . . . . . . . . . . . . . . . . . . . . . . . INTERNAL ID . . . . . . . . . . . . . . . . . . . . . . . . . . . . //
+            /**
+             * Returns internalId if it exists in csv file
+             * If not, returns empty string
+             * @param csvObject
+             * @returns {*}
+             */
+            function getInternalIdForCsv(csvObject){
+                if (csvObject['Referansekatalog ID']) {
+                    return csvObject['Referansekatalog ID'];
+                } else {
+                    return "";
+                }
+            }
+// . . . . . . . . . . . . . . . . . . . . . . . . HIS NUMBER . . . . . . . . . . . . . . . . . . . . . . . . . . . . //
+            /**
+             * Returns hisNumber if it exists in csv file
+             * If not returns empty string
+             * @param csvObject
+             * @returns {*}
+             */
+            function getHisNumberForCsv(csvObject){
+                if (csvObject['Utgivers ID']){
+                    return csvObject['Utgivers ID'];
+                } else {
+                    return null;
+                }
+            }
+// . . . . . . . . . . . . . . . . . . . . . . . . . DOCUMENT ID . . . . . . . . . . . . . . . . . . . . . . . . . . .//
+            /**
+             * Returns document id based on title
+             * @param documentTitle
+             * @returns {*}
+             */
             function getDocumentIdByTitleCsvDocument(documentTitle) {
                 var returnId;
                 for (var i = 0; i < documentsFromCsv.length; i++){
-                    var planeTitle = cleanString(documentsFromCsv[i].title);
+                    var planeTitle = ServiceFunction.cleanString(documentsFromCsv[i].title);
                     if (documentTitle.toLowerCase() == planeTitle.toLowerCase()){
                         returnId = documentsFromCsv[i].id;
                     }else{
@@ -412,12 +480,19 @@ angular.module("ehelseEditor").factory("CSVConverter",
                 }
                 return returnId;
             }
+            /**
+             * Returns document id based on HIS number
+             * Used to generate previous and next document ids
+             * And for getting standard id for profiles
+             * @param hisNumber
+             * @returns {*}
+             */
             function getDocumentIdByHisNumberCsvDocument(hisNumber) {
                 var returnId;
                 for (var i = 0; i < documentsFromCsv.length; i++)
                     if (hisNumber){
                         if (hisNumber == documentsFromCsv[i].hisNumber) {
-                            returnId = documentsFromCsv[i].id;
+                            returnId = (documentsFromCsv[i].id).toString();
                             break;
                         }
                     }else{
@@ -425,114 +500,28 @@ angular.module("ehelseEditor").factory("CSVConverter",
                     }
                 return returnId;
             }
+            /**
+             * Returns standard id based on its title
+             * Used for generate standardId field for profiles that contains id for profiles standard
+             * @param standardTitleForProfile
+             * @returns {*}
+             */
             function getStandardIdForProfilesFromCsvDocument(standardTitleForProfile) {
-                var standardId;
                 if (standardTitleForProfile){
                     var hopefullyHisNumber;
                     var determinant = 'HIS';
                     var indexOfDeterminant = standardTitleForProfile.indexOf(determinant);
                     if (indexOfDeterminant > -1){
                         hopefullyHisNumber = standardTitleForProfile.substr(indexOfDeterminant, 14);
-                        standardId = getDocumentIdByHisNumberCsvDocument(hopefullyHisNumber);
+                        return getDocumentIdByHisNumberCsvDocument(hopefullyHisNumber);
                     }else{
                         var stringParts = standardTitleForProfile.split('.');
-                        standardId = getDocumentIdByTitleCsvDocument(stringParts[0]);
+                        return getDocumentIdByTitleCsvDocument(stringParts[0]);
                     }
                 }else{
-                    standardId = null;
+                    return null;
                 }
-                return standardId;
             }
-
-            function CSVToArray( strData, strDelimiter ){
-            //@http://www.bennadel.com/blog/1504-ask-ben-parsing-csv-strings-with-javascript-exec-regular-expression-command.htm
-            //plagiat and shit! må sjekke den her
-                // Check to see if the delimiter is defined. If not,
-                // then default to comma.
-                strDelimiter = (strDelimiter || ",");
-                // Create a regular expression to parse the CSV values.
-                var objPattern = new RegExp(
-                    (
-                        // Delimiters.
-                        "(\\" + strDelimiter + "|\\r?\\n|\\r|^)" +
-                            // Quoted fields.
-                        "(?:\"([^\"]*(?:\"\"[^\"]*)*)\"|" +
-                            // Standard fields.
-                        "([^\"\\" + strDelimiter + "\\r\\n]*))"
-                    ),
-                    "gi"
-                );
-                // Create an array to hold our data. Give the array
-                // a default empty first row.
-                var arrData = [[]];
-                // Create an array to hold our individual pattern
-                // matching groups.
-                var arrMatches = null;
-                // Keep looping over the regular expression matches
-                // until we can no longer find a match.
-                while (arrMatches = objPattern.exec( strData )){
-                    // Get the delimiter that was found.
-                    var strMatchedDelimiter = arrMatches[ 1 ];
-                    // Check to see if the given delimiter has a length
-                    // (is not the start of string) and if it matches
-                    // field delimiter. If id does not, then we know
-                    // that this delimiter is a row delimiter.
-                    if (
-                        strMatchedDelimiter.length &&
-                        (strMatchedDelimiter != strDelimiter)
-                    ){
-                        // Since we have reached a new row of data,
-                        // add an empty row to our data array.
-                        arrData.push( [] );
-                    }
-                    // Now that we have our delimiter out of the way,
-                    // let's check to see which kind of value we
-                    // captured (quoted or unquoted).
-                    if (arrMatches[ 2 ]){
-                        // We found a quoted value. When we capture
-                        // this value, unescape any double quotes.
-                        var strMatchedValue = arrMatches[ 2 ].replace(
-                            new RegExp( "\"\"", "g" ),
-                            "\""
-                        );
-                    } else {
-                        // We found a non-quoted value.
-                        var strMatchedValue = arrMatches[ 3 ];
-                    }
-                    // Now that we have our value string, let's add
-                    // it to the data array.
-                    arrData[ arrData.length - 1 ].push( strMatchedValue );
-                }
-                // Return the parsed data.
-                return( arrData );
-            }
-            function removeDuplicates(arr) {
-                var tmp = [];
-                for(var i = 0; i < arr.length; i++){
-                    if(tmp.indexOf(arr[i]) == -1){
-                        tmp.push(arr[i]);
-                    }
-                }
-                return tmp;
-            }
-            function cleanString(string){
-                var returnString = "";
-                var stringParts = string.split(" ");
-                for (var i = 0; i < stringParts.length; i++){
-                    if (/^[ A-Za-z_@./#&+-]*$/.test(stringParts[i])){
-                        returnString = returnString + stringParts[i];
-                    }
-                    if (i != stringParts.length-1){
-                        returnString = returnString + ' ';
-                    }
-                }
-                returnString = returnString.replace(/\s+$/, '');
-                return returnString;
-            }
-
-
-
-
             return {
                 uploadCSVContent: uploadCSVContent,
                 getConvertedCsv: getConvertedCsv

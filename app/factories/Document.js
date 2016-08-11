@@ -26,7 +26,7 @@ angular.module("ehelseEditor").factory("Document",
                     nextDocumentId: null,
                     internalId: null,
                     hisNumber: null,
-                    hjemmel: null,
+                    targetGroupLegalBases: null,
                     decidedBy: null,
                     replacedBy: null,
                     mandatoryNotices: [],
@@ -60,7 +60,7 @@ angular.module("ehelseEditor").factory("Document",
                     nextDocumentId: null,
                     internalId: null,
                     hisNumber: null,
-                    hjemmel: null,
+                    targetGroupLegalBases: null,
                     decidedBy: null,
                     replacedBy: null,
                     mandatoryNotices: [],
@@ -592,7 +592,7 @@ angular.module("ehelseEditor").factory("Document",
                     a.populatedProfiles = b.populatedProfiles || [];
                     a.editedTimestamp = b.editedTimestamp;
                     a.createdTimestamp = b.createdTimestamp;
-                    a.hjemmel = b.hjemmel;
+                    a.targetGroupLegalBases = b.targetGroupLegalBases;
                     a.decidedBy = b.decidedBy;
                     a.replacedBy = b.replacedBy;
                     a.mandatoryNotices = ServiceFunction.deepCopy(b.mandatoryNotices);
