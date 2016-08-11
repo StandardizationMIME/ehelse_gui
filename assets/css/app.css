@@ -159,6 +159,26 @@ h1,h2,h3,h4{ font-weight: bold;}
 .font-size {
     font-size: 12px;
 }
+
+/* Makes modals vertically centered */
+.modal {
+    text-align: center;
+}
+@media screen and (min-width: 768px) {
+    .modal:before {
+        display: inline-block;
+        vertical-align: middle;
+        content: " ";
+        height: 100%;
+    }
+}
+.modal-dialog {
+    display: inline-block;
+    text-align: left;
+    vertical-align: middle;
+}
+
+
 /* ------------------------------------------------ CH2 ADMINISTER_USERS ----------------------------------------- */
 #user-list img{
     width: 50px;
