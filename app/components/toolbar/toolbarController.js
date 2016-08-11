@@ -50,7 +50,12 @@ angular.module("ehelseEditor").controller("ToolbarController",
             // Download save file
             $scope.save = function () {
                 FileUpload.onSave(DownloadList.getStorageList(), function () {
-                    $rootScope.notifySuccess("Save succeed! To: " + $rootScope.chosenFilePath , 2000);
+                    setTimeout(function() {
+                        $scope.loadingBarComplete();
+                        $scope.fakeIntro = false;
+                        $rootScope.chosenFilePath = StorageHandler.getChosenFilePath();
+                        $rootScope.notifySuccess("Save succeed! To: " + $rootScope.chosenFilePath , 2000);
+                    }, 300);
                 }, function () {
                     $rootScope.notifyError("Save failed... :(", 1000);
                 });
@@ -58,7 +63,12 @@ angular.module("ehelseEditor").controller("ToolbarController",
 
             $scope.downloadAllDocumentsAsJSON = function(){
                 FileUpload.onSaveAs(DocumentExtractor.getAllDocumentsAsJSON(), function () {
-                    $rootScope.notifySuccess("Save succeed! To: " + $rootScope.chosenFilePath , 2000);
+                    setTimeout(function() {
+                        $scope.loadingBarComplete();
+                        $scope.fakeIntro = false;
+                        $rootScope.chosenFilePath = StorageHandler.getChosenFilePath();
+                        $rootScope.notifySuccess("Save succeed! To: " + $rootScope.chosenFilePath , 3000);
+                    }, 300);
                 }, function () {
                     $rootScope.notifyError("Save failed... :(", 1000);
                 });
@@ -69,13 +79,13 @@ angular.module("ehelseEditor").controller("ToolbarController",
 
             $scope.uploadCsvButton = function () {
                 FileUpload.onLoadCSV(function () {
-                    $rootScope.deselectTopicAndDocument();
-                    $rootScope.changeContentView("");
                     $rootScope.notifySuccess("Upload succeed! :) ", 1000);
                     // fake the initial load
                     $scope.loadingBarStart();
                     $scope.fakeIntro = true;
                     setTimeout(function() {
+                        $rootScope.deselectTopicAndDocument();
+                        $rootScope.changeContentView("");
                         $scope.loadingBarComplete();
                         $scope.fakeIntro = false;
                         $rootScope.chosenFilePath = StorageHandler.getChosenFilePath();

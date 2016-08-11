@@ -130,7 +130,7 @@ angular.module("ehelseEditor").factory("FileUpload",
                                                         extensions: ['json']
                                                     }
                                                 ],
-                                                acceptsAllTypes: false}, function(writableFileEntry) {
+                                                acceptsAllTypes: true}, function(writableFileEntry) {
                     if (chrome.runtime.lastError){
                         console.warn(chrome.runtime.lastError.message);
                     } else {
@@ -141,6 +141,9 @@ angular.module("ehelseEditor").factory("FileUpload",
                                     chosenFileEntry = writableFileEntry;
                                     isJsonFile = true;
                                     _success();
+                                    chrome.fileSystem.getDisplayPath(writableFileEntry, function(path) {
+                                        StorageHandler.setChosenFilePath(path);
+                                    });
                                 } catch (e) {
                                     _faillure();
                                 }
@@ -178,6 +181,9 @@ angular.module("ehelseEditor").factory("FileUpload",
                             try {
                                 chosenFileEntry = writableFileEntry;
                                 isJsonFile = true;
+                                chrome.fileSystem.getDisplayPath(writableFileEntry, function(path) {
+                                    StorageHandler.setChosenFilePath(path);
+                                });
                                 _success();
                             } catch (e) {
                                 _failure();

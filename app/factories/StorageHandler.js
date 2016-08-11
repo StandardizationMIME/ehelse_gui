@@ -312,6 +312,7 @@ angular.module("ehelseEditor").factory("StorageHandler", ["$rootScope", "Service
 
         function setChosenFilePath(path){
             chosenFilePath = path;
+            console.log(chosenFilePath);
         }
         function getChosenFilePath(){
             return chosenFilePath;
