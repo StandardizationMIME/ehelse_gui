@@ -51,7 +51,7 @@ angular.module("ehelseEditor").controller("ToolbarController",
             };
 
             $scope.downloadAllDocumentsAsJSON = function(){
-                FileUpload.saveToFile(DocumentExtractor.getAllDocumentsAsJSON());
+                FileUpload.onSaveAs(DocumentExtractor.getAllDocumentsAsJSON());
             };
 
             // Initialize state
