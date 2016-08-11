@@ -107,10 +107,10 @@ angular.module("ehelseEditor").factory("DocumentExtractor",
                 var output_dict = {};
                 var targetGroupsList = [];
                 if(id == "1"){
-                    if(doc.hjemmel){
-                        output_dict["hjemmel"] = doc.hjemmel;
+                    if(doc.targetGroupLegalBases){
+                        output_dict["targetGroupLegalBases"] = doc.targetGroupLegalBases;
                     }else{
-                        output_dict["hjemmel"] = null;
+                        output_dict["targetGroupLegalBases"] = null;
                     }
 
                     if(doc.decidedBy){
