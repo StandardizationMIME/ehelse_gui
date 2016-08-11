@@ -217,6 +217,35 @@ textarea {
     overflow-y: hidden;
 }
 /* -------------------------------------------- CH4 DOCUMENT ----------------------------------------- */
+
+.document-buttons {
+    font-size: 1.8em;
+    padding: 4px;
+    margin-left: 3px;
+    margin-right: 3px;
+    text-shadow: 0 0 10px white;
+
+}
+.document-buttons:hover {
+    color: #3ca4ea;
+    /*background-color: #a3b9ff;*/
+    cursor: pointer;
+}
+.document-buttons[disabled]{
+    color: grey;
+    text-shadow: 0 0 0 #f3f3f3;
+}
+.document-buttons[disabled]:hover {
+    cursor: not-allowed;
+    background-color: inherit;
+}
+.document-title {
+    -o-text-overflow: ellipsis;   /* Opera */
+    text-overflow: ellipsis;      /* IE, Safari (WebKit) */
+    overflow: hidden;
+    white-space: nowrap;
+    width: 90%;
+}
 .document-fields-field-name{
     width:60%;
     display: inline-block;
@@ -276,10 +305,9 @@ textarea {
 }
 .profiles-container {
     height: 107px;
-    width: 95.47%;
+    width: 100%;
     display: inline-block;
     box-shadow: 0 -2px #b8b8b8;
-    position: absolute;
     z-index: 1000;
 }
 .profile-clickable:hover {

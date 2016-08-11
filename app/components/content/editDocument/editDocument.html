@@ -7,7 +7,7 @@
 
         <!-- Headline displaying document type or state -->
         <div class="headline-box">
-            <h4 class="selected">{{document.title}}</h4>
+            <h4 class="selected document-title">{{document.title}}</h4>
             <div ng-repeat="(key, errors) in EditDocumentController.DocumentForm.$error track by $index" class="feedback-msg">
                 <span>For å lagre dokumentet mangler du : </span>
                 <span ng-repeat="e in errors | unique: '$name'">
@@ -26,39 +26,47 @@
 
         <!-- All buttons used in the various document states and types -->
         <p class="twelve-pix-vertical-padding">
-            <button type="button" class="btn btn-primary" ng-click="submit(EditDocumentController.DocumentForm);resetDocumentScroll()" ng-if="documentState == 'newDocument'" ng-disabled="EditDocumentController.DocumentForm.$invalid || EditDocumentController.DocumentForm.$pristine">
+
+            <!-- Create document -->
+            <button type="button" class="btn btn-primary" ng-click="submit(EditDocumentController.DocumentForm);resetDocumentScroll()" ng-if="documentState == 'newDocument' || documentState == 'newProfile'" ng-disabled="EditDocumentController.DocumentForm.$invalid || EditDocumentController.DocumentForm.$pristine">
                 <span class="fa fa-check-circle edit-topic-icon"></span>
-                Opprett dokument
-            </button>
-            <button type="button" class="btn btn-primary" ng-click="submit(EditDocumentController.DocumentForm)" ng-if="documentState == 'newProfile'" ng-disabled="EditDocumentController.DocumentForm.$invalid || EditDocumentController.DocumentForm.$pristine">
-                <span class="fa fa-check-circle edit-topic-icon"></span>
-                Opprett profil
-            </button>
-            <button type="button" class="btn btn-primary" ng-disabled="EditDocumentController.DocumentForm.$invalid || EditDocumentController.DocumentForm.$pristine" ng-click="submit(EditDocumentController.DocumentForm)" ng-if="documentState == 'editProfile' || documentState == 'editDocument' || documentState == 'editUtility'">
-                <span class="fa fa-check-circle-o edit-topic-icon"></span>
-                Lagre dokument
-            </button>
-            <button type="button" class="btn btn-default" ng-disabled="!((documentState == 'editProfile' || documentState == 'editDocument' || documentState == 'editUtility') && !document.nextDocumentId)" ng-click="checkEditDocumentForm(document, newVersion)">
-                <span class="fa fa-clone"></span>
-                Ny versjon
+                Opprett
             </button>
 
-            <button type="button" class="btn btn-default" ng-click="downloadDocumentAsJSON(document)">
+            <!-- Save document -->
+            <span class="fa fa-floppy-o document-buttons blue-color" data-toggle="tooltip" title="Lagre dokument"
+                  ng-disabled="EditDocumentController.DocumentForm.$invalid || EditDocumentController.DocumentForm.$pristine"
+                    ng-click="submit(EditDocumentController.DocumentForm)" ng-if="documentState == 'editProfile' || documentState == 'editDocument' || documentState == 'editUtility'">
+            </span>
+
+            <!-- Create new version of document -->
+            <span class="fa fa-clone document-buttons" data-toggle="tooltip" title="Ny versjon"
+                  ng-hide="documentState == 'newDocument' || documentState == 'newProfile'"
+                    ng-disabled="!((documentState == 'editProfile' || documentState == 'editDocument' || documentState == 'editUtility')
+                     && !document.nextDocumentId)" ng-click="checkEditDocumentForm(document, newVersion)">
+            </span>
+
+            <!--<button type="button" class="btn btn-default" ng-click="downloadDocumentAsJSON(document)">
                 L
-            </button>
+            </button>-->
 
-            <span class="ten-pix-horizontal-padding" ng-if="document.createdTimestamp">
+            <!-- Created timestamp -->
+            <span class="ten-pix-horizontal-padding text-small" ng-if="document.createdTimestamp">
                 Opprettet: <b >{{getFormattedTimestamp(document.createdTimestamp).date}}</b>
                 Kl: <b >{{getFormattedTimestamp(document.createdTimestamp).time}}</b>
             </span>
+
+            <!-- Last edited timestamp -->
             <span class="ten-pix-horizontal-padding" ng-if="document.editedTimestamp">
                 Sist endret: <b >{{getFormattedTimestamp(document.editedTimestamp).date}}</b>
                 Kl: <b >{{getFormattedTimestamp(document.editedTimestamp).time}}</b>
             </span>
-            <button type="button" class="btn btn-danger pull-right" ng-if="documentState == 'editProfile' || documentState == 'editDocument' || documentState == 'editUtility'" ng-click="openConfirmationModal('Er du sikker på at du vil slette dokumentet?', document, deleteDocument)">
-                <span class="fa fa-remove"></span>
-                Slett dokument
-            </button>
+
+            <!-- Delete document -->
+            <span class="fa fa-trash pull-right document-buttons" data-toggle="tooltip" title="Slett dokument"
+                  ng-if="documentState == 'editProfile' || documentState == 'editDocument' || documentState == 'editUtility'"
+                  ng-click="openConfirmationModal('Er du sikker på at du vil slette dokumentet?', document, deleteDocument)">
+            </span>
 
         </p>
     </div>
