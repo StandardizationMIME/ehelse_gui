@@ -225,6 +225,7 @@ angular.module("ehelseEditor").factory("DocumentField", ["$rootScope", "StorageH
      * @param id
      */
     function getById(id) {
+        console.log(id);
         if(document_fields_dict[id].mandatory == "0"){
             document_fields_dict[id].mandatory = false;
         } else if (document_fields_dict[id].mandatory = "1"){
