@@ -226,8 +226,6 @@ textarea {
     padding: 4px;
     margin-left: 3px;
     margin-right: 3px;
-    text-shadow: 0 0 10px white;
-
 }
 .document-buttons:hover {
     color: #3ca4ea;
@@ -236,7 +234,6 @@ textarea {
 }
 .document-buttons[disabled]{
     color: grey;
-    text-shadow: 0 0 0 #f3f3f3;
 }
 .document-buttons[disabled]:hover {
     cursor: not-allowed;
@@ -310,7 +307,8 @@ textarea {
     height: calc(100% - 200px);
 }
 .profiles-container {
-    height: 82px;
+    margin-top: 2px;
+    height: 80px;
     width: 100%;
     display: inline-block;
     box-shadow: 0 -2px #b8b8b8;
@@ -341,7 +339,7 @@ textarea {
 }
 .new-profile-container {
     height: 100%;
-    padding-top: 15px;
+    padding-top: 13px;
     color: #c13a47;
 }
 .new-profile-container:hover {
@@ -367,7 +365,7 @@ textarea {
 }
 .back-to-standard {
     height: 100%;
-    padding-top: 20px;
+    padding-top: 18px;
 }
 .profile-list {
     height: 100%;
