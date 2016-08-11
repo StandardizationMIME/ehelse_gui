@@ -7,7 +7,7 @@
 
         <!-- Headline displaying document type or state -->
         <div class="headline-box">
-            <h4 class="selected document-title">{{document.title}}</h4>
+            <h4 class="selected document-title" title="{{document.title}}">{{document.title}}</h4>
             <div ng-repeat="(key, errors) in EditDocumentController.DocumentForm.$error track by $index" class="feedback-msg">
                 <span>For å lagre dokumentet mangler du : </span>
                 <span ng-repeat="e in errors | unique: '$name'">
@@ -34,16 +34,19 @@
             </button>
 
             <!-- Save document -->
-            <span class="fa fa-floppy-o document-buttons blue-color" data-toggle="tooltip" title="Lagre dokument"
-                  ng-disabled="EditDocumentController.DocumentForm.$invalid || EditDocumentController.DocumentForm.$pristine"
-                    ng-click="submit(EditDocumentController.DocumentForm)" ng-if="documentState == 'editProfile' || documentState == 'editDocument' || documentState == 'editUtility'">
+            <span class="my-tooltip" data-toggle="tooltip" title="Lagre dokument" ng-hide="documentState == 'newDocument' || documentState == 'newProfile'">
+                <button class="fa fa-floppy-o document-buttons save-clone-buttons"
+                        ng-disabled="EditDocumentController.DocumentForm.$invalid || EditDocumentController.DocumentForm.$pristine"
+                        ng-click="submit(EditDocumentController.DocumentForm)">
+                </button>
             </span>
 
             <!-- Create new version of document -->
-            <span class="fa fa-clone document-buttons" data-toggle="tooltip" title="Ny versjon"
-                  ng-hide="documentState == 'newDocument' || documentState == 'newProfile'"
-                    ng-disabled="!((documentState == 'editProfile' || documentState == 'editDocument' || documentState == 'editUtility')
-                     && !document.nextDocumentId)" ng-click="checkEditDocumentForm(document, newVersion)">
+            <span class="my-tooltip" data-toggle="tooltip" title="Ny versjon" ng-hide="documentState == 'newDocument' || documentState == 'newProfile'">
+                <button class="fa fa-clone document-buttons save-clone-buttons"
+                        ng-disabled="!((documentState == 'editProfile' || documentState == 'editDocument' || documentState == 'editUtility')
+                         && !document.nextDocumentId)" ng-click="checkEditDocumentForm(document, newVersion)">
+                </button>
             </span>
 
             <!--<button type="button" class="btn btn-default" ng-click="downloadDocumentAsJSON(document)">
@@ -63,7 +66,7 @@
             </span>
 
             <!-- Delete document -->
-            <span class="fa fa-trash pull-right document-buttons" data-toggle="tooltip" title="Slett dokument"
+            <span class="fa fa-trash pull-right document-buttons" data-toggle="tooltip" title="Slett"
                   ng-if="documentState == 'editProfile' || documentState == 'editDocument' || documentState == 'editUtility'"
                   ng-click="openConfirmationModal('Er du sikker på at du vil slette dokumentet?', document, deleteDocument)">
             </span>
