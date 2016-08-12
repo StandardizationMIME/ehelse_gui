@@ -8,7 +8,7 @@ angular.module("ehelseEditor").factory("FileUpload",
         var isJsonFile = false;
         var contentFromFile;
 
-        function onLoad(_success, _failure) {
+        function onLoadJSON(_success, _failure) {
             chrome.fileSystem.chooseEntry({ type: 'openWritableFile',
                                             accepts: [
                                                 {
@@ -20,29 +20,33 @@ angular.module("ehelseEditor").factory("FileUpload",
                 if (chrome.runtime.lastError){
                     console.warn(chrome.runtime.lastError.message);
                 } else {
-                    chosenFileEntry = fileEntry;
-
                     fileEntry.file(function (file) {
                         var reader = new FileReader();
+
                         reader.onerror = errorHandler;
+
                         reader.onloadend = function (loadEvent) {
                             try {
                                 contentFromFile = JSON.parse(loadEvent.target.result);
                                 if (contentFromFile.documents) {
+                                    chosenFileEntry = fileEntry;
+
                                     clearEverything();
                                     StorageHandler.initJSON(contentFromFile);
                                     initEverything();
-                                    isJsonFile = true;
+
                                     chrome.fileSystem.getDisplayPath(fileEntry, function(path) {
-                                        StorageHandler.setChosenFilePath(path);
-                                        StorageHandler.setDisplayFilePath(path);
+                                        StorageHandler.setSavingFilePath(path);
+                                        StorageHandler.setCurrentFilePath(path);
                                     });
+
+                                    isJsonFile = true;
                                     _success();
                                 } else {
+                                    isJsonFile = false;
                                     _failure();
                                 }
                             } catch (e) {
-                                console.info(e);
                                 isJsonFile = false;
                                 _failure();
                             }
@@ -50,7 +54,6 @@ angular.module("ehelseEditor").factory("FileUpload",
                         };
                         reader.readAsText(file);
                     }, errorHandler);
-
                 }
             })
         }
@@ -68,26 +71,28 @@ angular.module("ehelseEditor").factory("FileUpload",
                 } else {
                     fileEntry.file(function (file) {
                         var reader = new FileReader();
+
                         reader.onerror = errorHandler;
+
                         reader.onloadend = function (loadEvent) {
                             try {
                                 contentFromFile = loadEvent.target.result;
                                 if (contentFromFile) {
-                                    CSVConverter.uploadCSVContent(contentFromFile);
+                                    chosenFileEntry = null;
+
                                     clearEverything();
+                                    CSVConverter.uploadCSVContent(contentFromFile);
                                     StorageHandler.initCsv();
                                     initEverything();
+
                                     isJsonFile = false;
-                                    chrome.fileSystem.getDisplayPath(fileEntry, function(path) {
-                                        StorageHandler.setDisplayFilePath(path);
-                                    });
                                     _success();
+                                } else {
+                                    _failure();
                                 }
                             } catch (e) {
-                                console.log(e);
                                 _failure();
                             }
-
                         };
                         reader.readAsText(file,"windows-1252");
                     }, errorHandler)
@@ -95,7 +100,7 @@ angular.module("ehelseEditor").factory("FileUpload",
             })
         }
 
-        function onSave(modifiedJsonObject, _success, _faillure){
+        function onSaveMimeJSON(modifiedJsonObject, _success, _faillure){
             if(isJsonFile){
                 chrome.fileSystem.getWritableEntry(chosenFileEntry, function (writableFileEntry) {
                     if (chrome.runtime.lastError){
@@ -104,12 +109,14 @@ angular.module("ehelseEditor").factory("FileUpload",
                         writableFileEntry.createWriter(function (writer) {
                             writer.onerror = errorHandler;
 
-                            var blob = new Blob([JSON.stringify(JSON.parse(angular.toJson(modifiedJsonObject)), null, '\t')], {type: "application/json"});
+                            var json = JSON.stringify(modifiedJsonObject, null, '\t');
+                            var blob = new Blob([json], {type: "application/json"});
                             writer.truncate(blob.size);
+
                             writer.onwriteend = function () {
                                 try {
                                     writer.onwriteend = function (e) {
-                                        console.log("written");
+                                        chosenFileEntry = writableFileEntry;
                                         _success();
                                     };
                                 } catch (e) {
@@ -158,7 +165,7 @@ angular.module("ehelseEditor").factory("FileUpload",
             }
         }
 
-        function onSaveAs(modifiedJsonObject, _success, _failure){
+        function onSaveWebJSON(modifiedJsonObject, _success, _failure){
             var customName;
             if (!modifiedJsonObject.allDocuments){
                 customName = modifiedJsonObject.title;
@@ -252,10 +259,10 @@ angular.module("ehelseEditor").factory("FileUpload",
         }
 
         return {
-            onLoad: onLoad,
+            onLoadJSON: onLoadJSON,
             onLoadCSV: onLoadCSV,
-            onSave: onSave,
-            onSaveAs: onSaveAs
+            onSaveMimeJSON: onSaveMimeJSON,
+            onSaveWebJSON: onSaveWebJSON
         };
     }
 ]);

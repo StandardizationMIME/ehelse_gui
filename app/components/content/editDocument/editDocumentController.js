@@ -137,12 +137,12 @@ angular.module("ehelseEditor").controller("EditDocumentController",
             };
 
             $scope.downloadDocumentAsJSON = function(doc){
-                FileUpload.onSaveAs(DocumentExtractor.getDocumentAsJSON(doc), function () {
+                FileUpload.onSaveWebJSON(DocumentExtractor.getDocumentAsJSON(doc), function () {
                     setTimeout(function() {
                         $scope.loadingBarComplete();
                         $scope.fakeIntro = false;
-                        $rootScope.displayFilePath = StorageHandler.getDisplayPath();
-                        $rootScope.notifySuccess("Save succeed! To: " + $rootScope.displayFilePath , 3000);
+                        $rootScope.currentFilePath = StorageHandler.getCurrentFilePath();
+                        $rootScope.notifySuccess("Save succeed! To: " + $rootScope.currentFilePath , 3000);
                     }, 500);
                 }, function () {
                     $rootScope.notifyError("Save failed... :(", 1000);

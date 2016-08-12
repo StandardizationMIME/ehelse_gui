@@ -2,8 +2,6 @@ angular.module("ehelseEditor").controller("ToolbarController",
     ["$state", "$rootScope", "$scope", "CSVConverter", "FileUpload", "StorageHandler", "DownloadList", "Action", "Document", "DocumentField", "DocumentType", "LinkCategory", "Mandatory", "Status", "TargetGroup", "Topic", "DocumentExtractor", "cfpLoadingBar",
         function ($state, $rootScope, $scope, CSVConverter, FileUpload, StorageHandler, DownloadList, Action, Document, DocumentField, DocumentType, LinkCategory, Mandatory, Status, TargetGroup, Topic, DocumentExtractor, cfpLoadingBar) {
 
-            $rootScope.chosenFilePath = "";
-            $rootScope.displayFilePath = "";
             $scope.$parent.registerChildController("ToolbarController", $scope);
 
             // Remove selected graphics from topics and documents
@@ -50,13 +48,17 @@ angular.module("ehelseEditor").controller("ToolbarController",
 
             // Download save file
             $scope.save = function () {
-                FileUpload.onSave(DownloadList.getStorageList(), function () {
+                FileUpload.onSaveMimeJSON(DownloadList.getStorageList(), function () {
+                    $rootScope.loadingBarStart();
+                    $scope.fakeIntro = true;
                     setTimeout(function() {
-                        $scope.loadingBarComplete();
+                        $rootScope.savingFilePath = StorageHandler.getSavingFilePath();
+                        $rootScope.currentFilePath = StorageHandler.getCurrentFilePath();
+
+                        $rootScope.notifySuccess("Save succeed! To: " + $rootScope.currentFilePath, 2000);
+
+                        $rootScope.loadingBarComplete();
                         $scope.fakeIntro = false;
-                        $rootScope.chosenFilePath = StorageHandler.getChosenFilePath();
-                        $rootScope.displayFilePath = StorageHandler.getDisplayPath();
-                        $rootScope.notifySuccess("Save succeed! To: " + $rootScope.displayFilePath , 2000);
                     }, 500);
                 }, function () {
                     $rootScope.notifyError("Save failed... :(", 1000);
@@ -64,12 +66,16 @@ angular.module("ehelseEditor").controller("ToolbarController",
             };
 
             $scope.downloadAllDocumentsAsJSON = function(){
-                FileUpload.onSaveAs(DocumentExtractor.getAllDocumentsAsJSON(), function () {
+                FileUpload.onSaveWebJSON(DocumentExtractor.getAllDocumentsAsJSON(), function () {
+                    $rootScope.loadingBarStart();
+                    $scope.fakeIntro = true;
                     setTimeout(function() {
-                        $scope.loadingBarComplete();
+                        $rootScope.currentFilePath= StorageHandler.getCurrentFilePath();
+                        
+                        $rootScope.notifySuccess("Save succeed! To: " + $rootScope.currentFilePath , 3000);
+                        
+                        $rootScope.loadingBarComplete();
                         $scope.fakeIntro = false;
-                        $rootScope.displayFilePath = StorageHandler.getDisplayPath();
-                        $rootScope.notifySuccess("Save succeed! To: " + $rootScope.displayFilePath , 3000);
                     }, 500);
                 }, function () {
                     $rootScope.notifyError("Save failed... :(", 1000);
@@ -82,47 +88,40 @@ angular.module("ehelseEditor").controller("ToolbarController",
             $scope.uploadCsvButton = function () {
                 FileUpload.onLoadCSV(function () {
                     // fake the initial load
-                    $scope.loadingBarStart();
+                    $rootScope.loadingBarStart();
                     $scope.fakeIntro = true;
                     setTimeout(function() {
                         $rootScope.deselectTopicAndDocument();
-                        $rootScope.changeContentView("");
-                        $scope.loadingBarComplete();
                         $rootScope.clearSearchFilterText();
-                        $scope.fakeIntro = false;
+                        
                         $rootScope.notifySuccess("Upload succeed! :) ", 1000);
+                        
+                        $rootScope.loadingBarComplete();
+                        $scope.fakeIntro = false;
                     }, 500);
                 }, function () {
                     $rootScope.notifyError("Upload failed... :( ", 1000);
                 });
-            };
-
-            $scope.loadingBarStart = function() {
-                cfpLoadingBar.start();
-            };
-
-            $scope.loadingBarComplete = function () {
-                cfpLoadingBar.complete();
             };
 
             $scope.uploadJsonButton = function () {
-                FileUpload.onLoad(function () {
-                    $rootScope.deselectTopicAndDocument();
-                    $rootScope.changeContentView("");
-                    $rootScope.notifySuccess("Upload succeed! :) ", 1000);
+                FileUpload.onLoadJSON(function () {
                     // fake the initial load
-                    $scope.loadingBarStart();
+                    $rootScope.loadingBarStart();
                     $scope.fakeIntro = true;
                     setTimeout(function() {
-                        $scope.loadingBarComplete();
+                        $rootScope.deselectTopicAndDocument();
                         $rootScope.clearSearchFilterText();
+                        $rootScope.savingFilePath = StorageHandler.getSavingFilePath();
+                        
+                        $rootScope.notifySuccess("Upload succeed! :) ", 1000);
+                        
+                        $rootScope.loadingBarComplete();
                         $scope.fakeIntro = false;
-                        $rootScope.chosenFilePath = StorageHandler.getChosenFilePath();
                     }, 500);
                 }, function () {
                     $rootScope.notifyError("Upload failed... :( ", 1000);
                 });
-                console.log(StorageHandler.getChosenFilePath());
             };
 
             $scope.searchFilter = function (row) {

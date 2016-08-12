@@ -108,7 +108,7 @@ angular.module("ehelseEditor").factory("CSVConverter",
                     "contactAddresses": [],
                     "topics": topicsFromCsv,
                     "documents": documentsFromCsv,
-                    "archivedDocuments": []
+                    "archivedDocuments": {}
                 };
                 // unnecessary var ?
                 convertedFileFromCsv = convertedCsv;

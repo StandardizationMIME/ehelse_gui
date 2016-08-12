@@ -3,8 +3,8 @@
 angular.module("ehelseEditor").factory("StorageHandler", ["$rootScope", "ServiceFunction", "CSVConverter",
     function ($rootScope, ServiceFunction, CSVConverter) {
 
-        var chosenFilePath = "";
-        var displayFilePath ="";
+        var savingFilePath = "";
+        var currentFilePath ="";
         var input_list = [];
 
         initValues();
@@ -311,18 +311,17 @@ angular.module("ehelseEditor").factory("StorageHandler", ["$rootScope", "Service
             }
         }
 
-        function setChosenFilePath(path){
-            chosenFilePath = path;
-            console.log(chosenFilePath);
+        function setSavingFilePath(path){
+            savingFilePath = path;
         }
-        function getChosenFilePath(){
-            return chosenFilePath;
+        function getSavingFilePath(){
+            return savingFilePath;
         }
-        function setDisplayFilePath(path){
-            displayFilePath = path;
+        function setCurrentFilePath(path){
+            currentFilePath = path;
         }
-        function getDisplayPath(){
-            return displayFilePath;
+        function getCurrentFilePath(){
+            return currentFilePath;
         }
 
 
@@ -343,9 +342,9 @@ angular.module("ehelseEditor").factory("StorageHandler", ["$rootScope", "Service
             getArchivedDocuments: getArchivedDocuments,
             getArchivedDocumentsById: getArchivedDocumentsById,
             addArchivedDocumentsById: addArchivedDocumentsById,
-            setChosenFilePath: setChosenFilePath,
-            getChosenFilePath: getChosenFilePath,
-            setDisplayFilePath: setDisplayFilePath,
-            getDisplayPath: getDisplayPath
+            setSavingFilePath: setSavingFilePath,
+            getSavingFilePath: getSavingFilePath,
+            setCurrentFilePath: setCurrentFilePath,
+            getCurrentFilePath: getCurrentFilePath
         };
     }]);
