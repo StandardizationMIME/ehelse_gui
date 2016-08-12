@@ -49,9 +49,11 @@
                 </button>
             </span>
 
-            <button type="button" class="btn btn-default" ng-click="downloadDocumentAsJSON(document)">
-                L
-            </button>
+            <span class="my-tooltip" data-toggle="tooltip" title="Last ned JSON-eksport" ng-hide="documentState == 'newDocument' || documentState == 'newProfile'">
+                <button class="glyphicon glyphicon-save-file document-buttons save-clone-download-buttons"
+                        ng-click="downloadDocumentAsJSON(document)">
+                </button>
+            </span>
 
             <!-- Created timestamp -->
             <span class="ten-pix-horizontal-padding text-small" ng-if="document.createdTimestamp">
