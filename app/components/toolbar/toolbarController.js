@@ -55,7 +55,7 @@ angular.module("ehelseEditor").controller("ToolbarController",
                         $scope.fakeIntro = false;
                         $rootScope.chosenFilePath = StorageHandler.getChosenFilePath();
                         $rootScope.notifySuccess("Save succeed! To: " + $rootScope.chosenFilePath , 2000);
-                    }, 300);
+                    }, 500);
                 }, function () {
                     $rootScope.notifyError("Save failed... :(", 1000);
                 });
@@ -68,7 +68,7 @@ angular.module("ehelseEditor").controller("ToolbarController",
                         $scope.fakeIntro = false;
                         $rootScope.chosenFilePath = StorageHandler.getChosenFilePath();
                         $rootScope.notifySuccess("Save succeed! To: " + $rootScope.chosenFilePath , 3000);
-                    }, 300);
+                    }, 500);
                 }, function () {
                     $rootScope.notifyError("Save failed... :(", 1000);
                 });
@@ -87,6 +87,7 @@ angular.module("ehelseEditor").controller("ToolbarController",
                         $rootScope.deselectTopicAndDocument();
                         $rootScope.changeContentView("");
                         $scope.loadingBarComplete();
+                        $rootScope.clearSearchFilterText();
                         $scope.fakeIntro = false;
                         $rootScope.chosenFilePath = StorageHandler.getChosenFilePath();
                     }, 500);
@@ -113,6 +114,7 @@ angular.module("ehelseEditor").controller("ToolbarController",
                     $scope.fakeIntro = true;
                     setTimeout(function() {
                         $scope.loadingBarComplete();
+                        $rootScope.clearSearchFilterText();
                         $scope.fakeIntro = false;
                         $rootScope.chosenFilePath = StorageHandler.getChosenFilePath();
                     }, 500);
