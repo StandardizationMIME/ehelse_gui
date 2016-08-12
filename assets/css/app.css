@@ -253,6 +253,11 @@ textarea {
     overflow-y: hidden;
 }
 /* -------------------------------------------- CH4 DOCUMENT ----------------------------------------- */
+.tooltip-help {
+    font-size: 0.8em;
+    white-space: normal;
+    line-break: normal;
+}
 .save-clone-download-buttons {
     color: #3897d9;
 }
