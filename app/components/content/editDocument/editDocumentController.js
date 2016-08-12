@@ -1,8 +1,8 @@
 "use strict";
 
 angular.module("ehelseEditor").controller("EditDocumentController",
-    ["$scope", "$http", "$rootScope", "ModalService", "DocumentType", "TargetGroup", "Mandatory", "Action", "Document", "DocumentField", "LinkCategory", "Topic", "Status", "DocumentExtractor", "FileUpload", "ContactAddress", "Heading",
-        function ($scope, $http, $rootScope, ModalService, DocumentType, TargetGroup, Mandatory, Action, Document, DocumentField, LinkCategory, Topic, Status, DocumentExtractor, FileUpload, ContactAddress, Heading) {
+    [ "$scope", "$http","$rootScope", "ModalService", "DocumentType", "TargetGroup", "Mandatory", "Action","Document", "DocumentField","LinkCategory", "Topic","Status", "DocumentExtractor", "FileUpload", "ContactAddress", "Heading", "cfpLoadingBar", "StorageHandler",
+        function( $scope, $http, $rootScope, ModalService, DocumentType, TargetGroup, Mandatory, Action, Document, DocumentField, LinkCategory, Topic, Status, DocumentExtractor, FileUpload, ContactAddress, Heading, cfpLoadingBar, StorageHandler) {
 
             // Save document values to scope so they can be easily accessed in the html files
             $scope.document_types_option_list = DocumentType.getDocumentTypesOptionList();
@@ -128,8 +128,25 @@ angular.module("ehelseEditor").controller("EditDocumentController",
                 form.$setPristine();
             };
 
-            $scope.downloadDocumentAsJSON = function (doc) {
-                FileUpload.saveToFile(DocumentExtractor.getDocumentAsJSON(doc));
+            $scope.loadingBarStart = function() {
+                cfpLoadingBar.start();
+            };
+
+            $scope.loadingBarComplete = function () {
+                cfpLoadingBar.complete();
+            };
+
+            $scope.downloadDocumentAsJSON = function(doc){
+                FileUpload.onSaveAs(DocumentExtractor.getDocumentAsJSON(doc), function () {
+                    setTimeout(function() {
+                        $scope.loadingBarComplete();
+                        $scope.fakeIntro = false;
+                        $rootScope.chosenFilePath = StorageHandler.getChosenFilePath();
+                        $rootScope.notifySuccess("Save succeed! To: " + $rootScope.chosenFilePath , 2500);
+                    }, 500);
+                }, function () {
+                    $rootScope.notifyError("Save failed... :(", 1000);
+                });
             };
 
 

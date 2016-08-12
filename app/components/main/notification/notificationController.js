@@ -23,7 +23,7 @@ angular.module("ehelseEditor").controller("NotificationController", [ "$scope", 
 
         notification.removeClass();
 
-        notification.fadeTo(time, 500).slideUp(500, function() {});
+        notification.fadeTo(time, 300).fadeOut(300, function() {});
 
         if(type == "success"){
             notification.addClass("alert alert-success");
@@ -31,6 +31,6 @@ angular.module("ehelseEditor").controller("NotificationController", [ "$scope", 
             notification.addClass("alert alert-danger");
         }
 
-        notification.html("<a>" + message + "</a>");
+        notification.html(message);
     }
 }]);
