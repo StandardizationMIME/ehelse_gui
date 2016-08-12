@@ -141,8 +141,8 @@ angular.module("ehelseEditor").controller("EditDocumentController",
                     setTimeout(function() {
                         $scope.loadingBarComplete();
                         $scope.fakeIntro = false;
-                        $rootScope.chosenFilePath = StorageHandler.getChosenFilePath();
-                        $rootScope.notifySuccess("Save succeed! To: " + $rootScope.chosenFilePath , 2500);
+                        $rootScope.displayFilePath = StorageHandler.getDisplayPath();
+                        $rootScope.notifySuccess("Save succeed! To: " + $rootScope.displayFilePath , 3000);
                     }, 500);
                 }, function () {
                     $rootScope.notifyError("Save failed... :(", 1000);

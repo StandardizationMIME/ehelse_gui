@@ -3,6 +3,7 @@ angular.module("ehelseEditor").controller("ToolbarController",
         function ($state, $rootScope, $scope, CSVConverter, FileUpload, StorageHandler, DownloadList, Action, Document, DocumentField, DocumentType, LinkCategory, Mandatory, Status, TargetGroup, Topic, DocumentExtractor, cfpLoadingBar) {
 
             $rootScope.chosenFilePath = "";
+            $rootScope.displayFilePath = "";
             $scope.$parent.registerChildController("ToolbarController", $scope);
 
             // Remove selected graphics from topics and documents
@@ -54,7 +55,8 @@ angular.module("ehelseEditor").controller("ToolbarController",
                         $scope.loadingBarComplete();
                         $scope.fakeIntro = false;
                         $rootScope.chosenFilePath = StorageHandler.getChosenFilePath();
-                        $rootScope.notifySuccess("Save succeed! To: " + $rootScope.chosenFilePath , 2000);
+                        $rootScope.displayFilePath = StorageHandler.getDisplayPath();
+                        $rootScope.notifySuccess("Save succeed! To: " + $rootScope.displayFilePath , 2000);
                     }, 500);
                 }, function () {
                     $rootScope.notifyError("Save failed... :(", 1000);
@@ -66,8 +68,8 @@ angular.module("ehelseEditor").controller("ToolbarController",
                     setTimeout(function() {
                         $scope.loadingBarComplete();
                         $scope.fakeIntro = false;
-                        $rootScope.chosenFilePath = StorageHandler.getChosenFilePath();
-                        $rootScope.notifySuccess("Save succeed! To: " + $rootScope.chosenFilePath , 3000);
+                        $rootScope.displayFilePath = StorageHandler.getDisplayPath();
+                        $rootScope.notifySuccess("Save succeed! To: " + $rootScope.displayFilePath , 3000);
                     }, 500);
                 }, function () {
                     $rootScope.notifyError("Save failed... :(", 1000);
@@ -79,7 +81,6 @@ angular.module("ehelseEditor").controller("ToolbarController",
 
             $scope.uploadCsvButton = function () {
                 FileUpload.onLoadCSV(function () {
-                    $rootScope.notifySuccess("Upload succeed! :) ", 1000);
                     // fake the initial load
                     $scope.loadingBarStart();
                     $scope.fakeIntro = true;
@@ -89,7 +90,7 @@ angular.module("ehelseEditor").controller("ToolbarController",
                         $scope.loadingBarComplete();
                         $rootScope.clearSearchFilterText();
                         $scope.fakeIntro = false;
-                        $rootScope.chosenFilePath = StorageHandler.getChosenFilePath();
+                        $rootScope.notifySuccess("Upload succeed! :) ", 1000);
                     }, 500);
                 }, function () {
                     $rootScope.notifyError("Upload failed... :( ", 1000);

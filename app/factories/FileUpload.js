@@ -35,6 +35,7 @@ angular.module("ehelseEditor").factory("FileUpload",
                                     isJsonFile = true;
                                     chrome.fileSystem.getDisplayPath(fileEntry, function(path) {
                                         StorageHandler.setChosenFilePath(path);
+                                        StorageHandler.setDisplayFilePath(path);
                                     });
                                     _success();
                                 } else {
@@ -78,7 +79,7 @@ angular.module("ehelseEditor").factory("FileUpload",
                                     initEverything();
                                     isJsonFile = false;
                                     chrome.fileSystem.getDisplayPath(fileEntry, function(path) {
-                                        StorageHandler.setChosenFilePath(path);
+                                        StorageHandler.setDisplayFilePath(path);
                                     });
                                     _success();
                                 }
@@ -143,6 +144,7 @@ angular.module("ehelseEditor").factory("FileUpload",
                                     _success();
                                     chrome.fileSystem.getDisplayPath(writableFileEntry, function(path) {
                                         StorageHandler.setChosenFilePath(path);
+                                        StorageHandler.setDisplayFilePath(path);
                                     });
                                 } catch (e) {
                                     _faillure();
@@ -180,9 +182,8 @@ angular.module("ehelseEditor").factory("FileUpload",
                         writer.onwriteend = function (e) {
                             try {
                                 chosenFileEntry = writableFileEntry;
-                                isJsonFile = true;
                                 chrome.fileSystem.getDisplayPath(writableFileEntry, function(path) {
-                                    StorageHandler.setChosenFilePath(path);
+                                    StorageHandler.setDisplayFilePath(path);
                                 });
                                 _success();
                             } catch (e) {
