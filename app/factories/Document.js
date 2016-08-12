@@ -90,6 +90,7 @@ angular.module("ehelseEditor").factory("Document",
 
                     for (var i = 0; i < allDocuments.documents.length; i++) {
                         var document = allDocuments.documents[i];
+                        document.sequence = Number(document.sequence);
                         document.populatedProfiles = [];
                         documents.push(document);
                     }
@@ -242,6 +243,7 @@ angular.module("ehelseEditor").factory("Document",
                 document.editedTimestamp = ServiceFunction.getTimestamp();
                 document.populatedProfiles = [];
                 document.fields = removeLineBreakFromDocumentFields(document.fields);
+                document.sequence = Number(document.sequence);
             }
 
             function changeTopicIdOfNextDocumentVersions(document) {
@@ -390,7 +392,6 @@ angular.module("ehelseEditor").factory("Document",
 
                         toggleTopicSelection();
                         $rootScope.notifySuccess("Dokumentet ble oppdatert", 1000);
-                        $rootScope.title = ServiceFunction.deepCopy(current_document.title);
                     }
                     catch (error) {
                         console.log(error);
@@ -625,7 +626,9 @@ angular.module("ehelseEditor").factory("Document",
                         document.headingContent = ServiceFunction.orderListBySequence(document.headingContent, Heading.getById, "heading");
                     }
 
+
                     setDocument(current_document, document);
+                    
                 }
                 generateCurrentDocumentLinksAsLinkCategoryList();
 
@@ -659,10 +662,12 @@ angular.module("ehelseEditor").factory("Document",
                             link_category_dict[link.linkCategoryId] = {id: link.linkCategoryId, links: []};
                         }
                         link_category_dict[link.linkCategoryId].links.push(link);
+
                     }
                 } else {
                     console.log("Current document has no links");
                 }
+
                 link_category_list.length = 0;
 
                 for (var prop in link_category_dict) {
@@ -671,6 +676,7 @@ angular.module("ehelseEditor").factory("Document",
 
                     link_category_list.push(link_category_dict[prop]);
                 }
+
             }
 
             function getCurrentDocumentLinksAsLinkCategoryList() {

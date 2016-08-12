@@ -9,7 +9,7 @@
             <div class="text-align-center">
                 <i class="fa fa-2x fa-plus-circle icon-size-medium"></i>
             </div>
-            <div class="text-align-center black-color">Opprett Ny profil</div>
+            <div class="text-align-center black-color font-size">Opprett Ny profil</div>
         </div>
 
         <!-- Back to document button -->
@@ -28,7 +28,7 @@
                  ng-click="checkIfSelectProfileFormIsDirty(profile)">
 
                 <div ng-class="document.id == profile.id ? 'selected-profile-icon' : ''"
-                     data-toggle="tooltip" title="{{profile.title}}" data-placement="top" class="text-align-center red-color profile-clickable">
+                     data-toggle="tooltip" data-original-title="{{profile.title}}" data-placement="top" data-container="body" class="text-align-center red-color profile-clickable">
                     <i ng-class="profile.id == document.id ? 'selected-profile-icon' : ''" class="fa fa-2x fa-file-text"></i>
                 </div>
                 <div class="profile-text">

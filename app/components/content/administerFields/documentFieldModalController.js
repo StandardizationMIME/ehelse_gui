@@ -4,6 +4,7 @@ angular.module("ehelseEditor").controller("DocumentFieldModalController", [ "$sc
 
     // Submit document field change
     $rootScope.submitDocumentFieldChange = function(field){
+        field.sequence = Number(field.sequence);
         DocumentField.edit(
             field,
             function(data){
@@ -22,6 +23,7 @@ angular.module("ehelseEditor").controller("DocumentFieldModalController", [ "$sc
 
     // Post new document field on creation
     $scope.postNewDocumentField = function(field){
+        field.sequence = Number(field.sequence);
         DocumentField.create(field,
             function(data){
                 console.log("Field has been created");

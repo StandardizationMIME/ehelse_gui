@@ -10,6 +10,9 @@ angular.module("ehelseEditor").factory("Heading", ["$rootScope", "StorageHandler
     function init(){
         try{
             Array.prototype.push.apply(headings, StorageHandler.getHeadings().headings);
+            for(var i = 0; i < headings.length; i++){
+                headings[i].sequence = Number(headings[i].sequence);
+            }
             headings.sort(ServiceFunction.compareSequence);
             generateHeadingDict();
         }
@@ -104,6 +107,7 @@ angular.module("ehelseEditor").factory("Heading", ["$rootScope", "StorageHandler
      * @param heading
      */
     function submit(heading){
+        heading.sequence = Number(heading.sequence);
         if(heading.id){
             try{
                 set(headings_dict[heading.id], heading);

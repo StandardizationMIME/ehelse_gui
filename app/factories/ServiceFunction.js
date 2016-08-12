@@ -175,19 +175,26 @@ angular.module("ehelseEditor").factory("ServiceFunction", [function () {
         for (var i = 0; i < list.length; i++) {
             var temp_field = {};
             if(type == "field"){
-                temp_field = getByIdMethod(list[i].fieldId);
+                temp_field["id"] = getByIdMethod(list[i].fieldId).id;
+                temp_field["sequence"] = getByIdMethod(list[i].fieldId).sequence;
                 temp_field["value"] = list[i].value;
             }else if(type == "heading"){
-                temp_field = getByIdMethod(list[i].headingId);
+                temp_field["id"] = getByIdMethod(list[i].headingId).id;
+                temp_field["sequence"] = getByIdMethod(list[i].headingId).sequence;
                 temp_field["text"] = list[i].text;
             }else if(type == "link"){
-                temp_field = getByIdMethod(list[i].id);
+                temp_field["id"] = getByIdMethod(list[i].id).id;
+                temp_field["sequence"] = getByIdMethod(list[i].id).sequence;
                 temp_field["links"] = list[i].links;
+            }else if(type == "linksInDocument"){
+                temp_field["id"] = getByIdMethod(list[i].linkCategoryId).id;
+                temp_field["sequence"] = getByIdMethod(list[i].linkCategoryId).sequence;
+                temp_field["text"] = list[i].text;
+                temp_field["url"] = list[i].url;
             }
             temp_list.push(temp_field);
         }
         temp_list.sort(compareSequence);
-
 
         var output = [];
         for (var x = 0; x < temp_list.length; x++) {
@@ -199,6 +206,8 @@ angular.module("ehelseEditor").factory("ServiceFunction", [function () {
                 if(temp_list[x]){
                     output.push({id: temp_list[x].id, links: temp_list[x].links });
                 }
+            }else if(type == "linksInDocument"){
+                output.push({linkCategoryId: temp_list[x].id, text: temp_list[x].text, url: temp_list[x].url});
             }
         }
         return output;

@@ -14,6 +14,9 @@ angular.module("ehelseEditor").factory("Topic", ["$rootScope", "StorageHandler",
         $rootScope.max_topic_levels = 5;
         try{
             Array.prototype.push.apply(topics, StorageHandler.getTopics().topics);
+            for(var i = 0; i < topics.length; i++){
+                topics[i].sequence = Number(topics[i].sequence);
+            }
             generateTopicDict(topics);
             generateTopicOptionsList(topics);
         }
@@ -114,10 +117,12 @@ angular.module("ehelseEditor").factory("Topic", ["$rootScope", "StorageHandler",
         var children = old_topic.children;
         if(old_topic.parentId != topic.parentId){
             removeById(old_topic.id);
+            topic.sequence = Number(topic.sequence);
             setTopic(topics_dict[topic.id], topic);
             addTopic(old_topic);
         }
         else{
+            topic.sequence = Number(topic.sequence);
             setTopic(topics_dict[topic.id], topic);
         }
         topics_dict[topic.id].children = children;

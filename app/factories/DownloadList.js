@@ -68,8 +68,8 @@ angular.module("ehelseEditor").factory("DownloadList",
             output_list["status"] = Status.getAll();
             output_list["headings"] = Heading.getAll();
             output_list["contactAddresses"] = ContactAddress.getAll();
-            output_list["topics"] = constructOutputTopics(ServiceFunction.deepCopy(Topic.getAll()));
-            output_list["documents"] = constructOutputDocuments(ServiceFunction.cloneDocuments(Document.getAll()));
+            output_list["topics"] = constructOutputTopics(ServiceFunction.deepCopy(Topic.getAll())).sort(ServiceFunction.compareSequence);
+            output_list["documents"] = constructOutputDocuments(ServiceFunction.cloneDocuments(Document.getAll())).sort(ServiceFunction.compareSequence);
             output_list["archivedDocuments"] = ServiceFunction.cloneDocuments(StorageHandler.getArchivedDocuments());
 
             return output_list;

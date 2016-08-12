@@ -10,6 +10,9 @@ angular.module("ehelseEditor").factory("LinkCategory", ["$rootScope", "StorageHa
     function init(){
         try{
             Array.prototype.push.apply(link_categories, StorageHandler.getLinkCategories().linkCategories);
+            for(var i = 0; i < link_categories.length; i++){
+                link_categories[i].sequence = Number(link_categories[i].sequence);
+            }
             link_categories.sort(ServiceFunction.compareSequence);
             generateLinkCategoryDict();
         }
@@ -104,6 +107,7 @@ angular.module("ehelseEditor").factory("LinkCategory", ["$rootScope", "StorageHa
      * @param link_category
      */
     function submit(link_category){
+        link_category.sequence = Number(link_category.sequence);
         if(link_category.id){
             try{
                 set(link_categories_dict[link_category.id], link_category);
