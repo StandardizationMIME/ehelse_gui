@@ -92,8 +92,8 @@
 
 
                     <label ng-style="{'font-size': text.size + 'px'}" for="targetGroupLegalBases"
-                           class="col-sm-3 control-label"> Hjemmel: </label>
-                    <div class="form-group col-sm-9">
+                           class="col-sm-4 control-label"> Hjemmel: </label>
+                    <div class="form-group col-sm-8">
                         <input ng-style="{'font-size': text.size + 'px', 'height': text.size*2.1 + 'px'}" type="text"
                                id="targetGroupLegalBases" class="form-control" ng-model="document.targetGroupLegalBases"
                                ng-click="disableTargetGroupDecidedBy()"
@@ -102,8 +102,8 @@
 
 
                     <label ng-style="{'font-size': text.size + 'px'}" for="targetGroupDecidedBy"
-                           class="col-sm-3 control-label"> Besluttet av: </label>
-                    <div class="form-group col-sm-9">
+                           class="col-sm-4 control-label"> Besluttet av: </label>
+                    <div class="form-group col-sm-8">
                         <input ng-style="{'font-size': text.size + 'px', 'height': text.size*2.1 + 'px'}" type="text"
                                id="targetGroupDecidedBy" class="form-control" ng-model="document.decidedBy"
                                ng-click="disableTargetGroupLegalBases()"
@@ -111,8 +111,8 @@
                     </div>
 
                     <label ng-style="{'font-size': text.size + 'px'}" for="targetGroupReplacedBy"
-                           class="col-sm-3 control-label"> Erstattes av: </label>
-                    <div class="form-group col-sm-9">
+                           class="col-sm-4 control-label"> Erstattes av: </label>
+                    <div class="form-group col-sm-8">
                         <input ng-style="{'font-size': text.size + 'px', 'height': text.size*2.1 + 'px'}" type="text"
                                id="targetGroupReplacedBy" class="form-control" ng-model="document.replacedBy">
                     </div>
@@ -121,11 +121,11 @@
                 <!-- Additional fields for optional target groups -->
                 <div class="form-group" ng-repeat="mandatoryNotice in document.mandatoryNotices" ng-show="mandatoryNotice.mandatoryId">
 
-                    <label ng-style="{'font-size': text.size + 'px'}" class="col-sm-3 control-label" for="mandatory{{mandatoryNotice.mandatoryId}}">Merknad til
+                    <label ng-style="{'font-size': text.size + 'px'}" class="col-sm-4 control-label" for="mandatory{{mandatoryNotice.mandatoryId}}">Merknad til
                         {{getMandatoryNameById(mandatoryNotice.mandatoryId)}} gruppe:
                     </label>
 
-                    <div class="form-group col-sm-9">
+                    <div class="form-group col-sm-8">
                         <input ng-style="{'font-size': text.size + 'px', 'height': text.size*2.35 + 'px'}"
                                type="text" class="form-control" ng-model="mandatoryNotice.notice"
                                 id="mandatory{{mandatoryNotice.mandatoryId}}">
