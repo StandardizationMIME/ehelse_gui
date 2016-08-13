@@ -15,14 +15,14 @@
 
                     <!-- Field name -->
                     <td class="col-md-4">
-                        <label for="documentField{{field.fieldId}}">{{fields_dict[field.fieldId].name}}
+                        <label ng-style="{'font-size': text.size + 'px'}" for="documentField{{field.fieldId}}">{{fields_dict[field.fieldId].name}}
                         <span ng-if="fields_dict[field.fieldId].mandatory == 1" class="required-icon" data-toggle="tooltip"
                               data-placement="top" data-original-title="Obligatorisk felt">*</span></label>
                     </td>
 
                     <!-- Field input -->
                     <td class="col-md-7">
-                        <textarea id="documentField{{field.fieldId}}" class="form-control content-box" name="f{{field.id}}"
+                        <textarea ng-style="{'font-size': text.size + 'px'}" id="documentField{{field.fieldId}}" class="form-control content-box" name="f{{field.id}}"
                                   ng-model="field.value" rows="{{getTextRows(field.value)}}" autogrow required></textarea>
                     </td>
 
