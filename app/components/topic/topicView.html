@@ -25,7 +25,7 @@
         <div ng-repeat="topic in topics | orderBy:getSequence">
 
             <!-- On click, get documents related to topic and open topic in content view -->
-            <p data-target=#topic{{topic.id}} id={{topic.id}} data-toggle="collapse" ng-class="topic.id == selected_topic_id ? 'selected-item' : ''" class="item-text clickable"
+            <p  ng-style="{'font-size': text.size + 'px'}" data-target=#topic{{topic.id}} id={{topic.id}} data-toggle="collapse" ng-class="topic.id == selected_topic_id ? 'selected-item' : ''" class="item-text clickable"
                ng-click="checkDocumentFormAndExecute(topic.id)">
                 <span id=folder{{topic.id}} class="standard-icon glyphicon glyphicon-folder-close"> </span>
                 {{topic.title}}
@@ -36,7 +36,7 @@
                 <div class="sub-topic" ng-repeat="subTopic in topic.children | orderBy:getSequence">
 
                     <!-- On click, get documents related to topic and open topic in content view -->
-                    <p data-target=#topic{{subTopic.id}} id={{subTopic.id}} ng-class="subTopic.id == selected_topic_id ? 'selected-item' : ''" data-toggle="collapse"
+                    <p ng-style="{'font-size': text.size + 'px'}" data-target=#topic{{subTopic.id}} id={{subTopic.id}} ng-class="subTopic.id == selected_topic_id ? 'selected-item' : ''" data-toggle="collapse"
                        class="item-text clickable" ng-click="checkDocumentFormAndExecute(subTopic.id)">
                         <span id=folder{{subTopic.id}} class="standard-icon glyphicon glyphicon-folder-close"> </span>
                         {{subTopic.title}}
@@ -47,7 +47,7 @@
                         <div class="sub-topic" ng-repeat="subsubTopic in subTopic.children | orderBy:getSequence">
 
                             <!-- On click, get documents related to topic and open topic in content view -->
-                            <p data-target="#topic{{subsubTopic.id}}" id={{subsubTopic.id}} data-toggle="collapse" ng-class="subsubTopic.id == selected_topic_id ? 'selected-item' : ''" class="item-text clickable"
+                            <p ng-style="{'font-size': text.size + 'px'}" data-target="#topic{{subsubTopic.id}}" id={{subsubTopic.id}} data-toggle="collapse" ng-class="subsubTopic.id == selected_topic_id ? 'selected-item' : ''" class="item-text clickable"
                                ng-click="checkDocumentFormAndExecute(subsubTopic.id)">
                                 <span id=folder{{subsubTopic.id}}
                                       class="standard-icon glyphicon glyphicon-folder-close"> </span>
@@ -59,7 +59,7 @@
                                 <div class="sub-topic" ng-repeat="subsubsubTopic in subsubTopic.children | orderBy:getSequence">
 
                                     <!-- On click, get documents related to topic and open topic in content view -->
-                                    <p data-target="#topic{{subsubsubTopic.id}}" id={{subsubsubTopic.id}} data-toggle="collapse" ng-class="subsubsubTopic.id == selected_topic_id ? 'selected-item' : ''" class="item-text clickable"
+                                    <p ng-style="{'font-size': text.size + 'px'}" data-target="#topic{{subsubsubTopic.id}}" id={{subsubsubTopic.id}} data-toggle="collapse" ng-class="subsubsubTopic.id == selected_topic_id ? 'selected-item' : ''" class="item-text clickable"
                                        ng-click="checkDocumentFormAndExecute(subsubsubTopic.id)">
                                         <span id=folder{{subsubsubTopic.id}}
                                       class="standard-icon glyphicon glyphicon-folder-close"> </span>
@@ -71,7 +71,7 @@
                                         <div class="sub-topic" ng-repeat="subsubsubsubTopic in subsubsubTopic.children | orderBy:getSequence">
 
                                             <!-- On click, get documents related to topic and open topic in content view -->
-                                            <p id={{subsubsubsubTopic.id}} data-toggle="collapse" ng-class="subsubsubsubTopic.id == selected_topic_id ? 'selected-item' : ''" class="item-text clickable"
+                                            <p ng-style="{'font-size': text.size + 'px'}" id={{subsubsubsubTopic.id}} data-toggle="collapse" ng-class="subsubsubsubTopic.id == selected_topic_id ? 'selected-item' : ''" class="item-text clickable"
                                                ng-click="checkDocumentFormAndExecute(subsubsubsubTopic.id)">
                                                 <span id=folder{{subsubsubsubTopic.id}}
                                                 class="standard-icon glyphicon glyphicon-folder-close"> </span>
