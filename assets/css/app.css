@@ -569,6 +569,38 @@ div>div>.dropdown-toggle:hover{
 #search-bar {
     width: 365px;
 }
+
+/* Slider input styling */
+input[type=range]{
+    -webkit-appearance: none;
+    margin-top: 23px
+}
+
+input[type=range]::-webkit-slider-runnable-track {
+    height: 5px;
+    background: #ddd;
+    border: none;
+    border-radius: 3px;
+}
+
+input[type=range]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    border: none;
+    height: 16px;
+    width: 16px;
+    border-radius: 50%;
+    background: grey;
+    margin-top: -4px;
+}
+
+input[type=range]:focus {
+    outline: none;
+}
+
+input[type=range]:focus::-webkit-slider-runnable-track {
+    background: #ccc;
+}
+
 /* -------------------------------------------- CH10 TOPIC ----------------------------------------- */
 .edit-topic-icon {
     font-size: large;
