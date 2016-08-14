@@ -85,6 +85,9 @@ angular.module("ehelseEditor").factory("FileUpload",
                                     StorageHandler.initCsv();
                                     initEverything();
 
+                                    StorageHandler.setSavingFilePath("");
+                                    StorageHandler.setCurrentFilePath("");
+
                                     isJsonFile = false;
                                     _success();
                                 } else {
@@ -110,7 +113,7 @@ angular.module("ehelseEditor").factory("FileUpload",
                             writer.onerror = errorHandler;
 
                             var json = JSON.stringify(modifiedJsonObject, null, '\t');
-                            var blob = new Blob([json], {type: "application/json"});
+                            var blob = new Blob([json], {type: "application/javascript"});
                             writer.truncate(blob.size);
 
                             writer.onwriteend = function () {
@@ -144,20 +147,25 @@ angular.module("ehelseEditor").factory("FileUpload",
                     } else {
                         writableFileEntry.createWriter(function (writer) {
                             writer.onerror = errorHandler;
+
+                            var json = JSON.stringify(modifiedJsonObject, null, '\t');
+                            var blob = new Blob([json], {type: "application/javascript"});
+                            writer.truncate(blob.size);
+
                             writer.onwriteend = function (e) {
                                 try {
                                     chosenFileEntry = writableFileEntry;
                                     isJsonFile = true;
                                     _success();
                                     chrome.fileSystem.getDisplayPath(writableFileEntry, function(path) {
-                                        StorageHandler.setChosenFilePath(path);
-                                        StorageHandler.setDisplayFilePath(path);
+                                        StorageHandler.setCurrentFilePath(path);
+                                        StorageHandler.setSavingFilePath(path);
                                     });
                                 } catch (e) {
                                     _faillure();
                                 }
                             };
-                            writer.write(new Blob([JSON.stringify(JSON.parse(angular.toJson(modifiedJsonObject)), null, '\t')], {type: "application/json"}));
+                            writer.write(blob);
                         }, errorHandler);
                     }
                 });
@@ -190,7 +198,7 @@ angular.module("ehelseEditor").factory("FileUpload",
                             try {
                                 chosenFileEntry = writableFileEntry;
                                 chrome.fileSystem.getDisplayPath(writableFileEntry, function(path) {
-                                    StorageHandler.setDisplayFilePath(path);
+                                    StorageHandler.setSavingFilePath(path);
                                 });
                                 _success();
                             } catch (e) {

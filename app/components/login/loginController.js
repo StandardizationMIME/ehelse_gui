@@ -15,14 +15,6 @@ angular.module("ehelseEditor").controller("LoginController", [ "$scope", "$rootS
     // Read file in file upload input
     $scope.uploadJsonButton = function () {
         FileUpload.onLoadJSON(function () {
-            $rootScope.loadingBarStart();
-            $scope.fakeIntro = true;
-            setTimeout(function() {
-                $rootScope.chosenFilePath = StorageHandler.getChosenFilePath();
-                
-                $rootScope.loadingBarComplete();
-                $scope.fakeIntro = false;
-            }, 300);
             $scope.goToSite();
         }, function () {
             $rootScope.notifyError("Upload failed... :( ", 1000);
@@ -30,14 +22,6 @@ angular.module("ehelseEditor").controller("LoginController", [ "$scope", "$rootS
     };
     $scope.uploadCsvButton = function () {
         FileUpload.onLoadCSV(function () {
-            $rootScope.loadingBarStart();
-            $scope.fakeIntro = true;
-            setTimeout(function() {
-                $rootScope.chosenFilePath = StorageHandler.getChosenFilePath();
-                
-                $rootScope.loadingBarComplete();
-                $scope.fakeIntro = false;
-            }, 300);
             $scope.goToSite();
         }, function () {
             $rootScope.notifyError("Upload failed... :( ", 1000);

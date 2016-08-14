@@ -55,7 +55,7 @@ angular.module("ehelseEditor").controller("ToolbarController",
                         $rootScope.savingFilePath = StorageHandler.getSavingFilePath();
                         $rootScope.currentFilePath = StorageHandler.getCurrentFilePath();
 
-                        $rootScope.notifySuccess("Save succeed! To: " + $rootScope.currentFilePath, 2000);
+                        $rootScope.notifySuccess("Save succeed! To: " + $rootScope.savingFilePath, 2000);
 
                         $rootScope.loadingBarComplete();
                         $scope.fakeIntro = false;
@@ -70,9 +70,9 @@ angular.module("ehelseEditor").controller("ToolbarController",
                     $rootScope.loadingBarStart();
                     $scope.fakeIntro = true;
                     setTimeout(function() {
-                        $rootScope.currentFilePath= StorageHandler.getCurrentFilePath();
+                        $rootScope.savingFilePath= StorageHandler.getSavingFilePath();
                         
-                        $rootScope.notifySuccess("Save succeed! To: " + $rootScope.currentFilePath , 3000);
+                        $rootScope.notifySuccess("Save succeed! To: " + $rootScope.savingFilePath , 3000);
                         
                         $rootScope.loadingBarComplete();
                         $scope.fakeIntro = false;
@@ -95,6 +95,7 @@ angular.module("ehelseEditor").controller("ToolbarController",
                         $rootScope.clearSearchFilterText();
                         
                         $rootScope.notifySuccess("Upload succeed! :) ", 1000);
+                        $rootScope.currentFilePath = StorageHandler.getSavingFilePath();
                         
                         $rootScope.loadingBarComplete();
                         $scope.fakeIntro = false;
