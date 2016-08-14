@@ -26,6 +26,9 @@ h1,h2,h3,h4{ font-weight: bold;}
 .relative{
     position: relative;
 }
+.absolute {
+    position: absolute;
+}
 .btn-primary {
     background-color: #337ab7;
 }
@@ -255,8 +258,6 @@ textarea {
 /* -------------------------------------------- CH4 DOCUMENT ----------------------------------------- */
 .tooltip-help {
     font-size: 0.8em;
-    white-space: normal;
-    line-break: normal;
 }
 .save-clone-download-buttons {
     color: #3897d9;
@@ -360,6 +361,18 @@ textarea {
     overflow-y: auto;
     height: 95%;
 }
+.hideProfilesFromStandard {
+    overflow-y: auto;
+    height: 95%;
+}
+.hideProfilesFromProfile {
+    overflow-y: auto;
+    height: 95%;
+}
+.hideProfilesFromNewProfile{
+    overflow-y: auto;
+    height: 95%;
+}
 .utility-height {
     height: 85%;
 }
@@ -367,12 +380,62 @@ textarea {
     height: calc(100% - 200px);
 }
 .profiles-container {
+    position: relative;
     margin-top: 2px;
     height: 75px;
     width: 100%;
     display: inline-block;
     box-shadow: 0 -2px #b8b8b8;
     z-index: 1000;
+}
+.toggle-profiles-down {
+    position: absolute;
+    left: 50%;
+    font-size: 1.5em;
+    bottom: 64px;
+    color: #c13a47;
+    display: block;
+    z-index: 1010;
+}
+.toggle-profiles-up {
+    position: absolute;
+    left: 50%;
+    font-size: 1.5em;
+    bottom: -11px;
+    color: #c13a47;
+    display: block;
+    z-index: 1010;
+}
+.circle-down {
+    position: absolute;
+    left: 50%;
+    bottom: 65px;
+    display: block;
+    height: 19px;
+    width: 19px;
+    -moz-border-radius: 50%;
+    border-radius: 50%;
+    background-color: #f3f3f3;
+    text-align: center;
+    z-index: 1009;
+}
+.circle-up {
+    position: absolute;
+    left: 50%;
+    bottom: -11px;
+    display: block;
+    height: 19px;
+    width: 19px;
+    -moz-border-radius: 50%;
+    border-radius: 50%;
+    background-color: #f3f3f3;
+    text-align: center;
+    z-index: 1009;
+}
+
+.toggle-profiles-down:hover, .toggle-profiles-up:hover {
+    color: #993542;
+    cursor: pointer;
 }
 .profile-clickable:hover {
     cursor: pointer;

@@ -42,6 +42,22 @@ angular.module("ehelseEditor").controller("EditDocumentController",
                 return false;
             };
 
+            $scope.toggleProfilesBar = function(){
+                if($rootScope.documentState == "editDocument"){
+                    $rootScope.documentState = "hideProfilesFromStandard";
+                }else if($rootScope.documentState == 'editProfile'){
+                    $rootScope.documentState = "hideProfilesFromProfile";
+                }else if($rootScope.documentState == "hideProfilesFromStandard"){
+                    $rootScope.documentState = "editDocument";
+                }else if($rootScope.documentState == "hideProfilesFromProfile"){
+                    $rootScope.documentState = "editProfile";
+                }else if($rootScope.documentState == "newProfile"){
+                    $rootScope.documentState = 'hideProfilesFromNewProfile';
+                }else if($rootScope.documentState == "hideProfilesFromNewProfile"){
+                    $rootScope.documentState = 'newProfile';
+                }
+            };
+
             $scope.disableTargetGroupDecidedBy = function () {
                 $rootScope.additionalFieldForMandatoryGroupsSelected = false;
                 $scope.document.decidedBy = null;
