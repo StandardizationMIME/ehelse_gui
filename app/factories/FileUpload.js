@@ -103,7 +103,8 @@ angular.module("ehelseEditor").factory("FileUpload",
             })
         }
 
-        function onSaveMimeJSON(modifiedJsonObject, _success, _faillure){
+        function onSaveMimeJSON(modifiedJsonObject, _success, _failure){
+            console.info(modifiedJsonObject);
             if(isJsonFile){
                 chrome.fileSystem.getWritableEntry(chosenFileEntry, function (writableFileEntry) {
                     if (chrome.runtime.lastError){
@@ -123,7 +124,7 @@ angular.module("ehelseEditor").factory("FileUpload",
                                         _success();
                                     };
                                 } catch (e) {
-                                    _faillure();
+                                    _failure();
                                 }
                             };
                             chosenFileEntry.file(function (file) {
@@ -149,23 +150,27 @@ angular.module("ehelseEditor").factory("FileUpload",
                             writer.onerror = errorHandler;
 
                             var json = JSON.stringify(modifiedJsonObject, null, '\t');
+                            console.info(json);
                             var blob = new Blob([json], {type: "application/javascript"});
+                            console.info(blob);
                             writer.truncate(blob.size);
 
                             writer.onwriteend = function (e) {
                                 try {
                                     chosenFileEntry = writableFileEntry;
                                     isJsonFile = true;
-                                    _success();
                                     chrome.fileSystem.getDisplayPath(writableFileEntry, function(path) {
                                         StorageHandler.setCurrentFilePath(path);
                                         StorageHandler.setSavingFilePath(path);
                                     });
+                                    _success();
                                 } catch (e) {
-                                    _faillure();
+                                    _failure();
                                 }
                             };
-                            writer.write(blob);
+                            writableFileEntry.file(function (file) {
+                                writer.write(blob);
+                            })
                         }, errorHandler);
                     }
                 });

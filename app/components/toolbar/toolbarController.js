@@ -48,6 +48,7 @@ angular.module("ehelseEditor").controller("ToolbarController",
 
             // Download save file
             $scope.save = function () {
+                console.log(DownloadList.getStorageList());
                 FileUpload.onSaveMimeJSON(DownloadList.getStorageList(), function () {
                     $rootScope.loadingBarStart();
                     $scope.fakeIntro = true;
@@ -93,6 +94,7 @@ angular.module("ehelseEditor").controller("ToolbarController",
                     setTimeout(function() {
                         $rootScope.deselectTopicAndDocument();
                         $rootScope.clearSearchFilterText();
+                        $rootScope.changeContentView("");
                         
                         $rootScope.notifySuccess("Upload succeed! :) ", 1000);
                         $rootScope.currentFilePath = StorageHandler.getSavingFilePath();
@@ -113,10 +115,11 @@ angular.module("ehelseEditor").controller("ToolbarController",
                     setTimeout(function() {
                         $rootScope.deselectTopicAndDocument();
                         $rootScope.clearSearchFilterText();
-                        $rootScope.savingFilePath = StorageHandler.getSavingFilePath();
-                        
+                        $rootScope.changeContentView("");
+
                         $rootScope.notifySuccess("Upload succeed! :) ", 1000);
-                        
+                        $rootScope.savingFilePath = StorageHandler.getSavingFilePath();
+
                         $rootScope.loadingBarComplete();
                         $scope.fakeIntro = false;
                     }, 500);
@@ -141,7 +144,7 @@ angular.module("ehelseEditor").controller("ToolbarController",
                 $rootScope.searchIsFocused = true;
                 $rootScope.selected_topic_id = "";
                 if (!$rootScope.searchQuery){
-                    $rootScope.checkEditDocumentForm("", $rootScope.changeContentView);
+                    $rootScope.checkEditDocumentForm("", $rootScope.deselectTopicAndDocument);
                 }
             };
             $rootScope.searchOption = DocumentType.getById;
