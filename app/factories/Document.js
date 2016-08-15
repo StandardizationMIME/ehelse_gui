@@ -627,6 +627,9 @@ angular.module("ehelseEditor").factory("Document",
                     if(document.headingContent){
                         document.headingContent = ServiceFunction.orderListBySequence(document.headingContent, Heading.getById, "heading");
                     }
+                    if(document.links){
+                        document.links = document.links.sort(ServiceFunction.compareSequence);
+                    }
 
                     setDocument(current_document, document);
                     
@@ -728,7 +731,7 @@ angular.module("ehelseEditor").factory("Document",
             }
 
             function addLinkToCurrentDocumentByLinkCategoryId(id) {
-                current_document.links.push({linkCategoryId: id, text: "", url: ""});
+                current_document.links.push({linkCategoryId: id, text: "", url: "", sequence: ""});
                 generateCurrentDocumentLinksAsLinkCategoryList();
             }
 

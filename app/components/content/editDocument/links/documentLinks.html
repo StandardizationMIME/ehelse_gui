@@ -17,27 +17,36 @@
                             <span class="fa fa-remove delete-topic-icon clickable" ng-click="openConfirmationModal('Er du sikker på at du vil slette lenke-kategorien fra dokumentet?', linkCategory.id, removeLinkCategory); EditDocumentController.DocumentForm.$setDirty()"></span>
                         </h3>
                     </div>
+                    <div class="panel-body">
+                        <ul class="navbar-nav document-links-ul" ng-repeat="link in linkCategory.links">
+                            <li class="document-links-link center-align-text">
+                                <label ng-style="{'font-size': text.size + 'px'}" class=" control-label center-align-text" for="linkSequence">Nr.</label>
+                            </li>
+                            <li class="document-links-link">
+                                <input ng-style="{'font-size': text.size + 'px', 'height': text.size*2.1 + 'px'}"
+                                       class="form-control document-fields-field-sequence" id="linkSequence" ng-model="link.sequence"
+                                       placeholder="1" name="linkSequence" type="text" numbers-only maxlength="15">
+                            </li>
+                            <li class="document-links-link">
+                                <input ng-style="{'font-size': text.size + 'px', 'height': text.size*2.1 + 'px'}"
+                                       class="form-control" id="linkText" name="linkText" type="text" placeholder="Navn" ng-model="link.text"
+                                       data-toggle="tooltip" data-original-title="{{link.text}}" data-placement="top" required>
+                            </li>
+                            <li class="document-links-link">
+                                <input ng-style="{'font-size': text.size + 'px', 'height': text.size*2.1 + 'px'}"
+                                       class="form-control" id="linkUrl" name="linkUrl" type="text" placeholder="URL" ng-model="link.url"
+                                       data-toggle="tooltip" data-original-title="{{link.url}}" data-placement="top" required>
+                            </li>
+                            <li class="document-links-link center-align-text">
+                                <span ng-style="{'font-size': text.size + 'px'}" class="fa fa-remove delete-topic-icon clickable form-group center-align-text"
+                                      ng-click="openConfirmationModal('Er du sikker på at du vil slette lenken fra dokumentet?',
+                                                               link, removeLink); EditDocumentController.DocumentForm.$setDirty()">
+                                </span>
+                            </li>
+                        </ul>
+                    </div>
 
-                    <!-- Display the category's links -->
-                    <ul class="list-group">
-                        <li class="list-group-item" ng-repeat="link in linkCategory.links">
 
-                            <!-- Link text -->
-                            <span class="document-fields-field-name"><input ng-style="{'font-size': text.size + 'px', 'height': text.size*2.1 + 'px'}"
-                                                                            class="form-control" id="linkText" name="linkText" type="text" placeholder="Navn" ng-model="link.text"
-                                                                            data-toggle="tooltip" data-original-title="{{link.text}}" data-placement="top" required></span>
-
-                            <!-- URL -->
-                            <span class="document-fields-field-value four-pix-horizontal-margin"><input ng-style="{'font-size': text.size + 'px', 'height': text.size*2.1 + 'px'}"
-                                                                             class="form-control" id="linkUrl" name="linkUrl" type="text" placeholder="URL" ng-model="link.url"
-                                                                             data-toggle="tooltip" data-original-title="{{link.url}}" data-placement="top" required></span>
-
-                            <!-- Remove link -->
-                            <span class="fa fa-remove delete-topic-icon clickable"
-                                  ng-click="openConfirmationModal('Er du sikker på at du vil slette lenken fra dokumentet?',
-                                   link, removeLink); EditDocumentController.DocumentForm.$setDirty()"></span>
-                        </li>
-                    </ul>
                 </div>
 
                 <!-- Add link to document -->
