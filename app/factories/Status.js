@@ -106,9 +106,9 @@ angular.module("ehelseEditor").factory("Status", ["$rootScope", "StorageHandler"
         }
     }
 
-    function initNewStatusValues(status){
-        status.id = ServiceFunction.generateNewId(this.status);
-        status.isArchived = 0;
+    function initNewStatusValues(singleStatus){
+        singleStatus.id = ServiceFunction.generateNewId(status);
+        singleStatus.isArchived = 0;
     }
 
     /**
