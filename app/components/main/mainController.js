@@ -64,31 +64,60 @@ $(document).ready(function() {
         // Change view displayed in content window
         $rootScope.changeContentView = function(view){
             $rootScope.childControllers["EditorController"].changeView(view);
+            if ($rootScope.childControllers["EditTopicController"]) {
+                if ($rootScope.childControllers["EditTopicController"].EditTopicController.editTopicForm) {
+                    $rootScope.childControllers["EditTopicController"].EditTopicController.editTopicForm.$setPristine();
+                }
+            }
+            if ($rootScope.childControllers["EditDocumentController"]) {
+                if ($rootScope.childControllers["EditDocumentController"].EditDocumentController.DocumentForm) {
+                    $rootScope.childControllers["EditDocumentController"].EditDocumentController.DocumentForm.$setPristine();
+                }
+            }
             if(view == "administerfields" || view == "targetgroups" || view == "administerstatus" || view == "administeractions" ||
                 view == "administerheadings" || view == "administercontactaddresses" || view == "administermandatory" || view == "administerlinkcategories"){
                 $rootScope.deselectTopicAndDocument();
             }
+
         };
         $rootScope.checkEditDocumentForm = function (methodValue, method) {
-            if($rootScope.editDocumentFormIsDirty()){
-                $rootScope.openConfirmationModal("Du har endret dokumentet, dersom du fortsette vil du miste endringene som ble gjort. Vil du fortsette?",methodValue ,method);
-            }else{
+            console.log('document form not pristine: ' + $rootScope.formNotPristine('document'));
+            if($rootScope.formNotPristine('document')){
                 method(methodValue);
+            }else{
+                $rootScope.openConfirmationModal("Du har endret dokument, dersom du fortsetter vil du miste endringene som ble gjort. Vil du fortsette?",methodValue ,method);
             }
         };
-        $rootScope.editDocumentFormIsDirty = function () {
-            if ($rootScope.childControllers["EditDocumentController"]){
-                if ($rootScope.childControllers["EditDocumentController"].EditDocumentController.DocumentForm){
-                    if ($rootScope.childControllers["EditDocumentController"].EditDocumentController.DocumentForm.$dirty){
-                        return true;
+        $rootScope.checkEditTopicForm = function (methodValue, method) {
+            console.log('topic form not pristine: ' + $rootScope.formNotPristine('topic'));
+            if($rootScope.formNotPristine('topic')){
+                method(methodValue);
+            }else{
+                $rootScope.openConfirmationModal("Du har endret emne, dersom du fortsetter vil du miste endringene som ble gjort. Vil du fortsette?",methodValue ,method);
+            }
+        };
+        $rootScope.formNotPristine = function(_form){
+            if (_form == 'topic') {
+                if ($rootScope.childControllers["EditTopicController"]) {
+                    if ($rootScope.childControllers["EditTopicController"].EditTopicController.editTopicForm) {
+                        return $rootScope.childControllers["EditTopicController"].EditTopicController.editTopicForm.$pristine;
                     } else {
-                        return false;
+                        return true;
                     }
-                }else{
-                    return false;
+                } else {
+                    return true;
                 }
-            } else {
-                return false;
+            } else if (_form == 'document') {
+                if ($rootScope.childControllers["EditDocumentController"]) {
+                    if ($rootScope.childControllers["EditDocumentController"].EditDocumentController.DocumentForm) {
+                        return $rootScope.childControllers["EditDocumentController"].EditDocumentController.DocumentForm.$pristine;
+                    } else {
+                        return true;
+                    }
+                } else {
+                    return true;
+                }
+                return true;
             }
         };
 

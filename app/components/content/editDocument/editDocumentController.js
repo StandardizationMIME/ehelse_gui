@@ -213,6 +213,14 @@ angular.module("ehelseEditor").controller("EditDocumentController",
                     that.tooltip('hide');
                 }, 1000);
             });
+
+            $scope.checkForms = function (_value, _method) {
+                if ($rootScope.formNotPristine('document')) {
+                    $rootScope.checkEditTopicForm(_value, _method);
+                } else {
+                    $rootScope.checkEditDocumentForm(_value, _method);
+                }
+            };
         }
     ]);
 

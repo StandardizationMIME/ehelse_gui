@@ -114,7 +114,8 @@ angular.module("ehelseEditor").factory("FileUpload",
                         writableFileEntry.createWriter(function (writer) {
                             writer.onerror = errorHandler;
 
-                            var json = JSON.stringify(modifiedJsonObject, null, '\t');
+                            var noAngularJson = angular.toJson(modifiedJsonObject);
+                            var json = JSON.stringify(JSON.parse(noAngularJson), null, '\t');
                             var blob = new Blob([json], {type: "application/javascript"});
                             writer.truncate(blob.size);
 
@@ -150,7 +151,8 @@ angular.module("ehelseEditor").factory("FileUpload",
                         writableFileEntry.createWriter(function (writer) {
                             writer.onerror = errorHandler;
 
-                            var json = JSON.stringify(modifiedJsonObject, null, '\t');
+                            var noAngularJson = angular.toJson(modifiedJsonObject);
+                            var json = JSON.stringify(JSON.parse(noAngularJson), null, '\t');
                             var blob = new Blob([json], {type: "application/javascript"});
                             writer.truncate(blob.size);
 
@@ -209,7 +211,8 @@ angular.module("ehelseEditor").factory("FileUpload",
                                 _failure();
                             }
                         };
-                        var json = JSON.stringify(modifiedJsonObject, null, '\t');
+                        var noAngularJson = angular.toJson(modifiedJsonObject);
+                        var json = JSON.stringify(JSON.parse(noAngularJson), null, '\t');
                         var blob = new Blob([json], {type: "application/json"});
                         writer.write(blob);
                     }, errorHandler);
