@@ -1,4 +1,4 @@
-<div ng-if="documentState == 'editDocument' || documentState == 'editProfile' || documentState == 'newProfile'">
+<div class="animate-show" ng-if="documentState == 'editDocument' || documentState == 'editProfile' || documentState == 'newProfile'">
 
 
 
@@ -25,7 +25,7 @@
             </div>
         </div>
 
-        <!-- Lists connected profiles -->
+        <!-- Lists profiles related to document -->
         <div class="form-group col-sm-10 profile-list shadow-left shadow-right">
             <div class="profile-container" ng-repeat="profile in document.populatedProfiles" ng-if="profile"
                  ng-class="profile.id == document.id ? 'selected-profile' : ''"
@@ -42,7 +42,7 @@
         </div>
     </div>
 </div>
-<span class="circle-up" ng-if="documentState == 'hideProfilesFromProfile' || documentState == 'hideProfilesFromStandard' || documentState == 'hideProfilesFromNewProfile'"></span>
-<span class="fa fa-chevron-circle-up toggle-profiles-up" ng-if="documentState == 'hideProfilesFromProfile' || documentState == 'hideProfilesFromStandard' || documentState == 'hideProfilesFromNewProfile'"
+<span class="circle-up animate-show" ng-if="documentState == 'hideProfilesFromProfile' || documentState == 'hideProfilesFromStandard' || documentState == 'hideProfilesFromNewProfile'"></span>
+<span class="fa fa-chevron-circle-up toggle-profiles-up animate-show" ng-if="documentState == 'hideProfilesFromProfile' || documentState == 'hideProfilesFromStandard' || documentState == 'hideProfilesFromNewProfile'"
       ng-click="toggleProfilesBar()">
 </span>

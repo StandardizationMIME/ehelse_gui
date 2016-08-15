@@ -18,11 +18,7 @@ html,body {
     overflow-y: hidden;
 }
 h1,h2,h3,h4{ font-weight: bold;}
-.requi#c13a47-icon {
-    color:#c13a47;
-    font-size: 20px;
-    margin-left: 5px;
-}
+
 .relative{
     position: relative;
 }
@@ -31,9 +27,6 @@ h1,h2,h3,h4{ font-weight: bold;}
 }
 .btn-primary {
     background-color: #337ab7;
-}
-.height-800{
-    height: 100%;
 }
 .half-width {
     width: 70%;
@@ -49,6 +42,9 @@ h1,h2,h3,h4{ font-weight: bold;}
 .ten-pix-horizontal-padding{
     padding-left: 10px;
     padding-right: 10px;
+}
+.ten-pix-bottom-padding {
+    padding-bottom: 10px;
 }
 .clickable:hover {
     cursor: pointer;
@@ -94,16 +90,6 @@ h1,h2,h3,h4{ font-weight: bold;}
     border-radius: 10px;
     text-align: center;
 }
-/*
-#notification-message.alert-danger {
-    background-color: #c13a47;
-    border-color: #ebccd1;
-}
-#notification-message>a{
-    color: #ffffff;
-    font-weight: bolder;
-}
-*/
 #notification-container{
     position: absolute;
     width: 40%;
@@ -188,8 +174,7 @@ h1,h2,h3,h4{ font-weight: bold;}
     filter:alpha(opacity=100);
 }
 .tooltip-inner {
-    white-space: pre-wrap;
-    word-break: break-all;
+    word-wrap: break-word;
     max-width: 300px;
     color: #f3f3f3;
     background-color: #333;
@@ -242,12 +227,12 @@ textarea {
 }
 
 .administer-views {
-    height: calc(100% - 50px);
+    height: calc(100% - 125px);
     overflow-y: auto;
     overflow-x: hidden;
 }
-.administer-target-groups {
-    height: calc(100% - 33px);
+.fields-view {
+    height: calc(100% - 47px);
     overflow-y: auto;
     overflow-x: hidden;
 }
@@ -256,6 +241,9 @@ textarea {
     overflow-y: hidden;
 }
 /* -------------------------------------------- CH4 DOCUMENT ----------------------------------------- */
+.opprett-button {
+    height: 35px;
+}
 .tooltip-help {
     font-size: 0.8em;
 }
@@ -347,7 +335,7 @@ textarea {
 }
 .newDocument {
     overflow-y: auto;
-    height: 95%;
+    height: calc(100% - 20px);
 }
 .editProfile {
     overflow-y: auto;
@@ -359,19 +347,19 @@ textarea {
 }
 .editUtility {
     overflow-y: auto;
-    height: 95%;
+    height: calc(100% - 20px);
 }
 .hideProfilesFromStandard {
     overflow-y: auto;
-    height: 95%;
+    height: calc(100% - 20px);
 }
 .hideProfilesFromProfile {
     overflow-y: auto;
-    height: 95%;
+    height: calc(100% - 20px);
 }
 .hideProfilesFromNewProfile{
     overflow-y: auto;
-    height: 95%;
+    height: calc(100% - 20px);
 }
 .utility-height {
     height: 85%;
@@ -382,7 +370,7 @@ textarea {
 .profiles-container {
     position: relative;
     margin-top: 2px;
-    height: 75px;
+    height: 80px;
     width: 100%;
     display: inline-block;
     box-shadow: 0 -2px #b8b8b8;
@@ -392,7 +380,7 @@ textarea {
     position: absolute;
     left: 50%;
     font-size: 1.5em;
-    bottom: 64px;
+    bottom: 69px;
     color: #c13a47;
     display: block;
     z-index: 1010;
@@ -409,7 +397,7 @@ textarea {
 .circle-down {
     position: absolute;
     left: 50%;
-    bottom: 65px;
+    bottom: 69px;
     display: block;
     height: 19px;
     width: 19px;
@@ -665,6 +653,18 @@ input[type=range]:focus::-webkit-slider-runnable-track {
 }
 
 /* -------------------------------------------- CH10 TOPIC ----------------------------------------- */
+#topic-title{
+    max-width: 100%;
+    word-wrap: break-word;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2; /* number of lines to show */
+    line-height: 18px;        /* fallback */
+    max-height: 38px;       /* fallback */
+}
+
 .edit-topic-icon {
     font-size: large;
     color: #ffffff;
@@ -739,10 +739,6 @@ span.field-item{
 .administer-fields .field-item .field-item-field:nth-child(2), .administer-fields .field-item input:nth-child(3){
     width:400px;
     display: inline-block;
-}
-.field-list {
-    height: 540px;
-    overflow-y: auto;
 }
 a.sortable-columns{
     color: white;
@@ -839,7 +835,7 @@ a.sortable-columns{
 }
 /*~~~~~~~~~~~~TARGET GROUP~~~~~~~~~~~*/
 .target-group-grid{
-    height: 750px;
+    height: 100%;
 }
 .tg-tbody {
     overflow-y: auto;

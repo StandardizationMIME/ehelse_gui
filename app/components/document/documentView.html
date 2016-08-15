@@ -7,14 +7,14 @@
 
             <!-- Topic title -->
             <div class="headline-box" ng-hide="searchIsFocused">
-                <h4 class="selected-heading">{{topic.title}}</h4>
+                <h4 id="topic-title" title="{{topic.title}}" class="selected-heading">{{topic.title}}</h4>
             </div>
             <div class="headline-box" ng-hide="!searchIsFocused">
                 <h4 class="selected-heading">Søkeresultat</h4>
             </div>
 
             <!-- Open view for creating new document -->
-            <p class="ten-pix-vertical-padding">
+            <p class="ten-pix-bottom-padding">
                 <button type="button" ng-click="checkIfNewDocFormIsDirtyAndNotificate('')" class="btn btn-default">
                     <span class="fa fa-plus-circle plus-icon"></span>
                     Nytt dokument
