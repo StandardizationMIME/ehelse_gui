@@ -174,12 +174,10 @@ angular.module("ehelseEditor").factory("Topic", ["$rootScope", "StorageHandler",
             try{
                 var new_topic = clone(topic);
                 initNewTopicValues(new_topic);
-                console.log(new_topic);
                 addTopic(new_topic);
                 toggleTopicSelection(new_topic);
                 $rootScope.notifySuccess("Nytt tema ble opprettet!", 1000);
                 $rootScope.getDocuments(new_topic.id);
-                console.log("Tema ble opprettet");
             }
             catch(error){
                 console.log("Topic could not be created: " + error);

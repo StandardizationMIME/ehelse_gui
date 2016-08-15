@@ -28,7 +28,6 @@ angular.module("ehelseEditor").controller("EditDocumentController",
             $scope.$parent.$parent.registerChildController("EditDocumentController", $scope);
             $scope.$on('$destroy', function () {
                 $scope.$parent.$parent.removeChildController("EditDocumentController");
-                console.log("EditorDocumentController scope destroyed and removed from childControllers");
             });
 
 

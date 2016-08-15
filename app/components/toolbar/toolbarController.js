@@ -48,11 +48,16 @@ angular.module("ehelseEditor").controller("ToolbarController",
             $scope.openAdministerContactAddresses = function () {
                 $rootScope.checkEditDocumentForm("administercontactaddresses", $rootScope.changeContentView)
             };
-
+            
+            $rootScope.loadingBarStart = function() {
+                cfpLoadingBar.start();
+            };
+            $rootScope.loadingBarComplete = function () {
+                cfpLoadingBar.complete();
+            };
 
             // Download save file
             $scope.save = function () {
-                console.log(DownloadList.getStorageList());
                 FileUpload.onSaveMimeJSON(DownloadList.getStorageList(), function () {
                     $rootScope.loadingBarStart();
                     $scope.fakeIntro = true;
@@ -100,9 +105,9 @@ angular.module("ehelseEditor").controller("ToolbarController",
                         $rootScope.clearSearchFilterText();
                         $rootScope.changeContentView("");
                         
-                        $rootScope.notifySuccess("Upload succeed! :) ", 1000);
                         $rootScope.currentFilePath = StorageHandler.getSavingFilePath();
-                        
+                        $rootScope.notifySuccess("Upload succeed! :) ", 1000);
+
                         $rootScope.loadingBarComplete();
                         $scope.fakeIntro = false;
                     }, 500);
@@ -121,8 +126,9 @@ angular.module("ehelseEditor").controller("ToolbarController",
                         $rootScope.clearSearchFilterText();
                         $rootScope.changeContentView("");
 
-                        $rootScope.notifySuccess("Upload succeed! :) ", 1000);
                         $rootScope.savingFilePath = StorageHandler.getSavingFilePath();
+                        $rootScope.currentFilePath = StorageHandler.getCurrentFilePath();
+                        $rootScope.notifySuccess("Upload succeed! :) ", 1000);
 
                         $rootScope.loadingBarComplete();
                         $scope.fakeIntro = false;
