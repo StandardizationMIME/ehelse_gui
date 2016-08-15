@@ -18,11 +18,7 @@ html,body {
     overflow-y: hidden;
 }
 h1,h2,h3,h4{ font-weight: bold;}
-.requi#c13a47-icon {
-    color:#c13a47;
-    font-size: 20px;
-    margin-left: 5px;
-}
+
 .relative{
     position: relative;
 }
@@ -31,9 +27,6 @@ h1,h2,h3,h4{ font-weight: bold;}
 }
 .btn-primary {
     background-color: #337ab7;
-}
-.height-800{
-    height: 100%;
 }
 .half-width {
     width: 70%;
@@ -94,16 +87,6 @@ h1,h2,h3,h4{ font-weight: bold;}
     border-radius: 10px;
     text-align: center;
 }
-/*
-#notification-message.alert-danger {
-    background-color: #c13a47;
-    border-color: #ebccd1;
-}
-#notification-message>a{
-    color: #ffffff;
-    font-weight: bolder;
-}
-*/
 #notification-container{
     position: absolute;
     width: 40%;
@@ -188,8 +171,7 @@ h1,h2,h3,h4{ font-weight: bold;}
     filter:alpha(opacity=100);
 }
 .tooltip-inner {
-    white-space: pre-wrap;
-    word-break: break-all;
+    word-wrap: break-word;
     max-width: 300px;
     color: #f3f3f3;
     background-color: #333;
@@ -665,6 +647,17 @@ input[type=range]:focus::-webkit-slider-runnable-track {
 }
 
 /* -------------------------------------------- CH10 TOPIC ----------------------------------------- */
+#topic-title{
+    max-width: 100%;
+    word-wrap: break-word;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2; /* number of lines to show */
+    line-height: 18px;        /* fallback */
+    max-height: 36px;       /* fallback */
+}
 .edit-topic-icon {
     font-size: large;
     color: #ffffff;
