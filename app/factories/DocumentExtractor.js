@@ -1,8 +1,8 @@
 "use strict";
 
 angular.module("ehelseEditor").factory("DocumentExtractor",
-    ["Document", "Status", "Topic", "TargetGroup", "Mandatory", "Action", "DocumentField", "LinkCategory", "ContactAddress", "Heading",
-        function (Document, Status, Topic, TargetGroup, Mandatory, Action, DocumentField, LinkCategory, ContactAddress, Heading) {
+    ["Document", "Status", "Topic", "TargetGroup", "Mandatory", "Action", "DocumentField", "LinkCategory", "ContactAddress", "Heading", "DocumentType",
+        function (Document, Status, Topic, TargetGroup, Mandatory, Action, DocumentField, LinkCategory, ContactAddress, Heading, DocumentType) {
 
             function getDocumentAsJSON(doc) {
                 if(doc){
@@ -29,6 +29,7 @@ angular.module("ehelseEditor").factory("DocumentExtractor",
                     }else{
                         output_dict["his"] = null;
                     }
+                    output_dict["documentType"] = DocumentType.getById(doc.documentTypeId).name;
                     output_dict["contactAddress"] = getContactAddressRelatedToDocumentAsJSON(doc);
                     output_dict["fields"] = getDocumentFieldsRelatedToDocumentAsJSON(doc);
                     output_dict["targetGroups"] = getTargetGroupsRelatedToDocumentAsJSON(doc);

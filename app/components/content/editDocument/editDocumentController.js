@@ -42,6 +42,22 @@ angular.module("ehelseEditor").controller("EditDocumentController",
                 return false;
             };
 
+            $scope.toggleProfilesBar = function(){
+                if($rootScope.documentState == "editDocument"){
+                    $rootScope.documentState = "hideProfilesFromStandard";
+                }else if($rootScope.documentState == 'editProfile'){
+                    $rootScope.documentState = "hideProfilesFromProfile";
+                }else if($rootScope.documentState == "hideProfilesFromStandard"){
+                    $rootScope.documentState = "editDocument";
+                }else if($rootScope.documentState == "hideProfilesFromProfile"){
+                    $rootScope.documentState = "editProfile";
+                }else if($rootScope.documentState == "newProfile"){
+                    $rootScope.documentState = 'hideProfilesFromNewProfile';
+                }else if($rootScope.documentState == "hideProfilesFromNewProfile"){
+                    $rootScope.documentState = 'newProfile';
+                }
+            };
+
             $scope.disableTargetGroupDecidedBy = function () {
                 $rootScope.additionalFieldForMandatoryGroupsSelected = false;
                 $scope.document.decidedBy = null;
@@ -130,9 +146,9 @@ angular.module("ehelseEditor").controller("EditDocumentController",
 
             $scope.getTextRows = function (string) {
                 if (string.split(/\r\n|\r|\n/).length < 6) {
-                    return Math.floor(string.length / 80) + string.split(/\r\n|\r|\n/).length
+                    return Math.floor(string.length / 60) + string.split(/\r\n|\r|\n/).length
                 } else {
-                    return Math.floor(string.length / 100) + string.split(/\r\n|\r|\n/).length
+                    return Math.floor(string.length / 80) + string.split(/\r\n|\r|\n/).length
                 }
             };
 

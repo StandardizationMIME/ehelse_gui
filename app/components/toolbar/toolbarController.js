@@ -12,6 +12,10 @@ angular.module("ehelseEditor").controller("ToolbarController",
                 $rootScope.topic.title = "Referansekatalogen";
             };
 
+            $rootScope.text = {
+                size: 14
+            };
+
             // Open the different administer views in the content window
             $scope.openAdministerFields = function () {
                 $rootScope.checkEditDocumentForm("administerfields",$rootScope.changeContentView)

@@ -47,9 +47,22 @@
                         </li>
                     </ul>
                 </div>
-                    <button type="button" class="btn btn-primary navbar-btn" ng-click="save()">Lagre</button>
-                    <span >{{currentFilePath}}</span>
+            </li>
+            <li>
+                <button type="button" class="btn btn-primary navbar-btn" ng-click="save()">Lagre fil</button>
+            </li>
+            <li>
+                <span class="navbar-text">{{currentFilePath}}</span>
             </li>
         </ul>
+        <ul class="nav navbar-nav pull-right">
+            <li>
+                <input class="navbar-text pull-right" min="10" max="20" ng-model="text.size" type="range">
+            </li>
+            <li>
+                <span class="navbar-text">str {{text.size}}</span>
+            </li>
+        </ul>
+
     </nav>
 </div>

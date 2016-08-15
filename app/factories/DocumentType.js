@@ -65,11 +65,16 @@ angular.module("ehelseEditor").factory("DocumentType", ["$rootScope", "StorageHa
         return document_types;
     }
 
+    function getById(id){
+        return document_types_dict[id];
+    }
+
     function getDocumentTypesOptionList(){
         return document_types_option_list;
     }
 
     return {
+        getById: getById,
         getDocumentTypesOptionList: getDocumentTypesOptionList,
         clear: clear,
         init: init,

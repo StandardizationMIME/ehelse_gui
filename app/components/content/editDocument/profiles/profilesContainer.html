@@ -3,6 +3,10 @@
 
 
     <div class="form-group profiles-container">
+
+        <span class="circle-down"></span>
+        <span class="fa fa-chevron-circle-down toggle-profiles-down" ng-click="toggleProfilesBar()"></span>
+
         <!-- Create new profile button -->
         <div class="form-group col-sm-2 new-profile-container profile-clickable" ng-if="documentState == 'editDocument'"
              ng-click="checkIfNewProfileFormIsDirty(document.id)">
@@ -38,3 +42,7 @@
         </div>
     </div>
 </div>
+<span class="circle-up" ng-if="documentState == 'hideProfilesFromProfile' || documentState == 'hideProfilesFromStandard' || documentState == 'hideProfilesFromNewProfile'"></span>
+<span class="fa fa-chevron-circle-up toggle-profiles-up" ng-if="documentState == 'hideProfilesFromProfile' || documentState == 'hideProfilesFromStandard' || documentState == 'hideProfilesFromNewProfile'"
+      ng-click="toggleProfilesBar()">
+</span>
