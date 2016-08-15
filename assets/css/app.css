@@ -241,6 +241,9 @@ textarea {
     overflow-y: hidden;
 }
 /* -------------------------------------------- CH4 DOCUMENT ----------------------------------------- */
+.opprett-button {
+    height: 35px;
+}
 .tooltip-help {
     font-size: 0.8em;
 }
@@ -367,7 +370,7 @@ textarea {
 .profiles-container {
     position: relative;
     margin-top: 2px;
-    height: 75px;
+    height: 80px;
     width: 100%;
     display: inline-block;
     box-shadow: 0 -2px #b8b8b8;
@@ -377,7 +380,7 @@ textarea {
     position: absolute;
     left: 50%;
     font-size: 1.5em;
-    bottom: 64px;
+    bottom: 69px;
     color: #c13a47;
     display: block;
     z-index: 1010;
@@ -394,7 +397,7 @@ textarea {
 .circle-down {
     position: absolute;
     left: 50%;
-    bottom: 65px;
+    bottom: 69px;
     display: block;
     height: 19px;
     width: 19px;
