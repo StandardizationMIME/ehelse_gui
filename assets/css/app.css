@@ -43,6 +43,9 @@ h1,h2,h3,h4{ font-weight: bold;}
     padding-left: 10px;
     padding-right: 10px;
 }
+.ten-pix-bottom-padding {
+    padding-bottom: 10px;
+}
 .clickable:hover {
     cursor: pointer;
     color: #337ab7;
@@ -329,7 +332,7 @@ textarea {
 }
 .newDocument {
     overflow-y: auto;
-    height: 95%;
+    height: calc(100% - 20px);
 }
 .editProfile {
     overflow-y: auto;
@@ -656,8 +659,9 @@ input[type=range]:focus::-webkit-slider-runnable-track {
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 2; /* number of lines to show */
     line-height: 18px;        /* fallback */
-    max-height: 36px;       /* fallback */
+    max-height: 38px;       /* fallback */
 }
+
 .edit-topic-icon {
     font-size: large;
     color: #ffffff;
