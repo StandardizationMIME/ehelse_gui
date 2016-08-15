@@ -128,28 +128,6 @@ angular.module("ehelseEditor").controller("EditDocumentController",
                 form.$setPristine();
             };
 
-            $scope.loadingBarStart = function() {
-                cfpLoadingBar.start();
-            };
-
-            $scope.loadingBarComplete = function () {
-                cfpLoadingBar.complete();
-            };
-
-            $scope.downloadDocumentAsJSON = function(doc){
-                FileUpload.onSaveAs(DocumentExtractor.getDocumentAsJSON(doc), function () {
-                    setTimeout(function() {
-                        $scope.loadingBarComplete();
-                        $scope.fakeIntro = false;
-                        $rootScope.displayFilePath = StorageHandler.getDisplayPath();
-                        $rootScope.notifySuccess("Save succeed! To: " + $rootScope.displayFilePath , 3000);
-                    }, 500);
-                }, function () {
-                    $rootScope.notifyError("Save failed... :(", 1000);
-                });
-            };
-
-
             $scope.getTextRows = function (string) {
                 if (string.split(/\r\n|\r|\n/).length < 6) {
                     return Math.floor(string.length / 80) + string.split(/\r\n|\r|\n/).length
