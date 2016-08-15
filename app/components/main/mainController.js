@@ -81,7 +81,6 @@ $(document).ready(function() {
 
         };
         $rootScope.checkEditDocumentForm = function (methodValue, method) {
-            console.log('document form not pristine: ' + $rootScope.formNotPristine('document'));
             if($rootScope.formNotPristine('document')){
                 method(methodValue);
             }else{
@@ -89,7 +88,6 @@ $(document).ready(function() {
             }
         };
         $rootScope.checkEditTopicForm = function (methodValue, method) {
-            console.log('topic form not pristine: ' + $rootScope.formNotPristine('topic'));
             if($rootScope.formNotPristine('topic')){
                 method(methodValue);
             }else{
@@ -127,7 +125,6 @@ $(document).ready(function() {
         // Change view of the user page
         $rootScope.changeUserView = function(view){
             $rootScope.userPageView = view;
-            console.log($rootScope.userPageView);
         };
 
         // Get sequence value of an object

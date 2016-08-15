@@ -63,7 +63,6 @@ angular.module("ehelseEditor").controller("TopicController",["$rootScope", "$sco
     };
     $rootScope.checkDocumentFormAndExecute = function (topicId) {
         if (topicId){
-            console.log('document form not pristine: ' + $rootScope.formNotPristine('document'));
             if ($rootScope.formNotPristine('document')) {
                 $rootScope.checkEditTopicForm(topicId, $rootScope.selectTopicActions);
             } else {
