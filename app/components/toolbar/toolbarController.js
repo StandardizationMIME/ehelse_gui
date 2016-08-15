@@ -12,6 +12,7 @@ angular.module("ehelseEditor").controller("ToolbarController",
                 $rootScope.selected_document = "";
                 $rootScope.topic.title = "Referansekatalogen";
                 $rootScope.changeContentView("");
+                $rootScope.searchQuery = "";
             };
 
             $rootScope.text = {
