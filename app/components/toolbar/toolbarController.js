@@ -7,6 +7,11 @@ angular.module("ehelseEditor").controller("ToolbarController",
             // Remove selected graphics from topics and documents
             $rootScope.deselectTopicAndDocument = function () {
                 $rootScope.getDocuments("");
+                $rootScope.selected_topic_id = "";
+                $rootScope.selected_document = "";
+            };
+            $rootScope.deselectEverything = function () {
+                $rootScope.getDocuments("");
                 $rootScope.searchIsFocused = true;
                 $rootScope.selected_topic_id = "";
                 $rootScope.selected_document = "";
@@ -136,7 +141,7 @@ angular.module("ehelseEditor").controller("ToolbarController",
                     $rootScope.loadingBarStart();
                     $scope.fakeIntro = true;
                     setTimeout(function() {
-                        $rootScope.deselectTopicAndDocument();
+                        $rootScope.deselectEverything();
                         $rootScope.clearSearchFilterText();
                         $rootScope.changeContentView("");
                         
@@ -157,7 +162,7 @@ angular.module("ehelseEditor").controller("ToolbarController",
                     $rootScope.loadingBarStart();
                     $scope.fakeIntro = true;
                     setTimeout(function() {
-                        $rootScope.deselectTopicAndDocument();
+                        $rootScope.deselectEverything();
                         $rootScope.clearSearchFilterText();
                         $rootScope.changeContentView("");
 
@@ -188,9 +193,9 @@ angular.module("ehelseEditor").controller("ToolbarController",
             $scope.searchFocused = function () {
                 if (!$rootScope.searchQuery){
                     if ($rootScope.formNotPristine('document')) {
-                        $rootScope.checkEditTopicForm("", $rootScope.deselectTopicAndDocument);
+                        $rootScope.checkEditTopicForm("", $rootScope.deselectEverything);
                     } else {
-                        $rootScope.checkEditDocumentForm("", $rootScope.deselectTopicAndDocument);
+                        $rootScope.checkEditDocumentForm("", $rootScope.deselectEverything);
                     }
                 }
             };
