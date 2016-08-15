@@ -242,12 +242,12 @@ textarea {
 }
 
 .administer-views {
-    height: calc(100% - 50px);
+    height: calc(100% - 125px);
     overflow-y: auto;
     overflow-x: hidden;
 }
-.administer-target-groups {
-    height: calc(100% - 33px);
+.fields-view {
+    height: calc(100% - 47px);
     overflow-y: auto;
     overflow-x: hidden;
 }
@@ -359,19 +359,19 @@ textarea {
 }
 .editUtility {
     overflow-y: auto;
-    height: 97%;
+    height: calc(100% - 20px);
 }
 .hideProfilesFromStandard {
     overflow-y: auto;
-    height: 97%;
+    height: calc(100% - 20px);
 }
 .hideProfilesFromProfile {
     overflow-y: auto;
-    height: 97%;
+    height: calc(100% - 20px);
 }
 .hideProfilesFromNewProfile{
     overflow-y: auto;
-    height: 97%;
+    height: calc(100% - 20px);
 }
 .utility-height {
     height: 85%;
@@ -740,10 +740,6 @@ span.field-item{
     width:400px;
     display: inline-block;
 }
-.field-list {
-    height: 540px;
-    overflow-y: auto;
-}
 a.sortable-columns{
     color: white;
     text-decoration: none;
@@ -839,7 +835,7 @@ a.sortable-columns{
 }
 /*~~~~~~~~~~~~TARGET GROUP~~~~~~~~~~~*/
 .target-group-grid{
-    height: 750px;
+    height: 100%;
 }
 .tg-tbody {
     overflow-y: auto;

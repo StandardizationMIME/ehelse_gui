@@ -1,4 +1,4 @@
-<div ng-if="documentState == 'editDocument' || documentState == 'editProfile' || documentState == 'newProfile'">
+<div class="animate-show" ng-if="documentState == 'editDocument' || documentState == 'editProfile' || documentState == 'newProfile'">
 
 
 
@@ -42,7 +42,7 @@
         </div>
     </div>
 </div>
-<span class="circle-up" ng-if="documentState == 'hideProfilesFromProfile' || documentState == 'hideProfilesFromStandard' || documentState == 'hideProfilesFromNewProfile'"></span>
-<span class="fa fa-chevron-circle-up toggle-profiles-up" ng-if="documentState == 'hideProfilesFromProfile' || documentState == 'hideProfilesFromStandard' || documentState == 'hideProfilesFromNewProfile'"
+<span class="circle-up animate-show" ng-if="documentState == 'hideProfilesFromProfile' || documentState == 'hideProfilesFromStandard' || documentState == 'hideProfilesFromNewProfile'"></span>
+<span class="fa fa-chevron-circle-up toggle-profiles-up animate-show" ng-if="documentState == 'hideProfilesFromProfile' || documentState == 'hideProfilesFromStandard' || documentState == 'hideProfilesFromNewProfile'"
       ng-click="toggleProfilesBar()">
 </span>
