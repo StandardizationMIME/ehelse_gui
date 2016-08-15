@@ -359,19 +359,19 @@ textarea {
 }
 .editUtility {
     overflow-y: auto;
-    height: 95%;
+    height: 97%;
 }
 .hideProfilesFromStandard {
     overflow-y: auto;
-    height: 95%;
+    height: 97%;
 }
 .hideProfilesFromProfile {
     overflow-y: auto;
-    height: 95%;
+    height: 97%;
 }
 .hideProfilesFromNewProfile{
     overflow-y: auto;
-    height: 95%;
+    height: 97%;
 }
 .utility-height {
     height: 85%;
