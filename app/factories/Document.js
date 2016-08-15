@@ -292,7 +292,9 @@ angular.module("ehelseEditor").factory("Document",
                     $rootScope.notifyError(error, 6000);
                 } else {
                     saveDocument();
-                    $rootScope.checkDocumentState(current_document);
+                    if($rootScope.documentState == 'newProfile' || $rootScope.documentState == 'newDocument' || $rootScope.documentState == 'hideProfilesFromNewProfile'){
+                        $rootScope.checkDocumentState(current_document);
+                    }
                 }
             }
 
@@ -627,6 +629,7 @@ angular.module("ehelseEditor").factory("Document",
                     }
 
 
+
                     setDocument(current_document, document);
                     
                 }
@@ -668,6 +671,7 @@ angular.module("ehelseEditor").factory("Document",
                     console.log("Current document has no links");
                 }
 
+
                 link_category_list.length = 0;
 
                 for (var prop in link_category_dict) {
@@ -676,7 +680,6 @@ angular.module("ehelseEditor").factory("Document",
 
                     link_category_list.push(link_category_dict[prop]);
                 }
-
             }
 
             function getCurrentDocumentLinksAsLinkCategoryList() {
