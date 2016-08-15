@@ -628,8 +628,6 @@ angular.module("ehelseEditor").factory("Document",
                         document.headingContent = ServiceFunction.orderListBySequence(document.headingContent, Heading.getById, "heading");
                     }
 
-
-
                     setDocument(current_document, document);
                     
                 }
@@ -679,6 +677,21 @@ angular.module("ehelseEditor").factory("Document",
                     if (!link_category_dict.hasOwnProperty(prop)) continue;
 
                     link_category_list.push(link_category_dict[prop]);
+                }
+
+                var temp_list = [];
+                for (var n = 0; n < link_category_list.length; n++) {
+                    var temp_field = {};
+                    temp_field["id"] = LinkCategory.getById(link_category_list[n].id).id;
+                    temp_field["sequence"] = LinkCategory.getById(link_category_list[n].id).sequence;
+                    temp_field["links"] = link_category_list[n].links;
+                    temp_list.push(temp_field);
+                }
+                temp_list.sort(ServiceFunction.compareSequence);
+                link_category_list.length = 0;
+
+                for (var x = 0; x < temp_list.length; x++) {
+                    link_category_list.push({id: temp_list[x].id, links: temp_list[x].links});
                 }
             }
 
