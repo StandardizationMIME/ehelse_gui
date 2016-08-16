@@ -62,14 +62,14 @@ h1,h2,h3,h4{ font-weight: bold;}
     display: table-cell;
     vertical-align: middle;
 }
-.d1{color: #337ab7; font-size: 1.3em;}
-.d2{color: #c13a47; font-size: 1.3em;}
-.d3{color: #58a739; font-size: 1.3em;}
 
 .selected-item {
     font-weight: bold;
-    border-radius: 5px;
-    background-color: #e7e7e7;
+    background-color: #337ab7;
+    color: white !important;
+}
+.selected-item > span{
+    color: white !important;
 }
 .scrollable {
     overflow-y: auto;
@@ -241,6 +241,22 @@ textarea {
     overflow-y: hidden;
 }
 /* -------------------------------------------- CH4 DOCUMENT ----------------------------------------- */
+
+.document-in-list {
+    color: #333;
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-bottom: 3px;
+    padding-top: 3px;
+}
+.document-in-list:hover >.fa-file-text{
+    color: white;
+}
+.document-in-list:hover {
+    cursor: pointer;
+    background-color: #337ab7;
+    color: white;
+}
 .opprett-button {
     height: 35px;
 }
@@ -335,14 +351,8 @@ textarea {
 .link-category-group{
     margin-bottom: 30px;
 }
-/*.standard-list {
-    margin-top: 10px;
-    margin-bottom: 25px;
-    height: 650px;
-    overflow-y: auto;
-}*/
 .file-browser {
-    padding: 15px 15px 20px 15px;
+    padding: 0;
     height: 100%;
     background-color: #ebebeb;
 }
@@ -578,7 +588,6 @@ textarea {
 .main-container {
     padding: 0;
     margin: 0;
-    background-color: red;
 }
 /* -------------------------------------------- CH8 MY_PAGE ----------------------------------------- */
 #account-info {
@@ -718,7 +727,7 @@ input[type=range]:focus::-webkit-slider-runnable-track {
     color: #c13a47;
     padding-top: 10px;
 }
-.topic-browser {
+.topic-browser, .document-browser {
     /*padding: 15px 15px 15px 15px;*/
     padding: 0;
     height: 100%;
@@ -726,8 +735,7 @@ input[type=range]:focus::-webkit-slider-runnable-track {
 }
 .topic-list{
     overflow-y: auto;
-    height: calc(100% - 106px);
-    max-height: 100%;
+    height: calc(100% - 140px);
 }
 .sub-topic {
     padding-left: 10px;
@@ -740,6 +748,7 @@ input[type=range]:focus::-webkit-slider-runnable-track {
     padding-top: 10px;
 }
 .item-text > .standard-icon {
+    font-size: 1.5em;
     color: #337ab7;
 }
 .item-text:hover >.standard-icon{
@@ -843,11 +852,11 @@ a.sortable-columns{
     text-align: center;
 }
 .pointer{cursor: pointer;}
+
 .standard-list {
     margin-top: 10px;
     overflow-y: auto;
-    height: calc(100% - 106px);
-    max-height: 100%;
+    height: calc(100% - 140px);
 }
 .administer-fields-list {
     height: 550px;

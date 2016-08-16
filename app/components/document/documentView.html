@@ -1,47 +1,50 @@
 <!-- Panel for displaying list of standards and profiles -->
-<div class="col-lg-3 col-mg-3 col-sm-3 col-xs-3 file-browser" ng-controller="DocumentController">
-    <div class="height-100-percent">
+<div class="col-lg-3 col-mg-3 col-sm-3 col-xs-3 document-browser"
+     ng-controller="DocumentController">
+    <!-- Document actions -->
+    <div class="shadow-below editor-header">
 
-        <!-- Document actions -->
-        <div class="shadow-below">
-
-            <!-- Topic title -->
-            <div class="headline-box" ng-hide="searchIsFocused">
-                <h4 id="topic-title" title="{{topic.title}}" class="selected-heading">{{topic.title}}</h4>
-            </div>
-            <div class="headline-box" ng-hide="!searchIsFocused">
-                <h4 class="selected-heading">Søkeresultat</h4>
-            </div>
-
-            <!-- Open view for creating new document -->
-            <p class="ten-pix-bottom-padding">
-                <button type="button" ng-click="checkIfNewDocFormIsDirtyAndNotificate('')" class="btn btn-default">
-                    <span class="fa fa-plus-circle plus-icon"></span>
-                    Nytt dokument
-                </button>
-            </p>
+        <!-- Topic title -->
+        <div class="headline-box" ng-hide="searchIsFocused">
+            <h4 id="topic-title" title="{{topic.title}}" class="selected-heading">{{topic.title}}</h4>
+        </div>
+        <div class="headline-box" ng-hide="!searchIsFocused">
+            <h4 class="selected-heading">Søkeresultat</h4>
         </div>
 
-        <!-- List of documents in the selected topic -->
-        <div class="standard-list" ng-if="!searchIsFocused">
-            <div ng-repeat="document in documents | orderBy:getSequence">
+        <!-- Open view for creating new document -->
+        <p class="ten-pix-vertical-padding">
+            <button type="button" ng-click="checkIfNewDocFormIsDirtyAndNotificate('')" class="btn btn-default">
+                <span class="fa fa-plus-circle plus-icon"></span>
+                Nytt dokument
+            </button>
+        </p>
+    </div>
 
-                <!-- Opens the document in the content view on selection -->
-                <p ng-style="{'font-size': text.size + 'px'}" class="clickable" id=standard{{document.id}} ng-class="document.id == selected_document.id ? 'selected-item' : ''" ng-click="checkIfDocumentFormIsDirtyAndNotificate(document)">
-                    <span  class="fa fa-file-text d{{document.documentTypeId}}"> </span>
-                    {{document.title}}
-                </p>
+    <!-- List of documents in the selected topic -->
+    <div class="standard-list" ng-if="!searchIsFocused">
+        <div ng-repeat="document in documents | orderBy:getSequence">
+
+            <!-- Opens the document in the content view on selection -->
+            <div ng-style="{'font-size': text.size + 'px'}" class="document-in-list" id=standard{{document.id}}
+                 ng-class="document.id == selected_document.id ? 'selected-item' : ''"
+                 ng-click="checkIfDocumentFormIsDirtyAndNotificate(document)">
+                <span class="fa fa-file-text d{{document.documentTypeId}}"> </span>
+                {{document.title}}
             </div>
         </div>
+    </div>
 
-        <!-- List of search results -->
-        <div class="standard-list" ng-if="searchIsFocused">
-            <div ng-repeat="document in allDocuments | filter:filterContainsSearchText:false | filter: {documentTypeId:searchOption} | orderBy:title">
-                <!-- Opens the document in the content view on selection -->
-                <p ng-style="{'font-size': text.size + 'px'}" class="clickable" id=search-standard{{document.id}} ng-class="document.id == selected_document.id ? 'selected-item' : ''" ng-click="checkIfSearchFormIsDirtyAndNotificate(document)">
-                    <span  class="fa fa-file-text d{{document.documentTypeId}}"> </span>
-                    {{document.title}}
-                </p>
+    <!-- List of search results -->
+    <div class="standard-list" ng-if="searchIsFocused">
+        <div ng-repeat="document in allDocuments | filter:filterContainsSearchText:false | filter: {documentTypeId:searchOption} | orderBy:title">
+            <!-- Opens the document in the content view on selection -->
+            <div ng-style="{'font-size': text.size + 'px'}" class="document-in-list"
+                 id=search-standard{{document.id}}
+                 ng-class="document.id == selected_document.id ? 'selected-item' : ''"
+                 ng-click="checkIfSearchFormIsDirtyAndNotificate(document)">
+                <span class="fa fa-file-text d{{document.documentTypeId}}"></span>
+                {{document.title}}
             </div>
         </div>
     </div>
