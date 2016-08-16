@@ -19,14 +19,6 @@ angular.module("ehelseEditor").controller("DocumentController", ["$scope", "$roo
         }
     };
 
-    // Makes selected folder bold and toggles folder icon between opened and closed
-    /*$rootScope.toggleSelectedTopic = function(id) {
-     $(".clickable").removeClass("selected-item");
-     if(id){
-     $("#" + id).addClass("selected-item");
-     $("#folder" + id).toggleClass("glyphicon-folder-open","glyphicon-folder-close");
-     }
-     };*/
 
     // Set the document state to toggle different aspects of the view
     $rootScope.setDocumentState = function (state) {

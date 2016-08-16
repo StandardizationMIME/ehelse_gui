@@ -140,8 +140,8 @@ angular.module("ehelseEditor").factory("Topic", ["$rootScope", "StorageHandler",
             $("#topic" + parent.id).collapse('show');
 
             var topicIcon = $("#folder" + parent.id);
-            topicIcon.removeClass("glyphicon-folder-close");
-            topicIcon.addClass("glyphicon-folder-open");
+            topicIcon.removeClass("fa-folder");
+            topicIcon.addClass("fa-folder-open");
 
             parent = getById(parent.parentId);
         }

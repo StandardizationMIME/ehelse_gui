@@ -18,11 +18,11 @@ angular.module("ehelseEditor").controller("TopicController",["$rootScope", "$sco
         var isExpanded = $("#topic" + topicId).attr("aria-expanded");
         var topic = $("#folder" + topicId);
         if(isExpanded == "true"){
-            topic.removeClass("glyphicon-folder-open");
-            topic.addClass("glyphicon-folder-close");
+            topic.removeClass("fa-folder-open");
+            topic.addClass("fa-folder");
         }else{
-            topic.removeClass("glyphicon-folder-close");
-            topic.addClass("glyphicon-folder-open");
+            topic.removeClass("fa-folder");
+            topic.addClass("fa-folder-open");
         }
     };
 

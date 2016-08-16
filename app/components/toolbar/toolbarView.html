@@ -1,31 +1,47 @@
 <div id="editor-nav" ng-controller="ToolbarController">
 
-    <nav class="ehelse-navbar navbar-default container-fluid">
-
-        <!-- Search -->
-        <span class="nav navbar-form navbar-left ">
-             <div class="input-group" style="width: 180pt;">
-                 <input type="text" id="search-filter" class="form-control" placeholder="Søk etter dokument..." ng-model="$root.searchQuery" ng-click="searchFocused()" aria-label=". . .">
-                 <div class="input-group-btn">
-                     <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-angle-down" aria-hidden="true"></i></button>
-                     <ul class="dropdown-menu dropdown-menu-center">
-                         <li><span class="search-options"><input name="search-option-name" value="1" ng-model="$root.searchOption" type="radio" aria-label="..."></span>Standarder</li>
-                         <li><span class="search-options"><input name="search-option-name" value="2" ng-model="$root.searchOption" type="radio" aria-label="..."></span>Profiler</li>
-                         <li><span class="search-options"><input name="search-option-name" value="3" ng-model="$root.searchOption" type="radio" aria-label="..."></span>Støttedokumenter</li>
-                         <li role="separator" class="divider"></li>
-                         <li><span class="search-options"><input name="search-option-name" value="" ng-model="$root.searchOption" type="radio" aria-label="..."></span>Alle</li>
-                     </ul>
-                 </div>
-             </div>
-        </span>
-
-        <!-- Navigation bar with dropdown for selecting administer views -->
-        <ul class="nav navbar-nav">
-            <li class="nav-element-margin" ng-if="$state.includes('main-view.editor-view')">
-                <div class="btn-group">
-                    <button type="button" class="btn btn-primary dropdown-toggle navbar-btn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    <nav>
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <object class="navbar-brand" data="assets/img/ehelseLogo.svg" type="image/svg+xml">
+                    <img src="assets/img/ehelseLogo.png" alt="ehelse logo"/>
+                </object>
+            </div>
+            <ul class="nav navbar-nav">
+                <li>
+                    <div class="input-group navbar-btn search-bar">
+                        <input type="text" id="search-filter" class="form-control" placeholder="Søk etter dokument..."
+                               ng-model="$root.searchQuery" ng-click="searchFocused()" aria-label=". . .">
+                        <div class="input-group-btn">
+                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"
+                                    aria-haspopup="true" aria-expanded="false"><i class="fa fa-angle-down"
+                                                                                  aria-hidden="true"></i></button>
+                            <ul class="dropdown-menu dropdown-menu-center">
+                                <li><span class="search-options"><input name="search-option-name" value="1"
+                                                                        ng-model="$root.searchOption" type="radio"
+                                                                        aria-label="..."></span>Standarder
+                                </li>
+                                <li><span class="search-options"><input name="search-option-name" value="2"
+                                                                        ng-model="$root.searchOption" type="radio"
+                                                                        aria-label="..."></span>Profiler
+                                </li>
+                                <li><span class="search-options"><input name="search-option-name" value="3"
+                                                                        ng-model="$root.searchOption" type="radio"
+                                                                        aria-label="..."></span>Støttedokumenter
+                                </li>
+                                <li role="separator" class="divider"></li>
+                                <li><span class="search-options"><input name="search-option-name" value=""
+                                                                        ng-model="$root.searchOption" type="radio"
+                                                                        aria-label="..."></span>Alle
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <a class="dropdown-toggle toolbar-button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Administrer <span class="caret"></span>
-                    </button>
+                    </a>
                     <ul class="dropdown-menu">
                         <li><a href="" ng-click="openAdministerFields()">Felter</a></li>
                         <li><a href="" ng-click="openAdministerActions()">Handlinger</a></li>
@@ -44,26 +60,26 @@
                         </li>
                         <li role="separator" class="divider"></li>
                         <li>
-                            <a href="" ng-click="downloadAllDocumentsAsJSON()">Lagre JSON-eksport for alle dokumenter</a>
+                            <a href="" ng-click="downloadAllDocumentsAsJSON()">Lagre JSON-eksport for alle
+                                dokumenter</a>
                         </li>
                     </ul>
-                </div>
-            </li>
-            <li>
-                <button type="button" class="btn btn-primary navbar-btn" ng-click="save()">Lagre fil</button>
-            </li>
-            <li>
-                <span class="navbar-text">{{currentFilePath}}</span>
-            </li>
-        </ul>
-        <ul class="nav navbar-nav pull-right">
-            <li>
-                <input class="navbar-text pull-right" min="10" max="20" ng-model="text.size" type="range">
-            </li>
-            <li>
-                <span class="navbar-text">str {{text.size}}</span>
-            </li>
-        </ul>
-
+                </li>
+                <li>
+                    <a  class="toolbar-button" ng-click="save()"><span class="fa fa-floppy-o"></span> Lagre fil</a>
+                </li>
+                <li>
+                    <a ng-if="currentFilePath">{{currentFilePath}}</a>
+                </li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <input class="" min="10" max="20" ng-model="text.size" type="range">
+                </li>
+                <li>
+                    <a class="black-color">{{text.size}}</a>
+                </li>
+            </ul>
+        </div>
     </nav>
 </div>
