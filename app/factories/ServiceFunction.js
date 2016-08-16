@@ -189,6 +189,7 @@ angular.module("ehelseEditor").factory("ServiceFunction", [function () {
             }else if(type == "linksInDocument"){
                 temp_field["id"] = getByIdMethod(list[i].linkCategoryId).id;
                 temp_field["sequence"] = getByIdMethod(list[i].linkCategoryId).sequence;
+                temp_field["linkSequence"] = list[i].sequence;
                 temp_field["text"] = list[i].text;
                 temp_field["url"] = list[i].url;
             }
@@ -207,7 +208,7 @@ angular.module("ehelseEditor").factory("ServiceFunction", [function () {
                     output.push({id: temp_list[x].id, links: temp_list[x].links });
                 }
             }else if(type == "linksInDocument"){
-                output.push({linkCategoryId: temp_list[x].id, text: temp_list[x].text, url: temp_list[x].url});
+                output.push({linkCategoryId: temp_list[x].id, text: temp_list[x].text, url: temp_list[x].url, sequence: temp_list[x].linkSequence});
             }
         }
         return output;
