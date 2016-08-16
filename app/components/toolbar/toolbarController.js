@@ -5,9 +5,7 @@ angular.module("ehelseEditor").controller("ToolbarController",
             $scope.$parent.registerChildController("ToolbarController", $scope);
 
             // Remove selected graphics from topics and documents
-            $rootScope.deselectTopicAndDocument = function () {
-                $rootScope.getDocuments("");
-                $rootScope.selected_topic_id = "";
+            $rootScope.deselectDocument = function () {
                 $rootScope.selected_document = "";
             };
             $rootScope.deselectEverything = function () {

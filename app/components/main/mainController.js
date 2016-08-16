@@ -76,7 +76,7 @@ $(document).ready(function() {
             }
             if(view == "administerfields" || view == "targetgroups" || view == "administerstatus" || view == "administeractions" ||
                 view == "administerheadings" || view == "administercontactaddresses" || view == "administermandatory" || view == "administerlinkcategories"){
-                $rootScope.deselectTopicAndDocument();
+                $rootScope.deselectDocument();
             }
 
         };
