@@ -9,7 +9,15 @@ angular.module("ehelseEditor").controller("ToolbarController",
                 $rootScope.getDocuments("");
                 $rootScope.selected_topic_id = "";
                 $rootScope.selected_document = "";
+            };
+            $rootScope.deselectEverything = function () {
+                $rootScope.getDocuments("");
+                $rootScope.searchIsFocused = true;
+                $rootScope.selected_topic_id = "";
+                $rootScope.selected_document = "";
                 $rootScope.topic.title = "Referansekatalogen";
+                $rootScope.changeContentView("");
+                $rootScope.searchQuery = "";
             };
 
             $rootScope.text = {
@@ -18,41 +26,78 @@ angular.module("ehelseEditor").controller("ToolbarController",
 
             // Open the different administer views in the content window
             $scope.openAdministerFields = function () {
-                $rootScope.checkEditDocumentForm("administerfields",$rootScope.changeContentView)
+                if ($rootScope.formNotPristine('document')) {
+                    $rootScope.checkEditTopicForm("administerfields", $rootScope.changeContentView);
+                } else {
+                    $rootScope.checkEditDocumentForm("administerfields",$rootScope.changeContentView);
+                }
             };
 
             $scope.openTargetGroups = function () {
-                $rootScope.checkEditDocumentForm("targetgroups",$rootScope.changeContentView)
+                if ($rootScope.formNotPristine('document')) {
+                    $rootScope.checkEditTopicForm("targetgroups",$rootScope.changeContentView);
+                } else {
+                    $rootScope.checkEditDocumentForm("targetgroups",$rootScope.changeContentView);
+                }
             };
 
             $scope.openAdministerActions = function () {
-                $rootScope.checkEditDocumentForm("administeractions", $rootScope.changeContentView)
+                if ($rootScope.formNotPristine('document')) {
+                    $rootScope.checkEditTopicForm("administeractions", $rootScope.changeContentView);
+                } else {
+                    $rootScope.checkEditDocumentForm("administeractions", $rootScope.changeContentView);
+                }
             };
 
             $scope.openAdministerStatus = function () {
-                $rootScope.checkEditDocumentForm("administerstatus", $rootScope.changeContentView)
+                if ($rootScope.formNotPristine('document')) {
+                    $rootScope.checkEditTopicForm("administerstatus", $rootScope.changeContentView);
+                } else {
+                    $rootScope.checkEditDocumentForm("administerstatus", $rootScope.changeContentView);
+                }
             };
 
             $scope.openAdministerLinkCategories = function () {
-                $rootScope.checkEditDocumentForm("administerlinkcategories", $rootScope.changeContentView)
+                if ($rootScope.formNotPristine('document')) {
+                    $rootScope.checkEditTopicForm("administerlinkcategories", $rootScope.changeContentView);
+                } else {
+                    $rootScope.checkEditDocumentForm("administerlinkcategories", $rootScope.changeContentView);
+                }
             };
 
             $scope.openAdministerMandatory = function () {
-                $rootScope.checkEditDocumentForm("administermandatory", $rootScope.changeContentView)
+                if ($rootScope.formNotPristine('document')) {
+                    $rootScope.checkEditTopicForm("administermandatory", $rootScope.changeContentView);
+                } else {
+                    $rootScope.checkEditDocumentForm("administermandatory", $rootScope.changeContentView);
+                }
             };
 
             $scope.openAdministerHeadings = function () {
-                $rootScope.checkEditDocumentForm("administerheadings", $rootScope.changeContentView)
+                if ($rootScope.formNotPristine('document')) {
+                    $rootScope.checkEditTopicForm("administerheadings", $rootScope.changeContentView);
+                } else {
+                    $rootScope.checkEditDocumentForm("administerheadings", $rootScope.changeContentView);
+                }
             };
 
             $scope.openAdministerContactAddresses = function () {
-                $rootScope.checkEditDocumentForm("administercontactaddresses", $rootScope.changeContentView)
+                if ($rootScope.formNotPristine('document')) {
+                    $rootScope.checkEditTopicForm("administercontactaddresses", $rootScope.changeContentView);
+                } else {
+                    $rootScope.checkEditDocumentForm("administercontactaddresses", $rootScope.changeContentView);
+                }
             };
 
+            $rootScope.loadingBarStart = function() {
+                cfpLoadingBar.start();
+            };
+            $rootScope.loadingBarComplete = function () {
+                cfpLoadingBar.complete();
+            };
 
             // Download save file
             $scope.save = function () {
-                console.log(DownloadList.getStorageList());
                 FileUpload.onSaveMimeJSON(DownloadList.getStorageList(), function () {
                     $rootScope.loadingBarStart();
                     $scope.fakeIntro = true;
@@ -96,13 +141,13 @@ angular.module("ehelseEditor").controller("ToolbarController",
                     $rootScope.loadingBarStart();
                     $scope.fakeIntro = true;
                     setTimeout(function() {
-                        $rootScope.deselectTopicAndDocument();
+                        $rootScope.deselectEverything();
                         $rootScope.clearSearchFilterText();
                         $rootScope.changeContentView("");
                         
-                        $rootScope.notifySuccess("Upload succeed! :) ", 1000);
                         $rootScope.currentFilePath = StorageHandler.getSavingFilePath();
-                        
+                        $rootScope.notifySuccess("Upload succeed! :) ", 1000);
+
                         $rootScope.loadingBarComplete();
                         $scope.fakeIntro = false;
                     }, 500);
@@ -117,12 +162,13 @@ angular.module("ehelseEditor").controller("ToolbarController",
                     $rootScope.loadingBarStart();
                     $scope.fakeIntro = true;
                     setTimeout(function() {
-                        $rootScope.deselectTopicAndDocument();
+                        $rootScope.deselectEverything();
                         $rootScope.clearSearchFilterText();
                         $rootScope.changeContentView("");
 
-                        $rootScope.notifySuccess("Upload succeed! :) ", 1000);
                         $rootScope.savingFilePath = StorageHandler.getSavingFilePath();
+                        $rootScope.currentFilePath = StorageHandler.getCurrentFilePath();
+                        $rootScope.notifySuccess("Upload succeed! :) ", 1000);
 
                         $rootScope.loadingBarComplete();
                         $scope.fakeIntro = false;
@@ -145,10 +191,12 @@ angular.module("ehelseEditor").controller("ToolbarController",
             });
 
             $scope.searchFocused = function () {
-                $rootScope.searchIsFocused = true;
-                $rootScope.selected_topic_id = "";
                 if (!$rootScope.searchQuery){
-                    $rootScope.checkEditDocumentForm("", $rootScope.deselectTopicAndDocument);
+                    if ($rootScope.formNotPristine('document')) {
+                        $rootScope.checkEditTopicForm("", $rootScope.deselectEverything);
+                    } else {
+                        $rootScope.checkEditDocumentForm("", $rootScope.deselectEverything);
+                    }
                 }
             };
             $rootScope.searchOption = DocumentType.getById;

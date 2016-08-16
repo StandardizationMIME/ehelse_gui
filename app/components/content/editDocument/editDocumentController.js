@@ -28,7 +28,6 @@ angular.module("ehelseEditor").controller("EditDocumentController",
             $scope.$parent.$parent.registerChildController("EditDocumentController", $scope);
             $scope.$on('$destroy', function () {
                 $scope.$parent.$parent.removeChildController("EditDocumentController");
-                console.log("EditorDocumentController scope destroyed and removed from childControllers");
             });
 
 
@@ -216,6 +215,14 @@ angular.module("ehelseEditor").controller("EditDocumentController",
                     that.tooltip('hide');
                 }, 1000);
             });
+
+            $scope.checkForms = function (_value, _method) {
+                if ($rootScope.formNotPristine('document')) {
+                    $rootScope.checkEditTopicForm(_value, _method);
+                } else {
+                    $rootScope.checkEditDocumentForm(_value, _method);
+                }
+            };
         }
     ]);
 

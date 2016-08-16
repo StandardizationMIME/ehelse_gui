@@ -38,7 +38,7 @@
         <div class="standard-list" ng-if="searchIsFocused">
             <div ng-repeat="document in allDocuments | filter:filterContainsSearchText:false | filter: {documentTypeId:searchOption} | orderBy:title">
                 <!-- Opens the document in the content view on selection -->
-                <p class="clickable" id=search-standard{{document.id}} ng-class="document.id == selected_document.id ? 'selected-item' : ''" ng-click="checkIfSearchFormIsDirtyAndNotificate(document)">
+                <p ng-style="{'font-size': text.size + 'px'}" class="clickable" id=search-standard{{document.id}} ng-class="document.id == selected_document.id ? 'selected-item' : ''" ng-click="checkIfSearchFormIsDirtyAndNotificate(document)">
                     <span  class="fa fa-file-text d{{document.documentTypeId}}"> </span>
                     {{document.title}}
                 </p>

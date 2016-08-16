@@ -6,16 +6,16 @@ angular.module("ehelseEditor").controller("LoginController", [ "$scope", "$rootS
     $rootScope.savingFilePath = "";
     $rootScope.currentFilePath = "";
 
-    $rootScope.loadingBarStart = function() {
-        cfpLoadingBar.start();
-    };
-    $rootScope.loadingBarComplete = function () {
-        cfpLoadingBar.complete();
-    };
     // Read file in file upload input
     $scope.uploadJsonButton = function () {
         FileUpload.onLoadJSON(function () {
-            $scope.goToSite();
+            setTimeout(function() {
+
+                $rootScope.savingFilePath = StorageHandler.getSavingFilePath();
+                $rootScope.currentFilePath = StorageHandler.getCurrentFilePath();
+
+                $scope.goToSite();
+            }, 500);
         }, function () {
             $rootScope.notifyError("Upload failed... :( ", 1000);
         });

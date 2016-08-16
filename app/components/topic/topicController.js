@@ -63,9 +63,17 @@ angular.module("ehelseEditor").controller("TopicController",["$rootScope", "$sco
     };
     $rootScope.checkDocumentFormAndExecute = function (topicId) {
         if (topicId){
-            $rootScope.checkEditDocumentForm(topicId, $rootScope.selectTopicActions);
+            if ($rootScope.formNotPristine('document')) {
+                $rootScope.checkEditTopicForm(topicId, $rootScope.selectTopicActions);
+            } else {
+                $rootScope.checkEditDocumentForm(topicId, $rootScope.selectTopicActions);
+            }
         } else {
-            $rootScope.checkEditDocumentForm("", $rootScope.newTopicActions);
+            if ($rootScope.formNotPristine('document')) {
+                $rootScope.checkEditTopicForm("", $rootScope.newTopicActions);
+            } else {
+                $rootScope.checkEditDocumentForm("", $rootScope.newTopicActions);
+            }
         }
     };
 }]);

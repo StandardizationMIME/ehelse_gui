@@ -51,7 +51,7 @@
                   ng-hide="documentState == 'newDocument' || documentState == 'newProfile' || documentState == 'hideProfilesFromNewProfile'">
                 <button class="fa fa-clone document-buttons save-clone-download-buttons"
                         ng-disabled="!((documentState == 'editProfile' || documentState == 'editDocument' || documentState == 'editUtility')
-                         && !document.nextDocumentId)" ng-click="checkEditDocumentForm(document, newVersion)">
+                         && !document.nextDocumentId)" ng-click="checkEditDocumentForm(document, newVersion); checkEditTopicForm(document, newVersion) ">
                 </button>
             </span>
 
@@ -79,13 +79,14 @@
     <div id="editDocument" class="{{documentState}}">
         <!-- Buttons toggling between document versions -->
         <div class=" twelve-pix-vertical-padding" ng-if="document_dict[document.nextDocumentId] || document_dict[document.previousDocumentId]">
+
             <button type="button" class="btn btn-default" ng-disabled="document.nextDocumentId && !document.previousDocumentId"
-                    ng-click="checkEditDocumentForm(document.previousDocumentId, openDocumentById)">
+                    ng-click="checkForms(document.previousDocumentId, openDocumentById)">
                 <span class="fa fa-arrow-circle-left"></span>
                 Tidligere versjon
             </button>
             <button type="button" class="btn btn-default pull-right" ng-disabled="document.previousDocumentId && !document.nextDocumentId"
-                    ng-click="checkEditDocumentForm(document.nextDocumentId, openDocumentById)">
+                    ng-click="checkForms(document.nextDocumentId, openDocumentById)">
                 Neste versjon
                 <span class="fa fa-arrow-circle-right"></span>
             </button>

@@ -22,7 +22,7 @@ angular.module("ehelseEditor").factory("DocumentExtractor",
                     if(doc.internalId){
                         output_dict["internalId"] = doc.internalId;
                     }else{
-                        output_dict["internalId"] = null;
+                        output_dict["internalId"] = "";
                     }
                     if(doc.hisNumber){
                         output_dict["his"] = doc.hisNumber;

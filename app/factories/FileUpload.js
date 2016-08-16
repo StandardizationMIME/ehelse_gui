@@ -32,12 +32,15 @@ angular.module("ehelseEditor").factory("FileUpload",
                                     chosenFileEntry = fileEntry;
 
                                     clearEverything();
+                                    // TODO: put check of necessary lists in form of init
                                     StorageHandler.initJSON(contentFromFile);
                                     initEverything();
 
                                     chrome.fileSystem.getDisplayPath(fileEntry, function(path) {
                                         StorageHandler.setSavingFilePath(path);
+                                        console.log(StorageHandler.getSavingFilePath());
                                         StorageHandler.setCurrentFilePath(path);
+                                        console.log(StorageHandler.getCurrentFilePath());
                                     });
 
                                     isJsonFile = true;
@@ -104,7 +107,6 @@ angular.module("ehelseEditor").factory("FileUpload",
         }
 
         function onSaveMimeJSON(modifiedJsonObject, _success, _failure){
-            console.info(modifiedJsonObject);
             if(isJsonFile){
                 chrome.fileSystem.getWritableEntry(chosenFileEntry, function (writableFileEntry) {
                     if (chrome.runtime.lastError){
@@ -113,7 +115,8 @@ angular.module("ehelseEditor").factory("FileUpload",
                         writableFileEntry.createWriter(function (writer) {
                             writer.onerror = errorHandler;
 
-                            var json = JSON.stringify(modifiedJsonObject, null, '\t');
+                            var noAngularJson = angular.toJson(modifiedJsonObject);
+                            var json = JSON.stringify(JSON.parse(noAngularJson), null, '\t');
                             var blob = new Blob([json], {type: "application/javascript"});
                             writer.truncate(blob.size);
 
@@ -149,10 +152,9 @@ angular.module("ehelseEditor").factory("FileUpload",
                         writableFileEntry.createWriter(function (writer) {
                             writer.onerror = errorHandler;
 
-                            var json = JSON.stringify(modifiedJsonObject, null, '\t');
-                            console.info(json);
+                            var noAngularJson = angular.toJson(modifiedJsonObject);
+                            var json = JSON.stringify(JSON.parse(noAngularJson), null, '\t');
                             var blob = new Blob([json], {type: "application/javascript"});
-                            console.info(blob);
                             writer.truncate(blob.size);
 
                             writer.onwriteend = function (e) {
@@ -210,7 +212,8 @@ angular.module("ehelseEditor").factory("FileUpload",
                                 _failure();
                             }
                         };
-                        var json = JSON.stringify(modifiedJsonObject, null, '\t');
+                        var noAngularJson = angular.toJson(modifiedJsonObject);
+                        var json = JSON.stringify(JSON.parse(noAngularJson), null, '\t');
                         var blob = new Blob([json], {type: "application/json"});
                         writer.write(blob);
                     }, errorHandler);
