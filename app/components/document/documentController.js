@@ -37,10 +37,22 @@ angular.module("ehelseEditor").controller("DocumentController", ["$scope", "$roo
     $rootScope.checkDocumentState = function (document) {
         if (document) {
             if (document.documentTypeId == "1") {
-                $rootScope.setDocumentState("editDocument");
+                if($rootScope.documentState == 'hideProfilesFromProfile' ||
+                    $rootScope.documentState == 'hideProfilesFromStandard' ||
+                    $rootScope.documentState == 'hideProfilesFromNewProfile'){
+                    $rootScope.setDocumentState('hideProfilesFromStandard')
+                }else{
+                    $rootScope.setDocumentState("editDocument");
+                }
             }
             else if (document.documentTypeId == "2") {
-                $rootScope.setDocumentState("editProfile");
+                if($rootScope.documentState == 'hideProfilesFromProfile' ||
+                    $rootScope.documentState == 'hideProfilesFromStandard' ||
+                    $rootScope.documentState == 'hideProfilesFromNewProfile'){
+                    $rootScope.setDocumentState('hideProfilesFromProfile')
+                }else{
+                    $rootScope.setDocumentState("editProfile");
+                }
             }
             else if (document.documentTypeId == "3") {
                 $rootScope.setDocumentState("editUtility");
@@ -53,7 +65,7 @@ angular.module("ehelseEditor").controller("DocumentController", ["$scope", "$roo
         }
     };
     $rootScope.documentChanges = function (document) {
-        $rootScope.setDocumentState('editDocument');
+        $rootScope.checkDocumentState(document);
         $rootScope.openDocument(document);
         $rootScope.resetDocumentScroll();
         if($rootScope.childControllers["EditDocumentController"]){
@@ -61,7 +73,7 @@ angular.module("ehelseEditor").controller("DocumentController", ["$scope", "$roo
         }
     };
     $rootScope.searchChanges = function (document) {
-        $rootScope.setDocumentState('editDocument');
+        $rootScope.checkDocumentState(document);
         $rootScope.openDocument(document);
         $rootScope.resetDocumentScroll();
         if($rootScope.childControllers["EditDocumentController"]){
@@ -69,7 +81,7 @@ angular.module("ehelseEditor").controller("DocumentController", ["$scope", "$roo
         }
     };
     $rootScope.newDocChanges = function () {
-        $rootScope.setDocumentState('newDocument');
+        $rootScope.checkDocumentState(document);
         $rootScope.openDocument();
         $rootScope.resetDocumentScroll();
         $rootScope.clearSearchFilterText();
