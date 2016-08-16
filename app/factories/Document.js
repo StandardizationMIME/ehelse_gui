@@ -731,7 +731,7 @@ angular.module("ehelseEditor").factory("Document",
             }
 
             function addLinkToCurrentDocumentByLinkCategoryId(id) {
-                current_document.links.push({linkCategoryId: id, text: "", url: "", sequence: ""});
+                current_document.links.push({linkCategoryId: id, text: "", url: "", sequence: 1});
                 generateCurrentDocumentLinksAsLinkCategoryList();
             }
 
