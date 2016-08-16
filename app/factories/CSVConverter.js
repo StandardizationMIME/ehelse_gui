@@ -424,7 +424,7 @@ angular.module("ehelseEditor").factory("CSVConverter", [ "ServiceFunction", func
                         fieldsListForSingleDocument.push(
                             {
                                 "fieldId": getDocumentFieldIdByDocumentTypeIdAndFieldName(tempDocTypeId, globalFieldTitles[i]),
-                                "value": obj[globalFieldTitles[i]].replace(/(\r\n|\n|\r)/gm,"")
+                                "value": obj[globalFieldTitles[i]].replace(/(\r\n|\n|\r|<|>)/gm,"")
                             }
                         );
                     }
