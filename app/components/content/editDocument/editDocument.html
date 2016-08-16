@@ -1,16 +1,16 @@
-
-<form ng-controller="EditDocumentController" name="EditDocumentController.DocumentForm"  role="form"
+<form class="col-lg-7 col-mg-7 col-sm-7 col-xs-7 content-view" ng-controller="EditDocumentController" name="EditDocumentController.DocumentForm" role="form"
       ng-class="(documentState == 'newDocument' || documentState == 'editUtility' || documentState == 'hideProfilesFromProfile'
        || documentState == 'hideProfilesFromStandard' || documentState == 'hideProfilesFromNewProfile') ? 'utility-height' : 'document-height'">
 
 
     <!-- This div contains the toolbar of the document with -->
-    <div class="shadow-below">
+    <div class="shadow-below editor-header">
 
         <!-- Headline displaying document type or state -->
         <div class="headline-box">
             <h4 class="selected document-title" title="{{document.title}}">{{document.title}}</h4>
-            <div ng-repeat="(key, errors) in EditDocumentController.DocumentForm.$error track by $index" class="feedback-msg">
+            <div ng-repeat="(key, errors) in EditDocumentController.DocumentForm.$error track by $index"
+                 class="feedback-msg">
                 <span>For å lagre dokumentet mangler du : </span>
                 <span ng-repeat="e in errors | unique: '$name'">
                     <span ng-if="e.$name == 'f'" class="feedback-msg">'Felter' </span>
@@ -27,10 +27,11 @@
         </div>
 
         <!-- All buttons used in the various document states and types -->
-        <p class="twelve-pix-vertical-padding">
+        <p class="ten-pix-vertical-padding">
 
             <!-- Create document -->
-            <button type="button" class="btn btn-primary opprett-button" ng-click="submit(EditDocumentController.DocumentForm);resetDocumentScroll()"
+            <button type="button" class="btn btn-primary opprett-button"
+                    ng-click="submit(EditDocumentController.DocumentForm);resetDocumentScroll()"
                     ng-if="documentState == 'newDocument' || documentState == 'newProfile' || documentState == 'hideProfilesFromNewProfile'"
                     ng-disabled="EditDocumentController.DocumentForm.$invalid || EditDocumentController.DocumentForm.$pristine">
                 <span class="fa fa-check-circle edit-topic-icon"></span>
@@ -51,20 +52,21 @@
                   ng-hide="documentState == 'newDocument' || documentState == 'newProfile' || documentState == 'hideProfilesFromNewProfile'">
                 <button class="fa fa-clone document-buttons save-clone-download-buttons"
                         ng-disabled="!((documentState == 'editProfile' || documentState == 'editDocument' || documentState == 'editUtility')
-                         && !document.nextDocumentId)" ng-click="checkEditDocumentForm(document, newVersion); checkEditTopicForm(document, newVersion) ">
+                         && !document.nextDocumentId)"
+                        ng-click="checkEditDocumentForm(document, newVersion); checkEditTopicForm(document, newVersion) ">
                 </button>
             </span>
 
             <!-- Created timestamp -->
             <span class="ten-pix-horizontal-padding text-small" ng-if="document.createdTimestamp">
-                Opprettet: <b >{{getFormattedTimestamp(document.createdTimestamp).date}}</b>
-                Kl: <b >{{getFormattedTimestamp(document.createdTimestamp).time}}</b>
+                Opprettet: <b>{{getFormattedTimestamp(document.createdTimestamp).date}}</b>
+                Kl: <b>{{getFormattedTimestamp(document.createdTimestamp).time}}</b>
             </span>
 
             <!-- Last edited timestamp -->
             <span class="ten-pix-horizontal-padding" ng-if="document.editedTimestamp">
-                Sist endret: <b >{{getFormattedTimestamp(document.editedTimestamp).date}}</b>
-                Kl: <b >{{getFormattedTimestamp(document.editedTimestamp).time}}</b>
+                Sist endret: <b>{{getFormattedTimestamp(document.editedTimestamp).date}}</b>
+                Kl: <b>{{getFormattedTimestamp(document.editedTimestamp).time}}</b>
             </span>
 
             <!-- Delete document -->
@@ -76,16 +78,19 @@
 
         </p>
     </div>
-    <div id="editDocument" class="{{documentState}}">
+    <div id="editDocument" class="{{documentState}} content">
         <!-- Buttons toggling between document versions -->
-        <div class=" twelve-pix-vertical-padding" ng-if="document_dict[document.nextDocumentId] || document_dict[document.previousDocumentId]">
+        <div class=" twelve-pix-vertical-padding"
+             ng-if="document_dict[document.nextDocumentId] || document_dict[document.previousDocumentId]">
 
-            <button type="button" class="btn btn-default" ng-disabled="document.nextDocumentId && !document.previousDocumentId"
+            <button type="button" class="btn btn-default"
+                    ng-disabled="document.nextDocumentId && !document.previousDocumentId"
                     ng-click="checkForms(document.previousDocumentId, openDocumentById)">
                 <span class="fa fa-arrow-circle-left"></span>
                 Tidligere versjon
             </button>
-            <button type="button" class="btn btn-default pull-right" ng-disabled="document.previousDocumentId && !document.nextDocumentId"
+            <button type="button" class="btn btn-default pull-right"
+                    ng-disabled="document.previousDocumentId && !document.nextDocumentId"
                     ng-click="checkForms(document.nextDocumentId, openDocumentById)">
                 Neste versjon
                 <span class="fa fa-arrow-circle-right"></span>
@@ -97,12 +102,14 @@
 
                 <!-- choose document type -->
                 <div class="form-group">
-                    <label ng-style="{'font-size': text.size + 'px'}" class="col-sm-4 control-label" for="documentType">Type dokument: </label>
+                    <label ng-style="{'font-size': text.size + 'px'}" class="col-sm-4 control-label" for="documentType">Type
+                        dokument: </label>
                     <div class="form-group col-sm-8">
-                        <select  ng-style="{'font-size': text.size + 'px', 'height': text.size*2.5 + 'px'}" name="documentType" id="documentType"
+                        <select ng-style="{'font-size': text.size + 'px', 'height': text.size*2.5 + 'px'}"
+                                name="documentType" id="documentType"
                                 ng-change="setCurrentDocumentFieldsByDocumentDocumentTypeId();"
                                 ng-model="document.documentTypeId" class="form-control "
-                                 ng-disabled="documentState == 'editDocument' || documentState == 'newProfile' || documentState == 'editProfile' || documentState == 'editUtility'
+                                ng-disabled="documentState == 'editDocument' || documentState == 'newProfile' || documentState == 'editProfile' || documentState == 'editUtility'
                                 || documentState == 'hideProfilesFromProfile' || documentState == 'hideProfilesFromStandard' || documentState == 'hideProfilesFromNewProfile'">
                             <option ng-repeat="document_type in document_types_option_list"
                                     ng-if="document_type.value == '1' && !document.standardId || document_type.value == '2' && document.standardId || document_type.value == '3'  && !document.standardId"
@@ -114,39 +121,46 @@
 
                 <!-- Choose document title -->
                 <div class="form-group">
-                    <label  ng-style="{'font-size': text.size + 'px'}" class="col-sm-4 control-label" for="standardTitle">Tittel: <span class="required-icon"
-                                                                                            data-toggle="tooltip"
-                                                                                            title="Obligatorisk felt"
-                                                                                            data-placement="top">*</span></label>
+                    <label ng-style="{'font-size': text.size + 'px'}" class="col-sm-4 control-label"
+                           for="standardTitle">Tittel: <span class="required-icon"
+                                                             data-toggle="tooltip"
+                                                             title="Obligatorisk felt"
+                                                             data-placement="top">*</span></label>
                     <div class="form-group col-sm-8">
-                        <input  ng-style="{'font-size': text.size + 'px', 'height': text.size*2.1 + 'px'}" type="text" name="standardTitle" id="standardTitle" ng-model="document.title"
+                        <input ng-style="{'font-size': text.size + 'px', 'height': text.size*2.1 + 'px'}" type="text"
+                               name="standardTitle" id="standardTitle" ng-model="document.title"
                                class="form-control " required/>
                     </div>
                 </div>
 
                 <!-- Choose Internal ID title -->
                 <div class="form-group">
-                    <label  ng-style="{'font-size': text.size + 'px'}" class="col-sm-4 control-label" for="internalID">Intern ID: </label>
+                    <label ng-style="{'font-size': text.size + 'px'}" class="col-sm-4 control-label" for="internalID">Intern
+                        ID: </label>
                     <div class="form-group col-sm-8">
-                        <input  ng-style="{'font-size': text.size + 'px', 'height': text.size*2.1 + 'px'}"  type="text" name="internalID" id="internalID" ng-model="document.internalId"
+                        <input ng-style="{'font-size': text.size + 'px', 'height': text.size*2.1 + 'px'}" type="text"
+                               name="internalID" id="internalID" ng-model="document.internalId"
                                class="form-control "/>
                     </div>
                 </div>
 
                 <!-- Choose his number-->
                 <div class="form-group">
-                    <label  ng-style="{'font-size': text.size + 'px'}" class="col-sm-4 control-label" for="hisNumber">HIS nummer: </label>
+                    <label ng-style="{'font-size': text.size + 'px'}" class="col-sm-4 control-label" for="hisNumber">HIS
+                        nummer: </label>
                     <div class="form-group col-sm-8">
-                        <input ng-style="{'font-size': text.size + 'px', 'height': text.size*2.1 + 'px'}"  type="text" name="hisNumber" id="hisNumber" ng-model="document.hisNumber"
-                               class="form-control " />
+                        <input ng-style="{'font-size': text.size + 'px', 'height': text.size*2.1 + 'px'}" type="text"
+                               name="hisNumber" id="hisNumber" ng-model="document.hisNumber"
+                               class="form-control "/>
                     </div>
                 </div>
 
                 <!-- choose status -->
                 <div class="form-group">
-                    <label  ng-style="{'font-size': text.size + 'px'}" class="col-sm-4 control-label" for="statusid">Status: </label>
+                    <label ng-style="{'font-size': text.size + 'px'}" class="col-sm-4 control-label" for="statusid">Status: </label>
                     <div class="form-group col-sm-8">
-                        <select ng-style="{'font-size': text.size + 'px', 'height': text.size*2.5 + 'px'}" name="statusid" id="statusid"
+                        <select ng-style="{'font-size': text.size + 'px', 'height': text.size*2.5 + 'px'}"
+                                name="statusid" id="statusid"
                                 ng-model="document.statusId" class="form-control ">
                             <option ng-repeat="status in status_list" ng-hide="status.isArchived"
                                     value={{status.id}}>{{status.name}}
@@ -157,13 +171,17 @@
 
                 <!-- choose contact address -->
                 <div class="form-group">
-                    <label  ng-style="{'font-size': text.size + 'px'}" class="col-sm-4 control-label" for="contactAddressId">
+                    <label ng-style="{'font-size': text.size + 'px'}" class="col-sm-4 control-label"
+                           for="contactAddressId">
                         Kontaktadresse:
                     </label>
                     <div class="form-group col-sm-8">
-                        <select  ng-style="{'font-size': text.size + 'px', 'height': text.size*2.5 + 'px'}" name="contactAddressId" id="contactAddressId" ng-model="document.contactAddressId" class="form-control ">
+                        <select ng-style="{'font-size': text.size + 'px', 'height': text.size*2.5 + 'px'}"
+                                name="contactAddressId" id="contactAddressId" ng-model="document.contactAddressId"
+                                class="form-control ">
                             <option value="" selected>Ingen</option>
-                            <option ng-repeat="address in contact_address_list" ng-hide="address.isArchived" value={{address.id}}>
+                            <option ng-repeat="address in contact_address_list" ng-hide="address.isArchived"
+                                    value={{address.id}}>
                                 {{address.name}}
                             </option>
                         </select>
@@ -172,16 +190,18 @@
 
                 <!-- choose sequence-->
                 <div class="form-group">
-                    <label  ng-style="{'font-size': text.size + 'px'}" class="col-sm-4 control-label" for="sequence">Rekkefølge: </label>
+                    <label ng-style="{'font-size': text.size + 'px'}" class="col-sm-4 control-label" for="sequence">Rekkefølge: </label>
                     <div class="form-group col-sm-8">
-                        <input  ng-style="{'font-size': text.size + 'px', 'height': text.size*2.1 + 'px'}"  type="text" name="sequence" id="sequence" class="form-control "
+                        <input ng-style="{'font-size': text.size + 'px', 'height': text.size*2.1 + 'px'}" type="text"
+                               name="sequence" id="sequence" class="form-control "
                                ng-model="document.sequence" value="1" numbers-only maxlength="15"/>
                     </div>
                 </div>
 
                 <!-- Choose document description -->
                 <div class="form-group">
-                    <label ng-style="{'font-size': text.size + 'px'}" class="col-sm-4 control-label" for="standardDescription">Beskrivelse: </label>
+                    <label ng-style="{'font-size': text.size + 'px'}" class="col-sm-4 control-label"
+                           for="standardDescription">Beskrivelse: </label>
                     <div class="form-group col-sm-8">
                         <textarea ng-style="{'font-size': text.size + 'px', 'height': text.size*10 + 'px'}"
                                   name="standardDescription" id="standardDescription" ng-model="document.description"
@@ -191,13 +211,18 @@
 
                 <!-- Choose which topic to create document under -->
                 <div class="form-group">
-                    <label ng-style="{'font-size': text.size + 'px'}" class="col-sm-4 control-label" for="standardParent"
+                    <label ng-style="{'font-size': text.size + 'px'}" class="col-sm-4 control-label"
+                           for="standardParent"
                            ng-hide="documentState == 'editDocument' || documentState == 'editProfile' || documentState == 'editUtility'
-                            || documentState == 'hideProfilesFromProfile' || documentState == 'hideProfilesFromStandard'">Opprettes i: </label>
-                    <label ng-style="{'font-size': text.size + 'px'}" class="col-sm-4 control-label" for="standardParent"
-                           ng-hide="documentState == 'newDocument' || documentState == 'newProfile' || documentState == 'newUtility' || documentState == 'hideProfilesFromNewProfile'">Ligger under: </label>
+                            || documentState == 'hideProfilesFromProfile' || documentState == 'hideProfilesFromStandard'">Opprettes
+                        i: </label>
+                    <label ng-style="{'font-size': text.size + 'px'}" class="col-sm-4 control-label"
+                           for="standardParent"
+                           ng-hide="documentState == 'newDocument' || documentState == 'newProfile' || documentState == 'newUtility' || documentState == 'hideProfilesFromNewProfile'">Ligger
+                        under: </label>
                     <div class="form-group col-sm-8">
-                        <select ng-style="{'font-size': text.size + 'px', 'height': text.size*2.5 + 'px'}" name="standardParent" id="standardParent" ng-model="document.topicId"
+                        <select ng-style="{'font-size': text.size + 'px', 'height': text.size*2.5 + 'px'}"
+                                name="standardParent" id="standardParent" ng-model="document.topicId"
                                 class="form-control ">
                             <option ng-repeat="topic in topicTupleList" value={{topic.id}}>{{topic.path}}</option>
                         </select>
@@ -205,8 +230,6 @@
                 </div>
             </div>
         </div>
-
-
 
 
         <!-- Choose document fields -->
