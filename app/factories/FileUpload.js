@@ -32,6 +32,7 @@ angular.module("ehelseEditor").factory("FileUpload",
                                     chosenFileEntry = fileEntry;
 
                                     clearEverything();
+                                    // TODO: put check of necessary lists in form of init
                                     StorageHandler.initJSON(contentFromFile);
                                     initEverything();
 
