@@ -104,22 +104,46 @@ angular.module("ehelseEditor").controller("DocumentController", ["$scope", "$roo
         }
     };
     $rootScope.checkIfNewDocFormIsDirtyAndNotificate = function () {
-        $rootScope.checkEditDocumentForm("", $rootScope.newDocChanges);
+        if ($rootScope.formNotPristine('document')) {
+            $rootScope.checkEditTopicForm("", $rootScope.newDocChanges);
+        } else {
+            $rootScope.checkEditDocumentForm("", $rootScope.newDocChanges);
+        }
     };
     $rootScope.checkIfDocumentFormIsDirtyAndNotificate = function (document) {
-        $rootScope.checkEditDocumentForm(document, $rootScope.documentChanges);
+        if ($rootScope.formNotPristine('document')) {
+            $rootScope.checkEditTopicForm(document, $rootScope.documentChanges);
+        } else {
+            $rootScope.checkEditDocumentForm(document, $rootScope.documentChanges);
+        }
     };
     $rootScope.checkIfSearchFormIsDirtyAndNotificate = function (document) {
-        $rootScope.checkEditDocumentForm(document, $rootScope.searchChanges);
+        if ($rootScope.formNotPristine('document')) {
+            $rootScope.checkEditTopicForm(document, $rootScope.searchChanges);
+        } else {
+            $rootScope.checkEditDocumentForm(document, $rootScope.searchChanges);
+        }
     };
     $rootScope.checkIfNewProfileFormIsDirty = function (documentId) {
-        $rootScope.checkEditDocumentForm(documentId, $rootScope.newProfileActions);
+        if ($rootScope.formNotPristine('document')) {
+            $rootScope.checkEditTopicForm(documentId, $rootScope.newProfileActions);
+        } else {
+            $rootScope.checkEditDocumentForm(documentId, $rootScope.newProfileActions);
+        }
     };
     $rootScope.checkIfBackToDocumentFormIsDirty = function (documentId) {
-        $rootScope.checkEditDocumentForm(documentId, $rootScope.backToDocumentActions);
+        if ($rootScope.formNotPristine('document')) {
+            $rootScope.checkEditTopicForm(documentId, $rootScope.backToDocumentActions);
+        } else {
+            $rootScope.checkEditDocumentForm(documentId, $rootScope.backToDocumentActions);
+        }
     };
     $rootScope.checkIfSelectProfileFormIsDirty = function (profile) {
-        $rootScope.checkEditDocumentForm(profile, $rootScope.selectProfileActions);
+        if ($rootScope.formNotPristine('document')) {
+            $rootScope.checkEditTopicForm(profile, $rootScope.selectProfileActions);
+        } else {
+            $rootScope.checkEditDocumentForm(profile, $rootScope.selectProfileActions);
+        }
     };
 
     // Open document by id

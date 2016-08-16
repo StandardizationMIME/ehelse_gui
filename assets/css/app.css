@@ -798,6 +798,11 @@ a.sortable-columns{
     display: table-cell;
     vertical-align: middle;
 }
+.center-align-delete-button {
+    text-align: center;
+    display: table-cell;
+    vertical-align: middle !important;
+}
 .text-align-center{
     text-align: center;
 }

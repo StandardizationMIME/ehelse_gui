@@ -112,6 +112,7 @@ angular.module("ehelseEditor").factory("TargetGroup", ["$rootScope", "StorageHan
             try{
                 setTargetGroup(target_groups_dict[group.id], group);
                 generateTargetGroupDict(target_groups);
+                generateTargetGroupOptionsList(target_groups);
                 $rootScope.notifySuccess("Mulgruppe ble oppdatert", 1000);
             }
             catch(error){
