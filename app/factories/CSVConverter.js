@@ -322,15 +322,15 @@ angular.module("ehelseEditor").factory("CSVConverter", [ "ServiceFunction", func
                 if (csvDocument[globalFieldTitles[i]] != "") {
                     if (docType === "Standard") {
                         if (!(standardFieldsTitles.indexOf(globalFieldTitles[i]) > -1)) {
-                            standardFieldsTitles.push(globalFieldTitles[i]);
+                            standardFieldsTitles.push((globalFieldTitles[i]).replace(/<|>/g,''));
                         }
                     } else if (docType === "Profil") {
                         if (!(profileFieldsTitles.indexOf(globalFieldTitles[i]) > -1)) {
-                            profileFieldsTitles.push(globalFieldTitles[i]);
+                            profileFieldsTitles.push((globalFieldTitles[i]).replace(/<|>/g,''));
                         }
                     } else if (docType === "Støttedokument") {
                         if (!(supportFieldsTitles.indexOf(globalFieldTitles[i]) > -1)) {
-                            supportFieldsTitles.push(globalFieldTitles[i]);
+                            supportFieldsTitles.push((globalFieldTitles[i]).replace(/<|>/g,''));
                         }
                     }
                 }
