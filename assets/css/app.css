@@ -295,6 +295,29 @@ textarea {
     white-space: nowrap;
     width: 90%;
 }
+.document-links-link:nth-child(1) {  width: 3%; margin-right: 1%  }
+.document-links-link:nth-child(2) {  width: 7%; margin-right: 1% }
+.document-links-link:nth-child(3) {  width: 46%; margin-right: 1% }
+.document-links-link:nth-child(4) {  width: 37%; margin-right: 1% }
+.document-links-link:nth-child(5) {  width: 3%;  }
+
+.document-links-link {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+.document-links-ul{
+    -webkit-padding-start: 0;
+    width: 100%;
+    list-style-type: none;
+}
+.adjust-link-icon {
+    display: inline-block;
+    padding-top: auto;
+    padding-bottom: auto;
+}
+.document-fields-field-sequence {
+    width: 100%;
+}
 .document-fields-field-name{
     width:60%;
     display: inline-block;

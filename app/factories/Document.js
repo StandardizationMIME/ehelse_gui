@@ -292,7 +292,9 @@ angular.module("ehelseEditor").factory("Document",
                     $rootScope.notifyError(error, 6000);
                 } else {
                     saveDocument();
-                    $rootScope.checkDocumentState(current_document);
+                    if($rootScope.documentState == 'newProfile' || $rootScope.documentState == 'newDocument' || $rootScope.documentState == 'hideProfilesFromNewProfile'){
+                        $rootScope.checkDocumentState(current_document);
+                    }
                 }
             }
 
@@ -625,7 +627,9 @@ angular.module("ehelseEditor").factory("Document",
                     if(document.headingContent){
                         document.headingContent = ServiceFunction.orderListBySequence(document.headingContent, Heading.getById, "heading");
                     }
-
+                    if(document.links){
+                        document.links = document.links.sort(ServiceFunction.compareSequence);
+                    }
 
                     setDocument(current_document, document);
                     
@@ -668,6 +672,7 @@ angular.module("ehelseEditor").factory("Document",
                     console.log("Current document has no links");
                 }
 
+
                 link_category_list.length = 0;
 
                 for (var prop in link_category_dict) {
@@ -677,6 +682,20 @@ angular.module("ehelseEditor").factory("Document",
                     link_category_list.push(link_category_dict[prop]);
                 }
 
+                var temp_list = [];
+                for (var n = 0; n < link_category_list.length; n++) {
+                    var temp_field = {};
+                    temp_field["id"] = LinkCategory.getById(link_category_list[n].id).id;
+                    temp_field["sequence"] = LinkCategory.getById(link_category_list[n].id).sequence;
+                    temp_field["links"] = link_category_list[n].links;
+                    temp_list.push(temp_field);
+                }
+                temp_list.sort(ServiceFunction.compareSequence);
+                link_category_list.length = 0;
+
+                for (var x = 0; x < temp_list.length; x++) {
+                    link_category_list.push({id: temp_list[x].id, links: temp_list[x].links});
+                }
             }
 
             function getCurrentDocumentLinksAsLinkCategoryList() {
@@ -712,7 +731,7 @@ angular.module("ehelseEditor").factory("Document",
             }
 
             function addLinkToCurrentDocumentByLinkCategoryId(id) {
-                current_document.links.push({linkCategoryId: id, text: "", url: ""});
+                current_document.links.push({linkCategoryId: id, text: "", url: "", sequence: 1});
                 generateCurrentDocumentLinksAsLinkCategoryList();
             }
 
