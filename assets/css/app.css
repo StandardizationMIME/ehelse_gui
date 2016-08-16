@@ -372,9 +372,9 @@ textarea {
     height: 80px;
     width: 100%;
     display: inline-block;
-    box-shadow: 0 -2px #b8b8b8;
+    /*box-shadow: 0 -2px #b8b8b8;*/
     z-index: 1000;
-    background-color: #ebebeb;
+    background-color: #dfdfdf;
 }
 .toggle-profiles-down {
     position: absolute;
@@ -403,7 +403,7 @@ textarea {
     width: 19px;
     -moz-border-radius: 50%;
     border-radius: 50%;
-    background-color: #f3f3f3;
+    background-color: #dfdfdf;
     text-align: center;
     z-index: 1009;
 }
@@ -416,7 +416,7 @@ textarea {
     width: 19px;
     -moz-border-radius: 50%;
     border-radius: 50%;
-    background-color: #f3f3f3;
+    background-color: #dfdfdf;
     text-align: center;
     z-index: 1009;
 }
@@ -485,7 +485,7 @@ textarea {
     white-space: nowrap;
     padding-left: 0;
     padding-right: 0;
-    background-color: #ebebeb
+    background-color: #dfdfdf
 }
 .selected-profile-icon {
     color: white;
