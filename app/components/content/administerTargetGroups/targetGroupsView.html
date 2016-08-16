@@ -1,12 +1,12 @@
-<div ng-controller="TargetGroupsController" class="target-group-grid height-100-percent">
-    <div class="shadow-below">
+<div ng-controller="TargetGroupsController" class="col-lg-7 col-mg-7 col-sm-7 col-xs-7 content-view">
+    <div class="shadow-below editor-header">
 
         <!-- Title -->
         <div class="headline-box">
             <h4 class="selected">Administrer målgrupper</h4>
         </div>
 
-        <p class="twelve-pix-vertical-padding">
+        <p class="ten-pix-vertical-padding">
 
             <!-- Open modal for creating new target group -->
             <button type="button" class="btn btn-default"
@@ -29,7 +29,7 @@
     </div>
 
     <!-- Table for displaying all target groups in the system -->
-    <div ng-style="{'font-size': text.size + 'px'}" class="table-responsive administer-views shadow-below">
+    <div ng-style="{'font-size': text.size + 'px'}" class="table-responsive administer-content shadow-below">
 
         <table class="table table-hover" id="targetGroupsTable" ng-init="sortType = 'name'; sortReverse = sortReverse">
 

@@ -225,17 +225,6 @@ h1,h2,h3,h4{ font-weight: bold;}
 textarea {
     resize: none;
 }
-
-.administer-views {
-    height: calc(100% - 125px);
-    overflow-y: auto;
-    overflow-x: hidden;
-}
-.fields-view {
-    height: calc(100% - 47px);
-    overflow-y: auto;
-    overflow-x: hidden;
-}
 /* -------------------------------------------- CH3 CONTENT ----------------------------------------- */
 .document-fields {
     overflow-y: hidden;
@@ -368,7 +357,7 @@ textarea {
 
 .hideProfilesFromStandard, .hideProfilesFromProfile, .hideProfilesFromNewProfile, .editUtility {
     overflow-y: auto;
-    height: calc(100% - 160px);
+    height: calc(100% - 150px);
 }
 
 .utility-height {
@@ -400,7 +389,7 @@ textarea {
     position: absolute;
     left: 50%;
     font-size: 1.5em;
-    bottom: 14px;
+    bottom: 4px;
     color: #c13a47;
     display: block;
     z-index: 1010;
@@ -421,7 +410,7 @@ textarea {
 .circle-up {
     position: absolute;
     left: 50%;
-    bottom: 14px;
+    bottom: 4px;
     display: block;
     height: 19px;
     width: 19px;
@@ -554,7 +543,7 @@ textarea {
 }
 /* -------------------------------------------- CH7 MAIN ----------------------------------------- */
 .main-logo {
-    width: 22%;
+    width: 16.66666667%;
     height: auto;
     display: inline-block;
 }
@@ -697,6 +686,11 @@ input[type=range]:focus::-webkit-slider-runnable-track {
     margin-left: 15px;
     margin-right: 15px;
 }
+.edit-document-content{
+    margin-left: 15px;
+    margin-right: 15px;
+    background-color: #cdcdcd;
+}
 .edit-topic-icon {
     font-size: large;
     color: #ffffff;
@@ -728,7 +722,7 @@ input[type=range]:focus::-webkit-slider-runnable-track {
 }
 .topic-list{
     overflow-y: auto;
-    height: calc(100% - 160px);
+    height: calc(100% - 149px);
 }
 .sub-topic {
     padding-left: 10px;
@@ -816,7 +810,15 @@ a.sortable-columns{
 .content-view {
     padding: 0;
     height: 100%;
-    background-color: #efefef;
+    background-color: #dfdfdf;
+}
+.administer-content{
+    margin-left: 15px;
+    margin-right: 15px;
+    height: calc(100% - 149px);
+}
+.administer-fields-content{
+    height: calc(100% - 59px);
 }
 .body_background {
     background-color: #f3f3f3;
@@ -849,7 +851,7 @@ a.sortable-columns{
 .standard-list {
     margin-top: 10px;
     overflow-y: auto;
-    height: calc(100% - 160px);
+    height: calc(100% - 149px);
 }
 .administer-fields-list {
     height: 550px;
@@ -877,9 +879,6 @@ a.sortable-columns{
     display: inline-block;
 }
 /*~~~~~~~~~~~~TARGET GROUP~~~~~~~~~~~*/
-.target-group-grid{
-    height: 100%;
-}
 .tg-tbody {
     overflow-y: auto;
     overflow-x: hidden;

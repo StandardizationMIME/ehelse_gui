@@ -1,5 +1,5 @@
-<div ng-controller="AdministerActionController" class="height-100-percent">
-    <div class="shadow-below">
+<div ng-controller="AdministerActionController" class="col-lg-7 col-mg-7 col-sm-7 col-xs-7 content-view">
+    <div class="shadow-below editor-header">
 
         <!-- Title -->
         <div class="headline-box">
@@ -10,7 +10,7 @@
         </div>
 
         <!-- Open modal for creating new action -->
-        <p class="twelve-pix-vertical-padding">
+        <p class="ten-pix-vertical-padding">
             <button type="button" class="btn btn-default"
                     ng-click="showNewActionModal()"
                     ng-disabled="!archivedActionsButton"
@@ -25,7 +25,7 @@
         </p>
     </div>
 
-    <div ng-style="{'font-size': text.size + 'px'}" class="table-responsive administer-views shadow-below">
+    <div ng-style="{'font-size': text.size + 'px'}" class="table-responsive shadow-below administer-content">
 
         <!-- Table listing all actions in the system -->
         <table class="table table-striped" id="AdministerActionsTable">
