@@ -124,10 +124,11 @@ angular.module("ehelseEditor").factory("DocumentField", ["$rootScope", "StorageH
                 "description": field.description,
                 "sequence": sequenceInt,
                 "mandatory": mandatoryString,
-                "documentTypeId": $rootScope.typeId,
+                "documentTypeId": String($rootScope.typeId),
                 "isArchived": 0,
                 "isRichText": isRichText
             };
+            console.log(myField);
 
             document_fields.push(myField);
             document_fields.sort(ServiceFunction.compareSequence);
@@ -168,7 +169,7 @@ angular.module("ehelseEditor").factory("DocumentField", ["$rootScope", "StorageH
                 "description": field.description,
                 "sequence": field.sequence,
                 "mandatory": mandatoryString,
-                "documentTypeId": $rootScope.typeId,
+                "documentTypeId": String(field.documentTypeId),
                 "isArchived": 0,
                 "isRichText": isRichText
             };
@@ -179,6 +180,7 @@ angular.module("ehelseEditor").factory("DocumentField", ["$rootScope", "StorageH
             document_field.mandatory = myField.mandatory;
             document_field.sequence = myField.sequence;
             document_field.isRichText = myField.isRichText;
+            document_field.documentTypeId = myField.documentTypeId;
             success(myField);
             document_fields.sort(ServiceFunction.compareSequence);
         }

@@ -275,11 +275,11 @@ angular.module("ehelseEditor").factory("CSVConverter", [ "ServiceFunction", func
         function getDocumentTypeIdWithType(documentType) {
             var documentTypeId;
             if (documentType === "Standard") {
-                documentTypeId = 1
+                documentTypeId = "1"
             } else if (documentType === "Profil") {
-                documentTypeId = 2;
+                documentTypeId = "2";
             } else {
-                documentTypeId = 3;
+                documentTypeId = "3";
             }
             return documentTypeId;
         }
