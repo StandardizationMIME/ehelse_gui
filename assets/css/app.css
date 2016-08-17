@@ -493,18 +493,26 @@ textarea {
 .panel1 {
     color: white;
     background-color: #337ab7;
+    border-radius: 0px !important;
 }
 .panel2 {
     color: white;
     background-color: #c13a47;
+    border-radius: 0px !important;
 }
 .panel3 {
     color: white;
     background-color: #58a739;
+    border-radius: 0px !important;
 }
 .panel4 {
     color: white;
     background-color: darkgray;
+    border-radius: 0px !important;
+}
+.panel{
+    border: 1px solid transparent;
+    border-radius: 0px !important;
 }
 .edit-document-modal {
     max-height: 650px;
@@ -810,7 +818,6 @@ a.sortable-columns{
 .content-view {
     padding: 0;
     height: 100%;
-    background-color: #dfdfdf;
 }
 .administer-content{
     margin-left: 15px;
