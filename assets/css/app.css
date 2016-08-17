@@ -731,7 +731,16 @@ input[type=range]:focus::-webkit-slider-runnable-track {
     height: calc(100% - 149px);
 }
 .sub-topic {
-    padding-left: 10px;
+    padding-left: 25px !important;
+}
+.sub-sub-topic {
+    padding-left: 35px !important;
+}
+.sub-sub-sub-topic {
+    padding-left: 45px !important;
+}
+.sub-sub-sub-sub-topic {
+    padding-left: 55px !important;
 }
 .item-text {
     color: #333;
@@ -809,9 +818,6 @@ a.sortable-columns{
 }
 .action-list-item {
     display: inline-block;
-}
-.sub-topic {
-    padding-left: 10px;
 }
 .content-view {
     padding: 0;
