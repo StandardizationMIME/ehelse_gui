@@ -7,19 +7,20 @@
 
     <div class="panel-body">
         <div class="form-group">
-            <div ng-repeat="heading in document.headingContent" class="link-category-group">
+            <div ng-repeat="heading in document.headingContent" class="link-category-group" ng-class="{ 'has-error' : EditDocumentController.DocumentForm.heading{{heading.headingId}}.$invalid && !EditDocumentController.DocumentForm.heading{{heading.headingId}}.$pristine}">
                 <div class="panel panel-default link-group-panel">
                     <div class="panel-heading">
-                        <label ng-style="{'font-size': text.size + 'px'}" for="headingText" class="panel-title">{{headings_dict[heading.headingId].name}}
+                        <label ng-style="{'font-size': text.size + 'px'}" for="headingText" class="panel-title control-label">{{headings_dict[heading.headingId].name}}
                             <span class="fa fa-remove delete-topic-icon clickable pull-right" ng-click="openConfirmationModal('Er du sikker på at du vil slette avsnittet fra dokumentet?', heading, removeHeading); EditDocumentController.DocumentForm.$setDirty()"></span>
                         </label>
                     </div>
                     <div class="panel-body">
-                        <textarea ng-style="{'font-size': text.size + 'px', 'height': text.size*6 + 'px'}" name="headingText" id="headingText" ng-model="heading.text"
+                        <textarea ng-style="{'font-size': text.size + 'px', 'height': text.size*6 + 'px'}" name="heading{{heading.headingId}}" id="headingText" ng-model="heading.text"
                                   class="form-control" rows="6" cols="50" required>
                         </textarea>
                     </div>
                 </div>
+                <p ng-show="EditDocumentController.DocumentForm.heading{{heading.headingId}}.$invalid && !EditDocumentController.DocumentForm.heading{{heading.headingId}}.$pristine" class="help-block small">Feltet må fylles ut</p>
             </div>
             <!-- Open modal for adding headings
              to document -->

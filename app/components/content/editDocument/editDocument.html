@@ -1,5 +1,5 @@
 
-<form ng-controller="EditDocumentController" name="EditDocumentController.DocumentForm"  role="form"
+<form ng-controller="EditDocumentController" name="EditDocumentController.DocumentForm"  role="form" id="docForm"
       ng-class="(documentState == 'newDocument' || documentState == 'editUtility' || documentState == 'hideProfilesFromProfile'
        || documentState == 'hideProfilesFromStandard' || documentState == 'hideProfilesFromNewProfile') ? 'utility-height' : 'document-height'">
 
@@ -10,19 +10,8 @@
         <!-- Headline displaying document type or state -->
         <div class="headline-box">
             <h4 class="selected document-title" title="{{document.title}}">{{document.title}}</h4>
-            <div ng-repeat="(key, errors) in EditDocumentController.DocumentForm.$error track by $index" class="feedback-msg">
-                <span>For å lagre dokumentet mangler du : </span>
-                <span ng-repeat="e in errors | unique: '$name'">
-                    <span ng-if="e.$name == 'f'" class="feedback-msg">'Felter' </span>
-                    <span ng-if="e.$name == 'standardTitle'" class="feedback-msg">'Tittel' </span>
-                    <span ng-if="e.$name == 'internalID'" class="feedback-msg">'Intern ID' </span>
-                    <span ng-if="e.$name == 'linkCategoryUrl'" class="feedback-msg">'Lenke-kategori' </span>
-                    <span ng-if="e.$name == 'targetGroups'" class="feedback-msg">'Målgrupper' </span>
-                    <span ng-if="e.$name == 'headingText'" class="feedback-msg">'Tilleggsopplysninger' </span>
-                    <span ng-if="e.$name == 'linkText'" class="feedback-msg">'Tekst til en link' </span>
-                    <span ng-if="e.$name == 'linkUrl'" class="feedback-msg">'URL til en link' </span>
-                    <!--{{ e.$name }} has an error: <strong>{{ key }}</strong>.-->
-                </span>
+            <div class="feedback-msg small">
+                <span ng-show="EditDocumentController.DocumentForm.$invalid">Dokumentet mangler informasjon</span>
             </div>
         </div>
 
@@ -113,14 +102,15 @@
                 </div>
 
                 <!-- Choose document title -->
-                <div class="form-group">
+                <div class="form-group" ng-class="{ 'has-error' : EditDocumentController.DocumentForm.standardTitle.$invalid && !EditDocumentController.DocumentForm.standardTitle.$pristine}">
                     <label  ng-style="{'font-size': text.size + 'px'}" class="col-sm-4 control-label" for="standardTitle">Tittel: <span class="required-icon"
                                                                                             data-toggle="tooltip"
                                                                                             title="Obligatorisk felt"
                                                                                             data-placement="top">*</span></label>
                     <div class="form-group col-sm-8">
                         <input  ng-style="{'font-size': text.size + 'px', 'height': text.size*2.1 + 'px'}" type="text" name="standardTitle" id="standardTitle" ng-model="document.title"
-                               class="form-control " required/>
+                               class="form-control" required/>
+                        <p ng-show="EditDocumentController.DocumentForm.standardTitle.$invalid && !EditDocumentController.DocumentForm.standardTitle.$pristine" class="help-block small">Tittel er obligatorisk</p>
                     </div>
                 </div>
 
@@ -171,11 +161,12 @@
                 </div>
 
                 <!-- choose sequence-->
-                <div class="form-group">
+                <div class="form-group" ng-class="{ 'has-error' : EditDocumentController.DocumentForm.sequence.$invalid && !EditDocumentController.DocumentForm.sequence.$pristine}">
                     <label  ng-style="{'font-size': text.size + 'px'}" class="col-sm-4 control-label" for="sequence">Rekkefølge: </label>
                     <div class="form-group col-sm-8">
                         <input  ng-style="{'font-size': text.size + 'px', 'height': text.size*2.1 + 'px'}"  type="text" name="sequence" id="sequence" class="form-control "
                                ng-model="document.sequence" value="1" numbers-only maxlength="15"/>
+                        <p ng-show="EditDocumentController.DocumentForm.sequence.$invalid && !EditDocumentController.DocumentForm.sequence.$pristine" class="help-block small">Må inneholde tall</p>
                     </div>
                 </div>
 

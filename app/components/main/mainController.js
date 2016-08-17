@@ -115,8 +115,8 @@ $(document).ready(function() {
                 } else {
                     return true;
                 }
-                return true;
             }
+            return true;
         };
 
         // Initialize user page view

@@ -303,7 +303,6 @@ textarea {
 
 .document-links-link {
     margin-top: 10px;
-    margin-bottom: 10px;
 }
 .document-links-ul{
     -webkit-padding-start: 0;
@@ -699,7 +698,6 @@ input[type=range]:focus::-webkit-slider-runnable-track {
 .delete-target-group-icon{
     font-size: large;
     color: #c13a47;
-    padding-top: 10px;
 }
 .topic-browser {
     padding: 20px 15px 15px 15px;
@@ -721,7 +719,7 @@ input[type=range]:focus::-webkit-slider-runnable-track {
     padding: 5px;
 }
 .feedback-msg {
-    color: darkred;
+    color: #a94442;
 }
 /* -------------------------------------------- CH11 ADMINISTER_FIELDS ----------------------------------------- */
 .administer-fields ul{
@@ -935,4 +933,7 @@ input.ng-invalid-requi#c13a47{
 }
 .search-options{
     margin: auto 10pt auto 10pt;
+}
+.default-border-color-important{
+    border: 1px solid #ccc !important;
 }

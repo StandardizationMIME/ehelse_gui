@@ -27,35 +27,36 @@
                 <!-- Table body -->
                 <tbody>
                 <!-- For all target groups in the document display: -->
-                <tr ng-repeat="group in document.targetGroups">
+                <tr ng-repeat="group in document.targetGroups" ng-class="{ 'has-error' : EditDocumentController.DocumentForm.t{{group.targetGroupId}}.$invalid && !EditDocumentController.DocumentForm.t{{group.targetGroupId}}.$pristine}">
 
                     <!-- NAME -->
-                    <td class="target-group-info">
+                    <td class="target-group-info control-label">
                         <span ng-style="{'font-size': text.size + 'px'}">{{target_groups_dict[group.targetGroupId].name}}</span>
                     </td>
 
                     <!-- MANDATORY -->
                     <td class="target-group-info">
                         <select ng-style="{'font-size': text.size + 'px', 'height': text.size*2.5 + 'px'}"
-                                class="form-control" name="targetGroups" id="mandatory" ng-model="group.mandatoryId"
+                                class="form-control" name="t{{group.targetGroupId}}" id="mandatory" ng-model="group.mandatoryId"
                                 ng-change="updateMandatoryNotices()" required>
                             <option value="" selected>Ingen</option>
                             <option ng-repeat="mandatory in mandatory_list" ng-hide="mandatory.isArchived"
                                     value={{mandatory.id}}>{{mandatory.name}}
                             </option>
                         </select>
+                        <p ng-show="EditDocumentController.DocumentForm.t{{group.targetGroupId}}.$invalid && !EditDocumentController.DocumentForm.t{{group.targetGroupId}}.$pristine" class="help-block small">Feltet må fylles ut</p>
                     </td>
 
                     <!-- Deadline -->
                     <td class="target-group-info">
                         <input ng-style="{'font-size': text.size + 'px', 'height': text.size*2.1 + 'px'}"
-                               class="form-control" type="text" id="deadline" ng-model="group.deadline">
+                               class="form-control default-border-color-important" type="text" id="deadline" ng-model="group.deadline">
                     </td>
 
                     <!-- ACTION -->
                     <td class="target-group-info">
                         <select ng-style="{'font-size': text.size + 'px', 'height': text.size*2.5 + 'px'}"
-                                class="form-control" name="" id="action" ng-model="group.actionId">
+                                class="form-control default-border-color-important" name="" id="action" ng-model="group.actionId">
                             <option value="" selected>Ingen</option>
                             <option ng-repeat="action in actions_option_list" ng-hide="action.isArchived"
                                     value={{action.value}}>{{action.name}}
@@ -66,11 +67,11 @@
                     <!-- Description -->
                     <td class="target-group-info">
                         <input ng-style="{'font-size': text.size + 'px', 'height': text.size*2.1 + 'px'}" type="text"
-                               class="form-control" id="description" ng-model="group.description"/>
+                               class="form-control default-border-color-important" id="description" ng-model="group.description"/>
                     </td>
 
                     <!-- Delete target group from document -->
-                    <td>
+                    <td class="center-align-delete-button">
                         <span class="fa fa-remove delete-target-group-icon clickable"
                               ng-click="openConfirmationModal('Er du sikker på at du vil slette målgruppen fra dokumentet?', group, removeTargetGroup); EditDocumentController.DocumentForm.$setDirty()"></span>
                     </td>
