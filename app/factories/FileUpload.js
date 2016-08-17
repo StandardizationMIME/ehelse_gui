@@ -272,8 +272,8 @@ angular.module("ehelseEditor").factory("FileUpload",
             Status.clear();
             TargetGroup.clear();
             Topic.clear();
-            Heading.init();
-            ContactAddress.init();
+            Heading.clear();
+            ContactAddress.clear();
         }
 
         function newJson() {
