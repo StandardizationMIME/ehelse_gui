@@ -50,7 +50,6 @@ angular.module("ehelseEditor").factory("FileUpload",
                                     _failure();
                                 }
                             } catch (e) {
-                                isJsonFile = false;
                                 _failure();
                             }
 
