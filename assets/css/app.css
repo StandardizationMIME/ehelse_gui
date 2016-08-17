@@ -67,7 +67,7 @@ h1,h2,h3,h4{ font-weight: bold;}
     background-color: #337ab7;
     color: white !important;
 }
-.selected-item > span{
+.selected-item span{
     color: white !important;
 }
 .scrollable {
@@ -748,17 +748,40 @@ input[type=range]:focus::-webkit-slider-runnable-track {
     padding-bottom: 10px;
     padding-top: 10px;
 }
-.item-text > .standard-icon {
-    font-size: 1.5em;
-    color: #337ab7;
-}
-.item-text:hover >.standard-icon{
+.item-text:hover span{
     color: white;
 }
 .item-text:hover {
     cursor: pointer;
     background-color: #337ab7;
     color: white;
+}
+.topic-title {
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+}
+.sub-topic-ul {
+    -webkit-padding-start: 25px;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+.sub-sub-topic-ul {
+    -webkit-padding-start: 40px;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+.sub-sub-sub-topic-ul {
+    -webkit-padding-start: 55px;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+.sub-sub-sub-sub-topic-ul {
+    -webkit-padding-start: 70px;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+.standard-icon {
+    color: #337ab7;
+    font-size: 1.5em;
 }
 .feedback-msg {
     color: #a94442;
