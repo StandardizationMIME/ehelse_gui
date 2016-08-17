@@ -276,8 +276,12 @@ angular.module("ehelseEditor").factory("FileUpload",
             ContactAddress.init();
         }
 
-        function newJson() {
+        function setJsonFalse() {
             isJsonFile = false;
+        }
+        
+        function setJsonTrue() {
+            isJsonFile = true;
         }
 
         return {
@@ -285,7 +289,8 @@ angular.module("ehelseEditor").factory("FileUpload",
             onLoadCSV: onLoadCSV,
             onSaveMimeJSON: onSaveMimeJSON,
             onSaveWebJSON: onSaveWebJSON,
-            newJson: newJson
+            setJsonFalse: setJsonFalse,
+            setJsonTrue: setJsonTrue
         };
     }
 ]);

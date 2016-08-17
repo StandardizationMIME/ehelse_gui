@@ -114,7 +114,7 @@ angular.module("ehelseEditor").controller("ToolbarController",
             };
 
             $scope.saveAs = function () {
-                FileUpload.newJson();
+                FileUpload.setJsonFalse();
                 FileUpload.onSaveMimeJSON(DownloadList.getStorageList(), function () {
                     $rootScope.loadingBarStart();
                     $scope.fakeIntro = true;
@@ -130,6 +130,7 @@ angular.module("ehelseEditor").controller("ToolbarController",
                 }, function () {
                     $rootScope.notifyError("Save failed... :(", 1000);
                 });
+                FileUpload.setJsonTrue();
             };
 
             $scope.downloadAllDocumentsAsJSON = function(){
