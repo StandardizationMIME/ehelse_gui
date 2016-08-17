@@ -244,6 +244,13 @@ angular.module("ehelseEditor").factory("Document",
                 document.populatedProfiles = [];
                 document.fields = removeLineBreakFromDocumentFields(document.fields);
                 document.sequence = Number(document.sequence);
+                for(var link in current_document.links){
+                    if (!current_document.links.hasOwnProperty(link)) continue;
+                    if(!current_document.links[link].sequence){
+                        current_document.links[link].sequence = 1;
+                    }
+                    current_document.links[link].sequence = Number(current_document.links[link].sequence);
+                }
             }
 
             function changeTopicIdOfNextDocumentVersions(document) {
