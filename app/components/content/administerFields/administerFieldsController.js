@@ -83,7 +83,6 @@ angular.module("ehelseEditor").controller("AdministerFieldsController", ["$scope
     $scope.showNewFieldModal = function () {
         $rootScope.shouldBeOpen = true;
         $rootScope.openModal("app/components/content/administerFields/addFields/newDocumentFieldModal.html", "DocumentFieldModalController");
-        console.log("showNewFieldModal?");
     };
 
 }]);
