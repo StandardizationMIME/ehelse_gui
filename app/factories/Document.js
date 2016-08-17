@@ -323,7 +323,7 @@ angular.module("ehelseEditor").factory("Document",
                 var errors = [];
 
                 if (!id) {
-                    if (!ServiceFunction.isUnique(documents, "internalId", internal_id)) {
+                    if (internal_id && !ServiceFunction.isUnique(documents, "internalId", internal_id)) {
                         console.log("Error, internal id not unqiue");
                         errors.push("Intern ID er ikke unikt");
                     }
@@ -333,7 +333,7 @@ angular.module("ehelseEditor").factory("Document",
                     }
                 } else {
                     if ((documents_dict[id].internalId != current_document.internalId) &&
-                        (!ServiceFunction.isUnique(documents, "internalId", internal_id))) {
+                        (internal_id && !ServiceFunction.isUnique(documents, "internalId", internal_id))) {
                         console.log("Error internal id changed to not unique");
                         errors.push("Intern ID er ikke unik")
                     }
