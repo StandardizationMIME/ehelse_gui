@@ -113,6 +113,25 @@ angular.module("ehelseEditor").controller("ToolbarController",
                 });
             };
 
+            $scope.saveAs = function () {
+                FileUpload.newJson();
+                FileUpload.onSaveMimeJSON(DownloadList.getStorageList(), function () {
+                    $rootScope.loadingBarStart();
+                    $scope.fakeIntro = true;
+                    setTimeout(function() {
+                        $rootScope.savingFilePath = StorageHandler.getSavingFilePath();
+                        $rootScope.currentFilePath = StorageHandler.getCurrentFilePath();
+
+                        $rootScope.notifySuccess("Save succeed! To: " + $rootScope.savingFilePath, 2000);
+
+                        $rootScope.loadingBarComplete();
+                        $scope.fakeIntro = false;
+                    }, 500);
+                }, function () {
+                    $rootScope.notifyError("Save failed... :(", 1000);
+                });
+            };
+
             $scope.downloadAllDocumentsAsJSON = function(){
                 FileUpload.onSaveWebJSON(DocumentExtractor.getAllDocumentsAsJSON(), function () {
                     $rootScope.loadingBarStart();
