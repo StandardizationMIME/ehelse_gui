@@ -12,6 +12,9 @@
 /* ----- CH11 ADMINISTER_FIELDS ----- */
 /*------------------------------------------------------------------------------------------------------ */
 /* ----------------------------------------------- CH1 GENERIC ----------------------------------------- */
+.btn, input, select, textarea {
+    border-radius: 0 !important;
+}
 html,body {
     overflow-x: hidden;
     height: 100%;
@@ -134,6 +137,9 @@ h1,h2,h3,h4{ font-weight: bold;}
 .font-size-large {
     font-size: large;
 }
+.font-size-small {
+    font-size: 11px;
+}
 .height-100-percent {
     height: 100%;
 }
@@ -154,6 +160,9 @@ h1,h2,h3,h4{ font-weight: bold;}
 /* Makes modals vertically centered */
 .modal {
     text-align: center;
+}
+
+.modal-backdrop {
 }
 @media screen and (min-width: 768px) {
     .modal:before {
@@ -370,8 +379,8 @@ textarea {
     height: 80px;
     width: 100%;
     display: inline-block;
-    /*box-shadow: 0 -2px #b8b8b8;*/
-    z-index: 1000;
+    box-shadow: 0 -1px #888888;
+    z-index: 500;
     background-color: #dfdfdf;
 }
 .toggle-profiles-down {
@@ -381,7 +390,7 @@ textarea {
     bottom: 69px;
     color: #c13a47;
     display: block;
-    z-index: 1010;
+    z-index: 510;
 }
 .toggle-profiles-up {
     position: absolute;
@@ -390,7 +399,7 @@ textarea {
     bottom: 4px;
     color: #c13a47;
     display: block;
-    z-index: 1010;
+    z-index: 510;
 }
 .circle-down {
     position: absolute;
@@ -403,7 +412,7 @@ textarea {
     border-radius: 50%;
     background-color: #dfdfdf;
     text-align: center;
-    z-index: 1009;
+    z-index: 509;
 }
 .circle-up {
     position: absolute;
@@ -416,7 +425,7 @@ textarea {
     border-radius: 50%;
     background-color: #dfdfdf;
     text-align: center;
-    z-index: 1009;
+    z-index: 509;
 }
 
 .toggle-profiles-down:hover, .toggle-profiles-up:hover {
@@ -483,7 +492,7 @@ textarea {
     white-space: nowrap;
     padding-left: 0;
     padding-right: 0;
-    background-color: #dfdfdf
+    background-color: #efefef;
 }
 .selected-profile-icon {
     color: white;
@@ -614,14 +623,49 @@ textarea {
     padding-left: 10px;
     padding-right: 10px;
 }
+.search-field {
+    border-radius: 0;
+}
+.search-field-filter {
+    border-radius: 0;
+}
+.dropdown-menu {
+    background-color: #346dab;
+    border-radius: 0;
+    border: none;
+}
+.dropdown-menu .divider {
+    margin-right: 10px;
+    margin-left: 10px;
+    background-color: #e5e5e5;
+}
+menu>li>a:hover {
+    color: white;
+    text-decoration: none;
+    background-color: #5585b7;
+}
+.dropdown-menu>li>a{
+    color: white;
+}
+.search-filter-dropdown {
+    background-color: white;
+}
 .toolbar-button {
-    color: #333;
+    color: white;
     font-weight: bold;
 }
 .toolbar-button:hover {
-    background-color: #337ab7 !important;
-    color: #f0f0f0 !important;
+    background-color: #5585b7 !important;
+    color: white !important;
     cursor: pointer;
+}
+.nav .open>a, .nav .open>a:focus, .nav .open>a:hover {
+    background-color: #346dab;
+    border-color: white;
+}
+.file-path, .file-path:hover{
+    color: white !important;
+    background-color: #337ab7 !important;
 }
 .navbar-text{
     margin-top: 9px;
@@ -634,13 +678,12 @@ textarea {
     margin-right: 0.5em;
 }
 #editor-nav {
-    background-color: #d7d7d7;
+    position: relative;
+    background-color: #337ab7;
     width: 100%;
+    box-shadow: 0 2px 2px -1px #888888;
+    z-index: 520;
 }
-#search-bar {
-    width: 365px;
-}
-
 /* Slider input styling */
 input[type=range]{
     -webkit-appearance: none;
@@ -649,7 +692,7 @@ input[type=range]{
 
 input[type=range]::-webkit-slider-runnable-track {
     height: 5px;
-    background: #bbbbbb;
+    background: white;
     border: none;
     border-radius: 3px;
 }
@@ -660,12 +703,12 @@ input[type=range]::-webkit-slider-thumb {
     height: 16px;
     width: 16px;
     border-radius: 50%;
-    background: grey;
+    background: #b8b8b8;
     margin-top: -4px;
 }
 
 input[type=range]::-webkit-slider-thumb:hover, input[type=range]::-webkit-slider-thumb:focus  {
-    background: #8d8d8d;
+    background: #a5a5a5;
 }
 
 input[type=range]:focus {
@@ -673,7 +716,7 @@ input[type=range]:focus {
 }
 
 input[type=range]:focus::-webkit-slider-runnable-track {
-    background: #c6c6c6;
+    background: #e4e4e4;
 }
 
 /* -------------------------------------------- CH10 TOPIC ----------------------------------------- */
@@ -710,14 +753,20 @@ input[type=range]:focus::-webkit-slider-runnable-track {
     color: #c13a47;
 }
 .topic-browser {
+    box-shadow: 1px 0 #b8b8b8;
     padding: 0;
     height: 100%;
-    background-color: #dfdfdf;
+    background-color: #ebebeb;
+    position: relative;
+    z-index: 518;
 }
 .document-browser {
+    box-shadow: 1px 0 #b8b8b8;
     padding: 0;
     height: 100%;
-    background-color: #e7e7e7;
+    background-color: #f1f1f1;
+    position: relative;
+    z-index: 515;
 }
 .content-browser {
     padding: 0;
@@ -731,15 +780,19 @@ input[type=range]:focus::-webkit-slider-runnable-track {
 }
 .sub-topic {
     padding-left: 25px !important;
+    background-color: #cdcdcd;
 }
 .sub-sub-topic {
     padding-left: 35px !important;
+    background-color: #b9b9b9;
 }
 .sub-sub-sub-topic {
     padding-left: 45px !important;
+    background-color: #a5a5a5;
 }
 .sub-sub-sub-sub-topic {
     padding-left: 55px !important;
+    background-color: #919191;
 }
 .item-text {
     color: #333;
@@ -819,6 +872,7 @@ a.sortable-columns{
     display: inline-block;
 }
 .content-view {
+    box-shadow: -1px 0 #b8b8b8;
     padding: 0;
     height: 100%;
 }

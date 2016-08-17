@@ -42,7 +42,9 @@
         </div>
     </div>
 </div>
-<span class="circle-up" ng-if="documentState == 'hideProfilesFromProfile' || documentState == 'hideProfilesFromStandard' || documentState == 'hideProfilesFromNewProfile'"></span>
-<span class="fa fa-chevron-circle-up toggle-profiles-up" ng-if="documentState == 'hideProfilesFromProfile' || documentState == 'hideProfilesFromStandard' || documentState == 'hideProfilesFromNewProfile'"
-      ng-click="toggleProfilesBar()">
-</span>
+<div>
+    <span class="circle-up" ng-if="documentState == 'hideProfilesFromProfile' || documentState == 'hideProfilesFromStandard' || documentState == 'hideProfilesFromNewProfile'"></span>
+    <span class="fa fa-chevron-circle-up toggle-profiles-up" ng-if="documentState == 'hideProfilesFromProfile' || documentState == 'hideProfilesFromStandard' || documentState == 'hideProfilesFromNewProfile'"
+          ng-click="toggleProfilesBar()">
+    </span>
+</div>
