@@ -780,19 +780,15 @@ input[type=range]:focus::-webkit-slider-runnable-track {
 }
 .sub-topic {
     padding-left: 25px !important;
-    background-color: #cdcdcd;
 }
 .sub-sub-topic {
     padding-left: 35px !important;
-    background-color: #b9b9b9;
 }
 .sub-sub-sub-topic {
     padding-left: 45px !important;
-    background-color: #a5a5a5;
 }
 .sub-sub-sub-sub-topic {
     padding-left: 55px !important;
-    background-color: #919191;
 }
 .item-text {
     color: #333;
