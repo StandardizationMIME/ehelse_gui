@@ -9,7 +9,7 @@ angular.module("ehelseEditor").controller("NewTopicModalController", [ "$scope",
     $scope.newTopic = {
         "title" : "",
         "description" : "",
-        "parentId": Topic.getSelected().id || null,
+        "parentId": "",
         "sequence": 1
     };
 

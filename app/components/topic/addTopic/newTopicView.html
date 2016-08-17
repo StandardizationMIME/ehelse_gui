@@ -34,7 +34,7 @@
                     <div class="form-group" >
                         <label for="topicParent">Opprett tema under: </label>
                         <select name="topicParent" id="topicParent" class="form-control" ng-model="newTopic.parentId">
-                            <option value="" ng-selected="true">Ingen</option>
+                            <option value="" selected>Ingen</option>
                             <option ng-repeat="topic in topicTupleList" ng-if="topic.level <= 2" value={{topic.id}}>{{topic.path}}</option>
                         </select>
                     </div>
