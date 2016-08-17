@@ -459,12 +459,14 @@ textarea {
     height: 100%;
     padding-top: 13px;
     color: #c13a47;
+    background-color: #efefef;
 }
 .new-profile-container:hover {
-    background-color: #eeebec;
+    background-color: #dddddd;
+    color: #c13a47;
 }
 .back-to-standard:hover {
-    background-color: #eeebec;
+    background-color: #dddddd;
 }
 .profile-text {
     text-align: center;
@@ -484,6 +486,7 @@ textarea {
 .back-to-standard {
     height: 100%;
     padding-top: 18px;
+    background-color: #efefef;
 }
 .profile-list {
     height: 100%;
