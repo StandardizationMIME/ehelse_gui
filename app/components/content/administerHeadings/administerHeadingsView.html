@@ -1,5 +1,5 @@
-<div ng-controller="AdministerHeadingsController" class="height-100-percent">
-    <div class="shadow-below">
+<div ng-controller="AdministerHeadingsController" class="col-lg-7 col-mg-7 col-sm-7 col-xs-7 content-view">
+    <div class="shadow-below editor-header">
 
         <!-- Title -->
         <div class="headline-box">
@@ -7,7 +7,7 @@
         </div>
 
         <!-- Add new heading -->
-        <p class="twelve-pix-vertical-padding">
+        <p class="ten-pix-vertical-padding">
             <button type="button" class="btn btn-default"
                     ng-click="showNewHeadingModal()"
                     ng-disabled="!archivedHeadingButton"
@@ -22,7 +22,7 @@
         </p>
     </div>
 
-    <div ng-style="{'font-size': text.size + 'px'}" class="table-responsive administer-views shadow-below">
+    <div ng-style="{'font-size': text.size + 'px'}" class="table-responsive administer-content shadow-below">
 
         <!-- Table listing all headings in the system -->
         <table class="table table-striped" id="AdministerHeadingsTable">

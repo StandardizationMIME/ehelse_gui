@@ -62,14 +62,14 @@ h1,h2,h3,h4{ font-weight: bold;}
     display: table-cell;
     vertical-align: middle;
 }
-.d1{color: #337ab7; font-size: 1.3em;}
-.d2{color: #c13a47; font-size: 1.3em;}
-.d3{color: #58a739; font-size: 1.3em;}
 
 .selected-item {
     font-weight: bold;
-    border-radius: 5px;
-    background-color: #e7e7e7;
+    background-color: #337ab7;
+    color: white !important;
+}
+.selected-item > span{
+    color: white !important;
 }
 .scrollable {
     overflow-y: auto;
@@ -225,22 +225,27 @@ h1,h2,h3,h4{ font-weight: bold;}
 textarea {
     resize: none;
 }
-
-.administer-views {
-    height: calc(100% - 125px);
-    overflow-y: auto;
-    overflow-x: hidden;
-}
-.fields-view {
-    height: calc(100% - 47px);
-    overflow-y: auto;
-    overflow-x: hidden;
-}
 /* -------------------------------------------- CH3 CONTENT ----------------------------------------- */
 .document-fields {
     overflow-y: hidden;
 }
 /* -------------------------------------------- CH4 DOCUMENT ----------------------------------------- */
+
+.document-in-list {
+    color: #333;
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-bottom: 3px;
+    padding-top: 3px;
+}
+.document-in-list:hover >.fa-file-text{
+    color: white;
+}
+.document-in-list:hover {
+    cursor: pointer;
+    background-color: #337ab7;
+    color: white;
+}
 .opprett-button {
     height: 35px;
 }
@@ -334,60 +339,31 @@ textarea {
 .link-category-group{
     margin-bottom: 30px;
 }
-/*.standard-list {
-    margin-top: 10px;
-    margin-bottom: 25px;
-    height: 650px;
-    overflow-y: auto;
-}*/
 .file-browser {
-    padding: 20px 15px 20px 15px;
+    padding: 0;
     height: 100%;
-    background-color: #f3f3f3;
-    box-shadow: 1px 1px 2px 1px #b8b8b8;
+    background-color: #e7e7e7;
 }
 .document-content {
     margin-bottom: 20px;
 }
 
 /* Profile specific */
-.editDocument {
+.newProfile, .editProfile, .newDocument, .editDocument {
     overflow-y: auto;
-    height: 100%;
+    height: calc(100% - 220px);
 }
-.newDocument {
+
+.hideProfilesFromStandard, .hideProfilesFromProfile, .hideProfilesFromNewProfile, .editUtility {
     overflow-y: auto;
-    height: calc(100% - 20px);
+    height: calc(100% - 150px);
 }
-.editProfile {
-    overflow-y: auto;
-    height: 100%;
-}
-.newProfile {
-    overflow-y: auto;
-    height: 100%;
-}
-.editUtility {
-    overflow-y: auto;
-    height: calc(100% - 20px);
-}
-.hideProfilesFromStandard {
-    overflow-y: auto;
-    height: calc(100% - 20px);
-}
-.hideProfilesFromProfile {
-    overflow-y: auto;
-    height: calc(100% - 20px);
-}
-.hideProfilesFromNewProfile{
-    overflow-y: auto;
-    height: calc(100% - 20px);
-}
+
 .utility-height {
     height: 85%;
 }
 .document-height {
-    height: calc(100% - 200px);
+    height: 100%;
 }
 .profiles-container {
     position: relative;
@@ -395,8 +371,9 @@ textarea {
     height: 80px;
     width: 100%;
     display: inline-block;
-    box-shadow: 0 -2px #b8b8b8;
+    /*box-shadow: 0 -2px #b8b8b8;*/
     z-index: 1000;
+    background-color: #dfdfdf;
 }
 .toggle-profiles-down {
     position: absolute;
@@ -411,7 +388,7 @@ textarea {
     position: absolute;
     left: 50%;
     font-size: 1.5em;
-    bottom: -11px;
+    bottom: 4px;
     color: #c13a47;
     display: block;
     z-index: 1010;
@@ -425,20 +402,20 @@ textarea {
     width: 19px;
     -moz-border-radius: 50%;
     border-radius: 50%;
-    background-color: #f3f3f3;
+    background-color: #dfdfdf;
     text-align: center;
     z-index: 1009;
 }
 .circle-up {
     position: absolute;
     left: 50%;
-    bottom: -11px;
+    bottom: 4px;
     display: block;
     height: 19px;
     width: 19px;
     -moz-border-radius: 50%;
     border-radius: 50%;
-    background-color: #f3f3f3;
+    background-color: #dfdfdf;
     text-align: center;
     z-index: 1009;
 }
@@ -506,7 +483,8 @@ textarea {
     overflow-y: hidden;
     white-space: nowrap;
     padding-left: 0;
-    padding-right: 0
+    padding-right: 0;
+    background-color: #dfdfdf
 }
 .selected-profile-icon {
     color: white;
@@ -514,18 +492,26 @@ textarea {
 .panel1 {
     color: white;
     background-color: #337ab7;
+    border-radius: 0px !important;
 }
 .panel2 {
     color: white;
     background-color: #c13a47;
+    border-radius: 0px !important;
 }
 .panel3 {
     color: white;
     background-color: #58a739;
+    border-radius: 0px !important;
 }
 .panel4 {
     color: white;
     background-color: darkgray;
+    border-radius: 0px !important;
+}
+.panel{
+    border: 1px solid transparent;
+    border-radius: 0px !important;
 }
 .edit-document-modal {
     max-height: 650px;
@@ -545,13 +531,8 @@ textarea {
 }
 /* -------------------------------------------- CH5 EDITOR ----------------------------------------- */
 .editor-display {
-    max-width: 1800px;
-    margin: auto;
-    margin-bottom: 0;
+    width: 100%;
     height: 100%;
-    background-color: #f3f3f3;
-    border-radius: 10px;
-    box-shadow: 1px 1px 2px 2px #b8b8b8;
 }
 /* -------------------------------------------- CH6 LOGIN ----------------------------------------- */
 .logged-out-page button{
@@ -569,7 +550,7 @@ textarea {
 }
 /* -------------------------------------------- CH7 MAIN ----------------------------------------- */
 .main-logo {
-    width: 22%;
+    width: 16.66666667%;
     height: auto;
     display: inline-block;
 }
@@ -578,8 +559,11 @@ textarea {
     height: auto;
 }
 .secondary-view {
-    height: 93%;
-    padding-bottom: 20px;
+    height: calc(100% - 50px);
+}
+.main-container {
+    padding: 0;
+    margin: 0;
 }
 /* -------------------------------------------- CH8 MY_PAGE ----------------------------------------- */
 #account-info {
@@ -619,25 +603,40 @@ textarea {
     border-color: #ccc;
 }
 /* -------------------------------------------- CH9 TOOLBAR ----------------------------------------- */
-/* User dropdown start */
-/*div>div>.dropdown-toggle{
-    margin-bottom: 0.5em;
-    background-color: inherit;
-    border: none;
+.font-size-number {
+    color: #333;
 }
-div>div>.dropdown-toggle:hover{
-    border-radius: 5%;
-}*/
-/* User dropdown end */
+.nav>li>a:hover {
+    color: #333;
+    background-color: #d7d7d7;
+}
+.search-bar {
+    width: 250px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+.toolbar-button {
+    color: #333;
+    font-weight: bold;
+}
+.toolbar-button:hover {
+    background-color: #337ab7 !important;
+    color: #f0f0f0 !important;
+    cursor: pointer;
+}
+.navbar-text{
+    margin-top: 9px;
+    margin-bottom: 9px;
+}
+.navbar-brand {
+    padding: 0;
+}
 .nav-element-margin {
     margin-right: 0.5em;
 }
 #editor-nav {
-    background-color: #f3f3f3;
-    border-radius: 10px;
-    box-shadow: 1px 1px 1px 1px #b8b8b8;
-    display: inline-block;
-    width:75%;
+    background-color: #d7d7d7;
+    width: 100%;
 }
 #search-bar {
     width: 365px;
@@ -651,7 +650,7 @@ input[type=range]{
 
 input[type=range]::-webkit-slider-runnable-track {
     height: 5px;
-    background: #ddd;
+    background: #bbbbbb;
     border: none;
     border-radius: 3px;
 }
@@ -666,12 +665,16 @@ input[type=range]::-webkit-slider-thumb {
     margin-top: -4px;
 }
 
+input[type=range]::-webkit-slider-thumb:hover, input[type=range]::-webkit-slider-thumb:focus  {
+    background: #8d8d8d;
+}
+
 input[type=range]:focus {
     outline: none;
 }
 
 input[type=range]:focus::-webkit-slider-runnable-track {
-    background: #ccc;
+    background: #c6c6c6;
 }
 
 /* -------------------------------------------- CH10 TOPIC ----------------------------------------- */
@@ -683,10 +686,18 @@ input[type=range]:focus::-webkit-slider-runnable-track {
     display: -webkit-box;
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 2; /* number of lines to show */
-    line-height: 18px;        /* fallback */
-    max-height: 38px;       /* fallback */
+    line-height: 25px;        /* fallback */
+    max-height: 50px;       /* fallback */
 }
-
+.content {
+    margin-left: 15px;
+    margin-right: 15px;
+}
+.edit-document-content{
+    margin-left: 15px;
+    margin-right: 15px;
+    background-color: #f3f3f3;
+}
 .edit-topic-icon {
     font-size: large;
     color: #ffffff;
@@ -700,26 +711,52 @@ input[type=range]:focus::-webkit-slider-runnable-track {
     color: #c13a47;
 }
 .topic-browser {
-    padding: 20px 15px 15px 15px;
+    padding: 0;
     height: 100%;
+    background-color: #dfdfdf;
+}
+.document-browser {
+    padding: 0;
+    height: 100%;
+    background-color: #e7e7e7;
+}
+.content-browser {
+    padding: 0;
+    margin: 0;
+    height: 100%;
+    background-color: #ededed;
 }
 .topic-list{
     overflow-y: auto;
-    height: calc(100% - 106px);
-    max-height: 100%;
+    height: calc(100% - 149px);
 }
 .sub-topic {
     padding-left: 10px;
 }
-.standard-icon {
+.item-text {
+    color: #333;
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-bottom: 10px;
+    padding-top: 10px;
+}
+.item-text > .standard-icon {
+    font-size: 1.5em;
     color: #337ab7;
 }
-.item-text {
-    color: #0f0f0f;
-    padding: 5px;
+.item-text:hover >.standard-icon{
+    color: white;
+}
+.item-text:hover {
+    cursor: pointer;
+    background-color: #337ab7;
+    color: white;
 }
 .feedback-msg {
     color: #a94442;
+}
+.editor-header {
+    margin: 15px !important;
 }
 /* -------------------------------------------- CH11 ADMINISTER_FIELDS ----------------------------------------- */
 .administer-fields ul{
@@ -732,7 +769,7 @@ input[type=range]:focus::-webkit-slider-runnable-track {
 }
 .administer-fields .field-list-title{
     display: inline-block;
-    color: white;
+    color: #f0f0f0;
 }
 .edit-field{
     font-size: 2em;
@@ -773,33 +810,20 @@ a.sortable-columns{
 .action-list-item {
     display: inline-block;
 }
-.editor-display {
-    max-width: 1800px;
-    margin: auto;
-    height: 100%;
-    background-color: #f3f3f3;
-    border-radius: 10px;
-    box-shadow: 1px 1px 2px 2px #b8b8b8;
-}
 .sub-topic {
     padding-left: 10px;
 }
-.file-browser {
-    padding: 20px 15px 20px 15px;
-    height: 100%;
-    background-color: #f3f3f3;
-    box-shadow: 1px 1px 2px 1px #b8b8b8;
-}
 .content-view {
-    padding-top: 16px;
+    padding: 0;
     height: 100%;
 }
-.standard-icon {
-    color: #337ab7;
+.administer-content{
+    margin-left: 15px;
+    margin-right: 15px;
+    height: calc(100% - 149px);
 }
-.item-text {
-    color: #0f0f0f;
-    padding: 5px;
+.administer-fields-content{
+    height: calc(100% - 59px);
 }
 .body_background {
     background-color: #f3f3f3;
@@ -828,11 +852,11 @@ a.sortable-columns{
     text-align: center;
 }
 .pointer{cursor: pointer;}
+
 .standard-list {
     margin-top: 10px;
     overflow-y: auto;
-    height: calc(100% - 106px);
-    max-height: 100%;
+    height: calc(100% - 149px);
 }
 .administer-fields-list {
     height: 550px;
@@ -860,9 +884,6 @@ a.sortable-columns{
     display: inline-block;
 }
 /*~~~~~~~~~~~~TARGET GROUP~~~~~~~~~~~*/
-.target-group-grid{
-    height: 100%;
-}
 .tg-tbody {
     overflow-y: auto;
     overflow-x: hidden;
@@ -924,9 +945,6 @@ input[type=checkbox] {
     -ms-transform: scale(1.5);
     -webkit-transform: scale(1.5);
     padding: 100px;
-}
-.ehelse-navbar {
-    margin: 3px;
 }
 input.ng-invalid-requi#c13a47{
     background-color: rgba(255,0,0,0.3);

@@ -150,6 +150,8 @@ angular.module("ehelseEditor").controller("EditDocumentController",
                     } else {
                         return Math.floor(string.length / 80) + string.split(/\r\n|\r|\n/).length
                     }
+                } else {
+                    return 1
                 }
             };
 
