@@ -159,13 +159,15 @@ angular.module("ehelseEditor").factory("FileUpload",
 
                             writer.onwriteend = function (e) {
                                 try {
-                                    chosenFileEntry = writableFileEntry;
-                                    isJsonFile = true;
-                                    chrome.fileSystem.getDisplayPath(writableFileEntry, function(path) {
-                                        StorageHandler.setCurrentFilePath(path);
-                                        StorageHandler.setSavingFilePath(path);
-                                    });
-                                    _success();
+                                    writer.onwriteend = function () {
+                                        chosenFileEntry = writableFileEntry;
+                                        isJsonFile = true;
+                                        chrome.fileSystem.getDisplayPath(writableFileEntry, function(path) {
+                                            StorageHandler.setCurrentFilePath(path);
+                                            StorageHandler.setSavingFilePath(path);
+                                            _success();
+                                        });
+                                    };
                                 } catch (e) {
                                     _failure();
                                 }
@@ -274,11 +276,16 @@ angular.module("ehelseEditor").factory("FileUpload",
             ContactAddress.init();
         }
 
+        function newJson() {
+            isJsonFile = false;
+        }
+
         return {
             onLoadJSON: onLoadJSON,
             onLoadCSV: onLoadCSV,
             onSaveMimeJSON: onSaveMimeJSON,
-            onSaveWebJSON: onSaveWebJSON
+            onSaveWebJSON: onSaveWebJSON,
+            newJson: newJson
         };
     }
 ]);
