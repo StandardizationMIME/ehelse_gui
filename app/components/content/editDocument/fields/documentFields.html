@@ -7,23 +7,24 @@
 
 
     <div class="panel-body">
-        <div class="form-group" >
+        <div class="form-group">
             <table id="new-doc-fields" class="table shadow-below">
 
                 <!-- List the document's fields -->
-                <tr ng-repeat="field in document.fields">
+                <tr ng-repeat="field in document.fields" ng-class="{ 'has-error' : EditDocumentController.DocumentForm.f{{field.fieldId}}.$invalid && !EditDocumentController.DocumentForm.f{{field.fieldId}}.$pristine}">
 
                     <!-- Field name -->
                     <td class="col-md-4">
-                        <label ng-style="{'font-size': text.size + 'px'}" for="documentField{{field.fieldId}}">{{fields_dict[field.fieldId].name}}
+                        <label ng-style="{'font-size': text.size + 'px'}" for="documentField{{field.fieldId}}" class="control-label">{{fields_dict[field.fieldId].name}}
                         <span ng-if="fields_dict[field.fieldId].mandatory == 1" class="required-icon" data-toggle="tooltip"
                               data-placement="top" data-original-title="Obligatorisk felt">*</span></label>
                     </td>
 
                     <!-- Field input -->
                     <td class="col-md-7">
-                        <textarea ng-style="{'font-size': text.size + 'px'}" id="documentField{{field.fieldId}}" class="form-control content-box" name="f{{field.id}}"
+                        <textarea ng-style="{'font-size': text.size + 'px'}" id="documentField{{field.fieldId}}" class="form-control content-box" name="f{{field.fieldId}}"
                                   ng-model="field.value" rows="{{getTextRows(field.value)}}" autogrow required></textarea>
+                        <p ng-show="EditDocumentController.DocumentForm.f{{field.fieldId}}.$invalid && !EditDocumentController.DocumentForm.f{{field.fieldId}}.$pristine" class="help-block small">Feltet må fylles ut</p>
                     </td>
 
                     <!-- Delete field -->
