@@ -318,10 +318,15 @@ angular.module("ehelseEditor").factory("StorageHandler", ["$rootScope", "Service
             return savingFilePath;
         }
         function setCurrentFilePath(path){
-            currentFilePath = path;
+            currentFilePath = formatFilePath(path);
         }
         function getCurrentFilePath(){
             return currentFilePath;
+        }
+        function formatFilePath(path) {
+            var pathParts = path.split('/');
+            var fileNameOnly = (pathParts[pathParts.length-1]).replace('.json', '');
+            return '~/'+fileNameOnly;
         }
 
 
