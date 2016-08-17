@@ -7,6 +7,7 @@ angular.module("ehelseEditor").factory("FileUpload",
         var chosenFileEntry = null;
         var isJsonFile = false;
         var contentFromFile;
+        var msg;
 
         function onLoadJSON(_success, _failure) {
             chrome.fileSystem.chooseEntry({ type: 'openWritableFile',
@@ -123,6 +124,7 @@ angular.module("ehelseEditor").factory("FileUpload",
                                 try {
                                     writer.onwriteend = function (e) {
                                         chosenFileEntry = writableFileEntry;
+                                        msg = 'Vellykket lagret i: ';
                                         _success();
                                     };
                                 } catch (e) {
@@ -164,6 +166,7 @@ angular.module("ehelseEditor").factory("FileUpload",
                                         chrome.fileSystem.getDisplayPath(writableFileEntry, function(path) {
                                             StorageHandler.setCurrentFilePath(path);
                                             StorageHandler.setSavingFilePath(path);
+                                            msg = 'Ny fil lagret i: ';
                                             _success();
                                         });
                                     };
@@ -283,13 +286,17 @@ angular.module("ehelseEditor").factory("FileUpload",
             isJsonFile = true;
         }
 
+        function getMsg() {
+            return msg;
+        }
         return {
             onLoadJSON: onLoadJSON,
             onLoadCSV: onLoadCSV,
             onSaveMimeJSON: onSaveMimeJSON,
             onSaveWebJSON: onSaveWebJSON,
             setJsonFalse: setJsonFalse,
-            setJsonTrue: setJsonTrue
+            setJsonTrue: setJsonTrue,
+            getMsg: getMsg
         };
     }
 ]);

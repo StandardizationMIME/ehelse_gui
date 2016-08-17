@@ -17,14 +17,14 @@ angular.module("ehelseEditor").controller("LoginController", [ "$scope", "$rootS
                 $scope.goToSite();
             }, 500);
         }, function () {
-            $rootScope.notifyError("Upload failed... :( ", 1000);
+            $rootScope.notifyError("Feil ved filopplasting", 1000);
         });
     };
     $scope.uploadCsvButton = function () {
         FileUpload.onLoadCSV(function () {
             $scope.goToSite();
         }, function () {
-            $rootScope.notifyError("Upload failed... :( ", 1000);
+            $rootScope.notifyError("Feil ved filopplasting", 1000);
         });
     };
 
