@@ -15,6 +15,9 @@
 .btn, input, select, textarea {
     border-radius: 0 !important;
 }
+.panel-body .panel-body {
+    background-color: #f6f6f6;
+}
 html,body {
     overflow-x: hidden;
     height: 100%;
@@ -633,7 +636,7 @@ textarea {
     border-radius: 0;
 }
 .dropdown-menu {
-    background-color: #346dab;
+    background-color: #333;
     border-radius: 0;
     border: none;
 }
@@ -658,17 +661,17 @@ menu>li>a:hover {
     font-weight: bold;
 }
 .toolbar-button:hover {
-    background-color: #5585b7 !important;
+    background-color: #555 !important;
     color: white !important;
     cursor: pointer;
 }
 .nav .open>a, .nav .open>a:focus, .nav .open>a:hover {
-    background-color: #346dab;
+    background-color: #555;
     border-color: white;
 }
 .file-path, .file-path:hover{
     color: white !important;
-    background-color: #337ab7 !important;
+    background-color: #333 !important;
 }
 .navbar-text{
     margin-top: 9px;
@@ -682,7 +685,7 @@ menu>li>a:hover {
 }
 #editor-nav {
     position: relative;
-    background-color: #337ab7;
+    background-color: #333;
     width: 100%;
     box-shadow: 0 2px 2px -1px #888888;
     z-index: 520;
