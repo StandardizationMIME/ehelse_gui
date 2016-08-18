@@ -849,7 +849,7 @@ a.sortable-columns{
     vertical-align: middle;
 }
 .center-align-delete-button {
-    text-align: center;
+    text-align: right;
     display: table-cell;
     vertical-align: middle !important;
 }

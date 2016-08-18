@@ -103,18 +103,18 @@ angular.module("ehelseEditor").controller("ToolbarController",
                         $rootScope.savingFilePath = StorageHandler.getSavingFilePath();
                         $rootScope.currentFilePath = StorageHandler.getCurrentFilePath();
 
-                        $rootScope.notifySuccess("Save succeed! To: " + $rootScope.savingFilePath, 2000);
+                        $rootScope.notifySuccess(FileUpload.getMsg() + $rootScope.savingFilePath, 2000);
 
                         $rootScope.loadingBarComplete();
                         $scope.fakeIntro = false;
                     }, 500);
                 }, function () {
-                    $rootScope.notifyError("Save failed... :(", 1000);
+                    $rootScope.notifyError("Feil ved fillagring", 1000);
                 });
             };
 
             $scope.saveAs = function () {
-                FileUpload.newJson();
+                FileUpload.setJsonFalse();
                 FileUpload.onSaveMimeJSON(DownloadList.getStorageList(), function () {
                     $rootScope.loadingBarStart();
                     $scope.fakeIntro = true;
@@ -122,14 +122,15 @@ angular.module("ehelseEditor").controller("ToolbarController",
                         $rootScope.savingFilePath = StorageHandler.getSavingFilePath();
                         $rootScope.currentFilePath = StorageHandler.getCurrentFilePath();
 
-                        $rootScope.notifySuccess("Save succeed! To: " + $rootScope.savingFilePath, 2000);
+                        $rootScope.notifySuccess("Ny fil lagret i: " + $rootScope.savingFilePath, 2000);
 
                         $rootScope.loadingBarComplete();
                         $scope.fakeIntro = false;
                     }, 500);
                 }, function () {
-                    $rootScope.notifyError("Save failed... :(", 1000);
+                    $rootScope.notifyError("Feil ved fillagring", 1000);
                 });
+                FileUpload.setJsonTrue();
             };
 
             $scope.downloadAllDocumentsAsJSON = function(){
@@ -139,13 +140,13 @@ angular.module("ehelseEditor").controller("ToolbarController",
                     setTimeout(function() {
                         $rootScope.savingFilePath= StorageHandler.getSavingFilePath();
                         
-                        $rootScope.notifySuccess("Save succeed! To: " + $rootScope.savingFilePath , 3000);
+                        $rootScope.notifySuccess("Ny fil lagret i: " + $rootScope.savingFilePath , 3000);
                         
                         $rootScope.loadingBarComplete();
                         $scope.fakeIntro = false;
                     }, 500);
                 }, function () {
-                    $rootScope.notifyError("Save failed... :(", 1000);
+                    $rootScope.notifyError("Feil ved fillagring", 1000);
                 });
             };
 
@@ -163,13 +164,13 @@ angular.module("ehelseEditor").controller("ToolbarController",
                         $rootScope.changeContentView("");
                         
                         $rootScope.currentFilePath = StorageHandler.getSavingFilePath();
-                        $rootScope.notifySuccess("Upload succeed! :) ", 1000);
+                        $rootScope.notifySuccess("Konvertering av csv vellykket!", 1000);
 
                         $rootScope.loadingBarComplete();
                         $scope.fakeIntro = false;
                     }, 500);
                 }, function () {
-                    $rootScope.notifyError("Upload failed... :( ", 1000);
+                    $rootScope.notifyError("Feil ved filopplasting", 1000);
                 });
             };
 
@@ -185,13 +186,13 @@ angular.module("ehelseEditor").controller("ToolbarController",
 
                         $rootScope.savingFilePath = StorageHandler.getSavingFilePath();
                         $rootScope.currentFilePath = StorageHandler.getCurrentFilePath();
-                        $rootScope.notifySuccess("Upload succeed! :) ", 1000);
+                        $rootScope.notifySuccess("Opplasting vellykket!", 1000);
 
                         $rootScope.loadingBarComplete();
                         $scope.fakeIntro = false;
                     }, 500);
                 }, function () {
-                    $rootScope.notifyError("Upload failed... :( ", 1000);
+                    $rootScope.notifyError("Feil ved filopplasting", 1000);
                 });
             };
 
