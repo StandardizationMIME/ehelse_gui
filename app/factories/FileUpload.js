@@ -124,8 +124,11 @@ angular.module("ehelseEditor").factory("FileUpload",
                                 try {
                                     writer.onwriteend = function (e) {
                                         chosenFileEntry = writableFileEntry;
-                                        msg = 'Vellykket lagret i: ';
-                                        _success();
+                                        chrome.fileSystem.getDisplayPath(writableFileEntry, function (path) {
+                                            StorageHandler.setSavingFilePath(path);
+                                            msg = 'Vellykket lagret i: ';
+                                            _success();
+                                        });
                                     };
                                 } catch (e) {
                                     _failure();
@@ -205,22 +208,27 @@ angular.module("ehelseEditor").factory("FileUpload",
                 } else {
                     writableFileEntry.createWriter(function (writer) {
                         writer.onerror = errorHandler;
-                        writer.onwriteend = function (e) {
-                            try {
-                                chosenFileEntry = writableFileEntry;
-                                chrome.fileSystem.getDisplayPath(writableFileEntry, function(path) {
-                                    StorageHandler.setSavingFilePath(path);
-                                });
-                                _success();
-                            } catch (e) {
-                                _failure();
-                            }
-                        };
+
                         var noAngularJson = angular.toJson(modifiedJsonObject);
                         var json = JSON.stringify(JSON.parse(noAngularJson), null, '\t');
                         var blob = new Blob([json], {type: "application/javascript"});
                         writer.truncate(blob.size);
-                        writer.write(blob);
+
+                        writer.onwriteend = function (e) {
+                            try {
+                                writer.onwriteend = function () {
+                                    chrome.fileSystem.getDisplayPath(writableFileEntry, function(path) {
+                                        StorageHandler.setSavingFilePath(path);
+                                        _success();
+                                    });
+                                };
+                            } catch (e) {
+                                _failure();
+                            }
+                        };
+                        writableFileEntry.file(function (file) {
+                            writer.write(blob);
+                        })
                     }, errorHandler);
                 }
             });
