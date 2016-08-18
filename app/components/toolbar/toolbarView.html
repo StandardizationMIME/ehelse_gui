@@ -3,20 +3,20 @@
     <nav>
         <div class="container-fluid">
             <div class="navbar-header">
-                <object class="navbar-brand" data="assets/img/ehelseLogo.svg" type="image/svg+xml">
-                    <img src="assets/img/ehelseLogo.png" alt="ehelse logo"/>
+                <object class="navbar-brand" data="assets/img/ehelseLogoWhite.svg" type="image/svg+xml">
+                    <img src="assets/img/ehelseLogoWhite.png" alt="ehelse logo"/>
                 </object>
             </div>
             <ul class="nav navbar-nav">
                 <li>
                     <div class="input-group navbar-btn search-bar">
-                        <input type="text" id="search-filter" class="form-control" placeholder="Søk etter dokument..."
+                        <input type="text" id="search-filter" class="form-control search-field" placeholder="Søk etter dokument..."
                                ng-model="$root.searchQuery" ng-click="searchFocused()" aria-label=". . .">
                         <div class="input-group-btn">
-                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"
+                            <button type="button" class="btn btn-default dropdown-toggle search-field-filter" data-toggle="dropdown"
                                     aria-haspopup="true" aria-expanded="false"><i class="fa fa-angle-down"
                                                                                   aria-hidden="true"></i></button>
-                            <ul class="dropdown-menu dropdown-menu-center">
+                            <ul class="dropdown-menu dropdown-menu-center search-filter-dropdown">
                                 <li><span class="search-options"><input name="search-option-name" value="1"
                                                                         ng-model="$root.searchOption" type="radio"
                                                                         aria-label="..."></span>Standarder
@@ -66,21 +66,21 @@
                     </ul>
                 </li>
                 <li>
-                    <a  class="toolbar-button" ng-click="saveAs()"><span class="fa fa-floppy-o"></span> Lagre fil som..</a>
+                    <a  class="toolbar-button" ng-click="saveAs()"><span class="fa font-size-large fa-floppy-o"></span> Lagre fil som..</a>
                 </li>
                 <li>
-                    <a  class="toolbar-button" ng-click="save()"><span class="fa fa-floppy-o"></span> Lagre fil</a>
+                    <a  class="toolbar-button" ng-click="save()"><span class="fa font-size-large fa-floppy-o"></span> Lagre fil</a>
                 </li>
-                <li>
-                    <a ng-if="currentFilePath">{{currentFilePath}}</a>
+                <li class="file-path">
+                    <a class="file-path font-size-small" ng-if="currentFilePath">{{currentFilePath}}</a>
                 </li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li>
                     <input class="" min="10" max="20" ng-model="text.size" type="range">
                 </li>
-                <li>
-                    <a class="black-color">{{text.size}}</a>
+                <li class="file-path">
+                    <a class="file-path">{{text.size}}</a>
                 </li>
             </ul>
         </div>

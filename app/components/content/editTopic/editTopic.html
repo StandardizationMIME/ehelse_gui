@@ -9,16 +9,18 @@
         <p class="ten-pix-vertical-padding">
 
             <!-- Save change -->
-            <button ng-click="saveTopicChange(EditTopicController.editTopicForm)" type="submit" class="btn btn-primary" ng-disabled="EditTopicController.editTopicForm.$pristine">
-                <span class="fa fa-check-circle-o edit-topic-icon"></span>
-                 Lagre tema
-            </button>
+            <span class="my-tooltip" data-toggle="tooltip" title="Lagre tema">
+                <button ng-click="saveTopicChange(EditTopicController.editTopicForm)"
+                        class="fa fa-floppy-o document-buttons save-clone-download-buttons"
+                        ng-disabled="EditTopicController.editTopicForm.$pristine">
+                </button>
+            </span>
+
 
             <!-- Delete topic -->
-            <button ng-click="openConfirmationModal('Er du sikker på at du vil slette temaet?', selectedTopic, deleteTopic)" type="button" class="btn btn-danger pull-right">
-                <span class="fa fa-remove"></span>
-                Slett tema
-            </button>
+            <span ng-click="openConfirmationModal('Er du sikker på at du vil slette temaet?', selectedTopic, deleteTopic)" class="fa fa-trash pull-right document-buttons"
+            data-toggle="tooltip" title="Slett">
+            </span>
         </p>
     </div>
 

@@ -23,6 +23,14 @@ angular.module("ehelseEditor").controller("EditTopicController", [ "$scope","$ro
         Topic.deleteById(topic.id);
     };
 
+    $('.my-tooltip').mouseenter(function () {
+        var that = $(this);
+        that.tooltip('show');
+        setTimeout(function () {
+            that.tooltip('hide');
+        }, 1000);
+    });
+
     /**
      * Checks that topic tuple list element is valid
      *

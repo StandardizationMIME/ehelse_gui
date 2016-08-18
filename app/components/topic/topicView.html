@@ -39,8 +39,8 @@
 
                     <!-- On click, get documents related to topic and open topic in content view -->
                     <div ng-style="{'font-size': text.size + 'px'}" data-target=#topic{{subTopic.id}} id={{subTopic.id}}
-                       ng-class="subTopic.id == selected_topic_id ? 'selected-item' : ''" data-toggle="collapse"
-                       class="item-text sub-topic" ng-click="checkDocumentFormAndExecute(subTopic.id)">
+                         ng-class="subTopic.id == selected_topic_id ? 'selected-item' : ''" data-toggle="collapse"
+                         class="item-text sub-topic" ng-click="checkDocumentFormAndExecute(subTopic.id)">
                         <span id=folder{{subTopic.id}} class="standard-icon fa fa-folder"> </span>
                         {{subTopic.title}}
                     </div>
