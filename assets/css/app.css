@@ -521,11 +521,10 @@ textarea {
 .panel4 {
     color: white;
     background-color: darkgray;
-    border-radius: 0px !important;
+    border-radius: 0 !important;
 }
 .panel{
-    border: 1px solid transparent;
-    border-radius: 0px !important;
+    border-radius: 0 !important;
 }
 .edit-document-modal {
     max-height: 650px;

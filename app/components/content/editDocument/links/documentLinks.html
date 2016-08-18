@@ -18,7 +18,7 @@
                         </h3>
                     </div>
                     <div class="panel-body">
-                        <ul class="navbar-nav document-links-ul" ng-repeat="link in linkCategory.links">
+                        <ul class="navbar-nav document-links-ul ten-pix-bottom-padding" ng-repeat="link in linkCategory.links">
                             <li class="document-links-link center-align-delete-button">
                                 <label ng-style="{'font-size': text.size + 'px'}" class=" control-label center-align-text" for="linkSequence">Nr.</label>
                             </li>
@@ -34,7 +34,7 @@
                             </li>
                             <li class="document-links-link">
                                 <input ng-style="{'font-size': text.size + 'px', 'height': text.size*2.1 + 'px'}"
-                                       class="form-control" id="linkUrl" name="linkUrl" type="text" placeholder="URL" ng-model="link.url"
+                                       class="form-control center-align-text" id="linkUrl" name="linkUrl" type="text" placeholder="URL" ng-model="link.url"
                                        data-toggle="tooltip" data-original-title="{{link.url}}" data-placement="top" required>
                             </li>
                             <li class="document-links-link center-align-text">
@@ -50,10 +50,12 @@
                 </div>
 
                 <!-- Add link to document -->
-                <button type="button" class="btn btn-default" ng-click="addLinkToDocument(linkCategory.id);">
-                    <span class="fa fa-plus-circle plus-icon"></span>
-                    Legg til lenke
-                </button>
+                <div class="ten-pix-vertical-padding">
+                    <button type="button" class="btn btn-default" ng-click="addLinkToDocument(linkCategory.id);">
+                        <span class="fa fa-plus-circle plus-icon"></span>
+                        Legg til lenke
+                    </button>
+                </div>
             </div>
 
             <!-- Open modal for adding link categories to document -->
