@@ -635,7 +635,7 @@ textarea {
     border-radius: 0;
 }
 .dropdown-menu {
-    background-color: #333;
+    background-color: #444;
     border-radius: 0;
     border: none;
 }
@@ -660,17 +660,17 @@ menu>li>a:hover {
     font-weight: bold;
 }
 .toolbar-button:hover {
-    background-color: #555 !important;
+    background-color: #666 !important;
     color: white !important;
     cursor: pointer;
 }
 .nav .open>a, .nav .open>a:focus, .nav .open>a:hover {
-    background-color: #555;
+    background-color: #666;
     border-color: white;
 }
 .file-path, .file-path:hover{
     color: white !important;
-    background-color: #333 !important;
+    background-color: #444 !important;
 }
 .navbar-text{
     margin-top: 9px;
@@ -684,7 +684,7 @@ menu>li>a:hover {
 }
 #editor-nav {
     position: relative;
-    background-color: #333;
+    background-color: #444;
     width: 100%;
     box-shadow: 0 2px 2px -1px #888888;
     z-index: 520;
