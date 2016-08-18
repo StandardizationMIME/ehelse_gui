@@ -218,7 +218,8 @@ angular.module("ehelseEditor").factory("FileUpload",
                         };
                         var noAngularJson = angular.toJson(modifiedJsonObject);
                         var json = JSON.stringify(JSON.parse(noAngularJson), null, '\t');
-                        var blob = new Blob([json], {type: "application/json"});
+                        var blob = new Blob([json], {type: "application/javascript"});
+                        writer.truncate(blob.size);
                         writer.write(blob);
                     }, errorHandler);
                 }
