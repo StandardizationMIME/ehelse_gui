@@ -33,7 +33,7 @@ angular.module("ehelseEditor").factory("DocumentExtractor",
                     output_dict["contactAddress"] = getContactAddressRelatedToDocumentAsJSON(doc);
                     output_dict["fields"] = getDocumentFieldsRelatedToDocumentAsJSON(doc);
                     output_dict["targetGroups"] = getTargetGroupsRelatedToDocumentAsJSON(doc);
-                    output_dict["linkCategories"] = ServiceFunction.orderListBySequence(getLinksRelatedToDocumentAsJSON(doc), LinkCategory.getById, "linksInDocument");
+                    output_dict["linkCategories"] = getLinksRelatedToDocumentAsJSON(doc);
                     output_dict["paragraphs"] = getParagraphsRelatedToDocumentAsJSON(doc);
 
                     return output_dict;
@@ -180,15 +180,33 @@ angular.module("ehelseEditor").factory("DocumentExtractor",
             function getLinksRelatedToDocumentAsJSON(doc){
                 var temp_dict = {};
                 if(doc.links){
-                    for (var i = 0; i < doc.links.length; i++) {
-                        if(!temp_dict[LinkCategory.getById(doc.links[i].linkCategoryId).name]){
-                            temp_dict[LinkCategory.getById(doc.links[i].linkCategoryId).name] = [];
+                    console.log(doc.links);
+                    var temp_list = [];
+                    for (var y = 0; y < doc.links.length; y++){
+                        var temp_field = {};
+                        temp_field["id"] = LinkCategory.getById(doc.links[y].linkCategoryId).id;
+                        temp_field["sequence"] = LinkCategory.getById(doc.links[y].linkCategoryId).sequence;
+                        temp_field["text"] = doc.links[y].text;
+                        temp_field["url"] = doc.links[y].url;
+                        temp_list.push(temp_field);
+                    }
+
+                    temp_list.sort(compareSequence);
+
+                    var temp_list2 = [];
+                    for (var x = 0; x < temp_list.length; x++) {
+                            temp_list2.push({linkCategoryId: temp_list[x].id, text: temp_list[x].text, url: temp_list[x].url});
+                    }
+
+                    for (var i = 0; i < temp_list2.length; i++) {
+                        if(!temp_dict[LinkCategory.getById(temp_list2[i].linkCategoryId).name]){
+                            temp_dict[LinkCategory.getById(temp_list2[i].linkCategoryId).name] = [];
                         }
                         var link = {};
-                        link["text"] = doc.links[i].text;
-                        link["url"] = doc.links[i].url;
+                        link["text"] = temp_list2[i].text;
+                        link["url"] = temp_list2[i].url;
 
-                        temp_dict[LinkCategory.getById(doc.links[i].linkCategoryId).name].push(link);
+                        temp_dict[LinkCategory.getById(temp_list2[i].linkCategoryId).name].push(link);
                     }
                 }
 
@@ -204,8 +222,14 @@ angular.module("ehelseEditor").factory("DocumentExtractor",
                 }
                 return output_list;
 
+            }
 
-
+            function compareSequence(a,b) {
+                if (parseInt(a.sequence) < parseInt(b.sequence))
+                    return -1;
+                if (parseInt(a.sequence) > parseInt(b.sequence))
+                    return 1;
+                return 0;
             }
 
             function getAllDocumentsAsJSON(){

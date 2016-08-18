@@ -163,6 +163,10 @@ angular.module("ehelseEditor").factory("Document",
                 }
             }
 
+            function orderLinksByLinkCategoryId(links){
+                return ServiceFunction.orderListBySequence(links, DocumentField.getById, "linksInDocument");
+            }
+
             /**
              * Function adding a field to current document.
              * @param field_ids
@@ -887,6 +891,7 @@ angular.module("ehelseEditor").factory("Document",
             }
 
             return {
+                orderLinksByLinkCategoryId: orderLinksByLinkCategoryId,
                 removeCurrentDocumentHeading: removeCurrentDocumentHeading,
                 getCurrentDocumentHeadingsAsList: getCurrentDocumentHeadingsAsList,
                 addHeadingsToDocumentByIds: addHeadingsToDocumentByIds,
