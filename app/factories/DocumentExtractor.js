@@ -33,7 +33,7 @@ angular.module("ehelseEditor").factory("DocumentExtractor",
                     output_dict["contactAddress"] = getContactAddressRelatedToDocumentAsJSON(doc);
                     output_dict["fields"] = getDocumentFieldsRelatedToDocumentAsJSON(doc);
                     output_dict["targetGroups"] = getTargetGroupsRelatedToDocumentAsJSON(doc);
-                    output_dict["linkCategories"] = getLinksRelatedToDocumentAsJSON(doc);
+                    output_dict["linkCategories"] = ServiceFunction.orderListBySequence(getLinksRelatedToDocumentAsJSON(doc), LinkCategory.getById, "linksInDocument");
                     output_dict["paragraphs"] = getParagraphsRelatedToDocumentAsJSON(doc);
 
                     return output_dict;
