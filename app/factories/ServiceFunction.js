@@ -61,7 +61,14 @@ angular.module("ehelseEditor").factory("ServiceFunction", [function () {
             return "1";
         }
     }
-
+    /**
+     * Returns new unique document id
+     *
+     * Checks all elements in dictionary and returns -1 if undefined
+     *  and a new valid id if the dictionary is defined.
+     * @param dict
+     * @returns {*}
+     */
     function generateNewIdFromDict(dict) {
         var length = Object.keys(dict).length;
         // If dictionary is undefined
@@ -170,6 +177,13 @@ angular.module("ehelseEditor").factory("ServiceFunction", [function () {
         return clone;
     }
 
+    /**
+     * Orders taken list by sequence
+     * @param list
+     * @param getByIdMethod
+     * @param type
+     * @returns {Array}
+     */
     function orderListBySequence(list, getByIdMethod,type){
         var temp_list = [];
         for (var i = 0; i < list.length; i++) {
@@ -285,6 +299,11 @@ angular.module("ehelseEditor").factory("ServiceFunction", [function () {
         return sorted_elements;
     }
 
+    /**
+     * Removes all special characters form taken string
+     * @param string
+     * @returns {string}
+     */
     function cleanString(string){
         var returnString = "";
         var stringParts = string.split(" ");
@@ -300,6 +319,12 @@ angular.module("ehelseEditor").factory("ServiceFunction", [function () {
         return returnString;
     }
 
+    /**
+     * Removes given element from list
+     * @param arr
+     * @param elementToDelete
+     * @returns {*}
+     */
     function removeFromArray(arr, elementToDelete){
         var returnArray = arr;
         var index = returnArray.indexOf(elementToDelete);
@@ -309,6 +334,11 @@ angular.module("ehelseEditor").factory("ServiceFunction", [function () {
         return returnArray;
     }
 
+    /**
+     * Removes all duplicated elements in taken array
+     * @param arr
+     * @returns {Array}
+     */
     function removeDuplicates(arr) {
         var tmp = [];
         for(var i = 0; i < arr.length; i++){
@@ -318,20 +348,26 @@ angular.module("ehelseEditor").factory("ServiceFunction", [function () {
         }
         return tmp;
     }
+
+    /**
+     * Converts csv content to array object
+     * @param strData
+     * @param strDelimiter
+     * @returns {*[]}
+     * @constructor
+     */
     function CSVToArray( strData, strDelimiter ){
-        //@http://www.bennadel.com/blog/1504-ask-ben-parsing-csv-strings-with-javascript-exec-regular-expression-command.htm
-        //plagiat and shit! må sjekke den her
         // Check to see if the delimiter is defined. If not,
         // then default to comma.
-        strDelimiter = (strDelimiter || ";");
+        strDelimiter = (strDelimiter || ",");
         // Create a regular expression to parse the CSV values.
         var objPattern = new RegExp(
             (
                 // Delimiters.
                 "(\\" + strDelimiter + "|\\r?\\n|\\r|^)" +
-                    // Quoted fields.
+                // Quoted fields.
                 "(?:\"([^\"]*(?:\"\"[^\"]*)*)\"|" +
-                    // Standard fields.
+                // Standard fields.
                 "([^\"\\" + strDelimiter + "\\r\\n]*))"
             ),
             "gi"

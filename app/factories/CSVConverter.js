@@ -20,7 +20,7 @@ angular.module("ehelseEditor").factory("CSVConverter", [ "ServiceFunction", func
             // Convert file content to array
             // each line in from csv file will be presented as array element with column number as index
             // first element contains titles
-            var result = ServiceFunction.CSVToArray(fileContentCsv);
+            var result = ServiceFunction.CSVToArray(fileContentCsv, ';');
             var listOfFieldTitlesInCsvFile = result[0];
 
             // Generates objects array with {"key": "value"} form
