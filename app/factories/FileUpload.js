@@ -4,11 +4,20 @@ angular.module("ehelseEditor").factory("FileUpload",
     ["StorageHandler", "Action", "Document", "DocumentField", "DocumentType" , "LinkCategory", "Mandatory", "Status", "TargetGroup", "Topic", "CSVConverter", "Heading", "ContactAddress",
     function (StorageHandler, Action, Document, DocumentField, DocumentType, LinkCategory, Mandatory, Status, TargetGroup, Topic, CSVConverter, Heading, ContactAddress) {
 
+        // Variable used to track chosen file entry
         var chosenFileEntry = null;
+        // Used to check if uploaded file is csv or json
         var isJsonFile = false;
+        // Content of uploaded file
         var contentFromFile;
+        // Message used in confirmation toast on succeed file upload
         var msg;
 
+        /**
+         * Loads MIME json file to the system (StorageHandler)
+         * @param _success - callback function called on succeed upload
+         * @param _failure - callback function called on failed upload
+         */
         function onLoadJSON(_success, _failure) {
             chrome.fileSystem.chooseEntry({ type: 'openWritableFile',
                                             accepts: [
@@ -60,6 +69,12 @@ angular.module("ehelseEditor").factory("FileUpload",
                 }
             })
         }
+
+        /**
+         * Loads file first to CSVConvert factory where content will converts and uploads to the system in StorageHandler
+         * @param _success - callback function called on succeed upload
+         * @param _failure - callback function called on failed upload
+         */
         function onLoadCSV(_success, _failure) {
             chrome.fileSystem.chooseEntry({ type: 'openFile',
                                             accepts: [
@@ -105,7 +120,12 @@ angular.module("ehelseEditor").factory("FileUpload",
                 }
             })
         }
-
+        /**
+         * Saving MIME json object to local disc
+         * @param modifiedJsonObject
+         * @param _success - callback function called on succeed upload
+         * @param _failure - callback function called on failed upload
+         */
         function onSaveMimeJSON(modifiedJsonObject, _success, _failure){
             if(isJsonFile){
                 chrome.fileSystem.getWritableEntry(chosenFileEntry, function (writableFileEntry) {
@@ -186,7 +206,12 @@ angular.module("ehelseEditor").factory("FileUpload",
 
             }
         }
-
+        /**
+         * Saves json object that will be used to update e-helse.no webpage as new file to local disk
+         * @param modifiedJsonObject - in this case object generated from DocumentExtractor
+         * @param _success - callback function called on succeed upload
+         * @param _failure - callback function called on failed upload
+         */
         function onSaveWebJSON(modifiedJsonObject, _success, _failure){
             var customName;
             if (!modifiedJsonObject.allDocuments){
@@ -233,8 +258,10 @@ angular.module("ehelseEditor").factory("FileUpload",
                 }
             });
         }
-
-
+        /**
+         * Handles errors that may occure in chrome.fileSystem
+         * @param e
+         */
         function errorHandler(e) {
             var msg = "";
             switch (e.code) {
@@ -258,7 +285,9 @@ angular.module("ehelseEditor").factory("FileUpload",
                     break;
             }
         }
-
+        /**
+         * Initiates all necessary lists
+         */
         function initEverything() {
             Action.init();
             Document.init();
@@ -272,7 +301,9 @@ angular.module("ehelseEditor").factory("FileUpload",
             Heading.init();
             ContactAddress.init();
         }
-
+        /**
+         * Clear all content of system
+         */
         function clearEverything() {
             Action.clear();
             Document.clear();
@@ -286,15 +317,22 @@ angular.module("ehelseEditor").factory("FileUpload",
             Heading.clear();
             ContactAddress.clear();
         }
-
+        /**
+         * Sets variable isJsonFile to false, used to check if uploaded file were json or csv
+         */
         function setJsonFalse() {
             isJsonFile = false;
         }
-        
+        /**
+         * Sets variable isJsonFile to true, used to check if uploaded file were json or csv
+         */
         function setJsonTrue() {
             isJsonFile = true;
         }
-
+        /**
+         * Returns message that is used in confirmation toast on succeed upload
+         * @returns {*}
+         */
         function getMsg() {
             return msg;
         }
