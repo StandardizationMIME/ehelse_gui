@@ -521,6 +521,11 @@ angular.module("ehelseEditor").factory("CSVConverter", [ "ServiceFunction", func
             }
         }
 
+        /**
+         * Convert timestamp from csv to the format used in the system (yyyy-mm-dd hh:mm:ss)
+         * @param timestamp
+         * @returns {string}
+         */
         function formatTimestamp(timestamp){
             var values = timestamp.split(".");
             var yearAndTime = values[2].split(" ");
