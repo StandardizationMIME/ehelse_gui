@@ -551,6 +551,9 @@ textarea {
     color: #c13a47;
     font-size: large;
 }
+.top-vertical-align{
+    vertical-align: top;
+}
 /* -------------------------------------------- CH5 EDITOR ----------------------------------------- */
 .editor-display {
     width: 100%;
