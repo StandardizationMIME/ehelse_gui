@@ -11,3 +11,7 @@ chrome.app.runtime.onLaunched.addListener(function() {
     }
   );
 });
+
+chrome.commands.onCommand.addListener(function (command) {
+    console.log("Command Triggered:" + command);
+});

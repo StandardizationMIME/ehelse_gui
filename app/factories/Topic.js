@@ -14,6 +14,9 @@ angular.module("ehelseEditor").factory("Topic", ["$rootScope", "StorageHandler",
         $rootScope.max_topic_levels = 5;
         try{
             Array.prototype.push.apply(topics, StorageHandler.getTopics().topics);
+            for(var i = 0; i < topics.length; i++){
+                topics[i].sequence = Number(topics[i].sequence);
+            }
             generateTopicDict(topics);
             generateTopicOptionsList(topics);
         }
@@ -114,10 +117,12 @@ angular.module("ehelseEditor").factory("Topic", ["$rootScope", "StorageHandler",
         var children = old_topic.children;
         if(old_topic.parentId != topic.parentId){
             removeById(old_topic.id);
+            topic.sequence = Number(topic.sequence);
             setTopic(topics_dict[topic.id], topic);
             addTopic(old_topic);
         }
         else{
+            topic.sequence = Number(topic.sequence);
             setTopic(topics_dict[topic.id], topic);
         }
         topics_dict[topic.id].children = children;
@@ -135,8 +140,8 @@ angular.module("ehelseEditor").factory("Topic", ["$rootScope", "StorageHandler",
             $("#topic" + parent.id).collapse('show');
 
             var topicIcon = $("#folder" + parent.id);
-            topicIcon.removeClass("glyphicon-folder-close");
-            topicIcon.addClass("glyphicon-folder-open");
+            topicIcon.removeClass("fa-folder");
+            topicIcon.addClass("fa-folder-open");
 
             parent = getById(parent.parentId);
         }
@@ -169,12 +174,10 @@ angular.module("ehelseEditor").factory("Topic", ["$rootScope", "StorageHandler",
             try{
                 var new_topic = clone(topic);
                 initNewTopicValues(new_topic);
-                console.log(new_topic);
                 addTopic(new_topic);
                 toggleTopicSelection(new_topic);
                 $rootScope.notifySuccess("Nytt tema ble opprettet!", 1000);
                 $rootScope.getDocuments(new_topic.id);
-                console.log("Tema ble opprettet");
             }
             catch(error){
                 console.log("Topic could not be created: " + error);

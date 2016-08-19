@@ -1,0 +1,42 @@
+<div class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form ng-controller="AddEditHeadingController" name="editHeadingForm" role="form" method="post">
+
+                <!-- Modal title -->
+                <div class="modal-header">
+                    <h3>Endre overskrift</h3>
+                </div>
+
+                <!-- Heading input fields -->
+                <div class="modal-body">
+
+                    <!-- Heading title -->
+                    <div class="form-group">
+                        <label for="editHeadingName">Tittel: </label><span class="required-icon" data-toggle="tooltip" title="Obligatorisk felt" data-placement="top">*</span>
+                        <input id="editHeadingName" focus-me="shouldBeOpen" ng-model="currentHeading.name" type="text" class="form-control" required/>
+                    </div>
+
+                    <!-- Order -->
+                    <div>
+                        <label for="sequence">Rekkefølge: </label>
+                        <input id="sequence" type="text" ng-model="currentHeading.sequence" class="form-control" placeholder="1" numbers-only maxlength="15"/>
+                    </div>
+
+                </div>
+
+                <!-- Modal footer -->
+                <div class="modal-footer">
+                    <div class="form-actions">
+
+                        <!-- Save changes and close modal -->
+                        <button ng-click="submitHeadingChange(currentHeading)" data-dismiss="modal" type="submit" ng-disabled="editHeadingForm.$invalid" class="btn btn-primary">Lagre</button>
+
+                        <!-- Cancel changes and close modal -->
+                        <button type="button" data-dismiss="modal" class="btn btn-default pull-right">Avbryt</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

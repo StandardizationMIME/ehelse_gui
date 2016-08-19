@@ -31,11 +31,6 @@
 <script src="assets/lib/angular-messages-min.js"></script>
 <script src="assets/lib/angular-autogrow.min.js"></script>
 
-<script>
-    $(document).ready(function() {
-        $("body").tooltip({ selector: '[data-toggle=tooltip]' });
-    });
-</script>
 
 <script src="assets/ui-bootstrap-tpls-1.3.2.min.js"></script>
 <script type='text/javascript' src="assets/lib/angular-loading-bar-min.js"></script>
@@ -65,6 +60,8 @@
 <script src="app/factories/DownloadList.js"></script>
 <script src="app/factories/CSVConverter.js"></script>
 <script src="app/factories/DocumentExtractor.js"></script>
+<script src="app/factories/Heading.js"></script>
+<script src="app/factories/ContactAddress.js"></script>
 
 <script src="app/components/login/loginController.js"></script>
 <script src="app/components/login/loginDirectives.js"></script>
@@ -91,9 +88,12 @@
 
 <script src="app/components/content/administerTargetGroups/editTargetGroups/editTargetGroupController.js"></script>
 <script src="app/components/content/editDocument/targetGroups/addDocumentTargetGroupModalController.js"></script>
-<script src="app/components/content/editDocument/fields/addDocumentFieldsModelController.js"></script>
+<script src="app/components/content/editDocument/fields/addDocumentFieldsModalController.js"></script>
+<script src="app/components/content/editDocument/headings/addDocumentHeadingsModalController.js"></script>
 <script src="app/components/content/administerTargetGroups/targetGroupsController.js"></script>
 <script src="app/components/content/administerTargetGroups/addTargetGroups/newTargetGroupController.js"></script>
+<script src="app/components/content/administerContactAddresses/administerContactAddressController.js"></script>
+<script src="app/components/content/administerContactAddresses/addEditContactAddress/addEditContactAddressController.js"></script>
 <script src="app/components/content/editDocument/links/addDocumentLinkCategoriesModalController.js"></script>
 
 
@@ -103,12 +103,10 @@
 <script src="app/components/content/administerStatus/addEditStatus/addEditStatusController.js"></script>
 <script src="app/components/content/administerLinkCategories/administerLinkCategoriesController.js"></script>
 <script src="app/components/content/administerLinkCategories/addEditLinkCategories/addEditLinkCategoriesController.js"></script>
+<script src="app/components/content/administerHeadings/administerHeadingsController.js"></script>
+<script src="app/components/content/administerHeadings/addEditHeading/addEditHeadingController.js"></script>
 <script src="app/components/content/administerMandatory/administerMandatoryController.js"></script>
 <script src="app/components/content/administerMandatory/addEditMandatory/addEditMandatoryController.js"></script>
-
-<script src="app/components/csvImport/csvImportController.js"></script>
-<script src="app/components/uploadFile/uploadFileController.js"></script>
-<script src="assets/lib/FileSaver.min.js"></script>
-<script src="app/components/xmlConvert/xmlConvertController.js"></script>
+<!--Hei Stian, delete me-->
 </body>
 </html>

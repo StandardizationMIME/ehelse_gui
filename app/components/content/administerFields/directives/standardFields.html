@@ -2,7 +2,7 @@
     <div class="ten-pix-vertical-padding">
 
         <!-- Open modal for creating a new field -->
-        <button type="button" ng-click="showNewFieldModal();setTypeId(1)" class="btn btn-default" ng-disabled="!archivedStandardButton">
+        <button type="button" ng-click="showNewFieldModal();setTypeId('1')" class="btn btn-default" ng-disabled="!archivedStandardButton">
             <span class="fa fa-plus-circle blue-color font-size-large"></span>
             Nytt felt
         </button>
@@ -12,7 +12,7 @@
         </button>
     </div>
 
-    <div class="table-responsive administer-views shadow-below">
+    <div class="table-responsive administer-fields-content shadow-below">
 
         <!-- Table listing all field values in the system -->
         <table class="table table-striped" id="AdministerStandardFieldsTable">
@@ -30,7 +30,7 @@
 
             <!-- Active Table body -->
             <tbody ng-show="archivedStandardButton">
-            <tr ng-repeat="field in documentFields" ng-if="field.documentTypeId == 1" ng-hide="field.isArchived">
+            <tr ng-repeat="field in documentFields" ng-if="field.documentTypeId == '1'" ng-hide="field.isArchived">
 
                 <!-- Field value info -->
                 <td>{{field.name}}</td>
@@ -39,7 +39,7 @@
 
                 <!-- Edit field -->
                 <td class="center-align-text">
-                    <span ng-click="editDocumentFieldModal(field.id);setTypeId(1)" id="editStandardField" class="fa fa-pencil-square-o fa-2x vcenter clickable edit-field"></span>
+                    <span ng-click="editDocumentFieldModal(field.id);setTypeId('1')" id="editStandardField" class="fa fa-pencil-square-o fa-2x vcenter clickable edit-field"></span>
                 </td>
 
                 <!-- Archive field -->
@@ -54,7 +54,7 @@
 
             <!-- Archived Table body -->
             <tbody ng-hide="archivedStandardButton">
-            <tr ng-repeat="field in documentFields | orderBy:getSequence" ng-if="field.documentTypeId == 1" ng-hide="!field.isArchived">
+            <tr ng-repeat="field in documentFields" ng-if="field.documentTypeId == '1'" ng-hide="!field.isArchived">
 
                 <!-- Field value info -->
                 <td>{{field.name}}</td>

@@ -1,13 +1,17 @@
-<div ng-controller="AdministerMandatoryController" class="height-100-percent">
-    <div class="shadow-below">
+<div ng-controller="AdministerMandatoryController" class="col-lg-7 col-mg-7 col-sm-7 col-xs-7 content-view">
+    <div class="shadow-below editor-header">
 
         <!-- Title -->
         <div class="headline-box">
             <h4 class="selected">Administrer obligatoriskhet</h4>
+            <span data-toggle="tooltip" data-placement="right"
+                  title="Obligatoriskheter knyttes til målgrupper per dokument. Når man legger til en målgruppe
+                   i et dokument har man mulighet velge blant disse obligatorisk-verdiene for målgruppen." class="fa fa-question-circle tooltip-help">
+                </span>
         </div>
 
         <!-- Open modal for adding new mandatory value -->
-        <p class="twelve-pix-vertical-padding">
+        <p class="ten-pix-vertical-padding">
             <button type="button" class="btn btn-default"
                     ng-click="openNewMandatoryModal()"
                     ng-disabled="!archivedMandatoryButton"
@@ -22,7 +26,7 @@
         </p>
     </div>
 
-    <div class="table-responsive administer-views shadow-below">
+    <div ng-style="{'font-size': text.size + 'px'}" class="table-responsive administer-content shadow-below">
 
         <!-- Table listing all mandatory values in the system -->
         <table class="table table-striped" id="AdministerMandatoriesTable">
@@ -40,32 +44,32 @@
 
             <!-- Active Table body -->
             <tbody ng-show="archivedMandatoryButton">
-                <tr ng-repeat="mandatory in mandatories" ng-hide="mandatory.isArchived">
+                <tr ng-repeat="mandatory in mandatories | orderBy:'id'" ng-hide="mandatory.isArchived">
 
                     <!-- Mandatory value info -->
                     <td>{{mandatory.name}}</td>
                     <td>{{mandatory.description}}</td>
 
-                    <!-- Edit status -->
+                    <!-- Edit mandatory -->
                     <td><span class="fa fa-pencil-square-o fa-2x vcenter clickable" ng-click="openEditMandatoryModal(mandatory.id)"></span></td>
 
-                    <!-- Archive status -->
-                    <td><span class="fa fa-archive fa-2x vcenter clickable" ng-click="openConfirmationModal('Er du sikker på at du vil arkivere?', mandatory, deleteMandatory)"></span></td>
+                    <!-- Archive mandatory -->
+                    <td><span class="fa fa-archive fa-2x vcenter clickable" ng-click="openConfirmationModal('Er du sikker på at du vil arkivere?', mandatory, deleteMandatory)" ng-if="mandatory.id != 1 && mandatory.id != 2"></span></td>
                 </tr>
             </tbody>
 
             <!-- Archived Table body -->
             <tbody ng-show="!archivedMandatoryButton">
-                <tr ng-repeat="mandatory in mandatories" ng-hide="!mandatory.isArchived">
+                <tr ng-repeat="mandatory in mandatories | orderBy:'id'" ng-hide="!mandatory.isArchived">
 
                     <!-- Mandatory value info -->
                     <td>{{mandatory.name}}</td>
                     <td>{{mandatory.description}}</td>
 
-                    <!-- Edit status -->
+                    <!-- Edit mandatory -->
                     <td></td>
 
-                    <!-- Recover status -->
+                    <!-- Recover mandatory -->
                     <td><span class="fa fa-undo fa-2x vcenter clickable" ng-click="openConfirmationModal('Er du sikker på at du vil gjenopprette?', mandatory, recoverMandatory)"></span></td>
                 </tr>
             </tbody>

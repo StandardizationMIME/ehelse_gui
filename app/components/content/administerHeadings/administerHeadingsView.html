@@ -1,0 +1,74 @@
+<div ng-controller="AdministerHeadingsController" class="col-lg-7 col-mg-7 col-sm-7 col-xs-7 content-view">
+    <div class="shadow-below editor-header">
+
+        <!-- Title -->
+        <div class="headline-box">
+            <h4 class="selected">Administrer overskrifter</h4>
+            <span data-toggle="tooltip" data-placement="right"
+                  title="Her defineres overskrifter for avsnitt som kan legges til i dokumenter." class="fa fa-question-circle tooltip-help">
+                </span>
+        </div>
+
+        <!-- Add new heading -->
+        <p class="ten-pix-vertical-padding">
+            <button type="button" class="btn btn-default"
+                    ng-click="showNewHeadingModal()"
+                    ng-disabled="!archivedHeadingButton"
+                    data-keyboard="true" id="triggerFocus">
+                <span class="fa fa-plus-circle plus-icon"></span>
+                Ny overskrift
+            </button>
+            <button type="button" ng-class="archivedHeadingButtonClass" ng-click="changeHeadingClass();" style="width: 100px">
+                <span ng-show="archivedHeadingButton"> Vis arkiverte </span>
+                <span ng-show="!archivedHeadingButton"><span class="fa fa-chevron-left"></span> Vis aktive </span>
+            </button>
+        </p>
+    </div>
+
+    <div ng-style="{'font-size': text.size + 'px'}" class="table-responsive administer-content shadow-below">
+
+        <!-- Table listing all headings in the system -->
+        <table class="table table-striped" id="AdministerHeadingsTable">
+
+            <!-- Table headers -->
+            <thead ng-class="headingHeadingClass">
+            <tr>
+                <th class="col-md-10">Tittel</th>
+                <th class="col-md-1"><span ng-show="archivedHeadingButton">Rediger</span></th>
+                <th class="col-md-1"><span ng-show="archivedHeadingButton">Arkiver</span>
+                    <span ng-show="!archivedHeadingButton">Gjenopprett</span></th>
+            </tr>
+            </thead>
+
+            <!-- Active Heading Table body -->
+            <tbody ng-show="archivedHeadingButton">
+            <tr ng-repeat="heading in headings" ng-hide="heading.isArchived">
+
+                <!-- Heading info -->
+                <td>{{heading.name}}</td>
+
+                <!-- Edit heading -->
+                <td><span class="fa fa-pencil-square-o fa-2x vcenter clickable" ng-click="showEditHeadingModal(heading.id)"></span></td>
+
+                <!-- Archive heading -->
+                <td><span class="fa fa-archive fa-2x vcenter clickable " ng-click="openConfirmationModal('Er du sikker på at du vil arkivere?', heading, deleteHeading)"></span></td>
+            </tr>
+            </tbody>
+
+            <!-- Archived Heading Table body -->
+            <tbody ng-show="!archivedHeadingButton">
+            <tr ng-repeat="heading in headings" ng-hide="!heading.isArchived">
+
+                <!-- Heading info -->
+                <td>{{heading.name}}</td>
+
+                <!-- Edit heading -->
+                <td></td>
+
+                <!-- Recover heading -->
+                <td><span class="fa fa-undo fa-2x vcenter clickable " ng-click="openConfirmationModal('Er du sikker på at du vil gjenopprette?', heading, recoverArchivedHeading)"></span></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

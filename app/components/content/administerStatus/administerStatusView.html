@@ -1,13 +1,16 @@
-<div ng-controller="AdministerStatusController" class="height-100-percent">
-    <div class="shadow-below">
+<div ng-controller="AdministerStatusController" class="col-lg-7 col-mg-7 col-sm-7 col-xs-7 content-view">
+    <div class="shadow-below editor-header">
 
         <!-- Title -->
         <div class="headline-box">
             <h4 class="selected">Administrer statuser</h4>
+            <span data-toggle="tooltip" data-placement="right"
+                  title="Statuser legges til dokumenter for å beskrive hvor aktuelle de er." class="fa fa-question-circle tooltip-help">
+                </span>
         </div>
 
         <!-- Add new status -->
-        <p class="twelve-pix-vertical-padding">
+        <p class="ten-pix-vertical-padding">
             <button type="button" class="btn btn-default"
                     ng-click="showNewStatusModal()"
                     ng-disabled="!archivedStatusButton"
@@ -22,7 +25,7 @@
         </p>
     </div>
 
-    <div class="table-responsive administer-views shadow-below">
+    <div ng-style="{'font-size': text.size + 'px'}" class="table-responsive administer-content shadow-below">
 
         <!-- Table listing all statuses in the system -->
         <table class="table table-striped" id="AdministerStatusesTable">

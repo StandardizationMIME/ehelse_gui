@@ -11,6 +11,10 @@ angular.module("ehelseEditor").factory("DocumentField", ["$rootScope", "StorageH
     function init(){
         try{
             Array.prototype.push.apply(document_fields, StorageHandler.getDocumentFields().documentFields);
+            for(var i = 0; i < document_fields.length; i++){
+                document_fields[i].sequence = Number(document_fields[i].sequence);
+            }
+            document_fields.sort(ServiceFunction.compareSequence);
             generateDocumentFieldDict(document_fields);
             generateDocumentFieldTypeDict(document_fields);
         }
@@ -120,12 +124,14 @@ angular.module("ehelseEditor").factory("DocumentField", ["$rootScope", "StorageH
                 "description": field.description,
                 "sequence": sequenceInt,
                 "mandatory": mandatoryString,
-                "documentTypeId": $rootScope.typeId,
+                "documentTypeId": String($rootScope.typeId),
                 "isArchived": 0,
                 "isRichText": isRichText
             };
+            console.log(myField);
 
             document_fields.push(myField);
+            document_fields.sort(ServiceFunction.compareSequence);
             generateDocumentFieldDict(document_fields);
             generateDocumentFieldTypeDict(document_fields);
             success(myField);
@@ -163,7 +169,7 @@ angular.module("ehelseEditor").factory("DocumentField", ["$rootScope", "StorageH
                 "description": field.description,
                 "sequence": field.sequence,
                 "mandatory": mandatoryString,
-                "documentTypeId": $rootScope.typeId,
+                "documentTypeId": String(field.documentTypeId),
                 "isArchived": 0,
                 "isRichText": isRichText
             };
@@ -174,7 +180,9 @@ angular.module("ehelseEditor").factory("DocumentField", ["$rootScope", "StorageH
             document_field.mandatory = myField.mandatory;
             document_field.sequence = myField.sequence;
             document_field.isRichText = myField.isRichText;
+            document_field.documentTypeId = myField.documentTypeId;
             success(myField);
+            document_fields.sort(ServiceFunction.compareSequence);
         }
         catch(err){
             console.log("Field could not be edited: " + err);

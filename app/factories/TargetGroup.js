@@ -50,10 +50,15 @@ angular.module("ehelseEditor").factory("TargetGroup", ["$rootScope", "StorageHan
     function generateTargetGroupOptionsList(target_groups){
         target_groups_options_list.length = 0;
         for(var i = 0; i < target_groups.length; i++){
-            target_groups_options_list.push({
+            var target_group = {
                 id: target_groups[i].id,
-                name: target_groups[i].name
-            });
+                name: target_groups[i].name,
+                abbreviation: target_groups[i].abbreviation
+            };
+            if(target_group.abbreviation){
+                target_group.abbreviation = "(" + target_group.abbreviation + ")";
+            }
+            target_groups_options_list.push(target_group);
         }
     }
 
@@ -107,6 +112,7 @@ angular.module("ehelseEditor").factory("TargetGroup", ["$rootScope", "StorageHan
             try{
                 setTargetGroup(target_groups_dict[group.id], group);
                 generateTargetGroupDict(target_groups);
+                generateTargetGroupOptionsList(target_groups);
                 $rootScope.notifySuccess("Mulgruppe ble oppdatert", 1000);
             }
             catch(error){

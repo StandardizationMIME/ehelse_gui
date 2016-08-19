@@ -11,35 +11,64 @@
             <!-- Display the document's link categories -->
             <div ng-repeat="linkCategory in linkCategories" class="link-category-group">
                 <div class="panel panel-default link-group-panel">
-
                     <!-- Link category name -->
                     <div class="panel-heading">
-                        <h3 class="panel-title">{{linkCategoriesDict[linkCategory.id].name}}
-                            <span class="fa fa-remove delete-topic-icon clickable" ng-click="removeLinkCategory(linkCategory.id); EditDocumentController.DocumentForm.$setDirty()"></span>
+                        <h3 ng-style="{'font-size': text.size + 'px'}" class="panel-title">{{linkCategoriesDict[linkCategory.id].name}}
+                            <span class="fa fa-remove delete-topic-icon clickable pull-right" ng-click="openConfirmationModal('Er du sikker på at du vil slette lenke-kategorien fra dokumentet?', linkCategory.id, removeLinkCategory); EditDocumentController.DocumentForm.$setDirty()"></span>
                         </h3>
                     </div>
+                    <div class="panel-body">
+                        <div class="form-group">
+                            <table id="" class="table">
+                                <tr class="navbar-nav document-links-ul" ng-repeat="link in linkCategory.links">
+                                    <!-- Nr -->
+                                    <td class="document-links-link center-align-delete-button">
+                                        <label ng-style="{'font-size': text.size + 'px'}" class=" control-label center-align-text" for="linkSequence">Nr.</label>
+                                    </td>
 
-                    <!-- Display the category's links -->
-                    <ul class="list-group">
-                        <li class="list-group-item" ng-repeat="link in linkCategory.links">
+                                    <!-- Link sequence -->
+                                    <td class="document-links-link">
+                                        <input ng-style="{'font-size': text.size + 'px', 'height': text.size*2.1 + 'px'}"
+                                               class="form-control document-fields-field-sequence" id="linkSequence" ng-model="link.sequence"
+                                               placeholder="1" name="linkSequence" type="text" numbers-only maxlength="15">
+                                    </td>
 
-                            <!-- Link text -->
-                            <span class="document-fields-field-name"><input class="form-control" type="text" placeholder="Navn" ng-model="link.text"></span>
+                                    <!-- Link text -->
+                                    <td class="document-links-link">
+                                        <input ng-style="{'font-size': text.size + 'px', 'height': text.size*2.1 + 'px'}"
+                                               class="form-control" id="linkText" name="linkText" type="text" placeholder="Navn" ng-model="link.text"
+                                               data-toggle="tooltip" data-original-title="{{link.text}}" data-placement="top" required>
+                                    </td>
 
-                            <!-- URL -->
-                            <span class="document-fields-field-value"><input class="form-control" type="text" placeholder="URL" ng-model="link.url" name="linkCategoryUrl" required></span>
+                                    <!-- Link url -->
+                                    <td class="document-links-link">
+                                        <input ng-style="{'font-size': text.size + 'px', 'height': text.size*2.1 + 'px'}"
+                                               class="form-control center-align-text" id="linkUrl" name="linkUrl" type="text" placeholder="URL" ng-model="link.url"
+                                               data-toggle="tooltip" data-original-title="{{link.url}}" data-placement="top" required>
+                                    </td>
 
-                            <!-- Remove link -->
-                            <span class="fa fa-remove delete-topic-icon clickable" ng-click="removeLink(link); EditDocumentController.DocumentForm.$setDirty()"></span>
-                        </li>
-                    </ul>
+                                    <!-- Delete link -->
+                                    <td class="document-links-link center-align-delete-button">
+                                                               <span class="fa fa-remove delete-topic-icon clickable form-group center-align-text"
+                                                                     ng-click="openConfirmationModal('Er du sikker på at du vil slette lenken fra dokumentet?',
+                                                                                      link, removeLink); EditDocumentController.DocumentForm.$setDirty()">
+                                                               </span>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+
+
                 </div>
 
                 <!-- Add link to document -->
-                <button type="button" class="btn btn-default" ng-click="addLinkToDocument(linkCategory.id);">
-                    <span class="fa fa-plus-circle plus-icon"></span>
-                    Legg til lenke
-                </button>
+                <div class="ten-pix-vertical-padding">
+                    <button type="button" class="btn btn-default" ng-click="addLinkToDocument(linkCategory.id);">
+                        <span class="fa fa-plus-circle plus-icon"></span>
+                        Legg til lenke
+                    </button>
+                </div>
             </div>
 
             <!-- Open modal for adding link categories to document -->

@@ -14,64 +14,149 @@
 
                 <!-- Table head -->
                 <thead>
-                    <tr>
-                        <th>Navn</th>
-                        <th>Obligatorisk</th>
-                        <th>Frist</th>
-                        <th>Handling</th>
-                        <th>Beskrivelse</th>
-                        <th></th>
-                    </tr>
+                <tr>
+                    <th>Navn</th>
+                    <th>Obligatorisk</th>
+                    <th>Frist</th>
+                    <th>Handling</th>
+                    <th>Beskrivelse</th>
+                    <th></th>
+                </tr>
                 </thead>
 
                 <!-- Table body -->
                 <tbody>
-                    <!-- For all target groups in the document display: -->
-                    <tr ng-repeat="group in document.targetGroups">
+                <!-- For all target groups in the document display: -->
+                <tr ng-repeat="group in document.targetGroups" ng-class="{ 'has-error' : EditDocumentController.DocumentForm.t{{group.targetGroupId}}.$invalid && !EditDocumentController.DocumentForm.t{{group.targetGroupId}}.$pristine}">
 
-                        <!-- NAME -->
-                        <td class="target-group-info">{{target_groups_dict[group.targetGroupId].name}}</td>
+                    <!-- NAME -->
+                    <td class="target-group-info control-label">
+                        <span ng-style="{'font-size': text.size + 'px'}">{{target_groups_dict[group.targetGroupId].name}}</span>
+                    </td>
 
-                        <!-- MANDATORY -->
-                        <td class="target-group-info">
-                            <select class="form-control" name="targetGroups" id="mandatory" ng-model="group.mandatoryId" required>
-                                <option value="" selected>Ingen</option>
-                                <option ng-repeat="mandatory in mandatory_list" ng-hide="mandatory.isArchived" value={{mandatory.id}}>{{mandatory.name}}</option>
-                            </select>
-                        </td>
+                    <!-- MANDATORY -->
+                    <td class="target-group-info">
+                        <select ng-style="{'font-size': text.size + 'px', 'height': text.size*2.1 + 'px'}"
+                                class="form-control edit-document-select-no-top-bottom-padding" name="t{{group.targetGroupId}}" id="mandatory" ng-model="group.mandatoryId"
+                                ng-change="updateMandatoryNotices()" required>
+                            <option value="" selected>Ingen</option>
+                            <option ng-repeat="mandatory in mandatory_list" ng-hide="mandatory.isArchived"
+                                    value={{mandatory.id}}>{{mandatory.name}}
+                            </option>
+                        </select>
+                        <p ng-show="EditDocumentController.DocumentForm.t{{group.targetGroupId}}.$invalid && !EditDocumentController.DocumentForm.t{{group.targetGroupId}}.$pristine" class="help-block small">Feltet må fylles ut</p>
+                    </td>
 
-                        <!-- Deadline -->
-                        <td class="target-group-info">
-                            <input class="form-control" type="text" id="deadline" ng-model="group.deadline">
-                        </td>
+                    <!-- Deadline -->
+                    <td class="target-group-info">
+                        <input ng-style="{'font-size': text.size + 'px', 'height': text.size*2.1 + 'px'}"
+                               class="form-control default-border-color-important" type="text" id="deadline" ng-model="group.deadline">
+                    </td>
 
-                        <!-- ACTION -->
-                        <td class="target-group-info">
-                            <select class="form-control" name="" id="action" ng-model="group.actionId">
-                                <option value="" selected>Ingen</option>
-                                <option ng-repeat="action in actions_option_list" ng-hide="action.isArchived" value={{action.value}}>{{action.name}}</option>
-                            </select>
-                        </td>
+                    <!-- ACTION -->
+                    <td class="target-group-info">
+                        <select ng-style="{'font-size': text.size + 'px', 'height': text.size*2.1 + 'px'}"
+                                class="form-control default-border-color-important edit-document-select-no-top-bottom-padding" name="" id="action" ng-model="group.actionId">
+                            <option value="" selected>Ingen</option>
+                            <option ng-repeat="action in actions_option_list" ng-hide="action.isArchived"
+                                    value={{action.value}}>{{action.name}}
+                            </option>
+                        </select>
+                    </td>
 
-                        <!-- Description -->
-                        <td class="target-group-info">
-                            <input type="text" class="form-control" id="description"  ng-model="group.description"/>
-                        </td>
+                    <!-- Description -->
+                    <td class="target-group-info">
+                        <input ng-style="{'font-size': text.size + 'px', 'height': text.size*2.1 + 'px'}" type="text"
+                               class="form-control default-border-color-important" id="description" ng-model="group.description"/>
+                    </td>
 
-                        <!-- Delete target group from document -->
-                        <td>
-                            <span class="fa fa-remove delete-target-group-icon clickable" ng-click="removeTargetGroup(group); EditDocumentController.DocumentForm.$setDirty()"></span>
-                        </td>
-                    </tr>
+                    <!-- Delete target group from document -->
+                    <td class="center-align-delete-button">
+                        <span class="fa fa-remove delete-target-group-icon clickable"
+                              ng-click="openConfirmationModal('Er du sikker på at du vil slette målgruppen fra dokumentet?', group, removeTargetGroup); EditDocumentController.DocumentForm.$setDirty()"></span>
+                    </td>
+                </tr>
 
                 </tbody>
             </table>
 
             <!-- Add new target group to document -->
-            <button class="btn btn-default" type="button" ng-click="openModal('app/components/content/editDocument/targetGroups/addDocumentTargetGroupModal.html', 'AddDocumentTargetGroupModelController')"><span class="fa fa-plus-circle plus-icon"></span> Legg til ny</button>
+            <div class="ten-pix-bottom-padding">
+                <button class="btn btn-default" type="button"
+                        ng-click="openModal('app/components/content/editDocument/targetGroups/addDocumentTargetGroupModal.html', 'AddDocumentTargetGroupModelController')">
+                    <span class="fa fa-plus-circle plus-icon"></span> Legg til ny
+                </button>
+            </div>
+
+            <!-- Additional fields -->
+            <div>
+                <!-- Additional fields for mandatory target groups -->
+                <div class="form-group" ng-show="hasMandatoryTargetGroup()">
+
+
+                    <label ng-style="{'font-size': text.size + 'px'}" for="targetGroupLegalBases"
+                           class="col-sm-4 control-label"> Hjemmel: </label>
+                    <div class="form-group col-sm-8">
+                        <input ng-style="{'font-size': text.size + 'px', 'height': text.size*2.1 + 'px'}" type="text"
+                               id="targetGroupLegalBases" class="form-control" ng-model="document.targetGroupLegalBases"
+                               ng-click="disableTargetGroupDecidedBy()"
+                               ng-readonly="additionalFieldForMandatoryGroupsSelected">
+                    </div>
+
+
+                    <label ng-style="{'font-size': text.size + 'px'}" for="targetGroupDecidedBy"
+                           class="col-sm-4 control-label"> Besluttet av: </label>
+                    <div class="form-group col-sm-8">
+                        <input ng-style="{'font-size': text.size + 'px', 'height': text.size*2.1 + 'px'}" type="text"
+                               id="targetGroupDecidedBy" class="form-control" ng-model="document.decidedBy"
+                               ng-click="disableTargetGroupLegalBases()"
+                               ng-readonly="!additionalFieldForMandatoryGroupsSelected">
+                    </div>
+
+                    <label ng-style="{'font-size': text.size + 'px'}" for="targetGroupReplacedBy"
+                           class="col-sm-4 control-label"> Erstattes av: </label>
+                    <div class="form-group col-sm-8">
+                        <input ng-style="{'font-size': text.size + 'px', 'height': text.size*2.1 + 'px'}" type="text"
+                               id="targetGroupReplacedBy" class="form-control" ng-model="document.replacedBy">
+                    </div>
+                </div>
+
+                <!-- Additional fields for optional target groups -->
+                <div class="form-group" ng-repeat="mandatoryNotice in document.mandatoryNotices" ng-show="mandatoryNotice.mandatoryId">
+
+                    <label ng-style="{'font-size': text.size + 'px', 'height': text.size*2.1 + 'px'}" class="col-sm-4 control-label" for="mandatory{{mandatoryNotice.mandatoryId}}">Merknad til
+                        {{getMandatoryNameById(mandatoryNotice.mandatoryId)}} gruppe:
+                    </label>
+
+                    <div class="form-group col-sm-8">
+                        <input ng-style="{'font-size': text.size + 'px', 'height': text.size*2.1 + 'px'}"
+                               type="text" class="form-control" ng-model="mandatoryNotice.notice"
+                                id="mandatory{{mandatoryNotice.mandatoryId}}">
+                    </div>
+                </div>
+            </div>
         </div>
 
 
     </div>
 </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

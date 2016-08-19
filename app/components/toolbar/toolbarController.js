@@ -1,85 +1,199 @@
 angular.module("ehelseEditor").controller("ToolbarController",
-    ["$state", "$rootScope", "$scope", "CSVConverter", "FileUpload", "StorageHandler", "DownloadList", "Action", "Document", "DocumentField", "DocumentType", "LinkCategory", "Mandatory", "Status", "TargetGroup", "Topic", "DocumentExtractor",
-        function ($state, $rootScope, $scope, CSVConverter, FileUpload, StorageHandler, DownloadList, Action, Document, DocumentField, DocumentType, LinkCategory, Mandatory, Status, TargetGroup, Topic, DocumentExtractor) {
+    ["$state", "$rootScope", "$scope", "CSVConverter", "FileUpload", "StorageHandler", "DownloadList", "Action", "Document", "DocumentField", "DocumentType", "LinkCategory", "Mandatory", "Status", "TargetGroup", "Topic", "DocumentExtractor", "cfpLoadingBar",
+        function ($state, $rootScope, $scope, CSVConverter, FileUpload, StorageHandler, DownloadList, Action, Document, DocumentField, DocumentType, LinkCategory, Mandatory, Status, TargetGroup, Topic, DocumentExtractor, cfpLoadingBar) {
 
             $scope.$parent.registerChildController("ToolbarController", $scope);
 
             // Remove selected graphics from topics and documents
-            $rootScope.deselectTopicAndDocument = function () {
+            $rootScope.deselectDocument = function () {
+                $rootScope.selected_document = "";
+            };
+            $rootScope.deselectEverything = function () {
                 $rootScope.getDocuments("");
+                $rootScope.searchIsFocused = true;
                 $rootScope.selected_topic_id = "";
                 $rootScope.selected_document = "";
+                $rootScope.topic.title = "Referansekatalogen";
+                $rootScope.changeContentView("");
+                $rootScope.searchQuery = "";
+            };
+
+            $rootScope.text = {
+                size: 14
             };
 
             // Open the different administer views in the content window
             $scope.openAdministerFields = function () {
-                $rootScope.deselectTopicAndDocument();
-                $rootScope.changeContentView("administerfields");
+                if ($rootScope.formNotPristine('document')) {
+                    $rootScope.checkEditTopicForm("administerfields", $rootScope.changeContentView);
+                } else {
+                    $rootScope.checkEditDocumentForm("administerfields",$rootScope.changeContentView);
+                }
             };
 
             $scope.openTargetGroups = function () {
-                $rootScope.deselectTopicAndDocument();
-                $rootScope.changeContentView("targetgroups");
+                if ($rootScope.formNotPristine('document')) {
+                    $rootScope.checkEditTopicForm("targetgroups",$rootScope.changeContentView);
+                } else {
+                    $rootScope.checkEditDocumentForm("targetgroups",$rootScope.changeContentView);
+                }
             };
 
             $scope.openAdministerActions = function () {
-                $rootScope.deselectTopicAndDocument();
-                $rootScope.changeContentView("administeractions");
+                if ($rootScope.formNotPristine('document')) {
+                    $rootScope.checkEditTopicForm("administeractions", $rootScope.changeContentView);
+                } else {
+                    $rootScope.checkEditDocumentForm("administeractions", $rootScope.changeContentView);
+                }
             };
 
             $scope.openAdministerStatus = function () {
-                $rootScope.deselectTopicAndDocument();
-                $rootScope.changeContentView("administerstatus");
+                if ($rootScope.formNotPristine('document')) {
+                    $rootScope.checkEditTopicForm("administerstatus", $rootScope.changeContentView);
+                } else {
+                    $rootScope.checkEditDocumentForm("administerstatus", $rootScope.changeContentView);
+                }
             };
 
             $scope.openAdministerLinkCategories = function () {
-                $rootScope.deselectTopicAndDocument();
-                $rootScope.changeContentView("administerlinkcategories");
+                if ($rootScope.formNotPristine('document')) {
+                    $rootScope.checkEditTopicForm("administerlinkcategories", $rootScope.changeContentView);
+                } else {
+                    $rootScope.checkEditDocumentForm("administerlinkcategories", $rootScope.changeContentView);
+                }
             };
 
             $scope.openAdministerMandatory = function () {
-                $rootScope.deselectTopicAndDocument();
-                $rootScope.changeContentView("administermandatory");
+                if ($rootScope.formNotPristine('document')) {
+                    $rootScope.checkEditTopicForm("administermandatory", $rootScope.changeContentView);
+                } else {
+                    $rootScope.checkEditDocumentForm("administermandatory", $rootScope.changeContentView);
+                }
             };
 
-            // Open import_csv modal
-            $scope.openCSVImportModal = function () {
-                $rootScope.deselectTopicAndDocument();
-                $rootScope.openModal("app/components/csvImport/csvImportModal.html", "CSVImportController");
+            $scope.openAdministerHeadings = function () {
+                if ($rootScope.formNotPristine('document')) {
+                    $rootScope.checkEditTopicForm("administerheadings", $rootScope.changeContentView);
+                } else {
+                    $rootScope.checkEditDocumentForm("administerheadings", $rootScope.changeContentView);
+                }
             };
 
-            // Open uploadFile modal
-            $scope.openUploadFileModal = function () {
-                $rootScope.openModal("app/components/uploadFile/uploadFileModal.html", "UploadFileController");
+            $scope.openAdministerContactAddresses = function () {
+                if ($rootScope.formNotPristine('document')) {
+                    $rootScope.checkEditTopicForm("administercontactaddresses", $rootScope.changeContentView);
+                } else {
+                    $rootScope.checkEditDocumentForm("administercontactaddresses", $rootScope.changeContentView);
+                }
+            };
+
+            $rootScope.loadingBarStart = function() {
+                cfpLoadingBar.start();
+            };
+            $rootScope.loadingBarComplete = function () {
+                cfpLoadingBar.complete();
             };
 
             // Download save file
             $scope.save = function () {
-                FileUpload.saveToFile(DownloadList.getStorageList());
+                FileUpload.onSaveMimeJSON(DownloadList.getStorageList(), function () {
+                    $rootScope.loadingBarStart();
+                    $scope.fakeIntro = true;
+                    setTimeout(function() {
+                        $rootScope.savingFilePath = StorageHandler.getSavingFilePath();
+                        $rootScope.currentFilePath = StorageHandler.getCurrentFilePath();
+
+                        $rootScope.notifySuccess(FileUpload.getMsg() + $rootScope.savingFilePath, 2000);
+
+                        $rootScope.loadingBarComplete();
+                        $scope.fakeIntro = false;
+                    }, 500);
+                }, function () {
+                    $rootScope.notifyError("Feil ved fillagring", 1000);
+                });
+            };
+
+            $scope.saveAs = function () {
+                FileUpload.setJsonFalse();
+                FileUpload.onSaveMimeJSON(DownloadList.getStorageList(), function () {
+                    $rootScope.loadingBarStart();
+                    $scope.fakeIntro = true;
+                    setTimeout(function() {
+                        $rootScope.savingFilePath = StorageHandler.getSavingFilePath();
+                        $rootScope.currentFilePath = StorageHandler.getCurrentFilePath();
+
+                        $rootScope.notifySuccess("Vellykket lagret i: " + $rootScope.savingFilePath, 2000);
+
+                        $rootScope.loadingBarComplete();
+                        $scope.fakeIntro = false;
+                    }, 500);
+                }, function () {
+                    $rootScope.notifyError("Feil ved fillagring", 1000);
+                });
+                FileUpload.setJsonTrue();
             };
 
             $scope.downloadAllDocumentsAsJSON = function(){
-                FileUpload.saveToFile(DocumentExtractor.getAllDocumentsAsJSON());
+                FileUpload.onSaveWebJSON(DocumentExtractor.getAllDocumentsAsJSON(), function () {
+                    $rootScope.loadingBarStart();
+                    $scope.fakeIntro = true;
+                    setTimeout(function() {
+                        $rootScope.savingFilePath= StorageHandler.getSavingFilePath();
+                        
+                        $rootScope.notifySuccess("Ny fil lagret i: " + $rootScope.savingFilePath , 3000);
+                        
+                        $rootScope.loadingBarComplete();
+                        $scope.fakeIntro = false;
+                    }, 500);
+                }, function () {
+                    $rootScope.notifyError("Feil ved fillagring", 1000);
+                });
             };
 
             // Initialize state
             $scope.$state = $state;
-            $scope.showCSVContent = function ($fileContentCsv) {
-                CSVConverter.uploadCSVContent($fileContentCsv);
-                StorageHandler.initCsv();
-                Action.init();
-                Document.init();
-                DocumentField.init();
-                DocumentType.init();
-                LinkCategory.init();
-                Mandatory.init();
-                Status.init();
-                TargetGroup.init();
-                Topic.init();
+
+            $scope.uploadCsvButton = function () {
+                FileUpload.onLoadCSV(function () {
+                    // fake the initial load
+                    $rootScope.loadingBarStart();
+                    $scope.fakeIntro = true;
+                    setTimeout(function() {
+                        $rootScope.deselectEverything();
+                        $rootScope.clearSearchFilterText();
+                        $rootScope.changeContentView("");
+                        
+                        $rootScope.currentFilePath = StorageHandler.getSavingFilePath();
+                        $rootScope.notifySuccess("Konvertering av csv vellykket!", 1000);
+
+                        $rootScope.loadingBarComplete();
+                        $scope.fakeIntro = false;
+                    }, 500);
+                }, function () {
+                    $rootScope.notifyError("Feil ved filopplasting", 1000);
+                });
             };
 
-            $scope.csvLinkClick = function () {
-                $("#upload").trigger('click');
+            $scope.uploadJsonButton = function () {
+                FileUpload.onLoadJSON(function () {
+                    // fake the initial load
+                    $rootScope.loadingBarStart();
+                    $scope.fakeIntro = true;
+                    setTimeout(function() {
+                        $rootScope.deselectEverything();
+                        $rootScope.clearSearchFilterText();
+                        $rootScope.changeContentView("");
+
+                        $rootScope.savingFilePath = StorageHandler.getSavingFilePath();
+                        $rootScope.currentFilePath = StorageHandler.getCurrentFilePath();
+                        $rootScope.notifySuccess("Opplasting vellykket!", 1000);
+
+                        $rootScope.loadingBarComplete();
+                        $scope.fakeIntro = false;
+                    }, 500);
+                }, function () {
+                    $rootScope.notifyError("Feil ved filopplasting", 1000);
+                });
             };
 
             $scope.searchFilter = function (row) {
@@ -95,10 +209,12 @@ angular.module("ehelseEditor").controller("ToolbarController",
             });
 
             $scope.searchFocused = function () {
-                $rootScope.searchIsFocused = true;
-                $rootScope.selected_topic_id = "";
                 if (!$rootScope.searchQuery){
-                    $rootScope.changeContentView("");
+                    if ($rootScope.formNotPristine('document')) {
+                        $rootScope.checkEditTopicForm("", $rootScope.deselectEverything);
+                    } else {
+                        $rootScope.checkEditDocumentForm("", $rootScope.deselectEverything);
+                    }
                 }
             };
             $rootScope.searchOption = DocumentType.getById;

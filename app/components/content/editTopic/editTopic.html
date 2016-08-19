@@ -1,62 +1,67 @@
-<form ng-controller="EditTopicController" name="EditTopicController.editTopicForm" role="form" method="post">
-    <div class="shadow-below">
+<form class="col-lg-7 col-mg-7 col-sm-7 col-xs-7 content-view" ng-controller="EditTopicController" name="EditTopicController.editTopicForm" role="form" method="post">
+    <div class="shadow-below editor-header">
         <div class="headline-box">
 
             <!-- Title -->
             <h4 class="selected-heading">Rediger tema</h4>
         </div>
 
-        <p class="twelve-pix-vertical-padding">
+        <p class="ten-pix-vertical-padding">
 
             <!-- Save change -->
-            <button ng-click="saveTopicChange(EditTopicController.editTopicForm)" type="submit" class="btn btn-primary" ng-disabled="EditTopicController.editTopicForm.$pristine">
-                <span class="fa fa-check-circle-o edit-topic-icon"></span>
-                 Lagre tema
-            </button>
+            <span class="my-tooltip" data-toggle="tooltip" title="Lagre tema">
+                <button ng-click="saveTopicChange(EditTopicController.editTopicForm)"
+                        class="fa fa-floppy-o document-buttons save-clone-download-buttons"
+                        ng-disabled="EditTopicController.editTopicForm.$pristine">
+                </button>
+            </span>
+
 
             <!-- Delete topic -->
-            <button ng-click="openConfirmationModal('Er du sikker på at du vil slette temaet?', selectedTopic, deleteTopic)" type="button" class="btn btn-danger pull-right">
-                <span class="fa fa-remove"></span>
-                Slett tema
-            </button>
+            <span ng-click="openConfirmationModal('Er du sikker på at du vil slette temaet?', selectedTopic, deleteTopic)" class="fa fa-trash pull-right document-buttons"
+            data-toggle="tooltip" title="Slett">
+            </span>
         </p>
     </div>
 
-    <div class="panel panel-default">
+    <div class="panel panel-default content">
         <div class="panel-body">
 
             <!-- choose topic title -->
             <div class="form-group">
-                <label class="col-sm-3 control-label"  for="editTopicTitle">Tittel: <span class="required-icon" data-toggle="tooltip" title="Obligatorisk felt" data-placement="top">*</span></label>
+                <label ng-style="{'font-size': text.size + 'px'}" class="col-sm-3 control-label"  for="editTopicTitle">Tittel: <span class="required-icon" data-toggle="tooltip" title="Obligatorisk felt" data-placement="top">*</span></label>
                 <div class="form-group col-sm-9">
-                    <input type="text" name="editTopicTitle" id="editTopicTitle" class="form-control half-width"
+                    <input ng-style="{'font-size': text.size + 'px', 'height': text.size*2.1 + 'px'}" type="text" name="editTopicTitle" id="editTopicTitle" class="form-control half-width"
                            ng-model="selectedTopic.title" required/>
                 </div>
             </div>
 
             <!-- Choose description -->
             <div class="form-group">
-                <label class="col-sm-3 control-label" for="editTopicDescription">Beskrivelse: </label>
+                <label ng-style="{'font-size': text.size + 'px'}" class="col-sm-3 control-label" for="editTopicDescription">Beskrivelse: </label>
                 <div class="form-group col-sm-9">
-                    <textarea name="editTopicDescription" id="editTopicDescription" class="form-control half-width"
+                    <textarea ng-style="{'font-size': text.size + 'px', 'height': text.size*15 + 'px'}"
+                              name="editTopicDescription" id="editTopicDescription" class="form-control half-width"
                               ng-model="selectedTopic.description" rows="15" cols="50"></textarea>
                 </div>
             </div>
 
             <!-- Choose sequence -->
             <div class="form-group">
-                <label class="col-sm-3 control-label" for="editTopicSequence">Rekkefølge: </label>
+                <label ng-style="{'font-size': text.size + 'px'}" class="col-sm-3 control-label" for="editTopicSequence">Rekkefølge: </label>
                 <div class="form-group col-sm-9">
-                    <input type="text" name="editTopicSequence" id="editTopicSequence" class="form-control half-width"
+                    <input ng-style="{'font-size': text.size + 'px', 'height': text.size*2.1 + 'px'}"
+                           type="text" name="editTopicSequence" id="editTopicSequence" class="form-control half-width"
                            ng-model="selectedTopic.sequence" numbers-only maxlength="15"/>
                 </div>
             </div>
 
             <!-- Choose topic parent -->
             <div class="form-group">
-                <label class="col-sm-3 control-label" for="editTopicParent">Tema ligger under: </label>
+                <label ng-style="{'font-size': text.size + 'px'}" class="col-sm-3 control-label" for="editTopicParent">Tema ligger under: </label>
                 <div class="form-group col-sm-9">
-                    <select name="editTopicParent" id="editTopicParent" class="form-control half-width" ng-model="selectedTopic.parentId">
+                    <select ng-style="{'font-size': text.size + 'px', 'height': text.size*2.5 + 'px'}"
+                            name="editTopicParent" id="editTopicParent" class="form-control half-width" ng-model="selectedTopic.parentId">
                         <option value="">Ingen</option>
                         <option ng-repeat="topic in topicTupleList" ng-if="topic.level <= 2 && isValidTopicTupleListElement(topic)" value={{topic.id}}>{{topic.path}}</option>
                     </select>

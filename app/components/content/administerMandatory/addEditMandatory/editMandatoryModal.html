@@ -14,7 +14,7 @@
                     <!-- Title -->
                     <div class="form-group">
                         <label for="editMandatoryName">Tittel: </label><span class="required-icon" data-toggle="tooltip" title="Obligatorisk felt" data-placement="top">*</span>
-                        <input id="editMandatoryName" focus-me="shouldBeOpen" ng-model="currentMandatory.name" type="text" class="form-control" required/>
+                        <input id="editMandatoryName" focus-me="shouldBeOpen" ng-model="currentMandatory.name" type="text" class="form-control" ng-readonly="!(currentMandatory.id != 1 && currentMandatory.id != 2)" required/>
                     </div>
 
                     <!-- Description -->

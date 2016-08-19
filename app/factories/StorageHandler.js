@@ -1,15 +1,16 @@
 "use strict";
 
-angular.module("ehelseEditor").factory("StorageHandler", ["$rootScope", "FileUpload", "ServiceFunction", "CSVConverter",
-    function ($rootScope, FileUpload, ServiceFunction, CSVConverter) {
+angular.module("ehelseEditor").factory("StorageHandler", ["$rootScope", "ServiceFunction", "CSVConverter",
+    function ($rootScope, ServiceFunction, CSVConverter) {
 
-
+        var savingFilePath = "";
+        var currentFilePath ="";
         var input_list = [];
 
-        init();
+        initValues();
 
-        function init() {
-            input_list = FileUpload.getJsonFile();
+        function initJSON(jsonFile){
+            input_list = jsonFile;
             initValues();
         }
 
@@ -40,7 +41,30 @@ angular.module("ehelseEditor").factory("StorageHandler", ["$rootScope", "FileUpl
                 input_list.status = [];
             }
             if (!input_list.mandatory) {
-                input_list.mandatory = [];
+                input_list.mandatory = [{
+                    "id": "1",
+                    "name": "Obligatorisk",
+                    "description": ""
+                },{
+                    "id": "2",
+                    "name": "Anbefalt",
+                    "description": ""
+                }];
+            }else{
+                if (!hasMandatoryId(input_list.mandatory, 1)){
+                    input_list.mandatory.push({
+                        "id": "1",
+                        "name": "Obligatorisk",
+                        "description": ""
+                    });
+                }
+                if (!hasMandatoryId(input_list.mandatory,2)){
+                    input_list.mandatory.push({
+                        "id": "2",
+                        "name": "Anbefalt",
+                        "description": ""
+                    })
+                }
             }
             if (!input_list.actions) {
                 input_list.actions = [];
@@ -51,12 +75,27 @@ angular.module("ehelseEditor").factory("StorageHandler", ["$rootScope", "FileUpl
             if (!input_list.documentFields) {
                 input_list.documentFields = [];
             }
+            if (!input_list.headings) {
+                input_list.headings = [];
+            }
+            if (!input_list.contactAddresses) {
+                input_list.contactAddresses = [];
+            }
             if (!input_list.topics) {
                 input_list.topics = [];
             }
             if (!input_list.archivedDocuments) {
                 input_list.archivedDocuments = {};
             }
+        }
+
+        function hasMandatoryId(mandatoryList, checkId){
+            for (var i = 0; i < mandatoryList.length; i++){
+                if (mandatoryList[i].id == checkId){
+                    return true;
+                }
+            }
+            return false;
         }
 
         var SORT_ON_SEQUENCE = function (a, b) { // Constant for sequence sort (ascending)
@@ -111,6 +150,13 @@ angular.module("ehelseEditor").factory("StorageHandler", ["$rootScope", "FileUpl
         }
 
         /**
+         * Returns headings
+         */
+        function getHeadings() {
+            return {"headings": input_list.headings};
+        }
+
+        /**
          * Returns status list
          * @returns {Array}
          */
@@ -131,6 +177,13 @@ angular.module("ehelseEditor").factory("StorageHandler", ["$rootScope", "FileUpl
          */
         function getTopics() {
             return {"topics": getTopicTree()};
+        }
+
+        /**
+         * Returns contact addresses
+         */
+        function getContactAddresses() {
+            return {"contactAddresses": input_list.contactAddresses};
         }
 
         /**
@@ -258,11 +311,29 @@ angular.module("ehelseEditor").factory("StorageHandler", ["$rootScope", "FileUpl
             }
         }
 
+        function setSavingFilePath(path){
+            savingFilePath = path;
+        }
+        function getSavingFilePath(){
+            return savingFilePath;
+        }
+        function setCurrentFilePath(path){
+            currentFilePath = formatFilePath(path);
+        }
+        function getCurrentFilePath(){
+            return currentFilePath;
+        }
+        function formatFilePath(path) {
+            var lastPartOfPath = path.replace(/^.*[\\\/]/, '');
+            var fileNameOnly = lastPartOfPath.replace('.json', '');
+            return '~/'+fileNameOnly;
+        }
 
 
         return {
-            init: init,
+            initJSON: initJSON,
             initCsv: initCsv,
+            getHeadings: getHeadings,
             getActions: getActions,
             getDocuments: getDocuments,
             getDocumentFields: getDocumentFields,
@@ -270,10 +341,15 @@ angular.module("ehelseEditor").factory("StorageHandler", ["$rootScope", "FileUpl
             getLinkCategories: getLinkCategories,
             getStatus: getStatus,
             getMandatory: getMandatory,
+            getContactAddresses: getContactAddresses,
             getTopics: getTopics,
             getTargetGroups: getTargetGroups,
             getArchivedDocuments: getArchivedDocuments,
             getArchivedDocumentsById: getArchivedDocumentsById,
-            addArchivedDocumentsById: addArchivedDocumentsById
+            addArchivedDocumentsById: addArchivedDocumentsById,
+            setSavingFilePath: setSavingFilePath,
+            getSavingFilePath: getSavingFilePath,
+            setCurrentFilePath: setCurrentFilePath,
+            getCurrentFilePath: getCurrentFilePath
         };
     }]);

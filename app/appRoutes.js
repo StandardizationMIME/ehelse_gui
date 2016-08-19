@@ -18,15 +18,5 @@ angular.module("ehelseEditor")
                 controller: "EditorController",
                 url: "/editor-view",
                 templateUrl: "app/components/editor/editorView.html"
-            })
-            .state("main-view.min-side", {
-                controller: "MyPageController",
-                url: "/min-side",
-                templateUrl: "app/components/myPage/myPageView.html"
-            })
-            .state("main-view.administrer-brukere", {
-                controller: "AdministerUsersController",
-                url: "/administrer-brukere",
-                templateUrl: "app/components/administerUsers/administerUsersView.html"
             });
     });

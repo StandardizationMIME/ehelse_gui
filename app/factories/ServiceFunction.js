@@ -56,13 +56,19 @@ angular.module("ehelseEditor").factory("ServiceFunction", [function () {
                     max = id;
                 }
             }
-            console.log(max + 1);
             return "" + (max + 1);
         } else {
             return "1";
         }
     }
-
+    /**
+     * Returns new unique document id
+     *
+     * Checks all elements in dictionary and returns -1 if undefined
+     *  and a new valid id if the dictionary is defined.
+     * @param dict
+     * @returns {*}
+     */
     function generateNewIdFromDict(dict) {
         var length = Object.keys(dict).length;
         // If dictionary is undefined
@@ -72,7 +78,8 @@ angular.module("ehelseEditor").factory("ServiceFunction", [function () {
         // if the dictionary is defined
         if (length) {
             var max = -Infinity;
-            for (var key in dict)   {
+            for (var key in dict) {
+                if (!dict.hasOwnProperty(key)) continue;
                 var id = parseInt(key);
                 if (id > max){
                     max = id;
@@ -102,6 +109,7 @@ angular.module("ehelseEditor").factory("ServiceFunction", [function () {
         } else {
             clone = {};
             for (var key in list) {
+                if (!list.hasOwnProperty(key)) continue;
                 var document_list = [];
                 for (var i = 0; i < list[key].length; i++) {
                     document_list.push(cloneDocument(list[key][i]));
@@ -121,6 +129,7 @@ angular.module("ehelseEditor").factory("ServiceFunction", [function () {
         var invalid_elements = ["populatedProfiles", "$$hashKey"];
         var document_clone = {};
         for (var element in document) {
+            if (!document.hasOwnProperty(element)) continue;
             if (invalid_elements.indexOf(element) < 0) {
                 document_clone[element] = deepCopy(document[element]);
             }
@@ -152,6 +161,7 @@ angular.module("ehelseEditor").factory("ServiceFunction", [function () {
         var clone = {};
 
         for (var element in object) {
+            if (!object.hasOwnProperty(element)) continue;
             if (object[element] instanceof Array) {
                 clone[element] = cloneArray(object[element]);
             } else if (typeof(object[element]) == "object") {
@@ -165,6 +175,65 @@ angular.module("ehelseEditor").factory("ServiceFunction", [function () {
             }
         }
         return clone;
+    }
+
+    /**
+     * Orders taken list by sequence
+     * @param list
+     * @param getByIdMethod
+     * @param type
+     * @returns {Array}
+     */
+    function orderListBySequence(list, getByIdMethod,type){
+        var temp_list = [];
+        for (var i = 0; i < list.length; i++) {
+            var temp_field = {};
+            if(type == "field"){
+                temp_field["id"] = getByIdMethod(list[i].fieldId).id;
+                temp_field["sequence"] = getByIdMethod(list[i].fieldId).sequence;
+                temp_field["value"] = list[i].value;
+            }else if(type == "heading"){
+                temp_field["id"] = getByIdMethod(list[i].headingId).id;
+                temp_field["sequence"] = getByIdMethod(list[i].headingId).sequence;
+                temp_field["text"] = list[i].text;
+            }else if(type == "link"){
+                temp_field["id"] = getByIdMethod(list[i].id).id;
+                temp_field["sequence"] = getByIdMethod(list[i].id).sequence;
+                temp_field["links"] = list[i].links;
+            }else if(type == "linksInDocument"){
+                temp_field["id"] = getByIdMethod(list[i].linkCategoryId).id;
+                temp_field["sequence"] = getByIdMethod(list[i].linkCategoryId).sequence;
+                temp_field["linkSequence"] = list[i].sequence;
+                temp_field["text"] = list[i].text;
+                temp_field["url"] = list[i].url;
+            }
+            temp_list.push(temp_field);
+        }
+        temp_list.sort(compareSequence);
+
+        var output = [];
+        for (var x = 0; x < temp_list.length; x++) {
+            if(type == "field"){
+                output.push({fieldId: temp_list[x].id, value: temp_list[x].value});
+            }else if(type == "heading"){
+                output.push({headingId: temp_list[x].id, text: temp_list[x].text});
+            }else if(type == "link"){
+                if(temp_list[x]){
+                    output.push({id: temp_list[x].id, links: temp_list[x].links });
+                }
+            }else if(type == "linksInDocument"){
+                output.push({linkCategoryId: temp_list[x].id, text: temp_list[x].text, url: temp_list[x].url, sequence: temp_list[x].linkSequence});
+            }
+        }
+        return output;
+    }
+
+    function compareSequence(a,b) {
+        if (parseInt(a.sequence) < parseInt(b.sequence))
+            return -1;
+        if (parseInt(a.sequence) > parseInt(b.sequence))
+            return 1;
+        return 0;
     }
 
     /**
@@ -230,7 +299,127 @@ angular.module("ehelseEditor").factory("ServiceFunction", [function () {
         return sorted_elements;
     }
 
+    /**
+     * Removes all special characters form taken string
+     * @param string
+     * @returns {string}
+     */
+    function cleanString(string){
+        var returnString = "";
+        var stringParts = string.split(" ");
+        for (var i = 0; i < stringParts.length; i++){
+            if (/^[ A-Za-z_@./#&+-]*$/.test(stringParts[i])){
+                returnString = returnString + stringParts[i];
+            }
+            if (i != stringParts.length-1){
+                returnString = returnString + ' ';
+            }
+        }
+        returnString = returnString.replace(/\s+$/, '');
+        return returnString;
+    }
+
+    /**
+     * Removes given element from list
+     * @param arr
+     * @param elementToDelete
+     * @returns {*}
+     */
+    function removeFromArray(arr, elementToDelete){
+        var returnArray = arr;
+        var index = returnArray.indexOf(elementToDelete);
+        if (index > -1) {
+            returnArray.splice(index, 1);
+        }
+        return returnArray;
+    }
+
+    /**
+     * Removes all duplicated elements in taken array
+     * @param arr
+     * @returns {Array}
+     */
+    function removeDuplicates(arr) {
+        var tmp = [];
+        for(var i = 0; i < arr.length; i++){
+            if(tmp.indexOf(arr[i]) == -1){
+                tmp.push(arr[i]);
+            }
+        }
+        return tmp;
+    }
+
+    /**
+     * Converts csv content to array object
+     * @param strData
+     * @param strDelimiter
+     * @returns {*[]}
+     * @constructor
+     */
+    function CSVToArray( strData, strDelimiter ){
+        // Check to see if the delimiter is defined. If not,
+        // then default to comma.
+        strDelimiter = (strDelimiter || ",");
+        // Create a regular expression to parse the CSV values.
+        var objPattern = new RegExp(
+            (
+                // Delimiters.
+                "(\\" + strDelimiter + "|\\r?\\n|\\r|^)" +
+                // Quoted fields.
+                "(?:\"([^\"]*(?:\"\"[^\"]*)*)\"|" +
+                // Standard fields.
+                "([^\"\\" + strDelimiter + "\\r\\n]*))"
+            ),
+            "gi"
+        );
+        // Create an array to hold our data. Give the array
+        // a default empty first row.
+        var arrData = [[]];
+        // Create an array to hold our individual pattern
+        // matching groups.
+        var arrMatches = null;
+        // Keep looping over the regular expression matches
+        // until we can no longer find a match.
+        while (arrMatches = objPattern.exec( strData )){
+            // Get the delimiter that was found.
+            var strMatchedDelimiter = arrMatches[ 1 ];
+            // Check to see if the given delimiter has a length
+            // (is not the start of string) and if it matches
+            // field delimiter. If id does not, then we know
+            // that this delimiter is a row delimiter.
+            if (
+                strMatchedDelimiter.length &&
+                (strMatchedDelimiter != strDelimiter)
+            ){
+                // Since we have reached a new row of data,
+                // add an empty row to our data array.
+                arrData.push( [] );
+            }
+            // Now that we have our delimiter out of the way,
+            // let's check to see which kind of value we
+            // captured (quoted or unquoted).
+            if (arrMatches[ 2 ]){
+                // We found a quoted value. When we capture
+                // this value, unescape any double quotes.
+                var strMatchedValue = arrMatches[ 2 ].replace(
+                    new RegExp( "\"\"", "g" ),
+                    "\""
+                );
+            } else {
+                // We found a non-quoted value.
+                var strMatchedValue = arrMatches[ 3 ];
+            }
+            // Now that we have our value string, let's add
+            // it to the data array.
+            arrData[ arrData.length - 1 ].push( strMatchedValue );
+        }
+        // Return the parsed data.
+        return( arrData );
+    }
+
     return {
+        orderListBySequence: orderListBySequence,
+        compareSequence: compareSequence,
         deepCopy: deepCopy,
         getTimestamp: getTimestamp,
         generateNewId: generateNewId,
@@ -239,6 +428,10 @@ angular.module("ehelseEditor").factory("ServiceFunction", [function () {
         cloneDocuments: cloneDocuments,
         cloneDocument: cloneDocument,
         isUnique: isUnique,
-        sortArrayOnSequence: sortArrayOnSequence
+        sortArrayOnSequence: sortArrayOnSequence,
+        cleanString: cleanString,
+        removeFromArray: removeFromArray,
+        removeDuplicates: removeDuplicates,
+        CSVToArray: CSVToArray
     }
 }]);
