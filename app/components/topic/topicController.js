@@ -13,7 +13,10 @@ angular.module("ehelseEditor").controller("TopicController",["$rootScope", "$sco
     $rootScope.topic = {
         title: "Referansekatalogen"
     };
-
+    /**
+     * Handles folder icons view from open to closed and vise versa
+     * @param topicId
+     */
     $rootScope.toggleTopicIcons = function(topicId){
         var isExpanded = $("#topic" + topicId).attr("aria-expanded");
         var topic = $("#folder" + topicId);
@@ -26,7 +29,11 @@ angular.module("ehelseEditor").controller("TopicController",["$rootScope", "$sco
         }
     };
 
-    // Set selected topic
+    /**
+     * Sets topic to selected state bu it's id
+     * @param topicId
+     * @param doc
+     */
     $rootScope.setSelectedTopic = function (topicId, doc) {
         if(topicId){
             $rootScope.selected_topic_id = topicId;
@@ -38,13 +45,20 @@ angular.module("ehelseEditor").controller("TopicController",["$rootScope", "$sco
         }
     };
 
-    // Search filter
+    // Search filter options
     $rootScope.searchOption = "";
+    /**
+     * Clears search value
+     */
     $rootScope.clearSearchFilterText = function () {
         $rootScope.searchQuery = "";
         $rootScope.searchOption = "";
         $rootScope.searchIsFocused = false;
     };
+    /**
+     * Actions performed when topic gets selected
+     * @param topicId
+     */
     $rootScope.selectTopicActions = function (topicId) {
         $rootScope.toggleTopicIcons(topicId);
         $rootScope.getDocuments(topicId);
@@ -54,6 +68,9 @@ angular.module("ehelseEditor").controller("TopicController",["$rootScope", "$sco
             $rootScope.childControllers["EditorController"].resetForm();
         }
     };
+    /**
+     * Actions performed when 'new topic' button is clicked
+     */
     $rootScope.newTopicActions = function () {
         $rootScope.showNewTopicModal();
         $rootScope.clearSearchFilterText();
@@ -61,6 +78,10 @@ angular.module("ehelseEditor").controller("TopicController",["$rootScope", "$sco
             $rootScope.childControllers["EditorController"].resetForm();
         }
     };
+    /**
+     * Checks document and topic form and prevents loss of unsaved changes
+     * @param topicId
+     */
     $rootScope.checkDocumentFormAndExecute = function (topicId) {
         if (topicId){
             if ($rootScope.formNotPristine('document')) {
