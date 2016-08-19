@@ -311,14 +311,14 @@ textarea {
     white-space: nowrap;
     width: 90%;
 }
-.document-links-link:nth-child(1) {  width: 3%; margin-right: 1%  }
-.document-links-link:nth-child(2) {  width: 7%; margin-right: 1% }
-.document-links-link:nth-child(3) {  width: 46%; margin-right: 1% }
-.document-links-link:nth-child(4) {  width: 37%; margin-right: 1% }
-.document-links-link:nth-child(5) {  width: 3%;  }
-
+.document-links-link:nth-child(1) {  width: 3%; }
+.document-links-link:nth-child(2) {  width: 7%; }
+.document-links-link:nth-child(3) {  width: 46%;}
+.document-links-link:nth-child(4) {  width: 37%;}
+.document-links-link:nth-child(5) {  width: 3%; }
 .document-links-link {
     margin-top: 10px;
+    padding: 8px 5px 8px 5px !important;
 }
 .document-links-ul{
     -webkit-padding-start: 0;
@@ -537,7 +537,13 @@ textarea {
 .target-group-info:nth-child(3) { width: 12%}
 .target-group-info:nth-child(4) { width: 16%}
 .target-group-info:nth-child(5) { width: 27%}
-
+.target-group-info{
+    padding-top: 8px;
+}
+.edit-document-select-no-top-bottom-padding {
+    padding-top: 0px !important;
+    padding-bottom: 0px !important;
+}
 .delete-document-field-icon {
     color: #c13a47;
     font-size: large;

@@ -124,13 +124,13 @@ angular.module("ehelseEditor").controller("ToolbarController",
 
                         $rootScope.notifySuccess("Vellykket lagret i: " + $rootScope.savingFilePath, 2000);
 
-                        FileUpload.setJsonTrue();
                         $rootScope.loadingBarComplete();
                         $scope.fakeIntro = false;
                     }, 500);
                 }, function () {
                     $rootScope.notifyError("Feil ved fillagring", 1000);
                 });
+                FileUpload.setJsonTrue();
             };
 
             $scope.downloadAllDocumentsAsJSON = function(){

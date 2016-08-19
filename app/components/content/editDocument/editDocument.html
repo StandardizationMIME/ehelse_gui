@@ -93,10 +93,10 @@
                     <label ng-style="{'font-size': text.size + 'px'}" class="col-sm-4 control-label" for="documentType">Type
                         dokument: </label>
                     <div class="form-group col-sm-8">
-                        <select ng-style="{'font-size': text.size + 'px', 'height': text.size*2.5 + 'px'}"
+                        <select ng-style="{'font-size': text.size + 'px', 'height': text.size*2.1 + 'px'}"
                                 name="documentType" id="documentType"
                                 ng-change="setCurrentDocumentFieldsByDocumentDocumentTypeId();"
-                                ng-model="document.documentTypeId" class="form-control "
+                                ng-model="document.documentTypeId" class="form-control edit-document-select-no-top-bottom-padding"
                                 ng-disabled="documentState == 'editDocument' || documentState == 'newProfile' || documentState == 'editProfile' || documentState == 'editUtility'
                                 || documentState == 'hideProfilesFromProfile' || documentState == 'hideProfilesFromStandard' || documentState == 'hideProfilesFromNewProfile'">
                             <option ng-repeat="document_type in document_types_option_list"
@@ -146,9 +146,9 @@
                 <div class="form-group">
                     <label ng-style="{'font-size': text.size + 'px'}" class="col-sm-4 control-label" for="statusid">Status: </label>
                     <div class="form-group col-sm-8">
-                        <select ng-style="{'font-size': text.size + 'px', 'height': text.size*2.5 + 'px'}"
+                        <select ng-style="{'font-size': text.size + 'px', 'height': text.size*2.1 + 'px'}"
                                 name="statusid" id="statusid"
-                                ng-model="document.statusId" class="form-control ">
+                                ng-model="document.statusId" class="form-control edit-document-select-no-top-bottom-padding">
                             <option ng-repeat="status in status_list" ng-hide="status.isArchived"
                                     value={{status.id}}>{{status.name}}
                             </option>
@@ -163,9 +163,9 @@
                         Kontaktadresse:
                     </label>
                     <div class="form-group col-sm-8">
-                        <select ng-style="{'font-size': text.size + 'px', 'height': text.size*2.5 + 'px'}"
+                        <select ng-style="{'font-size': text.size + 'px', 'height': text.size*2.1 + 'px'}"
                                 name="contactAddressId" id="contactAddressId" ng-model="document.contactAddressId"
-                                class="form-control ">
+                                class="form-control edit-document-select-no-top-bottom-padding">
                             <option value="" selected>Ingen</option>
                             <option ng-repeat="address in contact_address_list" ng-hide="address.isArchived"
                                     value={{address.id}}>
@@ -209,9 +209,9 @@
                            ng-hide="documentState == 'newDocument' || documentState == 'newProfile' || documentState == 'newUtility' || documentState == 'hideProfilesFromNewProfile'">Ligger
                         under: </label>
                     <div class="form-group col-sm-8">
-                        <select ng-style="{'font-size': text.size + 'px', 'height': text.size*2.5 + 'px'}"
+                        <select ng-style="{'font-size': text.size + 'px', 'height': text.size*2.1 + 'px'}"
                                 name="standardParent" id="standardParent" ng-model="document.topicId"
-                                class="form-control ">
+                                class="form-control edit-document-select-no-top-bottom-padding">
                             <option ng-repeat="topic in topicTupleList" value={{topic.id}}>{{topic.path}}</option>
                         </select>
                     </div>

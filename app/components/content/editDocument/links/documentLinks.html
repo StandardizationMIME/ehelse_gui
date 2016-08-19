@@ -18,32 +18,45 @@
                         </h3>
                     </div>
                     <div class="panel-body">
-                        <ul class="navbar-nav document-links-ul ten-pix-bottom-padding" ng-repeat="link in linkCategory.links">
-                            <li class="document-links-link center-align-delete-button">
-                                <label ng-style="{'font-size': text.size + 'px'}" class=" control-label center-align-text" for="linkSequence">Nr.</label>
-                            </li>
-                            <li class="document-links-link">
-                                <input ng-style="{'font-size': text.size + 'px', 'height': text.size*2.1 + 'px'}"
-                                       class="form-control document-fields-field-sequence" id="linkSequence" ng-model="link.sequence"
-                                       placeholder="1" name="linkSequence" type="text" numbers-only maxlength="15">
-                            </li>
-                            <li class="document-links-link">
-                                <input ng-style="{'font-size': text.size + 'px', 'height': text.size*2.1 + 'px'}"
-                                       class="form-control" id="linkText" name="linkText" type="text" placeholder="Navn" ng-model="link.text"
-                                       data-toggle="tooltip" data-original-title="{{link.text}}" data-placement="top" required>
-                            </li>
-                            <li class="document-links-link">
-                                <input ng-style="{'font-size': text.size + 'px', 'height': text.size*2.1 + 'px'}"
-                                       class="form-control center-align-text" id="linkUrl" name="linkUrl" type="text" placeholder="URL" ng-model="link.url"
-                                       data-toggle="tooltip" data-original-title="{{link.url}}" data-placement="top" required>
-                            </li>
-                            <li class="document-links-link center-align-text">
-                                <span class="fa fa-remove delete-topic-icon clickable form-group center-align-text"
-                                      ng-click="openConfirmationModal('Er du sikker på at du vil slette lenken fra dokumentet?',
-                                                               link, removeLink); EditDocumentController.DocumentForm.$setDirty()">
-                                </span>
-                            </li>
-                        </ul>
+                        <div class="form-group">
+                            <table id="" class="table">
+                                <tr class="navbar-nav document-links-ul" ng-repeat="link in linkCategory.links">
+                                    <!-- Nr -->
+                                    <td class="document-links-link center-align-delete-button">
+                                        <label ng-style="{'font-size': text.size + 'px'}" class=" control-label center-align-text" for="linkSequence">Nr.</label>
+                                    </td>
+
+                                    <!-- Link sequence -->
+                                    <td class="document-links-link">
+                                        <input ng-style="{'font-size': text.size + 'px', 'height': text.size*2.1 + 'px'}"
+                                               class="form-control document-fields-field-sequence" id="linkSequence" ng-model="link.sequence"
+                                               placeholder="1" name="linkSequence" type="text" numbers-only maxlength="15">
+                                    </td>
+
+                                    <!-- Link text -->
+                                    <td class="document-links-link">
+                                        <input ng-style="{'font-size': text.size + 'px', 'height': text.size*2.1 + 'px'}"
+                                               class="form-control" id="linkText" name="linkText" type="text" placeholder="Navn" ng-model="link.text"
+                                               data-toggle="tooltip" data-original-title="{{link.text}}" data-placement="top" required>
+                                    </td>
+
+                                    <!-- Link url -->
+                                    <td class="document-links-link">
+                                        <input ng-style="{'font-size': text.size + 'px', 'height': text.size*2.1 + 'px'}"
+                                               class="form-control center-align-text" id="linkUrl" name="linkUrl" type="text" placeholder="URL" ng-model="link.url"
+                                               data-toggle="tooltip" data-original-title="{{link.url}}" data-placement="top" required>
+                                    </td>
+
+                                    <!-- Delete link -->
+                                    <td class="document-links-link center-align-delete-button">
+                                                               <span class="fa fa-remove delete-topic-icon clickable form-group center-align-text"
+                                                                     ng-click="openConfirmationModal('Er du sikker på at du vil slette lenken fra dokumentet?',
+                                                                                      link, removeLink); EditDocumentController.DocumentForm.$setDirty()">
+                                                               </span>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
                     </div>
 
 
