@@ -738,7 +738,7 @@ angular.module("ehelseEditor").factory("Document",
             }
 
             /**
-             * 
+             * Generates link category dictionary for chosen(current) document if it have any links
              */
             function generateCurrentDocumentLinksAsLinkCategoryList() {
                 var link_category_dict = {};
@@ -782,6 +782,10 @@ angular.module("ehelseEditor").factory("Document",
                 }
             }
 
+            /**
+             * Returns link category list for chosen(current) document
+             * @returns {Array}
+             */
             function getCurrentDocumentLinksAsLinkCategoryList() {
                 link_category_list = ServiceFunction.orderListBySequence(link_category_list, LinkCategory.getById, "link");
                 return link_category_list;
@@ -791,6 +795,10 @@ angular.module("ehelseEditor").factory("Document",
                 return heading_list;
             }
 
+            /**
+             * Returns list with id's of link categories to chosen(current) document
+             * @returns {Array}
+             */
             function getCurrentDocumentLinkCategoriesIds() {
                 var link_category_ids = [];
                 if (current_document.links) {
@@ -803,6 +811,10 @@ angular.module("ehelseEditor").factory("Document",
                 return link_category_ids;
             }
 
+            /**
+             * Adds link category to chosen(current) document by several link category id's
+             * @param ids
+             */
             function extendCurrentDocumentLinkCategoriesByLinkCategoriesIds(ids) {
                 if (ids) {
                     for (var i = 0; i < ids.length; i++) {
@@ -814,12 +826,19 @@ angular.module("ehelseEditor").factory("Document",
                 generateCurrentDocumentLinksAsLinkCategoryList();
             }
 
+            /**
+             * Adds link to chosen(current) document by link category id
+             * @param id
+             */
             function addLinkToCurrentDocumentByLinkCategoryId(id) {
                 current_document.links.push({linkCategoryId: id, text: "", url: "", sequence: 1});
                 generateCurrentDocumentLinksAsLinkCategoryList();
             }
 
-
+            /**
+             * Removes link from chosen(current) document by link category id
+             * @param linkCategoryId
+             */
             function removeCurrentDocumentLinksByCategoryId(linkCategoryId) {
                 var tmp_list = [];
                 if (current_document.links) {
@@ -836,6 +855,10 @@ angular.module("ehelseEditor").factory("Document",
                 generateCurrentDocumentLinksAsLinkCategoryList();
             }
 
+            /**
+             * Removes heading from chosen(current) document
+             * @param heading
+             */
             function removeCurrentDocumentHeading(heading) {
                 if (heading) {
                     var index = current_document.headingContent.indexOf(heading);
@@ -852,6 +875,11 @@ angular.module("ehelseEditor").factory("Document",
                 return newProfile(standardId);
             }
 
+            /**
+             * Creates new version of given document by copying document and adding previous document id
+             * @param document
+             * @returns {*}
+             */
             function newVersion(document) {
                 var new_version = clone(document);
                 new_version.previousDocumentId = new_version.id;
@@ -859,12 +887,20 @@ angular.module("ehelseEditor").factory("Document",
                 return new_version;
             }
 
+            /**
+             * Generates document dictionary of array with documents
+             * @param documents
+             */
             function generateDocumentDict(documents) {
                 for (var i = 0; i < documents.length; i++) {
                     documents_dict[documents[i].id] = documents[i];
                 }
             }
 
+            /**
+             * Generates topic dictionary of array with documents
+             * @param documents
+             */
             function generateTopicsDocumentsDict(documents) {
                 var topics = Topic.getAllAsDict();
 
@@ -877,8 +913,8 @@ angular.module("ehelseEditor").factory("Document",
                     }
                 }
 
-
                 var document;
+
                 for (var i = 0; i < documents.length; i++) {
                     document = documents[i];
                     if (!Array.isArray(topics_documents_dict[document.topicId])) {
@@ -888,13 +924,21 @@ angular.module("ehelseEditor").factory("Document",
                 }
             }
 
+            /**
+             * REturns array of all documents
+             * @returns {Array}
+             */
             function getAll() {
                 return documents;
             }
 
+            /**
+             * Gets profiles for document
+             * @param document
+             */
             function getProfiles(document) {
-
                 var profiles = null;
+
                 if (documents_dict[document.id]) {
                     profiles = documents_dict[document.id].profiles;
                 }
@@ -907,9 +951,13 @@ angular.module("ehelseEditor").factory("Document",
                 }
             }
 
+            /**
+             * Gets all profiles except chosen one for document
+             * @param document
+             */
             function getRelatedProfiles(document) {
-
                 var profiles = null;
+
                 if (documents_dict[document.standardId]) {
                     profiles = documents_dict[document.standardId].profiles;
                 }
