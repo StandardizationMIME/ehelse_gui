@@ -12,7 +12,7 @@
 /* ----- CH11 ADMINISTER_FIELDS ----- */
 /*------------------------------------------------------------------------------------------------------ */
 /* ----------------------------------------------- CH1 GENERIC ----------------------------------------- */
-.btn, input, select, textarea {
+.btn, input, select, textarea, .modal-content {
     border-radius: 0 !important;
 }
 .panel-body .panel-body {
