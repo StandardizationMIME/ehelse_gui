@@ -34,12 +34,18 @@
                     <div class="form-inline four-pix-horizontal-margin">
                         <input class="four-pix-horizontal-margin" id="newDocumentFieldMandatory" type="checkbox" ng-model="newDocumentField.mandatory"/>
                         <label for="newDocumentFieldMandatory"> Obligatorisk</label>
+                        <span data-toggle="tooltip" data-placement="right"
+                              title="Obligatoriske felter vil automatisk bli lagt til i dokumentene ved opprettelse og kan ikke slettes fra dokumentet etterpå." class="fa fa-question-circle tooltip-help">
+                        </span>
                     </div>
 
                     <!-- Rich text -->
                     <div class="form-inline ten-pix-vertical-padding four-pix-horizontal-margin">
                         <input class="four-pix-horizontal-margin" id="newDocumentFieldIsRichText" type="checkbox" ng-model="newDocumentField.isRichText"/>
                         <label for="newDocumentFieldIsRichText"> Rik tekst</label>
+                        <span data-toggle="tooltip" data-placement="right"
+                              title="Huk av dersom feltet skal inneholde formatering (linjeskift osv)." class="fa fa-question-circle tooltip-help">
+                        </span>
                     </div>
                 </div>
 
